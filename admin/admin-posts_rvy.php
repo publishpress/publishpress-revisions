@@ -189,7 +189,7 @@ class RevisionaryAdminPosts {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$results = $wpdb->get_results(
 				"SELECT comment_count AS published_post, COUNT(comment_count) AS num_revisions FROM $wpdb->posts"
-				. " WHERE $wpdb->posts.comment_count IN ('$id_csv') AND $wpdb->posts.post_status IN ('$revision_base_status_csv')"			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				. " WHERE $wpdb->posts.comment_count IN ('$id_csv')"			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				. " AND $wpdb->posts.post_mime_type IN ('$revision_status_csv') AND $wpdb->posts.post_type != '' GROUP BY comment_count"		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 			
