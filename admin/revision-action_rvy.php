@@ -940,6 +940,8 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	}
 
 	if ($published_id != $revision_id) {
+		$num_revisions = revisionary_count_revisions($published_id);
+
 		if (!defined('REVISIONARY_NO_SCHEDULED_REVISION_ARCHIVE')) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->update(
@@ -1004,6 +1006,11 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 			wp_delete_post($revision_id, true);
 		}
 
+		$num_revisions = $num_revisions - 1;
+
+		// If published revision was the last remaining pending / scheduled, clear _rvy_has_revisions postmeta flag 
+		revisionary_refresh_postmeta($published_id, compact('num_revisions'));
+
 		if (!rvy_get_option('archive_postmeta')) {
 			$approved_by = get_post_meta($revision_id, '_rvy_approved_by', true);
 
@@ -1023,9 +1030,6 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	} elseif (!empty($approved_by)) {
 		rvy_update_post_meta($revision_id, '_rvy_approved_by', $approved_by);
 	}
-
-	// If published revision was the last remaining pending / scheduled, clear _rvy_has_revisions postmeta flag 
-	revisionary_refresh_postmeta($post_id);
 
 	if (!empty($orig_terms) && is_array($orig_terms)) {
 		foreach($orig_terms as $taxonomy => $terms) {
