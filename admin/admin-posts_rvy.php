@@ -86,7 +86,7 @@ class RevisionaryAdminPosts {
 
 		$this->skip_has_cap_filtering = true;
 
-		if (!current_user_can('edit_post', $post->ID)) {
+		if (!empty($post) && !current_user_can('edit_post', $post->ID)) {
 			add_filter('user_has_cap', [$this, 'actUserHasCap'], 999, 3);
 
 			// Trigger javascript to remove the non-functional Edit link which this filtering will cause
