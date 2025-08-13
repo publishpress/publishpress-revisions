@@ -309,7 +309,7 @@ $div_class = apply_filters('publishpress_revisions_settings_sidebar_class', '');
 	<div id="post-body" class="metabox-holder <?php echo esc_attr($div_class);?>">	
 
 	<div class="pp-group-wrapper" style="display:flex;width: 100%;flex-wrap:wrap;">
-	<div id="post-body-content" style="flex-basis: calc(99% - 270px);" class="ppseries-settings-body-content">
+	<div id="post-body-content" style="flex-basis: <?php if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) echo '100%'; else echo 'calc(99% - 270px)';?>" class="ppseries-settings-body-content">
 
 <?php
 if ( $sitewide ) {
