@@ -702,7 +702,7 @@ function revisionary_publish_scheduled($args = []) {
 	rvy_publish_scheduled_revisions($args);
 }
 
-function revisionary_refresh_postmeta($post_id, $args = []) {
+function revisionary_count_revisions($post_id, $args = []) {
 	global $wpdb;
 
 	$ignore_revisions = (!empty($args['ignore_revisions'])) ? $args['ignore_revisions'] : [];
@@ -718,12 +718,22 @@ function revisionary_refresh_postmeta($post_id, $args = []) {
 	$has_revisions = $wpdb->get_var(
 		// account for post deletion
 		$wpdb->prepare(
-			"SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') $ignore_clause AND post_status != 'trash' AND comment_count = %d LIMIT 1",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			"SELECT COUNT(ID) FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') $ignore_clause AND post_status != 'trash' AND comment_count = %d",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$post_id
 		)
 	);
 
-	$set_value = !empty($has_revisions);
+	return $has_revisions;
+}
+
+function revisionary_refresh_postmeta($post_id, $args = []) {
+	if (isset($args['num_revisions'])) {
+		$num_revisions = $args['num_revisions'];
+	} else {
+		$num_revisions = revisionary_count_revisions($post_id, $args);
+	}
+
+	$set_value = !empty($num_revisions);
 
 	$_post = get_post($post_id);
 
