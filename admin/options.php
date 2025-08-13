@@ -308,7 +308,8 @@ $div_class = apply_filters('publishpress_revisions_settings_sidebar_class', '');
 
 	<div id="post-body" class="metabox-holder <?php echo esc_attr($div_class);?>">	
 
-	<div id="post-body-content" style="position: relative;" class="ppseries-settings-body-content">
+	<div class="pp-group-wrapper" style="display:flex;width: 100%;flex-wrap:wrap;">
+	<div id="post-body-content" style="flex-basis: calc(99% - 270px);" class="ppseries-settings-body-content">
 
 <?php
 if ( $sitewide ) {
@@ -1970,6 +1971,8 @@ echo "javascript:if (confirm('"
 
 </div>
 
+</div>
+
 </form>
 
 <p style='clear:both'></p>
@@ -2082,6 +2085,14 @@ private function renderCompatibilityPack($integration)
 						<li><?php echo esc_html($feature); ?></li>
 					<?php endforeach; ?>
 				</ul>
+
+				<?php if (!$is_pro && $integration['available']): ?>
+					<div class="notice inline notice-warning notice-alt" style="margin-bottom: 35px">
+						<p style="margin-top:0; margin-bottom: 0">
+						<?php esc_html_e('Upgrade to Pro to enable this integration', 'press-permit-core'); ?>
+						</p>
+					</div>
+				<?php endif; ?>
 			</div>
 
 			<?php if (!$integration['free'] && $integration['available']):?>
