@@ -2085,14 +2085,6 @@ private function renderCompatibilityPack($integration)
 						<li><?php echo esc_html($feature); ?></li>
 					<?php endforeach; ?>
 				</ul>
-
-				<?php if (!$is_pro && $integration['available']): ?>
-					<div class="notice inline notice-warning notice-alt" style="margin-bottom: 35px">
-						<p style="margin-top:0; margin-bottom: 0">
-						<?php esc_html_e('Upgrade to Pro to enable this integration', 'press-permit-core'); ?>
-						</p>
-					</div>
-				<?php endif; ?>
 			</div>
 
 			<?php if (!$integration['free'] && $integration['available']):?>
@@ -2100,7 +2092,7 @@ private function renderCompatibilityPack($integration)
 					<?php if ($is_pro && $is_enabled): ?>
 						<div class="pp-integration-status active"><?php esc_html_e('Integration Active', 'revisionary'); ?></div>
 					<?php else: ?>
-						<div class="pp-integration-status disabled"><?php esc_html_e('Integration Missing', 'revisionary'); ?></div>
+						<div class="pp-integration-status disabled"><?php esc_html_e('Upgrade to Pro to enable this integration', 'revisionary'); ?></div>
 					<?php endif; ?>
 				</div>
 			<?php endif;?>
