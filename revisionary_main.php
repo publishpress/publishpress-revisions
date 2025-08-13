@@ -21,6 +21,7 @@ class Revisionary
 	var $front = false;
 
 	var $config_loaded = false;		// configuration related to post types and statuses must be loaded late on the init action
+	
 	var $enabled_post_types = [];	// enabled_post_types property is set (keyed by post type slug) late on the init action. 
 	var $enabled_post_types_archive = [];	// enabled_post_types_archive property is set (keyed by post type slug) late on the init action.
 	var $hidden_post_types_archive = [];
@@ -634,6 +635,8 @@ class Revisionary
 			return;
 		}
 
+		$num_revisions = revisionary_count_revisions($post_id);
+
 		$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -646,18 +649,22 @@ class Revisionary
 		) : '';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$post_ids = $wpdb->get_col(
+		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT ID FROM $wpdb->posts WHERE (post_mime_type IN ('$revision_status_csv') AND comment_count = %d) $trashed_clause",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"SELECT ID, post_status FROM $wpdb->posts WHERE (post_mime_type IN ('$revision_status_csv') AND comment_count = %d) $trashed_clause",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$post_id
 			)
 		);
 
-		foreach($post_ids as $revision_id) {
-			wp_delete_post($revision_id, true);
+		foreach($results as $row) {
+			wp_delete_post($row->ID, true);
+
+			if ('trash' != $row->post_status) {
+				$num_revisions = $num_revisions - 1;
+			}
 		}
 
-		revisionary_refresh_revision_flags($post_id, ['ignore_revision_ids' => $post_ids]);
+		revisionary_refresh_revision_flags($post_id, ['ignore_revision_ids' => $post_ids, 'num_revisions' => $num_revisions]);
 
 		$post = get_post($post_id);
 

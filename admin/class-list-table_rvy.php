@@ -65,14 +65,22 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 		}
 
+		$revision_count = [];
+
 		foreach ($triggered_deletions as $revision_id => $post_id) {
-			if ($revision_id) {
-				wp_delete_post($revision_id, true);
+			if (!isset($revision_count[$post_id])) {
+				$revision_count[$post_id] = revisionary_count_revisions($post_id);
 			}
 
-			if ($post_id) {
-				revisionary_refresh_postmeta($post_id);
+			if ($revision_id) {
+				wp_delete_post($revision_id, true);
+
+				$revision_count[$post_id] = $revision_count[$post_id] ? $revision_count[$post_id] - 1 : 0;
 			}
+		}
+
+		foreach ($revision_count as $post_id => $num_revisions) {
+			revisionary_refresh_postmeta($post_id, compact('num_revisions'));
 		}
 
 		if ($clear_trigger_option) {
