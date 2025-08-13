@@ -322,6 +322,45 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 		}
 
+		if (defined('PP_AUTHORS_VERSION')) {
+			remove_filter(
+				'posts_where',
+				['MultipleAuthors\\Classes\\Query', 'filter_admin_posts_list_where'],
+				10,
+				2
+			);
+
+			remove_filter(
+				'posts_join',
+				['MultipleAuthors\\Classes\\Query', 'filter_posts_list_join'],
+				10,
+				2
+			);
+
+			remove_filter(
+				'posts_groupby',
+				['MultipleAuthors\\Classes\\Query', 'filter_posts_list_groupby'],
+				10,
+				2
+			);
+
+			remove_filter(
+				'posts_where',
+				['MultipleAuthors\\Classes\\Query', 'filter_author_posts_where'],
+				10,
+				2
+			);
+
+			remove_action('pre_get_posts', ['MultipleAuthors\\Classes\\Query', 'action_pre_get_posts']);
+			remove_filter('posts_where', ['MultipleAuthors\\Classes\\Query', 'filter_posts_where'], 10, 2);
+			remove_filter('posts_join', ['MultipleAuthors\\Classes\\Query', 'filter_posts_join'], 10, 2);
+			remove_filter('posts_groupby', ['MultipleAuthors\\Classes\\Query', 'filter_posts_groupby'], 10, 2);
+
+			if (!defined('PUBLISHPRESS_AUTHORS_DISABLE_FILTER_THE_AUTHOR')) {
+				define('PUBLISHPRESS_AUTHORS_DISABLE_FILTER_THE_AUTHOR', true);
+			}
+		}
+
 		if (!empty($_REQUEST['s'])) {											//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$qr['s'] = sanitize_text_field($_REQUEST['s']);						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
