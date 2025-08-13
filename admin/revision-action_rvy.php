@@ -1270,8 +1270,6 @@ function rvy_revision_delete() {
 		}
 
 		rvy_delete_past_revisions($revision_id);
-
-		revisionary_refresh_postmeta($revision->post_parent);
 	} while (0);
 	
 	if ( ! empty( $_GET['return'] ) && ! empty( $_SERVER['HTTP_REFERER'] ) ) {
@@ -1342,10 +1340,6 @@ function rvy_revision_bulk_delete() {
 			do_action('rvy_delete_revision', $revision_id, $published_post_id);
 
 			rvy_delete_past_revisions($revision_id);
-		}
-
-		foreach($post_ids as $_post_id) {
-			revisionary_refresh_postmeta($_post_id);
 		}
 	}
 
