@@ -55,7 +55,7 @@ class RevisionaryAdminPosts {
 
 		add_filter('posts_where', [$this, 'fltFilterRevisions'], 10, 2);
 
-	    if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {
+        if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {
 		  add_filter('the_title', [$this, 'fltTitle'], 10, 1);
 		  add_filter('manage_product_posts_custom_column', [$this, 'actProductsCol'], 10, 1);
 		  add_filter('get_edit_post_link', [$this, 'fltGetEditPostLink'], 50, 3);
@@ -117,17 +117,21 @@ class RevisionaryAdminPosts {
 			add_action(
 				'admin_print_footer_scripts',
 				function () use ($link) {
-    			?>
-        			<script type="text/javascript">
-        			/* <![CDATA[ */
-        			jQuery(document).ready( function($) {
-        				if ($('#the-list').length) {
-        				    $('td.column-name a[href="<?php echo str_replace('&amp;', '&', $link);?>"]').attr('href', '').closest('div.row-actions').find('span.edit,span.inline,span.trash').hide();
-        				}
-        			});
-        			/* ]]> */
-        			</script>
-    			<?php
+					if ($ipos = strpos($link, '&')) {
+						$link = substr($link, 0, $ipos - 1);
+					}
+				?>
+					<script type="text/javascript">
+					/* <![CDATA[ */
+					jQuery(document).ready( function($) {
+						if ($('#the-list').length) {
+							$('td.column-name a[href*="<?php echo $link;?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
+							$('td.column-title a[href*="<?php echo $link;?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
+						}
+					});
+					/* ]]> */
+					</script>
+				<?php
 				}
 			);
 		}
