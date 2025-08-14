@@ -656,12 +656,16 @@ class Revisionary
 			)
 		);
 
+		$post_ids = [];
+
 		foreach($results as $row) {
 			wp_delete_post($row->ID, true);
 
 			if ('trash' != $row->post_status) {
 				$num_revisions = $num_revisions - 1;
 			}
+
+			$post_ids []= $row->ID;
 		}
 
 		revisionary_refresh_revision_flags($post_id, ['ignore_revision_ids' => $post_ids, 'num_revisions' => $num_revisions]);
