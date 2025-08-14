@@ -65,14 +65,22 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 		}
 
+		$revision_count = [];
+
 		foreach ($triggered_deletions as $revision_id => $post_id) {
-			if ($revision_id) {
-				wp_delete_post($revision_id, true);
+			if (!isset($revision_count[$post_id])) {
+				$revision_count[$post_id] = revisionary_count_revisions($post_id);
 			}
 
-			if ($post_id) {
-				revisionary_refresh_postmeta($post_id);
+			if ($revision_id) {
+				wp_delete_post($revision_id, true);
+
+				$revision_count[$post_id] = $revision_count[$post_id] ? $revision_count[$post_id] - 1 : 0;
 			}
+		}
+
+		foreach ($revision_count as $post_id => $num_revisions) {
+			revisionary_refresh_postmeta($post_id, compact('num_revisions'));
 		}
 
 		if ($clear_trigger_option) {
@@ -312,6 +320,45 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		add_filter($filter_name, [$this, 'restore_revisions_filter'], PHP_INT_MAX - 1, 2);
 
 		if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
+			remove_action('pre_get_posts', ['MultipleAuthors\\Classes\\Query', 'action_pre_get_posts']);
+			remove_filter('posts_where', ['MultipleAuthors\\Classes\\Query', 'filter_posts_where'], 10, 2);
+			remove_filter('posts_join', ['MultipleAuthors\\Classes\\Query', 'filter_posts_join'], 10, 2);
+			remove_filter('posts_groupby', ['MultipleAuthors\\Classes\\Query', 'filter_posts_groupby'], 10, 2);
+
+			if (!defined('PUBLISHPRESS_AUTHORS_DISABLE_FILTER_THE_AUTHOR')) {
+				define('PUBLISHPRESS_AUTHORS_DISABLE_FILTER_THE_AUTHOR', true);
+			}
+		}
+
+		if (defined('PP_AUTHORS_VERSION')) {
+			remove_filter(
+				'posts_where',
+				['MultipleAuthors\\Classes\\Query', 'filter_admin_posts_list_where'],
+				10,
+				2
+			);
+
+			remove_filter(
+				'posts_join',
+				['MultipleAuthors\\Classes\\Query', 'filter_posts_list_join'],
+				10,
+				2
+			);
+
+			remove_filter(
+				'posts_groupby',
+				['MultipleAuthors\\Classes\\Query', 'filter_posts_list_groupby'],
+				10,
+				2
+			);
+
+			remove_filter(
+				'posts_where',
+				['MultipleAuthors\\Classes\\Query', 'filter_author_posts_where'],
+				10,
+				2
+			);
+
 			remove_action('pre_get_posts', ['MultipleAuthors\\Classes\\Query', 'action_pre_get_posts']);
 			remove_filter('posts_where', ['MultipleAuthors\\Classes\\Query', 'filter_posts_where'], 10, 2);
 			remove_filter('posts_join', ['MultipleAuthors\\Classes\\Query', 'filter_posts_join'], 10, 2);
@@ -596,6 +643,34 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				$one_one = ($and) ? '1=1' : '';
 
 				$where = " $and (($one_one $where) AND (" . implode(' OR ', $append_clauses) . '))';
+			}
+		}
+
+		if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')
+		&& !is_content_administrator_rvy() && class_exists('PublishPress\Permissions\DB\Permissions')
+		) {
+			$defaults = [
+				'has_cap_check' => false,   // TRUE: this function call is to determine per-post editing / deletion capability;  FALSE: just determining which posts to list
+				'post_types' => [],
+				'source_alias' => (!empty($args['alias'])) ? sanitize_text_field($args['alias']) : '',
+				'src_table' => '',
+				'apply_term_restrictions' => true,
+				'include_trash' => 0,
+				'required_operation' => 'edit',
+				'limit_statuses' => false,
+				'skip_teaser' => false,
+				'query_contexts' => [],
+				'force_types' => false,
+				'limit_post_types' => false,
+				'join' => '',
+				'append_post_type_clause' => false,
+			];
+
+			$args = array_merge($defaults, (array)$args);
+
+
+			foreach(array_keys($revisionary->enabled_post_types) as $_post_type) {
+				$where = \PublishPress\Permissions\DB\Permissions::addExceptionClauses($where, 'edit', $_post_type, $args);
 			}
 		}
 

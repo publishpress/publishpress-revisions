@@ -98,7 +98,7 @@ class PluginCompat {
 			return $clause;
 		}
 
-		if (('edit' == $required_operation) && in_array($post_type, rvy_get_manageable_types()) 
+		if (('edit' == $required_operation) && in_array($post_type, rvy_get_manageable_types()) && rvy_get_option('apply_post_exceptions') 
 		) {
 			foreach(['mod', 'src_table', 'logic', 'ids'] as $var) {
 				if (!empty($args[$var])) {

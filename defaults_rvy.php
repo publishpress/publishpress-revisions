@@ -67,7 +67,8 @@ function rvy_default_options_sitewide() {
 		'planner_notifications_access_limited' => false,
 		'archive_postmeta' => true,
 		'extended_archive' => true,
-		'delete_settings_on_uninstall' => true
+		'delete_settings_on_uninstall' => true,
+		'apply_post_exceptions' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -135,6 +136,7 @@ function rvy_default_options() {
 		'archive_postmeta' => 0,
 		'extended_archive' => 0,
 		'delete_settings_on_uninstall' => 0,
+		'apply_post_exceptions' => 0,
 	);
 
 	return $def;

@@ -45,10 +45,11 @@ class CoreAdmin {
         body.revisionary-settings #side-info-column {
             float: left !important;
             padding-right: 20px;
-            width: calc( 25% - 20px );
+            width: 240px;
         }
 
         body.revisionary-settings #side-sortables .postbox {
+            width: 240px !important;
             min-width: 240px !important;
         }
 

@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.8
+Stable tag: 3.7.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -244,6 +244,17 @@ Divi is one of the most popular page-builders in WordPress, and it does integrat
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.9 - 14 Aug 2025 =
+* Compat : PublishPress Permissions - Permissions assigned directly to revisions were not applied (also requires Permissions 4.4.3)
+* Compat : PublishPress Permissions - Option for Post Permissions to be applied to revisions (also requires Permissions 4.4.3)
+* Fixed : Posts listing did not show Has Revision caption if Revisions compatibility mode set to Enhanced Revision access control
+* Fixed : Revision metadata "_rvy_has_revisions" (and Has Revision caption) was not cleared after revision publication
+* Compat : Multiple Authors - Revision Queue was incorrectly filtered on author queries
+* Fixed : Some custom post types had non-functional edit links displayed to Revisors
+* Change : Styling and content adjustments to Revisions > Settings > Integration tab
+* Change : Right sidebar on Revisions > Settings was too wide
+* Change : Display Pro Settings tabs last
 
 = 3.7.8 - 31 Jul 2025 =
 * Change : Improvements to Settings > Integration tab contents

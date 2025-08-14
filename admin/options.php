@@ -128,12 +128,12 @@ $this->tab_captions = array( 'features' => esc_html__( 'Settings', 'revisionary'
 $this->section_captions = array(
 	'features' => array(
 		'post_types'			=> esc_html__('Features', 'revisionary'),
-		'statuses'				=> esc_html__('Statuses', 'revisionary'),
 		'archive'				=> esc_html__('Past Revisions', 'revisionary'),
 		'working_copy'			=> esc_html__('New Revisions', 'revisionary'),
-		'notifications'			=> esc_html__('Notifications', 'revisionary'),
-		'integrations'			=> esc_html__('Integrations', 'revisionary'),
 		'revisions'				=> esc_html__('Options', 'revisionary'),
+		'integrations'			=> esc_html__('Integrations', 'revisionary'),
+		'statuses'				=> esc_html__('Statuses', 'revisionary'),
+		'notifications'			=> esc_html__('Notifications', 'revisionary'),
 	)
 );
 
@@ -203,6 +203,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'permissions_compat_mode' => 				esc_html__('Compatibility Mode', 'revisionary'),
 	'planner_notifications_access_limited' =>	esc_html__('Planner Notifications Access-Limited', 'revisionary'),
 	'num_revisions' =>							esc_html__('Maximum Revisions per post', 'revisionary'),
+	'apply_post_exceptions' =>					esc_html__('Apply Post Permisisons to Revisions', 'revisionary')
 	]
 );
 
@@ -225,7 +226,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
-	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'diff_display_strip_tags', 'display_hints', 'delete_settings_on_uninstall'],
+	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'diff_display_strip_tags', 'display_hints', 'delete_settings_on_uninstall'],
 	'license' =>			 ['edd_key'],
 ]
 ]);
@@ -307,7 +308,8 @@ $div_class = apply_filters('publishpress_revisions_settings_sidebar_class', '');
 
 	<div id="post-body" class="metabox-holder <?php echo esc_attr($div_class);?>">	
 
-	<div id="post-body-content" style="position: relative;" class="ppseries-settings-body-content">
+	<div class="pp-group-wrapper" style="display:flex;width: 100%;flex-wrap:wrap;">
+	<div id="post-body-content" style="flex-basis: <?php if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) echo '100%'; else echo 'calc(99% - 270px)';?>" class="ppseries-settings-body-content">
 
 <?php
 if ( $sitewide ) {
@@ -714,7 +716,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 	</div>
 
 	<div class="pp-upgrade-overlay">
-		<h4><?php esc_html_e('Premium Plugin', 'revisionary'); ?></h4>
+		<h4><?php esc_html_e('Pro Plugin', 'revisionary'); ?></h4>
 		<p><?php esc_html_e('Install Statuses Pro to unlock custom revision statuses.', 'revisionary');?></p>
 		<p><?php esc_html_e('Configure for any post type and role to match your editing workflow.', 'revisionary');?></p>
 		<div class="pp-upgrade-buttons">
@@ -1311,7 +1313,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				<div class="pp-promo-upgrade-notice" style="padding-bottom: 0">
 					<p style="margin: 5px">
 						<?php if ($pp_notifications) {
-							esc_html_e('Planner Notifications have been switched on, but will not work until you upgrade to Revisions Pro.', 'revisionary');
+							esc_html_e('Planner Notifications will be enabled after upgrade to Revisions Pro.', 'revisionary');
 						}
 						?>
 					</p>
@@ -1575,7 +1577,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 	</div>
 
 	<div class="pp-upgrade-overlay">
-		<h4><?php esc_html_e('Premium Feature', 'revisionary'); ?></h4>
+		<h4><?php esc_html_e('Pro Feature', 'revisionary'); ?></h4>
 		<p><?php esc_html_e('Upgrade to Revisions Pro to unlock Planner Notifications integration.', 'revisionary');?></p>
 		<p><?php esc_html_e('Customize notification content and recipients for each notification type.', 'revisionary');?></p>
 		<div class="pp-upgrade-buttons">
@@ -1702,6 +1704,11 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 
 		$this->option_checkbox( 'require_edit_others_drafts', $tab, $section, $hint, '', $checkbox_args );
 		
+		if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')) {
+			$hint = __('If post-specific permissions restrict or expand access to a post, apply those permissions to its revisions also.', 'revisionary');
+			$this->option_checkbox('apply_post_exceptions', $tab, $section, $hint, '');
+		}
+
 		$hint = '';
 		$this->option_checkbox( 'diff_display_strip_tags', $tab, $section, $hint, '' );
 
@@ -1751,7 +1758,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			<div class="pp-integrations-upgrade-cta">
 				<div class="pp-pro-banner">
 					<div>
-						<h2><?php esc_html_e('Unlock Premium Integrations', 'revisionary');?></h2>
+						<h2><?php esc_html_e('Unlock Pro Integrations', 'revisionary');?></h2>
 						<p><?php esc_html_e("Upgrade to the Pro version for optimal compatibility and prompt, professional support.", 'revisionary');?></p>
 					</div>
 					<div class="pp-pro-badge-banner">
@@ -1964,6 +1971,8 @@ echo "javascript:if (confirm('"
 
 </div>
 
+</div>
+
 </form>
 
 <p style='clear:both'></p>
@@ -2050,11 +2059,11 @@ private function renderCompatibilityPack($integration)
 				<?php endif; ?>
 
 				<?php if (!$integration['available']): ?>
-					<span class="pp-badge"
-						style="background: #9e9e9e;"><?php esc_html_e('Supported', 'revisionary'); ?></span>
+					<!--<span class="pp-badge"
+						style="background: #9e9e9e;"><?php esc_html_e('Supported', 'revisionary'); ?></span>-->
 				<?php else: ?>
 					<span class="pp-badge"
-						style="background: #4caf50;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
+						style="background: #5e92c4;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
 				<?php endif; ?>
 			</h3>
 
@@ -2064,11 +2073,13 @@ private function renderCompatibilityPack($integration)
 
 			<div class="pp-integration-features">
 				<ul>
+					<!--
 					<?php if (!empty($integration['free'])) :?>
 						<li><?php esc_html_e('Supported by PublishPress Revisions', 'revisionary');?></li>
 					<?php else :?>
 						<li><?php esc_html_e('Supported by Revisions Pro', 'revisionary');?></li>
 					<?php endif;?>
+					-->
 
 					<?php foreach ($integration['features'] as $feature): ?>
 						<li><?php echo esc_html($feature); ?></li>
@@ -2081,7 +2092,7 @@ private function renderCompatibilityPack($integration)
 					<?php if ($is_pro && $is_enabled): ?>
 						<div class="pp-integration-status active"><?php esc_html_e('Integration Active', 'revisionary'); ?></div>
 					<?php else: ?>
-						<div class="pp-integration-status disabled"><?php esc_html_e('Integration Missing', 'revisionary'); ?></div>
+						<div class="pp-integration-status disabled"><?php esc_html_e('Upgrade to Pro to enable this integration', 'revisionary'); ?></div>
 					<?php endif; ?>
 				</div>
 			<?php endif;?>
@@ -2089,7 +2100,7 @@ private function renderCompatibilityPack($integration)
 
 		<?php if (!$is_pro && !$integration['free']): ?>
 			<div class="pp-upgrade-overlay">
-				<h4><?php esc_html_e('Premium Feature', 'revisionary'); ?></h4>
+				<h4><?php esc_html_e('Pro Feature', 'revisionary'); ?></h4>
 				<p><?php echo esc_html(sprintf(__('Unlock %s integration to enhance your revisions solution.', 'revisionary'), $integration['title'])); ?>
 				</p>
 				<div class="pp-upgrade-buttons">
@@ -2142,9 +2153,9 @@ private function renderIntegrations()
 {
 	$int = array_merge(
 		wp_filter_object_list($this->defined_integrations, ['available' => true, 'free' => false]),
-		wp_filter_object_list($this->defined_integrations, ['available' => false, 'free' => false]),
-		wp_filter_object_list($this->defined_integrations, ['available' => true, 'free' => true]),
-		wp_filter_object_list($this->defined_integrations, ['available' => false, 'free' => true])
+		wp_filter_object_list($this->defined_integrations, ['available' => false, 'free' => false])
+		//wp_filter_object_list($this->defined_integrations, ['available' => true, 'free' => true]),
+		//wp_filter_object_list($this->defined_integrations, ['available' => false, 'free' => true])
 	);
 
 	// Render each fallback integration

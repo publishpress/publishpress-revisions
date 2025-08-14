@@ -278,6 +278,7 @@ class Revisions {
                 'learn_more_url' => 'https://publishpress.com/knowledge-base/revisions-yoast-seo/'
             ],
 
+            /*
             [
                 'id' => 'litespeed_compatibility',
                 'title' => esc_html__('Litespeed Cache', 'revisionary'),
@@ -434,6 +435,7 @@ class Revisions {
                 'learn_more_url' => 'https://taxopress.com/',
                 'free' => true
             ],
+            */
         ];
 
         foreach (array_keys($integrations) as $i) {
