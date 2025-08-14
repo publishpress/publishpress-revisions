@@ -1313,7 +1313,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				<div class="pp-promo-upgrade-notice" style="padding-bottom: 0">
 					<p style="margin: 5px">
 						<?php if ($pp_notifications) {
-							esc_html_e('Planner Notifications have been switched on, but will not work until you upgrade to Revisions Pro.', 'revisionary');
+							esc_html_e('Planner Notifications will be enabled after upgrade to Revisions Pro.', 'revisionary');
 						}
 						?>
 					</p>
