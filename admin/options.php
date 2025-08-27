@@ -698,18 +698,51 @@ $section = 'statuses';				// --- STATUSES SECTION ---
 if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_options[$tab][$section] ) ) :?>
 	<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
-	<div class="pp-pro-banner" style="margin-bottom: 20px">
-		<div>
-			<h2><?php _e('Unlock Revision Statuses', 'revisionary');?></h2>
-			<p><?php _e('Install Statuses Pro to enhance your workflow with custom revision statuses.', 'revisionary');?></p>
+	<!-- CTA Section -->
+	<div class="pp-cta-section">
+		<h4>
+			<?php esc_html_e('Ready to enhance your revision workflow?', 'revisionary'); ?>
+		</h4>
+		<p>
+			<?php esc_html_e('Upgrade to Statuses Pro and optimize your revision process with custom revision statuses.', 'revisionary'); ?>
+		</p>
+
+		<div class="pp-revisions-pro-features">
+			<ul>
+				<li>
+					&nbsp;<?php _e('Define your own statuses before or after Revision Submitted', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('New predefined statuses: Deferred, Needs Work, Rejected', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Statuses can be specific to a post type', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Control access to statuses per-role', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Status workflow can be nested with sub-statuses', 'revisionary');?>
+				</li>
+			</ul>
 		</div>
-		<div class="pp-pro-badge-banner">
-			<a href="https://publishpress.com/statuses/" target="_blank" class="pp-upgrade-btn">
+
+		<div class="pp-cta-buttons">
+			<a href="https://publishpress.com/statuses/" 
+				class="button-primary button-large pp-upgrade-btn" 
+				target="_blank">
 				<?php esc_html_e('Get Statuses Pro', 'revisionary');?>
+			</a>
+			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
+				target="_blank"
+				class="pp-learn-more-link">
+				<?php esc_html_e('Learn More', 'revisionary'); ?>
 			</a>
 		</div>
 	</div>
 
+	<?php if (!empty($_REQUEST['rvy_promo_img'])):?>
+	<br>
 	<div class="pp-integration-card">
 	<div style="border: 1px solid #ccc; border-radius: 8px">
 	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-statuses.png');?>" style="width: 100%" />
@@ -730,6 +763,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 		</div>
 	</div>
 	</div>
+	<?php endif;?>
 
 	</div></td></tr></table>
 <?php endif; // any options accessable in this section
