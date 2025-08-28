@@ -464,10 +464,10 @@ class RevisionaryAdmin
 
 	public function fltCapDescriptions($cap_descripts)
 	{
-		$cap_descripts['edit_others_drafts'] = esc_html__('Bypass Revisions setting "Prevent Revisors from editing other user\'s drafts."', 'revisionary');
-		$cap_descripts['edit_others_revisions'] = esc_html__('Satisfy Revisions setting "Editing others\' Revisions requires role capability."', 'revisionary');
-		$cap_descripts['list_others_revisions'] = esc_html__('Satisfy Revisions setting "Listing others\' Revisions requires role capability."', 'revisionary');
-		$cap_descripts['manage_unsubmitted_revisions'] = esc_html__('Satisfy Revisions setting "Managing Unsubmitted Revisions requires role capability."', 'revisionary');
+		$cap_descripts['edit_others_drafts'] = esc_html__('Can edit draft Posts from other users.', 'revisionary');
+		$cap_descripts['edit_others_revisions'] = esc_html__('Can edit Revisions from other users.', 'revisionary');
+		$cap_descripts['list_others_revisions'] = esc_html__('Can see Revisions from other users in Revision Queue.', 'revisionary');
+		$cap_descripts['manage_unsubmitted_revisions'] = esc_html__('Can manage Unsubmitted Revisions.', 'revisionary');
 		$cap_descripts['preview_others_revisions'] = esc_html__('Preview other user\'s Revisions (without needing editing access).', 'revisionary');
 		$cap_descripts['restore_revisions'] = esc_html__('Restore an archived Revision as the current revision.', 'revisionary');
 		$cap_descripts['view_revision_archive'] = esc_html__('View the Revision Archive, a list of past Revisions.', 'revisionary');
