@@ -52,7 +52,7 @@ class RevisionCreation {
 	// Create a new revision, usually 'draft-revision' (Working Copy) or 'future-revision' (Scheduled Revision)
 
 	// If an autosave was stored for the current user prior to this creation, it will be retrieved in place of the main revision. 
-	function createRevision($post_id, $revision_status, $args = []) {
+	function createRevision($post_id, $revision_status, $args = [], $revision_data = []) {
         global $wpdb, $current_user;
 
 		$is_revision = rvy_in_revision_workflow($post_id);
@@ -101,6 +101,10 @@ class RevisionCreation {
 			$data['post_date'] = gmdate( 'Y-m-d H:i:s', $timestamp + (int) ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ));
 		}
 
+		if (is_array($revision_data)) {
+			$data = array_merge($data, $revision_data);
+		}
+
 		$args['main_post_id'] = $main_post_id;
 
 		$revision_id = $this->insert_revision($data, $source_post->ID, $revision_status, $args);
@@ -144,9 +148,11 @@ class RevisionCreation {
 			$rvy_workflow_ui->do_notifications('pending-revision', 'pending-revision', (array) $published_post, $notification_args);
 		}
 
-		$url = apply_filters('revisionary_create_revision_redirect', rvy_admin_url("post.php?post=$revision_id&action=edit"), $revision_id);
+		$redirect_url = (isset($args['redirect_url'])) ? $args['redirect_url'] : rvy_admin_url("post.php?post=$revision_id&action=edit");
 
-		if (!empty($args['suppress_redirect'])) {
+		$url = apply_filters('revisionary_create_revision_redirect', $redirect_url, $revision_id);
+
+		if (!$url || !empty($args['suppress_redirect'])) {
 			return $revision_id;
 		}
 

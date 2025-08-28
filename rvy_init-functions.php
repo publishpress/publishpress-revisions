@@ -1625,3 +1625,9 @@ function pp_revisions_body_class() {
 
 	return $classes;
 }
+
+function rvy_create_revision($post_id, $revision_status, $args = [], $revision_data = []) {
+	require_once( dirname(REVISIONARY_FILE).'/revision-creation_rvy.php' );
+	$rvy_creation = new PublishPress\Revisions\RevisionCreation();
+	return $rvy_creation->createRevision($post_id, $revision_status, ['redirect_url' => false], $revision_data);
+}
