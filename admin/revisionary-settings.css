@@ -93,6 +93,106 @@ body.revisionary-settings #side-info-column {
 .pp-pro-badge-banner {
   font-size: 0.9rem;
 }
+
+.pp-cta-section {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.pp-cta-section h4 {
+  margin: 0 0 12px 0;
+  color: var(--text-muted);
+  font-size: 18px;
+  font-weight: 600;
+}
+#ppr-tab-statuses .pp-cta-section p,
+#ppr-tab-notifications .pp-cta-section p,
+#ppr-tab-statuses .pp-cta-section ul,
+#ppr-tab-notifications .pp-cta-section ul
+{
+  margin: 0 0 20px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+.pp-cta-section .pp-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pp-cta-section .pp-cta-buttons .button-primary {
+  background: var(--cta-color);
+  border-color: var(--cta-color);
+  color: #414141 !important;
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-weight: normal;
+  transition: all 0.3s ease;
+}
+.pp-cta-section .pp-cta-buttons .button-primary:hover {
+  background: var(--cta-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25) !important;
+}
+.pp-cta-section .pp-cta-buttons .pp-learn-more-link {
+  color: var(--primary-color);
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+  border: 1px solid;
+  line-height: 2.15384615;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+  min-height: 30px;
+  padding: 8px 24px;
+  border-radius: 8px;
+}
+.pp-cta-section .pp-cta-buttons .pp-learn-more-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pp-revisions-pro-features {
+  text-align: center;
+}
+
+.pp-revisions-pro-features ul {
+  display: inline-block;
+  text-align: left;
+}
+
+.pp-revisions-pro-features li {
+  margin-bottom: 8px;
+}
+
+.pp-revisions-pro-features li:before {
+  content: '\2713';
+}
+
+.pp-upgrade-btn {
+  background: #FEB123 !important;
+  color: #000000 !important;
+  font-weight: normal !important;
+  font-size: 0.9rem !important;
+  text-decoration: none !important;
+}
+.pp-cta-section .pp-cta-buttons .pp-upgrade-btn:hover {
+  background: #fcca46 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: #fcca46;
+  color:#181818 !important;
+}
+
 #ppr-tab-statuses .pp-pro-badge-banner,
 #ppr-tab-notifications .pp-pro-badge-banner
 {

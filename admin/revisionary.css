@@ -481,7 +481,7 @@ text-decoration: underline;
 
 #rvy-features .rvy-option-section-tabs {
 margin-top: 0;
-margin-bottom: 4px;
+margin-bottom: 10px;
 padding: 4px 4px 0 4px;
 }
 
@@ -610,9 +610,14 @@ div.revisions-controls .author-card input[type="button"] {
 padding-bottom:2px;
 }
 
-span.rvy-requested-date {
-color: #aaa;
+div.rvy-requested-date {
 font-style: italic;
+background: #fff;
+border: 1px solid #c3c4c7;
+border-left-width: 4px;
+border-left-color: #dba617;
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+padding: 1px 12px;
 }
 
 .pressshack-admin-wrapper p.submit {
@@ -673,7 +678,12 @@ div.components-panel div.revision-creating {
   padding: 6px 0 9px 80px; /*  @todo: review this spacing relative to button.revision-created */
 }
 
-div.components-panel span.ppr-submission-spinner, div.components-panel div.revision-submitting span.spinner {
+#major-publishing-actions div.revision-creating {
+  display: inline-block;
+  padding-top: 15px;
+}
+
+div.components-panel span.ppr-submission-spinner, div.components-panel div.revision-submitting span.spinner, div.revision-creating span.spinner {
 float: none;
 height: 25px !important;
 }

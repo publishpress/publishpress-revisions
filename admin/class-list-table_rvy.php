@@ -737,6 +737,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	function rvy_pending_custom_col( $column_name, $post_id ) {
+		global $revisionary;
+		
 		if ( ! $post = get_post( $post_id ) )
 			return;
 		
@@ -769,7 +771,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 			case 'date_sched' :
 				if ( ('future-revision' === $post->post_mime_type ) || ( strtotime($post->post_date_gmt) > agp_time_gmt() ) ) {
-						$t_time = get_the_time( esc_html__( 'Y/m/d g:i:s a', 'revisionary' ) );
+						$t_time = get_the_time( esc_html__( 'Y/m/d, g:i:s a', 'revisionary' ) );
 						$m_time = $post->post_date;
 						
 						$time = get_post_time( 'G', true, $post );
@@ -788,8 +790,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						if ('future-revision' == $post->post_mime_type) {
 							$t_time = sprintf(esc_html__('Scheduled publication: %s', 'revisionary'), $t_time);
 						} else {
-							$h_time = "<span class='rvy-requested-date'>[$h_time]</span>";
+							$h_time = "<div class='rvy-requested-date'>[$h_time]</div>";
 							$t_time = sprintf(esc_html__('Requested publication: %s', 'revisionary'), $t_time);
+
+							$t_time .= '<br><br>' . __('This revision is not scheduled yet.', 'revisionary');
 						}
 
 						if ( $time_diff > 0 ) {
@@ -800,7 +804,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					/** This filter is documented in wp-admin/includes/class-wp-posts-list-table.php */
 					$mode = 'list';
 																	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo '<abbr title="' . esc_attr($t_time) . '">' . apply_filters( 'rvy_post_schedule_date_column_time', $h_time, $post, 'date', $mode ) . '</abbr>';
+					echo $revisionary->admin->tooltipText(
+						apply_filters( 'rvy_post_schedule_date_column_time', $h_time, $post, 'date', $mode ),
+						$t_time
+					);
 				}
 
 				break;

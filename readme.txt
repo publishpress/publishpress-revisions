@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.9
+Stable tag: 3.7.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -244,6 +244,17 @@ Divi is one of the most popular page-builders in WordPress, and it does integrat
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.10 - 28 Aug 2025 =
+* Compat : Rank Math SEO - Revision update failed under some conditions
+* Change : Display a spinner during revision creation when editing a post in Classic Editor
+* Change : Change Settings tab promos to text-based
+* Change : Adjust some capability descriptions
+* Change : Revision Edit - Ensure submit, approve buttons remain disabled after editor tab switch
+* Change : Default-disable legacy notifications for new installations
+* Change : Support extended Approve button captions in Post Editor
+* Change : Revision Queue - tool tip to clarify revisions submitted for a future publication date, but not yet scheduled
+* API : New function rvy_create_revision()
 
 = 3.7.9 - 14 Aug 2025 =
 * Compat : PublishPress Permissions - Permissions assigned directly to revisions were not applied (also requires Permissions 4.4.3)

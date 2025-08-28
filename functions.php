@@ -592,6 +592,13 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
         update_option('revisionary_last_version', $current_version);
 
         delete_option('revisionary_sent_mail');
+
+        // Default-enable legacy notifications for existing installations
+        if (!empty($last_ver)) {
+            if (null === get_option('rvy_legacy_notifications', null)) {
+                update_option('rvy_legacy_notifications', 1);
+            }
+        }
     }
 }
 

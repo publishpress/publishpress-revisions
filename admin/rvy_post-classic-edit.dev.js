@@ -15,6 +15,7 @@ jQuery(document).ready( function($) {
             var html = '<div class="rvy-creation-ui"' + hideStyle + '><a href="javascript:void(0)" class="button revision-approve revision-create" style="margin-top: 15px; margin-bottom: 15px" title="' 
 			+ rvyObjEdit.actionTitle + '">' 
 			+ rvyObjEdit.actionCaption + '</a>'
+			+ '<div class="revision-creating"><span class="spinner"></span></div>'
 			+ '<div class="revision-created-wrapper" style="display:none; margin: 10px 0 10px 5px; font-weight: bold">'
 			+ '<span class="revision-approve revision-created">' + rvyObjEdit.completedCaption + '</span> &nbsp;';
 			
@@ -91,6 +92,7 @@ jQuery(document).ready( function($) {
 	function rvyCopyPost() {
         var revisionaryCreateDone = function () {
 			$('.revision-create').hide();
+			$('.revision-creating').hide();
 			$('.revision-created-wrapper').show();
 
 			if (rvyObjEdit.completedURL) {
@@ -105,6 +107,7 @@ jQuery(document).ready( function($) {
 
 		var revisionaryCreateError = function (data, txtStatus) {
 			$('div.rvy-creation-ui').html(rvyObjEdit.errorCaption);
+			$('.revision-creating').hide();
 		}
 
 		var data = {'rvy_ajax_field': 'create_revision', 'rvy_ajax_value': rvyObjEdit.postID, 'rvy_date_selection': RvyTimeSelection, 'nc': RvyGetRandomInt(99999999)};
@@ -116,6 +119,8 @@ jQuery(document).ready( function($) {
 			success: revisionaryCreateDone,
 			error: revisionaryCreateError
 		});
+
+		$('.revision-creating').show().find('.spinner').css('visibility', 'visible');
 	}
 
 	function rvySchedulePost() {
