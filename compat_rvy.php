@@ -119,12 +119,20 @@ class PP_Revisions_Compat {
     function actPreserveRevisionAuthor($post_id, $post, $update) {
         global $current_user;
 
+        static $busy;
+
+        if (!empty($busy)) {
+            return;
+        }
+
         if (rvy_in_revision_workflow($post) && ($current_user->ID == $post->post_author)
         && (!current_user_can('edit_post', rvy_post_id($post->ID)) || (rvy_get_option('revisor_lock_others_revisions') && !current_user_can('edit_others_revisions')))
         ) {
             unset($_POST['authors']);
             $_POST['fallback_author_user'] = $current_user->ID;
         }
+
+        $busy = false;
     }
 
     // JReviews plugin breaks Pending Revision / Scheduled Revision preview
