@@ -374,20 +374,37 @@ jQuery(document).ready(function ($) {
         );
 	}
 
+    rvyObjEdit.creationDisabled = false;
+
     if (rvyObjEdit.disableSubmitUntilSave) {
         $(document).on('click', 'div.postbox-container,div.acf-postbox,.editor-post-schedule__dialog-toggle', function() {
-            rvyCreationDisabled = true;
-            $('button.revision-approve, button.revision-schedule').attr('disabled', 'disabled');
-            $('div.rvy-save-revision-tip').show();
+            rvyObjEdit.creationDisabled = true;
             $('a.revision-approve').attr('title', rvyObjEdit.actionDisabledTitle);
             $('a.revision-schedule').attr('title', rvyObjEdit.scheduleDisabledTitle);
+            $('button.revision-approve, button.revision-schedule').prop('disabled', 'disabled');
+            $('a.revision-approve, a.revision-schedule').css('pointer-events', 'none');
+            $('div.rvy-save-revision-tip').show();
+
+            $('div.editor-sidebar__panel-tabs div button').on('click', function() {
+                setInterval(
+                    function() {
+                        if (rvyObjEdit.creationDisabled) {
+                            $('button.revision-approve, button.revision-schedule').prop('disabled', 'disabled');
+                            $('a.revision-approve, a.revision-schedule').css('pointer-events', 'none');
+                            $('div.rvy-save-revision-tip').show();
+                        }
+                    },
+                    500
+                );
+            });
         });
 
         var intSaveWatch = setInterval(() => {
             if (wp.data.select('core/editor').isSavingPost()) {
-                rvyCreationDisabled = false;
+                rvyObjEdit.creationDisabled = false;
                 $('button.revision-approve').prop('disabled', false);
                 $('button.revision-schedule').prop('disabled', false);
+                $('a.revision-approve, a.revision-schedule').css('pointer-events', 'default');
                 $('div.rvy-save-revision-tip').hide();
                 $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
                 $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
