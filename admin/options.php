@@ -53,7 +53,9 @@ class RvyOptionUI {
 		if ( in_array( $option_name, $this->form_options[$tab_name][$section_name] ) ) {
 			$this->all_options []= $option_name;
 
-			$return['val'] = rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
+			if (!isset($return['val'])) {
+				$return['val'] = rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
+			}
 
 			echo "<div class='agp-vspaced_input'";
 
@@ -1331,8 +1333,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$chk_args = ['no_escape' => true];
 
-			if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !$pp_notifications) {
+			if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 				$chk_args['disabled'] = true;
+				$chk_args['val'] = 0;
 			}
 
 			$hint_text = (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION'))
@@ -1346,19 +1349,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 
 			$this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
-
-			if ($pp_notifications && !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
-				?>
-				<div class="pp-promo-upgrade-notice" style="padding-bottom: 0">
-					<p style="margin: 5px">
-						<?php if ($pp_notifications) {
-							esc_html_e('Planner Notifications will be enabled after upgrade to Revisions Pro.', 'revisionary');
-						}
-						?>
-					</p>
-				</div>
-				<?php
-			}
 
 			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES')) {
 				echo '<br />';
