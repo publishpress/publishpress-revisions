@@ -1307,6 +1307,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 			?>
 			</div>
+			<br />
 		<?php elseif (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) :
 			?>
 			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
@@ -1318,11 +1319,10 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 			?>
 			</div>
+			<br />
 		<?php endif;
 
 		if ((defined('PUBLISHPRESS_VERSION') && version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
-			echo '<br />';
-			
 			$pp_notifications = rvy_get_option('use_publishpress_notifications');
 
 			$chk_args = ['no_escape' => true];
