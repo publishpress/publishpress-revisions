@@ -126,11 +126,20 @@ class PostEditorWorkflowUI {
             $vars['draftActionCaption'] = '';
         }
 
-        $vars['approveCaption'] = ($can_publish) ? pp_revisions_status_label('pending-revision', 'approve') : '';
+        if ($can_publish) {
+            $vars['approveCaption'] = rvy_get_option('approve_button_verbose') ? __('Approve and Publish', 'revisionary') : pp_revisions_status_label('pending-revision', 'approve');
+        } else {
+            $vars['approveCaption'] = '';
+        }
+
         $vars['approvingCaption'] = __('Approving the Revision...', 'revisionary');
 
         if ($block_editor) {
-            $vars['scheduleCaption'] = ($can_publish) ? pp_revisions_status_label('future-revision', 'submit_short') : '';
+            if ($can_publish) {
+                $vars['scheduleCaption'] = rvy_get_option('approve_button_verbose') ? __('Approve and Schedule', 'revisionary') : pp_revisions_status_label('future-revision', 'submit_short');
+            } else {
+                $vars['scheduleCaption'] = '';
+            }
         } else {
             $vars['scheduleCaption'] = ($can_publish) ? pp_revisions_status_label('future-revision', 'submit') : '';
         }
