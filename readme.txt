@@ -250,6 +250,11 @@ Fixed: Security issue. Please update.
 * Change : Display a spinner during revision creation when editing a post in Classic Editor
 * Change : Change Settings tab promos to text-based
 * Change : Adjust some capability descriptions
+* Change : Revision Edit - Ensure submit, approve buttons remain disabled after editor tab switch
+* Change : Default-disable legacy notifications for new installations
+* Change : Support extended Approve button captions in Post Editor
+* Change : Revision Queue - tool tip to clarify revisions submitted for a future publication date, but not yet scheduled
+* API : New function rvy_create_revision()
 
 = 3.7.9 - 14 Aug 2025 =
 * Compat : PublishPress Permissions - Permissions assigned directly to revisions were not applied (also requires Permissions 4.4.3)
