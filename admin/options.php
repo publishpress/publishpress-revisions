@@ -203,7 +203,8 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'permissions_compat_mode' => 				esc_html__('Compatibility Mode', 'revisionary'),
 	'planner_notifications_access_limited' =>	esc_html__('Planner Notifications Access-Limited', 'revisionary'),
 	'num_revisions' =>							esc_html__('Maximum Revisions per post', 'revisionary'),
-	'apply_post_exceptions' =>					esc_html__('Apply Post Permisisons to Revisions', 'revisionary')
+	'apply_post_exceptions' =>					esc_html__('Apply Post Permisisons to Revisions', 'revisionary'),
+	'legacy_notifications' =>					esc_html__('Enable legacy email notifications', 'revisionary')
 	]
 );
 
@@ -223,7 +224,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'post_types' =>			 ['enabled_post_types', 'enabled_post_types_archive'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
-	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
+	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
 	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'diff_display_strip_tags', 'display_hints', 'delete_settings_on_uninstall'],
@@ -731,7 +732,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 			<a href="https://publishpress.com/statuses/" 
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
-				<?php esc_html_e('Get Statuses Pro', 'revisionary');?>
+				<?php esc_html_e('Get Statuses Pro', 'revisionary'); ?>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
 				target="_blank"
@@ -1368,6 +1369,11 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			echo '">';
 			_e('Legacy Email Notifications:');
 			echo '</h3>';
+
+			$hint = '';
+			$this->option_checkbox( 'legacy_notifications', $tab, $section, $hint, '' );
+
+			$legacy_notifications = rvy_get_option('legacy_notifications');
 		}
 
 		?>
@@ -1378,11 +1384,15 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$('#use_publishpress_notifications').on('click', function(e) {
 				$('div.rvy_legacy_email').toggle($(e).prop('checked'));
 			});
+
+			$('#legacy_notifications').on('click', function(e) {
+				$('div.rvy_legacy_email').toggle($(e).prop('checked'));
+			});
 		});
 		/* ]]> */
 		</script>
 
-		<div class="rvy_legacy_email" style="<?php if (!empty($pp_notifications)) echo 'display:none';?>">
+		<div class="rvy_legacy_email" style="<?php if (!empty($pp_notifications) || empty($legacy_notifications)) echo 'display:none';?>">
 
 		<?php
 		if( $pending_revisions_available ) {
@@ -1592,7 +1602,7 @@ $section = 'notifications';				// --- NOTIFICATIONS SECTION ---
 
 if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_options[$tab][$section] ) ) :?>
 	<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
-
+	
 	<!-- CTA Section -->
 	<div class="pp-cta-section">
 		<h4>
@@ -1623,7 +1633,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			<a href="https://publishpress.com/revisions/" 
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
-				<?php esc_html_e('Upgrade to Pro', 'revisionary');?>
+				<?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/advanced-revisions-notifications/" 
 				target="_blank"
