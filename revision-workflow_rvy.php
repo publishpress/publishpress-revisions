@@ -14,6 +14,10 @@ class Rvy_Revision_Workflow_UI {
         $publisher_ids = array();
         $default_ids = array();
         
+        if (!rvy_get_option('legacy_notifications')) {
+            return compact('default_ids', 'post_publishers', 'publisher_ids');
+        }
+
         $type_obj = get_post_type_object( $object_type );
         
         if ( '1' === $notify_editors ) {
@@ -123,6 +127,10 @@ class Rvy_Revision_Workflow_UI {
         }
 
         if ( 'pending-revision' != $notification_type ) {
+            return;
+        }
+
+        if (!rvy_get_option('legacy_notifications')) {
             return;
         }
 

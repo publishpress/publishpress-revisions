@@ -533,7 +533,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 				}
 			}
 			
-			if ( $db_action && rvy_get_option( 'rev_approval_notify_admin' ) ) {
+			if ( $db_action && rvy_get_option( 'rev_approval_notify_admin' ) && rvy_get_option('legacy_notifications') ) {
 				require_once(dirname(REVISIONARY_FILE).'/revision-workflow_rvy.php');
 				$admin_ids = apply_filters('revisionary_approval_notify_admin', Rvy_Revision_Workflow_UI::getRecipients('rev_approval_notify_admin', ['type_obj' => $type_obj, 'published_post' => $post]), ['post_type' => $type_obj->name, 'post_id' => $post->ID, 'revision_id' => $revision->ID]);
 
@@ -554,7 +554,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 				}
 			}
 
-			if ( $db_action && defined( 'RVY_NOTIFY_SUPER_ADMIN' ) && is_multisite() ) {
+			if ( $db_action && defined( 'RVY_NOTIFY_SUPER_ADMIN' ) && is_multisite() && rvy_get_option('legacy_notifications') ) {
 				$super_admin_logins = get_super_admins();
 				foreach( $super_admin_logins as $user_login ) {
 					if ( $super = new WP_User($user_login) )
@@ -572,7 +572,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 				}
 			}
 			
-			if (($db_action || !empty($args['force_notify'])) && rvy_get_option( 'rev_approval_notify_revisor' ) ) {
+			if (($db_action || !empty($args['force_notify'])) && rvy_get_option( 'rev_approval_notify_revisor' ) && rvy_get_option('legacy_notifications')) {
 				$title = sprintf(esc_html__('[%s] Revision Approval Notice', 'revisionary' ), $blogname );
 				$message = sprintf( esc_html__('The revision you submitted for the %1$s "%2$s" has been approved.', 'revisionary' ), $type_caption, $revision->post_title ) . "\r\n\r\n";
 
@@ -1225,7 +1225,7 @@ function rvy_revision_delete() {
 
 	$revision_id = (int) $_GET['revision'];
 	$redirect = '';
-	
+
 	do {
 		// this function is only used for past revisions (status=inherit)
 		if ( ! $revision = wp_get_post_revision( $revision_id ) )
@@ -1537,7 +1537,7 @@ function rvy_publish_scheduled_revisions($args = []) {
 				$type_obj = get_post_type_object( $post->post_type );
 				$type_caption = $type_obj->labels->singular_name;
 				
-				if (rvy_get_option( 'publish_scheduled_notify_revisor' ) && !$use_pp_notifications) {
+				if (rvy_get_option( 'publish_scheduled_notify_revisor' ) && !$use_pp_notifications && rvy_get_option('legacy_notifications')) {
 					$title = sprintf( esc_html__('[%s] %s Publication Notice', 'revisionary' ), $blogname, pp_revisions_status_label('future-revision', 'name') );
 					$message = sprintf( esc_html__('The scheduled revision you submitted for the %1$s "%2$s" has been published.', 'revisionary' ), $type_caption, $row->post_title ) . "\r\n\r\n";
 
@@ -1564,7 +1564,7 @@ function rvy_publish_scheduled_revisions($args = []) {
 
 				// Prior to 1.3, notification was sent to author even if also revision submitter
 				if ( ( ( $post->post_author != $row->post_author ) || defined( 'RVY_LEGACY_SCHEDULED_REV_POST_AUTHOR_NOTIFY' ) ) 
-				&& rvy_get_option( 'publish_scheduled_notify_author' ) && !$use_pp_notifications 
+				&& rvy_get_option( 'publish_scheduled_notify_author' ) && !$use_pp_notifications && rvy_get_option('legacy_notifications')
 				) {
 					$title = sprintf( esc_html__('[%s] %s Publication Notice', 'revisionary' ), $blogname, pp_revisions_status_label('future-revision', 'name') );
 					$message = sprintf( esc_html__('A scheduled revision to your %1$s "%2$s" has been published.', 'revisionary' ), $type_caption, $post->post_title ) . "\r\n\r\n";
@@ -1603,7 +1603,7 @@ function rvy_publish_scheduled_revisions($args = []) {
 					}
 				}
 				
-				if ( rvy_get_option( 'publish_scheduled_notify_admin' ) && !$use_pp_notifications ) {
+				if ( rvy_get_option( 'publish_scheduled_notify_admin' ) && !$use_pp_notifications && rvy_get_option('legacy_notifications') ) {
 
 					// Support workaround to prevent notification when an user of specified role created the revision
 					if (defined('REVISIONARY_LIMIT_ADMIN_NOTIFICATIONS')) {

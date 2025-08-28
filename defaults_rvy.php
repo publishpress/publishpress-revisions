@@ -69,6 +69,7 @@ function rvy_default_options_sitewide() {
 		'extended_archive' => true,
 		'delete_settings_on_uninstall' => true,
 		'apply_post_exceptions' => true,
+		'legacy_notifications' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -137,6 +138,7 @@ function rvy_default_options() {
 		'extended_archive' => 0,
 		'delete_settings_on_uninstall' => 0,
 		'apply_post_exceptions' => 0,
+		'legacy_notifications' => 0,
 	);
 
 	return $def;
