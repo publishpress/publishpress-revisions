@@ -245,7 +245,7 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
-= 3.7.10 =
+= 3.7.10 - 28 Aug 2025 =
 * Compat : Rank Math SEO - Revision update failed under some conditions
 * Change : Display a spinner during revision creation when editing a post in Classic Editor
 * Change : Change Settings tab promos to text-based
