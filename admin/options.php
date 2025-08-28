@@ -733,7 +733,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 			<a href="https://publishpress.com/statuses/" 
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
-				<?php esc_html_e('Get Statuses Pro', 'revisionary'); ?>
+				<?php esc_html_e('Get PublishPress Statuses Pro', 'revisionary'); ?>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
 				target="_blank"
