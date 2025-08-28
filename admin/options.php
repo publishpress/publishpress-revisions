@@ -1862,7 +1862,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 				</div>
 				-->
 				<div class="pp-category-label" data-category="seo">
-					<?php esc_html_e('SEO', 'press-permit-core'); ?>
+					<?php esc_html_e('SEO', 'revisionary'); ?>
 				</div>
 				<div class="pp-category-label" data-category="workflow">
 					<?php esc_html_e('Workflow', 'revisionary'); ?>
@@ -2090,7 +2090,7 @@ private function renderCompatibilityPack($integration)
 	if (in_array('builder', $integration['categories'])) {
 		$category_tag = '<div class="pp-category-tag pp-tag-builder">' . esc_html__('Builder', 'revisionary') . '</div>';
 	}  elseif (in_array('admin', $integration['categories'])) {
-		$category_tag = '<span class="pp-category-tag pp-tag-admin">' . esc_html__('Admin', 'press-permit-core') . '</span>';
+		$category_tag = '<span class="pp-category-tag pp-tag-admin">' . esc_html__('Admin', 'revisionary') . '</span>';
 	} elseif (in_array('cache', $integration['categories'])) {
 		$category_tag = '<div class="pp-category-tag pp-tag-cache">' . esc_html__('Cache', 'revisionary') . '</div>';
 	} elseif (in_array('seo', $integration['categories'])) {
@@ -2104,7 +2104,7 @@ private function renderCompatibilityPack($integration)
 	} elseif (in_array('community', $integration['categories'])) {
 		$category_tag = '<div class="pp-category-tag pp-tag-community">' . esc_html__('Community', 'revisionary') . '</div>';
 	} elseif (in_array('workflow', $integration['categories'])) {
-		$category_tag = '<span class="pp-category-tag pp-tag-workflow">' . esc_html__('Workflow', 'press-permit-core') . '</span>';
+		$category_tag = '<span class="pp-category-tag pp-tag-workflow">' . esc_html__('Workflow', 'revisionary') . '</span>';
 	}
 	?>
 	<div class="<?php echo esc_attr($card_class); ?>" data-categories="<?php echo esc_attr($categories_string); ?>">
