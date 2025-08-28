@@ -70,6 +70,7 @@ function rvy_default_options_sitewide() {
 		'delete_settings_on_uninstall' => true,
 		'apply_post_exceptions' => true,
 		'legacy_notifications' => true,
+		'approve_button_verbose' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -139,6 +140,7 @@ function rvy_default_options() {
 		'delete_settings_on_uninstall' => 0,
 		'apply_post_exceptions' => 0,
 		'legacy_notifications' => 0,
+		'approve_button_verbose' => 0,
 	);
 
 	return $def;
