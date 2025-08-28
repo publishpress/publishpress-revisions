@@ -36,11 +36,11 @@ class PostEditorWorkflowUI {
                 wp_get_admin_notice(
                     $revisionary->admin->tooltipText(
                         __('Save changes to continue.', 'revisionary'),
-                    __('Please save changes to the revision before submitting it.', 'revisionary'),
+                        __('Please save changes to the revision before submitting it.', 'revisionary'),
                         false
                     ),
                     ['type' => 'info', 'additional_classes' => ['rvy-save-revision-tip']]
-                ) 
+                )
             ),
             'canPublish' => $can_publish
         ];
