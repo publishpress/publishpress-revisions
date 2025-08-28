@@ -245,6 +245,12 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.10 =
+* Compat : Rank Math SEO - Revision update failed under some conditions
+* Change : Display a spinner during revision creation when editing a post in Classic Editor
+* Change : Change Settings tab promos to text-based
+* Change : Adjust some capability descriptions
+
 = 3.7.9 - 14 Aug 2025 =
 * Compat : PublishPress Permissions - Permissions assigned directly to revisions were not applied (also requires Permissions 4.4.3)
 * Compat : PublishPress Permissions - Option for Post Permissions to be applied to revisions (also requires Permissions 4.4.3)
