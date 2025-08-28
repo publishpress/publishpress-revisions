@@ -708,7 +708,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 			<?php esc_html_e('Ready to enhance your revision workflow?', 'revisionary'); ?>
 		</h4>
 		<p>
-			<?php esc_html_e('Upgrade to Statuses Pro and optimize your revision process with custom revision statuses.', 'revisionary'); ?>
+			<?php esc_html_e('Get PublishPress Statuses Pro and optimize your revision process with custom revision statuses.', 'revisionary'); ?>
 		</p>
 
 		<div class="pp-revisions-pro-features">
