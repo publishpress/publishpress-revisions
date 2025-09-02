@@ -53,7 +53,7 @@ class RvyOptionUI {
 		if ( in_array( $option_name, $this->form_options[$tab_name][$section_name] ) ) {
 			$this->all_options []= $option_name;
 
-			if (!isset($return['val'])) {
+			if (!isset($args['val'])) {
 				$return['val'] = rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
 			}
 
