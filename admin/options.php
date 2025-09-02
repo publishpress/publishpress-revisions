@@ -1328,7 +1328,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			<br />
 		<?php endif;
 
-		if ((defined('PUBLISHPRESS_VERSION') && version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
+		if ((defined('PUBLISHPRESS_VERSION') && version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') || !defined('PUBLISHPRESS_VERSION')
+		|| empty($pp_notifications)
+		) {
 			$pp_notifications = rvy_get_option('use_publishpress_notifications');
 
 			$chk_args = ['no_escape' => true];
