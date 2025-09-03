@@ -245,6 +245,14 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.12 - 3 Sep 2025 =
+* Fixed : Legacy Notifications could not be enabled if Revisions Pro is active without PublishPress Planner
+* Change : Clarify tool tip text for revisions submitted for a future publication date
+* Change : Re-order post type checkboxes in Revisions > Settings > Features
+
+= 3.7.11 - 2 Sep 2025 =
+* Fixed : Plugin checkboxes were all displayed as unchecked, and updating plugin settings caused unchecked selections to be stored
+
 = 3.7.10 - 28 Aug 2025 =
 * Compat : Rank Math SEO - Revision update failed under some conditions
 * Change : Display a spinner during revision creation when editing a post in Classic Editor
