@@ -1605,7 +1605,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			<?php esc_html_e('Ready to enhance your revision notifications?', 'revisionary'); ?>
 		</h4>
 		<p>
-			<?php esc_html_e('Upgrade to Revisions Pro for integration with our Planner Notifications framework.', 'revisionary'); ?>
+			<?php esc_html_e('Upgrade to Revisions Pro for integration with our PublishPress Planner Notifications framework.', 'revisionary'); ?>
 		</p>
 
 		<div class="pp-revisions-pro-features">
@@ -1620,7 +1620,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 					&nbsp;<?php _e('Target specific roles, users, or user groups', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('With Planner Pro, send notifications to a Slack channel', 'revisionary');?>
+					&nbsp;<?php _e('With PublishPress Planner Pro, send notifications to a Slack channel', 'revisionary');?>
 				</li>
 			</ul>
 		</div>
