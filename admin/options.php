@@ -516,13 +516,31 @@ if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter(
 		$no_revision_types = [];
 
 		$types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');
+		$type_names = get_post_types(['public' => true, 'show_ui' => true], 'name', 'or');
 
-		$types = rvy_order_types($types);
+		$_ordered_types = rvy_order_types($type_names);
 
-		foreach ($types as $key => $obj) {
+		$ordered_types['page'] = $types['page'];
+		$ordered_types['post'] = $types['post'];
+		
+		$ordered_types = array_merge(
+			$ordered_types,
+			array_diff_key(
+				$_ordered_types,
+				array_fill_keys(['page', 'post'], true)
+			)
+			);
+
+		foreach (array_keys($ordered_types) as $key) {
 			if (!$key) {
 				continue;
 			}
+
+			if (!isset($types[$key])) {
+				continue;
+			}
+
+			$obj = $types[$key];
 
 			if (!post_type_supports($key, 'revisions')) {
 			    unset($revisionary->enabled_post_types_archive[$key]);
@@ -622,12 +640,35 @@ if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter(
 			$types = array_merge($types, $available_private_types);
 		}
 
-		$types = rvy_order_types($types);
+		$type_names = [];
 
 		foreach ($types as $key => $obj) {
+			$type_names[$key] = $obj->label;
+		}
+
+		$_ordered_types = rvy_order_types($type_names);
+
+		$ordered_types['page'] = $types['page'];
+		$ordered_types['post'] = $types['post'];
+		
+		$ordered_types = array_merge(
+			$ordered_types,
+			array_diff_key(
+				$_ordered_types,
+				array_fill_keys(['page', 'post'], true)
+			)
+		);
+
+		foreach (array_keys($ordered_types) as $key) {
 			if (!$key) {
 				continue;
 			}
+
+			if (!isset($types[$key])) {
+				continue;
+			}
+
+			$obj = $types[$key];
 
 			$id = $option_name . '-' . $key;
 			$name = $option_name . "[$key]";
