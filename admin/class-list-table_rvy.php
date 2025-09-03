@@ -793,7 +793,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 							$h_time = "<div class='rvy-requested-date'>[$h_time]</div>";
 							$t_time = sprintf(esc_html__('Requested publication: %s', 'revisionary'), $t_time);
 
-							$t_time .= '<br><br>' . __('This revision is not scheduled yet.', 'revisionary');
+							$t_time .= '<br><br>' . __('This revision is not scheduled yet. It must be approved.', 'revisionary');
 						}
 
 						if ( $time_diff > 0 ) {
