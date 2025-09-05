@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.10
+Stable tag: 3.7.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -244,6 +244,14 @@ Divi is one of the most popular page-builders in WordPress, and it does integrat
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.12 - 3 Sep 2025 =
+* Fixed : Legacy Notifications could not be enabled if Revisions Pro is active without PublishPress Planner
+* Change : Clarify tool tip text for revisions submitted for a future publication date
+* Change : Re-order post type checkboxes in Revisions > Settings > Features
+
+= 3.7.11 - 2 Sep 2025 =
+* Fixed : Plugin checkboxes were all displayed as unchecked, and updating plugin settings caused unchecked selections to be stored
 
 = 3.7.10 - 28 Aug 2025 =
 * Compat : Rank Math SEO - Revision update failed under some conditions
