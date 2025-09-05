@@ -124,6 +124,10 @@ class RvyPostEdit {
                     $utc_time = new DateTime("now", new DateTimeZone('UTC'));
                     $args['timezoneOffset'] = 0 - $wp_timezone->getOffset($utc_time);
 
+                    $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
+                    ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
+                    : false;
+
                     wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
                 }
             } else {
