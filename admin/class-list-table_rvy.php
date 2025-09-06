@@ -145,7 +145,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	function do_query( $q = false ) {
-		if ( false === $q ) $q = $_GET;										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( false === $q ) $q = $_REQUEST;										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		// === first, query published posts that have any Revisionary revisions ===
 
@@ -1219,6 +1219,93 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$links['all'] = "<a href='admin.php?page=revisionary-q&all=1'{$link_class}>" . sprintf( esc_html__('All %s', 'revisionary'), "<span class='count'>($all_count)</span>" ) . '</a>';
 		
 		return apply_filters('revisionary_queue_view_links', $links);
+	}
+
+	function bulk_actions( $which = '' ) {
+		global $revisionary;
+
+		if ( is_null( $this->_actions ) ) {
+			$this->_actions = $this->get_bulk_actions();
+
+			/**
+			 * Filters the items in the bulk actions menu of the list table.
+			 *
+			 * The dynamic portion of the hook name, `$this->screen->id`, refers
+			 * to the ID of the current screen.
+			 *
+			 * @since 3.1.0
+			 * @since 5.6.0 A bulk action can now contain an array of options in order to create an optgroup.
+			 *
+			 * @param array $actions An array of the available bulk actions.
+			 */
+			$this->_actions = apply_filters( "bulk_actions-{$this->screen->id}", $this->_actions ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+
+			$two = '';
+		} else {
+			$two = '2';
+		}
+
+		if ( empty( $this->_actions ) ) {
+			return;
+		}
+
+		echo '<label for="bulk-action-selector-' . esc_attr( $which ) . '" class="screen-reader-text">' .
+			/* translators: Hidden accessibility text. */
+			__( 'Select bulk action' ) .
+		'</label>';
+		echo '<select name="action' . $two . '" id="bulk-action-selector-' . esc_attr( $which ) . "\">\n";
+		echo '<option value="-1">' . __( 'Bulk actions' ) . "</option>\n";
+
+		foreach ( $this->_actions as $key => $value ) {
+			if ( is_array( $value ) ) {
+				echo "\t" . '<optgroup label="' . esc_attr( $key ) . '">' . "\n";
+
+				foreach ( $value as $name => $title ) {
+					$class = ( 'edit' === $name ) ? ' class="hide-if-no-js"' : '';
+
+					echo "\t\t" . '<option value="' . esc_attr( $name ) . '"' . $class . '>' . $title . "</option>\n";
+				}
+				echo "\t" . "</optgroup>\n";
+			} else {
+				$class = ( 'edit' === $key ) ? ' class="hide-if-no-js"' : '';
+
+				echo "\t" . '<option value="' . esc_attr( $key ) . '"' . $class . '>' . $value . "</option>\n";
+			}
+		}
+
+		echo "</select>\n";
+
+		submit_button( __( 'Apply' ), 'action', 'bulk_action', false, array( 'id' => "doaction$two" ) );
+		echo "\n";
+
+		echo '<select name="post_type' . $two . '" id="post_type" style="float:none">';
+		echo '<option value="">' . __( 'All Post Types' ) . "</option>";
+
+		foreach(array_keys($revisionary->enabled_post_types) as $post_type) {
+			if ($type_obj = get_post_type_object($post_type)) {
+				$selected = (!$two && (!empty($_REQUEST['post_type'])) && ($post_type == sanitize_key($_REQUEST['post_type']))) ? ' selected' : '';
+				echo "\t" . '<option value="' . esc_attr($post_type) . '"' . $selected . '>' . $type_obj->labels->singular_name . "</option>";
+			}
+		}
+
+		echo "</select>";
+
+
+		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
+
+		echo '<select name="post_status' . $two . '" id="post_status" style="float:none">';
+		echo '<option value="">' . __( 'Select Post Status...' ) . "</option>\n";
+
+		foreach($revision_statuses as $status_obj) {
+			$selected = (!$two && (!empty($_REQUEST['post_status'])) && ($status_obj->name == sanitize_key($_REQUEST['post_status']))) ? ' selected' : '';
+			echo "\t" . '<option value="' . esc_attr($status_obj->name) . '"' . $selected . '>' . $status_obj->label . "</option>\n";
+		}
+
+		echo "</select>\n";
+
+		submit_button( __( 'Filter' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+		
+		echo "\n";
 	}
 
 	/**
