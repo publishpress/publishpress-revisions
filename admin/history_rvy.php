@@ -1169,7 +1169,7 @@ class RevisionaryHistory
                             for (rkey = 0; rkey < _wpRevisionsSettings.revisionData.length; rkey++) {
                                 if (_wpRevisionsSettings.revisionData[rkey].id == rselected) {
                                     if (_wpRevisionsSettings.revisionData[rkey].editUrl) {
-                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '"><input type="button" class="edit-revision button button-primary" style="float:right" value="<?php echo esc_attr('Edit');?>"></a>');
+                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '"><input type="button" class="edit-revision button button-primary" style="float:right" value="<?php echo esc_attr__('Edit');?>"></a>');
                                     }
                                 }
                             }
