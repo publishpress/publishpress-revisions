@@ -144,7 +144,7 @@ When you are on the "Products" screen, click the "New Revision" link. Inside the
 
 It is possible to schedule updates to WooCommerce products.
 
-- While updating an post or page created created with Elementor, click "Immediately" in the right sidebar.
+- While updating a post or page created with Elementor, click "Immediately" in the right sidebar.
 - Choose the new date for these changes to go live.
 - Click the "Update Revision" button.
 
@@ -166,7 +166,7 @@ Here's how to use PublishPress Revisions and Elementor together:
 
 It is possible to schedule content updates to Elementor posts.
 
-- While updating an post or page created created with Elementor, click "Immediately" in the right sidebar.
+- While updating a post or page created with Elementor, click "Immediately" in the right sidebar.
 - Choose the new date for these changes to go live.
 - Click the "Update Revision" button.
 
@@ -237,6 +237,11 @@ Divi is one of the most popular page-builders in WordPress, and it does integrat
 - You will see the normal editing layout in Divi, with the PublishPress Revisions buttons in the top toolbar and right sidebar. Click "Edit With The Divi Builder" to make content changes.
 
 [Click here for more on duplicate posts with Divi](https://publishpress.com/knowledge-base/divi-theme/).
+
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the PublishPress Revisions plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/9e5fc124-22df-404f-98e9-72d17ad6d47c). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+
 
 == Upgrade Notice ==
 
