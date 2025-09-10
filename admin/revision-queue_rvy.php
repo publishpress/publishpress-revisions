@@ -19,6 +19,33 @@ if (!rvy_get_option('pending_revisions') && !rvy_get_option('scheduled_revisions
 
 set_current_screen( 'revisionary-q' );
 
+if (!empty($_REQUEST['post_type2'])) {
+	$_REQUEST['post_type'] = $_REQUEST['post_type2'];
+}
+
+if (!empty($_REQUEST['post_status2'])) {
+	$_REQUEST['post_status'] = $_REQUEST['post_status2'];
+}
+
+if (!empty($_REQUEST['post_type'])) {
+	add_action('admin_print_footer_scripts', 
+		function() {
+			?>
+			<script type="text/javascript">
+				/* <![CDATA[ */
+				jQuery(document).ready( function($) {
+					$('a.next-page').prop('href', $('a.next-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
+					$('a.last-page').prop('href', $('a.last-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
+					$('a.prev-page').prop('href', $('a.prev-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
+					$('a.first-page').prop('href', $('a.first-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
+				});
+				/* ]]> */
+			</script>
+			<?php
+		}
+	);
+}
+
 require_once( dirname(__FILE__).'/class-list-table_rvy.php');
 
 $list_table_class = apply_filters('revisionary_list_table_class', 'Revisionary_List_Table');

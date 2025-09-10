@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.12
+Stable tag: 3.7.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -144,7 +144,7 @@ When you are on the "Products" screen, click the "New Revision" link. Inside the
 
 It is possible to schedule updates to WooCommerce products.
 
-- While updating an post or page created created with Elementor, click "Immediately" in the right sidebar.
+- While updating a post or page created with Elementor, click "Immediately" in the right sidebar.
 - Choose the new date for these changes to go live.
 - Click the "Update Revision" button.
 
@@ -166,7 +166,7 @@ Here's how to use PublishPress Revisions and Elementor together:
 
 It is possible to schedule content updates to Elementor posts.
 
-- While updating an post or page created created with Elementor, click "Immediately" in the right sidebar.
+- While updating a post or page created with Elementor, click "Immediately" in the right sidebar.
 - Choose the new date for these changes to go live.
 - Click the "Update Revision" button.
 
@@ -238,12 +238,23 @@ Divi is one of the most popular page-builders in WordPress, and it does integrat
 
 [Click here for more on duplicate posts with Divi](https://publishpress.com/knowledge-base/divi-theme/).
 
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the PublishPress Revisions plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/9e5fc124-22df-404f-98e9-72d17ad6d47c). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+
+
 == Upgrade Notice ==
 
 = 3.5.16 =
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.13 - 9 Sep 2025 =
+* Feature : Option for New Revision in editor to open a new tab
+* Fixed : Misspelling in caption on Revisions > Settings
+* Compat : Rank Math panel was not displayed when editing a revision
+* Lang : Some plugin strings had wrong text domain
 
 = 3.7.12 - 3 Sep 2025 =
 * Fixed : Legacy Notifications could not be enabled if Revisions Pro is active without PublishPress Planner

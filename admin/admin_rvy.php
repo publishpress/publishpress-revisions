@@ -216,7 +216,7 @@ class RevisionaryAdmin
 		}
 		
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && ('admin.php' == $pagenow) && !empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options']) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			wp_enqueue_style('revisionary-settings', plugins_url('', REVISIONARY_PRO_FILE) . '/includes-pro/settings-pro.css', [], PUBLISHPRESS_REVISIONS_VERSION);
+			wp_enqueue_style('revisionary-pro-settings', plugins_url('', REVISIONARY_PRO_FILE) . '/includes-pro/settings-pro.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
  	}
 
@@ -511,11 +511,11 @@ class RevisionaryAdmin
 		<hr>
 		<nav>
 		<ul>
-		<li><a href="https://publishpress.com/revisionary" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr('About PublishPress Revisions', 'revisionary');?>"><?php esc_html_e('About', 'revisionary');?>
+		<li><a href="https://publishpress.com/revisionary" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr__('About PublishPress Revisions', 'revisionary');?>"><?php esc_html_e('About', 'revisionary');?>
 		</a></li>
-		<li><a href="https://publishpress.com/documentation/revisions-start" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr('PublishPress Revisions Documentation', 'revisionary');?>"><?php esc_html_e('Documentation', 'revisionary');?>
+		<li><a href="https://publishpress.com/documentation/revisions-start" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr__('PublishPress Revisions Documentation', 'revisionary');?>"><?php esc_html_e('Documentation', 'revisionary');?>
 		</a></li>
-		<li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr('Contact the PublishPress team', 'revisionary');?>"><?php esc_html_e('Contact', 'revisionary');?>
+		<li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr__('Contact the PublishPress team', 'revisionary');?>"><?php esc_html_e('Contact', 'revisionary');?>
 		</a></li>
 		</ul>
 		</nav>

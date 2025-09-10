@@ -124,6 +124,10 @@ class RVY_PostBlockEditUI {
 
         $args['isStatusesPro'] = rvy_status_revisions_active($post->post_type);
 
+        $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
+        ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
+        : false;
+
         wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
     }
 

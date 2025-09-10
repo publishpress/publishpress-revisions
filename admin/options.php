@@ -205,9 +205,10 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'permissions_compat_mode' => 				esc_html__('Compatibility Mode', 'revisionary'),
 	'planner_notifications_access_limited' =>	esc_html__('Planner Notifications Access-Limited', 'revisionary'),
 	'num_revisions' =>							esc_html__('Maximum Revisions per post', 'revisionary'),
-	'apply_post_exceptions' =>					esc_html__('Apply Post Permisisons to Revisions', 'revisionary'),
+	'apply_post_exceptions' =>					esc_html__('Apply Post Permissions to Revisions', 'revisionary'),
 	'legacy_notifications' =>					esc_html__('Enable legacy email notifications', 'revisionary'),
 	'approve_button_verbose' =>					esc_html__('Use extended captions for Approve button in Post Editor', 'revisionary'),
+	'create_revision_direct_link' =>			esc_html__('Create Revision button in editor opens new tab', 'revisionary'),
 	]
 );
 
@@ -227,7 +228,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'post_types' =>			 ['enabled_post_types', 'enabled_post_types_archive'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
-	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
+	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'create_revision_direct_link', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
 	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'diff_display_strip_tags', 'display_hints', 'delete_settings_on_uninstall'],
@@ -1101,6 +1102,11 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	});
 	/* ]]> */
 	</script>
+
+	<?php
+	$hint = '';
+	$this->option_checkbox( 'create_revision_direct_link', $tab, $section, $hint, '');
+	?>
 
 	<?php
 	$hint = sprintf(esc_html__('If the user does not have a regular Edit link, recaption the %s link as "Edit."', 'revisionary'), pp_revisions_status_label('draft-revision', 'submit_short'));

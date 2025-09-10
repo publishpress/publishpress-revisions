@@ -31,11 +31,17 @@ jQuery(document).ready( function($) {
 		if (rvyObjEdit.ajaxurl && !$('button.revision-approve').length) {
 			var style = (rvyObjEdit.actionCaption == '') ? ' style="display:none"' : '';
 
-			var html = '<div class="rvy-creation-ui"><a href="javascript:void(0)" class="revision-approve" title="'
-			+ rvyObjEdit.actionTitle + '"' + style + '><button type="button" class="components-button revision-approve revision-create is-primary ppr-purple-button"' + style + '>'
-			+ rvyObjEdit.actionCaption + '</button></a>'
+			if (rvyObjEdit.newRevisionDirectLink) {
+				var html = '<div class="rvy-creation-ui"><a href="' + rvyObjEdit.newRevisionDirectLink + '" class="revision-approve" target="_blank" title="'
+				+ rvyObjEdit.actionTitle + '"' + style + '><button type="button" class="components-button revision-approve revision-create is-primary ppr-purple-button"' + style + '>'
+				+ rvyObjEdit.actionCaption + '</button></a>';
+			} else {
+				var html = '<div class="rvy-creation-ui"><a href="javascript:void(0)" class="revision-approve" title="'
+				+ rvyObjEdit.actionTitle + '"' + style + '><button type="button" class="components-button revision-approve revision-create is-primary ppr-purple-button"' + style + '>'
+				+ rvyObjEdit.actionCaption + '</button></a>';
+			}
 
-			+ '<div class="revision-creating" style="display: none;">'
+			html = html + '<div class="revision-creating" style="display: none;">'
 			+ '<span class="revision-approve revision-creating">' + rvyObjEdit.creatingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span>'
 			+ '</div>'
 
@@ -140,7 +146,7 @@ jQuery(document).ready( function($) {
 	var rvyIsAutosaveDone = false;
 
 	$(document).on('click', 'button.revision-create', function() {
-		if ($('a.revision-create').attr('disabled')) {
+		if ($('a.revision-create').attr('disabled') || ($('a.revision-create').attr('href') != 'javascript:void(0)')) {
 			return;
 		}
 
