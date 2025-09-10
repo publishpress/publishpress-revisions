@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-05T20:47:50+00:00\n"
+"POT-Creation-Date: 2025-09-10T15:45:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: revisionary\n"
@@ -191,11 +191,23 @@ msgid "If you like %s, please leave us a %s rating. Thank you!"
 msgstr ""
 
 #: admin/admin_rvy.php:514
+msgid "About PublishPress Revisions"
+msgstr ""
+
+#: admin/admin_rvy.php:514
 msgid "About"
 msgstr ""
 
 #: admin/admin_rvy.php:516
+msgid "PublishPress Revisions Documentation"
+msgstr ""
+
+#: admin/admin_rvy.php:516
 msgid "Documentation"
+msgstr ""
+
+#: admin/admin_rvy.php:518
+msgid "Contact the PublishPress team"
 msgstr ""
 
 #: admin/admin_rvy.php:518
@@ -248,8 +260,8 @@ msgid "Search results for \"%s\""
 msgstr ""
 
 #: admin/class-list-table-archive.php:423
-#: admin/class-list-table_rvy.php:1255
-#: admin/class-list-table_rvy.php:1531
+#: admin/class-list-table_rvy.php:1342
+#: admin/class-list-table_rvy.php:1618
 #: admin/post-edit-block-ui_rvy.php:98
 #: admin/post-edit_rvy.php:89
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -361,7 +373,7 @@ msgid "Compare Changes in %s"
 msgstr ""
 
 #: admin/class-list-table-archive.php:862
-#: admin/class-list-table_rvy.php:1572
+#: admin/class-list-table_rvy.php:1659
 #: admin/post-edit_rvy.php:185
 #: admin/post-edit_rvy.php:249
 #: admin/post-edit_rvy.php:263
@@ -371,7 +383,7 @@ msgstr ""
 
 #. translators: %s: post title
 #: admin/class-list-table-archive.php:877
-#: admin/class-list-table_rvy.php:1556
+#: admin/class-list-table_rvy.php:1643
 #: admin/post-editor-workflow-ui_rvy.php:231
 msgid "Preview Revision"
 msgstr ""
@@ -412,7 +424,7 @@ msgid "Y/m/d, g:i:s a"
 msgstr ""
 
 #: admin/class-list-table_rvy.php:784
-#: admin/class-list-table_rvy.php:1441
+#: admin/class-list-table_rvy.php:1528
 msgid "Y/m/d g:i a"
 msgstr ""
 
@@ -433,6 +445,11 @@ msgstr ""
 #: admin/class-list-table_rvy.php:845
 #: admin/history_rvy.php:823
 msgid "No author"
+msgstr ""
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:881
+msgid "Edit published post"
 msgstr ""
 
 #. translators: %s: post title
@@ -465,30 +482,36 @@ msgstr ""
 msgid "All %s"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1251
+#: admin/class-list-table_rvy.php:1338
 msgid "Unschedule"
 msgstr ""
 
 #. translators: %s: post title
-#: admin/class-list-table_rvy.php:1255
-#: admin/class-list-table_rvy.php:1527
-#: admin/class-list-table_rvy.php:1531
+#: admin/class-list-table_rvy.php:1342
+#: admin/class-list-table_rvy.php:1614
+#: admin/class-list-table_rvy.php:1618
 #: admin/post-edit-block-ui_rvy.php:98
 #: admin/post-edit_rvy.php:89
 #: admin/RevisionEditSubmitMetabox.php:62
 msgid "Discard Revision"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1433
+#: admin/class-list-table_rvy.php:1520
 msgid "Y/m/d g:i:s a"
 msgstr ""
 
 #. translators: %s: post title
-#: admin/class-list-table_rvy.php:1571
+#: admin/class-list-table_rvy.php:1591
+#: admin/post-editor-workflow-ui_rvy.php:232
+msgid "Edit Revision"
+msgstr ""
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1658
 msgid "Compare Changes"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1580
+#: admin/class-list-table_rvy.php:1667
 msgctxt "revisions"
 msgid "Decline"
 msgstr ""
@@ -875,7 +898,7 @@ msgid "Maximum Revisions per post"
 msgstr ""
 
 #: admin/options.php:208
-msgid "Apply Post Permisisons to Revisions"
+msgid "Apply Post Permissions to Revisions"
 msgstr ""
 
 #: admin/options.php:209
@@ -1660,10 +1683,6 @@ msgstr ""
 msgid "Update Revision"
 msgstr ""
 
-#: admin/post-editor-workflow-ui_rvy.php:232
-msgid "Edit Revision"
-msgstr ""
-
 #: admin/post-editor-workflow-ui_rvy.php:238
 #, php-format
 msgid "Update post before creating %s."
@@ -1787,66 +1806,66 @@ msgstr ""
 msgid "%s and %s are both disabled. See Revisions > Settings."
 msgstr ""
 
-#: admin/revision-queue_rvy.php:49
+#: admin/revision-queue_rvy.php:76
 #, php-format
 msgid "%s revision submitted."
 msgid_plural "%s revisions submitted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/revision-queue_rvy.php:50
+#: admin/revision-queue_rvy.php:77
 #, php-format
 msgid "%s revision declined."
 msgid_plural "%s revisions declined."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/revision-queue_rvy.php:51
+#: admin/revision-queue_rvy.php:78
 #, php-format
 msgid "%s revision approved."
 msgid_plural "%s revisions approved."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/revision-queue_rvy.php:52
+#: admin/revision-queue_rvy.php:79
 #, php-format
 msgid "%s revision unscheduled."
 msgid_plural "%s revisions unscheduled."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/revision-queue_rvy.php:53
+#: admin/revision-queue_rvy.php:80
 #, php-format
 msgid "%s revision published."
 msgid_plural "%s revisions published."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/revision-queue_rvy.php:96
+#: admin/revision-queue_rvy.php:123
 #, php-format
 msgctxt "Author Name"
 msgid "%s: "
 msgstr ""
 
-#: admin/revision-queue_rvy.php:109
+#: admin/revision-queue_rvy.php:136
 #, php-format
 msgctxt "Posts / Pages / etc."
 msgid "of %s"
 msgstr ""
 
-#: admin/revision-queue_rvy.php:116
-#: admin/revision-queue_rvy.php:117
+#: admin/revision-queue_rvy.php:143
+#: admin/revision-queue_rvy.php:144
 #, php-format
 msgid "%sPost Author: %s"
 msgstr ""
 
-#: admin/revision-queue_rvy.php:124
+#: admin/revision-queue_rvy.php:151
 #, php-format
 msgctxt "PublishedPostName (other filter captions)"
 msgid "Revision Queue for \"%s\"%s"
 msgstr ""
 
-#: admin/revision-queue_rvy.php:126
+#: admin/revision-queue_rvy.php:153
 #, php-format
 msgid "Revision Queue %s"
 msgstr ""
