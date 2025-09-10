@@ -397,7 +397,7 @@ echo $rows; 														// phpcs:ignore WordPress.Security.EscapeOutput.Output
 <option value="" selected="selected"><?php esc_html_e('Bulk Actions'); ?></option>
 <option value="bulk-delete"><?php esc_html_e('Delete'); ?></option>
 </select>
-<input type="submit" value="<?php echo esc_attr('Apply'); ?>" name="rvy-action" id="rvy-action" class="button-secondary action" />
+<input type="submit" value="<?php echo esc_attr__('Apply'); ?>" name="rvy-action" id="rvy-action" class="button-secondary action" />
 </div>
 <?php endif; ?>
 

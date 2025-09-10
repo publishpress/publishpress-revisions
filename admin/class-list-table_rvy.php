@@ -878,7 +878,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					'<a href="%1$s" title="%2$s" aria-label="%2$s">%3$s</a>',
 					$edit_link,
 					/* translators: %s: post title */
-					esc_attr('Edit published post'),
+					esc_attr__( 'Edit published post', 'revisionary' ),
 					esc_html__( 'Edit' )
 				);
 			}
@@ -1588,7 +1588,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					'<a href="%1$s" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_edit_post_link( $post->ID ),
 					/* translators: %s: post title */
-					esc_attr('Edit Revision'),
+					esc_attr__( 'Edit Revision', 'revisionary' ),
 					esc_html__( 'Edit' )
 				);
 			}
