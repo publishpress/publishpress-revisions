@@ -250,6 +250,11 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.13 - 9 Sep 2025 =
+* Feature : Option for New Revision in editor to open a new tab
+* Fixed : Misspelling in caption on Revisions > Settings
+* Lang : Some plugin strings had wrong text domain
+
 = 3.7.12 - 3 Sep 2025 =
 * Fixed : Legacy Notifications could not be enabled if Revisions Pro is active without PublishPress Planner
 * Change : Clarify tool tip text for revisions submitted for a future publication date
