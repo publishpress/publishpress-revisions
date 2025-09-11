@@ -146,7 +146,7 @@ jQuery(document).ready( function($) {
 	var rvyIsAutosaveDone = false;
 
 	$(document).on('click', 'button.revision-create', function() {
-		if ($('a.revision-create').attr('disabled') || ($('a.revision-create').attr('href') != 'javascript:void(0)')) {
+		if ($('a.revision-create').attr('disabled') || ($('button.revision-create').closest('a').attr('href') != 'javascript:void(0)')) {
 			return;
 		}
 

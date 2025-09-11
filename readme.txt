@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.13
+Stable tag: 3.7.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -249,6 +249,9 @@ Please report security bugs found in the source code of the PublishPress Revisio
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.14 - 11 Sep 2025 =
+* Fixed : New Revision button in editor did not work unless configured to open a new tab
 
 = 3.7.13 - 9 Sep 2025 =
 * Feature : Option for New Revision in editor to open a new tab
