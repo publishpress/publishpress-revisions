@@ -649,4 +649,36 @@ function rvy_order_types($types, $args = [])
 
 	return $ordered_types;
 }
+
+/**
+ * Wrapper for WP function wp_get_admin_notice(), which was introduced by WP 6.4.0
+ *
+ * @param string $message The message.
+ * @param array  $args {
+ *     Optional. An array of arguments for the admin notice. Default empty array.
+ *
+ *     @type string   $type               Optional. The type of admin notice.
+ *                                        For example, 'error', 'success', 'warning', 'info'.
+ *                                        Default empty string.
+ *     @type string[] $additional_classes Optional. A string array of class names. Default empty array.
+ * }
+ * @return string The markup for an admin notice.
+ */
+function rvy_get_admin_notice( $message, $args = array() ) {
+	if (function_exists('wp_get_admin_notice')) {
+		return wp_get_admin_notice($message, $args);
+	}
+
+	$classes    = 'notice';
+
+	if ( '' !== $type ) {
+		$classes .= ' notice-' . $type;
+	}
+
+	if ( is_array( $args['additional_classes'] ) && ! empty( $args['additional_classes'] ) ) {
+		$classes .= ' ' . implode( ' ', $args['additional_classes'] );
+	}
+
+	return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
+}
 	
