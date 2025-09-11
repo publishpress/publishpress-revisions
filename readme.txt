@@ -250,6 +250,13 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.15 =
+* Fixed : WP < 6.3 - Fatal error opening Revision editor
+* Change : Plugin setting to disable compatibility workaround for Posts listing capabilities
+
+= 3.7.14 - 11 Sep 2025 =
+* Fixed : New Revision button in editor did not work unless configured to open a new tab
+
 = 3.7.13 - 9 Sep 2025 =
 * Feature : Option for New Revision in editor to open a new tab
 * Fixed : Misspelling in caption on Revisions > Settings
