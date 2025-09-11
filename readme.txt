@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.12
+Stable tag: 3.7.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -253,6 +253,7 @@ Fixed: Security issue. Please update.
 = 3.7.13 - 9 Sep 2025 =
 * Feature : Option for New Revision in editor to open a new tab
 * Fixed : Misspelling in caption on Revisions > Settings
+* Compat : Rank Math panel was not displayed when editing a revision
 * Lang : Some plugin strings had wrong text domain
 
 = 3.7.12 - 3 Sep 2025 =
