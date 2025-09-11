@@ -1274,6 +1274,10 @@ class Revisionary
 			return $wp_blogcaps;
 		}
 
+		if (!empty($pagenow) && ('edit.php' == $pagenow)) {
+			return $wp_blogcaps;
+		}
+
 		$post_id = ( ! empty($args[2]) ) ? $args[2] : rvy_detect_post_id();
 
 		if (!$post = get_post($post_id)) {

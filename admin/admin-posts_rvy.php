@@ -66,10 +66,14 @@ class RevisionaryAdminPosts {
 	public function actProductsCol($column) {
 		global $post;
 
+		if (!rvy_get_option('revisor_posts_capabilities_workaround')) {
+			return;
+		}
+
 		if ('thumb' == $column) {
 			$this->skip_has_cap_filtering = true;
 
-			if (!current_user_can('edit_post', $post->ID)) {
+			if (!empty($post) && !current_user_can('edit_post', $post->ID)) {
 				add_filter('user_has_cap', [$this, 'actUserHasCap'], 999, 3);
 
 				// Trigger javascript to remove the non-functional Edit link which this filtering will cause
@@ -83,6 +87,10 @@ class RevisionaryAdminPosts {
 	// Ensure that the title is displayed without a PHP warning, even for Revisors who can't edit published posts
 	public function fltTitle($title) {
 		global $post;
+
+		if (!rvy_get_option('revisor_posts_capabilities_workaround')) {
+			return $title;
+		}
 
 		$this->skip_has_cap_filtering = true;
 
@@ -100,8 +108,8 @@ class RevisionaryAdminPosts {
 
 	// Prevent PHP warnings for Revisors who can't edit published posts (but should still see the post listed with New Revision link)
 	public function actUserHasCap($wp_blogcaps, $reqd_caps, $args) {
-		if (!$this->skip_has_cap_filtering && array_diff($reqd_caps, array_keys(array_filter($wp_blogcaps)))) {
-			if (!empty($args[0]) && ('edit_post' == $args[0])) {
+		if (rvy_get_option('revisor_posts_capabilities_workaround') && !$this->skip_has_cap_filtering && array_diff($reqd_caps, array_keys(array_filter($wp_blogcaps)))) {
+			if (!empty($args[0]) && in_array($args[0], ['edit_post', 'edit_page'])) {
 				$wp_blogcaps = array_merge($wp_blogcaps, array_fill_keys($reqd_caps, true));
 				remove_filter('user_has_cap', [$this, 'actUserHasCap'], 10, 3);
 			}
@@ -112,6 +120,10 @@ class RevisionaryAdminPosts {
 
 	public function fltGetEditPostLink($link, $post_id, $context) {
 		if (!empty($this->filtering_edit_link[$post_id])) {
+			if (!rvy_get_option('revisor_posts_capabilities_workaround')) {
+				return $link;
+			}
+			
 			remove_filter('user_has_cap', [$this, 'actUserHasCap'], 10, 3);
 
 			add_action(
