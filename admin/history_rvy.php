@@ -1116,10 +1116,10 @@ class RevisionaryHistory
 
         // For non-public types, force direct approval because preview is not available
         $direct_approval = (($type_obj && !is_post_type_viewable($type_obj)) || rvy_get_option('compare_revisions_direct_approval'))
-        && current_user_can('edit_post', rvy_post_id($post_id));
+        && current_user_can('approve_revision', $post_id);
 
         if ($post_id) {
-            $can_approve = current_user_can('edit_post', rvy_post_id($post_id));
+            $can_approve = current_user_can('approve_revision', $post_id);
         } else {
             $can_approve = isset($type_obj->cap->edit_published_posts) && current_user_can($type_obj->cap->edit_published_posts);
         }

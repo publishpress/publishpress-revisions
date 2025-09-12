@@ -547,7 +547,7 @@ class RevisionaryFront {
 					$submit_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=submit$redirect_arg"), "submit-post_$published_post_id|$revision_id" );
 					$publish_url =  wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 				}
-			} elseif ($can_edit = current_user_can('edit_post', rvy_post_id($revision_id))) {
+			} elseif ($can_edit = current_user_can('approve_revision', $revision_id)) {
 				if ( !in_array( $post->post_mime_type, array( 'future-revision', 'inherit' ) ) ) {
 					$publish_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 

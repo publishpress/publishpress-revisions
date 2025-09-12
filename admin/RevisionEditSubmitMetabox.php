@@ -115,7 +115,7 @@ class RvyRevisionEditSubmitMetabox
                 return;
             }
 
-            $can_publish = current_user_can('edit_post', rvy_post_id($post->ID));
+            $can_publish = current_user_can('approve_revision', $post->ID);
 
             if ($type_obj && empty($type_obj->public)) {
                 return;
