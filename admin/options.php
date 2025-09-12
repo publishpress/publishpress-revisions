@@ -949,12 +949,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	if (!$pending_revisions_available && !$scheduled_revisions_available) {
 		unset($_sections['revision-queue']);
 	}
-
-	if (empty($_REQUEST['ppr_subtab'])) {
-		$subtab = 'revision-creation';
-	} else {
-		$subtab = sanitize_key($_REQUEST['ppr_subtab']);
-	}
 	?>
 
 	<ul class="rvy-option-section-tabs">
@@ -962,7 +956,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	<?php if (!empty($first_done)) :?>
 		<li><?php echo "&nbsp;|&nbsp";?></li>
 	<?php endif;?>
-	<li class="<?php if ($_section == $subtab) echo 'active';?>"><a href="javascript:void(0);" class="<?php echo $_section;?>"><?php echo esc_html($caption);?></a></li>
+	<li class="<?php if (empty($first_done)) echo 'active';?>"><a href="javascript:void(0);" class="<?php echo $_section;?>"><?php echo esc_html($caption);?></a></li>
 	<?php 
 		$first_done = true;
 	endforeach;?>
@@ -981,7 +975,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	/* ]]> */
 	</script>
 
-	<div class="revision-creation" <?php if ('revision-creation' != $subtab) echo 'style="display:none"';?>>
+	<div class="revision-creation">
 	<?php
 	$checkbox_args = [];
 
@@ -1129,7 +1123,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	</div>
 
 
-	<div class="revision-submission" <?php if ('revision-submission' != $subtab) echo 'style="display:none"';?>>
+	<div class="revision-submission" style="display:none">
 		<?php
 		$hint = sprintf(
 			esc_html__( 'Enable published content to be copied, edited, submitted for approval and managed in %sRevision Queue%s.', 'revisionary' ),
@@ -1189,7 +1183,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		</div>
 	
 
-		<div class="revision-scheduling" <?php if ('revision-scheduling' != $subtab) echo 'style="display:none"';?>>
+		<div class="revision-scheduling" style="display:none">
 		<?php
 		$hint = esc_html__( 'If a currently published post or page is edited and a future date set, the change will not be applied until the selected date.', 'revisionary' );
 		$this->option_checkbox( 'scheduled_revisions', $tab, $section, $hint, '' );
@@ -1221,9 +1215,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		?>
 		</div>
 
-		<div class="revision-publication" <?php if ('revision-publication' != $subtab) echo 'style="display:none"';?>>
-
 		<?php
+		echo '<div class="revision-publication" style="display:none">';
+
 		$hint = __('Caption the button as either "Approve and Publish" or "Approve and Schedule."', 'revisionary');
 		$this->option_checkbox( 'approve_button_verbose', $tab, $section, $hint, '' );
 
@@ -1237,13 +1231,13 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->option_checkbox( 'trigger_post_update_actions', $tab, $section, $hint, '' );
 
 		do_action('revisionary_option_ui_revision_options', $this, $sitewide, $customize_defaults);
+		echo '</div>';
 		?>
-		</div>
-
-
-		<div class="revision-queue" <?php if ('revision-queue' != $subtab) echo 'style="display:none"';?>>
-
 		<?php
+
+
+		echo '<div class="revision-queue" style="display:none">';
+
 		if ( 	// To avoid confusion, don't display any revision settings if pending revisions / scheduled revisions are unavailable
 			$pending_revisions_available || $scheduled_revisions_available ) :
 		
@@ -1350,12 +1344,12 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			</p>
 			<?php endif;
 		endif;
-		?>
-		</div>
 
-		<div class="notifications" <?php if ('notifications' != $subtab) echo 'style="display:none"';?>>
+		echo '</div>';
+
+
+		echo '<div class="notifications" style="display:none">';
 		
-		<?php
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !defined('PUBLISHPRESS_VERSION')) :
 			?>
 			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
