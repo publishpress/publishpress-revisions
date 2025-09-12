@@ -21,7 +21,7 @@ class PostEditorWorkflowUI {
 
         $block_editor = \PublishPress\Revisions\Utils::isBlockEditorActive($post->post_type);
 
-        $can_publish = current_user_can('edit_post', $published_post_id);
+        $can_publish = current_user_can('approve_revision', $post_id);
 
         $vars = [
             'postID' => $post->ID,

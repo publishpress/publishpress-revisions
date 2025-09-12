@@ -217,7 +217,7 @@ class RvyPostEdit {
         $preview_link = rvy_preview_url($post->ID);
         $preview_button = esc_html__('View Saved Revision');
 
-        if (current_user_can('edit_post', rvy_post_id($post->ID))) {
+        if (current_user_can('approve_revision', $post->ID)) {
             $preview_title = esc_html__('View / moderate saved revision', 'revisionary');
 
         } elseif ($type_obj && !empty($type_obj->public)) {
