@@ -55,18 +55,18 @@ class RevisionaryAdminPosts {
 
 		add_filter('posts_where', [$this, 'fltFilterRevisions'], 10, 2);
 
-        if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {
-		  add_filter('the_title', [$this, 'fltTitle'], 10, 1);
-		  add_filter('manage_product_posts_custom_column', [$this, 'actProductsCol'], 10, 1);
-		  add_filter('get_edit_post_link', [$this, 'fltGetEditPostLink'], 50, 3);
-	    }
+		if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {
+			add_filter('posts_results', [$this, 'fltPostsResults'], 10, 1);
+			add_filter('manage_product_posts_custom_column', [$this, 'actProductsCol'], 10, 1);
+			add_filter('get_edit_post_link', [$this, 'fltGetEditPostLink'], 50, 3);
+		}
     }
 
 	// Ensure that the thumbnail is displayed without a PHP warning, even for Revisors who can't edit published posts
 	public function actProductsCol($column) {
 		global $post;
 
-		if (!rvy_get_option('revisor_posts_capabilities_workaround')) {
+		if (defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
 			return;
 		}
 
@@ -85,33 +85,35 @@ class RevisionaryAdminPosts {
 	}
 
 	// Ensure that the title is displayed without a PHP warning, even for Revisors who can't edit published posts
-	public function fltTitle($title) {
-		global $post;
-
-		if (!rvy_get_option('revisor_posts_capabilities_workaround')) {
-			return $title;
+	public function fltPostsResults($posts) {
+		if (defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
+			return $posts;
 		}
 
 		$this->skip_has_cap_filtering = true;
 
-		if (!empty($post) && !current_user_can('edit_post', $post->ID)) {
-			add_filter('user_has_cap', [$this, 'actUserHasCap'], 999, 3);
-
-			// Trigger javascript to remove the non-functional Edit link which this filtering will cause
-			$this->filtering_edit_link[$post->ID] = true;
+		foreach ($posts as $_post) {
+			if (!current_user_can('edit_post', $_post->ID)) {
+				// Trigger javascript to remove the non-functional Edit link which this filtering will cause
+				$this->filtering_edit_link[$_post->ID] = true;
+				$set_flag = true;	
+			}
 		}
 
 		$this->skip_has_cap_filtering = false;
 
-		return $title;
+		if (!empty($set_flag)) {
+			add_filter('user_has_cap', [$this, 'actUserHasCap'], 999, 3);
+		}
+
+		return $posts;
 	}
 
 	// Prevent PHP warnings for Revisors who can't edit published posts (but should still see the post listed with New Revision link)
 	public function actUserHasCap($wp_blogcaps, $reqd_caps, $args) {
-		if (rvy_get_option('revisor_posts_capabilities_workaround') && !$this->skip_has_cap_filtering && array_diff($reqd_caps, array_keys(array_filter($wp_blogcaps)))) {
+		if (!defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND') && !$this->skip_has_cap_filtering && array_diff($reqd_caps, array_keys(array_filter($wp_blogcaps)))) {
 			if (!empty($args[0]) && in_array($args[0], ['edit_post', 'edit_page'])) {
 				$wp_blogcaps = array_merge($wp_blogcaps, array_fill_keys($reqd_caps, true));
-				remove_filter('user_has_cap', [$this, 'actUserHasCap'], 10, 3);
 			}
 		}
 
@@ -120,7 +122,7 @@ class RevisionaryAdminPosts {
 
 	public function fltGetEditPostLink($link, $post_id, $context) {
 		if (!empty($this->filtering_edit_link[$post_id])) {
-			if (!rvy_get_option('revisor_posts_capabilities_workaround')) {
+			if (defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
 				return $link;
 			}
 			
