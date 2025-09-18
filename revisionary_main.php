@@ -1019,7 +1019,7 @@ class Revisionary
 						if ($type_obj = get_post_type_object($_post->post_type)) {
 							$base_prop = (rvy_is_post_author($main_post_id)) ? 'edit_posts' : 'edit_others_posts';
 							$approve_cap_name = str_replace('edit_', 'approve_', $type_obj->cap->$base_prop);
-							$can_approve = current_user_can($submit_cap_name);
+							$can_approve = current_user_can($approve_cap_name);
 							$filter_args = compact('main_post_id', 'type_obj');
 						}
 					}
