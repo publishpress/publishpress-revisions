@@ -1093,7 +1093,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 	$this->option_checkbox( 'revision_unfiltered_html_check', $tab, $section, $hint, '', $checkbox_args );
 
-	if (!empty($this->form_options[$tab_name][$section_name]) && in_array('permissions_compat_mode', $this->form_options[$tab_name][$section_name])) {
+	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'])) {
 		$this->subsection_options = true;
 		
 		echo '<br>';
@@ -1470,7 +1470,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				$this->option_checkbox( 'planner_notifications_access_limited', $tab, $section, $hint, '', ['no_escape' => true] );
 			}
 
-			if (!empty($this->form_options[$tab_name]['notfications']) && in_array('legacy_notifications', $this->form_options[$tab_name]['notifications'])) {
+			if (!empty($this->form_options[$tab]['notfications']) && in_array('legacy_notifications', $this->form_options[$tab]['notifications'])) {
 				echo '<h3 style="margin-top:30px;';
 				
 				if ($pp_notifications) echo 'display:none;';
@@ -1481,7 +1481,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			}
 
 			$hint = '';
-			$test = $this->option_checkbox( 'legacy_notifications', $tab, $section, $hint, '' );
+			$this->option_checkbox( 'legacy_notifications', $tab, $section, $hint, '' );
 
 			$legacy_notifications = rvy_get_option('legacy_notifications');
 		}
