@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__ . '/rvy_init-functions.php');
+
 function revisionary() {
     return \PublishPress\Revisions::instance();
 }
@@ -602,7 +604,84 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
     }
 }
 
+function pp_revisions_get_revision_statuses() {
+    $revision_statuses = rvy_revision_statuses();
+
+    if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
+        $revision_statuses = array_merge($revision_statuses, ['revision-deferred', 'revision-needs-work', 'revision-rejected']);
+        
+        if (!taxonomy_exists('pp_revision_status')) {
+            register_taxonomy(
+                'pp_revision_status',
+                'post',
+                [
+                    'hierarchical'          => false,
+                    'query_var'             => false,
+                    'rewrite'               => false,
+                    'show_ui'               => false,
+                ]
+            );
+        }
+
+        $stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
+
+        foreach ($stored_statuses as $status) {
+            if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
+                $revision_statuses[] = $status->slug;
+            }
+        }
+    }
+
+    return $revision_statuses;
+}
+
+function rvy_bulk_remove_revision_statuses() {
+    global $wpdb;
+    
+    $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));
+
+    $wpdb->query("UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ('$revision_status_csv')");                             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+    
+    $wpdb->query("UPDATE $wpdb->posts SET post_status = 'pending' WHERE post_status IN ('$revision_status_csv') AND post_status != 'draft-revision'");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+    
+    $wpdb->query("UPDATE $wpdb->posts SET post_status = 'draft' WHERE post_status IN ('draft-revision')");       // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+}
+
+function rvy_bulk_apply_revision_statuses() {
+    global $wpdb;
+    
+    // Prevents pending / scheduled revisions from being listed as regular drafts / pending posts after plugin is deactivated
+    $revision_statuses = array_merge(rvy_revision_statuses(), ['revision-deferred', 'revision-needs-work', 'revision-rejected']);
+            
+    if (!taxonomy_exists('pp_revision_status')) {
+        register_taxonomy(
+            'pp_revision_status',
+            'post',
+            [
+                'hierarchical'          => false,
+                'query_var'             => false,
+                'rewrite'               => false,
+                'show_ui'               => false,
+            ]
+        );
+    }
+
+    $stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
+
+    foreach ($stored_statuses as $status) {
+        if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
+            $revision_statuses[] = $status->slug;
+        }
+    }
+
+    $revision_status_csv = implode("','", array_map('sanitize_key', $revision_statuses));
+
+    $wpdb->query("UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ('$revision_status_csv')");                          // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared   
+}
+
 function pp_revisions_plugin_activation() {
+    global $wpdb;
+    
     // force this timestamp to be regenerated, in case something went wrong before
     delete_option( 'rvy_next_rev_publish_gmt' );
 
@@ -615,41 +694,9 @@ function pp_revisions_plugin_activation() {
     // import from Revisionary 1.x
     new RevisionaryActivation(['import_legacy' => true]);
 
-    // convert pending / scheduled revisions to v3.0 format
-    global $wpdb;
-
-    $revision_statuses = rvy_revision_statuses();
-    
-    if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
-        $revision_statuses = array_merge($revision_statuses, ['revision-deferred', 'revision-needs-work', 'revision-rejected']);
-        
-        if (!get_option('rvy_permissions_compat_mode', false)) {
-            if (!taxonomy_exists('pp_revision_status')) {
-                register_taxonomy(
-                    'pp_revision_status',
-                    'post',
-                    [
-                        'hierarchical'          => false,
-                        'query_var'             => false,
-                        'rewrite'               => false,
-                        'show_ui'               => false,
-                    ]
-                );
-            }
-
-            $stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
-
-            foreach ($stored_statuses as $status) {
-                if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
-                    $revision_statuses[] = $status->slug;
-                }
-            }
-        }
-    }
-
-    $revision_status_csv = implode("','", array_map('sanitize_key', $revision_statuses));
-
     if (!defined('REVISIONARY_DISABLE_ACTIVATION_TRASH_QUERY')) {
+        $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));
+
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $results = $wpdb->get_results("SELECT ID, comment_count FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') AND post_status = 'trash'");
 
@@ -680,12 +727,11 @@ function pp_revisions_plugin_activation() {
         }
     }
 
-    if (!get_option('rvy_permissions_compat_mode', false)) {
-        $wpdb->query("UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ('$revision_status_csv')");                             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-        
-        $wpdb->query("UPDATE $wpdb->posts SET post_status = 'pending' WHERE post_status IN ('$revision_status_csv') AND post_status != 'draft-revision'");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-        
-        $wpdb->query("UPDATE $wpdb->posts SET post_status = 'draft' WHERE post_status IN ('draft-revision')");       // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+    // Revisions were prevented from being being listed as regular drafts / pending posts after plugin deactivation
+    if (rvy_get_option('permissions_compat_mode')) {
+        rvy_bulk_apply_revision_statuses();
+    } else {
+        rvy_bulk_remove_revision_statuses();
     }
 }
 
@@ -694,37 +740,11 @@ function pp_revisions_plugin_deactivation() {
 
     require_once(dirname(__FILE__).'/functions.php');
 
-    if (get_option('rvy_permissions_compat_mode', false)) {
+    if (rvy_get_option('permissions_compat_mode')) {
         return;
     }
 
-    // Prevents pending / scheduled revisions from being listed as regular drafts / pending posts after plugin is deactivated
-    $revision_statuses = array_merge(rvy_revision_statuses(), ['revision-deferred', 'revision-needs-work', 'revision-rejected']);
-        
-    if (!taxonomy_exists('pp_revision_status')) {
-        register_taxonomy(
-            'pp_revision_status',
-            'post',
-            [
-                'hierarchical'          => false,
-                'query_var'             => false,
-                'rewrite'               => false,
-                'show_ui'               => false,
-            ]
-        );
-    }
-
-    $stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
-
-    foreach ($stored_statuses as $status) {
-        if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
-            $revision_statuses[] = $status->slug;
-        }
-    }
-
-    $revision_status_csv = implode("','", array_map('sanitize_key', $revision_statuses));
-
-    $wpdb->query("UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ('$revision_status_csv')");                          // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+    rvy_bulk_remove_revision_statuses();
 
     if ($timestamp = wp_next_scheduled('rvy_mail_buffer_hook')) {
         wp_unschedule_event($timestamp,'rvy_mail_buffer_hook');
