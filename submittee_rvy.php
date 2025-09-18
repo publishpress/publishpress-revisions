@@ -41,7 +41,7 @@ class Revisionary_Submittee {
 	}
 	
 	function update_options( $sitewide = false, $customize_defaults = false ) {
-		global $wpdb;
+		global $wpdb, $rvy_options_sitewide;
 		
 		check_admin_referer( 'rvy-update-options' );
 
@@ -66,38 +66,64 @@ class Revisionary_Submittee {
 				}
 
 				if ('permissions_compat_mode' == $option_basename) {
-					$current_val = get_option('rvy_permissions_compat_mode');
+					$current_val = rvy_get_option('permissions_compat_mode');
 
 					if ($current_val != $value) {
 						add_action(
 							'init',
 							function() use ($value) {
-								global $wpdb;
+								global $wpdb, $rvy_options_sitewide;
 
-								$revision_statuses = rvy_revision_statuses();
-								
-								foreach ($revision_statuses as $revision_status) {
-									$base_status = ('draft-revision' == $revision_status) ? 'draft' : 'pending';
+								$orig_site_id = get_current_blog_id();
 
-									if ($value) {
-										// switching to Enhanced Revision access control (store revision status to post_status column)
-										$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-											$wpdb->prepare(
-												"UPDATE $wpdb->posts SET post_status = %s WHERE (comment_count != 0 AND post_mime_type = %s)",
-												$revision_status,
-												$revision_status
-											)
-										);
-									} else {
-										// switching to Broadest Compat mode (store base status to post_status column)
-										$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-											$wpdb->prepare(
-												"UPDATE $wpdb->posts SET post_status = %s WHERE (comment_count != 0 AND post_mime_type = %s)",
-												$base_status,
-												$revision_status
-											)
-										);
+								if (is_multisite() && defined('RVY_NETWORK') && RVY_NETWORK) {
+									if (!isset($rvy_options_sitewide)) {
+										rvy_refresh_options_sitewide();
 									}
+
+									$network_setting = isset($rvy_options_sitewide) && ! empty($rvy_options_sitewide['permissions_compat_mode']);
+
+									$site_ids = ($network_setting && function_exists('get_sites')) ? get_sites(['fields' => 'ids']) : (array) $orig_site_id;
+								} else {
+									$site_ids = (array) $orig_site_id;
+								}
+
+								// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+								foreach ($site_ids as $_blog_id) {
+									if (count($site_ids) > 1) {
+										switch_to_blog($_blog_id);
+									}
+
+									$revision_statuses = rvy_revision_statuses();
+									
+									foreach ($revision_statuses as $revision_status) {
+										$base_status = ('draft-revision' == $revision_status) ? 'draft' : 'pending';
+
+										if ($value) {
+											// switching to Enhanced Revision access control (store revision status to post_status column)
+											$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+												$wpdb->prepare(
+													"UPDATE $wpdb->posts SET post_status = %s WHERE (comment_count != 0 AND post_mime_type = %s)",
+													$revision_status,
+													$revision_status
+												)
+											);
+										} else {
+											// switching to Broadest Compat mode (store base status to post_status column)
+											$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+												$wpdb->prepare(
+													"UPDATE $wpdb->posts SET post_status = %s WHERE (comment_count != 0 AND post_mime_type = %s)",
+													$base_status,
+													$revision_status
+												)
+											);
+										}
+									}
+								}
+
+								if (count($site_ids) > 1) {
+									switch_to_blog($orig_site_id);
 								}
 							}
 						, 9999);

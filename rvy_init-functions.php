@@ -1017,6 +1017,11 @@ function rvy_get_option($option_basename, $sitewide = -1, $get_default = false, 
 		// allow explicit selection of sitewide / non-sitewide scope for better performance and update security
 		if ( -1 === $sitewide ) {
 			global $rvy_options_sitewide;
+
+			if (!isset($rvy_options_sitewide)) {
+				rvy_refresh_options_sitewide();
+			}
+
 			$sitewide = isset( $rvy_options_sitewide ) && ! empty( $rvy_options_sitewide[$option_basename] );
 		}
 	
@@ -1056,7 +1061,7 @@ function rvy_get_option($option_basename, $sitewide = -1, $get_default = false, 
 		
 		if ( ! empty($rvy_default_options) && ! empty( $rvy_default_options[$option_basename] ) )
 			$optval = $rvy_default_options[$option_basename];
-			
+
 		if ( ! isset($optval) )
 			return '';
 	}
