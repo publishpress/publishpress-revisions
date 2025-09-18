@@ -250,13 +250,14 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
-= 3.7.15 =
+= 3.7.15 - 18 Sep 2025 =
 * Compat : PublishPress Permissions - Non-revisions were listed in Revision Queue under some configurations
 * Fixed : Edit link on Posts / Pages screen is suppressed on some sites
 * Fixed : Admin notice for disabled WP Cron had invalid plugin settings link
 * Change : Clarify admin notice text for disabled WP Cron
 * Change : Support link directly to sub-tab of Revisions > Settings > New Revisions
 * Fixed : Fatal error opening revision editor with WP versions older than 6.4
+* Fixed : Revision editor hid submit, approve buttons immediately on some installations
 * Feature : Support separate approval capabilities for Revisions
 * Compat : PublishPress Capabilities - Capability tab for Approve Revision (also requires Capabilities 2.20.1-beta)
 * Fixed : Multisite - Error on Network Settings, Network Defaults screens
