@@ -1000,6 +1000,10 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	<script type="text/javascript">
 	/* <![CDATA[ */
 	jQuery(document).ready( function($) {
+		<?php if (empty($_REQUEST['ppr_tab'])):?>
+		$('#publishpress-revisions-settings-tabs li:first').click();
+		<?php endif;?>
+
 		$('#ppr-tab-working_copy div.rvy-opt-wrap ul.rvy-option-section-tabs li a').on('click', function(e) {
 			$('#ppr-tab-working_copy div.rvy-opt-wrap ul.rvy-option-section-tabs li').removeClass('active');
 			$(this).parent().addClass('active');
