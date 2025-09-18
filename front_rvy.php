@@ -488,7 +488,7 @@ class RevisionaryFront {
 							$post // revision
 						),
 						"<a href='$queue_url' class='rvy-preview-link' target='_revision_list'>",
-						'</a> &bull; '
+						'</a> <span class="rvy-preview-link">&bull;</span> '
 					);
 
 					if (current_user_can('edit_post', $revision_id)) {
@@ -499,9 +499,9 @@ class RevisionaryFront {
 								$post // revision
 							),
 							"<a href='$diff_url' class='rvy-preview-link' target='_revision_diff'>",
-							'</a> &bull; ',
+							'</a> <span class="rvy-preview-link">&bull;</span> ',
 							"<a href='$published_url' class='rvy-preview-link rvy_has_empty_spacing'>",
-							'</a> &bull; '
+							'</a> <span class="rvy-preview-link">&bull;</span> '
 						);
 					} else {
 						$view_published .= sprintf(
@@ -511,7 +511,7 @@ class RevisionaryFront {
 								$post // revision
 							),
 							"<a href='$published_url' class='rvy-preview-link'>",
-							"</a> &bull; "
+							"</a> <span class='rvy-preview-link'>&bull;</span> "
 						);
 					}
 				} else {
@@ -526,7 +526,7 @@ class RevisionaryFront {
 						$post // revision
 					),
 					"<a href='$published_url' class='rvy-preview-link'>",
-					"</a> &bull; "
+					"</a> <span class='rvy-preview-link'>&bull;</span> "
 					)
 				: '';
 			}
@@ -536,7 +536,7 @@ class RevisionaryFront {
 				$edit_button = "<a href='$edit_url' class='rvy-preview-link rvy_has_empty_spacing'>" . esc_html__('Edit', 'revisionary') . '</a>';
 
 				if (empty($_REQUEST['mark_current_revision'])) {
-					$edit_button .= ' &bull; ';
+					$edit_button .= ' <span class="rvy-preview-link">&bull;</span> ';
 				}
 			} else {
 				$edit_button = '';
