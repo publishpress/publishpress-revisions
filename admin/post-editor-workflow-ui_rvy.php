@@ -21,7 +21,7 @@ class PostEditorWorkflowUI {
 
         $block_editor = \PublishPress\Revisions\Utils::isBlockEditorActive($post->post_type);
 
-        $can_publish = current_user_can('edit_post', $published_post_id);
+        $can_publish = current_user_can('approve_revision', $post->ID);
 
         $vars = [
             'postID' => $post->ID,
@@ -33,7 +33,7 @@ class PostEditorWorkflowUI {
             'currentPostAuthor' => get_post_field('post_author', $published_post_id),
             'onApprovalCaption' => esc_html__('(on approval)', 'revisionary'),
             'saveRevisionTooltip' =>  htmlEntities(
-                wp_get_admin_notice(
+                rvy_get_admin_notice(
                     $revisionary->admin->tooltipText(
                         __('Save changes to continue.', 'revisionary'),
                         __('Please save changes to the revision before submitting it.', 'revisionary'),

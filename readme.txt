@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.14
+Stable tag: 3.7.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -249,6 +249,21 @@ Please report security bugs found in the source code of the PublishPress Revisio
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.15 - 18 Sep 2025 =
+* Compat : PublishPress Permissions - Non-revisions were listed in Revision Queue under some configurations
+* Fixed : Edit link on Posts / Pages screen is suppressed on some sites
+* Fixed : Admin notice for disabled WP Cron had invalid plugin settings link
+* Change : Clarify admin notice text for disabled WP Cron
+* Change : Support link directly to sub-tab of Revisions > Settings > New Revisions
+* Fixed : Fatal error opening revision editor with WP versions older than 6.4
+* Fixed : Revision editor hid submit, approve buttons immediately on some installations
+* Feature : Support separate approval capabilities for Revisions
+* Compat : PublishPress Capabilities - Capability tab for Approve Revision (also requires Capabilities 2.20.1-beta)
+* Fixed : Multisite - Error on Network Settings, Network Defaults screens
+* Fixed : Multisite - Revision Queue empty if Permissions Compat mode setting is controlled network-wide 
+* Fixed : Multisite - Compatibility Mode setting change did not cause post_status of sub-site revisions to be updated
+* Fixed : Multisite - Plugin setting tabs were blank until a tab is clicked
 
 = 3.7.14 - 11 Sep 2025 =
 * Fixed : New Revision button in editor did not work unless configured to open a new tab

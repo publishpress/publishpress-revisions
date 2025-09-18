@@ -1017,6 +1017,11 @@ function rvy_get_option($option_basename, $sitewide = -1, $get_default = false, 
 		// allow explicit selection of sitewide / non-sitewide scope for better performance and update security
 		if ( -1 === $sitewide ) {
 			global $rvy_options_sitewide;
+
+			if (!isset($rvy_options_sitewide)) {
+				rvy_refresh_options_sitewide();
+			}
+
 			$sitewide = isset( $rvy_options_sitewide ) && ! empty( $rvy_options_sitewide[$option_basename] );
 		}
 	
@@ -1056,7 +1061,7 @@ function rvy_get_option($option_basename, $sitewide = -1, $get_default = false, 
 		
 		if ( ! empty($rvy_default_options) && ! empty( $rvy_default_options[$option_basename] ) )
 			$optval = $rvy_default_options[$option_basename];
-			
+
 		if ( ! isset($optval) )
 			return '';
 	}
@@ -1494,6 +1499,23 @@ function rvy_preview_url($revision, $args = []) {
 			$id_arg = 'p';
 		}
 	} elseif (('revision_slug' == $link_type) || !$post_is_published) {
+		$use_revision_slug = true;
+	
+	} else { // 'published_slug'
+		$published_post_id = rvy_post_id($revision->ID);
+		
+		if (('page' === get_option('show_on_front')) && in_array(get_option('page_on_front'), [$published_post_id, $revision->ID]) && !defined('REVISIONARY_NORMAL_HOME_REVISION_PREVIEW')) {
+			$use_revision_slug = true;
+			$home_id_arg = 'page__id';
+		} else {
+			$id_arg = 'page_id';
+
+			// default to published post url, appended with 'preview' and page_id args
+			$preview_url = add_query_arg($preview_arg, true, get_permalink($published_post_id));
+		}
+	}
+
+	if (!empty($use_revision_slug)) {
 		// support using actual revision slug in case theme or plugins do not tolerate published post url
 		$preview_url = add_query_arg($preview_arg, true, get_permalink($revision));
 
@@ -1503,17 +1525,6 @@ function rvy_preview_url($revision, $args = []) {
 		} else {
 			$id_arg = 'p';
 		}
-	} else { // 'published_slug'
-		$published_post_id = rvy_post_id($revision->ID);
-		
-		if (('page' === get_option('show_on_front')) && in_array(get_option('page_on_front'), [$published_post_id, $revision->ID])) {
-			$id_arg = 'page__id';
-		} else {
-			$id_arg = 'page_id';
-		}
-
-		// default to published post url, appended with 'preview' and page_id args
-		$preview_url = add_query_arg($preview_arg, true, get_permalink($published_post_id));
 	}
 
 	if (strpos($preview_url, "{$id_arg}=")) {
@@ -1521,6 +1532,10 @@ function rvy_preview_url($revision, $args = []) {
 	}
 	
 	$preview_url = add_query_arg($id_arg, $revision->ID, $preview_url);
+
+	if (!empty($home_id_arg)) {
+		$preview_url = add_query_arg($home_id_arg, $revision->ID, $preview_url);
+	}
 
 	if (!strpos($preview_url, "post_type=")) {
 		$preview_url = add_query_arg('post_type', $post_type, $preview_url);

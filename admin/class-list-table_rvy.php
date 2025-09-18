@@ -668,9 +668,24 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 			$args = array_merge($defaults, (array)$args);
 
+			if (!empty($args['source_alias'])) {
+				$_append_clause = str_replace("$p.", "{$args['source_alias']}.", $where_append);
+			} else {
+				$_append_clause = $where_append;
+			}
 
 			foreach(array_keys($revisionary->enabled_post_types) as $_post_type) {
-				$where = \PublishPress\Permissions\DB\Permissions::addExceptionClauses($where, 'edit', $_post_type, $args);
+				if (false === strpos(trim($where), '(')) {
+					$where = "( $where )";
+				}
+				
+				if (false === strpos(trim($_append_clause), '(')) {
+					$_append_clause = "( $_append_clause )";
+				}
+				
+				$exc_where = \PublishPress\Permissions\DB\Permissions::addExceptionClauses('', 'edit', $_post_type, $args);
+			
+				$where = "$where OR ( $exc_where AND $_append_clause )";
 			}
 		}
 

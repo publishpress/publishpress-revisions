@@ -488,7 +488,7 @@ class RevisionaryFront {
 							$post // revision
 						),
 						"<a href='$queue_url' class='rvy-preview-link' target='_revision_list'>",
-						'</a> &bull; '
+						'</a> <span class="rvy-preview-link">&bull;</span> '
 					);
 
 					if (current_user_can('edit_post', $revision_id)) {
@@ -499,9 +499,9 @@ class RevisionaryFront {
 								$post // revision
 							),
 							"<a href='$diff_url' class='rvy-preview-link' target='_revision_diff'>",
-							'</a> &bull; ',
+							'</a> <span class="rvy-preview-link">&bull;</span> ',
 							"<a href='$published_url' class='rvy-preview-link rvy_has_empty_spacing'>",
-							'</a> &bull; '
+							'</a> <span class="rvy-preview-link">&bull;</span> '
 						);
 					} else {
 						$view_published .= sprintf(
@@ -511,7 +511,7 @@ class RevisionaryFront {
 								$post // revision
 							),
 							"<a href='$published_url' class='rvy-preview-link'>",
-							"</a> &bull; "
+							"</a> <span class='rvy-preview-link'>&bull;</span> "
 						);
 					}
 				} else {
@@ -526,7 +526,7 @@ class RevisionaryFront {
 						$post // revision
 					),
 					"<a href='$published_url' class='rvy-preview-link'>",
-					"</a> &bull; "
+					"</a> <span class='rvy-preview-link'>&bull;</span> "
 					)
 				: '';
 			}
@@ -536,7 +536,7 @@ class RevisionaryFront {
 				$edit_button = "<a href='$edit_url' class='rvy-preview-link rvy_has_empty_spacing'>" . esc_html__('Edit', 'revisionary') . '</a>';
 
 				if (empty($_REQUEST['mark_current_revision'])) {
-					$edit_button .= ' &bull; ';
+					$edit_button .= ' <span class="rvy-preview-link">&bull;</span> ';
 				}
 			} else {
 				$edit_button = '';
@@ -547,7 +547,7 @@ class RevisionaryFront {
 					$submit_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=submit$redirect_arg"), "submit-post_$published_post_id|$revision_id" );
 					$publish_url =  wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 				}
-			} elseif ($can_edit = current_user_can('edit_post', rvy_post_id($revision_id))) {
+			} elseif ($can_edit = current_user_can('approve_revision', $revision_id)) {
 				if ( !in_array( $post->post_mime_type, array( 'future-revision', 'inherit' ) ) ) {
 					$publish_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 

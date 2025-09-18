@@ -124,8 +124,8 @@ class RevisionaryAdmin
 				) {
 					rvy_notice(
 						sprintf(
-							__('Scheduled Revisions are not available because WP-Cron is disabled on this site. See %sRevisions > Settings > Scheduled Revisions%s.', 'revisionary'),
-							'<a href="' . admin_url("admin.php?page=revisionary-settings&ppr_tab=scheduled_revisions") . '">',
+							__('Scheduled Revisions are unavailable because WP-Cron is disabled. If you are triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > Scheduling%s.', 'revisionary'),
+							'<a href="' . admin_url("admin.php?page=revisionary-settings&ppr_tab=working_copy&ppr_subtab=revision-scheduling") . '">',
 							'</a>'
 						)
 					);

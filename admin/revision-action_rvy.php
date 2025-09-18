@@ -1369,7 +1369,7 @@ function rvy_revision_unschedule($revision_id) {
 			break;
 		}
 
-		if (!current_user_can('edit_post', $published_id)) {
+		if (!current_user_can('approve_revision', $revision->ID)) {
 			break;
 		}
 
@@ -1421,7 +1421,7 @@ function rvy_revision_publish($revision_id = false) {
 			break;
 		}
 
-		if (!current_user_can('edit_post', $post->ID)) {
+		if (!current_user_can('approve_revision', $revision_id)) {
 			break;
 		}
 
