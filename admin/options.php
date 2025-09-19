@@ -1421,9 +1421,12 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			if (!$customize_defaults):?>
 			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
 			<?php
+			$plugin_slug = 'publishpress';
+			$info_url = self_admin_url("plugin-install.php?tab=plugin-information&plugin=$plugin_slug&TB_iframe=true&width=640&height=678");
+
 			printf(
 				esc_html__('For enhanced notifications, install %sPublishPress Planner%s.', 'revisionary'),
-				'<a href="' . esc_url(admin_url('plugin-install.php?s=publishpress%2520planner&tab=search&type=term')) . '" target="_blank">',
+				'<a href="' . esc_url($info_url) . '" class="thickbox">',
 				'</a>'
 			);
 			?>
