@@ -294,7 +294,7 @@ jQuery(document).ready( function($) {
 
 		var currentDate = new Date();
 
-		RvyTimeSelection = selectedDate.getTime() - ((currentDate.getTimezoneOffset() * 60 - rvyObjEdit.timezoneOffset) * 1000);
+		RvyTimeSelection = selectedDate.getTime();
 
 		var tdiff = RvyTimeSelection - currentDate.getTime();
 
