@@ -152,7 +152,7 @@ jQuery(document).ready(function ($) {
         var selectedDate = new Date( selectedDateHTML );
         var currentDate = new Date();
 
-        RvyTimeSelection = selectedDate.getTime() - ((currentDate.getTimezoneOffset() * 60 - rvyObjEdit.timezoneOffset) * 1000);
+        RvyTimeSelection = selectedDate.getTime();
 
         if (RvyTimeSelection - currentDate.getTime() > 1000) {
             var approveCaption = rvyObjEdit['scheduleCaption'];
