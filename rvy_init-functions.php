@@ -1379,7 +1379,7 @@ function rvy_init() {
 					wp_remote_post( $url, array('blocking' => false, 'sslverify' => apply_filters('https_local_ssl_verify', true)) );
 				} else {
 					// publish scheduled revision now
-					if ( ! defined('DOING_CRON') ) {
+					if ( ! defined('DOING_CRON') && defined('REVISONARY_SET_DOING_CRON') ) {
 						define( 'DOING_CRON', true );
 					}
 					require_once( dirname(__FILE__).'/admin/revision-action_rvy.php');
