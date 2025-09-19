@@ -317,11 +317,15 @@ class RevisionaryAdmin
 		$can_edit_any = false;
 
 		if ($types || current_user_can('manage_options')) {
-			foreach ($types as $_post_type) {
-				if ($type_obj = get_post_type_object($_post_type)) {
-					if (!empty($current_user->allcaps[$type_obj->cap->edit_posts]) || (is_multisite() && is_super_admin())) {
-						$can_edit_any = true;
-						break;
+			if (rvy_get_option('revision_queue_capability')) {
+				$can_edit_any = current_user_can('manage_revision_queue');
+			} else {
+				foreach ($types as $_post_type) {
+					if ($type_obj = get_post_type_object($_post_type)) {
+						if (!empty($current_user->allcaps[$type_obj->cap->edit_posts]) || (is_multisite() && is_super_admin())) {
+							$can_edit_any = true;
+							break;
+						}
 					}
 				}
 			}
@@ -435,12 +439,16 @@ class RevisionaryAdmin
 	}
 
 	public function fltPublishPressCapsSection($section_caps) {
-		$section_caps['PublishPress Revisions'] = ['edit_others_drafts', 'edit_others_revisions', 'list_others_revisions', 'manage_unsubmitted_revisions', 'preview_others_revisions', 'restore_revisions', 'view_revision_archive'];
+		$section_caps['PublishPress Revisions'] = ['edit_others_drafts', 'edit_others_revisions', 'list_others_revisions', 'manage_revision_queue', 'manage_unsubmitted_revisions', 'preview_others_revisions', 'restore_revisions', 'view_revision_archive'];
 
 		// @todo: check Revisions settings for other cap requirements
 
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && rvy_get_option('revision_restore_require_cap')) {
 			$section_caps['PublishPress Revisions'] []= 'restore_revisions';
+		}
+
+		if (!rvy_get_option('revision_queue_capability')) {
+			$section_caps['PublishPress Revisions'] = array_diff($section_caps['PublishPress Revisions'], ['manage_revision_queue']);
 		}
 
 		if (!rvy_get_option('manage_unsubmitted_capability')) {
@@ -467,6 +475,7 @@ class RevisionaryAdmin
 		$cap_descripts['edit_others_drafts'] = esc_html__('Can edit draft Posts from other users.', 'revisionary');
 		$cap_descripts['edit_others_revisions'] = esc_html__('Can edit Revisions from other users.', 'revisionary');
 		$cap_descripts['list_others_revisions'] = esc_html__('Can see Revisions from other users in Revision Queue.', 'revisionary');
+		$cap_descripts['manage_revision_queue'] = esc_html__('Can access Revision Queue.', 'revisionary');
 		$cap_descripts['manage_unsubmitted_revisions'] = esc_html__('Can manage Unsubmitted Revisions.', 'revisionary');
 		$cap_descripts['preview_others_revisions'] = esc_html__('Preview other user\'s Revisions (without needing editing access).', 'revisionary');
 		$cap_descripts['restore_revisions'] = esc_html__('Restore an archived Revision as the current revision.', 'revisionary');
