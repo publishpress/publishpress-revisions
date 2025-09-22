@@ -18,6 +18,8 @@ class RevisionaryHistory
         add_action('admin_head', [$this,'actRevisionDiffScripts']);
         add_action('admin_head', [$this, 'actPastRevisionDiffScripts'], 10, 1);
         add_action('admin_print_scripts', [$this, 'actCompareRevisionsTweakUI']);
+        add_action('admin_print_footer_scripts', [$this, 'actCopyButtons']);
+
         add_filter('wp_prepare_revision_for_js', [$this, 'fltPrepareRevisionsForJS'], 10, 3);
 
         add_filter('wp_get_revision_ui_diff', [$this, 'fltGetRevisionUIDiff'], 10, 3);
@@ -66,6 +68,57 @@ class RevisionaryHistory
                 endif;
             }
         }
+    }
+
+    function actCopyButtons() {
+        ?>
+        <script type="text/javascript">
+        /* <![CDATA[ */
+        jQuery(document).ready( function($) {
+            setTimeout(() => {
+                $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after('<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy"><?php echo __('Copy', 'revisionary');?></button></div><div class="rvy-copy"><button id="rvy_copy_new_content" class="rvy-copy"><?php echo __('Copy', 'revisionary');?></button></div>');
+            }, 500);
+
+            $(document).on('click', '#rvy_copy_old_content', function (e) {
+                var content = '';
+
+                $(this).closest('div.diff').find('table.diff:nth(1)').find('tbody tr').each(function() {
+                    var e = $(this).find('td:nth(0)').clone();
+                    $(e).find('span').remove();
+                    content = content + '\r\n\r\n' + $(e).html();
+                })
+                
+                navigator.clipboard.writeText(content);
+            });
+
+            $(document).on('click', '#rvy_copy_new_content', function (e) {
+                var content = '';
+
+                $(this).closest('div.diff').find('table.diff:nth(1)').find('tbody tr').each(function() {
+                    var e = $(this).find('td:nth(1)').clone();
+                    $(e).find('span').remove();
+                    content = content + '\r\n\r\n' + $(e).html();
+                })
+                
+                navigator.clipboard.writeText(content);
+            });
+        });
+        /* ]]> */
+        </script>
+
+        <style>
+        div.rvy-copy {
+            display: inline-block;
+            width: 50%;
+            margin-top: 15px;
+        }
+
+        button.rvy-copy {
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        </style>
+        <?php
     }
 
     function actDisableProblemQueries(WP_Query $query) {
