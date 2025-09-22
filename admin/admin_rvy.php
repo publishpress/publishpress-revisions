@@ -318,7 +318,7 @@ class RevisionaryAdmin
 
 		if ($types || current_user_can('manage_options')) {
 			if (rvy_get_option('revision_queue_capability')) {
-				$can_edit_any = current_user_can('manage_revision_queue');
+				$can_edit_any = current_user_can('manage_revision_queue') || is_content_administrator_rvy();
 			} else {
 				foreach ($types as $_post_type) {
 					if ($type_obj = get_post_type_object($_post_type)) {
