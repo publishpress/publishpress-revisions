@@ -1310,10 +1310,11 @@ function rvy_init() {
 		}
 	}
 
-	rvy_role_translation_support();
-
 	if ( is_admin() ) {
 		require_once(dirname(__FILE__).'/admin/admin-init_rvy.php');
+		rvy_load_textdomain();
+
+		rvy_role_translation_support();
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		if (defined('REVISIONARY_BULK_ACTION_EARLY_EXECUTION') || (!isset($_REQUEST['action2']) && (empty($_REQUEST['action']) || ('decline_revision' != $_REQUEST['action'])))) {
