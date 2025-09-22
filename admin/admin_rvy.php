@@ -88,11 +88,9 @@ class RevisionaryAdmin
 			add_filter('dashboard_glance_items', [$this, 'fltDashboardGlanceItems']);
 		}
 
-		if ( rvy_get_option( 'pending_revisions' ) || rvy_get_option( 'scheduled_revisions' ) ) {
-			if ('revision.php' == $pagenow) {
-				require_once( dirname(__FILE__).'/history_rvy.php' );
-				new RevisionaryHistory();
-			}
+		if ('revision.php' == $pagenow) {
+			require_once( dirname(__FILE__).'/history_rvy.php' );
+			new RevisionaryHistory();
 		}
 
 		if ( rvy_get_option( 'scheduled_revisions' ) ) {
