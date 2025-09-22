@@ -71,12 +71,21 @@ class RevisionaryHistory
     }
 
     function actCopyButtons() {
+        global $revisionary;
+
         ?>
         <script type="text/javascript">
         /* <![CDATA[ */
         jQuery(document).ready( function($) {
             setTimeout(() => {
-                $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after('<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy"><?php echo __('Copy', 'revisionary');?></button></div><div class="rvy-copy"><button id="rvy_copy_new_content" class="rvy-copy"><?php echo __('Copy', 'revisionary');?></button></div>');
+                $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after(
+                    '<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy">'
+                    + '<?php echo $revisionary->admin->tooltipText(__('Copy', 'revisionary'), __('Copy the above content to the clipboard.', 'revisionary'), false);?>'
+                    + '</button></div>'
+                    + '<div class="rvy-copy"><button id="rvy_copy_new_content" class="rvy-copy">'
+                    + '<?php echo $revisionary->admin->tooltipText(__('Copy', 'revisionary'), __('Copy the above content to the clipboard.', 'revisionary'), false);?>'
+                    + '</button></div>'
+                );
             }, 500);
 
             $(document).on('click', '#rvy_copy_old_content', function (e) {
