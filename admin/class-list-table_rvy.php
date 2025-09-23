@@ -1665,7 +1665,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$actions['diff'] = sprintf(
 				'<a href="%1$s" class="" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
 				admin_url("revision.php?revision=$post->ID"),
-				esc_attr( sprintf( esc_html__('Compare Changes', 'revisionary'), $title ) ),
+				esc_attr__('Compare Changes', 'revisionary'),
 				_x('Compare', 'revisions', 'revisionary')
 			);
 		}
