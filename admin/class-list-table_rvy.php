@@ -917,16 +917,14 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				$actions['view'] = sprintf(
 					'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_permalink( $post->ID ),
-					/* translators: %s: post title */
-					esc_attr( esc_html__( 'View published post', 'revisionary' ) ),
+					esc_attr__( 'View published post', 'revisionary' ),
 					esc_html__( 'View' )
 				);
 			} else {
 				$actions['view'] = sprintf(
 					'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_preview_post_link( $post->ID ),
-					/* translators: %s: post title */
-					esc_attr( esc_html__( 'View published post', 'revisionary' ) ),
+					esc_attr__( 'View published post', 'revisionary' ),
 					esc_html__( 'Preview' )
 				);
 			}
@@ -951,8 +949,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$actions['history'] = sprintf(
 				'<a href="%1$s" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
 				admin_url("revision.php?revision={$last_past_revision[$post->ID]}"),
-				/* translators: %s: post title */
-				esc_attr(esc_html__('Compare Past Revisions', 'revisionary')),
+				esc_attr__('Compare Past Revisions', 'revisionary'),
 				esc_html__( 'History', 'revisionary' )
 			);
 		}
@@ -1654,8 +1651,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					$actions['view'] = sprintf(
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
-						/* translators: %s: post title */
-						esc_attr( esc_html__( 'Preview Revision', 'revisionary' ) ),
+						esc_attr__( 'Preview Revision', 'revisionary' ),
 						esc_html__( 'Preview' )
 					);
 
@@ -1669,7 +1665,6 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$actions['diff'] = sprintf(
 				'<a href="%1$s" class="" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
 				admin_url("revision.php?revision=$post->ID"),
-				/* translators: %s: post title */
 				esc_attr( sprintf( esc_html__('Compare Changes', 'revisionary'), $title ) ),
 				_x('Compare', 'revisions', 'revisionary')
 			);
