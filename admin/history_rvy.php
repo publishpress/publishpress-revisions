@@ -78,6 +78,16 @@ class RevisionaryHistory
         /* <![CDATA[ */
         jQuery(document).ready( function($) {
             setTimeout(() => {
+                $('div.revisions-diff div.diff h2:nth(1)').css('display', 'inline-block').css('margin-right', '10px').after(
+                    '<div style="display:inline-block;width:45%"><button id="rvy_copy_new_content_top" class="rvy-copy">'
+                    + '<?php echo $revisionary->admin->tooltipText(__('Copy', 'revisionary'), __('Copy content to the clipboard.', 'revisionary'), false);?>'
+                    + '</button></div>'
+                ).after(
+                    '<div style="display:inline-block;width:45%"><button id="rvy_copy_old_content_top" class="rvy-copy">'
+                    + '<?php echo $revisionary->admin->tooltipText(__('Copy', 'revisionary'), __('Copy content to the clipboard.', 'revisionary'), false);?>'
+                    + '</button></div>'
+                );
+
                 $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after(
                     '<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy">'
                     + '<?php echo $revisionary->admin->tooltipText(__('Copy', 'revisionary'), __('Copy the above content to the clipboard.', 'revisionary'), false);?>'
@@ -110,6 +120,14 @@ class RevisionaryHistory
                 })
                 
                 navigator.clipboard.writeText(content);
+            });
+
+            $(document).on('click', '#rvy_copy_old_content_top', function (e) {
+                $('#rvy_copy_old_content').trigger('click');
+            });
+
+            $(document).on('click', '#rvy_copy_new_content_top', function (e) {
+                $('#rvy_copy_new_content').trigger('click');
             });
         });
         /* ]]> */
