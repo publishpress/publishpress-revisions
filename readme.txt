@@ -250,12 +250,13 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
-= 3.7.16 =
+= 3.7.16 - 25 Sep 2025 =
 * Fixed : Plugin defines DOING_CRON prior to publishing scheduled revisions
 * Fixed : Revision metaboxes on Post edit screen output duplicate column label for Actions
 * Fixed : Captioning of Approve / Schedule button based on time selection did not apply time zone offset correctly 
 * Change : PublishPress Planner link on settings screen pops up plugin info / install screen
 * Change : Use thickbox frame for PublishPress Planner install link on Settings screen
+* Compat : PublishPress Permissions - list, list_other capabilities caused non-functional edit links to be displayed in Posts listing under some conditions
 * Feature : Support manage_revision_queue capability
 * Feature : Copy button for content on Compare Revisions screen
 
