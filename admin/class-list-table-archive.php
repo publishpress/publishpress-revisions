@@ -874,7 +874,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					$actions['view'] = sprintf(
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
-						esc_attr( esc_html__( 'Preview Revision', 'revisionary' ) ),
+						esc_attr__( 'Preview Revision', 'revisionary' ),
 						esc_html__( 'Preview' )
 					);
 
@@ -888,9 +888,8 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				$actions['edit_parent'] = sprintf(
 					'<a href="%1$s" title="%2$s" aria-label="%2$s">%3$s</a>',
 					$edit_link,
-					/* translators: %s: post title */
-					(rvy_in_revision_workflow($item->post_parent)) ? esc_attr(__('Edit parent revision', 'revisionary')) : esc_attr(__('Edit parent post', 'revisionary')),
-					esc_html__( 'Edit Parent' )
+					(rvy_in_revision_workflow($item->post_parent)) ? esc_attr__('Edit parent revision', 'revisionary') : esc_attr__('Edit parent post', 'revisionary'),
+					esc_html__( 'Edit Parent', 'revisionary' )
 				);
 			}
 		}
@@ -900,7 +899,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		$actions['post_filter'] = sprintf(
 			'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 			add_query_arg('origin_post', $item->post_parent, esc_url(untrailingslashit(site_url('')) . $uri )),
-			esc_attr( esc_html__( 'List Revisions of this Post', 'revisionary' ) ),
+			esc_attr__( 'List Revisions of this Post', 'revisionary' ),
 			esc_html__( 'Filter', 'revisionary' )
 		);
 
