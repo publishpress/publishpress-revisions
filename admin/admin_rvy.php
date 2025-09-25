@@ -88,11 +88,9 @@ class RevisionaryAdmin
 			add_filter('dashboard_glance_items', [$this, 'fltDashboardGlanceItems']);
 		}
 
-		if ( rvy_get_option( 'pending_revisions' ) || rvy_get_option( 'scheduled_revisions' ) ) {
-			if ('revision.php' == $pagenow) {
-				require_once( dirname(__FILE__).'/history_rvy.php' );
-				new RevisionaryHistory();
-			}
+		if ('revision.php' == $pagenow) {
+			require_once( dirname(__FILE__).'/history_rvy.php' );
+			new RevisionaryHistory();
 		}
 
 		if ( rvy_get_option( 'scheduled_revisions' ) ) {
@@ -317,11 +315,15 @@ class RevisionaryAdmin
 		$can_edit_any = false;
 
 		if ($types || current_user_can('manage_options')) {
-			foreach ($types as $_post_type) {
-				if ($type_obj = get_post_type_object($_post_type)) {
-					if (!empty($current_user->allcaps[$type_obj->cap->edit_posts]) || (is_multisite() && is_super_admin())) {
-						$can_edit_any = true;
-						break;
+			if (rvy_get_option('revision_queue_capability')) {
+				$can_edit_any = current_user_can('manage_revision_queue') || is_content_administrator_rvy();
+			} else {
+				foreach ($types as $_post_type) {
+					if ($type_obj = get_post_type_object($_post_type)) {
+						if (!empty($current_user->allcaps[$type_obj->cap->edit_posts]) || (is_multisite() && is_super_admin())) {
+							$can_edit_any = true;
+							break;
+						}
 					}
 				}
 			}
@@ -435,12 +437,16 @@ class RevisionaryAdmin
 	}
 
 	public function fltPublishPressCapsSection($section_caps) {
-		$section_caps['PublishPress Revisions'] = ['edit_others_drafts', 'edit_others_revisions', 'list_others_revisions', 'manage_unsubmitted_revisions', 'preview_others_revisions', 'restore_revisions', 'view_revision_archive'];
+		$section_caps['PublishPress Revisions'] = ['edit_others_drafts', 'edit_others_revisions', 'list_others_revisions', 'manage_revision_queue', 'manage_unsubmitted_revisions', 'preview_others_revisions', 'restore_revisions', 'view_revision_archive'];
 
 		// @todo: check Revisions settings for other cap requirements
 
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && rvy_get_option('revision_restore_require_cap')) {
 			$section_caps['PublishPress Revisions'] []= 'restore_revisions';
+		}
+
+		if (!rvy_get_option('revision_queue_capability')) {
+			$section_caps['PublishPress Revisions'] = array_diff($section_caps['PublishPress Revisions'], ['manage_revision_queue']);
 		}
 
 		if (!rvy_get_option('manage_unsubmitted_capability')) {
@@ -467,6 +473,7 @@ class RevisionaryAdmin
 		$cap_descripts['edit_others_drafts'] = esc_html__('Can edit draft Posts from other users.', 'revisionary');
 		$cap_descripts['edit_others_revisions'] = esc_html__('Can edit Revisions from other users.', 'revisionary');
 		$cap_descripts['list_others_revisions'] = esc_html__('Can see Revisions from other users in Revision Queue.', 'revisionary');
+		$cap_descripts['manage_revision_queue'] = esc_html__('Can access Revision Queue.', 'revisionary');
 		$cap_descripts['manage_unsubmitted_revisions'] = esc_html__('Can manage Unsubmitted Revisions.', 'revisionary');
 		$cap_descripts['preview_others_revisions'] = esc_html__('Preview other user\'s Revisions (without needing editing access).', 'revisionary');
 		$cap_descripts['restore_revisions'] = esc_html__('Restore an archived Revision as the current revision.', 'revisionary');
@@ -565,11 +572,7 @@ class RevisionaryAdmin
 		
 		if ($use_icon) :
 			ob_start();
-		?>
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="margin-left: 3px; vertical-align: baseline;">
-				<path d="M 25 2 C 12.264481 2 2 12.264481 2 25 C 2 37.735519 12.264481 48 25 48 C 37.735519 48 48 37.735519 48 25 C 48 12.264481 37.735519 2 25 2 z M 25 4 C 36.664481 4 46 13.335519 46 25 C 46 36.664481 36.664481 46 25 46 C 13.335519 46 4 36.664481 4 25 C 4 13.335519 13.335519 4 25 4 z M 25 11 A 3 3 0 0 0 25 17 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 23 23 L 23 36 L 21 36 L 21 38 L 29 38 L 29 36 L 27 36 L 27 21 L 21 21 z"></path>
-			</svg>
-		<?php 
+		?><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="margin-left: 3px; vertical-align: baseline;"><path d="M 25 2 C 12.264481 2 2 12.264481 2 25 C 2 37.735519 12.264481 48 25 48 C 37.735519 48 48 37.735519 48 25 C 48 12.264481 37.735519 2 25 2 z M 25 4 C 36.664481 4 46 13.335519 46 25 C 46 36.664481 36.664481 46 25 46 C 13.335519 46 4 36.664481 4 25 C 4 13.335519 13.335519 4 25 4 z M 25 11 A 3 3 0 0 0 25 17 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 23 23 L 23 36 L 21 36 L 21 38 L 29 38 L 29 36 L 27 36 L 27 21 L 21 21 z"></path></svg><?php 
 			$icon = ob_get_clean();
 		endif;
 		

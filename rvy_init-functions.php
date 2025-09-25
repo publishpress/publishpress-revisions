@@ -1310,10 +1310,11 @@ function rvy_init() {
 		}
 	}
 
-	rvy_role_translation_support();
-
 	if ( is_admin() ) {
 		require_once(dirname(__FILE__).'/admin/admin-init_rvy.php');
+		rvy_load_textdomain();
+
+		rvy_role_translation_support();
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		if (defined('REVISIONARY_BULK_ACTION_EARLY_EXECUTION') || (!isset($_REQUEST['action2']) && (empty($_REQUEST['action']) || ('decline_revision' != $_REQUEST['action'])))) {
@@ -1379,7 +1380,7 @@ function rvy_init() {
 					wp_remote_post( $url, array('blocking' => false, 'sslverify' => apply_filters('https_local_ssl_verify', true)) );
 				} else {
 					// publish scheduled revision now
-					if ( ! defined('DOING_CRON') ) {
+					if ( ! defined('DOING_CRON') && defined('REVISONARY_SET_DOING_CRON') ) {
 						define( 'DOING_CRON', true );
 					}
 					require_once( dirname(__FILE__).'/admin/revision-action_rvy.php');

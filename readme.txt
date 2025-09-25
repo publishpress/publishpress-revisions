@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.15
+Stable tag: 3.7.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -250,6 +250,16 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.16 - 25 Sep 2025 =
+* Fixed : Plugin defines DOING_CRON prior to publishing scheduled revisions
+* Fixed : Revision metaboxes on Post edit screen output duplicate column label for Actions
+* Fixed : Captioning of Approve / Schedule button based on time selection did not apply time zone offset correctly 
+* Change : PublishPress Planner link on settings screen pops up plugin info / install screen
+* Change : Use thickbox frame for PublishPress Planner install link on Settings screen
+* Compat : PublishPress Permissions - list, list_other capabilities caused non-functional edit links to be displayed in Posts listing under some conditions
+* Feature : Support manage_revision_queue capability
+* Feature : Copy button for content on Compare Revisions screen
+
 = 3.7.15 - 18 Sep 2025 =
 * Compat : PublishPress Permissions - Non-revisions were listed in Revision Queue under some configurations
 * Fixed : Edit link on Posts / Pages screen is suppressed on some sites
@@ -259,10 +269,10 @@ Fixed: Security issue. Please update.
 * Fixed : Fatal error opening revision editor with WP versions older than 6.4
 * Fixed : Revision editor hid submit, approve buttons immediately on some installations
 * Feature : Support separate approval capabilities for Revisions
-* Compat : PublishPress Capabilities - Capability tab for Approve Revision (also requires Capabilities 2.20.1-beta)
+* Compat : PublishPress Capabilities - Capability tab for Approve Revision (also requires Capabilities 2.20.1)
 * Fixed : Multisite - Error on Network Settings, Network Defaults screens
 * Fixed : Multisite - Revision Queue empty if Permissions Compat mode setting is controlled network-wide 
-* Fixed : Multisite - Compatibility Mode setting change did not cause post_status of sub-site revisions to be updated
+* Fixed : Multisite - Compatibility Mode setting change left sub-site revisions with invalid post_status value
 * Fixed : Multisite - Plugin setting tabs were blank until a tab is clicked
 
 = 3.7.14 - 11 Sep 2025 =

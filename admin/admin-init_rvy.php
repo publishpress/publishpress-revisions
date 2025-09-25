@@ -32,25 +32,13 @@ function rvy_load_textdomain() {
 	if ( defined('RVY_TEXTDOMAIN_LOADED') )
 		return;
 
-	if (did_action('init')) {
-		load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');
-	} else {
-		add_action(
-			'init',
-			function() {
-				load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');
-			},
-			5
-		);
-	}
+	load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');
 
 	define('RVY_TEXTDOMAIN_LOADED', true);
 }
 
 function rvy_admin_init() {
 	do_action('pp_revisions_admin_init');
-
-	rvy_load_textdomain();
 
 	// @todo: clean up "Restore Revision" URL on Diff screen
 	// Until the integration with WP revisions.php is resolved, limit the scope of this workaround to relevant actions
