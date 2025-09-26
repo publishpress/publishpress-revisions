@@ -55,33 +55,37 @@ class RevisionaryAdmin
 		}
 
 		if (in_array($pagenow, array('post.php', 'post-new.php'))) {
-			if (empty($post)) {
-				$post = get_post(rvy_detect_post_id());		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			}
+			add_action('wp_loaded', function() {
+				global $post;
 
-			if ($post && rvy_is_supported_post_type($post->post_type)) {
-				// only apply revisionary UI for currently published or scheduled posts
-				if (!rvy_in_revision_workflow($post) && (in_array($post->post_status, rvy_filtered_statuses()) || ('future' == $post->post_status))) {
-					require_once( dirname(__FILE__).'/filters-admin-ui-item_rvy.php' );
-					new RevisionaryPostEditorMetaboxes();
+				if (empty($post)) {
+					$post = get_post(rvy_detect_post_id());		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+				}
 
-				} elseif (rvy_in_revision_workflow($post)) {
-					add_action('the_post', array($this, 'limitRevisionEditorUI'));
+				if ($post && rvy_is_supported_post_type($post->post_type)) {
+					// only apply revisionary UI for currently published or scheduled posts
+					if (!rvy_in_revision_workflow($post) && (in_array($post->post_status, rvy_filtered_statuses()) || ('future' == $post->post_status))) {
+						require_once( dirname(__FILE__).'/filters-admin-ui-item_rvy.php' );
+						new RevisionaryPostEditorMetaboxes();
 
-					require_once( dirname(__FILE__).'/edit-revision-ui_rvy.php' );
-					new RevisionaryEditRevisionUI();
+					} elseif (rvy_in_revision_workflow($post)) {
+						add_action('the_post', array($this, 'limitRevisionEditorUI'));
 
-					if (\PublishPress\Revisions\Utils::isBlockEditorActive($post->post_type)) {
-						require_once( dirname(__FILE__).'/edit-revision-block-ui_rvy.php' );
-						new RevisionaryEditRevisionBlockUI();
-					} else {
-						if (!rvy_status_revisions_active($post->post_type)) {
-							require_once( dirname(__FILE__).'/edit-revision-classic-ui_rvy.php' );
-							new RevisionaryEditRevisionClassicUI();
+						require_once( dirname(__FILE__).'/edit-revision-ui_rvy.php' );
+						new RevisionaryEditRevisionUI();
+
+						if (\PublishPress\Revisions\Utils::isBlockEditorActive($post->post_type)) {
+							require_once( dirname(__FILE__).'/edit-revision-block-ui_rvy.php' );
+							new RevisionaryEditRevisionBlockUI();
+						} else {
+							if (!rvy_status_revisions_active($post->post_type)) {
+								require_once( dirname(__FILE__).'/edit-revision-classic-ui_rvy.php' );
+								new RevisionaryEditRevisionClassicUI();
+							}
 						}
 					}
 				}
-			}
+			}, 100);
 		}
 
 		if ( ! ( defined( 'SCOPER_VERSION' ) || defined( 'PP_VERSION' ) || defined( 'PPCE_VERSION' ) ) || defined( 'USE_RVY_RIGHTNOW' ) ) {
