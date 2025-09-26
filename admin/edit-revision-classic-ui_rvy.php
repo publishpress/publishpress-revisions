@@ -18,6 +18,28 @@ class RevisionaryEditRevisionClassicUI {
 		add_filter('presspermit_post_editor_immediate_caption', [$this, 'fltImmediateCaption'], 10, 2);
 
 		add_action('post_submitbox_misc_actions', [$this, 'actSubmitboxActions'], 1);
+
+		if (class_exists('RankMath')) :
+			add_action(
+				'admin_print_footer_scripts', 
+				function() {
+				?>
+					<script type="text/javascript">
+					/* <![CDATA[ */
+					jQuery(document).on('click', '#save-post', function() {
+						setTimeout(
+							function() {
+								jQuery('#save-post').trigger('click');
+							},
+							500
+						);
+					});
+					/* ]]> */
+					</script>
+				<?php
+				}
+			);
+		endif;
 	}
 
 	function actDeleteDuplicateRevision() {
