@@ -408,7 +408,7 @@ jQuery(document).ready(function ($) {
                 rvyObjEdit.creationDisabled = false;
                 $('button.revision-approve').prop('disabled', false);
                 $('button.revision-schedule').prop('disabled', false);
-                $('a.revision-approve, a.revision-schedule').css('pointer-events', 'default');
+                $('a.revision-approve, a.revision-schedule').css('pointer-events', 'auto');
                 $('div.rvy-save-revision-tip').hide();
                 $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
                 $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
