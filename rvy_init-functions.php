@@ -1412,10 +1412,12 @@ function rvy_is_full_editor($post, $args = []) {
 		return false;
 	}
 
-	$cap = (!empty($type_obj->cap->edit_others_posts)) ? $type_obj->cap->edit_others_posts : $type_obj->cap->edit_posts;
+	if ($post->post_author != $current_user->ID) {
+		$cap = (!empty($type_obj->cap->edit_others_posts)) ? $type_obj->cap->edit_others_posts : $type_obj->cap->edit_posts;
 
-	if (empty($current_user->allcaps[$cap])) {
-		return false;
+		if (empty($current_user->allcaps[$cap])) {
+			return false;
+		}
 	}
 
 	if (!empty($args['check_publish_caps'])) {
