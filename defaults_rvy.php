@@ -73,6 +73,7 @@ function rvy_default_options_sitewide() {
 		'legacy_notifications' => true,
 		'approve_button_verbose' => true,
 		'create_revision_direct_link' => true,
+		'revision_edit_disable_rank_math' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -145,6 +146,7 @@ function rvy_default_options() {
 		'legacy_notifications' => 0,
 		'approve_button_verbose' => 0,
 		'create_revision_direct_link' => 0,
+		'revision_edit_disable_rank_math' => 1,
 	);
 
 	return $def;

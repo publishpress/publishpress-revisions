@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.16
+Stable tag: 3.7.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -249,6 +249,14 @@ Please report security bugs found in the source code of the PublishPress Revisio
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.17 - 2 Oct 2025 =
+* Fixed : Submit / Approve Revision button was disabled until page reload under some revision editing conditions
+* Fixed : Classic Editor: Update Revision button changes to Save Draft after being clicked
+* Compat : Revisions of Custom Posts cannot be updated under some conditions
+* Compat : Rank Math SEO : Classic Editor - Update Revision button fails on first click
+* Change : Disable Rank Math SEO by default for revision edit (can enable by Revisions > Settings > Options)
+* Lang : ES, FR, IT translations
 
 = 3.7.16 - 25 Sep 2025 =
 * Fixed : Plugin defines DOING_CRON prior to publishing scheduled revisions
