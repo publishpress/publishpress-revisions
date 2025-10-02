@@ -250,6 +250,14 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.17 - 2 Oct 2025 =
+* Fixed : Submit / Approve Revision button was disabled until page reload under some revision editing conditions
+* Fixed : Classic Editor: Update Revision button changes to Save Draft after being clicked
+* Compat : Revisions of Custom Posts cannot be updated under some conditions
+* Compat : Rank Math SEO : Classic Editor - Update Revision button fails on first click
+* Change : Disable Rank Math SEO by default for revision edit (can enable by Revisions > Settings > Options)
+* Lang : ES, FR, IT translations
+
 = 3.7.16 - 25 Sep 2025 =
 * Fixed : Plugin defines DOING_CRON prior to publishing scheduled revisions
 * Fixed : Revision metaboxes on Post edit screen output duplicate column label for Actions
