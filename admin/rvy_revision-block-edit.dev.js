@@ -413,7 +413,7 @@ jQuery(document).ready(function ($) {
                 $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
                 $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
             }
-        }, 5000);
+        }, 500);
     }
 
 	var rvyRedirectURL = '';
