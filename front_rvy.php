@@ -43,6 +43,22 @@ class RevisionaryFront {
 
 		add_action('init', [$this, 'actFixRevisionPreviewStatus'], 5);
 
+		add_action('init',
+			function () {
+				if (defined('LSCWP_V')) {
+					if ($post_id = rvy_detect_post_id()) {
+						do_action('litespeed_purge_post', $post_id);
+
+						$main_post_id = rvy_post_id($post_id);
+
+						if ($post_id != $main_post_id) {
+							do_action('litespeed_purge_post', $main_post_id);
+						}
+					}
+				}
+			}
+		);
+
 		do_action('revisionary_front_init');
 	}
 
