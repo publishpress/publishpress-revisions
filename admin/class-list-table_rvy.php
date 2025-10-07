@@ -292,7 +292,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 		$status_col = ($permissions_compat_mode) ? 'post_status' : 'post_mime_type';
 
-		if ( isset($q['post_status']) && rvy_is_revision_status( $q['post_status'] ) ) {
+		if ( isset($q['post_status']) && rvy_is_revision_status( $q['post_status'] )) {
 			$qr[$status_col] = [$q['post_status']];
 		} else {
 			$qr[$status_col] = rvy_revision_statuses();
@@ -460,7 +460,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 	function revisions_where_filter($where, $args = []) {
 		global $wpdb, $current_user, $revisionary;
-		
+
 		$p = (!empty($args['alias'])) ? sanitize_text_field($args['alias']) : $wpdb->posts;
 
 		$is_count_query = empty($args['revision_query']);
@@ -1185,14 +1185,24 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			) . '&nbsp;';
 		}
 
+		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
+
 		$all_count = 0;
-		foreach($revision_statuses as $status) {
+		foreach($revision_statuses as $status_obj) {
+			$status = (!empty($status_obj->name)) ? $status_obj->name : '';
+			
+			if (empty($status)) {
+				continue;
+			}
+
 			if (!isset($num_posts->$status)) {
 				$num_posts->$status = 0;
 			}
 
 			if (!empty($num_posts->$status)) {
-				$status_obj = get_post_status_object($status);
+				if (!is_object($status_obj)) {
+					$status_obj = get_post_status_object($status);
+				}
 
 				$status_label = $status_obj ? sprintf(
 					translate_nooped_plural( $status_obj->label_count, $num_posts->$status ),
@@ -1302,13 +1312,20 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		echo "</select>";
 
-
 		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
 
 		echo '<select name="post_status' . $two . '" id="post_status" style="float:none">';
 		echo '<option value="">' . __( 'Select Post Status...' ) . "</option>\n";
 
-		foreach($revision_statuses as $status_obj) {
+		foreach($revision_statuses as $k => $status_obj) {
+			if (!is_object($status_obj)) {
+				$status_obj = get_post_status_object($k);
+			}
+
+			if (!is_object($status_obj)) {
+				continue;
+			}
+
 			$selected = (!$two && (!empty($_REQUEST['post_status'])) && ($status_obj->name == sanitize_key($_REQUEST['post_status']))) ? ' selected' : '';
 			echo "\t" . '<option value="' . esc_attr($status_obj->name) . '"' . $selected . '>' . $status_obj->label . "</option>\n";
 		}
