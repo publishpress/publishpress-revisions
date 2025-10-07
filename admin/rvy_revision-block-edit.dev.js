@@ -404,14 +404,16 @@ jQuery(document).ready(function ($) {
         );
 
         var intSaveWatch = setInterval(() => {
-            if (wp.data.select('core/editor').isSavingPost()) {
-                rvyObjEdit.creationDisabled = false;
-                $('button.revision-approve').prop('disabled', false);
-                $('button.revision-schedule').prop('disabled', false);
-                $('a.revision-approve, a.revision-schedule').css('pointer-events', 'auto');
-                $('div.rvy-save-revision-tip').hide();
-                $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
-                $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
+            if (rvyObjEdit.creationDisabled) {
+                if (wp.data.select('core/editor').isSavingPost()) {
+                    rvyObjEdit.creationDisabled = false;
+                    $('button.revision-approve').prop('disabled', false);
+                    $('button.revision-schedule').prop('disabled', false);
+                    $('a.revision-approve, a.revision-schedule').css('pointer-events', 'auto');
+                    $('div.rvy-save-revision-tip').hide();
+                    $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
+                    $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
+                }
             }
         }, 500);
     }
