@@ -376,46 +376,67 @@ jQuery(document).ready(function ($) {
 
     rvyObjEdit.creationDisabled = false;
 
+    function rvyDisableSubmitApprove() {
+        if (rvyObjEdit.creationDisabled) {
+            return;
+        }
+
+        rvyObjEdit.creationDisabled = true;
+                    
+        $('a.revision-approve').attr('title', rvyObjEdit.actionDisabledTitle);
+        $('a.revision-schedule').attr('title', rvyObjEdit.scheduleDisabledTitle);
+        $('button.revision-approve, button.revision-schedule').prop('disabled', 'disabled');
+        $('a.revision-approve, a.revision-schedule').css('pointer-events', 'none');
+        $('div.rvy-save-revision-tip').show();
+
+        $('div.editor-sidebar__panel-tabs div button').on('click', function() {
+            setInterval(
+                function() {
+                    if (rvyObjEdit.creationDisabled) {
+                        $('button.revision-approve, button.revision-schedule').prop('disabled', 'disabled');
+                        $('a.revision-approve, a.revision-schedule').css('pointer-events', 'none');
+                        $('div.rvy-save-revision-tip').show();
+                    }
+                },
+                500
+            );
+        });
+        
+        intSaveWatch = setInterval(() => {
+            if (!$('button.editor-post-save-draft:visible').length) {
+                rvyObjEdit.creationDisabled = false;
+                $('button.revision-approve').prop('disabled', false);
+                $('button.revision-schedule').prop('disabled', false);
+                $('a.revision-approve, a.revision-schedule').css('pointer-events', 'auto');
+                $('div.rvy-save-revision-tip').hide();
+                $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
+                $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
+
+                clearInterval(intSaveWatch);
+            }
+        }, 500);
+    }
+
     if (rvyObjEdit.disableSubmitUntilSave) {
+        var intSaveWatch;
+        
         setTimeout(
             function() {
                 $(document).on('click', 'div.postbox-container,div.acf-postbox,.editor-post-schedule__dialog-toggle', function() {
-                    rvyObjEdit.creationDisabled = true;
-                    $('a.revision-approve').attr('title', rvyObjEdit.actionDisabledTitle);
-                    $('a.revision-schedule').attr('title', rvyObjEdit.scheduleDisabledTitle);
-                    $('button.revision-approve, button.revision-schedule').prop('disabled', 'disabled');
-                    $('a.revision-approve, a.revision-schedule').css('pointer-events', 'none');
-                    $('div.rvy-save-revision-tip').show();
-
-                    $('div.editor-sidebar__panel-tabs div button').on('click', function() {
-                        setInterval(
-                            function() {
-                                if (rvyObjEdit.creationDisabled) {
-                                    $('button.revision-approve, button.revision-schedule').prop('disabled', 'disabled');
-                                    $('a.revision-approve, a.revision-schedule').css('pointer-events', 'none');
-                                    $('div.rvy-save-revision-tip').show();
-                                }
-                            },
-                            500
-                        );
-                    });
+                    rvyDisableSubmitApprove();
                 });
-            }, 500
+            }, 200
         );
 
-        var intSaveWatch = setInterval(() => {
-            if (rvyObjEdit.creationDisabled) {
-                if (wp.data.select('core/editor').isSavingPost()) {
-                    rvyObjEdit.creationDisabled = false;
-                    $('button.revision-approve').prop('disabled', false);
-                    $('button.revision-schedule').prop('disabled', false);
-                    $('a.revision-approve, a.revision-schedule').css('pointer-events', 'auto');
-                    $('div.rvy-save-revision-tip').hide();
-                    $('a.revision-approve').attr('title', rvyObjEdit.actionTitle);
-                    $('a.revision-schedule').attr('title', rvyObjEdit.scheduleTitle);
-                }
-            }
-        }, 500);
+        setTimeout(
+            setInterval(
+                function() {
+                    if ($('button.editor-post-save-draft:visible').length) {
+                        rvyDisableSubmitApprove();
+                    }
+                }, 500
+            ), 500
+        );
     }
 
 	var rvyRedirectURL = '';
