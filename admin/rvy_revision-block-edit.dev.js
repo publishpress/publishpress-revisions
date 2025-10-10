@@ -403,7 +403,7 @@ jQuery(document).ready(function ($) {
         });
         
         intSaveWatch = setInterval(() => {
-            if (!$('button.editor-post-save-draft:visible').length) {
+            if (!$('button.editor-post-save-draft:visible').length || wp.data.select('core/editor').isSavingPost()) {
                 rvyObjEdit.creationDisabled = false;
                 $('button.revision-approve').prop('disabled', false);
                 $('button.revision-schedule').prop('disabled', false);
@@ -426,16 +426,6 @@ jQuery(document).ready(function ($) {
                     rvyDisableSubmitApprove();
                 });
             }, 200
-        );
-
-        setTimeout(
-            setInterval(
-                function() {
-                    if ($('button.editor-post-save-draft:visible').length) {
-                        rvyDisableSubmitApprove();
-                    }
-                }, 500
-            ), 500
         );
     }
 
