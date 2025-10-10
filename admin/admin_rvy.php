@@ -55,6 +55,10 @@ class RevisionaryAdmin
 		}
 
 		if (in_array($pagenow, array('post.php', 'post-new.php'))) {
+			if (empty($post)) {
+				$post = get_post(rvy_detect_post_id());		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			}
+			
 			add_action('wp_loaded', function() {
 				global $post;
 

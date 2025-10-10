@@ -107,7 +107,7 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
                 }
             }
 
-            $post_term_slugs = wp_get_object_terms($from_post->ID, $taxonomy, ['fields' => 'slugs', 'orderby' => 'term_order']);
+            $post_term_slugs = wp_get_object_terms($from_post->ID, $taxonomy, ['fields' => 'slugs', 'orderby' => 't.term_order']);
             wp_set_object_terms($target_id, $post_term_slugs, $taxonomy);
         }
     }
@@ -238,16 +238,15 @@ function rvy_revision_statuses($args = []) {
 		$$var = $args[$var];
 	}
 	
-	$arr = array_map('sanitize_key', (array) apply_filters('rvy_revision_statuses', ['draft-revision', 'pending-revision', 'future-revision']));
+	$arr = apply_filters('rvy_revision_statuses', ['draft-revision', 'pending-revision', 'future-revision'], $args);
 
-	if ('object' == $output) {
-		$status_keys = array_values($arr);
-		$arr = [];
-
-		foreach($status_keys as $k) {
-			$arr[$k] = get_post_status_object($k);
-		}
-	}
+    if ('object' == $output) {
+        foreach($arr as $k => $status) {
+            if (!isset($arr[$k]) || !is_object($status)) {
+                $arr[$k] = get_post_status_object($k);
+            }
+        }
+    }
 
 	return ('csv' == $return) ? "'" . implode("','", $arr) . "'" : $arr;
 }

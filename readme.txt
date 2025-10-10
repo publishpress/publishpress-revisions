@@ -7,7 +7,7 @@ Tags: revision, submit changes, duplicate post, approve changes, scheduled chang
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 3.7.17
+Stable tag: 3.7.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -249,6 +249,11 @@ Please report security bugs found in the source code of the PublishPress Revisio
 Fixed: Security issue. Please update.
 
 == Changelog ==
+
+= 3.7.18 - 9 Oct 2025 =
+* Fixed : Revision editor did not redisplay submit, approve buttons after update
+* Fixed : Submit Revision button did not work if Status, Schedule elements hidden by another plugin
+* Compat : Advanced Custom Fields - Custom post type revisions could not be updated under some configurations
 
 = 3.7.17 - 2 Oct 2025 =
 * Fixed : Submit / Approve Revision button was disabled until page reload under some revision editing conditions
