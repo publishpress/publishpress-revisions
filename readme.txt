@@ -250,6 +250,10 @@ Fixed: Security issue. Please update.
 
 == Changelog ==
 
+= 3.7.18 - 9 Oct 2025 =
+* Fixed : Revision editor did not redisplay submit, approve buttons after update
+* Compat : Advanced Custom Fields - Custom post type revisions could not be updated under some configurations
+
 = 3.7.17 - 2 Oct 2025 =
 * Fixed : Submit / Approve Revision button was disabled until page reload under some revision editing conditions
 * Fixed : Classic Editor: Update Revision button changes to Save Draft after being clicked
