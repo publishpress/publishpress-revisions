@@ -160,7 +160,7 @@ jQuery(document).ready(function ($) {
             var approveCaption = rvyObjEdit['approveCaption'];
         }
 
-        if (!$('div.editor-post-schedule__panel-dropdown:visible').length) {
+        if ($('div.edit-post-post-schedule').length && !$('div.editor-post-schedule__panel-dropdown:visible').length) {
             $('.rvy-creation-ui').remove();
         }
 
