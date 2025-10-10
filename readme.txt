@@ -252,6 +252,7 @@ Fixed: Security issue. Please update.
 
 = 3.7.18 - 9 Oct 2025 =
 * Fixed : Revision editor did not redisplay submit, approve buttons after update
+* Fixed : Submit Revision button did not work if Status, Schedule elements hidden by another plugin
 * Compat : Advanced Custom Fields - Custom post type revisions could not be updated under some configurations
 
 = 3.7.17 - 2 Oct 2025 =
