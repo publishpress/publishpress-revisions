@@ -107,7 +107,7 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
                 }
             }
 
-            $post_term_slugs = wp_get_object_terms($from_post->ID, $taxonomy, ['fields' => 'slugs', 'orderby' => 'term_order']);
+            $post_term_slugs = wp_get_object_terms($from_post->ID, $taxonomy, ['fields' => 'slugs', 'orderby' => 't.term_order']);
             wp_set_object_terms($target_id, $post_term_slugs, $taxonomy);
         }
     }
