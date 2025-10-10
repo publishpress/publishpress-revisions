@@ -422,7 +422,7 @@ jQuery(document).ready(function ($) {
         
         setTimeout(
             function() {
-                $(document).on('click', 'div.postbox-container,div.acf-postbox,.editor-post-schedule__dialog-toggle', function() {
+                $(document).on('click', 'div.postbox-container,button.components-button,div.acf-postbox,.editor-post-schedule__dialog-toggle', function() {
                     rvyDisableSubmitApprove();
                 });
             }, 200
