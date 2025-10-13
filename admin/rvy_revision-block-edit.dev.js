@@ -490,7 +490,7 @@ jQuery(document).ready(function ($) {
             if ((typeof PPCustomStatuses != 'undefined') && (typeof PPCustomStatuses.statusRestProperty != 'undefined')) {
                 var ret = new Object();
                 ret[PPCustomStatuses.statusRestProperty] = 'pending-revision';
-                dispatch('core/editor').editPost(ret);
+                wp.data.dispatch('core/editor').editPost(ret);
             }
         }
 		
