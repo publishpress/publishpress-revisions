@@ -244,6 +244,10 @@ function rvy_revision_statuses($args = []) {
         foreach($arr as $k => $status) {
             if (!isset($arr[$k]) || !is_object($status)) {
                 $arr[$k] = get_post_status_object($k);
+
+                if (empty($arr[$k])) {
+                    unset($arr[$k]);
+                }
             }
         }
     }
