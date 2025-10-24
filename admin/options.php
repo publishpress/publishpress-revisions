@@ -1526,10 +1526,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		jQuery(document).ready( function($) {
-			$('#use_publishpress_notifications').on('click', function(e) {
-				$('div.rvy_legacy_email').toggle($(e).prop('checked'));
-			});
-
 			$('#legacy_notifications').on('click', function(e) {
 				$('div.rvy_legacy_email').toggle($(e).prop('checked'));
 			});
@@ -1537,7 +1533,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		/* ]]> */
 		</script>
 
-		<div class="rvy_legacy_email" style="<?php if (!empty($pp_notifications) || empty($legacy_notifications)) echo 'display:none';?>">
+		<div class="rvy_legacy_email" style="<?php if (empty($legacy_notifications)) echo 'display:none';?>">
 
 		<?php
 		if( $pending_revisions_available ) {
