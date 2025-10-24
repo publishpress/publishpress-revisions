@@ -970,7 +970,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 			* delete the oldest ones.
 			*/
 			$revisions_to_keep = wp_revisions_to_keep( $post );
-		
+
 			if ($revisions_to_keep >= 0 ) {
 				$revisions = wp_get_post_revisions( $post_id, array( 'order' => 'ASC' ) );
 			
@@ -1074,7 +1074,9 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
-	if (rvy_get_option('trigger_post_update_actions')) {
+	$trigger_post_update_actions = rvy_get_option('trigger_post_update_actions');
+
+	if ($trigger_post_update_actions || (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && defined('PUBLISHPRESS_VERSION') && rvy_get_option('use_publishpress_notifications'))) {
 		global $revisionary;
 
 		$_published = get_post($published->ID);
@@ -1083,7 +1085,9 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 			$old_status = (defined('RVY_TRANSITION_ACTION_USE_REVISION_STATUS')) ? $revision->post_status : 'pending';
 			do_action('transition_post_status', $published->post_status, $old_status, $_published);
 		}
+	}
 
+	if ($trigger_post_update_actions) {
 		if (!defined('RVY_NO_SAVE_POST_ACTION')) {
 			remove_action('save_post', array($revisionary, 'actSavePost'), 20, 2);
 
