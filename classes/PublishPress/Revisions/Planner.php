@@ -221,6 +221,10 @@ class Planner {
 				$statuses = rvy_revision_statuses(['output' => 'object']);
 
 				foreach($statuses as $k => $status) {
+					if (!is_object($status) || empty($status->name)) {
+						continue;
+					}
+
 					$statuses[$k]->slug = $status->name;
 				}
 			}
