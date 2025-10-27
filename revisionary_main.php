@@ -403,20 +403,14 @@ class Revisionary
 				$enabled_post_types['tribe_events'] = true;
 			}
 
-			if (!defined('REVISIONARY_NO_PRIVATE_TYPES')) {
-				$private_types = array_merge(
-					get_post_types(['public' => false], 'object'), 
-					get_post_types(['public' => null], 'object')
+			if ($private_types = $this->getAvailablePrivatePostTypes()) {
+				$enabled_post_types = array_merge(
+					$enabled_post_types, 
+					array_fill_keys(
+						array_keys($private_types),
+						true
+					)
 				);
-				
-				// by default, enable private post types that have type-specific capabilities defined
-				foreach($private_types as $post_type => $type_obj) {
-					if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']))
-					|| defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
-					) {
-						$enabled_post_types[$post_type] = true;
-					}
-				}
 			}
 		}
 
@@ -424,7 +418,7 @@ class Revisionary
 			'revisionary_enabled_post_types', 
 			array_diff_key(
 				$enabled_post_types,
-				['attachment' => true, 'tablepress_table' => true, 'acf-field-group' => true, 'acf-field' => true, 'acf-post-type' => true, 'acf-taxonomy' => true, 'nav_menu_item' => true, 'custom_css' => true, 'customize_changeset' => true, 'wp_block' => true, 'wp_template' => true, 'wp_template_part' => true, 'wp_global_styles' => true, 'wp_navigation' => true, 'ppma_boxes' => true, 'ppmacf_field' => true, 'psppnotif_workflow' => true, 'wpcf7_contact_form' => true]
+				$this->getHiddenPostTypes()
 			)
 		);
 
@@ -434,6 +428,41 @@ class Revisionary
 
 		unset($this->enabled_post_types['attachment']);
 		$this->enabled_post_types = array_filter($this->enabled_post_types);
+	}
+	
+	function getAvailablePrivatePostTypes() {
+		if (!defined('REVISIONARY_NO_PRIVATE_TYPES')) {
+			$available_private_types = [];
+			
+			$private_types = array_merge(
+				get_post_types(['public' => false], 'object'),
+				get_post_types(['public' => null], 'object')
+			);
+
+			$hidden_types = $this->getHiddenPostTypes();
+
+			// by default, enable non-public post types that have type-specific capabilities defined
+			foreach($private_types as $post_type => $type_obj) {
+				if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']) && !isset($hidden_types[$post_type]))
+				|| defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
+				) {
+					$available_private_types[$post_type] = $type_obj;
+				}
+			}
+
+			$available_private_types = array_intersect_key(
+				$available_private_types,
+				(array) apply_filters('revisionary_available_private_types', array_fill_keys(array_keys($available_private_types), true))
+			);
+		} else {
+			$available_private_types = [];
+		}
+
+		return $available_private_types;
+	}
+
+	function getHiddenPostTypes() {
+ 		return ['attachment' => false, 'psppnotif_workflow' => false, 'tablepress_table' => false, 'acf-field-group' => false, 'acf-field' => false, 'acf-post-type' => false, 'acf-taxonomy' => false, 'nav_menu_item' => false, 'custom_css' => false, 'customize_changeset' => false, 'wp_block' => false, 'wp_template' => false, 'wp_template_part' => false, 'wp_global_styles' => false, 'wp_navigation' => false, 'wp_font_family' => false, 'wp_font_face' => false, 'ppma_boxes' => false, 'ppmacf_field' => false, 'product_variation' => false, 'shop_order_refund' => false, 'wpcf7_contact_form' => false];
 	}
 
 	function getHiddenPostTypesArchive() {
