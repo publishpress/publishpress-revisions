@@ -642,36 +642,13 @@ if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter(
 		?>
 		</h3>
 		<?php
-
-		$hidden_types = ['attachment' => false, 'psppnotif_workflow' => false, 'tablepress_table' => false, 'acf-field-group' => false, 'acf-field' => false, 'acf-post-type' => false, 'acf-taxonomy' => false, 'nav_menu_item' => false, 'custom_css' => false, 'customize_changeset' => false, 'wp_block' => false, 'wp_template' => false, 'wp_template_part' => false, 'wp_global_styles' => false, 'wp_navigation' => false, 'wp_font_family' => false, 'wp_font_face' => false, 'ppma_boxes' => false, 'ppmacf_field' => false, 'product_variation' => false, 'shop_order_refund' => false, 'wpcf7_contact_form' => false];
+		$hidden_types = $revisionary->getHiddenPostTypes();
 		$locked_types = [];
 
-		$types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');
-
-		if (!defined('REVISIONARY_NO_PRIVATE_TYPES')) {
-			$available_private_types = [];
-			
-			$private_types = array_merge(
-				get_post_types(['public' => false], 'object'),
-				get_post_types(['public' => null], 'object')
-			);
-
-			// by default, enable non-public post types that have type-specific capabilities defined
-			foreach($private_types as $post_type => $type_obj) {
-				if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']) && !in_array($post_type, $hidden_types))
-				|| defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
-				) {
-					$available_private_types[$post_type] = $type_obj;
-				}
-			}
-
-			$available_private_types = array_intersect_key(
-				$available_private_types,
-				(array) apply_filters('revisionary_available_private_types', array_fill_keys(array_keys($available_private_types), true))
-			);
-
-			$types = array_merge($types, $available_private_types);
-		}
+		$types = array_merge(
+			get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'),
+			$revisionary->getAvailablePrivatePostTypes()
+		);
 
 		$type_names = [];
 
