@@ -1315,7 +1315,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
 
 		echo '<select name="post_status' . $two . '" id="post_status" style="float:none">';
-		echo '<option value="">' . __( 'Select Post Status...' ) . "</option>\n";
+		echo '<option value="">' . __('All Revision Statuses', 'revisionary') . "</option>\n";
 
 		foreach($revision_statuses as $k => $status_obj) {
 			if (!is_object($status_obj)) {
