@@ -1476,7 +1476,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
 
-			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES')) {
+			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES') && defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 				echo '<br />';
 				$hint = __('Users matching Planner > Notifications configuration get revision notifications only if they can edit the published post.', 'revisionary');
 				$this->option_checkbox( 'planner_notifications_access_limited', $tab, $section, $hint, '', ['no_escape' => true] );
