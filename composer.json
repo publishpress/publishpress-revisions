@@ -30,10 +30,11 @@
     "build": "pbuild build",
     "build:dir": "pbuild build-dir",
     "build:clean": "pbuild clean",
-    "get-version": "pbuild version",
+    "info:versions": "bash ./dev-workspace/scripts/dependency-versions.sh",
     "gen:mo": "wp i18n make-mo ./languages ./languages --allow-root",
     "gen:pot": "wp i18n make-pot . languages/revisionary.pot --domain=revisionary --exclude=dev-workspace,.wordpress-org,.github,dist,tests, --allow-root",
     "check:longpath": "longpath .",
+    "check:lint": "phplint",
     "pre-autoload-dump": "composer dumpautoload --working-dir=./lib",
     "pre-update-cmd": "composer update --working-dir=./lib",
     "pre-install-cmd": "composer install --working-dir=./lib"
