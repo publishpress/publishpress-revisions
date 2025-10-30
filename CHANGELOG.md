@@ -1,6 +1,16 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= 3.7.19 - 30 Oct 2025 =
+* Fixed : Post Editor - Captioning of New Revision / Schedule Revision button based on time selection did not factor in time zone difference
+* Fixed : Revision Editor - When editing a revision that's already scheduled, Publish Now button was mislabeled as Schedule
+* Fixed : Extra caption shown after clicking Submit / Approve Revision button
+* Fixed : Pending Revisions metabox was displayed too low in Post Editor to be easily noticed
+* Fixed : Pending Revisions metabox displayed "Requested publication" caption even if date is past
+* Fixed : Javascript error on Revision Submission for undefined function "dispatch"
+* Fixed : Revisions Settings - Visibility of Legacy Email options was not toggled correctly based on Legacy Email Notifications checkbox selection
+* Fixed : Some post types were inappropriately enabled by default until Revision Settings are updated
+
 = 3.7.18 - 9 Oct 2025 =
 * Fixed : Revision editor did not redisplay submit, approve buttons after update
 * Fixed : Submit Revision button did not work if Status, Schedule elements hidden by another plugin
@@ -1077,21 +1087,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Compat : Role Scoper - when Pending Revision Monitors group is used and notification is "by default", recipient checkboxes missing on Edit Post form and TinyMCE broken
 * Compat : Duplicate Right Now links on dashboard if Role Scoper or Press Permit active
 
-**1.1.11 - 18 Aug 2013**
-
-= WP 3.6 Compatibility =
+= 1.1.11 - 18 Aug 2013 =
 * WP 3.6 - Revisors could not submit revisions
 * WP 3.6 - Don't modify native WP revision links
 * WP 3.6 - In Publish metabox, re-caption Revisions as "Publication History" to distinguish from Pending Revisions (prevent this by defining constant RVY_PREVENT_PUBHIST_CAPTION)
 * WP 3.6 - Post Title metabox was unformatted on Revisions Manager screen
-
-= Email Notification =
 * Fixed : Publishers to Notify metabox was displayed even if no selections available (when notification for both Publishers and Author is set to Always or Never)
 * Fixed : PHP warning in Publishers to Notify metabox when a user has a very long name
 * Change : If Press Permit or Role Scoper are active but Monitors group does not contain any users who can publish the post, notifications go to all WP Administrators and Editors who have sufficient site-wide capabilities (prevent this by defining constant RVY_FORCE_MONITOR_GROUPS)
 * Change : On Revisionary Settings screen, expand caption to clarify email notification behavior
-
-= General =
 * Fixed : Revisors could not select desired publish date on Edit Post screen, even if Scheduled Revisions enabled
 * Fixed : "save as pending" checkbox caused poor layout of adjacent UI in Publish metabox
 * Perf : Eliminate some redundant queries on back-end for non-Administrators (especially with Press Permit or Role Scoper active)
@@ -1240,27 +1244,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Fixed : Revision Approval / Publication Notices used p=ID link instead of normal post permalink
 * Compat : Display workaround instructions for FolioPress conflict with visual revision display
 
-**1.0.RC1 - 12 Dec 2009**
+= 1.0.RC1 - 12 Dec 2009 =
 Initial release.  Feature Changes and Bug Fixes are vs. Pending Revisions function in Role Scoper 1.0.8
 
-= General: =
 * Feature : Scheduled Revisions - submitter can specify a desired publication date for a revision
 * Feature : Any user with the delete_published_ and edit_published capabilities for a post/page can administer its revisions (must include those caps in RS Editor definitions and assign that role)
 * Feature : Scheduled Publishing and Email notification is processed asynchronously
-
-= Revisions Manager: =
 * Feature : Dedicated Revisions Manager provides more meaningful captions, classified by Past / Pending / Scheduled
 * Feature : RS Revision Manager form displays visually via TinyMCE, supports editing of content, title and date
 * Feature : Revisions Manager supports individual or bulk deletion
 * Feature : Users can view their own Pending and Scheduled Revisions
 * Feature : Users can delete their own Pending Revisions until approval
-
-= Preview: =
 * Feature : Preview a Pending Revision, with top link to publish / schedule it
 * Feature : Preview a Scheduled Revision, with top link fo publish it now
 * Feature : Preview a Past Revision, with top link for restore it
-
-= WP Admin: =
 * Feature : Pending and Scheduled revisions are included in Edit Posts / Pages list for all qualified users
 * Feature : Delete, View links on revisions in Edit Posts / Pages list redirect to RS Revisions Manager
 * Feature : Add pending posts and pages total to Dashboard Right Now list (includes both new post submissions and Pending Revisions)
@@ -1271,20 +1268,7 @@ Initial release.  Feature Changes and Bug Fixes are vs. Pending Revisions functi
 * Fixed : Both Pending Page Revisions and Pending Post Revisions were visible to Administator in Edit Pages list
 * Fixed : Pending Revisions were not included in list for restoration
 * Fixed : Bulk Deletion attempt failed when pending / scheduled revisions were included in selection 
-
-= Notification: =
 * Feature : Optional email (to editors or post author) on Pending Revision submission
 * Feature : Optional email (to editors, post author, or revisor) on Pending Revision approval
 * Feature : Optional email (to editors, post author, or revisor) on Scheduled Revision publication
 * Feature : If Role Scoper is active, Editors notification group can be customized via User Group
-
-== Upgrade Notice ==
-
-= 1.2.3 =
-Important Fix: Scheduled Revision publication failure with runaway email notifications (since 1.2)
-
-= 1.1.10 =
-**SECURITY FIX:** Revisions could be viewed by any registered user
-
-= 1.1.5 =
-Fixes: Markeup Err in Revisions Manager; Revision Previews (WP 3.2, Display of Post Thumbnail & other metadata, Past Revisions, Page Revisions in Builder theme, Approval link styling); IE9 formatting err in publish metabox; Events Calendar Pro conflict

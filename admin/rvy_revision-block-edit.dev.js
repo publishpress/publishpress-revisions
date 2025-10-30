@@ -156,6 +156,12 @@ jQuery(document).ready(function ($) {
 
         if (RvyTimeSelection - currentDate.getTime() > 1000) {
             var approveCaption = rvyObjEdit['scheduleCaption'];
+
+            if ('future' == rvyObjEdit.currentStatus) {
+                approveCaption = rvyObjEdit['futureActionCaption'];
+            } else {
+                approveCaption = rvyObjEdit['scheduleCaption'];
+            }
         } else {
             var approveCaption = rvyObjEdit['approveCaption'];
         }
