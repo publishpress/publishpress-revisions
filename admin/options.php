@@ -642,36 +642,13 @@ if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter(
 		?>
 		</h3>
 		<?php
-
-		$hidden_types = ['attachment' => false, 'psppnotif_workflow' => false, 'tablepress_table' => false, 'acf-field-group' => false, 'acf-field' => false, 'acf-post-type' => false, 'acf-taxonomy' => false, 'nav_menu_item' => false, 'custom_css' => false, 'customize_changeset' => false, 'wp_block' => false, 'wp_template' => false, 'wp_template_part' => false, 'wp_global_styles' => false, 'wp_navigation' => false, 'wp_font_family' => false, 'wp_font_face' => false, 'ppma_boxes' => false, 'ppmacf_field' => false, 'product_variation' => false, 'shop_order_refund' => false, 'wpcf7_contact_form' => false];
+		$hidden_types = $revisionary->getHiddenPostTypes();
 		$locked_types = [];
 
-		$types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');
-
-		if (!defined('REVISIONARY_NO_PRIVATE_TYPES')) {
-			$available_private_types = [];
-			
-			$private_types = array_merge(
-				get_post_types(['public' => false], 'object'),
-				get_post_types(['public' => null], 'object')
-			);
-
-			// by default, enable non-public post types that have type-specific capabilities defined
-			foreach($private_types as $post_type => $type_obj) {
-				if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']) && !in_array($post_type, $hidden_types))
-				|| defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
-				) {
-					$available_private_types[$post_type] = $type_obj;
-				}
-			}
-
-			$available_private_types = array_intersect_key(
-				$available_private_types,
-				(array) apply_filters('revisionary_available_private_types', array_fill_keys(array_keys($available_private_types), true))
-			);
-
-			$types = array_merge($types, $available_private_types);
-		}
+		$types = array_merge(
+			get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'),
+			$revisionary->getAvailablePrivatePostTypes()
+		);
 
 		$type_names = [];
 
@@ -1499,7 +1476,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
 
-			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES')) {
+			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES') && defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 				echo '<br />';
 				$hint = __('Users matching Planner > Notifications configuration get revision notifications only if they can edit the published post.', 'revisionary');
 				$this->option_checkbox( 'planner_notifications_access_limited', $tab, $section, $hint, '', ['no_escape' => true] );
@@ -1526,10 +1503,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		jQuery(document).ready( function($) {
-			$('#use_publishpress_notifications').on('click', function(e) {
-				$('div.rvy_legacy_email').toggle($(e).prop('checked'));
-			});
-
 			$('#legacy_notifications').on('click', function(e) {
 				$('div.rvy_legacy_email').toggle($(e).prop('checked'));
 			});
@@ -1537,7 +1510,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		/* ]]> */
 		</script>
 
-		<div class="rvy_legacy_email" style="<?php if (!empty($pp_notifications) || empty($legacy_notifications)) echo 'display:none';?>">
+		<div class="rvy_legacy_email" style="<?php if (empty($legacy_notifications)) echo 'display:none';?>">
 
 		<?php
 		if( $pending_revisions_available ) {

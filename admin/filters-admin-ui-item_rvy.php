@@ -23,7 +23,7 @@ class RevisionaryPostEditorMetaboxes {
 		if ( rvy_get_option( 'pending_revisions' ) ) {
 			require_once( dirname(__FILE__).'/revision-ui_rvy.php' );
 			
-			add_meta_box( 'pending_revisions', pp_revisions_status_label('pending-revision', 'plural'), [$this, 'rvy_metabox_revisions_pending'], $object_type );
+			add_meta_box( 'pending_revisions', pp_revisions_status_label('pending-revision', 'plural'), [$this, 'rvy_metabox_revisions_pending'], $object_type, 'advanced', 'high' );
 		}
 			
 		if ( rvy_get_option( 'scheduled_revisions' ) ) {

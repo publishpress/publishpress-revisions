@@ -422,7 +422,7 @@ jQuery(document).ready(function ($) {
         
         setTimeout(
             function() {
-                $(document).on('click', 'div.postbox-container,button.components-button,div.acf-postbox,.editor-post-schedule__dialog-toggle', function() {
+                $(document).on('click', 'div.postbox-container,button.components-button:not(.revision-approve):not(.revision-schedule),div.acf-postbox,.editor-post-schedule__dialog-toggle', function() {
                     rvyDisableSubmitApprove();
                 });
             }, 200
@@ -490,7 +490,7 @@ jQuery(document).ready(function ($) {
             if ((typeof PPCustomStatuses != 'undefined') && (typeof PPCustomStatuses.statusRestProperty != 'undefined')) {
                 var ret = new Object();
                 ret[PPCustomStatuses.statusRestProperty] = 'pending-revision';
-                dispatch('core/editor').editPost(ret);
+                wp.data.dispatch('core/editor').editPost(ret);
             }
         }
 		

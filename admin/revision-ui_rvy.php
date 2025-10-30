@@ -106,14 +106,19 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 		if ( $post->post_date != $revision->post_date ) {
 			$datef = _x( 'j F, Y, g:i a', 'revision schedule date format', 'revisionary' );
 			$revision_date = agp_date_i18n( $datef, strtotime( $revision->post_date ) );
-		
-			if ( 'pending-revision' == $revision->post_status ) {
-				$currentf  = __( '%1$s <span>(Requested publication: %2$s)</span>', 'revisionary' );
-			} else {
-				$currentf  = __( '%1$s <span>(Publish date: %2$s)</span>', 'revisionary' );
-			}
+			
+			if (strtotime($revision->post_date) > agp_time_gmt()) {
+				if ('future-revision' == $revision->post_status) {
+					$currentf  = __( '%1$s <span>(Publish date: %2$s)</span>', 'revisionary' );
+				} else {
+					$currentf  = __( '%1$s <span>(Requested publication: %2$s)</span>', 'revisionary' );
+				}
 
-			$date = sprintf( $currentf, $date, $revision_date );
+				$date = sprintf( $currentf, $date, $revision_date );
+			} else {
+				$currentf  = __('%1$s');
+				$date = sprintf( $currentf, $date );
+			}
 		}
 	}
 	
