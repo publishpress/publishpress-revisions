@@ -444,7 +444,10 @@ function rvy_status_registrations() {
 function pp_revisions_status_label($status_name, $label_property) {
 	global $wp_post_statuses;
 
-	if (!empty($wp_post_statuses[$status_name]) && !empty($wp_post_statuses[$status_name]->labels->$label_property)) {
+	if (('future-revision' == $status_name) && ('publish' == $label_property)) {
+		return __('Publish Now', 'revisionary');
+	
+	} elseif (!empty($wp_post_statuses[$status_name]) && !empty($wp_post_statuses[$status_name]->labels->$label_property)) {
 		return $wp_post_statuses[$status_name]->labels->$label_property;
 	
 	} elseif (!empty($wp_post_statuses[$status_name]) && !empty($wp_post_statuses[$status_name]->label)) {
