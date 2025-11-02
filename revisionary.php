@@ -74,7 +74,7 @@ if (is_admin() && $invalid_wp_version) {
             if (current_user_can('activate_plugins')) {
                 echo '<div class="notice notice-error"><p>';
                 printf(
-                    'PublishPress Revisions requires WordPress version %s or higher.',
+                    __('PublishPress Revisions requires WordPress version %s or higher.', 'revisionary'),
                     esc_html($min_wp_version)
                 );
                 echo '</p></div>';
@@ -130,7 +130,7 @@ if (false === $revisionary_loaded_by_pro) {
 			function () {
 				if (current_user_can('activate_plugins')) {
 					echo '<div class="notice notice-error"><p>'
-					. 'Revisions Pro requires the free plugin (PublishPress Revisions) to be deactivated.'
+					. __('Revisions Pro requires the free plugin (PublishPress Revisions) to be deactivated.', 'revisionary')
 					. '</p></div>';
 				}
 			}
