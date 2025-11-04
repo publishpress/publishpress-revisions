@@ -615,7 +615,7 @@ if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter(
 					
 					if ((!isset($revisionary->enabled_post_types_archive[$key]) || !empty($revisionary->enabled_post_types_archive[$key])) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'])) {
 						if ($cap_type_obj = get_post_type_object($obj->capability_type)) {
-							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
+							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities', 'revisionary'), $cap_type_obj->labels->singular_name)) . ')';
 						}
 					}
 
@@ -711,7 +711,7 @@ if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter(
 					
 					if (!empty($revisionary->enabled_post_types[$key]) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'])) {
 						if ($cap_type_obj = get_post_type_object($obj->capability_type)) {
-							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
+							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities', 'revisionary'), $cap_type_obj->labels->singular_name)) . ')';
 						}
 					}
 
