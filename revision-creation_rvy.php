@@ -150,6 +150,8 @@ class RevisionCreation {
 
 		$redirect_url = (isset($args['redirect_url'])) ? $args['redirect_url'] : rvy_admin_url("post.php?post=$revision_id&action=edit");
 
+		$redirect_url = add_query_arg('rvy_new', 1, $redirect_url);
+
 		$url = apply_filters('revisionary_create_revision_redirect', $redirect_url, $revision_id);
 
 		if (!$url || !empty($args['suppress_redirect'])) {
