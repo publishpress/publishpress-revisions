@@ -73,6 +73,10 @@ class RevisionaryHistory
     function actCopyButtons() {
         global $revisionary;
 
+        if (rvy_get_option('compare_revisions_hide_copy_buttons')) {
+            return;
+        }
+
         ?>
         <script type="text/javascript">
         /* <![CDATA[ */
