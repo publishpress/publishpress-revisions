@@ -78,7 +78,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 		<h1 class="wp-heading-inline">
 			<span class="dashicons dashicons-backup"></span>
 			<?php
-			esc_html_e( 'Revision Archive', 'revisionary' );
+			esc_html_e( 'Past Revisions', 'revisionary' );
 			$wp_list_table->filters_in_heading();
 			?>
 		</h1>
