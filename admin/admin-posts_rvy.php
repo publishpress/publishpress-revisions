@@ -22,7 +22,7 @@ class RevisionaryAdminPosts {
 			add_filter('get_comments_number', [$this, 'fltCommentsNumber'], 20, 2);
 		}
 
-		// If a revision was just deleted from within post editor, redirect to Revision Queue
+		// If a revision was just deleted from within post editor, redirect to New Revisions
 																						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (!empty($_REQUEST['trashed']) && !empty($_REQUEST['post_type']) && !empty($_REQUEST['ids']) && is_scalar($_REQUEST['ids'])) {
 		
@@ -291,7 +291,7 @@ class RevisionaryAdminPosts {
 
 		if (!empty($this->post_revision_count[$post->ID])) {
 			if ( 'trash' != $post->post_status && wp_check_post_lock( $post->ID ) === false ) {
-				$actions['revision_queue'] = "<a href='admin.php?page=revisionary-q&published_post={$post->ID}&all=1'>" . esc_html__('Revision Queue', 'revisionary') . '</a>';
+				$actions['revision_queue'] = "<a href='admin.php?page=revisionary-q&published_post={$post->ID}&all=1'>" . esc_html__('New Revisions', 'revisionary') . '</a>';
 			}
 		}
 		

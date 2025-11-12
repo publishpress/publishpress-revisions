@@ -318,7 +318,7 @@ class RevisionaryAdmin
 
 		$types = rvy_get_manageable_types();
 
-		$revision_archive = true || current_user_can('administrator') || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
+		$revision_archive = current_user_can('administrator') || is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
 
 		$can_edit_any = false;
 
@@ -362,7 +362,7 @@ class RevisionaryAdmin
 			add_menu_page( esc_html__($_menu_caption, 'pp'), esc_html__($_menu_caption, 'pp'), 'read', $menu_slug, $menu_func, 'dashicons-backup', 29 );
 
 			if ($can_edit_any && array_filter($revisionary->enabled_post_types)) {
-				add_submenu_page('revisionary-q', esc_html__('Revision Queue', 'revisionary'), esc_html__('Revision Queue', 'revisionary'), 'read', 'revisionary-q', [$this, 'moderation_queue']);
+				add_submenu_page('revisionary-q', esc_html__('New Revisions', 'revisionary'), esc_html__('New Revisions', 'revisionary'), 'read', 'revisionary-q', [$this, 'moderation_queue']);
 			}
 
 			do_action('revisionary_admin_menu');
@@ -371,8 +371,8 @@ class RevisionaryAdmin
 				// Revision Archive page
 				add_submenu_page(
 					$menu_slug,
-					esc_html__( 'Revision Archive', 'revisionary' ),
-					esc_html__( 'Revision Archive', 'revisionary' ),
+					esc_html__( 'Past Revisions', 'revisionary' ),
+					esc_html__( 'Past Revisions', 'revisionary' ),
 					'read',
 					'revisionary-archive',
 					[$this, 'revision_archive']
@@ -430,8 +430,8 @@ class RevisionaryAdmin
 		if (defined('REVISIONARY_FILE') && ($file == plugin_basename(REVISIONARY_FILE))
 		|| defined('REVISIONARY_PRO_FILE') && ($file == plugin_basename(REVISIONARY_PRO_FILE))
 		) {
-			$links[] = '<a href="'. esc_url(admin_url('admin.php?page=revisionary-q')) .'">' . esc_html__('Revision Queue', 'revisionary') . '</a>';
-			$links[] = '<a href="'. esc_url(admin_url('admin.php?page=revisionary-archive')) .'">' . esc_html__('Revision Archive', 'revisionary') . '</a>';
+			$links[] = '<a href="'. esc_url(admin_url('admin.php?page=revisionary-q')) .'">' . esc_html__('New Revisions', 'revisionary') . '</a>';
+			$links[] = '<a href="'. esc_url(admin_url('admin.php?page=revisionary-archive')) .'">' . esc_html__('Past Revisions', 'revisionary') . '</a>';
 
 			$page = ( defined('RVY_NETWORK') && RVY_NETWORK ) ? 'rvy-net_options' : 'revisionary-settings';
 			$links[] = '<a href="'. esc_url(admin_url("admin.php?page=$page")) .'">' . esc_html__('Settings', 'revisionary') . '</a>';
@@ -480,12 +480,12 @@ class RevisionaryAdmin
 	{
 		$cap_descripts['edit_others_drafts'] = esc_html__('Can edit draft Posts from other users.', 'revisionary');
 		$cap_descripts['edit_others_revisions'] = esc_html__('Can edit Revisions from other users.', 'revisionary');
-		$cap_descripts['list_others_revisions'] = esc_html__('Can see Revisions from other users in Revision Queue.', 'revisionary');
-		$cap_descripts['manage_revision_queue'] = esc_html__('Can access Revision Queue.', 'revisionary');
+		$cap_descripts['list_others_revisions'] = esc_html__('Can see New Revisions from other users.', 'revisionary');
+		$cap_descripts['manage_revision_queue'] = esc_html__('Can access New Revisions.', 'revisionary');
 		$cap_descripts['manage_unsubmitted_revisions'] = esc_html__('Can manage Unsubmitted Revisions.', 'revisionary');
 		$cap_descripts['preview_others_revisions'] = esc_html__('Preview other user\'s Revisions (without needing editing access).', 'revisionary');
 		$cap_descripts['restore_revisions'] = esc_html__('Restore an archived Revision as the current revision.', 'revisionary');
-		$cap_descripts['view_revision_archive'] = esc_html__('View the Revision Archive, a list of past Revisions.', 'revisionary');
+		$cap_descripts['view_revision_archive'] = esc_html__('View Past Revisions.', 'revisionary');
 
 		return $cap_descripts;
 	}

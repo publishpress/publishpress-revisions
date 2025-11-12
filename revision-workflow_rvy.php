@@ -184,7 +184,7 @@ class Rvy_Revision_Workflow_UI {
                     $message .= esc_html__( 'Preview and Approval: ', 'revisionary' ) . $preview_link . "\r\n\r\n";
                 }
 
-                $message .= esc_html__( 'Revision Queue: ', 'revisionary' ) . rvy_admin_url("admin.php?page=revisionary-q&published_post={$published_post->ID}&all=1") . "\r\n\r\n";
+                $message .= esc_html__( 'New Revisions: ', 'revisionary' ) . rvy_admin_url("admin.php?page=revisionary-q&published_post={$published_post->ID}&all=1") . "\r\n\r\n";
                 
                 $message .= sprintf(esc_html__( 'Edit %s: ', 'revisionary' ), pp_revisions_status_label('pending-revision', 'name')) . rvy_admin_url("post.php?action=edit&post={$revision_id}") . "\r\n";
             }
