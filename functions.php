@@ -553,6 +553,16 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
         }
     }
 
+    if (version_compare($last_ver, '3.7.20', '<')) {
+        if ($role = @get_role('administrator')) {
+            $role->add_cap('view_revision_archive');
+        }
+
+        if ($role = @get_role('editor')) {
+            $role->add_cap('view_revision_archive');
+        }
+    }
+
     if (version_compare($last_ver, '3.0.5-beta', '<')) {
         if ($role = @get_role('revisor')) {
             $role->add_cap('list_others_posts');
