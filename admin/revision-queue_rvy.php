@@ -152,9 +152,9 @@ if (!empty($_REQUEST['post_author']) && empty($published_title)) {									//php
 $filter_csv = ($filters) ? ' (' . implode(" ", $filters) . ')' : '';
 
 if (!empty($published_title)) {
-	printf( esc_html(_x('Revision Queue for "%s"%s', 'PublishedPostName (other filter captions)', 'revisionary')), esc_html($published_title), esc_html($filter_csv) );
+	printf( esc_html(_x('New Revisions for "%s"%s', 'PublishedPostName (other filter captions)', 'revisionary')), esc_html($published_title), esc_html($filter_csv) );
 } else
-	printf( esc_html__('Revision Queue %s', 'revisionary' ), esc_html($filter_csv));
+	printf( esc_html__('New Revisions %s', 'revisionary' ), esc_html($filter_csv));
 ?></h1>
 
 <?php
