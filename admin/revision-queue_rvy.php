@@ -17,7 +17,7 @@ if (!rvy_get_option('pending_revisions') && !rvy_get_option('scheduled_revisions
 	));
 }
 
-if (rvy_get_option('revision_queue_capability') && !is_content_administrator_rvy() && !currrent_user_can('manage_revision_queue')) {
+if (rvy_get_option('revision_queue_capability') && !is_content_administrator_rvy() && !current_user_can('manage_revision_queue')) {
 	wp_die( esc_html__( 'You are not allowed to manage revisions.', 'revisionary' ) );
 }
 
