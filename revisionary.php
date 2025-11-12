@@ -5,7 +5,7 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 3.7.19
+ * Version: 3.7.20
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Min WP Version: 5.5
@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '3.7.19';
+$pp_revisions_version = '3.7.20';
 
 global $wp_version;
 
@@ -74,7 +74,7 @@ if (is_admin() && $invalid_wp_version) {
             if (current_user_can('activate_plugins')) {
                 echo '<div class="notice notice-error"><p>';
                 printf(
-                    __('PublishPress Revisions requires WordPress version %s or higher.', 'revisionary'),
+                    'PublishPress Revisions requires WordPress version %s or higher.',
                     esc_html($min_wp_version)
                 );
                 echo '</p></div>';
@@ -130,7 +130,7 @@ if (false === $revisionary_loaded_by_pro) {
 			function () {
 				if (current_user_can('activate_plugins')) {
 					echo '<div class="notice notice-error"><p>'
-					. __('Revisions Pro requires the free plugin (PublishPress Revisions) to be deactivated.', 'revisionary')
+					. 'Revisions Pro requires the free plugin (PublishPress Revisions) to be deactivated.'
 					. '</p></div>';
 				}
 			}

@@ -1,6 +1,15 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= 3.7.20 - 12 Nov 2025 =
+* Change : Relabel Revision Queue as New Revisions
+* Change : Relabel Revision Archive as Past Revisions
+* Fixed : Fatal error on New Revisions screen for non-Administrators
+* Fixed : Past Revisions screen could be viewed by users lacking the view_revision_archive capability
+* Fixed : Classic Editor - Don't display Compare, View Saved Revision buttons until revision has been saved
+* Fixed : A few strings were not translatable
+* Lang: ES, FR, IT translations
+
 = 3.7.19 - 30 Oct 2025 =
 * Fixed : Post Editor - Captioning of New Revision / Schedule Revision button based on time selection did not factor in time zone difference
 * Fixed : Revision Editor - When editing a revision that's already scheduled, Publish Now button was mislabeled as Schedule
