@@ -181,7 +181,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'caption_copy_as_edit' =>					sprintf(esc_html__('Posts / Pages list: Use "Edit" caption for %s link', 'revisionary'), pp_revisions_status_label('draft-revision', 'submit_short')),
 	'pending_revisions' => 						sprintf(esc_html__('Enable %s', 'revisionary'), $pending_revision_plural),
 	'revision_limit_per_post' =>				esc_html__("Limit to one active revision per post", 'revisionary'),
-	'revision_limit_compat_mode' =>				esc_html__('Refresh "Has Revision" flag before suppressing New Revision', 'revisionary'),
+	'revision_limit_compat_mode' =>				esc_html__('Refresh "Has Revision" flag before suppressing Create Revision', 'revisionary'),
 	'revision_unfiltered_html_check' =>			esc_html__("If post contains custom html, require unfiltered_html capability", 'revisionary'),
 	'auto_submit_revisions' =>					esc_html__("Auto-submit revisions created by a user with publishing capability", 'revisionary'),
 	'auto_submit_revisions_any_user' =>			esc_html__("Auto-submit revisions", 'revisionary'),
@@ -953,7 +953,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		'revision-submission' => esc_html__('Submission', 'revisionary'),
 		'revision-scheduling' => esc_html__('Scheduling', 'revisionary'),
 		'revision-publication' => esc_html__('Publication', 'revisionary'),
-		'revision-queue' => esc_html__('New Revisions', 'revisionary'),
+		'revision-queue' => esc_html__('Management', 'revisionary'),
 		'notifications' => esc_html__('Notifications', 'revisionary'),
 	];
 

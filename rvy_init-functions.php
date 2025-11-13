@@ -320,8 +320,8 @@ function rvy_status_registrations() {
 		[
 			'draft-revision' => [
 				'name' => esc_html__('Unsubmitted Revision', 'revisionary'),
-				'submit' => esc_html__('New Revision', 'revisionary'), 
-				'submit_short' => esc_html__('New Revision', 'revisionary'), 
+				'submit' => esc_html__('Create Revision', 'revisionary'), 
+				'submit_short' => esc_html__('Create Revision', 'revisionary'), 
 				'submitting' => esc_html__('Creating Revision...', 'revisionary'),
 				'submitted' => ($block_editor) ? esc_html__('The Revision is ready to edit.', 'revisionary') : esc_html__('Revision ready to edit.', 'revisionary'),
 				'approve' => esc_html__('Approve Revision', 'revisionary'),
