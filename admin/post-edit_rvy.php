@@ -302,11 +302,15 @@ class RvyPostEdit {
         global $post;
 
         if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
-            return [];
+            return;
         }
 
         if (!$type_obj = get_post_type_object($post->post_type)) {
-            return [];
+            return;
+        }
+
+        if (!rvy_get_option('allow_post_author_revision')) {
+            return;
         }
 
         $published_post_id = rvy_post_id($post->ID);

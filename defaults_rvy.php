@@ -73,6 +73,7 @@ function rvy_default_options_sitewide() {
 		'apply_post_exceptions' => true,
 		'legacy_notifications' => true,
 		'approve_button_verbose' => true,
+		'allow_post_author_revision' => true,
 		'create_revision_direct_link' => true,
 		'revision_edit_disable_rank_math' => true,
 	);
@@ -147,6 +148,7 @@ function rvy_default_options() {
 		'apply_post_exceptions' => 0,
 		'legacy_notifications' => 0,
 		'approve_button_verbose' => 0,
+		'allow_post_author_revision' => 1,
 		'create_revision_direct_link' => 0,
 		'revision_edit_disable_rank_math' => 1,
 	);
