@@ -33,7 +33,24 @@ function rvy_revision_create($post_id = 0, $args = []) {
 		require_once( dirname(REVISIONARY_FILE).'/revision-creation_rvy.php' );
 		$rvy_creation = new PublishPress\Revisions\RevisionCreation();
 
-		$revision_status = (rvy_get_option('auto_submit_revisions') && current_user_can('edit_post', $main_post_id)) ? 'pending-revision' : 'draft-revision';
+		if (rvy_get_option('auto_submit_revisions') && current_user_can('edit_post', $main_post_id)) {
+			$auto_submit = true;
+		
+		} elseif (rvy_get_option('auto_submit_revisions_any_user')) {
+			if (!rvy_get_option("revise_posts_capability") || rvy_is_full_editor($main_post_id)) { // bypass capability check for those with full editing caps on main post
+				$auto_submit = true;
+			} else {
+				if ($_post = get_post($main_post_id)) {
+					if ($type_obj = get_post_type_object($_post->post_type)) {
+						$base_prop = (rvy_is_post_author($main_post_id)) ? 'edit_posts' : 'edit_others_posts';
+						$submit_cap_name = str_replace('edit_', 'revise_', $type_obj->cap->$base_prop);
+						$auto_submit = current_user_can($submit_cap_name);
+					}
+				}
+			}
+		}
+
+		$revision_status = !empty($auto_submit) ? 'pending-revision' : 'draft-revision';
 		$revision_id = $rvy_creation->createRevision($post_id, $revision_status, $args);
 	} else {
 		$revision_id = 0;
