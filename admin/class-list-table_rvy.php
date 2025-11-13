@@ -89,7 +89,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$this->correctCommentCounts();
 
-		if (!defined('REVISIONARY_DISABLE_WP_CRON_RESTORATION') && rvy_get_option('scheduled_revisions') && rvy_get_option('scheduled_publish_cron')) {
+		if (!defined('REVISIONARY_DISABLE_WP_CRON_RESTORATION') && rvy_get_option('scheduled_revisions', -1, false, ['condition_check' => true]) && rvy_get_option('scheduled_publish_cron')) {
 			add_action('admin_footer', [$this, 'act_reschedule_missed_cron_revisions']);
 		}
 
