@@ -125,7 +125,7 @@ class RevisionaryAdmin
 			) {
 				global $wp_version;
 
-				if (defined('DISABLE_WP_CRON') && DISABLE_WP_CRON && rvy_get_option('scheduled_revisions', -1, false, ['bypass_condition_check' => true]) 
+				if (defined('DISABLE_WP_CRON') && DISABLE_WP_CRON && rvy_get_option('scheduled_revisions') 
 				&& rvy_get_option('scheduled_publish_cron') && !rvy_get_option('wp_cron_usage_detected') && apply_filters('revisionary_wp_cron_disabled', true)
 				) {
 					rvy_notice(

@@ -449,7 +449,7 @@ function pp_revisions_status_label($status_name, $label_property) {
 	
 	} elseif (!empty($wp_post_statuses[$status_name]) && !empty($wp_post_statuses[$status_name]->labels->$label_property)) {
 		return $wp_post_statuses[$status_name]->labels->$label_property;
-	
+
 	} elseif (!empty($wp_post_statuses[$status_name]) && !empty($wp_post_statuses[$status_name]->label)) {
 		return $wp_post_statuses[$status_name]->label;
 	
@@ -1010,7 +1010,7 @@ function rvy_get_option($option_basename, $sitewide = -1, $get_default = false, 
 		return false;
 	}
 
-	if (('scheduled_revisions' == $option_basename) && empty($args['bypass_condition_check']) 
+	if (('scheduled_revisions' == $option_basename) && !empty($args['condition_check']) 
 	&& defined('DISABLE_WP_CRON') && DISABLE_WP_CRON && rvy_get_option('scheduled_publish_cron') && !rvy_get_option('wp_cron_usage_detected') && apply_filters('revisionary_wp_cron_disabled', true)
 	) {
 		return false;
@@ -1352,7 +1352,7 @@ function rvy_init() {
 	}
 	
 	if (empty($_GET['action']) || (isset($_GET['action']) && ('publish_scheduled_revisions' != $_GET['action']))) {
-		if (isset($_SERVER['REQUEST_URI']) && ! strpos( esc_url_raw($_SERVER['REQUEST_URI']), 'login.php' ) && rvy_get_option( 'scheduled_revisions' ) 
+		if (isset($_SERVER['REQUEST_URI']) && ! strpos( esc_url_raw($_SERVER['REQUEST_URI']), 'login.php' ) && rvy_get_option( 'scheduled_revisions', -1, false, ['condition_check' => true] ) 
 		&& !rvy_get_option('scheduled_publish_cron')) {
 		
 			// If a previously requested asynchronous request was ineffective, perform the actions now
