@@ -33,7 +33,7 @@ class RevisionaryAdmin
 		if ( ! defined('XMLRPC_REQUEST') && ! strpos($script_name, 'p-admin/async-upload.php' ) ) {
 			if ( RVY_NETWORK && ( is_main_site() ) ) {
 				require_once( dirname(__FILE__).'/admin_lib-mu_rvy.php' );
-				add_action('admin_menu', 'rvy_mu_site_menu', 15 );
+				add_action('revisionary_menu', 'rvy_mu_site_menu');
 			}
 
 			add_action('admin_menu', [$this, 'build_menu']);
@@ -392,6 +392,8 @@ class RevisionaryAdmin
 			add_submenu_page( $menu_slug, esc_html__('PublishPress Revisions Settings', 'revisionary'), esc_html__('Settings', 'revisionary'), 'read', 'revisionary-settings', 'rvy_omit_site_options');
 			add_action('revisionary_page_revisionary-settings', 'rvy_omit_site_options' );
 		}
+
+		do_action('revisionary_menu');
 
 		if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 			add_submenu_page(
