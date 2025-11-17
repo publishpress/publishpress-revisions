@@ -484,7 +484,7 @@ class RevisionaryFront {
 					$view_published = sprintf(
 						apply_filters(
 							'revisionary_list_caption',
-							esc_html__("%sView Queue%s", 'revisionary'),
+							esc_html__("%sManage%s", 'revisionary'),
 							$post // revision
 						),
 						"<a href='$queue_url' class='rvy-preview-link' target='_revision_list'>",

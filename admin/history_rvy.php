@@ -294,10 +294,14 @@ class RevisionaryHistory
             if (!empty($do_h1)) {
                 $status_plural = (!empty($status_obj->labels->plural)) ? $status_obj->labels->plural : __('Revisions');
 
+                if (!$url = get_edit_post_link($published_post)) {
+                    $url = '';
+                }
+
                 printf( 
                     esc_html__( 'Compare %s of "%s"', 'revisionary' ), 
                     esc_html($status_plural), 
-                    '<a href="' . esc_url(get_edit_post_link($published_post)) . '">' . esc_html(_draft_or_post_title($published_post)) . '</a>'
+                    '<a href="' . esc_url($url) . '">' . esc_html(_draft_or_post_title($published_post)) . '</a>'
                 );
             }
             ?>
