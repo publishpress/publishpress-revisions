@@ -1,6 +1,14 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= 3.7.21 - 17 Nov 2025 =
+* Fixed : Recaption "New Revision" to "Create Revision" to disambiguate from "New Revisions"
+* Fixed : Scheduled Revisions did not work correctly if "Site uses custom trigger" option is enabled
+* Change : Option to disable revisioning of post Author
+* Change : Option to autho-submit revisions without publishing capability
+* Fixed : PHP Warning on Compare Revisions screen under some conditions
+* Fixed : PHP Warnings on Edit Posts screen under some conditions
+
 = 3.7.20 - 12 Nov 2025 =
 * Change : Relabel Revision Queue as New Revisions
 * Change : Relabel Revision Archive as Past Revisions
