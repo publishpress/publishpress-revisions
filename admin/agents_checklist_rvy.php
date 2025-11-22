@@ -73,7 +73,7 @@ define ('ELIGIBLE_ITEMS_RVY', 'eligible');
 			echo "<strong><label for='" . esc_attr("chk_{$agents_subset}_{$id_prefix}") . "'>";
 
 			if (CURRENT_ITEMS_RVY == $agents_subset) {
-				printf(esc_html_e('show current users (%d)', 'revisionary'), esc_html($agent_count[$agents_subset]));
+				printf(esc_html__('show current users (%d)', 'revisionary'), esc_html($agent_count[$agents_subset]));
 			} else {
 				printf(esc_html__('show eligible users (%d)', 'revisionary'), esc_html($agent_count[$agents_subset]));
 			}
