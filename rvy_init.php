@@ -130,7 +130,7 @@ if (defined('PP_AUTHORS_VERSION')) {
 				foreach ($post_types as $type_obj) {
 					if (!empty($type_obj->cap->edit_published_posts) && empty($current_user->allcaps[$type_obj->cap->edit_published_posts])
 					) {
-						if (!is_super_admin() && !current_user_can('administrator')) {
+						if (!is_content_administrator_rvy()) {
 							unset($current_user->allcaps['ppma_edit_post_authors']);
 						}
 						

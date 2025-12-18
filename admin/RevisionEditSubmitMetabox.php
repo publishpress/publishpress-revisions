@@ -106,7 +106,7 @@ class RvyRevisionEditSubmitMetabox
         $post_status_obj = $args['post_status_obj'];
         ?>
         <?php
-        if (rvy_get_option('revision_preview_links') || current_user_can('administrator') || is_super_admin()) {
+        if (rvy_get_option('revision_preview_links') || is_content_administrator_rvy()) {
             $preview_link = esc_url(get_permalink($post->ID));
 
             $type_obj = get_post_type_object($post->post_type);

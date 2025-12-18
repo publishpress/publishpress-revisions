@@ -108,7 +108,7 @@ function rvy_admin_init() {
 						continue;
 					}
 
-					if ( !current_user_can('administrator') && !current_user_can( 'edit_post', $revision->post_parent) ) {  // @todo: review Administrator cap check
+					if ( !is_content_administrator_rvy() && !current_user_can( 'edit_post', $revision->post_parent) ) {  // @todo: review Administrator cap check
 						wp_die( esc_html__('Sorry, you are not allowed to delete this revision.', 'revisionary') );
 					} 
 	
@@ -186,7 +186,7 @@ function rvy_admin_init() {
 			case 'approve_revision': // If pending revisions has a requested publish date, schedule it, otherwise schedule for near future. Leave currently scheduled revisions alone. 
 			case 'publish_revision': // Schedule all selected revisions for near future publishing.
 				$approved = 0;
-				$is_administrator = current_user_can('administrator');
+				$is_administrator = is_content_administrator_rvy();
 	
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');
 	
@@ -227,7 +227,7 @@ function rvy_admin_init() {
 	
 			case 'submit_revision' :
 				$submitted = 0;
-				$is_administrator = current_user_can('administrator');
+				$is_administrator = is_content_administrator_rvy();
 
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');
 	
@@ -259,7 +259,7 @@ function rvy_admin_init() {
 			case 'decline_revision' :
 				$declined = 0;
 
-				$is_administrator = current_user_can('administrator');
+				$is_administrator = is_content_administrator_rvy();
 
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');
 
@@ -296,7 +296,7 @@ function rvy_admin_init() {
 
 			case 'unschedule_revision' :
 				$unscheduled = 0;
-				$is_administrator = current_user_can('administrator');
+				$is_administrator = is_content_administrator_rvy();
 	
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');
 
@@ -343,7 +343,7 @@ function rvy_admin_init() {
 					if ( ! rvy_in_revision_workflow($revision) )
 						continue;
 					
-					if ( ! current_user_can('administrator') && ! current_user_can( 'delete_post', rvy_post_id($revision->ID) ) ) {  // @todo: review Administrator cap check
+					if ( !is_content_administrator_rvy() && ! current_user_can( 'delete_post', rvy_post_id($revision->ID) ) ) {  // @todo: review Administrator cap check
 						if (!in_array($revision->post_mime_type, $revision_statuses) || !rvy_is_post_author($revision)) {	// allow submitters to delete their own still-pending revisions
 							wp_die( esc_html__('Sorry, you are not allowed to delete this revision.', 'revisionary') );
 						}

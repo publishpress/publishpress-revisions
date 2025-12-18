@@ -1094,7 +1094,7 @@ function rvy_confirm_async_execution($action) {
 
 function is_content_administrator_rvy() {
 	$cap_name = defined( 'SCOPER_CONTENT_ADMIN_CAP' ) ? SCOPER_CONTENT_ADMIN_CAP : 'activate_plugins';
-	return current_user_can( $cap_name );
+	return (is_multisite() && is_super_admin()) || current_user_can($cap_name);
 }
 
 function rvy_notice( $message, $class = 'error fade' ) {
