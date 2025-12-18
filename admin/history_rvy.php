@@ -1305,7 +1305,7 @@ class RevisionaryHistory
             $can_edit = current_user_can($edit_published_cap);
         }
 
-        $show_preview_link = rvy_get_option('revision_preview_links') || current_user_can('administrator') || is_super_admin();
+        $show_preview_link = rvy_get_option('revision_preview_links') || is_content_administrator_rvy();
 
         if ($show_preview_link) {
             $preview_label = (empty($type_obj) || $can_edit)
