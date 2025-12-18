@@ -411,7 +411,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	function pre_query_where_filter($where, $args = []) {
 		global $wpdb, $current_user, $revisionary;
 
-		if (!current_user_can('administrator') && empty($args['suppress_author_clause']) && empty($_REQUEST['post_author'])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (!is_content_administrator_rvy() && empty($args['suppress_author_clause']) && empty($_REQUEST['post_author'])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if (rvy_get_option('revisor_hide_others_revisions') && !current_user_can('list_others_revisions') ) {
 			
 				$p = (!empty($args['alias'])) ? $args['alias'] : $wpdb->posts;
@@ -558,7 +558,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$own_posts_csv = implode("','", array_map('intval', $own_posts));
 
-		if (rvy_get_option('revisor_hide_others_revisions') && !current_user_can('administrator') 
+		if (rvy_get_option('revisor_hide_others_revisions') && !is_content_administrator_rvy()
 			&& !current_user_can('list_others_revisions') && empty($args['suppress_author_clause']) 
 		) {
 			$allow_post_types = apply_filters('revisionary_queue_allow_post_types', []);
@@ -1659,7 +1659,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		if ( is_post_type_viewable( $post_type_object ) ) {
 			if ($can_read_post && $post_type_object && !empty($post_type_object->public)) {
-				if (rvy_get_option('revision_preview_links') || current_user_can('administrator') || is_super_admin()) {
+				if (rvy_get_option('revision_preview_links') || is_content_administrator_rvy()) {
 					do_action('pp_revisions_get_post_link', $post->ID);
 
 					$preview_link = rvy_preview_url($post);

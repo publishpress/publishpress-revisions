@@ -318,7 +318,7 @@ class RevisionaryAdmin
 
 		$types = rvy_get_manageable_types();
 
-		$revision_archive = current_user_can('administrator') || is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
+		$revision_archive = is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
 
 		$can_edit_any = false;
 
