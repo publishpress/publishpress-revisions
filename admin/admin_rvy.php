@@ -181,7 +181,7 @@ class RevisionaryAdmin
 				$clauses['where'] .= " AND $wpdb->posts.post_name NOT IN ('revision-scheduled-publication', 'scheduled-revision-published', 'scheduled-revision-is-published', 'revision-scheduled', 'revision-is-scheduled', 'revision-declined', 'revision-deferred-or-rejected', 'revision-submission', 'revision-is-submitted', 'new-revision', 'new-revision-created')";
 			}
 
-			if (!defined('PUBLISHPRESS_STATUSES_VERSION')) {
+			if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
 				$clauses['where'] .= " AND $wpdb->posts.post_name NOT IN ('post-status-changed', 'post-deferred-or-rejected')";
 			}
 		}
