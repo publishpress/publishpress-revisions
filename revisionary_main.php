@@ -307,7 +307,7 @@ class Revisionary
 	function adminToolbarItem($admin_bar) {
 		global $post;
 
-		if (!empty($post) && rvy_get_option('pending_revisions') && !rvy_in_revision_workflow($post) && ('revision' != $post->post_type) && rvy_is_supported_post_type($post->post_type)) {
+		if (!empty($post) && !is_archive() && rvy_get_option('pending_revisions') && !rvy_in_revision_workflow($post) && ('revision' != $post->post_type) && rvy_is_supported_post_type($post->post_type)) {
 			$status_obj = get_post_status_object($post->post_status);
 
 			if (!empty($status_obj->public) || !empty($status_obj->private) || rvy_get_option('pending_revision_unpublished')) {
