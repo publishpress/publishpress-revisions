@@ -1,6 +1,11 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= 3.7.22 =
+* Fixed : Create Revision link was displayed on Category Archive screen
+* Fixed : Multisite - Super admins were unable to perform some revision management operations without an Administrator role on the site
+* Compat : Work around a conflict with corrupt "wpas" postmeta
+
 = 3.7.21 - 17 Nov 2025 =
 * Fixed : Recaption "New Revision" to "Create Revision" to disambiguate from "New Revisions"
 * Fixed : Scheduled Revisions did not work correctly if "Site uses custom trigger" option is enabled
