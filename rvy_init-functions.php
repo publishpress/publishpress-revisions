@@ -1432,7 +1432,11 @@ function rvy_is_full_editor($post, $args = []) {
 			return false;
 		}
 
-		return $revisionary->canEditPost($post, ['simple_cap_check' => true]);
+		if (in_array($post->post_status, ['draft', 'pending', 'publish', 'private'])) {
+			return $revisionary->canEditPost($post, ['simple_cap_check' => true]);
+		} else {
+			return current_user_can('edit_post', $post->ID);
+		}
 	}
 
 	return true;
