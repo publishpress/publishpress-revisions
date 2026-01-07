@@ -949,6 +949,14 @@ class Revisionary
 
 			$filter_args = [];
 
+			$this->skip_revisor_post_caps_workaround = true;
+
+			if (function_exists('presspermit') && !rvy_get_option('submit_permission_enables_creation')) {
+				$pp_exceptions = presspermit()->getUser()->except;
+				
+				presspermit()->getUser()->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
+			}
+
 			if (!$can_copy = rvy_is_full_editor($post_id)) {
 				if ($_post = get_post($post_id)) {
 					$type_obj = get_post_type_object($_post->post_type);
@@ -976,13 +984,19 @@ class Revisionary
 				}
 			}
 
+			$this->skip_revisor_post_caps_workaround = false;
+
+			if (!empty($pp_user)) {
+				presspermit()->getUser()->except = $pp_exceptions;
+			}
+
 			if (!empty($caps)) {
 				$can_copy = $can_copy && !array_diff($caps, array_keys(array_filter($current_user->allcaps)), ['copy_post']);
 			}
 
 			// allow PublishPress Permissions to apply 'copy' exceptions
 			if ($can_copy = apply_filters('revisionary_can_copy', $can_copy, $post_id, 'draft', 'draft-revision', $filter_args)
-			|| apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args)
+			|| (rvy_get_option('submit_permission_enables_creation') && apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args))
 			) {
 				$caps = ['read'];
 			} else {
