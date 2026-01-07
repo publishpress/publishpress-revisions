@@ -17,6 +17,7 @@ class Revisionary
 	var $rest = '';				// object ref - Revisionary_REST
 	var $internal_meta_update = false;
 	var $skip_filtering = false;
+	var $skip_revisor_post_caps_workaround = false;
 	var $is_revisions_query = false;
 	var $front = false;
 
