@@ -164,9 +164,27 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
     $target_meta_keys = (array) \get_post_custom_keys( $to_post_id );
 
+    $skip_meta_keys = ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count'];
+
+    if (!defined('REVISIONARY_REVISE_ELEMENTOR_CSS')) {
+        $skip_meta_keys = array_merge($skip_meta_keys, ['_elementor_css', '_elementor_element_cache']);
+    }
+
+    if (!defined('REVISIONARY_REVISE_ELEMENTOR_ASSETS')) {
+        $skip_meta_keys = array_merge($skip_meta_keys, ['_elementor_page_assets']);
+    }
+
+    if (!defined('REVISIONARY_REVISE_ELEMENTOR_CONTROLS')) {
+        $skip_meta_keys = array_merge($skip_meta_keys, ['_elementor_controls_usage']);
+    }
+
+    if (!defined('REVISIONARY_REVISE_ELEMENTOR_SCREENSHOT')) {
+        $skip_meta_keys = array_merge($skip_meta_keys, ['_elementor_screenshot']);
+    }
+
     $meta_keys = apply_filters(
-        'revisionary_create_revision_meta_keys',    // Bypass problematic Link Whisper plugin postmeta by default
-        array_diff($meta_keys, ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count'])
+        'revisionary_create_revision_meta_keys',    // Bypass problematic Elementor, Link Whisper plugin postmeta by default
+        array_diff($meta_keys, $skip_meta_keys)
     );
 
     foreach ( $meta_keys as $meta_key ) {
