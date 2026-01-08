@@ -714,7 +714,7 @@ class RevisionaryFront {
 							$date = agp_date_i18n( $datef, strtotime( $post->post_modified ) );
 
 							if (rvy_get_option('revision_restore_require_cap') 
-							&& !current_user_can('administrator') && !is_super_admin() && !current_user_can('restore_revisions')) {
+							&& !is_content_administrator_rvy() && !current_user_can('restore_revisions')) {
 								$publish_button = '';
 							} else {
 								$publish_button = ($can_publish) ? '<a href="' . $publish_url . '" class="button button-secondary">' . esc_html__( 'Restore', 'revisionary' ) . '</a>' : '';

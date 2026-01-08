@@ -57,7 +57,7 @@ class RevisionaryHistory
                 $parent_post = get_post($_post->post_parent);
 
                 if (($parent_post && !$revisionary->canEditPost($parent_post))
-                || (rvy_get_option('revision_restore_require_cap') && !current_user_can('administrator') && !is_super_admin() && !current_user_can('restore_revisions'))
+                || (rvy_get_option('revision_restore_require_cap') && !is_content_administrator_rvy() && !current_user_can('restore_revisions'))
                 ) :
         ?>
                     <style type='text/css'>
@@ -1305,7 +1305,7 @@ class RevisionaryHistory
             $can_edit = current_user_can($edit_published_cap);
         }
 
-        $show_preview_link = rvy_get_option('revision_preview_links') || current_user_can('administrator') || is_super_admin();
+        $show_preview_link = rvy_get_option('revision_preview_links') || is_content_administrator_rvy();
 
         if ($show_preview_link) {
             $preview_label = (empty($type_obj) || $can_edit)

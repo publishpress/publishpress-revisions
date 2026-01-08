@@ -137,7 +137,7 @@ class RevisionaryEditRevisionClassicUI {
 	function fltPostUpdatedMessage($messages) {
 		global $post;
 
-		if (rvy_get_option('revision_preview_links') || current_user_can('administrator') || is_super_admin()) {
+		if (rvy_get_option('revision_preview_links') || is_content_administrator_rvy()) {
 			$preview_url = rvy_preview_url($post);
 			$preview_msg = sprintf(esc_html__('Revision updated. %sView Preview%s', 'revisionary'), "<a href='$preview_url'>", '</a>');
 		} else {

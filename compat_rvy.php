@@ -66,6 +66,29 @@ class PP_Revisions_Compat {
         add_action('save_post', [$this, 'actPreserveRevisionAuthor'], 1, 3);
 
         add_action('add_meta_boxes', [$this, 'actMaybeRemoveAuthorsMetabox'], 101);
+
+        add_filter(
+            'presspermit_get_exception_items',
+            function ($exception_items, $operation, $mod_type, $for_item_type, $args) {
+                // Prevent merging of Revision permissions into Edit permissions array
+                if (!rvy_get_option('submit_permission_enables_creation')) {
+                    presspermit()->doing_cap_check = true;
+                }
+
+                return $exception_items;
+            },
+            9, 5
+        );
+
+        add_filter(
+            'presspermit_get_exception_items',
+            function ($exception_items, $operation, $mod_type, $for_item_type, $args) {
+                presspermit()->doing_cap_check = false;
+
+                return $exception_items;
+            },
+            11, 5
+        );
     }
 
     function fltRequireRevisionBaseStatuses($require_base_statuses) {

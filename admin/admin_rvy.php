@@ -181,7 +181,7 @@ class RevisionaryAdmin
 				$clauses['where'] .= " AND $wpdb->posts.post_name NOT IN ('revision-scheduled-publication', 'scheduled-revision-published', 'scheduled-revision-is-published', 'revision-scheduled', 'revision-is-scheduled', 'revision-declined', 'revision-deferred-or-rejected', 'revision-submission', 'revision-is-submitted', 'new-revision', 'new-revision-created')";
 			}
 
-			if (!defined('PUBLISHPRESS_STATUSES_VERSION')) {
+			if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
 				$clauses['where'] .= " AND $wpdb->posts.post_name NOT IN ('post-status-changed', 'post-deferred-or-rejected')";
 			}
 		}
@@ -318,7 +318,7 @@ class RevisionaryAdmin
 
 		$types = rvy_get_manageable_types();
 
-		$revision_archive = current_user_can('administrator') || is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
+		$revision_archive = is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
 
 		$can_edit_any = false;
 

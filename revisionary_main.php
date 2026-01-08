@@ -17,6 +17,7 @@ class Revisionary
 	var $rest = '';				// object ref - Revisionary_REST
 	var $internal_meta_update = false;
 	var $skip_filtering = false;
+	var $skip_revisor_post_caps_workaround = false;
 	var $is_revisions_query = false;
 	var $front = false;
 
@@ -307,7 +308,7 @@ class Revisionary
 	function adminToolbarItem($admin_bar) {
 		global $post;
 
-		if (!empty($post) && rvy_get_option('pending_revisions') && !rvy_in_revision_workflow($post) && ('revision' != $post->post_type) && rvy_is_supported_post_type($post->post_type)) {
+		if (!empty($post) && !is_archive() && rvy_get_option('pending_revisions') && !rvy_in_revision_workflow($post) && ('revision' != $post->post_type) && rvy_is_supported_post_type($post->post_type)) {
 			$status_obj = get_post_status_object($post->post_status);
 
 			if (!empty($status_obj->public) || !empty($status_obj->private) || rvy_get_option('pending_revision_unpublished')) {
@@ -949,6 +950,14 @@ class Revisionary
 
 			$filter_args = [];
 
+			$this->skip_revisor_post_caps_workaround = true;
+
+			if (function_exists('presspermit') && !rvy_get_option('submit_permission_enables_creation')) {
+				$pp_exceptions = presspermit()->getUser()->except;
+				
+				presspermit()->getUser()->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
+			}
+
 			if (!$can_copy = rvy_is_full_editor($post_id)) {
 				if ($_post = get_post($post_id)) {
 					$type_obj = get_post_type_object($_post->post_type);
@@ -976,13 +985,19 @@ class Revisionary
 				}
 			}
 
+			$this->skip_revisor_post_caps_workaround = false;
+
+			if (!empty($pp_user)) {
+				presspermit()->getUser()->except = $pp_exceptions;
+			}
+
 			if (!empty($caps)) {
 				$can_copy = $can_copy && !array_diff($caps, array_keys(array_filter($current_user->allcaps)), ['copy_post']);
 			}
 
 			// allow PublishPress Permissions to apply 'copy' exceptions
 			if ($can_copy = apply_filters('revisionary_can_copy', $can_copy, $post_id, 'draft', 'draft-revision', $filter_args)
-			|| apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args)
+			|| (rvy_get_option('submit_permission_enables_creation') && apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args))
 			) {
 				$caps = ['read'];
 			} else {
@@ -1043,13 +1058,20 @@ class Revisionary
 			if ($can_approve = current_user_can('edit_post', $post_id)) {  // require basic editing capabilties for revision ID
 				$main_post_id = rvy_post_id($post_id);
 
-				if (!rvy_is_full_editor($main_post_id)) { // bypass capability check for those with full editing caps on main post
+				// Normally, it does not make sense to allow direct post editing but not revision approval, so don't comp the settings UI with that option.
+				$can_approve = !defined('REVISIONARY_REQUIRE_APPROVE_CAP') && current_user_can('edit_post', $main_post_id);
+				
+				if (!$can_approve) { // bypass capability check for those with full editing caps on main post
 					if ($_post = get_post($post_id)) {
 						if ($type_obj = get_post_type_object($_post->post_type)) {
 							$base_prop = (rvy_is_post_author($main_post_id)) ? 'edit_posts' : 'edit_others_posts';
 							$approve_cap_name = str_replace('edit_', 'approve_', $type_obj->cap->$base_prop);
 							$can_approve = current_user_can($approve_cap_name);
 							$filter_args = compact('main_post_id', 'type_obj');
+
+							if (!$can_approve && defined('PRESSPERMIT_VERSION')) {
+								$can_approve = current_user_can('edit_post', $main_post_id);
+							}
 						}
 					}
 				}

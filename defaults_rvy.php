@@ -76,6 +76,8 @@ function rvy_default_options_sitewide() {
 		'allow_post_author_revision' => true,
 		'create_revision_direct_link' => true,
 		'revision_edit_disable_rank_math' => true,
+		'enable_postmeta_revision' => true,
+		'submit_permission_enables_creation' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -151,6 +153,8 @@ function rvy_default_options() {
 		'allow_post_author_revision' => 1,
 		'create_revision_direct_link' => 0,
 		'revision_edit_disable_rank_math' => 1,
+		'enable_postmeta_revision' => 1,
+		'submit_permission_enables_creation' => 1,
 	);
 
 	return $def;

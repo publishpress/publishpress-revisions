@@ -831,7 +831,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		static $is_administrator;
 
 		if (!isset($is_administrator)) {
-			$is_administrator = current_user_can('administrator') || is_super_admin();
+			$is_administrator = is_content_administrator_rvy();
 		}
 
 		$post_status_obj = get_post_status_object(get_post_field('post_status', $item->post_parent));

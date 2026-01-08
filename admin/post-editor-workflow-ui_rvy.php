@@ -64,7 +64,7 @@ class PostEditorWorkflowUI {
         $vars['disableRecaption'] = version_compare($wp_version, '5.9-beta', '>=') || is_plugin_active('gutenberg/gutenberg.php');
         $vars['viewTitle'] = '';
 
-        if (rvy_get_option('revision_preview_links') || current_user_can('administrator') || is_super_admin()) {
+        if (rvy_get_option('revision_preview_links') || is_content_administrator_rvy()) {
             $vars['viewURL'] = rvy_preview_url($post);
 
             if ($type_obj && empty($type_obj->public)) {
@@ -105,7 +105,7 @@ class PostEditorWorkflowUI {
         $draft_obj = get_post_status_object('draft-revision');
         $vars['draftStatusCaption'] = $draft_obj->label;
 
-        $vars['draftAjaxField'] = (current_user_can('administrator') || current_user_can('set_revision_pending-revision', $post->ID)) ? 'submit_revision' : '';
+        $vars['draftAjaxField'] = (is_content_administrator_rvy() || current_user_can('set_revision_pending-revision', $post->ID)) ? 'submit_revision' : '';
         $vars['draftErrorCaption'] = esc_html__('Revision Submission Error', 'revisionary');
         $vars['draftDeletionURL'] = get_delete_post_link($post->ID, '', false);
 
