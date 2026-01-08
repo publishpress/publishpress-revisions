@@ -956,9 +956,13 @@ class Revisionary
 				$pp_exceptions = presspermit()->getUser()->except;
 				
 				presspermit()->getUser()->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
+
+				$can_copy = current_user_can('edit_post', $post_id);
+			} else {
+				$can_copy = rvy_is_full_editor($post_id);
 			}
 
-			if (!$can_copy = rvy_is_full_editor($post_id)) {
+			if (!$can_copy) {
 				if ($_post = get_post($post_id)) {
 					$type_obj = get_post_type_object($_post->post_type);
 				}
