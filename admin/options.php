@@ -845,9 +845,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	?>
 	<div class=agp-vspaced_input style="vertical-align: middle;">
 	<label for="<?php echo esc_html($option_name);?>">
-	<?php esc_html_e('Maximum revisions per post:', 'revisionary-pro');?></label>
+	<?php esc_html_e('Maximum revisions per post:', 'revisionary');?></label>
 	<input class="<?php echo esc_attr($class_name); ?>" name="<?php echo esc_attr($option_name); ?>" type="text" id="<?php echo esc_attr($option_name); ?>" size="10" 
-	value="<?php echo (in_array($opt_val, [true, ''], true)) ? '' : intval($opt_val);?>" placeholder="<?php echo (true === $wp_num_revisions) ? esc_html__('(unlimited)', 'revisionary-pro') : '';?>" 
+	value="<?php echo (in_array($opt_val, [true, ''], true)) ? '' : intval($opt_val);?>" placeholder="<?php echo (true === $wp_num_revisions) ? esc_html__('(unlimited)', 'revisionary') : '';?>" 
 	style="vertical-align:middle" autocomplete="off" />
 
 	<?php
@@ -855,7 +855,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		<div class="rvy-subtext">
 		<?php
 		printf(
-			esc_html__('Note that archiving can also be disabled by %1$sPost Type%2$s.', 'revisionary-pro'),
+			esc_html__('Note that archiving can also be disabled by %1$sPost Type%2$s.', 'revisionary'),
 			'<a class="rvyTabPostTypes" href="javascript:void(0)">',
 			'</a>'
 		);
