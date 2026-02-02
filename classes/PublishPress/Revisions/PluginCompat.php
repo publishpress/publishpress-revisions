@@ -112,7 +112,7 @@ class PluginCompat {
 			$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 			if ('include' == $mod) {
-				$clause = "(($clause) OR ($src_table.post_status IN ('$revision_base_status_csv') AND $src_table.post_mime_type IN ('$revision_status_csv') AND $src_table.comment_count IN ('" . implode("','", array_map('intval', $ids)) . "')))";
+				$clause = "(($clause) OR ($src_table.post_mime_type IN ('$revision_status_csv') AND $src_table.comment_count IN ('" . implode("','", array_map('intval', $ids)) . "')))";
 			} elseif ('exclude' == $mod) {
 				$clause = "(($clause) AND ($src_table.post_mime_type NOT IN ('$revision_status_csv') OR $src_table.comment_count NOT IN ('" . implode("','", array_map('intval', $ids)) . "')))";
 			}
