@@ -1001,7 +1001,7 @@ class Revisionary
 
 			// allow PublishPress Permissions to apply 'copy' exceptions
 			if ($can_copy = apply_filters('revisionary_can_copy', $can_copy, $post_id, 'draft', 'draft-revision', $filter_args)
-			|| (rvy_get_option('submit_permission_enables_creation') && apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args))
+			|| (function_exists('presspermit') && rvy_get_option('submit_permission_enables_creation') && apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args))
 			) {
 				$caps = ['read'];
 			} else {
