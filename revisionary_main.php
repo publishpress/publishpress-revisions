@@ -134,6 +134,12 @@ class Revisionary
 					function($clause, $required_operation, $post_type, $args) {
 						global $pagenow;
 
+						$defaults = ['logic' => 'NOT IN', 'ids' => [], 'src_table' => ''];
+						$args = array_merge($defaults, $args);
+						foreach (array_keys($defaults) as $var) {
+							$$var = $args[$var];
+						}
+
 						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						if (
 							('exclude' == $args['mod'])
@@ -146,6 +152,16 @@ class Revisionary
 							$revision_status_csv = rvy_revision_statuses(['return' => 'csv']);
 
 							$clause .= " AND ({$args['src_table']}.comment_count {$args['logic']} ('" . implode("','", $args['ids']) . "') OR {$args['src_table']}.post_mime_type NOT IN ($revision_status_csv))";
+						} else {
+							if (defined('PP_REVISIONS_EXTRA_PERMISSIONS_FILTER')) {
+								// @todo: move this into Permissions
+
+								if (false !== strpos($clause, 'comment_count')) {
+									return $clause;
+								}
+						
+								$clause = "( $clause OR ( $src_table.post_mime_type IN ('" . implode("','", array_map('sanitize_key', rvy_revision_statuses())) . "') AND $src_table.comment_count $logic ('" . implode("','", $ids) . "') ) )";
+							}
 						}
 
 						return $clause;
