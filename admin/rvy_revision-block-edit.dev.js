@@ -187,6 +187,8 @@ jQuery(document).ready(function ($) {
 
         $('button.edit-post-post-visibility__toggle, div.editor-post-url__panel-dropdown, div.components-checkbox-control').closest("div.editor-post-panel__row").hide();
 
+        var refSelectorUseParent = false;
+
 		// @todo: legacy support?
         //if ($('div.edit-post-sidebar div.edit-post-post-status div.editor-post-panel__row:last').length) {
         //    var refSelector = 'div.edit-post-sidebar div.edit-post-post-status div.editor-post-panel__row:last';
@@ -197,17 +199,28 @@ jQuery(document).ready(function ($) {
 	            var refSelector = 'div.edit-post-post-visibility';
 	
 	            if (!$(refSelector).length) {
-                    // Gutenberg 18.5
-                    if ($('div.editor-post-panel__section').length) {
-                        refSelector = 'div.editor-post-panel__section';
+                    if ($('button.editor-post-trash').length) {
+                        refSelector = 'button.editor-post-trash';
+                        refSelectorUseParent = true;
                     } else {
-	                    refSelector = 'div.edit-post-post-status h2';
+                        // Gutenberg 18.5
+                        if ($('div.editor-post-panel__section').length) {
+                            refSelector = 'div.editor-post-panel__section';
+                        } else {
+                            refSelector = 'div.edit-post-post-status h2';
+                        }
                     }
 	            }
 	        }
         //}
 
-        if (rvyObjEdit.ajaxurl && !$('div.edit-post-revision-status').length && $(refSelector).length) {
+        if (refSelectorUseParent) {
+            var foundUIloc = $(refSelector).parent().length;
+        } else {
+            var foundUIloc = $(refSelector).length;
+        }
+
+        if (rvyObjEdit.ajaxurl && !$('div.edit-post-revision-status').length && foundUIloc) {
             if ($('div.editor-post-panel__row-label').length) {
                 var labelOpen = '<div class="editor-post-panel__row-label">';
                 var labelClose = '</div>';
@@ -309,8 +322,14 @@ jQuery(document).ready(function ($) {
                     divClass = '';
                 }
 				
+                if (refSelectorUseParent) {
+                    var uiLoc = $(refSelector).parent();
+                } else {
+                    var uiLoc = $(refSelector);
+                }
+
                 if (!$('div.rvy-creation-ui a.revision-approve').length) {
-                    $(refSelector).after('<div class="rvy-creation-ui rvy-submission-div' + divClass + '"><a href="' + url + '" class="revision-approve">'
+                    $(uiLoc).after('<div class="rvy-creation-ui rvy-submission-div' + divClass + '"><a href="' + url + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
                         + '<span class="dashicons ' + mainDashicon + '"></span>'
                         + '<span class="rvy-caption">' + rvyObjEdit[rvyObjEdit.currentStatus + 'ActionCaption'] + '</span></button></a>'
@@ -346,7 +365,9 @@ jQuery(document).ready(function ($) {
 
         $('button.editor-post-trash').parent().css('text-align', 'right');
 	}
+
     var RvyUIInterval = setInterval(RvySubmissionUI, 100);
+
     setInterval(function () {
         if (rvyObjEdit.deleteCaption && $('button.editor-post-trash').length && ($('button.editor-post-trash').html() != rvyObjEdit.deleteCaption)) {
             $('button.editor-post-trash').html(rvyObjEdit.deleteCaption).closest('div').show();
