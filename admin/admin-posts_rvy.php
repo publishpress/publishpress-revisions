@@ -351,8 +351,9 @@ class RevisionaryAdminPosts {
         
         // todo: use 'wp_count_posts' filter instead?
 
-        if ((strpos($query, "ELECT post_status, COUNT( * ) AS num_posts ") || (strpos($query, "ELECT COUNT( 1 )") && $pos_from && (!$pos_where || ($pos_from < $pos_where)))) 
-        && preg_match("/FROM\s*{$posts}\s*WHERE post_type\s*=\s*'([^ ]+)'/", $query, $matches)
+		if ((preg_match("/ELECT post_status, COUNT\(\s*\*\s*\) AS num_posts/", $query) || (strpos($query, "ELECT COUNT( 1 )") 
+			&& $pos_from && (!$pos_where || ($pos_from < $pos_where))))                                                 
+	   		&& preg_match("/FROM\s+{$posts}\s+WHERE post_type\s*=\s*'([^ ]+)'/", $query, $matches) 
         ) {
             $_post_type = (!empty($matches[1])) ? $matches[1] : PWP::findPostType();
 
