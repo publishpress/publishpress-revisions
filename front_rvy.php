@@ -547,7 +547,7 @@ class RevisionaryFront {
 					$submit_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=submit$redirect_arg"), "submit-post_$published_post_id|$revision_id" );
 					$publish_url =  wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 				}
-			} elseif ($can_edit = current_user_can('approve_revision', $revision_id)) {
+			} elseif ($can_approve = current_user_can('approve_revision', $revision_id)) {
 				if ( !in_array( $post->post_mime_type, array( 'future-revision', 'inherit' ) ) ) {
 					$publish_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 
@@ -603,7 +603,7 @@ class RevisionaryFront {
 						$publish_button = '';
 					}
 
-					if ($can_publish) {
+					if ($can_publish || !empty($can_approve)) {
 						$publish_caption = (!empty($status_obj->public) || !empty($status_obj->private)) ? esc_html__('Approve', 'revisionary') : $approve_caption;
 						$publish_button .= ($can_publish) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $publish_caption . '</a>' : '';
 					}
@@ -636,7 +636,7 @@ class RevisionaryFront {
 
 						if ( strtotime( $post->post_date_gmt ) > agp_time_gmt() ) {
 							$class = 'pending_future';
-							$publish_button = ($can_publish) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $approve_caption . '</a>' : '';
+							$publish_button = ($can_publish || !empty($can_approve)) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $approve_caption . '</a>' : '';
 							
 							if ('pending-revision' == $post->post_mime_type) {
 								if (!empty($_REQUEST['elementor-preview'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -655,7 +655,7 @@ class RevisionaryFront {
 							$class = 'pending';
 							$status_obj = get_post_status_object(get_post_field('post_status', rvy_post_id($revision_id)));
 							$publish_caption = (!empty($status_obj->public) || !empty($status_obj->private)) ? esc_html__('Approve', 'revisionary') : $approve_caption;
-							$publish_button = ($can_publish) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $publish_caption . '</a>' : '';
+							$publish_button = ($can_publish || !empty($can_approve)) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $publish_caption . '</a>' : '';
 							
 							if ('pending-revision' == $post->post_mime_type) {
 								if (!empty($_REQUEST['elementor-preview'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -698,7 +698,7 @@ class RevisionaryFront {
 					if (!empty($_REQUEST['mark_current_revision'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						$class = 'published';
 
-						if (!$can_edit) {
+						if (empty($can_edit)) {
 							$edit_button = '';
 						}
 
