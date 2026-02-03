@@ -126,6 +126,8 @@ class PostEditorWorkflowUI {
             $vars['draftActionCaption'] = '';
         }
 
+        $vars['revisionActionNonce'] = wp_create_nonce($vars['draftAjaxField']);
+
         if ($can_publish) {
             $vars['approveCaption'] = rvy_get_option('approve_button_verbose') ? __('Approve and Publish', 'revisionary') : pp_revisions_status_label('pending-revision', 'approve');
         } else {

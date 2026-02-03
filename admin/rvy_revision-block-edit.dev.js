@@ -281,6 +281,7 @@ jQuery(document).ready(function ($) {
                     rvyUI
                 );
             }
+
 			
             if (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL']) {
                 var url = rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'];
@@ -523,7 +524,7 @@ jQuery(document).ready(function ($) {
 		
         $.ajax({
             url: rvyObjEdit.ajaxurl,
-            data: {'rvy_ajax_field': rvyObjEdit[rvyObjEdit.currentStatus + 'AjaxField'], 'rvy_ajax_value': wp.data.select('core/editor').getCurrentPostId(), 'nc': RvyGetRandomInt(99999999)},
+            data: {'rvy_ajax_field': rvyObjEdit[rvyObjEdit.currentStatus + 'AjaxField'], 'rvy_ajax_value': wp.data.select('core/editor').getCurrentPostId(), '_rvynonce': rvyObjEdit.revisionActionNonce},
             dataType: "html",
             success: revisionaryCreateDone,
             error: function (data, txtStatus) {
