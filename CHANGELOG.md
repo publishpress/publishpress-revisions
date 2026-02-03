@@ -2,7 +2,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 = 3.7.23 - 2 Feb 2026 =
-
+* Fixed : Submit and Approve / Schedule buttons in Revision Editor jump around after tab change or update
+* Fixed : Revisions inflate Pending post count on Posts screen in WP 6.9
+* Fixed : Nonces were not enforced for some revision management operations
+* Fixed : Approve Revision capability ineffective under some configurations
+* Fixed : Revision Editing Permissions with "Limit to" adjustment not applied if "Enhanced Revision Access Control" enabled
+* Fixed : Some Permissions plugin settings cause incorrect revision submission access after Permissions deactivation
+* Changed : Update EDD License library
+* Added : Lang - PT_br translation
+* Changed : Lang - ES, FR, IT
 
 = 3.7.22 - 7 Jan 2026 =
 * Fixed : Create Revision link was displayed on Category Archive screen
