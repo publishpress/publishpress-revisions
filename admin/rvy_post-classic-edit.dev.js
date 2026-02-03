@@ -110,7 +110,7 @@ jQuery(document).ready( function($) {
 			$('.revision-creating').hide();
 		}
 
-		var data = {'rvy_ajax_field': 'create_revision', 'rvy_ajax_value': rvyObjEdit.postID, 'rvy_date_selection': RvyTimeSelection, 'nc': RvyGetRandomInt(99999999)};
+		var data = {'rvy_ajax_field': 'create_revision', 'rvy_ajax_value': rvyObjEdit.postID, 'rvy_date_selection': RvyTimeSelection, '_rvynonce': rvyObjEdit.createRevisionNonce};
 
 		$.ajax({
 			url: rvyObjEdit.ajaxurl,
@@ -138,7 +138,7 @@ jQuery(document).ready( function($) {
 			$('div.rvy-creation-ui').html(rvyObjEdit.errorCaption);
 		}
 
-		var data = {'rvy_ajax_field': 'create_scheduled_revision', 'rvy_ajax_value': rvyObjEdit.postID, 'rvy_date_selection': RvyTimeSelection, 'nc': RvyGetRandomInt(99999999)};
+		var data = {'rvy_ajax_field': 'create_scheduled_revision', 'rvy_ajax_value': rvyObjEdit.postID, 'rvy_date_selection': RvyTimeSelection, '_rvynonce': rvyObjEdit.createScheduledRevisionNonce};
 
 		$.ajax({
 			url: rvyObjEdit.ajaxurl,
