@@ -134,6 +134,12 @@ class Revisionary
 					function($clause, $required_operation, $post_type, $args) {
 						global $pagenow;
 
+						$defaults = ['logic' => 'NOT IN', 'ids' => [], 'src_table' => ''];
+						$args = array_merge($defaults, $args);
+						foreach (array_keys($defaults) as $var) {
+							$$var = $args[$var];
+						}
+
 						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						if (
 							('exclude' == $args['mod'])
@@ -146,6 +152,16 @@ class Revisionary
 							$revision_status_csv = rvy_revision_statuses(['return' => 'csv']);
 
 							$clause .= " AND ({$args['src_table']}.comment_count {$args['logic']} ('" . implode("','", $args['ids']) . "') OR {$args['src_table']}.post_mime_type NOT IN ($revision_status_csv))";
+						} else {
+							if (defined('PP_REVISIONS_EXTRA_PERMISSIONS_FILTER')) {
+								// @todo: move this into Permissions
+
+								if (false !== strpos($clause, 'comment_count')) {
+									return $clause;
+								}
+						
+								$clause = "( $clause OR ( $src_table.post_mime_type IN ('" . implode("','", array_map('sanitize_key', rvy_revision_statuses())) . "') AND $src_table.comment_count $logic ('" . implode("','", $ids) . "') ) )";
+							}
 						}
 
 						return $clause;
@@ -956,9 +972,13 @@ class Revisionary
 				$pp_exceptions = presspermit()->getUser()->except;
 				
 				presspermit()->getUser()->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
+
+				$can_copy = current_user_can('edit_post', $post_id);
+			} else {
+				$can_copy = rvy_is_full_editor($post_id);
 			}
 
-			if (!$can_copy = rvy_is_full_editor($post_id)) {
+			if (!$can_copy) {
 				if ($_post = get_post($post_id)) {
 					$type_obj = get_post_type_object($_post->post_type);
 				}
@@ -997,7 +1017,7 @@ class Revisionary
 
 			// allow PublishPress Permissions to apply 'copy' exceptions
 			if ($can_copy = apply_filters('revisionary_can_copy', $can_copy, $post_id, 'draft', 'draft-revision', $filter_args)
-			|| (rvy_get_option('submit_permission_enables_creation') && apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args))
+			|| (function_exists('presspermit') && rvy_get_option('submit_permission_enables_creation') && apply_filters('revisionary_can_submit', $can_copy, $post_id, 'pending', 'pending-revision', $filter_args))
 			) {
 				$caps = ['read'];
 			} else {

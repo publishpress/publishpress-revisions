@@ -150,6 +150,8 @@ function rvy_ajax_handler() {
 
 			switch ($_REQUEST['rvy_ajax_field']) {										// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 				case 'create_revision':
+					check_ajax_referer('create_revision', '_rvynonce');
+					
 					if (current_user_can('copy_post', $post_id)) {
 						$time_gmt = (!empty($_REQUEST['rvy_date_selection'])) ? intval($_REQUEST['rvy_date_selection']) : '';  // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
@@ -162,6 +164,8 @@ function rvy_ajax_handler() {
 					exit;
 
 				case 'submit_revision':
+					check_ajax_referer('submit_revision', '_rvynonce');
+					
 					// capability check is applied within function to support batch execution without redundant checks
 					require_once( dirname(__FILE__).'/admin/revision-action_rvy.php');	
 					rvy_revision_submit($post_id);
@@ -171,6 +175,8 @@ function rvy_ajax_handler() {
 
 				case 'create_scheduled_revision':
 					if (!empty($_REQUEST['rvy_date_selection'])) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+						check_ajax_referer('create_scheduled_revision', '_rvynonce');
+						
 						$time_gmt = intval($_REQUEST['rvy_date_selection']);			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
 						if (current_user_can('edit_post', $post_id)) {
@@ -184,6 +190,8 @@ function rvy_ajax_handler() {
 
 				case 'author_select':
 					if (!empty($_REQUEST['rvy_selection'])) {							// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+						check_ajax_referer('author_select', '_rvynonce');
+						
 						if (current_user_can('edit_post', $post_id)) {
 							update_post_meta($post_id, '_rvy_author_selection', (int) $_REQUEST['rvy_selection']);  // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 						}
@@ -192,6 +200,7 @@ function rvy_ajax_handler() {
 					break;
 
 				default:
+					exit;
 			}
 																						// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			if (('submit_revision' != $_REQUEST['rvy_ajax_field']) && !empty($check_autosave) && !defined('REVISIONARY_IGNORE_REVISION_AUTOSAVE')) {

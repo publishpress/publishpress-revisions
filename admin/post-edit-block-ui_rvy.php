@@ -113,6 +113,11 @@ class RVY_PostBlockEditUI {
             wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_post-block-edit{$suffix}.js", array('jquery', 'jquery-form'), PUBLISHPRESS_REVISIONS_VERSION, true );
 
             $args = \PublishPress\Revisions\PostEditorWorkflowUI::postLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions'));
+
+            $args['createRevisionNonce'] = wp_create_nonce('create_revision');
+            $args['submitRevisionNonce'] = wp_create_nonce('submit_revision');
+            $args['createScheduledRevisionNonce'] = wp_create_nonce('create_scheduled_revision');
+            $args['authorSelectNonce'] = wp_create_nonce('author_select');
         }
 
         $wp_timezone = wp_timezone();
@@ -181,7 +186,7 @@ class RVY_PostBlockEditUI {
             });
 
             $(document).on('change', 'div.rvy-author-selection select', function(e) {
-                var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), 'nc': Math.floor(Math.random() * 99999999)};
+                var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select'));?>'};
 
                 $('div.rvy-author-selection select').attr('disabled', 'disabled');
 

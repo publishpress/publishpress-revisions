@@ -195,7 +195,7 @@ jQuery(document).ready( function($) {
 
             var tmoSubmit = setInterval(function() {
                 if (!wp.autosave.server.postChanged()) {
-                    var data = {'rvy_ajax_field': rvyObjEdit[rvyObjEdit.currentStatus + 'AjaxField'], 'rvy_ajax_value': rvyObjEdit.postID, 'nc': RvyGetRandomInt(99999999)};
+                    var data = {'rvy_ajax_field': rvyObjEdit[rvyObjEdit.currentStatus + 'AjaxField'], 'rvy_ajax_value': rvyObjEdit.postID, '_rvynonce': rvyObjEdit.revisionActionNonce};
 
                     $.ajax({
                         url: rvyObjEdit.ajaxurl,
