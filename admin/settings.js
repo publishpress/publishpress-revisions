@@ -11,5 +11,6 @@ jQuery(document).ready(function ($) {
 
         $('table[id^="ppr-"]').hide();
         $(panel).show();
+        $('input[name="ppr_tab"]').val(panel);
     });
 });
