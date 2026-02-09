@@ -702,10 +702,14 @@ class RevisionaryFront {
 							$edit_button = '';
 						}
 
+						$message = (!empty($_REQUEST['rvy_approval']))
+						? __('The revision was approved and is now live on the site. %s', 'revisionary')
+						: __('This is the Current Revision. %s', 'revisionary');
+
 						if (!empty($_REQUEST['elementor-preview'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-							$message = sprintf( esc_html__('This is the Current Revision. %s', 'revisionary'), '' );
+							$message = sprintf( $message, '' );
 						} else {
-							$message = sprintf( esc_html__('This is the Current Revision. %s', 'revisionary'), $edit_button );
+							$message = sprintf( $message, $edit_button );
 						}
 
 					} elseif ('inherit' == $post->post_status) {
