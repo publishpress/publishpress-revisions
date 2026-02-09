@@ -321,8 +321,11 @@ if ( $sitewide )
 
 if ( $customize_defaults )
 	echo "<input type='hidden' name='rvy_options_customize_defaults' value='1' />";
-
 ?>
+
+<input type='hidden' name='ppr_tab' value='<?php !empty($_REQUEST['ppr_tab']) ? esc_attr($_REQUEST['ppr_tab']) : "";?>' />
+<input type='hidden' name='ppr_subtab' value='<?php !empty($_REQUEST['ppr_subtab']) ? esc_attr($_REQUEST['ppr_subtab']) : "";?>' />
+
 <table><tr>
 <td>
 <h1 class="wp-heading-inline"><?php
@@ -435,19 +438,12 @@ if (empty(array_filter($revisionary->enabled_post_types_archive))) {
 if (empty(array_filter($revisionary->enabled_post_types))) {
 	unset($this->section_captions['features']['working_copy']);
 }
-
-/*
-if (empty(array_filter($revisionary->enabled_post_types)) && empty(array_filter($revisionary->enabled_post_types_archive))) {
-	unset($this->section_captions['features']['preview']);
-	unset($this->section_captions['features']['compare']);
-}
-*/
 ?>
 
 <ul id="publishpress-revisions-settings-tabs" class="nav-tab-wrapper">
 	<?php
 	if (!empty($_REQUEST['ppr_tab'])) {															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$setActiveTab = str_replace('ppr-tab-', '', sanitize_key($_REQUEST['ppr_tab']));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$setActiveTab = str_replace('ppr-tab-', '', sanitize_key( str_replace('#', '',$_REQUEST['ppr_tab'])));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	} else {
 		// Set first tab and content as active
 		$setActiveTab = '';
@@ -994,6 +990,11 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$(this).parent().addClass('active');
 			$('#ppr-tab-working_copy div.rvy-opt-wrap > div').hide();
 			$('#ppr-tab-working_copy div.rvy-opt-wrap > div.' + $(this).attr('class')).show();
+
+			var subpanel = $(this).attr('class');
+			$('input[name="ppr_subtab"]').val(subpanel);
+
+			$('input[name="ppr_tab"]').val('#ppr-tab-working_copy');
 		});
 	});
 	/* ]]> */
@@ -1230,7 +1231,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	?>
 
 		</div>
-	
 
 		<div class="revision-scheduling" <?php if ('revision-scheduling' != $subtab) echo 'style="display:none"';?>>
 		<?php
