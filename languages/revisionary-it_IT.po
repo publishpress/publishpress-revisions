@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - PublishPress Revisions: Duplicate Posts, "
 "Submit, Approve and Schedule Content Changes - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2026-01-08T21:02:17+00:00\n"
-"PO-Revision-Date: 2026-01-09 11:25+0100\n"
+"POT-Creation-Date: 2026-02-03T18:57:14+00:00\n"
+"PO-Revision-Date: 2026-02-04 12:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: Angelo Giammarresi - info@wocmultimedia.com\n"
 "Language: it\n"
@@ -83,12 +83,12 @@ msgstr ""
 "È necessaria la capacità unfiltered_html per creare una revisione di questo "
 "articolo. Vedi la %sdocumentazione%s."
 
-#: admin/admin-posts_rvy.php:182 rvy_init-functions.php:776
+#: admin/admin-posts_rvy.php:182 rvy_init-functions.php:785
 msgid "The post already has a revision in process."
 msgstr "L'articolo ha già una revisione in corso."
 
 #: admin/admin-posts_rvy.php:264 admin/class-list-table-archive.php:463
-#: rvy_init-functions.php:473
+#: rvy_init-functions.php:482
 msgid "Revision"
 msgstr "Revisione"
 
@@ -281,11 +281,11 @@ msgstr "Elimina revisione"
 msgid "Post Type"
 msgstr "Tipo di articolo"
 
-#: admin/class-list-table-archive.php:466 rvy_init-functions.php:474
+#: admin/class-list-table-archive.php:466 rvy_init-functions.php:483
 msgid "Revised By"
 msgstr "Rivisto da"
 
-#: admin/class-list-table-archive.php:467 rvy_init-functions.php:475
+#: admin/class-list-table-archive.php:467 rvy_init-functions.php:484
 msgid "Revision Date"
 msgstr "Data della revisione"
 
@@ -379,7 +379,7 @@ msgid "Compare"
 msgstr "Confronta"
 
 #: admin/class-list-table-archive.php:877 admin/class-list-table_rvy.php:1672
-#: admin/post-editor-workflow-ui_rvy.php:231
+#: admin/post-editor-workflow-ui_rvy.php:233
 msgid "Preview Revision"
 msgstr "Anteprima revisione"
 
@@ -494,7 +494,7 @@ msgstr "D/m/y g:i:s a"
 
 #. translators: %s: post title
 #: admin/class-list-table_rvy.php:1621
-#: admin/post-editor-workflow-ui_rvy.php:232
+#: admin/post-editor-workflow-ui_rvy.php:234
 msgid "Edit Revision"
 msgstr "Modifica revisione"
 
@@ -521,7 +521,7 @@ msgid "Revision updated."
 msgstr "Revisione aggiornata."
 
 #: admin/history_rvy.php:87 admin/history_rvy.php:91 admin/history_rvy.php:97
-#: admin/history_rvy.php:100 rvy_init-functions.php:267
+#: admin/history_rvy.php:100 rvy_init-functions.php:276
 msgid "Copy"
 msgstr "Copia"
 
@@ -605,9 +605,9 @@ msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
 #: admin/history_rvy.php:1216 front_rvy.php:597 front_rvy.php:607
-#: front_rvy.php:626 front_rvy.php:657 rvy_init-functions.php:271
-#: rvy_init-functions.php:289 rvy_init-functions.php:328
-#: rvy_init-functions.php:345 rvy_init-functions.php:362
+#: front_rvy.php:626 front_rvy.php:657 rvy_init-functions.php:280
+#: rvy_init-functions.php:298 rvy_init-functions.php:337
+#: rvy_init-functions.php:354 rvy_init-functions.php:371
 msgid "Approve"
 msgstr "Approva"
 
@@ -617,7 +617,7 @@ msgstr "Anteprima/Approva"
 
 #: admin/history_rvy.php:1218 admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
-#: admin/post-editor-workflow-ui_rvy.php:231
+#: admin/post-editor-workflow-ui_rvy.php:233
 #: admin/RevisionEditSubmitMetabox.php:123
 msgid "Preview"
 msgstr "Anteprima"
@@ -1130,6 +1130,21 @@ msgstr ""
 #: admin/options.php:821
 msgid "Get Statuses Pro"
 msgstr "Ottieni Statuses Pro"
+
+#: admin/options.php:848
+msgid "Maximum revisions per post:"
+msgstr "Numero massimo di revisioni per articolo:"
+
+#: admin/options.php:850
+msgid "(unlimited)"
+msgstr "(illimitato)"
+
+#: admin/options.php:858
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr ""
+"Tieni presente che l'archiviazione può essere disabilitata per %1$sTipo di "
+"contenuto%2$s."
 
 #: admin/options.php:895 admin/options.php:1061 admin/options.php:1307
 #: admin/options.php:1333 admin/options.php:1359 admin/options.php:1387
@@ -1878,7 +1893,7 @@ msgstr "Integrazione con plugin compatibili"
 msgid "Supported Plugin"
 msgstr "Plugin compatibili"
 
-#: admin/post-edit-block-ui_rvy.php:174 admin/post-edit_rvy.php:340
+#: admin/post-edit-block-ui_rvy.php:179 admin/post-edit_rvy.php:340
 msgid "Author"
 msgstr "Autore"
 
@@ -1931,44 +1946,44 @@ msgid "Revision Submission Error"
 msgstr "Errore di invio della revisione"
 
 #: admin/post-editor-workflow-ui_rvy.php:123
-#: admin/post-editor-workflow-ui_rvy.php:232 front_rvy.php:536
+#: admin/post-editor-workflow-ui_rvy.php:234 front_rvy.php:536
 msgid "Edit"
 msgstr "Modifica"
 
-#: admin/post-editor-workflow-ui_rvy.php:130
+#: admin/post-editor-workflow-ui_rvy.php:132
 msgid "Approve and Publish"
 msgstr "Approva e pubblica"
 
-#: admin/post-editor-workflow-ui_rvy.php:135
+#: admin/post-editor-workflow-ui_rvy.php:137
 msgid "Approving the Revision..."
 msgstr "La revisione è in fase di approvazione…"
 
-#: admin/post-editor-workflow-ui_rvy.php:139
+#: admin/post-editor-workflow-ui_rvy.php:141
 msgid "Approve and Schedule"
 msgstr "Approva e programma"
 
-#: admin/post-editor-workflow-ui_rvy.php:172 rvy_init-functions.php:275
-#: rvy_init-functions.php:293 rvy_init-functions.php:311
-#: rvy_init-functions.php:331 rvy_init-functions.php:348
-#: rvy_init-functions.php:365 rvy_init-functions.php:478
+#: admin/post-editor-workflow-ui_rvy.php:174 rvy_init-functions.php:284
+#: rvy_init-functions.php:302 rvy_init-functions.php:320
+#: rvy_init-functions.php:340 rvy_init-functions.php:357
+#: rvy_init-functions.php:374 rvy_init-functions.php:487
 msgid "Update Revision"
 msgstr "Aggiorna revisione"
 
-#: admin/post-editor-workflow-ui_rvy.php:238
+#: admin/post-editor-workflow-ui_rvy.php:240
 #, php-format
 msgid "Update post before creating %s."
 msgstr "Aggiornare l'articolo prima di creare una %s."
 
-#: admin/post-editor-workflow-ui_rvy.php:245
+#: admin/post-editor-workflow-ui_rvy.php:247
 msgid "Error Creating Revision"
 msgstr "Si è verificato un errore durante la creazione della revisione"
 
-#: admin/post-editor-workflow-ui_rvy.php:247
-#: admin/post-editor-workflow-ui_rvy.php:267
+#: admin/post-editor-workflow-ui_rvy.php:249
+#: admin/post-editor-workflow-ui_rvy.php:269
 msgid "Update"
 msgstr "Aggiorna"
 
-#: admin/post-editor-workflow-ui_rvy.php:261
+#: admin/post-editor-workflow-ui_rvy.php:263
 #, php-format
 msgid "For custom field changes, edit a scheduled %s."
 msgstr "Per le modifiche ai campi personalizzati, modifica un %s programmato."
@@ -2451,7 +2466,7 @@ msgstr "%sConfronta%s%sVisualizza l'articolo pubblicato%s"
 msgid "%sView Published Post%s"
 msgstr "%sVisualizza l'articolo pubblicato%s"
 
-#: front_rvy.php:600 rvy_init-functions.php:285 rvy_init-functions.php:341
+#: front_rvy.php:600 rvy_init-functions.php:294 rvy_init-functions.php:350
 msgid "Submit"
 msgstr "Invia"
 
@@ -2480,7 +2495,7 @@ msgstr ""
 msgid "Revision status: %s %s %s %s"
 msgstr "Stato della revisione: %s %s %s %s"
 
-#: front_rvy.php:683 rvy_init-functions.php:448
+#: front_rvy.php:683 rvy_init-functions.php:457
 msgid "Publish Now"
 msgstr "Pubblica adesso"
 
@@ -2621,280 +2636,280 @@ msgstr "<strong>Questo plugin può essere eliminato.</strong>"
 msgid "Every 2 Minutes"
 msgstr "Ogni 2 minuti"
 
-#: rvy_init-functions.php:265 rvy_init-functions.php:277
+#: rvy_init-functions.php:274 rvy_init-functions.php:286
 msgid "Working Copy"
 msgstr "Copia di lavoro"
 
-#: rvy_init-functions.php:266
+#: rvy_init-functions.php:275
 msgid "Create Working Copy"
 msgstr "Crea copia di lavoro"
 
-#: rvy_init-functions.php:268
+#: rvy_init-functions.php:277
 msgid "Creating Working Copy..."
 msgstr "Creazione della copia di lavoro…"
 
-#: rvy_init-functions.php:269
+#: rvy_init-functions.php:278
 msgid "Working Copy ready"
 msgstr "Copia di lavoro pronta"
 
-#: rvy_init-functions.php:270 rvy_init-functions.php:288
+#: rvy_init-functions.php:279 rvy_init-functions.php:297
 msgid "Approve Changes"
 msgstr "Approvare le modifiche"
 
-#: rvy_init-functions.php:272 rvy_init-functions.php:290
+#: rvy_init-functions.php:281 rvy_init-functions.php:299
 msgid "Approving Changes..."
 msgstr "Approvando le modifiche…"
 
-#: rvy_init-functions.php:273 rvy_init-functions.php:291
-#: rvy_init-functions.php:309
+#: rvy_init-functions.php:282 rvy_init-functions.php:300
+#: rvy_init-functions.php:318
 msgid "Publish Changes"
 msgstr "Pubblica le modifiche"
 
-#: rvy_init-functions.php:274 rvy_init-functions.php:292
-#: rvy_init-functions.php:310 rvy_init-functions.php:330
-#: rvy_init-functions.php:347 rvy_init-functions.php:364
+#: rvy_init-functions.php:283 rvy_init-functions.php:301
+#: rvy_init-functions.php:319 rvy_init-functions.php:339
+#: rvy_init-functions.php:356 rvy_init-functions.php:373
 msgid "Save Revision"
 msgstr "Salva revisione"
 
-#: rvy_init-functions.php:276
+#: rvy_init-functions.php:285
 msgid "Working Copies"
 msgstr "Copie di lavoro"
 
-#: rvy_init-functions.php:278
+#: rvy_init-functions.php:287
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
 msgstr[0] "Copia di lavoro <span class=\"count\">(%d)</span>"
 msgstr[1] "Copie di lavoro <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:283 rvy_init-functions.php:295
+#: rvy_init-functions.php:292 rvy_init-functions.php:304
 msgid "Change Request"
 msgstr "Richiesta di modifica"
 
-#: rvy_init-functions.php:284
+#: rvy_init-functions.php:293
 msgid "Submit Change Request"
 msgstr "Invia richiesta di modifica"
 
-#: rvy_init-functions.php:286
+#: rvy_init-functions.php:295
 msgid "Submitting Changes..."
 msgstr "Invio delle modifiche…"
 
-#: rvy_init-functions.php:287
+#: rvy_init-functions.php:296
 msgid "Changes Submitted"
 msgstr "Modifiche inviate"
 
-#: rvy_init-functions.php:294
+#: rvy_init-functions.php:303
 msgid "Change Requests"
 msgstr "Richieste di modifica"
 
-#: rvy_init-functions.php:296
+#: rvy_init-functions.php:305
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
 msgstr[0] "Richieste di modifica <span class=\"count\">(%d)</span>"
 msgstr[1] "Richieste di modifiche <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:297
+#: rvy_init-functions.php:306
 msgid "Enable Change Requests"
 msgstr "Abilita le richieste di modifica"
 
-#: rvy_init-functions.php:302 rvy_init-functions.php:313
+#: rvy_init-functions.php:311 rvy_init-functions.php:322
 msgid "Scheduled Change"
 msgstr "Modifica programmata"
 
-#: rvy_init-functions.php:303 rvy_init-functions.php:304
-#: rvy_init-functions.php:307 rvy_init-functions.php:308
+#: rvy_init-functions.php:312 rvy_init-functions.php:313
+#: rvy_init-functions.php:316 rvy_init-functions.php:317
 msgid "Schedule Changes"
 msgstr "Modifiche alla programmazione"
 
-#: rvy_init-functions.php:305
+#: rvy_init-functions.php:314
 msgid "Scheduling Changes..."
 msgstr "Programmazione delle modifiche…"
 
-#: rvy_init-functions.php:306
+#: rvy_init-functions.php:315
 msgid "Changes are Scheduled."
 msgstr "Le modifiche sono state programmate."
 
-#: rvy_init-functions.php:312
+#: rvy_init-functions.php:321
 msgid "Scheduled Changes"
 msgstr "Modifiche programmate"
 
-#: rvy_init-functions.php:314
+#: rvy_init-functions.php:323
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
 msgstr[0] "Programmata <span class=\"count\">(%d)</span>"
 msgstr[1] "Programmate <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:322
+#: rvy_init-functions.php:331
 msgid "Unsubmitted Revision"
 msgstr "Revisione non inviata"
 
-#: rvy_init-functions.php:323 rvy_init-functions.php:324
+#: rvy_init-functions.php:332 rvy_init-functions.php:333
 msgid "Create Revision"
 msgstr "Crea revisione"
 
-#: rvy_init-functions.php:325
+#: rvy_init-functions.php:334
 msgid "Creating Revision..."
 msgstr "Creazione della revisione…"
 
-#: rvy_init-functions.php:326
+#: rvy_init-functions.php:335
 msgid "The Revision is ready to edit."
 msgstr "La revisione è pronta per la modifica."
 
-#: rvy_init-functions.php:326
+#: rvy_init-functions.php:335
 msgid "Revision ready to edit."
 msgstr "Revisioni pronte per la modifica."
 
-#: rvy_init-functions.php:327 rvy_init-functions.php:344
-#: rvy_init-functions.php:361
+#: rvy_init-functions.php:336 rvy_init-functions.php:353
+#: rvy_init-functions.php:370
 msgid "Approve Revision"
 msgstr "Approva la revisione"
 
-#: rvy_init-functions.php:329 rvy_init-functions.php:346
-#: rvy_init-functions.php:363
+#: rvy_init-functions.php:338 rvy_init-functions.php:355
+#: rvy_init-functions.php:372
 msgid "Publish Revision"
 msgstr "Pubblica revisione"
 
-#: rvy_init-functions.php:332
+#: rvy_init-functions.php:341
 msgid "Unsubmitted Revisions"
 msgstr "Revisioni non inviate"
 
-#: rvy_init-functions.php:333
+#: rvy_init-functions.php:342
 msgid "Not Submitted"
 msgstr "Non inviata"
 
-#: rvy_init-functions.php:334
+#: rvy_init-functions.php:343
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "Non inviata <span class=\"count\">(%s)</span>"
 msgstr[1] "Non inviate <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:339
+#: rvy_init-functions.php:348
 msgid "Submitted Revision"
 msgstr "Revisione inviata"
 
-#: rvy_init-functions.php:340 rvy_init-functions.php:481
+#: rvy_init-functions.php:349 rvy_init-functions.php:490
 msgid "Submit Revision"
 msgstr "Invia revisione"
 
-#: rvy_init-functions.php:342
+#: rvy_init-functions.php:351
 msgid "Submitting Revision..."
 msgstr "Invio della revisione…"
 
-#: rvy_init-functions.php:343
+#: rvy_init-functions.php:352
 msgid "The Revision is Submitted"
 msgstr "La revisione è stata inviata"
 
-#: rvy_init-functions.php:343
+#: rvy_init-functions.php:352
 msgid "Revision Submitted"
 msgstr "Revisione inviata"
 
-#: rvy_init-functions.php:349
+#: rvy_init-functions.php:358
 msgid "Submitted Revisions"
 msgstr "Revisioni inviate"
 
-#: rvy_init-functions.php:350
+#: rvy_init-functions.php:359
 msgid "Submitted"
 msgstr "Inviato"
 
-#: rvy_init-functions.php:351
+#: rvy_init-functions.php:360
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "Inviata <span class=\"count\">(%s)</span>"
 msgstr[1] "Inviate <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:356
+#: rvy_init-functions.php:365
 msgid "Scheduled Revision"
 msgstr "Revisione programmata"
 
-#: rvy_init-functions.php:357
+#: rvy_init-functions.php:366
 msgid "Schedule Revision"
 msgstr "Revisione programmata"
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:367
 msgid "Schedule"
 msgstr "Programmazione"
 
-#: rvy_init-functions.php:359
+#: rvy_init-functions.php:368
 msgid "Scheduling Revision..."
 msgstr "Programmazione della revisione…"
 
-#: rvy_init-functions.php:360
+#: rvy_init-functions.php:369
 msgid "The Revision is Scheduled"
 msgstr "La revisione è stata programmata"
 
-#: rvy_init-functions.php:360
+#: rvy_init-functions.php:369
 msgid "Revision Scheduled"
 msgstr "Revisione programmata"
 
-#: rvy_init-functions.php:366
+#: rvy_init-functions.php:375
 msgid "Scheduled Revisions"
 msgstr "Revisioni programmate"
 
-#: rvy_init-functions.php:367
+#: rvy_init-functions.php:376
 msgid "Scheduled"
 msgstr "Programmato"
 
-#: rvy_init-functions.php:368
+#: rvy_init-functions.php:377
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
 msgstr[0] "Programmata <span class=\"count\">(%s)</span>"
 msgstr[1] "Programmate <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:468
+#: rvy_init-functions.php:477
 #, php-format
 msgid "%sMy Copies & Changes%s(%s)</span>"
 msgid_plural "%sMy Copies & Changes%s(%s)</span>"
 msgstr[0] "%sLa mia copia e le mie modifiche%s(%s)</span>"
 msgstr[1] "%sLe mie copie e le mie modifiche%s(%s)</span>"
 
-#: rvy_init-functions.php:469
+#: rvy_init-functions.php:478
 #, php-format
 msgid "%sMy Revisions%s(%s)</span>"
 msgid_plural "%sMy Revisions%s(%s)</span>"
 msgstr[0] "%sLa mia revisione%s(%s)</span>"
 msgstr[1] "%sLe mie revisioni%s(%s)</span>"
 
-#: rvy_init-functions.php:471
+#: rvy_init-functions.php:480
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
 msgstr[0] "%sRevisioni del mio articolo%s(%s)</span>"
 msgstr[1] "%sRevisioni dei miei articoli%s(%s)"
 
-#: rvy_init-functions.php:476
+#: rvy_init-functions.php:485
 msgid "Post Author"
 msgstr "Autore articolo"
 
-#: rvy_init-functions.php:477
+#: rvy_init-functions.php:486
 msgid "Published Post"
 msgstr "Articolo pubblicato"
 
-#: rvy_init-functions.php:482
+#: rvy_init-functions.php:491
 msgid "Submit Changes"
 msgstr "Invia le modifiche"
 
-#: rvy_init-functions.php:686
+#: rvy_init-functions.php:695
 msgid "Revisor"
 msgstr "Revisore"
 
-#: rvy_init-functions.php:698
+#: rvy_init-functions.php:707
 msgctxt "User role"
 msgid "Revisor"
 msgstr "Revisore"
 
-#: rvy_init-functions.php:789
+#: rvy_init-functions.php:798
 msgid ""
 "The unfiltered_html capability is required to create a revision of this post."
 msgstr ""
 "È necessaria la capacità unfiltered_html per creare una revisione di questo "
 "articolo."
 
-#: rvy_init-functions.php:1241
+#: rvy_init-functions.php:1250
 msgid "Revision Workflow"
 msgstr "Workflow revisione"
 
