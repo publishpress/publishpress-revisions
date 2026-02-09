@@ -728,6 +728,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$arr = [
 			'cb' => '<input type="checkbox" />', 
 			'title' => pp_revisions_label('queue_col_revision'), 
+			'preview' => '',
 			'post_status' => esc_html__('Status', 'revisionary'), 
 			'post_type' => esc_html__('Post Type', 'revisionary'), 
 			'author' => pp_revisions_label('queue_col_revised_by'), 
@@ -770,6 +771,11 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					echo esc_html("($post_type)");
 				}
 
+				break;
+
+			case 'preview':
+				$url = rvy_preview_url($post->ID);
+				echo "<a href='" . esc_url($url) . "'><span class='dashicons dashicons-cover-image' title='" . esc_attr__('View preview', 'revisionary') . "'></span></a>";
 				break;
 
 			case 'post_status':
