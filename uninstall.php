@@ -54,8 +54,8 @@ if (get_option('rvy_delete_settings_on_uninstall')) {
             if ($revision_ids = $wpdb->get_col("SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ('draft-revision', 'pending-revision', 'future-revision', 'revision-deferred', 'revision-needs-work', 'revision-rejected')")) {
                 $id_csv = implode("','", array_map('intval', $revision_ids));
                 
-                $wpdb->query("DELETE FROM $wpdb->posts WHERE ID IN ('$id_csv') AND post_mime_type IN ('draft-revision', 'pending-revision', 'future-revision', 'revision-deferred', 'revision-needs-work', 'revision-rejected')");   
-                $wpdb->query("DELETE FROM $wpdb->postmeta WHERE post_id IN ('$id_csv')");   
+                $wpdb->query("DELETE FROM $wpdb->posts WHERE ID IN ('$id_csv') AND post_mime_type IN ('draft-revision', 'pending-revision', 'future-revision', 'revision-deferred', 'revision-needs-work', 'revision-rejected')");   // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                $wpdb->query("DELETE FROM $wpdb->postmeta WHERE post_id IN ('$id_csv')");       // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 
                 wp_cache_flush();
             }

@@ -228,10 +228,11 @@ class RevisionaryAdmin
 
 	 function fltAdminBodyClass($classes) {
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive'])) {
 			$classes .= ' revisionary';
 			
-			switch ($_REQUEST['page']) {
+			switch ($_REQUEST['page']) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				case 'revisionary-archive':
 					$classes .= ' revisionary-archive';
 					break;

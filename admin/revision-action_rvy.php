@@ -761,9 +761,15 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$original_revision_status = $revision->post_mime_type;
 
-	if (!$published_id = $revision->comment_count) {
-		if (! $published_id = rvy_post_id($revision_id)) {
-			return false;
+	if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
+		$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
+	}
+
+	if (empty($published_id)) {
+		if (!$published_id = $revision->comment_count) {
+			if (! $published_id = rvy_post_id($revision_id)) {
+				return false;
+			}
 		}
 	}
 
