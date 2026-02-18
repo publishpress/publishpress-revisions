@@ -630,8 +630,11 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		$type_obj = get_post_type_object($post->post_type);
 
 		if ( empty( $_REQUEST['rvy_redirect'] ) && ! $scheduled && is_post_type_viewable($type_obj) ) {
-			$redirect = $published_url;
-
+			$redirect = (rvy_get_option('show_current_revision_bar'))
+			? add_query_arg('mark_current_revision', 1, $published_url)
+			: $published_url;
+			
+			$redirect = add_query_arg('rvy_approval', 1, $redirect);
 		} elseif ( !empty($_REQUEST['rvy_redirect']) && 'edit' == esc_url_raw($_REQUEST['rvy_redirect']) ) {
 			$redirect = add_query_arg( $last_arg, "post.php?post=$revision_id&action=edit" );
 
@@ -758,9 +761,15 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$original_revision_status = $revision->post_mime_type;
 
-	if (!$published_id = $revision->comment_count) {
-		if (! $published_id = rvy_post_id($revision_id)) {
-			return false;
+	if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
+		$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
+	}
+
+	if (empty($published_id)) {
+		if (!$published_id = $revision->comment_count) {
+			if (! $published_id = rvy_post_id($revision_id)) {
+				return false;
+			}
 		}
 	}
 

@@ -1,6 +1,15 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= 3.7.24 - 18 Feb 2026 =
+* Added : Preview link icon in New Revisions table
+* Added : Confirmation message after Revision publication
+* Fixed : Revision could be applied to wrong post under some conditions
+* Fixed : Current Revisions top bar was not displayed after revision publication
+* Fixed : Revisions Settings screen did not return to current tab after update
+* Fixed : Approving Revision caption on Edit Revision screen was misleading for Scheduled Revisions
+* Fixed : Security hardening, PHP Code Sniffer compliance
+
 = 3.7.23 - 2 Feb 2026 =
 * Fixed : Submit and Approve / Schedule buttons in Revision Editor jump around after tab change or update
 * Fixed : Revisions inflate Pending post count on Posts screen in WP 6.9

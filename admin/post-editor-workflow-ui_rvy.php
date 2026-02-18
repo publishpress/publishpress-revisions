@@ -134,7 +134,7 @@ class PostEditorWorkflowUI {
             $vars['approveCaption'] = '';
         }
 
-        $vars['approvingCaption'] = __('Approving the Revision...', 'revisionary');
+        $vars['approvingCaption'] = __('Update in progress...', 'revisionary');
 
         if ($block_editor) {
             if ($can_publish) {

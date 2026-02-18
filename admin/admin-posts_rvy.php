@@ -55,9 +55,9 @@ class RevisionaryAdminPosts {
 
 		add_filter('posts_where', [$this, 'fltFilterRevisions'], 10, 2);
 
-		if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {
+		if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
 			add_filter('posts_results', [$this, 'fltPostsResults'], 10, 1);
-			add_filter('manage_product_posts_custom_column', [$this, 'actProductsCol'], 10, 1);
+			add_action('manage_product_posts_custom_column', [$this, 'actProductsCol'], 10, 1);
 			add_filter('get_edit_post_link', [$this, 'fltGetEditPostLink'], 50, 3);
 		}
     }
@@ -142,8 +142,8 @@ class RevisionaryAdminPosts {
 					/* <![CDATA[ */
 					jQuery(document).ready( function($) {
 						if ($('#the-list').length) {
-							$('td.column-name a[href*="<?php echo $link;?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
-							$('td.column-title a[href*="<?php echo $link;?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
+							$('td.column-name a[href*="<?php echo esc_url($link);?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
+							$('td.column-title a[href*="<?php echo esc_url($link);?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
 						}
 					});
 					/* ]]> */

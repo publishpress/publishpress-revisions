@@ -145,7 +145,7 @@ class Revisionary
 							('exclude' == $args['mod'])
 							&& rvy_get_option('apply_post_exceptions')
 							&& (
-								(($pagenow == 'admin.php') && isset($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-q', 'revisionary-archive']))
+								(($pagenow == 'admin.php') && isset($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-q', 'revisionary-archive']))	// //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 								|| (in_array($pagenow, ['post.php', 'post-new.php']) && rvy_in_revision_workflow(rvy_detect_post_id()))
 							)
 						) {
@@ -178,7 +178,7 @@ class Revisionary
 						if (
 							rvy_get_option('apply_post_exceptions')
 							&& (
-								(($pagenow == 'admin.php') && isset($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-q', 'revisionary-archive']))
+								(($pagenow == 'admin.php') && isset($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-q', 'revisionary-archive']))	// //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 								|| (in_array($pagenow, ['post.php', 'post-new.php']) && rvy_in_revision_workflow(rvy_detect_post_id()))
 							)
 						) {
@@ -205,7 +205,7 @@ class Revisionary
 		
 		add_action( 'deleted_post', [$this, 'actDeletedPost']);
 
-		if ( rvy_get_option('scheduled_revisions') ) {
+		if ( rvy_get_option( 'scheduled_revisions') ) {
 			// users who have edit_published capability for post/page can create a scheduled revision by modifying post date to a future date (without setting "future" status explicitly)
 			add_filter( 'wp_insert_post_data', array($this, 'flt_insert_post_data'), 99, 2 );
 		}
@@ -971,6 +971,7 @@ class Revisionary
 			if (function_exists('presspermit') && !rvy_get_option('submit_permission_enables_creation')) {
 				$pp_exceptions = presspermit()->getUser()->except;
 				
+				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
 				presspermit()->getUser()->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
 
 				$can_copy = current_user_can('edit_post', $post_id);
@@ -1023,7 +1024,6 @@ class Revisionary
 			} else {
 				$caps = array_diff_key($caps, [$cap => true]);
 			}
-		
 		} elseif (0 === strpos($cap, 'set_revision_')) {
 			if (!rvy_get_option('pending_revisions')) {
 				return array_diff_key($caps, [$cap => true]);

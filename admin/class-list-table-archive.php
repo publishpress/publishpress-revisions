@@ -461,7 +461,6 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
         $arr = array(
             'cb'			=> '<input type="checkbox" />',
 			'post_title' 	=> __( 'Revision', 'revisionary' ),
-			/*'post_count' 	=> __( 'Count', 'revisionary' ),*/
 			'origin_post_type' 		=> __( 'Post Type', 'revisionary' ),
 			'post_author'	=> __( 'Revised By', 'revisionary' ),
 			'post_date' 	=> __( 'Revision Date', 'revisionary' ),
@@ -555,33 +554,13 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				// Are revisions enabled for the post type of this post parent?
 				$post_object 		= get_post( $item->post_parent );
 				
-				//$revisions_enabled	= wp_revisions_enabled( $post_object );
-				
-				//if( $revisions_enabled ) {
-					// Show title with link
-					printf(
-						'<strong><a class="row-title rvy-open-popup" href="%s" data-label="%s">%s</a></strong>',
-						esc_url_raw( get_edit_post_link( $item->ID ) . '&width=900&height=600&rvy-popup=true&TB_iframe=1' ),
-						esc_attr( $item->$column_name ),
-						esc_html($item->$column_name)
-					);
-				
-				/*
-				} else {
-					// Show title WITHOUT link
-					printf(
-						'<strong>%s</strong> %s',
-						esc_html($item->$column_name),
-						sprintf(
-							'<span class="dashicons dashicons-info" title="%s"></span>',
-							sprintf(
-								esc_attr__( 'Revisions are disabled for %s post type', 'revisionary' ),
-								esc_attr($item->origin_post_type)
-							)
-						)
-					);
-				}
-				*/
+				// Show title with link
+				printf(
+					'<strong><a class="row-title rvy-open-popup" href="%s" data-label="%s">%s</a></strong>',
+					esc_url_raw( get_edit_post_link( $item->ID ) . '&width=900&height=600&rvy-popup=true&TB_iframe=1' ),
+					esc_attr( $item->$column_name ),
+					esc_html($item->$column_name)
+				);
 
 				break;
 
@@ -610,11 +589,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			case 'post_date':
 				$prev_revision_status = get_post_meta($item->ID, '_rvy_prev_revision_status', true);
 
-				//if ('future-revision' == $prev_revision_status) {
-					return $this->friendly_date($item->post_modified, $item->post_modified_gmt);
-				//} else {
-					//return $this->friendly_date($item->post_date, $item->post_date_gmt);
-				//}
+				return $this->friendly_date($item->post_modified, $item->post_modified_gmt);
 
 				break;
 
@@ -628,10 +603,6 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				} else {
 					$published_gmt = $item->post_date_gmt;
 				}
-
-				//} elseif (!$published_gmt = get_post_meta($item->ID, '_rvy_published_gmt', true)) {
-				//	$published_gmt = $item->origin_post_date_gmt;
-				//}
 
                 return $this->friendly_date(get_date_from_gmt($published_gmt), $published_gmt);
 				break;
@@ -674,12 +645,12 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 					printf(
 						esc_html__('Edit of %s', 'revisionary'),
-						"<span title='$this->active_revision_title'>" . $status_label . '</span>'
+						"<span title='" . esc_attr($this->active_revision_title) . "'>" . esc_html($status_label) . '</span>'
 					);
 
 				} elseif ($this->parent_from_revision_workflow) {
 					printf("<span title='%s'>%s</span>",
-						$this->from_revision_title,
+						esc_html($this->from_revision_title),
 						esc_html__('Edit of published Revision', 'revisionary')
 					);
 				} elseif ($this->direct_edit) {
@@ -697,7 +668,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				}
 
 				if (!empty($approver_id)) {
-					echo get_the_author_meta('display_name', $approver_id);
+					echo esc_html(get_the_author_meta('display_name', $approver_id));
 				}
 
 				break;
@@ -847,7 +818,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 		$post_type_object 	= get_post_type_object( $item->origin_post_type );
 		$post_object 		= get_post( $item->post_parent );
-		$revisions_enabled	= true; // wp_revisions_enabled( $post_object );
+		$revisions_enabled	= true;
 
 		if ( ( $can_read_post || $can_edit_post ) && $revisions_enabled ) {
 			$actions['diff'] = sprintf(

@@ -49,13 +49,13 @@ class RevisionaryFront {
 	function fltHomePreviewRequest($clauses, $_wp_query = false, $args = []) {
 		global $wpdb, $wp_query;
 
-		$preview_page_id = (!empty($_REQUEST['page__id'])) ? $_REQUEST['page__id'] : 0;
+		$preview_page_id = (!empty($_REQUEST['page__id'])) ? intval($_REQUEST['page__id']) : 0;				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if (!$preview_page_id || empty($wp_query) || empty($wp_query->query_vars) || empty($wp_query->query_vars['p'])) {
 			return $clauses;
 		}
 
-		$front_page_id = $wp_query->query_vars['p'];
+		$front_page_id = intval($wp_query->query_vars['p']);
 
 		if (rvy_post_id($preview_page_id) == $front_page_id) {
 			$clauses['where'] = str_replace("$wpdb->posts.ID = $front_page_id", "$wpdb->posts.ID = $preview_page_id", $clauses['where']);
@@ -535,7 +535,7 @@ class RevisionaryFront {
 				$edit_url = apply_filters('revisionary_preview_edit_url', rvy_admin_url("post.php?action=edit&amp;post=$revision_id"), $revision_id);
 				$edit_button = "<a href='$edit_url' class='rvy-preview-link rvy_has_empty_spacing'>" . esc_html__('Edit', 'revisionary') . '</a>';
 
-				if (empty($_REQUEST['mark_current_revision'])) {
+				if (empty($_REQUEST['mark_current_revision'])) {											// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					$edit_button .= ' <span class="rvy-preview-link">&bull;</span> ';
 				}
 			} else {
@@ -702,10 +702,14 @@ class RevisionaryFront {
 							$edit_button = '';
 						}
 
+						$message = (!empty($_REQUEST['rvy_approval']))												// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						? __('The revision was approved and is now live on the site. %s', 'revisionary')
+						: __('This is the Current Revision. %s', 'revisionary');
+
 						if (!empty($_REQUEST['elementor-preview'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-							$message = sprintf( esc_html__('This is the Current Revision. %s', 'revisionary'), '' );
+							$message = sprintf( $message, '' );
 						} else {
-							$message = sprintf( esc_html__('This is the Current Revision. %s', 'revisionary'), $edit_button );
+							$message = sprintf( $message, $edit_button );
 						}
 
 					} elseif ('inherit' == $post->post_status) {
