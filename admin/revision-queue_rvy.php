@@ -23,25 +23,27 @@ if (rvy_get_option('revision_queue_capability') && !is_content_administrator_rvy
 
 set_current_screen( 'revisionary-q' );
 
-if (!empty($_REQUEST['post_type2'])) {
-	$_REQUEST['post_type'] = $_REQUEST['post_type2'];
+if (!empty($_REQUEST['post_type2'])) {										// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$_REQUEST['post_type'] = sanitize_key($_REQUEST['post_type2']);			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 }
 
-if (!empty($_REQUEST['post_status2'])) {
-	$_REQUEST['post_status'] = $_REQUEST['post_status2'];
+if (!empty($_REQUEST['post_status2'])) {									// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$_REQUEST['post_status'] = sanitize_key($_REQUEST['post_status2']);		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 }
 
-if (!empty($_REQUEST['post_type'])) {
+$_post_type = !empty($_REQUEST['post_type']) ? sanitize_key($_REQUEST['post_type']) : '';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+if ($_post_type) {
 	add_action('admin_print_footer_scripts', 
 		function() {
 			?>
 			<script type="text/javascript">
 				/* <![CDATA[ */
 				jQuery(document).ready( function($) {
-					$('a.next-page').prop('href', $('a.next-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
-					$('a.last-page').prop('href', $('a.last-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
-					$('a.prev-page').prop('href', $('a.prev-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
-					$('a.first-page').prop('href', $('a.first-page').attr('href') + '&post_type=<?php echo sanitize_key($_REQUEST['post_type']);?>');
+					$('a.next-page').prop('href', $('a.next-page').attr('href') + '&post_type=<?php echo sanitize_key($_post_type);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended?>');
+					$('a.last-page').prop('href', $('a.last-page').attr('href') + '&post_type=<?php echo sanitize_key($_post_type);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended?>');
+					$('a.prev-page').prop('href', $('a.prev-page').attr('href') + '&post_type=<?php echo sanitize_key($_post_type);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended?>');
+					$('a.first-page').prop('href', $('a.first-page').attr('href') + '&post_type=<?php echo sanitize_key($_post_type); // phpcs:ignore WordPress.Security.NonceVerification.Recommended?>');
 				});
 				/* ]]> */
 			</script>

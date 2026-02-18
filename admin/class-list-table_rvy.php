@@ -502,8 +502,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			? "$p.post_status IN ('draft', 'pending') AND " 
 			: '';
 
-			if (!empty($_REQUEST['published_post'])) {
-				$own_revision_and .= $wpdb->prepare(" AND $p.comment_count = %d", intval($_REQUEST['published_post']));
+			if (!empty($_REQUEST['published_post'])) {																		    	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$own_revision_and .= $wpdb->prepare(" AND $p.comment_count = %d", intval($_REQUEST['published_post']));				// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			}
 
 			$own_revision_clause = $wpdb->prepare(
@@ -824,10 +824,11 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 					/** This filter is documented in wp-admin/includes/class-wp-posts-list-table.php */
 					$mode = 'list';
-																	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo $revisionary->admin->tooltipText(
-						apply_filters( 'rvy_post_schedule_date_column_time', $h_time, $post, 'date', $mode ),
-						$t_time
+
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $revisionary->admin->tooltipText(														
+						apply_filters( 'rvy_post_schedule_date_column_time', $h_time, $post, 'date', $mode ),	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						$t_time   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					);
 				}
 
@@ -1194,6 +1195,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
 
 		$all_count = 0;
+
 		foreach($revision_statuses as $status_obj) {
 			$status = (!empty($status_obj->name)) ? $status_obj->name : '';
 			
@@ -1279,25 +1281,25 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		echo '<label for="bulk-action-selector-' . esc_attr( $which ) . '" class="screen-reader-text">' .
 			/* translators: Hidden accessibility text. */
-			__( 'Select bulk action' ) .
+			esc_html__( 'Select bulk action' ) .
 		'</label>';
-		echo '<select name="action' . $two . '" id="bulk-action-selector-' . esc_attr( $which ) . "\">\n";
-		echo '<option value="-1">' . __( 'Bulk actions' ) . "</option>\n";
+		echo '<select name="action' . esc_attr($two) . '" id="bulk-action-selector-' . esc_attr( $which ) . "\">\n";
+		echo '<option value="-1">' . esc_html__( 'Bulk actions' ) . "</option>\n";
 
 		foreach ( $this->_actions as $key => $value ) {
 			if ( is_array( $value ) ) {
 				echo "\t" . '<optgroup label="' . esc_attr( $key ) . '">' . "\n";
 
 				foreach ( $value as $name => $title ) {
-					$class = ( 'edit' === $name ) ? ' class="hide-if-no-js"' : '';
+					$class = ( 'edit' === $name ) ? 'hide-if-no-js' : '';
 
-					echo "\t\t" . '<option value="' . esc_attr( $name ) . '"' . $class . '>' . $title . "</option>\n";
+					echo "\t\t" . '<option value="' . esc_attr( $name ) . '" class="' . esc_attr($class) . '" >' . esc_html($title) . "</option>\n";
 				}
 				echo "\t" . "</optgroup>\n";
 			} else {
-				$class = ( 'edit' === $key ) ? ' class="hide-if-no-js"' : '';
+				$class = ( 'edit' === $key ) ? 'hide-if-no-js' : '';
 
-				echo "\t" . '<option value="' . esc_attr( $key ) . '"' . $class . '>' . $value . "</option>\n";
+				echo "\t" . '<option value="' . esc_attr( $key ) . '" class="' . esc_attr($class) . '">' . esc_html($value) . "</option>\n";
 			}
 		}
 
@@ -1306,13 +1308,13 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		submit_button( __( 'Apply' ), 'action', 'bulk_action', false, array( 'id' => "doaction$two" ) );
 		echo "\n";
 
-		echo '<select name="post_type' . $two . '" id="post_type" style="float:none">';
-		echo '<option value="">' . __( 'All Post Types' ) . "</option>";
+		echo '<select name="post_type' . esc_attr($two) . '" id="post_type" style="float:none">';
+		echo '<option value="">' . esc_html__( 'All Post Types' ) . "</option>";
 
 		foreach(array_keys($revisionary->enabled_post_types) as $post_type) {
 			if ($type_obj = get_post_type_object($post_type)) {
-				$selected = (!$two && (!empty($_REQUEST['post_type'])) && ($post_type == sanitize_key($_REQUEST['post_type']))) ? ' selected' : '';
-				echo "\t" . '<option value="' . esc_attr($post_type) . '"' . $selected . '>' . $type_obj->labels->singular_name . "</option>";
+				$selected = (!$two && (!empty($_REQUEST['post_type'])) && ($post_type == sanitize_key($_REQUEST['post_type']))) ? ' selected' : '';		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				echo "\t" . '<option value="' . esc_attr($post_type) . '"' . esc_attr($selected) . '>' . esc_html($type_obj->labels->singular_name) . "</option>";
 			}
 		}
 
@@ -1320,8 +1322,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
 
-		echo '<select name="post_status' . $two . '" id="post_status" style="float:none">';
-		echo '<option value="">' . __('All Revision Statuses', 'revisionary') . "</option>\n";
+		echo '<select name="post_status' . esc_attr($two) . '" id="post_status" style="float:none">';
+		echo '<option value="">' . esc_html__('All Revision Statuses', 'revisionary') . "</option>\n";
 
 		foreach($revision_statuses as $k => $status_obj) {
 			if (!is_object($status_obj)) {
@@ -1332,8 +1334,9 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				continue;
 			}
 
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$selected = (!$two && (!empty($_REQUEST['post_status'])) && ($status_obj->name == sanitize_key($_REQUEST['post_status']))) ? ' selected' : '';
-			echo "\t" . '<option value="' . esc_attr($status_obj->name) . '"' . $selected . '>' . $status_obj->label . "</option>\n";
+			echo "\t" . '<option value="' . esc_attr($status_obj->name) . '"' . esc_attr($selected) . '>' . esc_html($status_obj->label) . "</option>\n";
 		}
 
 		echo "</select>\n";

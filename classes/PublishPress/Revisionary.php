@@ -278,6 +278,7 @@ class Revisions {
                 'learn_more_url' => 'https://publishpress.com/knowledge-base/revisions-yoast-seo/'
             ],
 
+            // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
             /*
             [
                 'id' => 'litespeed_compatibility',

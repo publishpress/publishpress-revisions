@@ -39,7 +39,7 @@ class RvyPostEdit {
                     }
 
                     ?>
-                    rvyDeleteURL[<?php echo $revision->ID;?>] = '<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=rvy-revisions&amp;action=delete&amp;revision={$revision->ID}"), 'delete-revision_' . $revision->ID ));?>'; 
+                    rvyDeleteURL[<?php echo esc_attr($revision->ID);?>] = '<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=rvy-revisions&amp;action=delete&amp;revision={$revision->ID}"), 'delete-revision_' . $revision->ID ));?>'; 
                     <?php
                 }
             ?>
@@ -173,7 +173,7 @@ class RvyPostEdit {
         global $revisionary;
 
         if (
-        !empty($_REQUEST['rvy_new'])
+        !empty($_REQUEST['rvy_new'])                                                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         || (rvy_in_revision_workflow($post) && empty($revisionary->enabled_post_types[$post->post_type]))
         || (!rvy_in_revision_workflow($post) && empty($revisionary->enabled_post_types_archive[$post->post_type]))
         ) {
@@ -204,7 +204,7 @@ class RvyPostEdit {
             return;
         }
 
-        if (!empty($_REQUEST['rvy_new']) || !rvy_in_revision_workflow($post->ID)) {
+        if (!empty($_REQUEST['rvy_new']) || !rvy_in_revision_workflow($post->ID)) {         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return;
         }
 
