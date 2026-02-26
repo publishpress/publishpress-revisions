@@ -151,7 +151,7 @@ jQuery(document).ready( function($) {
 		return Math.floor(Math.random() * max);
     }
     
-    $(document).on('click', 'div.postbox-container', function() {
+    $(document).on('click', 'div.postbox-container a.save-timestamp, #post-status-select, #rvy_post_author', function() {
 		RvyDisableSubmitButtons();
 	});
 
