@@ -124,6 +124,8 @@ class RvyPostEdit {
                     $utc_time = new DateTime("now", new DateTimeZone('UTC'));
                     $args['timezoneOffset'] = 0 - $wp_timezone->getOffset($utc_time);
 
+                    $args['createRevisionNonce'] = wp_create_nonce('create_revision');
+
                     $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
                     ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
                     : false;
