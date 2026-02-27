@@ -126,11 +126,7 @@ class RvyPostEdit {
 
                     $args['createRevisionNonce'] = wp_create_nonce('create_revision');
 
-                    $args['submitRevisionNonce'] = wp_create_nonce('submit_revision');
-
                     $args['createScheduledRevisionNonce'] = wp_create_nonce('create_scheduled_revision');
-
-                    $args['authorSelectNonce'] = wp_create_nonce('author_select');
 
                     $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
                     ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
