@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){var rvyIsPublished=false;var RvySubmissionUI=function(){if(rvyObjEdit.ajaxurl&&!$('div.rvy-creation-ui').length){var hideStyle=(rvyObjEdit.actionCaption=='')?' style="display:none"':'';var html='<div class="rvy-creation-ui"'+hideStyle+'><a href="javascript:void(0)" class="button revision-approve revision-create" style="margin-top: 15px; margin-bottom: 15px" title="'
 +rvyObjEdit.actionTitle+'">'
 +rvyObjEdit.actionCaption+'</a>'
-+'<div class="revision-creating"><span class="spinner"></span></div>'
++'<div class="revision-creating" style="display:none"><span class="spinner"></span></div>'
 +'<div class="revision-created-wrapper" style="display:none; margin: 10px 0 10px 5px; font-weight: bold">'
 +'<span class="revision-approve revision-created">'+rvyObjEdit.completedCaption+'</span> &nbsp;';html=html+'<a href="javascript:void(0)" class="revision-approve revision-edit" target="_blank">'
 +rvyObjEdit.completedEditLinkCaption+'</a>'
