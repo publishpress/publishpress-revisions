@@ -43,9 +43,35 @@ if ($_post_id = rvy_detect_post_id()) {
 if (rvy_post_revision_supported($_post_id)) {
 	add_action( 'enqueue_block_editor_assets', ['RVY_PostBlockEditUI', 'disablePublishPressStatusesScripts'], 1);
 	add_action( 'enqueue_block_editor_assets', array( 'RVY_PostBlockEditUI', 'act_object_guten_scripts' ) );
+
+    add_action('admin_print_scripts', ['RVY_PostBlockEditUI', 'actPrintScripts']);
 }
 
 class RVY_PostBlockEditUI {
+    // If the user is editing in a different time zone that the server's, hide the Now button because it erroneously inserts user's local time instead of server time.
+    public static function actPrintScripts() {
+        global $current_user;
+
+        $userTimezoneOffset = get_user_meta($current_user->ID, 'timezone_offset', true);
+
+        if (false === $userTimezoneOffset) {
+            return;
+        }
+
+        $wp_timezone = wp_timezone();
+        $utc_time = new DateTime("now", new DateTimeZone('UTC'));
+        $serverTimezoneOffset = 0 - $wp_timezone->getOffset($utc_time);
+
+        if ($userTimezoneOffset != $serverTimezoneOffset) :
+        ?>
+            <style type="text/css">
+            .block-editor-publish-date-time-picker .components-button[aria-label="<?php esc_html_e('Now');?>"] {
+                display: none !important;
+            }
+            </style>
+        <?php endif;
+    }
+
 	public static function disablePublishPressStatusesScripts() {
         global $publishpress;
 
@@ -127,11 +153,15 @@ class RVY_PostBlockEditUI {
 
         $args['timezoneOffset'] = 0 - $wp_timezone->getOffset($utc_time);
 
+        $args['userTimezoneOffset'] = get_user_meta($current_user->ID, 'timezone_offset', true);
+        
         $args['isStatusesPro'] = rvy_status_revisions_active($post->post_type);
 
         $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
         ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
         : false;
+
+        $args['nowCaption'] = esc_html__('Now', 'revisionary');
 
         wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
     }

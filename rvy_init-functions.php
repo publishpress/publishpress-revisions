@@ -149,6 +149,19 @@ function rvy_ajax_handler() {
 			$revisionary_revision_id = $post_id;
 
 			switch ($_REQUEST['rvy_ajax_field']) {										// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				case 'report_user_timezone':
+					check_ajax_referer('report_user_timezone', '_rvynonce');
+
+					if (empty($current_user->ID)) {
+						return;
+					}
+
+					$user_offset = (!empty($_REQUEST['rvy_timezone_offset'])) ? intval($_REQUEST['rvy_timezone_offset']) : '';
+
+					update_user_meta($current_user->ID, 'timezone_offset', $user_offset);
+
+					break;
+				
 				case 'create_revision':
 					check_ajax_referer('create_revision', '_rvynonce');
 					
