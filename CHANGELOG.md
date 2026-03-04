@@ -1,6 +1,15 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= 3.7.25 =
+* Fixed : Date selection in post editor may not correctly toggle button caption from Submit to Schedule
+* Fixed : Current Time link in Post Editor may cause Schedule Revision button caption
+* Fixed : Current Time link in Classic Editor date selector inserted wrong values if client timezone is different from server timezone
+* Fixed : Current Time link in Classic Editor date selector added an anchor parameter to the current URL
+* Fixed : Extra progress spinner on Classic Editor Post update
+* Fixed : Now link in Gutenberg date selector inserts wrong values if client timezone is different from server timezone, so hide it in that case
+* Fixed : Classic Editor - Buttons for Revision creation fail
+
 = 3.7.24 - 18 Feb 2026 =
 * Added : Preview link icon in New Revisions table
 * Added : Confirmation message after Revision publication
