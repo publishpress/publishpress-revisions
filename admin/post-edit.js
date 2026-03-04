@@ -30,5 +30,7 @@ jQuery(document).ready( function($) {
 			minutes = '0' + minutes;
 		}
 		$('#mn').val(minutes);
+
+		return false;
 	});
 });
