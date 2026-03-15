@@ -360,7 +360,7 @@ class RevisionaryAdmin
 				$menu_func = 'rvy_omit_site_options';
 			}
 
-			add_menu_page( esc_html__($_menu_caption, 'pp'), esc_html__($_menu_caption, 'pp'), 'read', $menu_slug, $menu_func, 'dashicons-backup', 29 );
+			add_menu_page( esc_html__($_menu_caption, 'revisionary'), esc_html__($_menu_caption, 'revisionary'), 'read', $menu_slug, $menu_func, 'dashicons-backup', 29 );
 
 			if ($can_edit_any && array_filter($revisionary->enabled_post_types)) {
 				add_submenu_page('revisionary-q', esc_html__('New Revisions', 'revisionary'), esc_html__('New Revisions', 'revisionary'), 'read', 'revisionary-q', [$this, 'moderation_queue']);
