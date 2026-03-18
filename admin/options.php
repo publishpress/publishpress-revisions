@@ -133,7 +133,7 @@ class RvyOptionUI {
 
 function options_ui( $sitewide = false, $customize_defaults = false ) {
 
-global $revisionary;
+global $revisionary, $wpdb;
 global $rvy_options_sitewide, $rvy_default_options;
 
 if ( ! current_user_can( 'manage_options' ) || ( $sitewide && ! is_super_admin() ) )
@@ -214,6 +214,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'use_notification_buffer' => 				esc_html__('Enable notification buffer', 'revisionary'),
 	'revisor_role_add_custom_rolecaps' => 		esc_html__('Revisors can create a new revision for any custom post type', 'revisionary' ),
 	'require_edit_others_drafts' => 			esc_html__("Prevent Revisors from editing others' unpublished Posts", 'revisionary' ),
+	'add_revisions_index' =>					esc_html__('Add database index to posts table for Revision queries', 'revisionary'),
 	'display_hints' => 							esc_html__('Display Hints', 'revisionary'),
 	'delete_settings_on_uninstall' => 			esc_html__('Delete settings and Revisions if plugin is deleted', 'revisionary'),
 	'revision_preview_links' => 				esc_html__('Show Preview Links', 'revisionary'),
@@ -264,7 +265,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
-	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'display_hints', 'delete_settings_on_uninstall'],
+	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'display_hints', 'delete_settings_on_uninstall'],
 	'license' =>			 ['edd_key'],
 ]
 ]);
@@ -1965,6 +1966,21 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		<?php
 		$hint = esc_html__( 'Show descriptive captions for PublishPress Revisions settings.', 'revisionary' );
 		$this->option_checkbox( 'display_hints', $tab, $section, $hint, '' );
+
+		$results = $wpdb->get_results("SHOW INDEXES FROM $wpdb->posts");
+		
+		$have_pp_revisions_index = false;
+
+		foreach ($results as $row) {
+			if ($row->Key_name == 'pp_revisions') {
+				$have_pp_revisions_index = true;
+				break;
+			}
+		}
+
+		if (empty($have_pp_revisions_index)) {
+			$this->option_checkbox('add_revisions_index', $tab, $section, '', '');
+		}
 
 		$hint = esc_html__('Plugin settings, New Revisions contents and related data will be deleted, but only after the last copy of Revisions / Revisions Pro is deleted.', 'revisionary');
 		$this->option_checkbox('delete_settings_on_uninstall', $tab, $section, $hint);
