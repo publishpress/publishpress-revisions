@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: PublishPress Revisions
+ * Plugin Name: PublishPress Revisions Free
  * Plugin URI: https://publishpress.com/revisionary/
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
