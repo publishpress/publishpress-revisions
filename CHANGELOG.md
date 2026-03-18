@@ -1,7 +1,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-= 3.7.25 =
+= 3.8.0 =
+* Feature : More view filters on Past Revisions screen
+* Feature : More view filters on New Revisions screen
+* Feature : Option to add index to posts table for Revision queries
+* Fixed : Revisions were listed as Drafts after plugin deactivation
+* Fixed : Revision Editor did not suppress default Status caption and selector (Draft or Pending), since WP 6.7
 * Fixed : Date selection in post editor may not correctly toggle button caption from Submit to Schedule
 * Fixed : Current Time link in Post Editor may cause Schedule Revision button caption
 * Fixed : Current Time link in Classic Editor date selector inserted wrong values if client timezone is different from server timezone
