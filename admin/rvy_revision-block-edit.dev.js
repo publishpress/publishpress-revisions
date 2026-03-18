@@ -260,29 +260,38 @@ jQuery(document).ready(function ($) {
                     rvyUI
                 );
             } else {
-                var rvyUI = '<div class="components-panel__row rvy-creation-ui edit-post-revision-status">'
-                + labelOpen + rvyObjEdit.statusLabel + labelClose;
+                if ($('div.editor-post-status').length) {
+                    $('.rvy-creation-ui.edit-post-revision-status').remove();
 
-                if (statusWrapperClass) {
-                    rvyUI += '<div class="' + statusWrapperClass + '">';
+                    $('div.editor-post-status').parent().html(
+                        '<div class="components-dropdown rvy-current-status">'
+                        + currentStatusCaption
+                        + '</div>'
+                    );
+                } else {
+                    if (!$('.rvy-current-status').length) {
+                        var rvyUI = '<div class="components-panel__row rvy-creation-ui edit-post-revision-status">'
+                        + labelOpen + rvyObjEdit.statusLabel + labelClose;
+
+                        if (statusWrapperClass) {
+                            rvyUI += '<div class="' + statusWrapperClass + '">';
+                        }
+
+                        rvyUI += '<div class="components-dropdown rvy-current-status">'
+                        + currentStatusCaption
+                        + '</div>';
+
+                        if (statusWrapperClass) {
+                            rvyUI += '</div>';
+                        }
+
+                        rvyUI += '</div>';
+
+                        $(refSelector).before(rvyUI);
+                    }
                 }
-
-                rvyUI += '<div class="components-dropdown rvy-current-status">'
-                + currentStatusCaption
-                + '</div>';
-
-                if (statusWrapperClass) {
-                    rvyUI += '</div>';
-                }
-
-                rvyUI += '</div>';
-
-                $(refSelector).before(
-                    rvyUI
-                );
             }
 
-			
             if (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL']) {
                 var url = rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'];
             } else {
