@@ -6,6 +6,8 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_ur
 class Revisionary_Submittee {
 
 	function handle_submission($action, $sitewide = false, $customize_defaults = false) {
+		global $wpdb;
+		
 		if ( ( $sitewide || $customize_defaults ) ) {
 			if ( ! is_super_admin() )
 				wp_die('');
@@ -22,7 +24,7 @@ class Revisionary_Submittee {
 		
 		if ( empty($_POST['rvy_submission_topic']) )			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			return;
-		
+
 		if ( 'options' == $_POST['rvy_submission_topic'] ) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			rvy_refresh_default_options();
 
@@ -38,6 +40,10 @@ class Revisionary_Submittee {
 		}
 
 		rvy_refresh_options();
+
+		if (!empty($_REQUEST['add_revisions_index'])) {
+			$wpdb->query("CREATE INDEX pp_revisions ON $wpdb->posts (comment_count, post_mime_type)");
+		}
 	}
 	
 	function update_options( $sitewide = false, $customize_defaults = false ) {
