@@ -42,7 +42,7 @@
     "szepeviktor/phpstan-wordpress": "^1.1",
     "phpstan/extension-installer": "^1.2",
     "overtrue/phplint": "^9.6",
-    "publishpress/translations": "dev-development"
+    "publishpress/translations": "dev-repair-malformed-plural-entries"
   },
   "scripts": {
     "build": "pbuild build",
@@ -72,6 +72,7 @@
     "translate:custom": "dev-workspace/run vendor/bin/publishpress-translate --languages",
     "translate:force": "dev-workspace/run vendor/bin/publishpress-translate --force",
     "translate:force-custom": "dev-workspace/run vendor/bin/publishpress-translate --force --languages",
+    "translate:repair-plurals" : "dev-workspace/run vendor/bin/publishpress-translate --repair-plurals",
     "translate:compile": [
       "@translate:mo",
       "@translate:json",
@@ -91,6 +92,7 @@
   "extra": {
     "plugin-slug": "revisionary",
     "plugin-name": "publishpress-revisions",
-    "plugin-folder": "revisionary"
+    "plugin-folder": "revisionary",
+    "plugin_name": "PublishPress Revisions"
   }
 }
