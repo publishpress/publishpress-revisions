@@ -93,6 +93,8 @@ function rvy_revision_submit($revision_id = 0) {
 			break;
 		}
 
+		$revision_before = (object) (array) $revision;
+
 		$old_revision_status = $revision->post_mime_type;
 
 		if (!in_array($revision->post_status, array_merge(['draft', 'pending'], rvy_revision_statuses()))) {
@@ -119,8 +121,6 @@ function rvy_revision_submit($revision_id = 0) {
 
 		// safeguard: make sure this hasn't already been published
 		if ( empty($status_obj->public) && empty($status_obj->private) ) {
-			$revision_before = (object) (array) $revision;
-			
 			$post_mime_type = 'pending-revision';
 			$status = (rvy_get_option('permissions_compat_mode')) ? $post_mime_type : 'pending';
 
@@ -166,7 +166,10 @@ function rvy_revision_submit($revision_id = 0) {
 	if (empty($approval_error)) {
 		$published_id = rvy_post_id($revision_id);
 		do_action( 'revision_submitted', $published_id, $revision_id, $old_revision_status );
+
+		if (!empty($revision) && !empty($revision_before)) {
 		do_action( 'revisionary_submitted', $published_id, $revision, $revision_before );
+		}
 	}
 
 	if (!$batch_process) {
