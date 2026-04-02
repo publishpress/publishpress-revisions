@@ -1384,8 +1384,8 @@ class Revisionary
 					|| (!empty($type_obj->cap->edit_published_posts) && empty($current_user->allcaps[$type_obj->cap->edit_published_posts]))
 					) {
 						if (!current_user_can('approve_revision', $post_id)) {
-							if (!empty($current_user->allcaps['edit_others_revisions'])) {
-								$caps[] = 'edit_others_revisions';
+							if (apply_filters('revisionary_allow_edit_others_revision', !empty($current_user->allcaps['edit_others_revisions']), $post)) {
+								$caps[] = 'read';
 							} else {
 								if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')) {
 									if (!isset($additional_ids)) {
