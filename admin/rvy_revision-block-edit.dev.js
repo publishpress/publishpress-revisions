@@ -475,10 +475,12 @@ jQuery(document).ready(function ($) {
 		
 		$('button.revision-approve').hide();
 		
-		if (isApproval) {
+		if (!isSubmission && (isApproval || ('future' == rvyObjEdit.currentStatus) || ('future-revision' == rvyObjEdit.currentStatus))) {
             $('div.revision-approving').show().css('display', 'block');
             $('div.revision-approving span.ppr-submission-spinner').css('visibility', 'visible');
+        }
 
+        if (isApproval) {
             if (wp.data.select('core/editor').isEditedPostDirty()) {
                 wp.data.dispatch('core/editor').savePost();
             }
@@ -493,6 +495,7 @@ jQuery(document).ready(function ($) {
 
         if (isSubmission) {
             $('div.revision-submitting').show();
+            $('div.revision-submitting .spinner').css('visibility', 'visible');
             rvyDoSubmission();
         } else {
             rvyDoApproval();
