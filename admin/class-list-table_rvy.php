@@ -1442,7 +1442,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		echo "</select>\n";
 
 		echo '<select name="post_type' . '" id="post_type" style="float:none">';
-		echo '<option value="">' . esc_html__( 'All Post Types' ) . "</option>";
+		echo '<option value="">' . esc_html__( 'All Post Types', 'revisionary' ) . "</option>";
 
 		foreach(array_keys($revisionary->enabled_post_types) as $post_type) {
 			if ($type_obj = get_post_type_object($post_type)) {
