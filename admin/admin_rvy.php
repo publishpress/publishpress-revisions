@@ -518,7 +518,7 @@ class RevisionaryAdmin
 		<div class="pp-rating">
 		<a href="https://wordpress.org/support/plugin/revisionary/reviews/#new-post" target="_blank" rel="noopener noreferrer">
 		<?php printf(
-			esc_html__('If you like %s, please leave us a %s rating. Thank you!', 'revisionary'),
+			esc_html__('If you like %1$s, please leave us a %2$s rating. Thank you!', 'revisionary'),
 			'<strong>PublishPress Revisions</strong>',
 			'<span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span>'
 			);
