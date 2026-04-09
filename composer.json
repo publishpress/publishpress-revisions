@@ -41,7 +41,8 @@
       "-pre-autoload-dump": "composer dumpautoload --working-dir=./lib",
       "-pre-update-cmd": "composer update --working-dir=./lib",
       "-pre-install-cmd": "composer install --working-dir=./lib",
-      "term": "cd dev-workspace && ./run"
+      "term": "cd dev-workspace && ./run",
+      "translate-force": "vendor/publishpress/dev-workspace/scripts/run.sh vendor/bin/publishpress-translate --force --languages=de_DE,fi,fil,id_ID,ja,ko_KR,nl_NL,ru_RU,yor"
   },
   "extra": {
       "plugin-slug": "revisionary",
