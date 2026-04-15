@@ -1,2 +1,0 @@
-<?php
-return ['domain'=>'revisionary','plural-forms'=>NULL,'language'=>'','project-id-version'=>'PublishPress Revisions 3.7.24','pot-creation-date'=>'2026-03-19T17:38:04+00:00','po-revision-date'=>'YEAR-MO-DA HO:MI+ZONE','x-generator'=>'WP-CLI 2.12.0','messages'=>[]];

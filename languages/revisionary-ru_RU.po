@@ -10,11 +10,12 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-09T14:17:31+00:00\n"
-"PO-Revision-Date: 2026-04-09 14:57+0000\n"
+"PO-Revision-Date: 2026-04-10 21:49+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+">= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
 "Language: ru_RU\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1: 2);\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
 
 #: revisionary.php:3, fuzzy
@@ -2684,7 +2685,7 @@ msgstr "Подробная документация также доступна 
 msgid "View Knowledge Base"
 msgstr "Просмотреть базу знаний"
 
-#: revision-creation_rvy.php:221
+#: revision-creation_rvy.php:216
 msgid "Could not insert revision into the database"
 msgstr "Не удалось вставить ревизию в базу данных"
 
