@@ -300,7 +300,7 @@ jQuery(document).ready( function($) {
 
 		RvyTimeSelection = RvyTimeSelection / 1000; // pass seconds to server
 
-		if ((tdiff > 1000)) {
+		if (tdiff > 120000) {
 			RvySelectedFutureDate = true;
 
 			$('.rvy-creation-ui .revision-create').hide();

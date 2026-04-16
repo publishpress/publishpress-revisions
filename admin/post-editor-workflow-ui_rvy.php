@@ -246,7 +246,7 @@ class PostEditorWorkflowUI {
                 'completedEditURL' => rvy_nc_url( wp_nonce_url(add_query_arg(['edit_new_revision' => $post->ID, 'published_post' => $post->ID], admin_url('admin.php?page=revisionary-q')), 'edit-new-revision') ),
                 'errorCaption' => esc_html__('Error Creating Revision', 'revisionary'),
                 'ajaxurl' => rvy_admin_url(''),
-                'update' => esc_html__('Update', 'revisionary'),
+                'update' => esc_html__('Update'),
                 'postID' => $post->ID
             ));
         } else {
@@ -266,7 +266,7 @@ class PostEditorWorkflowUI {
                 'scheduledURL' => (!empty($type_obj->public)) ? rvy_nc_url( wp_nonce_url(add_query_arg('get_new_revision', $post->ID, admin_url('')), 'new-revision') ) : '',
                 'scheduledEditLinkCaption' => $edit_caption,
                 'scheduledEditURL' => rvy_nc_url( wp_nonce_url(add_query_arg(['edit_new_revision' => $post->ID, 'published_post' => $post->ID], admin_url('admin.php?page=revisionary-q')), 'edit-new-revision') ),
-                'update' => esc_html__('Update', 'revisionary'),
+                'update' => esc_html__('Update'),
             ));
 
             if (empty($vars['actionCaption'])) {

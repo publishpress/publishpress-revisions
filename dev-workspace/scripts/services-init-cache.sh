@@ -12,29 +12,19 @@ fi
 
 # Create empty cache files if not exists.
 [[ -d $CACHE_PATH ]] || mkdir -p $CACHE_PATH
-
-[[ -d $CACHE_PATH/terminal/.npm/_cacache ]] || mkdir -p $CACHE_PATH/terminal/.npm/_cacache
-[[ -d $CACHE_PATH/terminal/.npm/_logs ]] || mkdir -p $CACHE_PATH/terminal/.npm/_logs
-[[ -d $CACHE_PATH/terminal/.composer/cache ]] || mkdir -p $CACHE_PATH/terminal/.composer/cache
-[[ -d $CACHE_PATH/terminal/.oh-my-zsh/log ]] || mkdir -p $CACHE_PATH/terminal/.oh-my-zsh/log
-[[ -f $CACHE_PATH/terminal/.zsh_history ]] || touch $CACHE_PATH/terminal/.zsh_history
-[[ -f $CACHE_PATH/terminal/.bash_history ]] || touch $CACHE_PATH/terminal/.bash_history
-[[ -f $CACHE_PATH/terminal/.composer/auth.json ]] || echo '{}' > $CACHE_PATH/terminal/.composer/auth.json
-
-[[ -d $CACHE_PATH/test-db/mysql ]] || mkdir -p $CACHE_PATH/test-db/mysql
-[[ -d $CACHE_PATH/test-db/logs ]] || mkdir -p $CACHE_PATH/test-db/logs
-
-[[ -d $CACHE_PATH/test-wp/html ]] || mkdir -p $CACHE_PATH/test-wp/html
-[[ -d $CACHE_PATH/test-wp/tmp ]] || mkdir -p $CACHE_PATH/test-wp/tmp
-
-[[ -d $CACHE_PATH/test-wpcli/tmp ]] || mkdir -p $CACHE_PATH/test-wpcli/tmp
-
-[[ -d $CACHE_PATH/dev-db/mysql ]] || mkdir -p $CACHE_PATH/dev-db/mysql
-[[ -d $CACHE_PATH/dev-db/logs ]] || mkdir -p $CACHE_PATH/dev-db/logs
-
-[[ -d $CACHE_PATH/dev-wp/html ]] || mkdir -p $CACHE_PATH/dev-wp/html
-[[ -d $CACHE_PATH/dev-wp/tmp ]] || mkdir -p $CACHE_PATH/dev-wp/tmp
-
-[[ -d $CACHE_PATH/dev-wpcli/tmp ]] || mkdir -p $CACHE_PATH/dev-wpcli/tmp
-
-[[ -d $CACHE_PATH/mailhog/maildir ]] || mkdir -p $CACHE_PATH/mailhog/maildir
+[[ -d $CACHE_PATH/.npm/_cacache ]] || mkdir -p $CACHE_PATH/.npm/_cacache
+[[ -d $CACHE_PATH/.npm/_logs ]] || mkdir -p $CACHE_PATH/.npm/_logs
+[[ -d $CACHE_PATH/.composer/cache ]] || mkdir -p $CACHE_PATH/.composer/cache
+[[ -d $CACHE_PATH/.oh-my-zsh/log ]] || mkdir -p $CACHE_PATH/.oh-my-zsh/log
+[[ -d $CACHE_PATH/.git ]] || mkdir -p $CACHE_PATH/.git
+# Docker bind-mount directories for test containers must be pre-created by the host user
+# so containers (mariadb, wordpress) get correct ownership on first start.
+[[ -d $CACHE_PATH/db_test ]] || mkdir -p $CACHE_PATH/db_test
+[[ -d $CACHE_PATH/logs/db_test ]] || mkdir -p $CACHE_PATH/logs/db_test
+# wp_test needs wp-content/mu-plugins to exist before the container starts so
+# Docker can bind-mount individual plugin files into that directory.
+[[ -d $CACHE_PATH/wp_test/wp-content/mu-plugins ]] || mkdir -p $CACHE_PATH/wp_test/wp-content/mu-plugins
+[[ -f $CACHE_PATH/.zsh_history ]] || touch $CACHE_PATH/.zsh_history
+[[ -f $CACHE_PATH/.bash_history ]] || touch $CACHE_PATH/.bash_history
+[[ -f $CACHE_PATH/.composer/auth.json ]] || echo '{}' > $CACHE_PATH/.composer/auth.json
+[[ -f $CACHE_PATH/.git/config ]] || touch $CACHE_PATH/.git/config

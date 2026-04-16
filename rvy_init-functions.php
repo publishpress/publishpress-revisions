@@ -149,6 +149,19 @@ function rvy_ajax_handler() {
 			$revisionary_revision_id = $post_id;
 
 			switch ($_REQUEST['rvy_ajax_field']) {										// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				case 'report_user_timezone':
+					check_ajax_referer('report_user_timezone', '_rvynonce');
+
+					if (empty($current_user->ID)) {
+						return;
+					}
+
+					$user_offset = (!empty($_REQUEST['rvy_timezone_offset'])) ? intval($_REQUEST['rvy_timezone_offset']) : '';
+
+					update_user_meta($current_user->ID, 'timezone_offset', $user_offset);
+
+					break;
+				
 				case 'create_revision':
 					check_ajax_referer('create_revision', '_rvynonce');
 					
@@ -292,7 +305,7 @@ function rvy_status_registrations() {
 				'name' => esc_html__('Change Request', 'revisionary'),
 				'submit' => esc_html__('Submit Change Request', 'revisionary'),
 				'submit_short' => esc_html__('Submit', 'revisionary'),
-				'submitting' => esc_html__('Submitting Changes...', 'revisionary'),
+				'submitting' => esc_html__('Update in progress...', 'revisionary'),
 				'submitted' => esc_html__('Changes Submitted', 'revisionary'),
 				'approve' => esc_html__('Approve Changes', 'revisionary'),
 				'approve_short' => esc_html__('Approve', 'revisionary'),
@@ -311,7 +324,7 @@ function rvy_status_registrations() {
 				'name' => esc_html__('Scheduled Change', 'revisionary'),
 				'submit' => esc_html__('Schedule Changes', 'revisionary'),
 				'submit_short' => esc_html__('Schedule Changes', 'revisionary'),
-				'submitting' => esc_html__('Scheduling Changes...', 'revisionary'),
+				'submitting' => esc_html__('Update in progress...', 'revisionary'),
 				'submitted' => esc_html__('Changes are Scheduled.', 'revisionary'),
 				'approve' => esc_html__('Schedule Changes', 'revisionary'), 
 				'approve_short' => esc_html__('Schedule Changes', 'revisionary'), 
@@ -348,7 +361,7 @@ function rvy_status_registrations() {
 				'name' => esc_html__('Submitted Revision', 'revisionary'),
 				'submit' => esc_html__('Submit Revision', 'revisionary'),
 				'submit_short' => esc_html__('Submit', 'revisionary'), 
-				'submitting' => esc_html__('Submitting Revision...', 'revisionary'),
+				'submitting' => esc_html__('Update in progress...', 'revisionary'),
 				'submitted' => ($block_editor) ? esc_html__('The Revision is Submitted', 'revisionary') : esc_html__('Revision Submitted', 'revisionary'),
 				'approve' => esc_html__('Approve Revision', 'revisionary'),
 				'approve_short' => esc_html__('Approve', 'revisionary'),
@@ -365,7 +378,7 @@ function rvy_status_registrations() {
 				'name' => esc_html__('Scheduled Revision', 'revisionary'),
 				'submit' => esc_html__('Schedule Revision', 'revisionary'), 
 				'submit_short' => esc_html__('Schedule', 'revisionary'), 
-				'submitting' => esc_html__('Scheduling Revision...', 'revisionary'),
+				'submitting' => esc_html__('Update in progress...', 'revisionary'),
 				'submitted' => ($block_editor) ? esc_html__('The Revision is Scheduled', 'revisionary') :  esc_html__('Revision Scheduled', 'revisionary'),
 				'approve' => esc_html__('Approve Revision', 'revisionary'), 
 				'approve_short' => esc_html__('Approve', 'revisionary'), 
@@ -474,8 +487,8 @@ function pp_revisions_label($label_name) {
 		$labels = apply_filters('revisionary_labels',
 		[
 			'my_revisions' => (rvy_get_option('revision_statuses_noun_labels')) 
-			? 							_n_noop('%sMy Copies & Changes%s(%s)</span>', '%sMy Copies & Changes%s(%s)</span>', 'revisionary')
-			: 							_n_noop('%sMy Revisions%s(%s)</span>', '%sMy Revisions%s(%s)</span>', 'revisionary'),
+			? 							_n_noop('%sMy Copies & Changes%s(%s)', '%sMy Copies & Changes%s(%s)', 'revisionary')
+			: 							_n_noop('%sMy Revisions%s(%s)', '%sMy Revisions%s(%s)', 'revisionary'),
 			
 			'my_published_posts'		=> _n_noop('%sRevisions to My Posts%s(%s)</span>', '%sRevisions to My Posts%s(%s)', 'revisionary'),
 

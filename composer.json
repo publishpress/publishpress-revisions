@@ -19,29 +19,38 @@
   "config": {
     "preferred-install": {
       "*": "dist"
+    },
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true,
+      "php-http/discovery": true,
+      "publishpress/dev-workspace": true
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
     "php": ">=7.2.5"
   },
+  "require-dev": {
+    "publishpress/dev-workspace": "dev-testing-translations"
+  },
   "scripts": {
-    "build": "build zip",
-    "build:dir": "build dir",
-    "build:clean": "build clean",
-    "info:versions": "bash ./dev-workspace/scripts/dependency-versions.sh",
-    "gen:mo": "wp i18n make-mo ./languages ./languages --allow-root",
-    "gen:pot": "wp i18n make-pot . languages/revisionary.pot --domain=revisionary --exclude=dev-workspace,.wordpress-org,.github,dist,tests, --allow-root",
-    "check:longpath": "longpath .",
-    "check:lint": "phplint",
-    "pre-autoload-dump": "composer dumpautoload --working-dir=./lib",
-    "pre-update-cmd": "composer update --working-dir=./lib",
-    "pre-install-cmd": "composer install --working-dir=./lib"
+      "check:lint": "phplint",
+      "check:phpcs": "phpcs",
+      "-pre-autoload-dump": "composer dumpautoload --working-dir=./lib",
+      "-pre-update-cmd": "composer update --working-dir=./lib",
+      "-pre-install-cmd": "composer install --working-dir=./lib",
+      "term": "cd dev-workspace && ./run",
+      "translate-force": "vendor/publishpress/dev-workspace/scripts/run.sh vendor/bin/publishpress-translate --force --languages=de_DE,fi,fil,id_ID,ja,ko_KR,nl_NL,ru_RU,yor"
   },
   "extra": {
-    "plugin-slug": "revisionary",
-    "plugin-name": "publishpress-revisions",
-    "plugin-folder": "revisionary"
+      "plugin-slug": "revisionary",
+      "plugin-name": "publishpress-revisions",
+      "plugin-folder": "revisionary",
+      "version-constant": "PUBLISHPRESS_REVISIONS_VERSION",
+      "plugin-lang-domain": "revisionary",
+      "plugin-github-repo": "publishpress/publishpress-revisions",
+      "plugin-composer-package": "publishpress/publishpress-revisions"
   }
 }

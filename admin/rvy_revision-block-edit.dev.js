@@ -152,9 +152,9 @@ jQuery(document).ready(function ($) {
         var selectedDate = new Date( selectedDateHTML );
         var currentDate = new Date();
 
-        RvyTimeSelection = selectedDate.getTime();
+        RvyTimeSelection = selectedDate.getTime() - ((currentDate.getTimezoneOffset() * 60 - rvyObjEdit.timezoneOffset) * 1000);
 
-        if (RvyTimeSelection - currentDate.getTime() > 1000) {
+        if (RvyTimeSelection - currentDate.getTime() > 120000) {
             var approveCaption = rvyObjEdit['scheduleCaption'];
 
             if ('future' == rvyObjEdit.currentStatus) {
@@ -260,29 +260,38 @@ jQuery(document).ready(function ($) {
                     rvyUI
                 );
             } else {
-                var rvyUI = '<div class="components-panel__row rvy-creation-ui edit-post-revision-status">'
-                + labelOpen + rvyObjEdit.statusLabel + labelClose;
+                if ($('div.editor-post-status').length) {
+                    $('.rvy-creation-ui.edit-post-revision-status').remove();
 
-                if (statusWrapperClass) {
-                    rvyUI += '<div class="' + statusWrapperClass + '">';
+                    $('div.editor-post-status').parent().html(
+                        '<div class="components-dropdown rvy-current-status">'
+                        + currentStatusCaption
+                        + '</div>'
+                    );
+                } else {
+                    if (!$('.rvy-current-status').length) {
+                        var rvyUI = '<div class="components-panel__row rvy-creation-ui edit-post-revision-status">'
+                        + labelOpen + rvyObjEdit.statusLabel + labelClose;
+
+                        if (statusWrapperClass) {
+                            rvyUI += '<div class="' + statusWrapperClass + '">';
+                        }
+
+                        rvyUI += '<div class="components-dropdown rvy-current-status">'
+                        + currentStatusCaption
+                        + '</div>';
+
+                        if (statusWrapperClass) {
+                            rvyUI += '</div>';
+                        }
+
+                        rvyUI += '</div>';
+
+                        $(refSelector).before(rvyUI);
+                    }
                 }
-
-                rvyUI += '<div class="components-dropdown rvy-current-status">'
-                + currentStatusCaption
-                + '</div>';
-
-                if (statusWrapperClass) {
-                    rvyUI += '</div>';
-                }
-
-                rvyUI += '</div>';
-
-                $(refSelector).before(
-                    rvyUI
-                );
             }
 
-			
             if (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL']) {
                 var url = rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'];
             } else {
@@ -466,10 +475,12 @@ jQuery(document).ready(function ($) {
 		
 		$('button.revision-approve').hide();
 		
-		if (isApproval) {
+		if (!isSubmission && (isApproval || ('future' == rvyObjEdit.currentStatus) || ('future-revision' == rvyObjEdit.currentStatus))) {
             $('div.revision-approving').show().css('display', 'block');
             $('div.revision-approving span.ppr-submission-spinner').css('visibility', 'visible');
+        }
 
+        if (isApproval) {
             if (wp.data.select('core/editor').isEditedPostDirty()) {
                 wp.data.dispatch('core/editor').savePost();
             }
@@ -484,6 +495,7 @@ jQuery(document).ready(function ($) {
 
         if (isSubmission) {
             $('div.revision-submitting').show();
+            $('div.revision-submitting .spinner').css('visibility', 'visible');
             rvyDoSubmission();
         } else {
             rvyDoApproval();

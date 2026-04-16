@@ -10,6 +10,11 @@ jQuery(document).ready( function($) {
 	}
 	$('#timestampdiv a.now-timestamp').on('click', function(){
 		var nowDate = new Date();
+
+		var nowTimestamp = nowDate.getTime() + ((nowDate.getTimezoneOffset() * 60 - rvyPostEdit.timezoneOffset) * 1000);
+		
+		nowDate = new Date(nowTimestamp);
+
 		var month = nowDate.getMonth() + 1;
 		if ( month.toString().length < 2 ) {
 			month = '0' + month;
@@ -25,5 +30,7 @@ jQuery(document).ready( function($) {
 			minutes = '0' + minutes;
 		}
 		$('#mn').val(minutes);
+
+		return false;
 	});
 });

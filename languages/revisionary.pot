@@ -1,41 +1,41 @@
 # Copyright (C) 2026 PublishPress
-# This file is distributed under the same license as the PublishPress Revisions plugin.
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Revisions 3.7.24\n"
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-17T18:41:47+00:00\n"
+"POT-Creation-Date: 2026-04-10T21:48:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 
 #. Plugin Name of the plugin
-#: revisionary.php
-msgid "PublishPress Revisions"
+#: revisionary.php:3
+msgid "PublishPress Revisions Free"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: revisionary.php
+#: revisionary.php:4
 msgid "https://publishpress.com/revisionary/"
 msgstr ""
 
 #. Description of the plugin
-#: revisionary.php
+#: revisionary.php:5
 msgid "Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes."
 msgstr ""
 
 #. Author of the plugin
-#: revisionary.php
+#: revisionary.php:6
 msgid "PublishPress"
 msgstr ""
 
 #. Author URI of the plugin
-#: revisionary.php
+#: revisionary.php:7
 msgid "https://publishpress.com"
 msgstr ""
 
@@ -57,48 +57,48 @@ msgstr ""
 msgid "Sorry, you are not allowed to decline this revision."
 msgstr ""
 
-#: admin/admin-posts_rvy.php:162
+#: admin/admin-posts_rvy.php:192
 msgid "The revision was restored."
 msgstr ""
 
-#: admin/admin-posts_rvy.php:167
+#: admin/admin-posts_rvy.php:197
 msgid "The revision was scheduled for publication."
 msgstr ""
 
-#: admin/admin-posts_rvy.php:172
+#: admin/admin-posts_rvy.php:202
 msgid "The revision was published."
 msgstr ""
 
-#: admin/admin-posts_rvy.php:177
+#: admin/admin-posts_rvy.php:207
 #, php-format
 msgid "The unfiltered_html capability is required to create a revision of this post. See %sdocumentation%s."
 msgstr ""
 
-#: admin/admin-posts_rvy.php:182
-#: rvy_init-functions.php:785
+#: admin/admin-posts_rvy.php:212
+#: rvy_init-functions.php:798
 msgid "The post already has a revision in process."
 msgstr ""
 
-#: admin/admin-posts_rvy.php:264
-#: admin/class-list-table-archive.php:463
-#: rvy_init-functions.php:482
+#: admin/admin-posts_rvy.php:294
+#: admin/class-list-table-archive.php:580
+#: rvy_init-functions.php:495
 msgid "Revision"
 msgstr ""
 
-#: admin/admin-posts_rvy.php:281
+#: admin/admin-posts_rvy.php:311
 msgid "Has Revision"
 msgstr ""
 
-#: admin/admin-posts_rvy.php:296
+#: admin/admin-posts_rvy.php:326
 #: admin/admin_rvy.php:366
 #: admin/admin_rvy.php:436
 #: admin/options.php:159
-#: admin/options.php:637
+#: admin/options.php:639
 msgid "New Revisions"
 msgstr ""
 
 #: admin/admin_lib-mu_rvy.php:10
-#: admin/options.php:333
+#: admin/options.php:335
 msgid "PublishPress Revisions Network Settings"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgid "Network Settings"
 msgstr ""
 
 #: admin/admin_lib-mu_rvy.php:21
-#: admin/options.php:335
+#: admin/options.php:337
 msgid "PublishPress Revisions Network Defaults"
 msgstr ""
 
@@ -133,14 +133,14 @@ msgstr ""
 #: admin/admin_rvy.php:376
 #: admin/admin_rvy.php:437
 #: admin/options.php:158
-#: admin/options.php:540
+#: admin/options.php:542
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
 msgid "Past Revisions"
 msgstr ""
 
 #: admin/admin_rvy.php:393
-#: admin/options.php:339
+#: admin/options.php:341
 msgid "PublishPress Revisions Settings"
 msgstr ""
 
@@ -153,10 +153,10 @@ msgstr ""
 #: admin/admin_rvy.php:402
 #: admin/admin_rvy.php:403
 #: admin/admin_rvy.php:443
-#: admin/options.php:1775
-#: admin/options.php:1802
-#: admin/options.php:1995
-#: admin/options.php:2341
+#: admin/options.php:1780
+#: admin/options.php:1807
+#: admin/options.php:2015
+#: admin/options.php:2361
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr ""
@@ -195,7 +195,7 @@ msgstr ""
 
 #: admin/admin_rvy.php:521
 #, php-format
-msgid "If you like %s, please leave us a %s rating. Thank you!"
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr ""
 
 #: admin/admin_rvy.php:532
@@ -244,288 +244,332 @@ msgstr ""
 msgid "unselect"
 msgstr ""
 
-#: admin/class-list-table-archive.php:23
+#: admin/class-list-table-archive.php:22
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr ""
 
-#: admin/class-list-table-archive.php:25
+#: admin/class-list-table-archive.php:24
 msgid "This was an update to a revision which was published after further editing."
 msgstr ""
 
-#: admin/class-list-table-archive.php:185
+#: admin/class-list-table-archive.php:202
 #, php-format
 msgid "Revision Author: %s"
 msgstr ""
 
-#: admin/class-list-table-archive.php:204
+#: admin/class-list-table-archive.php:221
 #, php-format
 msgid "Post Author: %s"
 msgstr ""
 
-#: admin/class-list-table-archive.php:225
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr ""
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr ""
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr ""
+
+#: admin/class-list-table-archive.php:272
 #, php-format
 msgid "Search results for \"%s\""
 msgstr ""
 
-#: admin/class-list-table-archive.php:423
-#: admin/class-list-table_rvy.php:1380
-#: admin/class-list-table_rvy.php:1656
-#: admin/post-edit-block-ui_rvy.php:98
-#: admin/post-edit_rvy.php:89
+#: admin/class-list-table-archive.php:540
+#: admin/class-list-table_rvy.php:1388
+#: admin/class-list-table_rvy.php:1863
+#: admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
 msgid "Delete Revision"
 msgstr ""
 
-#: admin/class-list-table-archive.php:464
-#: admin/class-list-table_rvy.php:733
+#: admin/class-list-table-archive.php:581
+#: admin/class-list-table_rvy.php:740
 msgid "Post Type"
 msgstr ""
 
-#: admin/class-list-table-archive.php:465
-#: rvy_init-functions.php:483
+#: admin/class-list-table-archive.php:582
+#: rvy_init-functions.php:496
 msgid "Revised By"
 msgstr ""
 
-#: admin/class-list-table-archive.php:466
-#: rvy_init-functions.php:484
+#: admin/class-list-table-archive.php:583
+#: rvy_init-functions.php:497
 msgid "Revision Date"
 msgstr ""
 
-#: admin/class-list-table-archive.php:467
+#: admin/class-list-table-archive.php:584
 msgid "Action"
 msgstr ""
 
-#: admin/class-list-table-archive.php:468
+#: admin/class-list-table-archive.php:585
 msgid "Approved By"
 msgstr ""
 
-#: admin/class-list-table-archive.php:469
+#: admin/class-list-table-archive.php:586
 msgid "Published Date"
 msgstr ""
 
-#: admin/class-list-table-archive.php:470
+#: admin/class-list-table-archive.php:587
 msgid "Published Author"
 msgstr ""
 
-#: admin/class-list-table-archive.php:499
+#: admin/class-list-table-archive.php:616
+#: admin/class-list-table_rvy.php:906
 msgid "just now"
 msgstr ""
 
-#: admin/class-list-table-archive.php:504
+#: admin/class-list-table-archive.php:621
+#: admin/class-list-table_rvy.php:911
 #, php-format
 msgid "%s minutes ago"
 msgstr ""
 
-#: admin/class-list-table-archive.php:504
+#: admin/class-list-table-archive.php:621
+#: admin/class-list-table_rvy.php:911
 #, php-format
 msgid "%s minute ago"
 msgstr ""
 
-#: admin/class-list-table-archive.php:511
+#: admin/class-list-table-archive.php:628
+#: admin/class-list-table_rvy.php:918
 #, php-format
 msgid "%s hours ago"
 msgstr ""
 
-#: admin/class-list-table-archive.php:511
+#: admin/class-list-table-archive.php:628
+#: admin/class-list-table_rvy.php:918
 #, php-format
 msgid "%s hour ago"
 msgstr ""
 
-#: admin/class-list-table-archive.php:633
+#: admin/class-list-table-archive.php:756
 #: functions.php:443
 msgid "Scheduled Revision Publication"
 msgstr ""
 
-#: admin/class-list-table-archive.php:637
+#: admin/class-list-table-archive.php:760
 #: functions.php:447
 msgid "Revision Publication"
 msgstr ""
 
-#: admin/class-list-table-archive.php:647
+#: admin/class-list-table-archive.php:770
 #: functions.php:457
 #, php-format
 msgid "Edit of %s"
 msgstr ""
 
-#: admin/class-list-table-archive.php:654
+#: admin/class-list-table-archive.php:777
 #: functions.php:464
 msgid "Edit of published Revision"
 msgstr ""
 
-#: admin/class-list-table-archive.php:657
+#: admin/class-list-table-archive.php:780
 #: functions.php:467
 #: functions.php:530
 msgid "Direct Edit"
 msgstr ""
 
-#: admin/class-list-table-archive.php:714
-msgid "All post types"
+#: admin/class-list-table-archive.php:839
+#: admin/class-list-table_rvy.php:1445
+msgid "All Post Types"
 msgstr ""
 
-#: admin/class-list-table-archive.php:733
+#: admin/class-list-table-archive.php:872
+#: admin/class-list-table_rvy.php:1480
+msgid "All Revision Authors"
+msgstr ""
+
+#: admin/class-list-table-archive.php:906
+#: admin/class-list-table_rvy.php:1515
+msgid "All Revision Dates"
+msgstr ""
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr ""
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr ""
+
+#: admin/class-list-table-archive.php:1036
+#: admin/class-list-table_rvy.php:1586
+msgid "All Authors"
+msgstr ""
+
+#: admin/class-list-table-archive.php:1058
+#: admin/class-list-table_rvy.php:1622
 msgid "Reset Filters"
 msgstr ""
 
-#: admin/class-list-table-archive.php:765
-#: admin/options.php:2006
+#: admin/class-list-table-archive.php:1089
+#: admin/options.php:2026
 msgid "All"
 msgstr ""
 
-#: admin/class-list-table-archive.php:779
+#: admin/class-list-table-archive.php:1103
 msgid "My Revisions"
 msgstr ""
 
-#: admin/class-list-table-archive.php:829
+#: admin/class-list-table-archive.php:1157
 #, php-format
 msgid "Compare Changes in %s"
 msgstr ""
 
-#: admin/class-list-table-archive.php:833
-#: admin/class-list-table_rvy.php:1695
-#: admin/post-edit_rvy.php:187
-#: admin/post-edit_rvy.php:251
-#: admin/post-edit_rvy.php:265
+#: admin/class-list-table-archive.php:1161
+#: admin/class-list-table_rvy.php:1902
+#: admin/post-edit_rvy.php:190
+#: admin/post-edit_rvy.php:254
+#: admin/post-edit_rvy.php:268
 msgctxt "revisions"
 msgid "Compare"
 msgstr ""
 
-#: admin/class-list-table-archive.php:848
-#: admin/class-list-table_rvy.php:1680
+#: admin/class-list-table-archive.php:1176
+#: admin/class-list-table_rvy.php:1887
 #: admin/post-editor-workflow-ui_rvy.php:233
 msgid "Preview Revision"
 msgstr ""
 
-#: admin/class-list-table-archive.php:862
+#: admin/class-list-table-archive.php:1190
 msgid "Edit parent revision"
 msgstr ""
 
-#: admin/class-list-table-archive.php:862
+#: admin/class-list-table-archive.php:1190
 msgid "Edit parent post"
 msgstr ""
 
-#: admin/class-list-table-archive.php:863
+#: admin/class-list-table-archive.php:1191
 msgid "Edit Parent"
 msgstr ""
 
-#: admin/class-list-table-archive.php:873
+#: admin/class-list-table-archive.php:1201
 msgid "List Revisions of this Post"
 msgstr ""
 
-#: admin/class-list-table-archive.php:874
+#: admin/class-list-table-archive.php:1202
 msgid "Filter"
 msgstr ""
 
-#: admin/class-list-table-archive.php:886
+#: admin/class-list-table-archive.php:1214
 msgid "Delete Past Revision"
 msgstr ""
 
-#: admin/class-list-table-archive.php:974
+#: admin/class-list-table-archive.php:1302
 msgid "No revisions found."
 msgstr ""
 
-#: admin/class-list-table_rvy.php:732
+#: admin/class-list-table_rvy.php:739
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:778
+#: admin/class-list-table_rvy.php:785
 msgid "View preview"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:795
+#: admin/class-list-table_rvy.php:802
 msgid "Y/m/d, g:i:s a"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:805
-#: admin/class-list-table_rvy.php:1566
+#: admin/class-list-table_rvy.php:812
 msgid "Y/m/d g:i a"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:812
+#: admin/class-list-table_rvy.php:819
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:815
+#: admin/class-list-table_rvy.php:822
 #, php-format
 msgid "Requested publication: %s"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:817
+#: admin/class-list-table_rvy.php:824
 msgid "This revision is not scheduled yet. It must be approved."
 msgstr ""
 
-#: admin/class-list-table_rvy.php:867
+#: admin/class-list-table_rvy.php:874
 #: admin/history_rvy.php:911
 msgid "No author"
 msgstr ""
 
 #. translators: %s: post title
-#: admin/class-list-table_rvy.php:903
+#: admin/class-list-table_rvy.php:948
 msgid "Edit published post"
 msgstr ""
 
 #. translators: %s: post title
-#: admin/class-list-table_rvy.php:916
+#: admin/class-list-table_rvy.php:961
 #, php-format
 msgid "View only revisions of %s"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:927
-#: admin/class-list-table_rvy.php:934
+#: admin/class-list-table_rvy.php:972
+#: admin/class-list-table_rvy.php:979
 msgid "View published post"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:959
+#: admin/class-list-table_rvy.php:1004
 msgid "Compare Past Revisions"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:960
+#: admin/class-list-table_rvy.php:1005
 msgid "History"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1240
+#: admin/class-list-table_rvy.php:1285
 msgid "My Activity"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1249
+#: admin/class-list-table_rvy.php:1294
 #, php-format
 msgid "All %s"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1326
-msgid "All Revision Statuses"
-msgstr ""
-
-#: admin/class-list-table_rvy.php:1376
+#: admin/class-list-table_rvy.php:1384
 msgid "Unschedule"
 msgstr ""
 
 #. translators: %s: post title
-#: admin/class-list-table_rvy.php:1380
-#: admin/class-list-table_rvy.php:1652
-#: admin/class-list-table_rvy.php:1656
-#: admin/post-edit-block-ui_rvy.php:98
-#: admin/post-edit_rvy.php:89
+#: admin/class-list-table_rvy.php:1388
+#: admin/class-list-table_rvy.php:1859
+#: admin/class-list-table_rvy.php:1863
+#: admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
 msgid "Discard Revision"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1558
-msgid "Y/m/d g:i:s a"
+#: admin/class-list-table_rvy.php:1426
+msgid "All Revision Statuses"
+msgstr ""
+
+#: admin/class-list-table_rvy.php:1551
+msgid "All Posts"
 msgstr ""
 
 #. translators: %s: post title
-#: admin/class-list-table_rvy.php:1629
+#: admin/class-list-table_rvy.php:1836
 #: admin/post-editor-workflow-ui_rvy.php:234
 msgid "Edit Revision"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1694
+#: admin/class-list-table_rvy.php:1901
 msgid "Compare Changes"
 msgstr ""
 
-#: admin/class-list-table_rvy.php:1703
+#: admin/class-list-table_rvy.php:1910
 msgctxt "revisions"
 msgid "Decline"
 msgstr ""
@@ -547,7 +591,7 @@ msgstr ""
 #: admin/history_rvy.php:91
 #: admin/history_rvy.php:97
 #: admin/history_rvy.php:100
-#: rvy_init-functions.php:276
+#: rvy_init-functions.php:289
 msgid "Copy"
 msgstr ""
 
@@ -568,7 +612,7 @@ msgid "Compare %s of \"%s\""
 msgstr ""
 
 #: admin/history_rvy.php:655
-#: admin/options.php:923
+#: admin/options.php:925
 msgid "Post Date"
 msgstr ""
 
@@ -639,11 +683,11 @@ msgstr ""
 #: front_rvy.php:607
 #: front_rvy.php:626
 #: front_rvy.php:657
-#: rvy_init-functions.php:280
-#: rvy_init-functions.php:298
-#: rvy_init-functions.php:337
-#: rvy_init-functions.php:354
-#: rvy_init-functions.php:371
+#: rvy_init-functions.php:293
+#: rvy_init-functions.php:311
+#: rvy_init-functions.php:350
+#: rvy_init-functions.php:367
+#: rvy_init-functions.php:384
 msgid "Approve"
 msgstr ""
 
@@ -696,7 +740,7 @@ msgid "Statuses"
 msgstr ""
 
 #: admin/options.php:163
-#: admin/options.php:956
+#: admin/options.php:958
 msgid "Notifications"
 msgstr ""
 
@@ -858,848 +902,860 @@ msgid "Prevent Revisors from editing others' unpublished Posts"
 msgstr ""
 
 #: admin/options.php:217
-msgid "Display Hints"
+msgid "Add database index to posts table for Revision queries"
 msgstr ""
 
 #: admin/options.php:218
-msgid "Delete settings and Revisions if plugin is deleted"
+msgid "Display Hints"
 msgstr ""
 
 #: admin/options.php:219
-msgid "Show Preview Links"
+msgid "Delete settings and Revisions if plugin is deleted"
 msgstr ""
 
 #: admin/options.php:220
-msgid "Preview Link Type"
+msgid "Show Preview Links"
 msgstr ""
 
 #: admin/options.php:221
-msgid "Modify preview link for better theme compatibility"
+msgid "Preview Link Type"
 msgstr ""
 
 #: admin/options.php:222
-msgid "Theme Compat: For front page revision preview, set home flag"
+msgid "Modify preview link for better theme compatibility"
 msgstr ""
 
 #: admin/options.php:223
-msgid "Approve Button on Compare screen"
+msgid "Theme Compat: For front page revision preview, set home flag"
 msgstr ""
 
 #: admin/options.php:224
-msgid "Copy revision comments to published post"
+msgid "Approve Button on Compare screen"
 msgstr ""
 
 #: admin/options.php:225
-msgid "Compare Past Revisions ordering:"
+msgid "Copy revision comments to published post"
 msgstr ""
 
 #: admin/options.php:226
+msgid "Compare Past Revisions ordering:"
+msgstr ""
+
+#: admin/options.php:227
 #, php-format
 msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
 msgstr ""
 
-#: admin/options.php:227
+#: admin/options.php:228
 msgid "Store custom fields of submitted and scheduled revisions for archive"
 msgstr ""
 
-#: admin/options.php:228
+#: admin/options.php:229
 msgid "Keep an archive of revision edits, even after the revision is published"
 msgstr ""
 
-#: admin/options.php:229
+#: admin/options.php:230
 msgid "Show Current Revision top bar after revision publication"
 msgstr ""
 
-#: admin/options.php:230
+#: admin/options.php:231
 msgid "On Revision publication, delete Editorial Comments"
 msgstr ""
 
-#: admin/options.php:231
+#: admin/options.php:232
 msgid "Enable deletion queue"
 msgstr ""
 
-#: admin/options.php:232
+#: admin/options.php:233
 msgid "Allow Past Revisions to be deleted"
 msgstr ""
 
-#: admin/options.php:233
+#: admin/options.php:234
 msgid "Restoring a Revision requires role capability"
 msgstr ""
 
-#: admin/options.php:234
+#: admin/options.php:235
 msgid "Compatibility Mode"
 msgstr ""
 
-#: admin/options.php:235
+#: admin/options.php:236
 msgid "Planner Notifications Access-Limited"
 msgstr ""
 
-#: admin/options.php:236
+#: admin/options.php:237
 msgid "Maximum Revisions per post"
 msgstr ""
 
-#: admin/options.php:237
+#: admin/options.php:238
 msgid "Apply Post Permissions to Revisions"
 msgstr ""
 
-#: admin/options.php:238
+#: admin/options.php:239
 msgid "Enable legacy email notifications"
 msgstr ""
 
-#: admin/options.php:239
+#: admin/options.php:240
 msgid "Use extended captions for Approve button in Post Editor"
 msgstr ""
 
-#: admin/options.php:240
+#: admin/options.php:241
 msgid "Allow the Author field to be modified by Revision"
 msgstr ""
 
-#: admin/options.php:241
+#: admin/options.php:242
 msgid "Create Revision button in editor opens new tab"
 msgstr ""
 
-#: admin/options.php:242
-msgid "Disable Rank Math SEO panel for Revision edit"
-msgstr ""
-
 #: admin/options.php:243
-msgid "Allow custom fields (post meta) to be revisioned"
+msgid "Query Loop Block: Adjust Revisor and Contributor capabilities to allow previewing in Revision editor"
 msgstr ""
 
 #: admin/options.php:244
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr ""
+
+#: admin/options.php:245
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr ""
+
+#: admin/options.php:246
 msgid "Permission for Submit Revision also enables Revision creation"
-msgstr ""
-
-#: admin/options.php:249
-#, php-format
-msgid "Email designated Publishers when a %s is submitted"
-msgstr ""
-
-#: admin/options.php:250
-#, php-format
-msgid "Email designated Publishers when a %s is published"
 msgstr ""
 
 #: admin/options.php:251
 #, php-format
-msgid "Email designated Publishers when a %s is approved"
+msgid "Email designated Publishers when a %s is submitted"
+msgstr ""
+
+#: admin/options.php:252
+#, php-format
+msgid "Email designated Publishers when a %s is published"
 msgstr ""
 
 #: admin/options.php:253
 #, php-format
-msgid "Email Editors and Administrators when a %s is submitted"
-msgstr ""
-
-#: admin/options.php:254
-#, php-format
-msgid "Email Editors and Administrators when a %s is published"
+msgid "Email designated Publishers when a %s is approved"
 msgstr ""
 
 #: admin/options.php:255
 #, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr ""
+
+#: admin/options.php:256
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr ""
+
+#: admin/options.php:257
+#, php-format
 msgid "Email Editors and Administrators when a %s is approved"
 msgstr ""
 
-#: admin/options.php:337
+#: admin/options.php:339
 msgid "PublishPress Revisions Site Settings"
 msgstr ""
 
-#: admin/options.php:367
+#: admin/options.php:369
 msgid "These are the default settings for options which can be adjusted per-site."
 msgstr ""
 
-#: admin/options.php:405
+#: admin/options.php:407
 #, php-format
 msgid "Use this tab to make NETWORK-WIDE changes to PublishPress Revisions settings. %s"
 msgstr ""
 
-#: admin/options.php:408
+#: admin/options.php:410
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
 msgstr ""
 
-#: admin/options.php:411
+#: admin/options.php:413
 msgid "Here you can change the default value for settings which are controlled separately on each site."
 msgstr ""
 
-#: admin/options.php:421
 #: admin/options.php:423
+#: admin/options.php:425
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
 msgstr ""
 
-#: admin/options.php:501
+#: admin/options.php:503
 msgid "License"
 msgstr ""
 
-#: admin/options.php:544
+#: admin/options.php:546
 msgid "Past Revisions are earlier versions of a post."
 msgstr ""
 
-#: admin/options.php:599
+#: admin/options.php:601
 msgid "This post type does not support Past Revisions."
 msgstr ""
 
-#: admin/options.php:641
+#: admin/options.php:643
 msgid "New Revisions are changes which are not yet published."
 msgstr ""
 
-#: admin/options.php:730
+#: admin/options.php:732
 msgid "Note: Third party code may cause some post types to be incompatible with PublishPress Revisions."
 msgstr ""
 
-#: admin/options.php:740
+#: admin/options.php:742
 #, php-format
 msgid "For Revisions integration on the Content Calendar, Overview and Content Board, please update %sPublishPress Planner Pro%s."
 msgstr ""
 
-#: admin/options.php:761
+#: admin/options.php:763
 msgid "Ready to enhance your revision workflow?"
 msgstr ""
 
-#: admin/options.php:764
+#: admin/options.php:766
 msgid "Get PublishPress Statuses Pro and optimize your revision process with custom revision statuses."
 msgstr ""
 
-#: admin/options.php:770
+#: admin/options.php:772
 msgid "Define your own statuses before or after Revision Submitted"
 msgstr ""
 
-#: admin/options.php:773
+#: admin/options.php:775
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
 msgstr ""
 
-#: admin/options.php:776
+#: admin/options.php:778
 msgid "Statuses can be specific to a post type"
 msgstr ""
 
-#: admin/options.php:779
+#: admin/options.php:781
 msgid "Control access to statuses per-role"
 msgstr ""
 
-#: admin/options.php:782
+#: admin/options.php:784
 msgid "Status workflow can be nested with sub-statuses"
 msgstr ""
 
-#: admin/options.php:791
+#: admin/options.php:793
 msgid "Get PublishPress Statuses Pro"
 msgstr ""
 
-#: admin/options.php:796
-#: admin/options.php:814
-#: admin/options.php:1780
-#: admin/options.php:1798
-#: admin/options.php:2337
-#: admin/options.php:2351
-#: admin/options.php:2361
+#: admin/options.php:798
+#: admin/options.php:816
+#: admin/options.php:1785
+#: admin/options.php:1803
+#: admin/options.php:2357
 #: admin/options.php:2371
+#: admin/options.php:2381
+#: admin/options.php:2391
 msgid "Learn More"
 msgstr ""
 
-#: admin/options.php:809
+#: admin/options.php:811
 msgid "Pro Plugin"
 msgstr ""
 
-#: admin/options.php:810
+#: admin/options.php:812
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr ""
 
-#: admin/options.php:811
+#: admin/options.php:813
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
 
-#: admin/options.php:818
+#: admin/options.php:820
 msgid "Get Statuses Pro"
 msgstr ""
 
-#: admin/options.php:845
+#: admin/options.php:847
 msgid "Maximum revisions per post:"
 msgstr ""
 
-#: admin/options.php:847
+#: admin/options.php:849
 msgid "(unlimited)"
 msgstr ""
 
-#: admin/options.php:855
+#: admin/options.php:857
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
 msgstr ""
 
-#: admin/options.php:892
-#: admin/options.php:1063
-#: admin/options.php:1310
-#: admin/options.php:1336
-#: admin/options.php:1362
-#: admin/options.php:1390
-#: admin/options.php:1904
-#, php-format
-msgid "%s capability"
-msgstr ""
-
-#: admin/options.php:897
-#: admin/options.php:1068
+#: admin/options.php:894
+#: admin/options.php:1065
 #: admin/options.php:1315
 #: admin/options.php:1341
 #: admin/options.php:1367
 #: admin/options.php:1395
 #: admin/options.php:1909
+#, php-format
+msgid "%s capability"
+msgstr ""
+
+#: admin/options.php:899
+#: admin/options.php:1070
+#: admin/options.php:1320
+#: admin/options.php:1346
+#: admin/options.php:1372
+#: admin/options.php:1400
+#: admin/options.php:1914
 msgid "Assign capability to roles"
 msgstr ""
 
-#: admin/options.php:904
+#: admin/options.php:906
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
 msgstr ""
 
-#: admin/options.php:910
+#: admin/options.php:912
 msgid "Prevent non-Administrators from restoring a revision without the restore_revisions capability"
 msgstr ""
 
-#: admin/options.php:923
+#: admin/options.php:925
 msgid "Modification Date"
 msgstr ""
 
-#: admin/options.php:951
+#: admin/options.php:953
 msgid "Revision Creation"
 msgstr ""
 
-#: admin/options.php:952
+#: admin/options.php:954
 msgid "Submission"
 msgstr ""
 
-#: admin/options.php:953
+#: admin/options.php:955
 msgid "Scheduling"
 msgstr ""
 
-#: admin/options.php:954
+#: admin/options.php:956
 msgid "Publication"
 msgstr ""
 
-#: admin/options.php:955
+#: admin/options.php:957
 msgid "Management"
 msgstr ""
 
-#: admin/options.php:1013
+#: admin/options.php:1015
 msgid "Create Revision capabilities"
 msgstr ""
 
-#: admin/options.php:1018
-#: admin/options.php:1043
-#: admin/options.php:1193
+#: admin/options.php:1020
+#: admin/options.php:1045
+#: admin/options.php:1198
 msgid "Assign capabilities to roles"
 msgstr ""
 
-#: admin/options.php:1025
-#: admin/options.php:1200
+#: admin/options.php:1027
+#: admin/options.php:1205
 #, php-format
 msgid "If the user can't edit the published post, require %s."
 msgstr ""
 
-#: admin/options.php:1031
+#: admin/options.php:1033
 msgid "If the user can't edit the published post, require Create Revision capabilities (copy_posts, copy_others_pages, etc.)"
 msgstr ""
 
-#: admin/options.php:1039
+#: admin/options.php:1041
 #, php-format
 msgid "To expand the Pages list, assign %s."
 msgstr ""
 
-#: admin/options.php:1042
+#: admin/options.php:1044
 msgid "Listing capabilities"
 msgstr ""
 
-#: admin/options.php:1049
+#: admin/options.php:1051
 msgid "To expand the Pages list, assign Listing capabilities (list_others_pages, list_published_posts, etc.)"
 msgstr ""
 
-#: admin/options.php:1055
+#: admin/options.php:1057
 msgid "This plugin introduces a new user role, \"Revisor.\""
 msgstr ""
 
-#: admin/options.php:1075
+#: admin/options.php:1077
 #, php-format
 msgid "Revision by a user who does not have the %s will cause all custom html tags to be stripped out."
 msgstr ""
 
-#: admin/options.php:1081
+#: admin/options.php:1083
 msgid "Revision by a user who does not have the unfiltered_html capability will cause all custom html tags to be stripped out."
 msgstr ""
 
-#: admin/options.php:1098
+#: admin/options.php:1100
 msgid "Broadest compat including Elementor, Divi, Beaver Builder"
 msgstr ""
 
-#: admin/options.php:1099
+#: admin/options.php:1101
 msgid "Standard storage schema for broadest 3rd party compat"
 msgstr ""
 
-#: admin/options.php:1104
+#: admin/options.php:1106
 msgid "Enhanced Revision access control with PublishPress plugins"
 msgstr ""
 
-#: admin/options.php:1115
+#: admin/options.php:1117
 msgid "In enhanced mode, a Revision's status is stored by standard WordPress schema. Some plugins are incompatible."
 msgstr ""
 
-#: admin/options.php:1122
+#: admin/options.php:1124
 msgid "Prevent Revision creation if the post already has another Revision in progress."
 msgstr ""
 
-#: admin/options.php:1126
+#: admin/options.php:1128
 msgid "Work around cache plugin conflicts by requerying for revisions before suppressing the New Revision link."
 msgstr ""
 
-#: admin/options.php:1153
+#: admin/options.php:1158
 #, php-format
 msgid "If the user does not have a regular Edit link, recaption the %s link as \"Edit.\""
 msgstr ""
 
-#: admin/options.php:1156
+#: admin/options.php:1161
 msgid "Default labels are \"Not Submitted for Approval\", \"Submitted for Approval\", \"Scheduled Revision\""
 msgstr ""
 
-#: admin/options.php:1174
+#: admin/options.php:1179
 #, php-format
 msgid "Enable published content to be copied, edited, submitted for approval and managed on the %sNew Revisions%s screen."
 msgstr ""
 
-#: admin/options.php:1188
+#: admin/options.php:1193
 msgid "Submit Revision capabilities"
 msgstr ""
 
-#: admin/options.php:1206
+#: admin/options.php:1211
 msgid "If the user can't edit the published post, require Submit Revision capabilities (revise_posts, revise_others_pages, etc.)"
 msgstr ""
 
-#: admin/options.php:1211
-#: admin/options.php:1245
+#: admin/options.php:1216
+#: admin/options.php:1250
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr ""
 
-#: admin/options.php:1214
-#: admin/options.php:1248
+#: admin/options.php:1219
+#: admin/options.php:1253
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr ""
 
-#: admin/options.php:1217
+#: admin/options.php:1222
 msgid "When a new revision is created by any user who is allowed to submit revisions, automatically submit it."
 msgstr ""
 
-#: admin/options.php:1220
+#: admin/options.php:1225
 msgid "Auto-submit revisions if the user can directly edit the main post."
 msgstr ""
 
-#: admin/options.php:1223
+#: admin/options.php:1228
 msgid "This allows immediate approval within the Compare screen. If disabled, a Preview link is provided instead."
 msgstr ""
 
-#: admin/options.php:1239
+#: admin/options.php:1244
 msgid "If a currently published post or page is edited and a future date set, the change will not be applied until the selected date."
 msgstr ""
 
-#: admin/options.php:1253
+#: admin/options.php:1258
 msgid "Publish scheduled revisions using the WP-Cron mechanism. On some sites, publication will fail if this setting is disabled."
 msgstr ""
 
-#: admin/options.php:1257
+#: admin/options.php:1262
 msgid "Publish scheduled revisions asynchronously, via a secondary http request from the server.  This is usually best since it eliminates delay, but some servers may not support it."
 msgstr ""
 
-#: admin/options.php:1262
+#: admin/options.php:1267
 msgid "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted using a custom trigger."
 msgstr ""
 
-#: admin/options.php:1276
+#: admin/options.php:1281
 msgid "Caption the button as either \"Approve and Publish\" or \"Approve and Schedule.\""
 msgstr ""
 
-#: admin/options.php:1287
+#: admin/options.php:1292
 msgid "This may improve compatibility with some plugins."
 msgstr ""
 
-#: admin/options.php:1322
+#: admin/options.php:1327
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr ""
 
-#: admin/options.php:1328
+#: admin/options.php:1333
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr ""
 
-#: admin/options.php:1348
+#: admin/options.php:1353
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr ""
 
-#: admin/options.php:1354
+#: admin/options.php:1359
 msgid "Users will need the manage_unsubmitted_revisions capability to edit others' Unsubmitted Revisions."
 msgstr ""
 
-#: admin/options.php:1374
-#: admin/options.php:1402
+#: admin/options.php:1379
+#: admin/options.php:1407
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr ""
 
-#: admin/options.php:1380
+#: admin/options.php:1385
 msgid "If the user can't edit the published post, require the edit_others_revisions capability."
 msgstr ""
 
-#: admin/options.php:1408
+#: admin/options.php:1413
 msgid "If the user can't edit the published post, require the list_others_revisions capability."
 msgstr ""
 
-#: admin/options.php:1413
+#: admin/options.php:1418
 msgid "Bypass the above restrictions for others' revisions to logged in user's own posts."
 msgstr ""
 
-#: admin/options.php:1424
+#: admin/options.php:1429
 msgid "Regenerate \"post has revision\" flags"
 msgstr ""
 
-#: admin/options.php:1427
+#: admin/options.php:1432
 msgid "Apply this maintenance operation if Has Revision labels on Posts / Pages screens mismatch the New Revisions listing."
 msgstr ""
 
-#: admin/options.php:1452
+#: admin/options.php:1457
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr ""
 
-#: admin/options.php:1465
+#: admin/options.php:1470
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr ""
 
-#: admin/options.php:1487
+#: admin/options.php:1492
 #, php-format
 msgid "Send revision action notifications using the customizable %1$sPublishPress Planner Notifications system%2$s."
 msgstr ""
 
-#: admin/options.php:1488
+#: admin/options.php:1493
 #, php-format
 msgid "Upgrade to Revisions Pro to send revision action notifications using the customizable %1$sPublishPress Planner Notifications system%2$s."
 msgstr ""
 
-#: admin/options.php:1500
+#: admin/options.php:1505
 msgid "Users matching Planner > Notifications configuration get revision notifications only if they can edit the published post."
 msgstr ""
 
-#: admin/options.php:1542
-#: admin/options.php:1564
+#: admin/options.php:1547
+#: admin/options.php:1569
 msgid "Never"
 msgstr ""
 
-#: admin/options.php:1542
-#: admin/options.php:1564
+#: admin/options.php:1547
+#: admin/options.php:1569
 msgid "By default"
 msgstr ""
 
-#: admin/options.php:1542
-#: admin/options.php:1564
+#: admin/options.php:1547
+#: admin/options.php:1569
 msgid "Always"
 msgstr ""
 
-#: admin/options.php:1553
-#: admin/options.php:1600
+#: admin/options.php:1558
+#: admin/options.php:1605
 msgid "select recipients"
 msgstr ""
 
-#: admin/options.php:1614
+#: admin/options.php:1619
 msgid "To avoid notification failures, buffer emails for delayed sending once minute, hour or day limits are exceeded"
 msgstr ""
 
-#: admin/options.php:1635
+#: admin/options.php:1640
 msgid "Notification Buffer"
 msgstr ""
 
-#: admin/options.php:1663
+#: admin/options.php:1668
 msgid "Notification Log"
 msgstr ""
 
-#: admin/options.php:1692
+#: admin/options.php:1697
 msgid "Purge Notification Buffer"
 msgstr ""
 
-#: admin/options.php:1698
+#: admin/options.php:1703
 msgid "Truncate Notification Log"
 msgstr ""
 
-#: admin/options.php:1704
+#: admin/options.php:1709
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr ""
 
-#: admin/options.php:1705
+#: admin/options.php:1710
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr ""
 
-#: admin/options.php:1706
+#: admin/options.php:1711
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr ""
 
-#: admin/options.php:1713
+#: admin/options.php:1718
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr ""
 
-#: admin/options.php:1724
+#: admin/options.php:1729
 msgid "Show Notification Log / Buffer"
 msgstr ""
 
-#: admin/options.php:1726
+#: admin/options.php:1731
 msgid "Show with message content"
 msgstr ""
 
-#: admin/options.php:1748
+#: admin/options.php:1753
 msgid "Ready to enhance your revision notifications?"
 msgstr ""
 
-#: admin/options.php:1751
+#: admin/options.php:1756
 msgid "Upgrade to Revisions Pro for integration with our PublishPress Planner Notifications framework."
 msgstr ""
 
-#: admin/options.php:1757
+#: admin/options.php:1762
 msgid "Customize notification message and subject"
 msgstr ""
 
-#: admin/options.php:1760
+#: admin/options.php:1765
 msgid "Notify for a specific post type, category or term"
 msgstr ""
 
-#: admin/options.php:1763
+#: admin/options.php:1768
 msgid "Target specific roles, users, or user groups"
 msgstr ""
 
-#: admin/options.php:1766
+#: admin/options.php:1771
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr ""
 
-#: admin/options.php:1793
-#: admin/options.php:2331
+#: admin/options.php:1798
+#: admin/options.php:2351
 msgid "Pro Feature"
 msgstr ""
 
-#: admin/options.php:1794
+#: admin/options.php:1799
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr ""
 
-#: admin/options.php:1795
+#: admin/options.php:1800
 msgid "Customize notification content and recipients for each notification type."
 msgstr ""
 
-#: admin/options.php:1819
+#: admin/options.php:1824
 msgid "Some themes may block revision preview."
 msgstr ""
 
-#: admin/options.php:1836
+#: admin/options.php:1841
 msgid "Published Post Slug"
 msgstr ""
 
-#: admin/options.php:1837
+#: admin/options.php:1842
 msgid "Revision Slug"
 msgstr ""
 
-#: admin/options.php:1838
+#: admin/options.php:1843
 msgid "Revision ID only"
 msgstr ""
 
-#: admin/options.php:1853
+#: admin/options.php:1858
 msgid "Some themes or plugins may require Revision Slug or Revision ID link type for proper template loading and field display."
 msgstr ""
 
-#: admin/options.php:1862
+#: admin/options.php:1867
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr ""
 
-#: admin/options.php:1869
+#: admin/options.php:1874
 msgid "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". Experiment to see which works best with your theme."
 msgstr ""
 
-#: admin/options.php:1873
+#: admin/options.php:1878
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 
-#: admin/options.php:1892
+#: admin/options.php:1897
 msgid "This should usually be enabled, except to work around conflicts with other another plugin's postmeta data."
 msgstr ""
 
-#: admin/options.php:1916
+#: admin/options.php:1921
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 
-#: admin/options.php:1922
+#: admin/options.php:1927
 msgid "If the user can't publish, require the edit_others_drafts capability to edit others' unpublished Posts."
 msgstr ""
 
-#: admin/options.php:1928
+#: admin/options.php:1933
 msgid "If post-specific permissions restrict or expand access to a post, apply those permissions to its revisions also."
 msgstr ""
 
-#: admin/options.php:1940
+#: admin/options.php:1945
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr ""
 
-#: admin/options.php:1947
+#: admin/options.php:1952
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
 msgstr ""
 
-#: admin/options.php:1952
+#: admin/options.php:1957
 msgid "Sync \"Needs Update\" flags"
 msgstr ""
 
-#: admin/options.php:1956
+#: admin/options.php:1961
 msgid "Set \"Needs Update\" for any post with translations which was updated (possibly by revision approval) more recently than its translations."
 msgstr ""
 
-#: admin/options.php:1966
+#: admin/options.php:1971
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr ""
 
-#: admin/options.php:1969
+#: admin/options.php:1989
 msgid "Plugin settings, New Revisions contents and related data will be deleted, but only after the last copy of Revisions / Revisions Pro is deleted."
 msgstr ""
 
-#: admin/options.php:1990
+#: admin/options.php:2010
 msgid "Unlock Pro Integrations"
 msgstr ""
 
-#: admin/options.php:1991
+#: admin/options.php:2011
 msgid "Upgrade to the Pro version for optimal compatibility and prompt, professional support."
 msgstr ""
 
-#: admin/options.php:2009
-#: admin/options.php:2262
+#: admin/options.php:2029
+#: admin/options.php:2282
 msgid "Admin"
 msgstr ""
 
-#: admin/options.php:2012
-#: admin/options.php:2260
+#: admin/options.php:2032
+#: admin/options.php:2280
 msgid "Builder"
 msgstr ""
 
-#: admin/options.php:2015
-#: admin/options.php:2264
+#: admin/options.php:2035
+#: admin/options.php:2284
 msgid "Cache"
 msgstr ""
 
-#: admin/options.php:2018
+#: admin/options.php:2038
 msgid "E-Commerce"
 msgstr ""
 
-#: admin/options.php:2021
-#: admin/options.php:2270
+#: admin/options.php:2041
+#: admin/options.php:2290
 msgid "Fields"
 msgstr ""
 
-#: admin/options.php:2025
+#: admin/options.php:2045
 msgid "Multilingual"
 msgstr ""
 
-#: admin/options.php:2029
-#: admin/options.php:2266
+#: admin/options.php:2049
+#: admin/options.php:2286
 msgid "SEO"
 msgstr ""
 
-#: admin/options.php:2032
-#: admin/options.php:2276
+#: admin/options.php:2052
+#: admin/options.php:2296
 msgid "Workflow"
 msgstr ""
 
-#: admin/options.php:2114
+#: admin/options.php:2134
 msgid "Specify which PublishPress Revisions Settings to control network-wide. Unselected settings are controlled separately on each site."
 msgstr ""
 
-#: admin/options.php:2124
+#: admin/options.php:2144
 #, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
 msgstr ""
 
-#: admin/options.php:2160
+#: admin/options.php:2180
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr ""
 
-#: admin/options.php:2187
+#: admin/options.php:2207
 msgid "Save Changes"
 msgstr ""
 
-#: admin/options.php:2188
+#: admin/options.php:2208
 msgid "Revert to Defaults"
 msgstr ""
 
-#: admin/options.php:2190
+#: admin/options.php:2210
 msgid "All settings in this form (including those on unselected tabs) will be reset to DEFAULTS.  Are you sure?"
 msgstr ""
 
-#: admin/options.php:2268
+#: admin/options.php:2288
 msgid "Commerce"
 msgstr ""
 
-#: admin/options.php:2272
+#: admin/options.php:2292
 msgid "Multilang"
 msgstr ""
 
-#: admin/options.php:2274
+#: admin/options.php:2294
 msgid "Community"
 msgstr ""
 
-#: admin/options.php:2286
+#: admin/options.php:2306
 msgid "Pro"
 msgstr ""
 
-#: admin/options.php:2291
+#: admin/options.php:2311
 msgid "Supported"
 msgstr ""
 
-#: admin/options.php:2294
-#: admin/options.php:2348
+#: admin/options.php:2314
+#: admin/options.php:2368
 msgid "Active Plugin"
 msgstr ""
 
-#: admin/options.php:2306
+#: admin/options.php:2326
 msgid "Supported by PublishPress Revisions"
 msgstr ""
 
-#: admin/options.php:2308
+#: admin/options.php:2328
 msgid "Supported by Revisions Pro"
 msgstr ""
 
-#: admin/options.php:2321
+#: admin/options.php:2341
 msgid "Integration Active"
 msgstr ""
 
-#: admin/options.php:2323
+#: admin/options.php:2343
 msgid "Upgrade to Pro to enable this integration"
 msgstr ""
 
-#: admin/options.php:2332
+#: admin/options.php:2352
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr ""
 
-#: admin/options.php:2348
+#: admin/options.php:2368
 msgid "Active Plugin Integration"
 msgstr ""
 
-#: admin/options.php:2358
+#: admin/options.php:2378
 msgid "Supported Plugin Integration"
 msgstr ""
 
-#: admin/options.php:2368
+#: admin/options.php:2388
 msgid "Supported Plugin"
 msgstr ""
 
-#: admin/post-edit-block-ui_rvy.php:179
-#: admin/post-edit_rvy.php:340
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr ""
+
+#: admin/post-edit-block-ui_rvy.php:209
+#: admin/post-edit_rvy.php:343
 msgid "Author"
 msgstr ""
 
@@ -1762,6 +1818,10 @@ msgid "Approve and Publish"
 msgstr ""
 
 #: admin/post-editor-workflow-ui_rvy.php:137
+#: rvy_init-functions.php:308
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:364
+#: rvy_init-functions.php:381
 msgid "Update in progress..."
 msgstr ""
 
@@ -1770,13 +1830,13 @@ msgid "Approve and Schedule"
 msgstr ""
 
 #: admin/post-editor-workflow-ui_rvy.php:174
-#: rvy_init-functions.php:284
-#: rvy_init-functions.php:302
-#: rvy_init-functions.php:320
-#: rvy_init-functions.php:340
-#: rvy_init-functions.php:357
-#: rvy_init-functions.php:374
-#: rvy_init-functions.php:487
+#: rvy_init-functions.php:297
+#: rvy_init-functions.php:315
+#: rvy_init-functions.php:333
+#: rvy_init-functions.php:353
+#: rvy_init-functions.php:370
+#: rvy_init-functions.php:387
+#: rvy_init-functions.php:500
 msgid "Update Revision"
 msgstr ""
 
@@ -1789,18 +1849,13 @@ msgstr ""
 msgid "Error Creating Revision"
 msgstr ""
 
-#: admin/post-editor-workflow-ui_rvy.php:249
-#: admin/post-editor-workflow-ui_rvy.php:269
-msgid "Update"
-msgstr ""
-
 #: admin/post-editor-workflow-ui_rvy.php:263
 #, php-format
 msgid "For custom field changes, edit a scheduled %s."
 msgstr ""
 
 #: admin/post-edit_rvy.php:28
-#: admin/post-edit_rvy.php:139
+#: admin/post-edit_rvy.php:141
 msgid "Current Time"
 msgstr ""
 
@@ -1809,79 +1864,79 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: admin/post-edit_rvy.php:165
+#: admin/post-edit_rvy.php:168
 msgid "View revision in progress"
 msgstr ""
 
-#: admin/post-edit_rvy.php:188
+#: admin/post-edit_rvy.php:191
 msgid "Compare this revision to published copy, or to other revisions"
 msgstr ""
 
-#: admin/post-edit_rvy.php:223
+#: admin/post-edit_rvy.php:226
 msgid "View / moderate saved revision"
 msgstr ""
 
-#: admin/post-edit_rvy.php:226
+#: admin/post-edit_rvy.php:229
 msgid "View saved revision"
 msgstr ""
 
-#: admin/revision-action_rvy.php:507
-#: admin/revision-action_rvy.php:593
+#: admin/revision-action_rvy.php:510
+#: admin/revision-action_rvy.php:596
 #, php-format
 msgid "[%s] Revision Approval Notice"
 msgstr ""
 
-#: admin/revision-action_rvy.php:508
+#: admin/revision-action_rvy.php:511
 #, php-format
 msgid "A revision to the %1$s \"%2$s\" has been approved."
 msgstr ""
 
-#: admin/revision-action_rvy.php:512
+#: admin/revision-action_rvy.php:515
 #, php-format
 msgid "The submitter was %1$s."
 msgstr ""
 
-#: admin/revision-action_rvy.php:516
-#: admin/revision-action_rvy.php:602
+#: admin/revision-action_rvy.php:519
+#: admin/revision-action_rvy.php:605
 #, php-format
 msgid "It will be published on %s"
 msgstr ""
 
-#: admin/revision-action_rvy.php:520
-#: admin/revision-action_rvy.php:606
+#: admin/revision-action_rvy.php:523
+#: admin/revision-action_rvy.php:609
 msgid "Preview it here: "
 msgstr ""
 
-#: admin/revision-action_rvy.php:523
-#: admin/revision-action_rvy.php:609
+#: admin/revision-action_rvy.php:526
+#: admin/revision-action_rvy.php:612
 msgid "Editor: "
 msgstr ""
 
-#: admin/revision-action_rvy.php:525
-#: admin/revision-action_rvy.php:611
-#: admin/revision-action_rvy.php:1579
-#: admin/revision-action_rvy.php:1610
-#: admin/revision-action_rvy.php:1676
+#: admin/revision-action_rvy.php:528
+#: admin/revision-action_rvy.php:614
+#: admin/revision-action_rvy.php:1582
+#: admin/revision-action_rvy.php:1613
+#: admin/revision-action_rvy.php:1679
 msgid "View it online: "
 msgstr ""
 
-#: admin/revision-action_rvy.php:594
+#: admin/revision-action_rvy.php:597
 #, php-format
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr ""
 
-#: admin/revision-action_rvy.php:1571
-#: admin/revision-action_rvy.php:1599
+#: admin/revision-action_rvy.php:1574
+#: admin/revision-action_rvy.php:1602
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr ""
 
-#: admin/revision-action_rvy.php:1572
+#: admin/revision-action_rvy.php:1575
 #, php-format
 msgid "The scheduled revision you submitted for the %1$s \"%2$s\" has been published."
 msgstr ""
 
-#: admin/revision-action_rvy.php:1600
+#: admin/revision-action_rvy.php:1603
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr ""
@@ -1939,31 +1994,42 @@ msgid_plural "%s revisions published."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/revision-queue_rvy.php:129
+#: admin/revision-queue_rvy.php:133
 #, php-format
-msgctxt "Author Name"
-msgid "%s: "
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
 msgstr ""
 
-#: admin/revision-queue_rvy.php:142
+#: admin/revision-queue_rvy.php:136
 #, php-format
 msgctxt "Posts / Pages / etc."
 msgid "of %s"
 msgstr ""
 
-#: admin/revision-queue_rvy.php:149
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr ""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr ""
+
 #: admin/revision-queue_rvy.php:150
 #, php-format
-msgid "%sPost Author: %s"
+msgctxt "revision date"
+msgid "on %s"
 msgstr ""
 
-#: admin/revision-queue_rvy.php:157
+#: admin/revision-queue_rvy.php:156
 #, php-format
-msgctxt "PublishedPostName (other filter captions)"
-msgid "New Revisions for \"%s\"%s"
+msgid " (Post Author: %s)"
 msgstr ""
 
-#: admin/revision-queue_rvy.php:159
+#: admin/revision-queue_rvy.php:165
 #, php-format
 msgid "New Revisions %s"
 msgstr ""
@@ -2284,8 +2350,8 @@ msgid "%sView Published Post%s"
 msgstr ""
 
 #: front_rvy.php:600
-#: rvy_init-functions.php:294
-#: rvy_init-functions.php:350
+#: rvy_init-functions.php:307
+#: rvy_init-functions.php:363
 msgid "Submit"
 msgstr ""
 
@@ -2320,7 +2386,7 @@ msgid "Revision status: %s %s %s %s"
 msgstr ""
 
 #: front_rvy.php:683
-#: rvy_init-functions.php:457
+#: rvy_init-functions.php:470
 msgid "Publish Now"
 msgstr ""
 
@@ -2404,12 +2470,7 @@ msgstr ""
 msgid "View Knowledge Base"
 msgstr ""
 
-#: lib/debug.php:117
-#, php-format
-msgid "%1$s queries in %2$s seconds. %3$s MB used."
-msgstr ""
-
-#: revision-creation_rvy.php:221
+#: revision-creation_rvy.php:216
 msgid "Could not insert revision into the database"
 msgstr ""
 
@@ -2454,291 +2515,275 @@ msgstr ""
 msgid "Every 2 Minutes"
 msgstr ""
 
-#: rvy_init-functions.php:274
-#: rvy_init-functions.php:286
+#: rvy_init-functions.php:287
+#: rvy_init-functions.php:299
 msgid "Working Copy"
 msgstr ""
 
-#: rvy_init-functions.php:275
+#: rvy_init-functions.php:288
 msgid "Create Working Copy"
 msgstr ""
 
-#: rvy_init-functions.php:277
+#: rvy_init-functions.php:290
 msgid "Creating Working Copy..."
 msgstr ""
 
-#: rvy_init-functions.php:278
+#: rvy_init-functions.php:291
 msgid "Working Copy ready"
 msgstr ""
 
-#: rvy_init-functions.php:279
-#: rvy_init-functions.php:297
+#: rvy_init-functions.php:292
+#: rvy_init-functions.php:310
 msgid "Approve Changes"
 msgstr ""
 
-#: rvy_init-functions.php:281
-#: rvy_init-functions.php:299
+#: rvy_init-functions.php:294
+#: rvy_init-functions.php:312
 msgid "Approving Changes..."
 msgstr ""
 
-#: rvy_init-functions.php:282
-#: rvy_init-functions.php:300
-#: rvy_init-functions.php:318
+#: rvy_init-functions.php:295
+#: rvy_init-functions.php:313
+#: rvy_init-functions.php:331
 msgid "Publish Changes"
 msgstr ""
 
-#: rvy_init-functions.php:283
-#: rvy_init-functions.php:301
-#: rvy_init-functions.php:319
-#: rvy_init-functions.php:339
-#: rvy_init-functions.php:356
-#: rvy_init-functions.php:373
+#: rvy_init-functions.php:296
+#: rvy_init-functions.php:314
+#: rvy_init-functions.php:332
+#: rvy_init-functions.php:352
+#: rvy_init-functions.php:369
+#: rvy_init-functions.php:386
 msgid "Save Revision"
 msgstr ""
 
-#: rvy_init-functions.php:285
+#: rvy_init-functions.php:298
 msgid "Working Copies"
 msgstr ""
 
-#: rvy_init-functions.php:287
+#: rvy_init-functions.php:300
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:292
-#: rvy_init-functions.php:304
+#: rvy_init-functions.php:305
+#: rvy_init-functions.php:317
 msgid "Change Request"
 msgstr ""
 
-#: rvy_init-functions.php:293
+#: rvy_init-functions.php:306
 msgid "Submit Change Request"
 msgstr ""
 
-#: rvy_init-functions.php:295
-msgid "Submitting Changes..."
-msgstr ""
-
-#: rvy_init-functions.php:296
+#: rvy_init-functions.php:309
 msgid "Changes Submitted"
 msgstr ""
 
-#: rvy_init-functions.php:303
+#: rvy_init-functions.php:316
 msgid "Change Requests"
 msgstr ""
 
-#: rvy_init-functions.php:305
+#: rvy_init-functions.php:318
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:306
+#: rvy_init-functions.php:319
 msgid "Enable Change Requests"
 msgstr ""
 
-#: rvy_init-functions.php:311
-#: rvy_init-functions.php:322
+#: rvy_init-functions.php:324
+#: rvy_init-functions.php:335
 msgid "Scheduled Change"
 msgstr ""
 
-#: rvy_init-functions.php:312
-#: rvy_init-functions.php:313
-#: rvy_init-functions.php:316
-#: rvy_init-functions.php:317
+#: rvy_init-functions.php:325
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:329
+#: rvy_init-functions.php:330
 msgid "Schedule Changes"
 msgstr ""
 
-#: rvy_init-functions.php:314
-msgid "Scheduling Changes..."
-msgstr ""
-
-#: rvy_init-functions.php:315
+#: rvy_init-functions.php:328
 msgid "Changes are Scheduled."
 msgstr ""
 
-#: rvy_init-functions.php:321
+#: rvy_init-functions.php:334
 msgid "Scheduled Changes"
 msgstr ""
 
-#: rvy_init-functions.php:323
+#: rvy_init-functions.php:336
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:331
+#: rvy_init-functions.php:344
 msgid "Unsubmitted Revision"
 msgstr ""
 
-#: rvy_init-functions.php:332
-#: rvy_init-functions.php:333
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:346
 msgid "Create Revision"
 msgstr ""
 
-#: rvy_init-functions.php:334
+#: rvy_init-functions.php:347
 msgid "Creating Revision..."
 msgstr ""
 
-#: rvy_init-functions.php:335
+#: rvy_init-functions.php:348
 msgid "The Revision is ready to edit."
 msgstr ""
 
-#: rvy_init-functions.php:335
+#: rvy_init-functions.php:348
 msgid "Revision ready to edit."
 msgstr ""
 
-#: rvy_init-functions.php:336
-#: rvy_init-functions.php:353
-#: rvy_init-functions.php:370
+#: rvy_init-functions.php:349
+#: rvy_init-functions.php:366
+#: rvy_init-functions.php:383
 msgid "Approve Revision"
 msgstr ""
 
-#: rvy_init-functions.php:338
-#: rvy_init-functions.php:355
-#: rvy_init-functions.php:372
+#: rvy_init-functions.php:351
+#: rvy_init-functions.php:368
+#: rvy_init-functions.php:385
 msgid "Publish Revision"
 msgstr ""
 
-#: rvy_init-functions.php:341
+#: rvy_init-functions.php:354
 msgid "Unsubmitted Revisions"
 msgstr ""
 
-#: rvy_init-functions.php:342
+#: rvy_init-functions.php:355
 msgid "Not Submitted"
 msgstr ""
 
-#: rvy_init-functions.php:343
+#: rvy_init-functions.php:356
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:348
+#: rvy_init-functions.php:361
 msgid "Submitted Revision"
 msgstr ""
 
-#: rvy_init-functions.php:349
-#: rvy_init-functions.php:490
+#: rvy_init-functions.php:362
+#: rvy_init-functions.php:503
 msgid "Submit Revision"
 msgstr ""
 
-#: rvy_init-functions.php:351
-msgid "Submitting Revision..."
-msgstr ""
-
-#: rvy_init-functions.php:352
+#: rvy_init-functions.php:365
 msgid "The Revision is Submitted"
 msgstr ""
 
-#: rvy_init-functions.php:352
+#: rvy_init-functions.php:365
 msgid "Revision Submitted"
 msgstr ""
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:371
 msgid "Submitted Revisions"
 msgstr ""
 
-#: rvy_init-functions.php:359
+#: rvy_init-functions.php:372
 msgid "Submitted"
 msgstr ""
 
-#: rvy_init-functions.php:360
+#: rvy_init-functions.php:373
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:365
+#: rvy_init-functions.php:378
 msgid "Scheduled Revision"
 msgstr ""
 
-#: rvy_init-functions.php:366
+#: rvy_init-functions.php:379
 msgid "Schedule Revision"
 msgstr ""
 
-#: rvy_init-functions.php:367
+#: rvy_init-functions.php:380
 msgid "Schedule"
 msgstr ""
 
-#: rvy_init-functions.php:368
-msgid "Scheduling Revision..."
-msgstr ""
-
-#: rvy_init-functions.php:369
+#: rvy_init-functions.php:382
 msgid "The Revision is Scheduled"
 msgstr ""
 
-#: rvy_init-functions.php:369
+#: rvy_init-functions.php:382
 msgid "Revision Scheduled"
 msgstr ""
 
-#: rvy_init-functions.php:375
+#: rvy_init-functions.php:388
 msgid "Scheduled Revisions"
 msgstr ""
 
-#: rvy_init-functions.php:376
+#: rvy_init-functions.php:389
 msgid "Scheduled"
 msgstr ""
 
-#: rvy_init-functions.php:377
+#: rvy_init-functions.php:390
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:477
+#: rvy_init-functions.php:490
 #, php-format
-msgid "%sMy Copies & Changes%s(%s)</span>"
-msgid_plural "%sMy Copies & Changes%s(%s)</span>"
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:478
+#: rvy_init-functions.php:491
 #, php-format
-msgid "%sMy Revisions%s(%s)</span>"
-msgid_plural "%sMy Revisions%s(%s)</span>"
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:480
+#: rvy_init-functions.php:493
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: rvy_init-functions.php:485
+#: rvy_init-functions.php:498
 msgid "Post Author"
 msgstr ""
 
-#: rvy_init-functions.php:486
+#: rvy_init-functions.php:499
 msgid "Published Post"
 msgstr ""
 
-#: rvy_init-functions.php:491
+#: rvy_init-functions.php:504
 msgid "Submit Changes"
 msgstr ""
 
-#: rvy_init-functions.php:695
+#: rvy_init-functions.php:708
 msgid "Revisor"
 msgstr ""
 
-#: rvy_init-functions.php:707
+#: rvy_init-functions.php:720
 msgctxt "User role"
 msgid "Revisor"
 msgstr ""
 
-#: rvy_init-functions.php:798
+#: rvy_init-functions.php:811
 msgid "The unfiltered_html capability is required to create a revision of this post."
 msgstr ""
 
-#: rvy_init-functions.php:1250
+#: rvy_init-functions.php:1263
 msgid "Revision Workflow"
 msgstr ""

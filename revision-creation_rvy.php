@@ -60,7 +60,6 @@ class RevisionCreation {
 		$main_post_id = $is_revision ? rvy_post_id($post_id) : $post_id;
 
         $published_post = get_post($main_post_id);
-		$source_post = get_post($post_id);
 
 		$set_post_properties = [       
 			'post_content',          
@@ -77,7 +76,7 @@ class RevisionCreation {
 
 		if (!$is_revision) {
 			if ($autosave_post = Utils::get_post_autosave($post_id, $current_user->ID)) {
-				if (strtotime($autosave_post->post_modified_gmt) > strtotime($source_post->post_modified_gmt)) {
+				if (strtotime($autosave_post->post_modified_gmt) > strtotime($published_post->post_modified_gmt)) {
 					$use_autosave = true;
 					$args['meta_post_id'] = $autosave_post->ID;
 				}
@@ -85,11 +84,11 @@ class RevisionCreation {
 		}
 
 		foreach($set_post_properties as $prop) {
-			$data[$prop] = (!empty($use_autosave) && !empty($autosave_post->$prop)) ? $autosave_post->$prop : $source_post->$prop;
+			$data[$prop] = (!empty($use_autosave) && !empty($autosave_post->$prop)) ? $autosave_post->$prop : $published_post->$prop;
 		}
 
-		$data['post_type'] = $source_post->post_type;
-		$data['post_parent'] = ($is_revision) ? $published_post->post_parent : $source_post->post_parent;
+		$data['post_type'] = $published_post->post_type;
+		$data['post_parent'] = $published_post->post_parent;
 
 		if (!defined('REVISIONARY_LEGACY_REVISION_AUTHOR') && !empty($current_user) && !empty($current_user->ID)) {
 			$data['post_author'] = $current_user->ID;
@@ -105,9 +104,7 @@ class RevisionCreation {
 			$data = array_merge($data, $revision_data);
 		}
 
-		$args['main_post_id'] = $main_post_id;
-
-		$revision_id = $this->insert_revision($data, $source_post->ID, $revision_status, $args);
+		$revision_id = $this->insert_revision($data, $main_post_id, $revision_status, $args);
 
 		$revision = get_post($revision_id);
 
@@ -120,10 +117,10 @@ class RevisionCreation {
 			require_once( dirname(__FILE__).'/admin/revision-action_rvy.php');
 			rvy_update_next_publish_date(['revision_id' => $revision_id]);
 
-			$revision_before = $source_post;
+			$revision_before = $published_post;
 			$revision_before->post_mime_type = 'new';
 
-			do_action('revisionary_scheduled', $source_post->ID, $revision, $revision_before);
+			do_action('revisionary_scheduled', $published_post->ID, $revision, $revision_before);
 		}
 
 		if (('pending-revision' == $revision_status) && !defined('REVISIONARY_NO_INSERT_POST_ACTION')) {
@@ -162,7 +159,7 @@ class RevisionCreation {
 		exit;
 	}
 
-    private function insert_revision($data, $base_post_id, $revision_status, $args = []) {
+    private function insert_revision($data, $main_post_id, $revision_status, $args = []) {
 		global $wpdb, $current_user;
 
 		$data['post_mime_type'] = $revision_status;
@@ -183,9 +180,7 @@ class RevisionCreation {
 				$data['post_status'] = 'pending';
 		}
 
-		$data['post_status'] = apply_filters('revisionary_post_revision_status', $data['post_status'], $revision_status, $base_post_id);
-
-		$main_post_id = (!empty($args['main_post_id'])) ? $args['main_post_id'] : $base_post_id;
+		$data['post_status'] = apply_filters('revisionary_post_revision_status', $data['post_status'], $revision_status, $main_post_id);
 
 		$base_post = get_post($main_post_id);
 		
@@ -273,20 +268,20 @@ class RevisionCreation {
 			revisionary_copy_postmeta($args['meta_post_id'], $revision_id);
 
 			// For taxonomies and meta keys not stored for the autosave, use published copies
-			revisionary_copy_terms($base_post_id, $revision_id, ['empty_target_only' => true]);
-			revisionary_copy_postmeta($base_post_id, $revision_id, ['empty_target_only' => true]);
+			revisionary_copy_terms($main_post_id, $revision_id, ['empty_target_only' => true]);
+			revisionary_copy_postmeta($main_post_id, $revision_id, ['empty_target_only' => true]);
 		} else {
 			// If term selections are not posted for revision, store current published terms
-			revisionary_copy_terms($base_post_id, $revision_id);
-			revisionary_copy_postmeta($base_post_id, $revision_id);
+			revisionary_copy_terms($main_post_id, $revision_id);
+			revisionary_copy_postmeta($main_post_id, $revision_id);
 		}
 
-		if ($base_post_id != $revision_id) {
-			rvy_update_post_meta($revision_id, '_rvy_base_post_id', $base_post_id);
+		if ($main_post_id != $revision_id) {
+			rvy_update_post_meta($revision_id, '_rvy_base_post_id', $main_post_id);
 		}
 
 		if (!defined('REVISIONARY_LIMIT_IGNORE_UNSUBMITTED')) {
-			rvy_update_post_meta($base_post_id, '_rvy_has_revisions', true);
+			rvy_update_post_meta($main_post_id, '_rvy_has_revisions', true);
 		}
 	
 		// Set GUID.  @todo: still needed?

@@ -53,12 +53,10 @@ jQuery(document).ready( function($) {
                     
                     var currentDate = new Date();
 
-                    RvyTimeSelection = selectedDate.getTime() - ((currentDate.getTimezoneOffset() * 60 - rvyObjEdit.timezoneOffset) * 1000);
-                    var tdiff = RvyTimeSelection - currentDate.getTime();
+                    var timeSelection = selectedDate.getTime() - ((currentDate.getTimezoneOffset() * 60 - rvyObjEdit.timezoneOffset) * 1000);
+                    var tdiff = timeSelection - currentDate.getTime();
 
-                    RvyTimeSelection = RvyTimeSelection / 1000; // pass seconds to server
-
-                    if ((tdiff > 1000)) {
+                    if ((tdiff > 120000)) {
                         var approveCaption = rvyObjEdit['scheduleCaption'];
                     } else {
                         var approveCaption = rvyObjEdit['approveCaption'];
@@ -151,7 +149,7 @@ jQuery(document).ready( function($) {
 		return Math.floor(Math.random() * max);
     }
     
-    $(document).on('click', 'div.postbox-container', function() {
+    $(document).on('click', 'div.postbox-container a.save-timestamp, #post-status-select, #rvy_post_author', function() {
 		RvyDisableSubmitButtons();
 	});
 
