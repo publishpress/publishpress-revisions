@@ -114,6 +114,39 @@ class RevisionaryAdmin
 		add_filter('cme_plugin_capabilities', [$this, 'fltPublishPressCapsSection']);
 		add_filter('cme_capability_descriptions', [$this, 'fltCapDescriptions']);
 
+        // Don't allow plugin name to be translated on Plugins screen
+        if ('plugins.php' == $pagenow) {
+            add_filter(
+                'gettext', 
+                function($translation, $text, $domain) {
+                    if ('PublishPress Revisions Free' == $text) {
+                        return 'PublishPress Revisions Free';
+                    }
+
+                    return $translation;
+                }, 50, 3
+            );
+            
+            // @todo: Ideally, WordPress would provide a post-translation filter to eliminate the need for gettext filtering.
+            /* 
+            add_filter(
+                'plugins_list', 
+                function($plugins) {
+                    $plugin_dir = trailingslashit(str_replace('\\', '/', WP_PLUGIN_DIR));
+                    $plugin_relpath = str_replace($plugin_dir, '', str_replace('\\', '/', PUBLISHPRESS_STATUSES_FILE));
+
+                    if (isset($plugins['all'][$plugin_relpath])) {
+                        $plugins['all'][$plugin_relpath]['Name'] = 'PublishPress Revisions Free';
+						$plugins['all'][$plugin_relpath]['Title'] = 'PublishPress Revisions Free';
+                        $plugins['all'][$plugin_relpath]['AuthorName'] = 'PublishPress';
+                    }
+
+                    return $plugins;
+                }, 50
+            );
+            */
+        }
+
 		add_filter('relevanssi_where', [$this, 'ftlRelevanssiWhere']);
 
 		add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
