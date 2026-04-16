@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-= 3.8.0 =
+= 3.8.0 - 16 Apr 2026 =
 * Feature : More view filters on Past Revisions screen
 * Feature : More view filters on New Revisions screen
 * Feature : Option to add index to posts table for Revision queries
@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Fixed : Extra progress spinner on Classic Editor Post update
 * Fixed : Now link in Gutenberg date selector inserts wrong values if client timezone is different from server timezone, so hide it in that case
 * Fixed : Classic Editor - Buttons for Revision creation fail
+* Fixed : Revision Archive - PHP Warning: Attempt to read property "singular_name"
+* Fixed : Compat - PublishPress Statuses - Assignment of custom edit_others status capabilities for Revision Statuses did not satisfy edit_others_revisions requirement (also requires Statuses Pro 1.3.0)
+* Added : Lang - Several new translations
+* Fixed : Lang - Some captions were not translated
 
 = 3.7.24 - 18 Feb 2026 =
 * Added : Preview link icon in New Revisions table
