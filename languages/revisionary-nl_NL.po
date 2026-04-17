@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-09T14:17:31+00:00\n"
-"PO-Revision-Date: 2026-04-10 21:49+0000\n"
+"PO-Revision-Date: 2026-04-17 07:31+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -33,9 +33,9 @@ msgid ""
 "model to submit, approve and schedule changes."
 msgstr ""
 "Onderhoud gepubliceerde inhoud met teamwork en precisie met behulp van het "
-"Revisies-model om wijzigingen in te dienen, goed te keuren en te plannen."
+"revisies model om wijzigingen in te dienen, goed te keuren en te plannen."
 
-#: revisionary.php:6, fuzzy
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
@@ -48,24 +48,24 @@ msgstr "https://publishpress.com"
 #: admin/admin-init_rvy.php:112
 #: admin/admin-init_rvy.php:348
 msgid "Sorry, you are not allowed to delete this revision."
-msgstr "Sorry, je mag deze revisie niet verwijderen."
+msgstr "Je hebt geen toestemming om deze revisie te verwijderen."
 
 #: admin/admin-init_rvy.php:204
 #: admin/admin-init_rvy.php:314
 msgid "Sorry, you are not allowed to approve this revision."
-msgstr "Sorry, je mag deze revisie niet goedkeuren."
+msgstr "Je hebt geen toestemming om deze revisie goed te keuren."
 
 #: admin/admin-init_rvy.php:241
 msgid "Sorry, you are not allowed to submit this revision."
-msgstr "Sorry, je mag deze revisie niet indienen."
+msgstr "Je hebt geen toestemming om deze revisie in te dienen."
 
 #: admin/admin-init_rvy.php:279
 msgid "Sorry, you are not allowed to decline this revision."
-msgstr "Sorry, je mag deze revisie niet afwijzen."
+msgstr "Je hebt geen toestemming om deze revisie te weigeren."
 
 #: admin/admin-posts_rvy.php:192
 msgid "The revision was restored."
-msgstr "De revisie is hersteld."
+msgstr "De revisie is teruggezet."
 
 #: admin/admin-posts_rvy.php:197
 msgid "The revision was scheduled for publication."
@@ -97,11 +97,11 @@ msgstr "Revisie"
 
 #: admin/admin-posts_rvy.php:311
 msgid "Has Revision"
-msgstr "Heeft Revisie"
+msgstr "Heeft revisie"
 
 #: admin/admin-posts_rvy.php:326
-#: admin/admin_rvy.php:366
-#: admin/admin_rvy.php:436
+#: admin/admin_rvy.php:399
+#: admin/admin_rvy.php:469
 #: admin/options.php:159
 #: admin/options.php:639
 msgid "New Revisions"
@@ -110,7 +110,7 @@ msgstr "Nieuwe Revisies"
 #: admin/admin_lib-mu_rvy.php:10
 #: admin/options.php:335
 msgid "PublishPress Revisions Network Settings"
-msgstr "PublishPress Revisies Netwerkinstellingen"
+msgstr "PublishPress Revisions netwerkinstellingen"
 
 #: admin/admin_lib-mu_rvy.php:10
 msgid "Network Settings"
@@ -119,13 +119,13 @@ msgstr "Netwerkinstellingen"
 #: admin/admin_lib-mu_rvy.php:21
 #: admin/options.php:337
 msgid "PublishPress Revisions Network Defaults"
-msgstr "PublishPress Revisies Netwerkstandaarden"
+msgstr "PublishPress Revisions netwerkstandaarden"
 
 #: admin/admin_lib-mu_rvy.php:21
 msgid "Network Defaults"
-msgstr "Netwerkinstellingen"
+msgstr "Netwerkstandaarden"
 
-#: admin/admin_rvy.php:133
+#: admin/admin_rvy.php:166
 #, php-format
 msgid ""
 "Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
@@ -136,13 +136,13 @@ msgstr ""
 "je WP-Cron extern aanroept, zie %sRevisies > Instellingen > Nieuwe Revisies "
 "> Planning%s."
 
-#: admin/admin_rvy.php:317
+#: admin/admin_rvy.php:350
 msgid "Revisions"
 msgstr "Revisies"
 
-#: admin/admin_rvy.php:375
-#: admin/admin_rvy.php:376
-#: admin/admin_rvy.php:437
+#: admin/admin_rvy.php:408
+#: admin/admin_rvy.php:409
+#: admin/admin_rvy.php:470
 #: admin/options.php:158
 #: admin/options.php:542
 #: admin/revision-archive_rvy.php:81
@@ -150,20 +150,20 @@ msgstr "Revisies"
 msgid "Past Revisions"
 msgstr "Eerdere revisies"
 
-#: admin/admin_rvy.php:393
+#: admin/admin_rvy.php:426
 #: admin/options.php:341
 msgid "PublishPress Revisions Settings"
-msgstr "PublishPress Revisie-instellingen"
+msgstr "PublishPress Revisions instellingen"
 
-#: admin/admin_rvy.php:393
-#: admin/admin_rvy.php:440
+#: admin/admin_rvy.php:426
+#: admin/admin_rvy.php:473
 #: admin/options.php:153
 msgid "Settings"
 msgstr "Instellingen"
 
-#: admin/admin_rvy.php:402
-#: admin/admin_rvy.php:403
-#: admin/admin_rvy.php:443
+#: admin/admin_rvy.php:435
+#: admin/admin_rvy.php:436
+#: admin/admin_rvy.php:476
 #: admin/options.php:1780
 #: admin/options.php:1807
 #: admin/options.php:2015
@@ -172,66 +172,66 @@ msgstr "Instellingen"
 msgid "Upgrade to Pro"
 msgstr "Upgrade naar Pro"
 
-#: admin/admin_rvy.php:484
+#: admin/admin_rvy.php:517
 msgid "Can edit draft Posts from other users."
 msgstr "Kan conceptberichten van andere gebruikers bewerken."
 
-#: admin/admin_rvy.php:485
+#: admin/admin_rvy.php:518
 msgid "Can edit Revisions from other users."
 msgstr "Kan revisies van andere gebruikers bewerken."
 
-#: admin/admin_rvy.php:486
+#: admin/admin_rvy.php:519
 msgid "Can see New Revisions from other users."
 msgstr "Kan nieuwe revisies van andere gebruikers zien."
 
-#: admin/admin_rvy.php:487
+#: admin/admin_rvy.php:520
 msgid "Can access New Revisions."
 msgstr "Kan nieuwe revisies openen."
 
-#: admin/admin_rvy.php:488
+#: admin/admin_rvy.php:521
 msgid "Can manage Unsubmitted Revisions."
 msgstr "Kan niet-ingediende revisies beheren."
 
-#: admin/admin_rvy.php:489
+#: admin/admin_rvy.php:522
 msgid "Preview other user's Revisions (without needing editing access)."
 msgstr ""
 "Bekijk revisies van andere gebruikers (zonder bewerkingsrechten nodig te "
 "hebben)."
 
-#: admin/admin_rvy.php:490
+#: admin/admin_rvy.php:523
 msgid "Restore an archived Revision as the current revision."
 msgstr "Herstel een gearchiveerde revisie als de huidige revisie."
 
-#: admin/admin_rvy.php:491
+#: admin/admin_rvy.php:524
 msgid "View Past Revisions."
 msgstr "Bekijk eerdere revisies."
 
-#: admin/admin_rvy.php:521
+#: admin/admin_rvy.php:554
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr "Als je %1$s leuk vindt, laat ons dan een %2$s beoordeling achter. Bedankt!"
 
-#: admin/admin_rvy.php:532
+#: admin/admin_rvy.php:565
 msgid "About PublishPress Revisions"
 msgstr "Over PublishPress Revisies"
 
-#: admin/admin_rvy.php:532
+#: admin/admin_rvy.php:565
 msgid "About"
 msgstr "Over"
 
-#: admin/admin_rvy.php:534
+#: admin/admin_rvy.php:567
 msgid "PublishPress Revisions Documentation"
 msgstr "PublishPress Revisie-documentatie"
 
-#: admin/admin_rvy.php:534
+#: admin/admin_rvy.php:567
 msgid "Documentation"
 msgstr "Documentatie"
 
-#: admin/admin_rvy.php:536
+#: admin/admin_rvy.php:569
 msgid "Contact the PublishPress team"
 msgstr "Neem contact op met het PublishPress-team"
 
-#: admin/admin_rvy.php:536, fuzzy
+#: admin/admin_rvy.php:569, fuzzy
 msgid "Contact"
 msgstr "Contact"
 
@@ -251,11 +251,11 @@ msgstr "filter:"
 
 #: admin/agents_checklist_rvy.php:103
 msgid "select"
-msgstr "selecteer"
+msgstr "selecteren"
 
 #: admin/agents_checklist_rvy.php:111
 msgid "unselect"
-msgstr "deselecteer"
+msgstr "deselecteren"
 
 #: admin/class-list-table-archive.php:22
 msgid "This was an update to a revision which is still in the workflow process."
@@ -270,12 +270,12 @@ msgstr ""
 #: admin/class-list-table-archive.php:202
 #, php-format
 msgid "Revision Author: %s"
-msgstr "Revisie Auteur: %s"
+msgstr "Auteur revisie: %s"
 
 #: admin/class-list-table-archive.php:221
 #, php-format
 msgid "Post Author: %s"
-msgstr "Bericht Auteur: %s"
+msgstr "Berichtauteur: %s"
 
 #: admin/class-list-table-archive.php:231
 #, php-format
@@ -304,7 +304,7 @@ msgstr "Zoekresultaten voor \"%s\""
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
 msgid "Delete Revision"
-msgstr "Verwijder Revisie"
+msgstr "Revisie verwijderen"
 
 #: admin/class-list-table-archive.php:581
 #: admin/class-list-table_rvy.php:740
@@ -314,12 +314,12 @@ msgstr "Berichttype"
 #: admin/class-list-table-archive.php:582
 #: rvy_init-functions.php:496
 msgid "Revised By"
-msgstr "Herschreven Door"
+msgstr "Herzien door"
 
 #: admin/class-list-table-archive.php:583
 #: rvy_init-functions.php:497
 msgid "Revision Date"
-msgstr "Revisie Datum"
+msgstr "Revisiedatum"
 
 #: admin/class-list-table-archive.php:584
 msgid "Action"
@@ -331,11 +331,11 @@ msgstr "Goedgekeurd door"
 
 #: admin/class-list-table-archive.php:586
 msgid "Published Date"
-msgstr "Gepubliceerd op"
+msgstr "Publicatiedatum"
 
 #: admin/class-list-table-archive.php:587
 msgid "Published Author"
-msgstr "Gepubliceerd door"
+msgstr "Gepubliceerde auteur"
 
 #: admin/class-list-table-archive.php:616
 #: admin/class-list-table_rvy.php:906
@@ -358,7 +358,7 @@ msgstr "%s minuut geleden"
 #: admin/class-list-table_rvy.php:918
 #, php-format
 msgid "%s hours ago"
-msgstr "%s uren geleden"
+msgstr "%s uur geleden"
 
 #: admin/class-list-table-archive.php:628
 #: admin/class-list-table_rvy.php:918
@@ -391,7 +391,7 @@ msgstr "Bewerking van gepubliceerde revisie"
 #: functions.php:467
 #: functions.php:530
 msgid "Direct Edit"
-msgstr "Directe bewerking"
+msgstr "Direct bewerken"
 
 #: admin/class-list-table-archive.php:839
 #: admin/class-list-table_rvy.php:1445
@@ -433,18 +433,18 @@ msgstr "Alle"
 
 #: admin/class-list-table-archive.php:1103
 msgid "My Revisions"
-msgstr "Mijn Herzieningen"
+msgstr "Mijn revisies"
 
 #: admin/class-list-table-archive.php:1157
 #, php-format
 msgid "Compare Changes in %s"
-msgstr "Wijzigingen vergelijken in %s"
+msgstr "Vergelijk wijzigingen in %s"
 
 #: admin/class-list-table-archive.php:1176
 #: admin/class-list-table_rvy.php:1887
 #: admin/post-editor-workflow-ui_rvy.php:233
 msgid "Preview Revision"
-msgstr "Herziening Voorbeeld"
+msgstr "Voorbeeld van revisie"
 
 #: admin/class-list-table-archive.php:1190
 msgid "Edit parent revision"
@@ -460,7 +460,7 @@ msgstr "Bewerk Ouder"
 
 #: admin/class-list-table-archive.php:1201
 msgid "List Revisions of this Post"
-msgstr "Lijst Herzieningen van dit Bericht"
+msgstr "Lijst revisies van dit bericht"
 
 #: admin/class-list-table-archive.php:1202, fuzzy
 msgid "Filter"
@@ -468,11 +468,11 @@ msgstr "Filter"
 
 #: admin/class-list-table-archive.php:1214
 msgid "Delete Past Revision"
-msgstr "Verwijder Vervlogen Herziening"
+msgstr "Verwijder vorige revisie"
 
 #: admin/class-list-table-archive.php:1302
 msgid "No revisions found."
-msgstr "Geen herzieningen gevonden."
+msgstr "Geen revisies gevonden."
 
 #: admin/class-list-table_rvy.php:739
 #: admin/post-editor-workflow-ui_rvy.php:31, fuzzy
@@ -487,9 +487,9 @@ msgstr "Bekijk voorbeeld"
 msgid "Y/m/d, g:i:s a"
 msgstr "Y/m/d, g:i:s a"
 
-#: admin/class-list-table_rvy.php:812, fuzzy
+#: admin/class-list-table_rvy.php:812
 msgid "Y/m/d g:i a"
-msgstr "Y/m/d g:i a"
+msgstr "j M Y, G:i"
 
 #: admin/class-list-table_rvy.php:819
 #, php-format
@@ -499,7 +499,7 @@ msgstr "Geplande publicatie: %s"
 #: admin/class-list-table_rvy.php:822
 #, php-format
 msgid "Requested publication: %s"
-msgstr "Gevraagde publicatie: %s"
+msgstr "Verzochte publicatie: %s"
 
 #: admin/class-list-table_rvy.php:824
 msgid "This revision is not scheduled yet. It must be approved."
@@ -519,16 +519,16 @@ msgstr "Bewerk gepubliceerd bericht"
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
-msgstr "Bekijk alleen revisies van %s"
+msgstr "Alleen revisies van %s bekijken"
 
 #: admin/class-list-table_rvy.php:972
 #: admin/class-list-table_rvy.php:979
 msgid "View published post"
-msgstr "Bekijk gepubliceerde post"
+msgstr "Gepubliceerd bericht bekijken"
 
 #: admin/class-list-table_rvy.php:1004
 msgid "Compare Past Revisions"
-msgstr "Vergelijk Vorige Revisies"
+msgstr "Eerdere revisies vergelijken"
 
 #: admin/class-list-table_rvy.php:1005
 msgid "History"
@@ -536,7 +536,7 @@ msgstr "Geschiedenis"
 
 #: admin/class-list-table_rvy.php:1285
 msgid "My Activity"
-msgstr "Mijn Activiteit"
+msgstr "Mijn activiteit"
 
 #: admin/class-list-table_rvy.php:1294
 #, php-format
@@ -545,7 +545,7 @@ msgstr "Alle %s"
 
 #: admin/class-list-table_rvy.php:1384
 msgid "Unschedule"
-msgstr "Afspraak annuleren"
+msgstr "Uit schema halen"
 
 #: admin/class-list-table_rvy.php:1388
 #: admin/class-list-table_rvy.php:1859
@@ -555,7 +555,7 @@ msgstr "Afspraak annuleren"
 #: admin/RevisionEditSubmitMetabox.php:62
 #. translators: %s: post title
 msgid "Discard Revision"
-msgstr "Verwerp Revisie"
+msgstr "Revisie verwerpen"
 
 #: admin/class-list-table_rvy.php:1426
 msgid "All Revision Statuses"
@@ -569,11 +569,11 @@ msgstr "Alle Berichten"
 #: admin/post-editor-workflow-ui_rvy.php:234
 #. translators: %s: post title
 msgid "Edit Revision"
-msgstr "Bewerk Revisie"
+msgstr "Revisie bewerken"
 
 #: admin/class-list-table_rvy.php:1901
 msgid "Compare Changes"
-msgstr "Vergelijk Wijzigingen"
+msgstr "Wijzigingen vergelijken"
 
 #: admin/edit-revision-classic-ui_rvy.php:111
 msgid "Publish <b>on approval</b>"
@@ -582,11 +582,11 @@ msgstr "Publiceer <b>bij goedkeuring</b>"
 #: admin/edit-revision-classic-ui_rvy.php:142
 #, php-format
 msgid "Revision updated. %sView Preview%s"
-msgstr "Revisie bijgewerkt. %sBekijk Voorbeeld%s"
+msgstr "Revisie geüpdatet. %sBekijk voorbeeld%s"
 
 #: admin/edit-revision-classic-ui_rvy.php:144
 msgid "Revision updated."
-msgstr "Revisie bijgewerkt."
+msgstr "Revisie geüpdatet."
 
 #: admin/history_rvy.php:87
 #: admin/history_rvy.php:91
@@ -594,7 +594,7 @@ msgstr "Revisie bijgewerkt."
 #: admin/history_rvy.php:100
 #: rvy_init-functions.php:289
 msgid "Copy"
-msgstr "Kopieer"
+msgstr "Kopiëren"
 
 #: admin/history_rvy.php:87
 #: admin/history_rvy.php:91
@@ -619,35 +619,35 @@ msgstr "Berichtdatum"
 
 #: admin/history_rvy.php:656
 msgid "Post Parent"
-msgstr "Post Ouder"
+msgstr "Hoofd van bericht"
 
 #: admin/history_rvy.php:657
 msgid "Menu Order"
-msgstr "Menu Volgorde"
+msgstr "Menuvolgorde"
 
 #: admin/history_rvy.php:658
 msgid "Comment Status"
-msgstr "Opmerking Status"
+msgstr "Reactiestatus"
 
-#: admin/history_rvy.php:659, fuzzy
+#: admin/history_rvy.php:659
 msgid "Ping Status"
-msgstr "Ping Status"
+msgstr "Ping status"
 
 #: admin/history_rvy.php:799
 msgid "Page Template"
-msgstr "Pagina Sjabloon"
+msgstr "Pagina template"
 
 #: admin/history_rvy.php:802
 msgid "Featured Image"
-msgstr "Uitgelichte Afbeelding"
+msgstr "Uitgelichte afbeelding"
 
 #: admin/history_rvy.php:806
 msgid "Beaver Builder Data"
-msgstr "Beaver Builder Gegevens"
+msgstr "Beaver Builder gegevens"
 
 #: admin/history_rvy.php:807
 msgid "Beaver Builder Settings"
-msgstr "Beaver Builder Instellingen"
+msgstr "Beaver Builder instellingen"
 
 #: admin/history_rvy.php:1058
 msgid "Scheduled for "
@@ -655,24 +655,24 @@ msgstr "Gepland voor "
 
 #: admin/history_rvy.php:1063
 msgid "Requested for "
-msgstr "Gevraagd voor "
+msgstr "Aangevraagd voor "
 
 #: admin/history_rvy.php:1068
 msgid "Modified "
-msgstr "Aangepast "
+msgstr "Gewijzigd "
 
 #: admin/history_rvy.php:1073
 #, php-format
 msgid "%s%s from now"
-msgstr "%s%s vanaf nu"
+msgstr "Over %s%s"
 
-#: admin/history_rvy.php:1084, fuzzy
+#: admin/history_rvy.php:1084
 msgid "M j, Y @ g:i a"
-msgstr "M j, Y @ g:i a"
+msgstr "j M, Y @ g:i a"
 
-#: admin/history_rvy.php:1129, fuzzy
+#: admin/history_rvy.php:1129
 msgid "M j, Y @ H:i"
-msgstr "M j, Y @ H:i"
+msgstr "j M Y @ G:i"
 
 #: admin/history_rvy.php:1216
 #: front_rvy.php:597
@@ -689,7 +689,7 @@ msgstr "Goedkeuren"
 
 #: admin/history_rvy.php:1216
 msgid "Preview / Approve"
-msgstr "Voorbeeld / Goedkeuren"
+msgstr "Voorbeeld/goedkeuren"
 
 #: admin/history_rvy.php:1218
 #: admin/post-editor-workflow-ui_rvy.php:77
@@ -701,7 +701,7 @@ msgstr "Voorbeeld"
 
 #: admin/history_rvy.php:1312
 msgid "Preview / Restore"
-msgstr "Voorbeeld / Herstellen"
+msgstr "Voorbeeld/terugzetten"
 
 #: admin/history_rvy.php:1319
 msgid "Manage"
@@ -717,7 +717,7 @@ msgstr "Alle instellingen op deze tab zijn netwerkbreed toegewezen."
 
 #: admin/options.php:153
 msgid "Setting Scope"
-msgstr "Instelling Scope"
+msgstr "Instellingsbereik"
 
 #: admin/options.php:157
 msgid "Features"
@@ -738,19 +738,19 @@ msgstr "Statussen"
 #: admin/options.php:163
 #: admin/options.php:958
 msgid "Notifications"
-msgstr "Notificaties"
+msgstr "Meldingen"
 
 #: admin/options.php:169
 msgid "Revision Submission"
-msgstr "Indiening van revisie"
+msgstr "Revisie indiening"
 
 #: admin/options.php:177
 msgid ""
 "Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
 "Change\""
 msgstr ""
-"Gebruik alternatieve label: \"Werkversie\" > \"Wijzigingsverzoek\" > "
-"\"Geplande wijziging\""
+"Gebruik alternatieve labeling: \"werkende kopie\" > \"wijzigingsverzoek\" > "
+"\"geplande wijziging\""
 
 #: admin/options.php:178
 msgid "New Revisions access requires role capability"
@@ -772,13 +772,13 @@ msgstr "Aanmaak van revisie vereist rolcapaciteit"
 #: admin/options.php:181
 #, php-format
 msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
-msgstr "Berichten / Pagina's lijst: Gebruik \"Bewerken\" bijschrift voor %s link"
+msgstr "Berichten/pagina's lijst: gebruik \"bewerken\" als bijschrijft voor %s link"
 
 #: admin/options.php:182
 #: admin/options.php:188
 #, php-format
 msgid "Enable %s"
-msgstr "Schakel %s in"
+msgstr "Inschakelen %s"
 
 #: admin/options.php:183
 msgid "Limit to one active revision per post"
@@ -795,8 +795,8 @@ msgstr "Als bericht aangepaste html bevat, vereist unfiltered_html capaciteit"
 #: admin/options.php:186
 msgid "Auto-submit revisions created by a user with publishing capability"
 msgstr ""
-"Auto-indienen van revisies aangemaakt door een gebruiker met "
-"publicatiecapaciteit"
+"Automatisch revisies indienen die zijn gemaakt door een gebruiker met "
+"publicatie rechten"
 
 #: admin/options.php:187
 msgid "Auto-submit revisions"
@@ -812,19 +812,19 @@ msgstr "Indiening van revisie vereist rolcapaciteit"
 
 #: admin/options.php:190
 msgid "Editing others' Revisions requires role capability"
-msgstr "Bewerken van andermans revisies vereist rolcapaciteit"
+msgstr "Bewerken van revisies van anderen vereist rol rechten"
 
 #: admin/options.php:191
 msgid "Listing others' Revisions requires role capability"
-msgstr "Lijst van andermans revisies vereist rolcapaciteit"
+msgstr "Het vermelden van revisies van anderen vereist rol rechten"
 
 #: admin/options.php:192
 msgid "Users can always administer revisions to their own editable posts"
-msgstr "Gebruikers kunnen altijd revisies van hun eigen bewerkbare berichten beheren"
+msgstr "Gebruikers kunnen altijd revisies beheren van hun eigen bewerkbare berichten"
 
 #: admin/options.php:193
 msgid "Also notify on Revision Update"
-msgstr "Ook notificeren bij revisie-update"
+msgstr "Ook melden bij revisie update"
 
 #: admin/options.php:194
 msgid "Apply API actions to mimic Post Update"
@@ -840,11 +840,11 @@ msgstr "Verberg kopieerknoppen op vergelijkingsscherm"
 
 #: admin/options.php:197
 msgid "Use WP-Cron scheduling"
-msgstr "Gebruik WP-Cron planning"
+msgstr "Gebruik WP cron planning"
 
 #: admin/options.php:198
 msgid "Site uses a custom trigger for WP-Cron tasks"
-msgstr "Site gebruikt een aangepaste trigger voor WP-Cron taken"
+msgstr "De site gebruikt een aangepaste trigger voor WP cron taken"
 
 #: admin/options.php:199
 msgid "Asynchronous Publishing"
@@ -853,12 +853,12 @@ msgstr "Asynchrone publicatie"
 #: admin/options.php:200
 #: admin/options.php:201
 msgid "Update Publish Date"
-msgstr "Publicatiedatum bijwerken"
+msgstr "Publicatiedatum updaten"
 
 #: admin/options.php:202
 #: admin/options.php:203
 msgid "Update Modified Date"
-msgstr "Gewijzigde datum bijwerken"
+msgstr "Update wijzigingsdatum"
 
 #: admin/options.php:206
 #: admin/options.php:207
@@ -869,31 +869,31 @@ msgstr "Gebruik %1$sPlanner notificaties%2$s"
 #: admin/options.php:209
 #, php-format
 msgid "Email original Author when a %s is submitted"
-msgstr "E-mail de oorspronkelijke auteur wanneer een %s wordt ingediend"
+msgstr "Email de oorspronkelijke auteur wanneer een %s wordt ingediend"
 
 #: admin/options.php:210
 #, php-format
 msgid "Email the original Author when a %s is approved"
-msgstr "E-mail de oorspronkelijke auteur wanneer een %s is goedgekeurd"
+msgstr "Email de oorspronkelijke auteur wanneer een %s wordt goedgekeurd"
 
 #: admin/options.php:211
 #, php-format
 msgid "Email the Revisor when a %s is approved"
-msgstr "E-mail de revisior wanneer een %s is goedgekeurd"
+msgstr "E-mail de revisor wanneer een %s wordt goedgekeurd"
 
 #: admin/options.php:212
 #, php-format
 msgid "Email the original Author when a %s is published"
-msgstr "E-mail de oorspronkelijke auteur wanneer een %s is gepubliceerd"
+msgstr "Email de oorspronkelijke auteur wanneer een %s wordt gepubliceerd"
 
 #: admin/options.php:213
 #, php-format
 msgid "Email the Revisor when a %s is published"
-msgstr "E-mail de revisior wanneer een %s is gepubliceerd"
+msgstr "E-mail de revisor wanneer een %s wordt gepubliceerd"
 
 #: admin/options.php:214
 msgid "Enable notification buffer"
-msgstr "Schakel notificatiebuffer in"
+msgstr "Meldingsbuffer inschakelen"
 
 #: admin/options.php:215
 msgid "Revisors can create a new revision for any custom post type"
@@ -917,19 +917,19 @@ msgstr "Verwijder instellingen en Revisies als de plugin wordt verwijderd"
 
 #: admin/options.php:220
 msgid "Show Preview Links"
-msgstr "Toon Voorbeeldlinks"
+msgstr "Voorbeeld links weergeven"
 
 #: admin/options.php:221
 msgid "Preview Link Type"
-msgstr "Voorbeeldlinktype"
+msgstr "Voorbeeld link type"
 
 #: admin/options.php:222
 msgid "Modify preview link for better theme compatibility"
-msgstr "Wijzig voorbeeldlink voor betere thema-compatibiliteit"
+msgstr "Pas de voorbeeldlink aan voor een betere themacompatibiliteit"
 
 #: admin/options.php:223
 msgid "Theme Compat: For front page revision preview, set home flag"
-msgstr "Thema Compat: Voor voorbeeldweergave van de voorpagina, stel home-vlag in"
+msgstr "Thema compatibiliteit: voor voorpagina revisie voorbeeld, stel home vlag in"
 
 #: admin/options.php:224
 msgid "Approve Button on Compare screen"
@@ -937,11 +937,11 @@ msgstr "Goedkeuringsknop op Vergelijk scherm"
 
 #: admin/options.php:225
 msgid "Copy revision comments to published post"
-msgstr "Kopieer revisiecommentaren naar gepubliceerd bericht"
+msgstr "Kopieer revisie reacties naar gepubliceerd bericht"
 
 #: admin/options.php:226
 msgid "Compare Past Revisions ordering:"
-msgstr "Vergelijk volgorde van Vorige Revisies:"
+msgstr "Sortering voor het vergelijken van eerdere revisies:"
 
 #: admin/options.php:227
 #, php-format
@@ -966,7 +966,7 @@ msgstr "Toon huidige revisie bovenbalk na publicatie van de revisie"
 
 #: admin/options.php:231
 msgid "On Revision publication, delete Editorial Comments"
-msgstr "Bij publicatie van de revisie, verwijder redactionele opmerkingen"
+msgstr "Bij publicatie van revisie, verwijder redactionele reacties"
 
 #: admin/options.php:232
 msgid "Enable deletion queue"
@@ -1037,42 +1037,36 @@ msgstr "Toestemming voor Indienen van Revisie schakelt ook het maken van Revisie
 #: admin/options.php:251
 #, php-format
 msgid "Email designated Publishers when a %s is submitted"
-msgstr "Stuur een e-mail naar aangewezen uitgevers wanneer een %s wordt ingediend"
+msgstr "E-mail aangewezen uitgevers wanneer een %s wordt ingediend"
 
 #: admin/options.php:252
 #, php-format
 msgid "Email designated Publishers when a %s is published"
-msgstr "Stuur een e-mail naar aangewezen uitgevers wanneer een %s wordt gepubliceerd"
+msgstr "E-mail aangewezen uitgevers wanneer een %s wordt gepubliceerd"
 
 #: admin/options.php:253
 #, php-format
 msgid "Email designated Publishers when a %s is approved"
-msgstr "Stuur een e-mail naar aangewezen uitgevers wanneer een %s wordt goedgekeurd"
+msgstr "E-mail aangewezen uitgevers wanneer een %s wordt goedgekeurd"
 
 #: admin/options.php:255
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
-msgstr ""
-"Stuur een e-mail naar redacteuren en beheerders wanneer een %s wordt "
-"ingediend"
+msgstr "E-mail redacteuren en beheerders wanneer een %s wordt ingediend"
 
 #: admin/options.php:256
 #, php-format
 msgid "Email Editors and Administrators when a %s is published"
-msgstr ""
-"Stuur een e-mail naar redacteuren en beheerders wanneer een %s wordt "
-"gepubliceerd"
+msgstr "E-mail redacteuren en beheerders wanneer een %s wordt gepubliceerd"
 
 #: admin/options.php:257
 #, php-format
 msgid "Email Editors and Administrators when a %s is approved"
-msgstr ""
-"Stuur een e-mail naar redacteuren en beheerders wanneer een %s wordt "
-"goedgekeurd"
+msgstr "E-mail redacteuren en beheerders wanneer een %s wordt toegestaan"
 
 #: admin/options.php:339
 msgid "PublishPress Revisions Site Settings"
-msgstr "PublishPress Revisies Site-instellingen"
+msgstr "PublishPress Revisions site instellingen"
 
 #: admin/options.php:369
 msgid "These are the default settings for options which can be adjusted per-site."
@@ -1087,26 +1081,30 @@ msgid ""
 "settings. %s"
 msgstr ""
 "Gebruik deze tab om NETWERKBREDE wijzigingen aan te brengen in de "
-"instellingen van PublishPress Revisions. %s"
+"PublishPress Revisions instellingen. %s"
 
 #: admin/options.php:410
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
-msgstr "Je kunt ook %1$sstandaarden voor site-specifieke instellingen%2$s opgeven."
+msgstr ""
+"Je kunt ook %1$sstandaardwaarden voor site-specifieke instellingen%2$s "
+"opgeven."
 
 #: admin/options.php:413
 msgid ""
 "Here you can change the default value for settings which are controlled "
 "separately on each site."
 msgstr ""
-"Hier kun je de standaardwaarde voor instellingen wijzigen die afzonderlijk "
+"Hier kun je de standaardwaarde wijzigen voor instellingen die afzonderlijk "
 "op elke site worden beheerd."
 
 #: admin/options.php:423
 #: admin/options.php:425
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
-msgstr "Let op: %1$s netwerkbrede instellingen%2$s kunnen ook beschikbaar zijn."
+msgstr ""
+"Houd er rekening mee dat %1$s netwerkbrede instellingen%2$s mogelijk ook "
+"beschikbaar zijn."
 
 #: admin/options.php:503
 msgid "License"
@@ -1129,8 +1127,8 @@ msgid ""
 "Note: Third party code may cause some post types to be incompatible with "
 "PublishPress Revisions."
 msgstr ""
-"Opmerking: Derde partijcode kan ervoor zorgen dat sommige berichttypes "
-"incompatibel zijn met PublishPress Revisions."
+"Opmerking: code van derden kan ervoor zorgen dat sommige berichttypen niet "
+"compatibel zijn met PublishPress Revisions."
 
 #: admin/options.php:742
 #, php-format
@@ -1252,8 +1250,8 @@ msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
 msgstr ""
-"Voorkom dat niet-Administrators een revisie herstellen zonder de "
-"restore_revisions mogelijkheid"
+"Voorkom dat niet-beheerders een revisie terugzetten zonder de "
+"restore_revisions rechten"
 
 #: admin/options.php:925
 msgid "Modification Date"
@@ -1261,7 +1259,7 @@ msgstr "Wijzigingsdatum"
 
 #: admin/options.php:953
 msgid "Revision Creation"
-msgstr "Revisiecreatie"
+msgstr "Revisie aanmaak"
 
 #: admin/options.php:954
 msgid "Submission"
@@ -1384,16 +1382,16 @@ msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
 "\"Edit.\""
 msgstr ""
-"Als de gebruiker geen reguliere Bewerken-link heeft, wijzig dan de %s link "
-"in \"Bewerken.\""
+"Als de gebruiker geen reguliere bewerk link heeft, hernoem de %s link als "
+"\"Bewerk\"."
 
 #: admin/options.php:1161
 msgid ""
 "Default labels are \"Not Submitted for Approval\", \"Submitted for "
 "Approval\", \"Scheduled Revision\""
 msgstr ""
-"Standaard labels zijn \"Niet ingediend voor goedkeuring\", \"Ingediend voor "
-"goedkeuring\", \"Geplande Revisie\""
+"Standaardlabels zijn \"Niet ingediend voor goedkeuring\", \"Ingediend voor "
+"goedkeuring\", \"Geplande revisie\""
 
 #: admin/options.php:1179
 #, php-format
@@ -1401,8 +1399,8 @@ msgid ""
 "Enable published content to be copied, edited, submitted for approval and "
 "managed on the %sNew Revisions%s screen."
 msgstr ""
-"Stel in dat gepubliceerde inhoud kan worden gekopieerd, bewerkt, ingediend "
-"voor goedkeuring en beheerd op het %sNieuwe Revisies%s scherm."
+"Sta gepubliceerde inhoud toe om te worden gekopieerd, bewerkt, ingediend "
+"ter goedkeuring en beheerd in %sNieuwe revisies%s scherm."
 
 #: admin/options.php:1193
 msgid "Submit Revision capabilities"
@@ -1421,16 +1419,16 @@ msgstr ""
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr ""
-"Wanneer een %s wordt gepubliceerd, werk dan de publicatiedatum van de post "
-"bij naar de huidige tijd."
+"Wanneer een %s wordt gepubliceerd, update publicatiedatum van bericht naar "
+"huidige tijd."
 
 #: admin/options.php:1219
 #: admin/options.php:1253
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr ""
-"Wanneer een %s wordt gepubliceerd, werk dan de gewijzigde datum van de post "
-"bij naar de huidige tijd."
+"Wanneer een %s wordt gepubliceerd, update de gewijzigde datum van het "
+"bericht naar de huidige tijd."
 
 #: admin/options.php:1222
 msgid ""
@@ -1468,9 +1466,8 @@ msgid ""
 "Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
 "publication will fail if this setting is disabled."
 msgstr ""
-"Publiceer geplande revisies met behulp van het WP-Cron mechanisme. Op "
-"sommige sites zal de publicatie mislukken als deze instelling is "
-"uitgeschakeld."
+"Publiceer geplande revisies met behulp van het WP cron mechanisme. Op "
+"sommige sites mislukt publicatie als deze instelling is uitgeschakeld."
 
 #: admin/options.php:1262
 msgid ""
@@ -1478,8 +1475,8 @@ msgid ""
 "from the server.  This is usually best since it eliminates delay, but some "
 "servers may not support it."
 msgstr ""
-"Publiceer geplande revisies asynchroon, via een secundair http-verzoek van "
-"de server. Dit is meestal het beste, omdat het vertraging elimineert, maar "
+"Publiceer geplande revisies asynchroon, via een secundair HTTP aanvraag van "
+"de server. Dit is meestal het beste omdat het vertraging elimineert, maar "
 "sommige servers ondersteunen dit mogelijk niet."
 
 #: admin/options.php:1267
@@ -1487,8 +1484,8 @@ msgid ""
 "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
 "using a custom trigger."
 msgstr ""
-"De WP-Cron-trigger is uitgeschakeld, maar geplande taken worden nog steeds "
-"uitgevoerd met behulp van een aangepaste trigger."
+"De WP cron trigger is uitgeschakeld, maar geplande taken worden nog steeds "
+"uitgevoerd met een aangepaste trigger."
 
 #: admin/options.php:1281
 msgid ""
@@ -1555,12 +1552,12 @@ msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
 msgstr ""
-"Omzeil de bovenstaande beperkingen voor de revisies van anderen voor de "
-"eigen berichten van de ingelogde gebruiker."
+"Negeer bovenstaande beperkingen voor revisies van anderen voor posts van de "
+"ingelogde gebruiker."
 
 #: admin/options.php:1429
 msgid "Regenerate \"post has revision\" flags"
-msgstr "Regenerateer \"bericht heeft revisie\"-vlaggen"
+msgstr "Vlaggen \"bericht heeft revisie\" opnieuw genereren"
 
 #: admin/options.php:1432
 msgid ""
@@ -1625,15 +1622,15 @@ msgstr "Altijd"
 #: admin/options.php:1558
 #: admin/options.php:1605
 msgid "select recipients"
-msgstr "selecteer ontvangers"
+msgstr "ontvangers selecteren"
 
 #: admin/options.php:1619
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
 msgstr ""
-"Om meldingsfouten te voorkomen, bufferen e-mails voor vertraagd verzenden "
-"zodra minuten-, uren- of daglimieten zijn overschreden"
+"Om meldingsfouten te voorkomen, buffer e-mails voor vertraagde verzending "
+"zodra de limieten van een minuut, uur of dag worden overschreden"
 
 #: admin/options.php:1640
 msgid "Notification Buffer"
@@ -1641,15 +1638,15 @@ msgstr "Meldingsbuffer"
 
 #: admin/options.php:1668
 msgid "Notification Log"
-msgstr "Meldingslogboek"
+msgstr "Melding log"
 
 #: admin/options.php:1697
 msgid "Purge Notification Buffer"
-msgstr "Meldingsbuffer wissen"
+msgstr "Meldingsbuffer opschonen"
 
 #: admin/options.php:1703
 msgid "Truncate Notification Log"
-msgstr "Meldingslogboek inkorten"
+msgstr "Melding log afkappen"
 
 #: admin/options.php:1709
 #, php-format
@@ -1664,20 +1661,20 @@ msgstr "Verzonden in het laatste uur: %d / %d"
 #: admin/options.php:1711
 #, php-format
 msgid "Sent in last day: %d / %d"
-msgstr "Verzonden in de laatste dag: %d / %d"
+msgstr "Verzonden in laatste dag: %d / %d"
 
 #: admin/options.php:1718
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
-msgstr "Seconden tot de volgende bufferverwerkingstijd: %d"
+msgstr "Seconden tot de volgende buffer verwerkingstijd: %d"
 
 #: admin/options.php:1729
 msgid "Show Notification Log / Buffer"
-msgstr "Toon Meldingslogboek / Buffer"
+msgstr "Melding log/buffer weergeven"
 
 #: admin/options.php:1731
 msgid "Show with message content"
-msgstr "Toon met berichtinhoud"
+msgstr "Weergeven met berichtinhoud"
 
 #: admin/options.php:1753
 msgid "Ready to enhance your revision notifications?"
@@ -1728,42 +1725,45 @@ msgstr "Sommige thema's kunnen de revisiepreview blokkeren."
 
 #: admin/options.php:1841
 msgid "Published Post Slug"
-msgstr "Gepubliceerde Bericht Slug"
+msgstr "Gepubliceerd bericht"
 
 #: admin/options.php:1842
 msgid "Revision Slug"
-msgstr "Revisie Slug"
+msgstr "Revisie slug"
 
 #: admin/options.php:1843
 msgid "Revision ID only"
-msgstr "Alleen revisie-ID"
+msgstr "Alleen revisie ID"
 
 #: admin/options.php:1858
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
 msgstr ""
-"Sommige thema's of plugins kunnen Revisie Slug of Revisie ID linktype "
-"vereisen voor een juiste sjabloonlaad en veldweergave."
+"Sommige thema's of plugins vereisen mogelijk de revisie slug of revisie ID "
+"link type voor het correct laden van template en het weergeven van velden."
 
 #: admin/options.php:1867
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
-msgstr "Het revisiepreview argument is geconfigureerd door constante definitie: %s"
+msgstr ""
+"Het revisie voorbeeldargument wordt geconfigureerd door constante "
+"definitie: %s"
 
 #: admin/options.php:1874
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
 msgstr ""
-"Pas preview-links aan om het \"rv_preview\" argument te gebruiken in plaats "
-"van \"preview\". Experimenteer om te zien wat het beste werkt met je thema."
+"Pas de voorbeeldlinks aan om het \"rv_preview\" argument te gebruiken in "
+"plaats van \"preview\". Experimenteer om te zien welke het beste werkt met "
+"je thema."
 
 #: admin/options.php:1878
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
-"Sommige thema's kunnen deze instelling vereisen voor een correcte weergave "
-"van de revisiepreview."
+"Sommige thema's kunnen deze instelling vereisen voor correcte revisie "
+"voorbeeld tonen."
 
 #: admin/options.php:1897
 msgid ""
@@ -1803,24 +1803,25 @@ msgstr "Rank Math SEO kan de revisie-update op sommige sites voorkomen."
 #: admin/options.php:1952
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
-msgstr "WPML Vertaalbeheer"
+msgstr "WPML vertaalbeheer"
 
 #: admin/options.php:1957
 msgid "Sync \"Needs Update\" flags"
-msgstr "Synchroniseer \"Heeft Update Nodig\" vlaggen"
+msgstr "Synchroniseer de vlaggen \"Update nodig\""
 
 #: admin/options.php:1961
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
 msgstr ""
-"Stel \"Heeft Update Nodig\" in voor elk bericht met vertalingen dat "
-"recentelijk (mogelijk door revisie goedkeuring) is bijgewerkt, meer recent "
-"dan zijn vertalingen."
+"Stel \"Update nodig\" in voor elk bericht met vertalingen dat recentelijker "
+"is geüpdatet (mogelijk door revisie goedkeuring) dan de vertalingen."
 
 #: admin/options.php:1971
 msgid "Show descriptive captions for PublishPress Revisions settings."
-msgstr "Toon beschrijvende bijschriften voor PublishPress Revisies instellingen."
+msgstr ""
+"Beschrijvende bijschriften weergeven voor PublishPress Revisions "
+"instellingen"
 
 #: admin/options.php:1989
 msgid ""
@@ -1886,22 +1887,22 @@ msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
 msgstr ""
-"Geef aan welke PublishPress Revisies Instellingen netwerkbreed moeten "
-"worden beheerd. Niet geselecteerde instellingen worden afzonderlijk op elke "
+"Specificeer welke PublishPress Revisions instellingen netwerkbreed moeten "
+"worden beheerd. Niet-geselecteerde instellingen worden afzonderlijk op elke "
 "site beheerd."
 
 #: admin/options.php:2180
 #, php-format
 msgid "network-wide control of \"%s\""
-msgstr "netwerkbrede controle van \"%s\""
+msgstr "netwerk brede controle van \"%s\""
 
 #: admin/options.php:2207
 msgid "Save Changes"
-msgstr "Wijzigingen Opslaan"
+msgstr "Wijzigingen opslaan"
 
 #: admin/options.php:2208
 msgid "Revert to Defaults"
-msgstr "Terugzetten naar Standaarden"
+msgstr "Terug naar standaardinstellingen"
 
 #: admin/options.php:2210
 msgid ""
@@ -1909,7 +1910,7 @@ msgid ""
 "reset to DEFAULTS.  Are you sure?"
 msgstr ""
 "Alle instellingen in dit formulier (inclusief die op niet-geselecteerde "
-"tabbladen) worden teruggezet naar STANDAARDINSTELLINGEN. Weet u het zeker?"
+"tabs) worden teruggezet naar de standaardinstellingen. Weet je het zeker?"
 
 #: admin/options.php:2288, fuzzy
 msgid "Commerce"
@@ -1980,7 +1981,7 @@ msgstr "Auteur"
 
 #: admin/post-editor-workflow-ui_rvy.php:34
 msgid "(on approval)"
-msgstr "(onder voorbehoud)"
+msgstr "(bij goedkeuring)"
 
 #: admin/post-editor-workflow-ui_rvy.php:38
 msgid "Save changes to continue."
@@ -1993,27 +1994,27 @@ msgstr "Sla alstublieft wijzigingen op in de revisie voordat u deze indient."
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 msgid "Preview this Revision"
-msgstr "Bekijk deze revisie"
+msgstr "Bekijk deze revisie voorvertoning"
 
 #: admin/post-editor-workflow-ui_rvy.php:79
 msgid "View / Publish"
-msgstr "Bekijk / Publiceer"
+msgstr "Bekijken/publiceren"
 
 #: admin/post-editor-workflow-ui_rvy.php:79
 msgid "View / Approve"
-msgstr "Bekijk / Goedkeuren"
+msgstr "Bekijken/goedkeuren"
 
 #: admin/post-editor-workflow-ui_rvy.php:82
 msgid "View / Moderate saved revision"
-msgstr "Bekijk / Beheer opgeslagen revisie"
+msgstr "Bekijk/modereer opgeslagen revisie"
 
 #: admin/post-editor-workflow-ui_rvy.php:85
 msgid "View / Submit saved revision"
-msgstr "Bekijk / Dien opgeslagen revisie in"
+msgstr "Bekijk/dien opgeslagen revisie in"
 
 #: admin/post-editor-workflow-ui_rvy.php:94
 msgid "View unsaved changes"
-msgstr "Bekijk niet-opgeslagen wijzigingen"
+msgstr "Niet-opgeslagen wijzigingen bekijken"
 
 #: admin/post-editor-workflow-ui_rvy.php:98
 #, php-format
@@ -2024,7 +2025,7 @@ msgstr[1] "%s%s Revisie Bewerken"
 
 #: admin/post-editor-workflow-ui_rvy.php:109
 msgid "Revision Submission Error"
-msgstr "Fout bij het indienen van revisie"
+msgstr "Fout bij indienen van revisie"
 
 #: admin/post-editor-workflow-ui_rvy.php:123
 #: admin/post-editor-workflow-ui_rvy.php:234
@@ -2057,21 +2058,21 @@ msgstr "Goedkeuren en Plannen"
 #: rvy_init-functions.php:387
 #: rvy_init-functions.php:500
 msgid "Update Revision"
-msgstr "Revisie Bijwerken"
+msgstr "Update revisie"
 
 #: admin/post-editor-workflow-ui_rvy.php:240
 #, php-format
 msgid "Update post before creating %s."
-msgstr "Werk bericht bij voordat je %s aanmaakt."
+msgstr "Bericht updaten voordat je %s maakt."
 
 #: admin/post-editor-workflow-ui_rvy.php:247
 msgid "Error Creating Revision"
-msgstr "Fout bij het aanmaken van revisie"
+msgstr "Fout bij maken revisie"
 
 #: admin/post-editor-workflow-ui_rvy.php:263
 #, php-format
 msgid "For custom field changes, edit a scheduled %s."
-msgstr "Voor wijzigingen in aangepaste velden, bewerk een geplande %s."
+msgstr "Voor wijzigingen in aangepast veld, bewerk een geplande %s."
 
 #: admin/post-edit_rvy.php:28
 #: admin/post-edit_rvy.php:141
@@ -2089,21 +2090,23 @@ msgstr "Bekijk revisie in uitvoering"
 
 #: admin/post-edit_rvy.php:191
 msgid "Compare this revision to published copy, or to other revisions"
-msgstr "Vergelijk deze revisie met de gepubliceerde versie, of met andere revisies"
+msgstr ""
+"Vergelijk deze revisie met het gepubliceerde exemplaar of met andere "
+"revisies"
 
 #: admin/post-edit_rvy.php:226
 msgid "View / moderate saved revision"
-msgstr "Weergave / modereren opgeslagen revisie"
+msgstr "Bekijken/modereren opgeslagen revisie"
 
 #: admin/post-edit_rvy.php:229
 msgid "View saved revision"
-msgstr "Bekijk opgeslagen revisie"
+msgstr "Opgeslagen revisie bekijken"
 
 #: admin/revision-action_rvy.php:510
 #: admin/revision-action_rvy.php:596
 #, php-format
 msgid "[%s] Revision Approval Notice"
-msgstr "[%s] Herzieningsgoedkeuringsmelding"
+msgstr "[%s] revisie goedkeuringsbericht"
 
 #: admin/revision-action_rvy.php:511
 #, php-format
@@ -2119,12 +2122,12 @@ msgstr "De indiener was %1$s."
 #: admin/revision-action_rvy.php:605
 #, php-format
 msgid "It will be published on %s"
-msgstr "Het zal gepubliceerd worden op %s"
+msgstr "Het wordt gepubliceerd op %s"
 
 #: admin/revision-action_rvy.php:523
 #: admin/revision-action_rvy.php:609
 msgid "Preview it here: "
-msgstr "Bekijk het hier: "
+msgstr "Bekijk hier een voorbeeld: "
 
 #: admin/revision-action_rvy.php:526
 #: admin/revision-action_rvy.php:612
@@ -2142,20 +2145,22 @@ msgstr "Bekijk het online: "
 #: admin/revision-action_rvy.php:597
 #, php-format
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
-msgstr "De revisie die je indiende voor de %1$s \"%2$s\" is goedgekeurd."
+msgstr "De revisie die je hebt ingediend voor de %1$s \"%2$s\" is goedgekeurd."
 
 #: admin/revision-action_rvy.php:1574
 #: admin/revision-action_rvy.php:1602
 #, php-format
 msgid "[%s] %s Publication Notice"
-msgstr "[%s] %s Publicatiemelding"
+msgstr "[%s] %s publicatie bericht"
 
 #: admin/revision-action_rvy.php:1575
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
 "published."
-msgstr "De geplande revisie die je indiende voor de %1$s \"%2$s\" is gepubliceerd."
+msgstr ""
+"De geplande revisie die je hebt ingediend voor de %1$s \"%2$s\" is "
+"gepubliceerd."
 
 #: admin/revision-action_rvy.php:1603
 #, php-format
@@ -2168,12 +2173,12 @@ msgstr "Revisie voor:"
 
 #: admin/revision-archive_rvy.php:90
 msgid "Search Revisions"
-msgstr "Zoek revisies"
+msgstr "Revisies zoeken"
 
 #: admin/revision-queue_rvy.php:9
 #: admin/revision-queue_rvy.php:21
 msgid "You are not allowed to manage revisions."
-msgstr "Je bent niet toegestaan om revisies te beheren."
+msgstr "Je hebt geen toestemming om revisies te beheren."
 
 #: admin/revision-queue_rvy.php:13
 #, php-format
@@ -2228,22 +2233,22 @@ msgstr "Nieuwe revisies %s"
 #: admin/revision-ui_rvy.php:45
 msgid "Publishers will be notified (but cannot be selected here)."
 msgstr ""
-"Uitgevers zullen worden geïnformeerd (maar kunnen hier niet worden "
+"Uitgevers worden op de hoogte gebracht (maar kunnen hier niet worden "
 "geselecteerd)."
 
 #: admin/revision-ui_rvy.php:47
 msgid "No email notifications will be sent."
-msgstr "Er zullen geen e-mailmeldingen worden verzonden."
+msgstr "Er worden geen e-mailmeldingen verzonden."
 
 #: admin/revision-ui_rvy.php:97
 #, php-format
 msgid "%1$s (Current)"
-msgstr "%1$s (Huidig)"
+msgstr "%1$s (Huidige)"
 
 #: admin/revision-ui_rvy.php:101
 #, php-format
 msgid "%1$s (Autosave)"
-msgstr "%1$s (Automatisch opslaan)"
+msgstr "%1$s (Automatisch opgeslagen)"
 
 #: admin/revision-ui_rvy.php:112
 #, php-format
@@ -2257,7 +2262,7 @@ msgstr "%1$s <span>(Aangevraagde publicatie: %2$s)</span>"
 
 #: admin/revision-ui_rvy.php:287
 msgid "The revision will be deleted. Are you sure?"
-msgstr "De revisie zal worden verwijderd. Weet je het zeker?"
+msgstr "De revisie wordt verwijderd. Weet je het zeker?"
 
 #: admin/revision-ui_rvy.php:380
 msgid "Modified Date"
@@ -2265,17 +2270,17 @@ msgstr "Gewijzigde datum"
 
 #: admin/RevisionEditSubmitMetabox.php:124
 msgid "Preview revision in progress"
-msgstr "Voorbeeld revisie in uitvoering"
+msgstr "Voorbeeld van revisie in uitvoering"
 
-#: admin/RevisionEditSubmitMetabox.php:180, fuzzy
+#: admin/RevisionEditSubmitMetabox.php:180
 #. translators: Publish box date formt, see http://php.net/date
 msgid "M j, Y @ G:i"
-msgstr "M j, Y @ G:i"
+msgstr "j M Y @ G:i"
 
 #: admin/RevisionEditSubmitMetabox.php:191
 #, php-format
 msgid "Publish %son approval%s"
-msgstr "Publiceer %son goedkeuring%s"
+msgstr "Publiceer %s bij goedkeuring%s"
 
 #: admin/revisions.php:20
 msgid ""
@@ -2283,9 +2288,10 @@ msgid ""
 "code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
 "$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
 msgstr ""
-"<strong>Opmerking:</strong> Voor visuele weergave van revisies, voeg de "
-"volgende code toe aan foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
-"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+"<strong>Opmerking:</strong> Voeg de volgende code toe aan "
+"foliopress-wysiwyg.php voor visuele weergave van revisies:<br "
+"/>&nbsp;&nbsp;if ( strpos( $_SERVER['REQUEST_URI'], "
+"'admin.php?page=rvy-revisions' ) ) return;"
 
 #: admin/revisions.php:61
 msgid "Revision of this post is not allowed."
@@ -2321,7 +2327,7 @@ msgstr "geen %s revisies beschikbaar."
 #: classes/PublishPress/Revisionary.php:107
 #: includes/CoreAdmin.php:201
 msgid "Advanced Custom Fields"
-msgstr "Geavanceerde Aangepaste Velden"
+msgstr "Geavanceerde aangepaste velden"
 
 #: classes/PublishPress/Revisionary.php:108
 msgid "Compatibility with ACF custom fields."
@@ -2460,7 +2466,7 @@ msgid "Revision schedule shown in Calendar"
 msgstr "Revisieschema weergegeven in de kalender"
 
 #: classes/PublishPress/Revisionary.php:238
-#: includes/CoreAdmin.php:203, fuzzy
+#: includes/CoreAdmin.php:203
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
@@ -2529,13 +2535,13 @@ msgstr "%sBeheer%s"
 #: front_rvy.php:498
 #, php-format
 msgid "%sCompare%s%sView Published Post%s"
-msgstr "%sVergelijk%s%sBekijk Gepubliceerd Bericht%s"
+msgstr "%sVergelijk%s%sBekijk gepubliceerd bericht%s"
 
 #: front_rvy.php:510
 #: front_rvy.php:525
 #, php-format
 msgid "%sView Published Post%s"
-msgstr "%sBekijk Gepubliceerd Bericht%s"
+msgstr "%sBekijk gepubliceerd bericht%s"
 
 #: front_rvy.php:600
 #: rvy_init-functions.php:307
@@ -2559,7 +2565,7 @@ msgstr "Afwijzen"
 #: front_rvy.php:645
 #, php-format
 msgid "This is a %s (requested publish date: %s). %s %s %s"
-msgstr "Dit is een %s (gevraagd publicatiedatum: %s). %s %s %s"
+msgstr "Dit is een %s (verzochte publicatiedatum: %s). %s %s %s"
 
 #: front_rvy.php:649
 #: front_rvy.php:651
@@ -2596,22 +2602,22 @@ msgstr "Dit is de huidige revisie. %s"
 
 #: front_rvy.php:724
 msgid "Restore"
-msgstr "Herstellen"
+msgstr "Terugzetten"
 
 #: front_rvy.php:728
 #: front_rvy.php:730
 #, php-format
 msgid "This is a Past Revision (from %s). %s %s"
-msgstr "Dit is een eerdere revisie (van %s). %s %s"
+msgstr "Dit is een eerdere revisie (vanaf %s). %s %s"
 
 #: functions.php:514
 msgid "Scheduled Rev."
-msgstr "Geplande rev."
+msgstr "Geplande revisie."
 
 #: functions.php:519
 #: functions.php:524
 msgid "Submitted Rev."
-msgstr "Ingediende rev."
+msgstr "Ingediende revisie."
 
 #: includes/CoreAdmin.php:13
 #, php-format
@@ -2619,7 +2625,7 @@ msgid ""
 "You're using PublishPress Revisions Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
 msgstr ""
-"Je gebruikt PublishPress Revisions Free. De Pro-versie heeft meer functies "
+"Je gebruikt PublishPress Revisions Free. De Pro versie heeft meer functies "
 "en ondersteuning. %sUpgrade naar Pro%s"
 
 #: includes/CoreAdmin.php:190
@@ -2644,7 +2650,7 @@ msgstr "PublishPress Planner: Aangepaste meldingen"
 
 #: includes/CoreAdmin.php:208
 msgid "Plugin integration details"
-msgstr "Details van pluginintegratie"
+msgstr "Plugin integratie details..."
 
 #: includes/CoreAdmin.php:219
 msgid "Need Revisions Support?"
@@ -2660,25 +2666,30 @@ msgstr "Vraag ondersteuning aan"
 
 #: includes/CoreAdmin.php:235
 msgid "Detailed documentation is also available on the plugin website."
-msgstr "Gedetailleerde documentatie is ook beschikbaar op de pluginwebsite."
+msgstr "Gedetailleerde documentatie is ook beschikbaar op de site van de plugin."
 
 #: includes/CoreAdmin.php:237
 msgid "View Knowledge Base"
-msgstr "Bekijk kennisbank"
+msgstr "Bekijk de kennisbank"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s queries in %2$s seconden. %3$s MB gebruikt."
 
 #: revision-creation_rvy.php:216
 msgid "Could not insert revision into the database"
-msgstr "Kon revisie niet in de database invoegen"
+msgstr "Kon revisie niet in de database invoeren"
 
 #: revision-workflow_rvy.php:170
 #, php-format
 msgid "[%s] %s Updated"
-msgstr "[%s] %s Bijgewerkt"
+msgstr "[%s] %s Geüpdatet"
 
 #: revision-workflow_rvy.php:172
 #, php-format
 msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
-msgstr "%1$s bijgewerkt een %2$s van de %3$s \"%4$s\"."
+msgstr "%1$s heeft %2$s geüpdatet van de %3$s \"%4$s\"."
 
 #: revision-workflow_rvy.php:174
 #, fuzzy, php-format
@@ -2691,12 +2702,12 @@ msgid ""
 "%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
 "possible publication:"
 msgstr ""
-"%1$s heeft wijzigingen ingediend voor de %2$s \"%3$s\". U kunt de "
-"wijzigingen bekijken voor mogelijke publicatie:"
+"%1$s heeft wijzigingen ingediend voor de %2$s \"%3$s\". Je kunt de "
+"wijzigingen beoordelen voor mogelijke publicatie:"
 
 #: revision-workflow_rvy.php:184
 msgid "Preview and Approval: "
-msgstr "Voorbeeld en Goedkeuring: "
+msgstr "Voorbeeld en goedkeuring: "
 
 #: revision-workflow_rvy.php:187
 msgid "New Revisions: "
@@ -2713,40 +2724,40 @@ msgstr "<strong>Deze plugin kan worden verwijderd.</strong>"
 
 #: rvy_init-functions.php:81
 msgid "Every 2 Minutes"
-msgstr "Elke 2 Minuten"
+msgstr "Elke 2 minuten"
 
 #: rvy_init-functions.php:287
 #: rvy_init-functions.php:299
 msgid "Working Copy"
-msgstr "Werkende Kopie"
+msgstr "Werkkopie"
 
 #: rvy_init-functions.php:288
 msgid "Create Working Copy"
-msgstr "Maak Werkende Kopie"
+msgstr "Werkkopie maken"
 
 #: rvy_init-functions.php:290
 msgid "Creating Working Copy..."
-msgstr "Werkende Kopie aanmaken..."
+msgstr "Werkkopie aan het maken..."
 
 #: rvy_init-functions.php:291
 msgid "Working Copy ready"
-msgstr "Werkende Kopie gereed"
+msgstr "Werkkopie gereed"
 
 #: rvy_init-functions.php:292
 #: rvy_init-functions.php:310
 msgid "Approve Changes"
-msgstr "Wijzigingen Goedkeuren"
+msgstr "Wijzigingen goedkeuren"
 
 #: rvy_init-functions.php:294
 #: rvy_init-functions.php:312
 msgid "Approving Changes..."
-msgstr "Wijzigingen Goedkeuren..."
+msgstr "Wijzigingen goedkeuren..."
 
 #: rvy_init-functions.php:295
 #: rvy_init-functions.php:313
 #: rvy_init-functions.php:331
 msgid "Publish Changes"
-msgstr "Wijzigingen Publiceren"
+msgstr "Wijzigingen publiceren"
 
 #: rvy_init-functions.php:296
 #: rvy_init-functions.php:314
@@ -2755,11 +2766,11 @@ msgstr "Wijzigingen Publiceren"
 #: rvy_init-functions.php:369
 #: rvy_init-functions.php:386
 msgid "Save Revision"
-msgstr "Herziening Opslaan"
+msgstr "Revisie opslaan"
 
 #: rvy_init-functions.php:298
 msgid "Working Copies"
-msgstr "Werkende Kopieën"
+msgstr "Werkkopieën"
 
 #: rvy_init-functions.php:300
 #, php-format
@@ -2775,7 +2786,7 @@ msgstr "Wijzigingsverzoek"
 
 #: rvy_init-functions.php:306
 msgid "Submit Change Request"
-msgstr "Dien Wijzigingsverzoek in"
+msgstr "Wijzigingsverzoek indienen"
 
 #: rvy_init-functions.php:309
 msgid "Changes Submitted"
@@ -2783,7 +2794,7 @@ msgstr "Wijzigingen ingediend"
 
 #: rvy_init-functions.php:316
 msgid "Change Requests"
-msgstr "Wijzigingsverzoeken"
+msgstr "Wijziging aanvraag"
 
 #: rvy_init-functions.php:318
 #, php-format
@@ -2794,27 +2805,27 @@ msgstr[1] "Wijzigingsverzoeken <span class=\\\"count\\\">(%d)</span>"
 
 #: rvy_init-functions.php:319
 msgid "Enable Change Requests"
-msgstr "Schakel Wijzigingsverzoeken in"
+msgstr "Wijzigingsverzoeken inschakelen"
 
 #: rvy_init-functions.php:324
 #: rvy_init-functions.php:335
 msgid "Scheduled Change"
-msgstr "Geplande Wijziging"
+msgstr "Geplande wijziging"
 
 #: rvy_init-functions.php:325
 #: rvy_init-functions.php:326
 #: rvy_init-functions.php:329
 #: rvy_init-functions.php:330
 msgid "Schedule Changes"
-msgstr "Wijzigingen inplannen"
+msgstr "Wijzigingen plannen"
 
 #: rvy_init-functions.php:328
 msgid "Changes are Scheduled."
-msgstr "Wijzigingen zijn ingepland."
+msgstr "Wijzigingen zijn gepland."
 
 #: rvy_init-functions.php:334
 msgid "Scheduled Changes"
-msgstr "Geplande Wijzigingen"
+msgstr "Geplande wijzigingen"
 
 #: rvy_init-functions.php:336
 #, php-format
@@ -2825,7 +2836,7 @@ msgstr[1] "Gepland <span class=\\\"count\\\">(%d)</span>"
 
 #: rvy_init-functions.php:344
 msgid "Unsubmitted Revision"
-msgstr "Niet ingediende Revisie"
+msgstr "Niet ingediende revisie"
 
 #: rvy_init-functions.php:345
 #: rvy_init-functions.php:346
@@ -2838,7 +2849,7 @@ msgstr "Revisie aanmaken..."
 
 #: rvy_init-functions.php:348
 msgid "The Revision is ready to edit."
-msgstr "De Revisie is klaar om te bewerken."
+msgstr "De revisie is gereed om te bewerken."
 
 #: rvy_init-functions.php:348
 msgid "Revision ready to edit."
@@ -2848,17 +2859,17 @@ msgstr "Revisie klaar om te bewerken."
 #: rvy_init-functions.php:366
 #: rvy_init-functions.php:383
 msgid "Approve Revision"
-msgstr "Keurt Revisie goed"
+msgstr "Revisie goedkeuren"
 
 #: rvy_init-functions.php:351
 #: rvy_init-functions.php:368
 #: rvy_init-functions.php:385
 msgid "Publish Revision"
-msgstr "Publiceer Revisie"
+msgstr "Revisie publiceren"
 
 #: rvy_init-functions.php:354
 msgid "Unsubmitted Revisions"
-msgstr "Niet ingediende Revisies"
+msgstr "Niet ingediende revisies"
 
 #: rvy_init-functions.php:355
 msgid "Not Submitted"
@@ -2873,16 +2884,16 @@ msgstr[1] "Niet ingediend <span class=\\\"count\\\">(%s)</span>"
 
 #: rvy_init-functions.php:361
 msgid "Submitted Revision"
-msgstr "Ingediende Revisie"
+msgstr "Ingediende revisie"
 
 #: rvy_init-functions.php:362
 #: rvy_init-functions.php:503
 msgid "Submit Revision"
-msgstr "Dien Revisie In"
+msgstr "Revisie indienen"
 
 #: rvy_init-functions.php:365
 msgid "The Revision is Submitted"
-msgstr "De Revisie is Ingediend"
+msgstr "De revisie is ingediend"
 
 #: rvy_init-functions.php:365
 msgid "Revision Submitted"
@@ -2890,7 +2901,7 @@ msgstr "Revisie Ingediend"
 
 #: rvy_init-functions.php:371
 msgid "Submitted Revisions"
-msgstr "Ingediende Revisies"
+msgstr "Ingediende revisies"
 
 #: rvy_init-functions.php:372
 msgid "Submitted"
@@ -2905,27 +2916,27 @@ msgstr[1] "Ingediend <span class=\\\"count\\\">(%s)</span>"
 
 #: rvy_init-functions.php:378
 msgid "Scheduled Revision"
-msgstr "Geplande Revisie"
+msgstr "Geplande revisie"
 
 #: rvy_init-functions.php:379
 msgid "Schedule Revision"
-msgstr "Plan Revisie"
+msgstr "Revisie inplannen"
 
 #: rvy_init-functions.php:380
 msgid "Schedule"
-msgstr "Plannen"
+msgstr "Schema"
 
 #: rvy_init-functions.php:382
 msgid "The Revision is Scheduled"
-msgstr "De Revisie is Gepland"
+msgstr "De revisie is gepland"
 
 #: rvy_init-functions.php:382
 msgid "Revision Scheduled"
-msgstr "Revisie Gepland"
+msgstr "Revisie gepland"
 
 #: rvy_init-functions.php:388
 msgid "Scheduled Revisions"
-msgstr "Geplande Revisies"
+msgstr "Geplande revisies"
 
 #: rvy_init-functions.php:389
 msgid "Scheduled"
@@ -2961,15 +2972,15 @@ msgstr[1] "%sRevisies op Mijn Berichten%s(%s)"
 
 #: rvy_init-functions.php:498
 msgid "Post Author"
-msgstr "Bericht Auteur"
+msgstr "Bericht auteur"
 
 #: rvy_init-functions.php:499
 msgid "Published Post"
-msgstr "Gepubliceerd Bericht"
+msgstr "Gepubliceerd bericht"
 
 #: rvy_init-functions.php:504
 msgid "Submit Changes"
-msgstr "Dien Wijzigingen In"
+msgstr "Wijzigingen indienen"
 
 #: rvy_init-functions.php:708, fuzzy
 msgid "Revisor"
@@ -2985,9 +2996,9 @@ msgstr ""
 
 #: rvy_init-functions.php:1263
 msgid "Revision Workflow"
-msgstr "Revisieworkflow"
+msgstr "Revisie workflow"
 
-#: admin/admin_rvy.php:277
+#: admin/admin_rvy.php:310
 msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "Revisies"
@@ -3024,10 +3035,10 @@ msgid "of %s \"%s\""
 msgstr "of %s \"%s\""
 
 #: admin/revision-queue_rvy.php:136
-#, fuzzy, php-format
+#, php-format
 msgctxt "Posts / Pages / etc."
 msgid "of %s"
-msgstr "of %s"
+msgstr "van %s"
 
 #: admin/revision-queue_rvy.php:139
 #, fuzzy, php-format

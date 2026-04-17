@@ -10,10 +10,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-09T14:17:31+00:00\n"
-"PO-Revision-Date: 2026-04-10 21:49+0000\n"
+"PO-Revision-Date: 2026-04-17 07:31+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "|| n % 10 == 6 || n % 10 == 9);\n"
+"|| n % 10 == 6 || n % 10 == 9);: \n"
 "Language: fil\n"
 "Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 || n % 10 == 6 || n % 10 == 9);\n"
 
@@ -37,7 +38,7 @@ msgstr ""
 "katumpakan gamit ang Revisions model upang magsumite, aprubahan at "
 "i-schedule ang mga pagbabago."
 
-#: revisionary.php:6, fuzzy
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
@@ -102,8 +103,8 @@ msgid "Has Revision"
 msgstr "May Rebisyon"
 
 #: admin/admin-posts_rvy.php:326
-#: admin/admin_rvy.php:366
-#: admin/admin_rvy.php:436
+#: admin/admin_rvy.php:399
+#: admin/admin_rvy.php:469
 #: admin/options.php:159
 #: admin/options.php:639
 msgid "New Revisions"
@@ -127,7 +128,7 @@ msgstr "Mga Default ng Network ng PublishPress Revisions"
 msgid "Network Defaults"
 msgstr "Mga Default sa Network"
 
-#: admin/admin_rvy.php:133
+#: admin/admin_rvy.php:166
 #, php-format
 msgid ""
 "Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
@@ -138,13 +139,13 @@ msgstr ""
 "hindi pinagana. Kung nag-trigger ka ng WP-Cron mula sa labas, tingnan ang "
 "%sRebisyon > Mga Setting > Mga Bagong Rebisyon > Pagsasaayos%s."
 
-#: admin/admin_rvy.php:317
+#: admin/admin_rvy.php:350
 msgid "Revisions"
 msgstr "Mga Rebisyon"
 
-#: admin/admin_rvy.php:375
-#: admin/admin_rvy.php:376
-#: admin/admin_rvy.php:437
+#: admin/admin_rvy.php:408
+#: admin/admin_rvy.php:409
+#: admin/admin_rvy.php:470
 #: admin/options.php:158
 #: admin/options.php:542
 #: admin/revision-archive_rvy.php:81
@@ -152,20 +153,20 @@ msgstr "Mga Rebisyon"
 msgid "Past Revisions"
 msgstr "Mga Nakaraang Rebisyon"
 
-#: admin/admin_rvy.php:393
+#: admin/admin_rvy.php:426
 #: admin/options.php:341
 msgid "PublishPress Revisions Settings"
 msgstr "Mga Setting ng PublishPress Rebisyon"
 
-#: admin/admin_rvy.php:393
-#: admin/admin_rvy.php:440
+#: admin/admin_rvy.php:426
+#: admin/admin_rvy.php:473
 #: admin/options.php:153
 msgid "Settings"
 msgstr "Mga Setting"
 
-#: admin/admin_rvy.php:402
-#: admin/admin_rvy.php:403
-#: admin/admin_rvy.php:443
+#: admin/admin_rvy.php:435
+#: admin/admin_rvy.php:436
+#: admin/admin_rvy.php:476
 #: admin/options.php:1780
 #: admin/options.php:1807
 #: admin/options.php:2015
@@ -174,68 +175,68 @@ msgstr "Mga Setting"
 msgid "Upgrade to Pro"
 msgstr "Mag-upgrade sa Pro"
 
-#: admin/admin_rvy.php:484
+#: admin/admin_rvy.php:517
 msgid "Can edit draft Posts from other users."
 msgstr "Maaari mong i-edit ang mga draft na Post mula sa ibang mga gumagamit."
 
-#: admin/admin_rvy.php:485
+#: admin/admin_rvy.php:518
 msgid "Can edit Revisions from other users."
 msgstr "Maaari mong i-edit ang mga Rebisyon mula sa ibang mga gumagamit."
 
-#: admin/admin_rvy.php:486
+#: admin/admin_rvy.php:519
 msgid "Can see New Revisions from other users."
 msgstr "Maaari mong makita ang Mga Bagong Rebisyon mula sa ibang mga gumagamit."
 
-#: admin/admin_rvy.php:487
+#: admin/admin_rvy.php:520
 msgid "Can access New Revisions."
 msgstr "Maaari mong ma-access ang Mga Bagong Rebisyon."
 
-#: admin/admin_rvy.php:488
+#: admin/admin_rvy.php:521
 msgid "Can manage Unsubmitted Revisions."
 msgstr "Maaari mong pamahalaan ang Mga Hindi Isinumiteng Rebisyon."
 
-#: admin/admin_rvy.php:489
+#: admin/admin_rvy.php:522
 msgid "Preview other user's Revisions (without needing editing access)."
 msgstr ""
 "I-preview ang mga Rebisyon ng ibang gumagamit (nang hindi kinakailangang "
 "magkaroon ng access sa pag-edit)."
 
-#: admin/admin_rvy.php:490
+#: admin/admin_rvy.php:523
 msgid "Restore an archived Revision as the current revision."
 msgstr "Ibalik ang isang naka-archive na Rebisyon bilang kasalukuyang rebisyon."
 
-#: admin/admin_rvy.php:491
+#: admin/admin_rvy.php:524
 msgid "View Past Revisions."
 msgstr "Tingnan ang mga Nakaraang Rebisyon."
 
-#: admin/admin_rvy.php:521
+#: admin/admin_rvy.php:554
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr ""
 "Kung gusto mo ang %1$s, mangyaring iwanan kami ng isang %2$s rating. "
 "Salamat!"
 
-#: admin/admin_rvy.php:532
+#: admin/admin_rvy.php:565
 msgid "About PublishPress Revisions"
 msgstr "Tungkol sa PublishPress Rebisyon"
 
-#: admin/admin_rvy.php:532
+#: admin/admin_rvy.php:565
 msgid "About"
 msgstr "Tungkol sa"
 
-#: admin/admin_rvy.php:534
+#: admin/admin_rvy.php:567
 msgid "PublishPress Revisions Documentation"
 msgstr "Dokumentasyon ng PublishPress Rebisyon"
 
-#: admin/admin_rvy.php:534
+#: admin/admin_rvy.php:567
 msgid "Documentation"
 msgstr "Dokumentasyon"
 
-#: admin/admin_rvy.php:536
+#: admin/admin_rvy.php:569
 msgid "Contact the PublishPress team"
 msgstr "Makipag-ugnayan sa koponan ng PublishPress"
 
-#: admin/admin_rvy.php:536
+#: admin/admin_rvy.php:569
 msgid "Contact"
 msgstr "Makipag-ugnayan"
 
@@ -1907,7 +1908,7 @@ msgstr ""
 "mabilis, propesyonal na suporta."
 
 #: admin/options.php:2029
-#: admin/options.php:2282, fuzzy
+#: admin/options.php:2282
 msgid "Admin"
 msgstr "Admin"
 
@@ -2526,7 +2527,7 @@ msgid "Revision schedule shown in Calendar"
 msgstr "Naka-iskedyul na bersyon na ipinapakita sa Kalendaryo"
 
 #: classes/PublishPress/Revisionary.php:238
-#: includes/CoreAdmin.php:203, fuzzy
+#: includes/CoreAdmin.php:203
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
@@ -2733,6 +2734,11 @@ msgstr "Ang detalyadong dokumentasyon ay available din sa website ng plugin."
 #: includes/CoreAdmin.php:237
 msgid "View Knowledge Base"
 msgstr "Tingnan ang Knowledge Base"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s mga query sa %2$s segundo. %3$s MB ang nagamit."
 
 #: revision-creation_rvy.php:216
 msgid "Could not insert revision into the database"
@@ -3055,7 +3061,7 @@ msgstr ""
 msgid "Revision Workflow"
 msgstr "Daloy ng Rebisyon"
 
-#: admin/admin_rvy.php:277
+#: admin/admin_rvy.php:310
 msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "Mga Rebisyon"
