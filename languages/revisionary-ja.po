@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the PublishPress Revisions Free plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc\n"
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-09T14:17:31+00:00\n"
-"PO-Revision-Date: 2026-04-17 07:31+0000\n"
+"POT-Creation-Date: 2026-04-17T08:54:32+00:00\n"
+"PO-Revision-Date: 2026-04-17 23:26+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: ja\n"
 
-#: revisionary.php:3, fuzzy
+#: revisionary.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
@@ -127,8 +127,8 @@ msgid ""
 "triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
 "Scheduling%s."
 msgstr ""
-"WP-Cronが無効になっているため、スケジュールされたリビジョンは利用できません。外部からWP-Cronをトリガーしている場合は、%sリビジョン > "
-"設定 > 新しいリビジョン > スケジューリング%sをご覧ください。"
+"スケジュールされたリビジョンは、WP-Cronが無効になっているため利用できません。外部からWP-Cronをトリガーしている場合は、%sリビジョン > "
+"設定 > 新しいリビジョン > スケジューリング%sを参照してください。"
 
 #: admin/admin_rvy.php:350, fuzzy
 msgid "Revisions"
@@ -201,7 +201,7 @@ msgstr "過去のリビジョンを表示します。"
 #: admin/admin_rvy.php:554
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
-msgstr "%1$sが気に入ったら、%2$s評価を残してください。ありがとうございます！"
+msgstr "%1$sが気に入った場合は、%2$s評価を残してください。ありがとうございます！"
 
 #: admin/admin_rvy.php:565
 msgid "About PublishPress Revisions"
@@ -251,11 +251,11 @@ msgstr "選択解除"
 
 #: admin/class-list-table-archive.php:22
 msgid "This was an update to a revision which is still in the workflow process."
-msgstr "これは、ワークフロープロセスにまだあるリビジョンへの更新でした。"
+msgstr "これは、まだワークフロープロセスにある改訂の更新です。"
 
 #: admin/class-list-table-archive.php:24
 msgid "This was an update to a revision which was published after further editing."
-msgstr "これは、さらなる編集の後に公開されたリビジョンへの更新でした。"
+msgstr "これは、更なる編集の後に公開された改訂の更新です。"
 
 #: admin/class-list-table-archive.php:202
 #, php-format
@@ -270,7 +270,7 @@ msgstr "投稿者: %s"
 #: admin/class-list-table-archive.php:231
 #, php-format
 msgid "Revision Date: %s"
-msgstr "リビジョン日付: %s"
+msgstr "改訂日: %s"
 
 #: admin/class-list-table-archive.php:241
 #, php-format
@@ -370,7 +370,7 @@ msgstr "改訂の公開"
 #: functions.php:457
 #, php-format
 msgid "Edit of %s"
-msgstr "%sの編集"
+msgstr "%s の編集"
 
 #: admin/class-list-table-archive.php:777
 #: functions.php:464
@@ -438,7 +438,7 @@ msgstr "リビジョンをプレビュー"
 
 #: admin/class-list-table-archive.php:1190
 msgid "Edit parent revision"
-msgstr "親リビジョンを編集"
+msgstr "親改訂を編集"
 
 #: admin/class-list-table-archive.php:1190
 msgid "Edit parent post"
@@ -493,7 +493,7 @@ msgstr "公開要求: %s"
 
 #: admin/class-list-table_rvy.php:824
 msgid "This revision is not scheduled yet. It must be approved."
-msgstr "このリビジョンはまだ予定されていません。承認が必要です。"
+msgstr "この改訂はまだ予定されていません。承認が必要です。"
 
 #: admin/class-list-table_rvy.php:874
 #: admin/history_rvy.php:911
@@ -742,20 +742,20 @@ msgstr "別のラベルを使用:「作業コピー」 > 「変更リクエス�
 
 #: admin/options.php:178
 msgid "New Revisions access requires role capability"
-msgstr "新しい改訂のアクセスには役割能力が必要です"
+msgstr "新しい改訂にアクセスするには役割の能力が必要です"
 
 #: admin/options.php:179
 #, php-format
 msgid "Managing %s requires role capability"
-msgstr "%sを管理するには役割能力が必要です"
+msgstr "%sを管理するには役割の能力が必要です"
 
 #: admin/options.php:180
 msgid "Working Copy creation requires role capability"
-msgstr "作業コピーの作成には役割能力が必要です"
+msgstr "作業コピーの作成には役割の能力が必要です"
 
 #: admin/options.php:180
 msgid "Revision creation requires role capability"
-msgstr "改訂の作成には役割能力が必要です"
+msgstr "改訂の作成には役割の能力が必要です"
 
 #: admin/options.php:181
 #, php-format
@@ -774,7 +774,7 @@ msgstr "1投稿につきアクティブなリビジョンを1つに制限"
 
 #: admin/options.php:184
 msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
-msgstr "Create Revisionを抑制する前に \"改訂あり\" フラグを更新する"
+msgstr "「改訂あり」フラグを更新してから改訂の作成を抑制する"
 
 #: admin/options.php:185
 msgid "If post contains custom html, require unfiltered_html capability"
@@ -790,19 +790,19 @@ msgstr "改訂を自動提出する"
 
 #: admin/options.php:189
 msgid "Change Request submission require role capability"
-msgstr "変更リクエストの提出には役割の権限が必要です"
+msgstr "変更リクエストの送信には役割の権限が必要です"
 
 #: admin/options.php:189
 msgid "Revision submission requires role capability"
-msgstr "修正の提出には役割の権限が必要です"
+msgstr "改訂の送信には役割の権限が必要です"
 
 #: admin/options.php:190
 msgid "Editing others' Revisions requires role capability"
-msgstr "他者の修正を編集するには役割の権限が必要です"
+msgstr "他の人の改訂を編集するには役割の権限が必要です"
 
 #: admin/options.php:191
 msgid "Listing others' Revisions requires role capability"
-msgstr "他者の修正を一覧表示するには役割の権限が必要です"
+msgstr "他の人の改訂を一覧表示するには役割の権限が必要です"
 
 #: admin/options.php:192
 msgid "Users can always administer revisions to their own editable posts"
@@ -885,15 +885,15 @@ msgstr "通知バッファーを有効化"
 
 #: admin/options.php:215
 msgid "Revisors can create a new revision for any custom post type"
-msgstr "レビジョンは任意のカスタム投稿タイプの新しいリビジョンを作成できます"
+msgstr "レビジョン担当者は、任意のカスタム post type の新しいリビジョンを作成できます"
 
 #: admin/options.php:216
 msgid "Prevent Revisors from editing others' unpublished Posts"
-msgstr "レビジョンが他の人の未公開投稿を編集できないようにする"
+msgstr "レビジョン担当者が他の人の未公開の投稿を編集できないようにする"
 
 #: admin/options.php:217
 msgid "Add database index to posts table for Revision queries"
-msgstr "リビジョンクエリのために投稿テーブルにデータベースインデックスを追加する"
+msgstr "リビジョンクエリ用に投稿テーブルにデータベースインデックスを追加する"
 
 #: admin/options.php:218
 msgid "Display Hints"
@@ -934,7 +934,7 @@ msgstr "過去のリビジョンを比較:"
 #: admin/options.php:227
 #, php-format
 msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
-msgstr "「マイアクティビティ」または「私の投稿のリビジョン」ビューのための %s をリスト"
+msgstr "「マイアクティビティ」または「私の投稿へのリビジョン」ビューのために %s をリストする"
 
 #: admin/options.php:228
 msgid "Store custom fields of submitted and scheduled revisions for archive"
@@ -962,7 +962,7 @@ msgstr "過去のリビジョンを削除できるようにする"
 
 #: admin/options.php:234
 msgid "Restoring a Revision requires role capability"
-msgstr "復元するためのリビジョンには役割の能力が必要です"
+msgstr "リビジョンの復元には役割の権限が必要です"
 
 #: admin/options.php:235
 msgid "Compatibility Mode"
@@ -978,7 +978,7 @@ msgstr "投稿ごとの最大リビジョン数"
 
 #: admin/options.php:238
 msgid "Apply Post Permissions to Revisions"
-msgstr "リビジョンに投稿の権限を適用する"
+msgstr "リビジョンに投稿権限を適用する"
 
 #: admin/options.php:239
 msgid "Enable legacy email notifications"
@@ -994,13 +994,13 @@ msgstr "リビジョンによって著者フィールドを変更できるよう
 
 #: admin/options.php:242
 msgid "Create Revision button in editor opens new tab"
-msgstr "エディターのリビジョン作成ボタンは新しいタブで開く"
+msgstr "エディターのリビジョン作成ボタンが新しいタブで開く"
 
 #: admin/options.php:243
 msgid ""
 "Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
 "previewing in Revision editor"
-msgstr "クエリループブロック: リビジョンエディターでプレビューを許可するためにリビジョンと寄稿者の能力を調整する"
+msgstr "クエリループブロック：リビジョンエディターでのプレビューを許可するためにリビジョナーと寄稿者の権限を調整する"
 
 #: admin/options.php:244
 msgid "Disable Rank Math SEO panel for Revision edit"
@@ -1012,7 +1012,7 @@ msgstr "カスタムフィールド（投稿メタ）をリビジョン可能に
 
 #: admin/options.php:246
 msgid "Permission for Submit Revision also enables Revision creation"
-msgstr "リビジョンを提出する権限はリビジョンの作成も有効にする"
+msgstr "リビジョンを送信する権限はリビジョン作成も有効にする"
 
 #: admin/options.php:251
 #, php-format
@@ -1082,11 +1082,11 @@ msgstr "ライセンス"
 
 #: admin/options.php:546
 msgid "Past Revisions are earlier versions of a post."
-msgstr "過去のリビジョンは、投稿の以前のバージョンです。"
+msgstr "過去のリビジョンは投稿の以前のバージョンです。"
 
 #: admin/options.php:601
 msgid "This post type does not support Past Revisions."
-msgstr "この投稿タイプは、過去のリビジョンをサポートしていません。"
+msgstr "この投稿タイプは過去のリビジョンをサポートしていません。"
 
 #: admin/options.php:643
 msgid "New Revisions are changes which are not yet published."
@@ -1103,9 +1103,7 @@ msgstr "注: サードパーティのコードにより、PublishPress Revisions
 msgid ""
 "For Revisions integration on the Content Calendar, Overview and Content "
 "Board, please update %sPublishPress Planner Pro%s."
-msgstr ""
-"コンテンツカレンダー、概要、コンテンツボードに Revisions を統合するには、%sPublishPress Planner Pro%s "
-"を更新してください。"
+msgstr "コンテンツカレンダー、概要、コンテンツボードに Revisions を統合するには、%sPublishPress Planner Pro%s を更新してください。"
 
 #: admin/options.php:763
 msgid "Ready to enhance your revision workflow?"
@@ -1123,11 +1121,11 @@ msgstr "リビジョン提出前または後に独自のステータスを定義
 
 #: admin/options.php:775
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
-msgstr "新しい事前定義されたステータス: 保留、作業が必要、拒否"
+msgstr "新しい定義済みステータス: Deferred, Needs Work, Rejected"
 
 #: admin/options.php:778
 msgid "Statuses can be specific to a post type"
-msgstr "ステータスは投稿タイプに特有であることがあります"
+msgstr "ステータスは投稿タイプに特有のものにできます"
 
 #: admin/options.php:781
 msgid "Control access to statuses per-role"
@@ -1135,11 +1133,11 @@ msgstr "役割ごとにステータスへのアクセスを制御します"
 
 #: admin/options.php:784
 msgid "Status workflow can be nested with sub-statuses"
-msgstr "ステータスワークフローは、サブステータスでネストできます"
+msgstr "ステータスワークフローはサブステータスでネストできます"
 
 #: admin/options.php:793
 msgid "Get PublishPress Statuses Pro"
-msgstr "PublishPress Statuses Pro を取得する"
+msgstr "PublishPress Statuses Pro を取得します"
 
 #: admin/options.php:798
 #: admin/options.php:816
@@ -1150,11 +1148,11 @@ msgstr "PublishPress Statuses Pro を取得する"
 #: admin/options.php:2381
 #: admin/options.php:2391
 msgid "Learn More"
-msgstr "詳細を学ぶ"
+msgstr "詳細はこちら"
 
-#: admin/options.php:811
+#: admin/options.php:811, fuzzy
 msgid "Pro Plugin"
-msgstr "プロプラグイン"
+msgstr "Pro Plugin"
 
 #: admin/options.php:812
 msgid "Install Statuses Pro to unlock custom revision statuses."
@@ -1162,7 +1160,7 @@ msgstr "カスタムリビジョンステータスを解除するには、Status
 
 #: admin/options.php:813
 msgid "Configure for any post type and role to match your editing workflow."
-msgstr "編集ワークフローに合わせて、任意の投稿タイプと役割を構成します。"
+msgstr "編集ワークフローに合わせて、任意の post type と役割を設定します。"
 
 #: admin/options.php:820
 msgid "Get Statuses Pro"
@@ -1170,7 +1168,7 @@ msgstr "Statuses Proを取得"
 
 #: admin/options.php:847
 msgid "Maximum revisions per post:"
-msgstr "投稿ごとの最大リビジョン："
+msgstr "投稿ごとの最大リビジョン数："
 
 #: admin/options.php:849
 msgid "(unlimited)"
@@ -1179,7 +1177,7 @@ msgstr "(無制限)"
 #: admin/options.php:857
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
-msgstr "アーカイブを無効にすることも、%1$s投稿タイプ%2$sによって可能です。"
+msgstr "%1$sPost Type%2$s によってアーカイブを無効にすることもできます。"
 
 #: admin/options.php:894
 #: admin/options.php:1065
@@ -1205,13 +1203,13 @@ msgstr "役割に権限を割り当てる"
 #: admin/options.php:906
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
-msgstr "非管理者が%sなしでリビジョンを復元できないようにする。"
+msgstr "非管理者が %s なしでリビジョンを復元するのを防ぐ"
 
 #: admin/options.php:912
 msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
-msgstr "非管理者がrestore_revisions権限なしでリビジョンを復元できないようにする"
+msgstr "非管理者が restore_revisions 権限なしでリビジョンを復元するのを防ぐ"
 
 #: admin/options.php:925
 msgid "Modification Date"
@@ -1251,45 +1249,45 @@ msgstr "役割に権限を割り当てる"
 #: admin/options.php:1205
 #, php-format
 msgid "If the user can't edit the published post, require %s."
-msgstr "ユーザーが公開された投稿を編集できない場合、%sを要求します。"
+msgstr "ユーザーが公開された投稿を編集できない場合は、%s を要求します。"
 
 #: admin/options.php:1033
 msgid ""
 "If the user can't edit the published post, require Create Revision "
 "capabilities (copy_posts, copy_others_pages, etc.)"
-msgstr "ユーザーが公開された投稿を編集できない場合は、リビジョン作成権限（copy_posts、copy_others_pagesなど）を要求します。"
+msgstr "ユーザーが公開された投稿を編集できない場合は、作成のリビジョン機能（copy_posts、copy_others_pagesなど）を要求します。"
 
 #: admin/options.php:1041
 #, php-format
 msgid "To expand the Pages list, assign %s."
-msgstr "ページリストを拡張するには、%sを割り当てます。"
+msgstr "%sを割り当ててページリストを展開します。"
 
 #: admin/options.php:1044
 msgid "Listing capabilities"
-msgstr "リスティング権限"
+msgstr "リスト機能"
 
 #: admin/options.php:1051
 msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
-msgstr "ページリストを拡張するには、リスティング権限（list_others_pages、list_published_postsなど）を割り当てます。"
+msgstr "ページリストを展開するには、リスト機能（list_others_pages、list_published_postsなど）を割り当てます。"
 
 #: admin/options.php:1057
 msgid "This plugin introduces a new user role, \"Revisor.\""
-msgstr "このプラグインは新しいユーザーロール「リビジョナー」を導入します。"
+msgstr "このプラグインは新しいユーザーロール「リビジョン」を導入します。"
 
 #: admin/options.php:1077
 #, php-format
 msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
 "to be stripped out."
-msgstr "ユーザーが%sを持っていない場合、リビジョンはすべてのカスタムHTMLタグを削除します。"
+msgstr "%sを持たないユーザーによるリビジョンは、すべてのカスタムHTMLタグを削除します。"
 
 #: admin/options.php:1083
 msgid ""
 "Revision by a user who does not have the unfiltered_html capability will "
 "cause all custom html tags to be stripped out."
-msgstr "ユーザーがunfiltered_html権限を持っていない場合、リビジョンはすべてのカスタムHTMLタグを削除します。"
+msgstr "フィルタリングされていないHTML機能を持たないユーザーによるリビジョンは、すべてのカスタムHTMLタグを削除します。"
 
 #: admin/options.php:1100
 msgid "Broadest compat including Elementor, Divi, Beaver Builder"
@@ -1313,7 +1311,7 @@ msgstr "強化モードでは、リビジョンのステータスは標準のWor
 msgid ""
 "Prevent Revision creation if the post already has another Revision in "
 "progress."
-msgstr "投稿が既に別のリビジョンを進行中の場合、リビジョンの作成を防止します。"
+msgstr "投稿に別のリビジョンが進行中の場合は、リビジョンの作成を防ぎます。"
 
 #: admin/options.php:1128
 msgid ""
@@ -1326,7 +1324,7 @@ msgstr "新規リビジョンのリンクを抑制する前にリビジョンを
 msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
 "\"Edit.\""
-msgstr "ユーザーに通常の編集リンクがない場合は、%sリンクを「編集」として再キャプションします。"
+msgstr "ユーザーが通常の編集リンクを持っていない場合は、%sリンクのキャプションを「編集」として再設定します。"
 
 #: admin/options.php:1161
 msgid ""
@@ -1343,13 +1341,13 @@ msgstr "公開されたコンテンツをコピー、編集、承認のために
 
 #: admin/options.php:1193
 msgid "Submit Revision capabilities"
-msgstr "リビジョン提出権限"
+msgstr "リビジョンの提出機能"
 
 #: admin/options.php:1211
 msgid ""
 "If the user can't edit the published post, require Submit Revision "
 "capabilities (revise_posts, revise_others_pages, etc.)"
-msgstr "ユーザーが公開された投稿を編集できない場合は、リビジョン提出権限（revise_posts、revise_others_pagesなど）を要求します。"
+msgstr "ユーザーが公開された投稿を編集できない場合は、リビジョンの提出機能（revise_posts、revise_others_pagesなど）を要求します。"
 
 #: admin/options.php:1216
 #: admin/options.php:1250
@@ -1367,11 +1365,11 @@ msgstr "%sを公開するときに、更新日時を現在の時刻に更新し�
 msgid ""
 "When a new revision is created by any user who is allowed to submit "
 "revisions, automatically submit it."
-msgstr "リビジョンを提出することが許可されているユーザーによって新しいリビジョンが作成されると、自動的に提出します。"
+msgstr "どのユーザーでも改訂を提出することが許可されている場合、新しい改訂が作成されると、自動的に提出します。"
 
 #: admin/options.php:1225
 msgid "Auto-submit revisions if the user can directly edit the main post."
-msgstr "ユーザーがメイン投稿を直接編集できる場合、リビジョンを自動提出します。"
+msgstr "ユーザーがメインポストを直接編集できる場合、改訂を自動提出します。"
 
 #: admin/options.php:1228
 msgid ""
@@ -1410,7 +1408,7 @@ msgstr "WP-Cron トリガーは無効ですが、予約したタスクはカス�
 msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
-msgstr "ボタンに「承認して公開」または「承認してスケジュール」と記載します。"
+msgstr "ボタンのキャプションを「承認して公開」または「承認してスケジュール」にします。"
 
 #: admin/options.php:1292
 msgid "This may improve compatibility with some plugins."
@@ -1419,40 +1417,40 @@ msgstr "これにより、一部のプラグインとの互換性が向上する
 #: admin/options.php:1327
 #, php-format
 msgid "Control New Revisions access with the %s."
-msgstr "%sを使用して新しいリビジョンのアクセスを制御します。"
+msgstr "%sを使用して新しい改訂へのアクセスを制御します。"
 
 #: admin/options.php:1333
 msgid "Control New Revisions access with the manage_revision_queue capability."
-msgstr "manage_revision_queue機能を使用して新しいリビジョンのアクセスを制御します。"
+msgstr "manage_revision_queue機能を使用して新しい改訂へのアクセスを制御します。"
 
 #: admin/options.php:1353
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
-msgstr "ユーザーは他のユーザーの未提出のリビジョンを編集するために%sが必要です。"
+msgstr "ユーザーは他のユーザーの未提出改訂を編集するために%sが必要です。"
 
 #: admin/options.php:1359
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
-msgstr "ユーザーは他のユーザーの未提出のリビジョンを編集するためにmanage_unsubmitted_revisions機能が必要です。"
+msgstr "ユーザーは他のユーザーの未提出改訂を編集するためにmanage_unsubmitted_revisions機能が必要です。"
 
 #: admin/options.php:1379
 #: admin/options.php:1407
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
-msgstr "ユーザーが公開された投稿を編集できない場合、%sを要求します。"
+msgstr "ユーザーが公開された投稿を編集できない場合、%sが必要です。"
 
 #: admin/options.php:1385
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
-msgstr "ユーザーが公開された投稿を編集できない場合、edit_others_revisions機能を要求します。"
+msgstr "ユーザーが公開された投稿を編集できない場合、edit_others_revisions機能が必要です。"
 
 #: admin/options.php:1413
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
-msgstr "ユーザーが公開された投稿を編集できない場合、list_others_revisions機能を要求します。"
+msgstr "ユーザーが公開された投稿を編集できない場合、list_others_revisions機能が必要です。"
 
 #: admin/options.php:1418
 msgid ""
@@ -1468,7 +1466,7 @@ msgstr "「投稿にリビジョンがある」フラグを再生成"
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
-msgstr "投稿/ページ画面の「リビジョンあり」ラベルと新しいリビジョンリストが不一致の場合、このメンテナンス操作を適用します。"
+msgstr "投稿/ページ画面のHas Revisionラベルが新しい改訂リストと不一致の場合、このメンテナンス操作を適用します。"
 
 #: admin/options.php:1457
 #, php-format
@@ -1485,24 +1483,20 @@ msgstr "通知を強化するには、%sPublishPress Planner%s を更新して�
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
 "Planner Notifications system%2$s."
-msgstr ""
-"カスタマイズ可能な %1$sPublishPress Planner Notifications system%2$s "
-"を使用して、改訂アクション通知を送信します。"
+msgstr "カスタマイズ可能な%1$sPublishPress Planner Notificationsシステム%2$sを使用して、改訂アクション通知を送信します。"
 
 #: admin/options.php:1493
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
 "customizable %1$sPublishPress Planner Notifications system%2$s."
-msgstr ""
-"Revisions Pro にアップグレードして、カスタマイズ可能な %1$sPublishPress Planner Notifications "
-"system%2$s を使用して改訂アクション通知を送信します。"
+msgstr "Revisions Proにアップグレードして、カスタマイズ可能な%1$sPublishPress Planner Notificationsシステム%2$sを使用して改訂アクション通知を送信します。"
 
 #: admin/options.php:1505
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
-msgstr "Planner > Notifications 設定に一致するユーザーは、公開された投稿を編集できる場合にのみ改訂通知を受け取ります。"
+msgstr "プランナー > 通知の設定に一致するユーザーは、公開された投稿を編集できる場合にのみ改訂通知を受け取ります。"
 
 #: admin/options.php:1547
 #: admin/options.php:1569
@@ -1576,15 +1570,13 @@ msgstr "メッセージコンテンツとともに表示"
 
 #: admin/options.php:1753
 msgid "Ready to enhance your revision notifications?"
-msgstr "改訂通知を強化する準備はできましたか?"
+msgstr "改訂通知を強化する準備はできましたか？"
 
 #: admin/options.php:1756
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
-msgstr ""
-"PublishPress Planner Notifications フレームワークとの統合のために Revisions Pro "
-"にアップグレードしてください。"
+msgstr "PublishPress Planner Notificationsフレームワークとの統合のためにRevisions Proにアップグレードしてください。"
 
 #: admin/options.php:1762
 msgid "Customize notification message and subject"
@@ -1592,7 +1584,7 @@ msgstr "通知メッセージと件名をカスタマイズ"
 
 #: admin/options.php:1765
 msgid "Notify for a specific post type, category or term"
-msgstr "特定の投稿タイプ、カテゴリー、または用語に通知"
+msgstr "特定のpost type、カテゴリー、またはタームについて通知"
 
 #: admin/options.php:1768
 msgid "Target specific roles, users, or user groups"
@@ -1600,20 +1592,20 @@ msgstr "特定の役割、ユーザー、またはユーザーグループをタ
 
 #: admin/options.php:1771
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
-msgstr "PublishPress Planner Pro を使用して、Slack チャンネルに通知を送信"
+msgstr "PublishPress Planner Proを使用して、Slackチャンネルに通知を送信"
 
 #: admin/options.php:1798
 #: admin/options.php:2351
 msgid "Pro Feature"
-msgstr "プロ機能"
+msgstr "Pro機能"
 
 #: admin/options.php:1799
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
-msgstr "Planner Notifications 統合を解除するために Revisions Pro にアップグレードしてください。"
+msgstr "Planner Notificationsの統合を解除するためにRevisions Proにアップグレードしてください。"
 
 #: admin/options.php:1800
 msgid "Customize notification content and recipients for each notification type."
-msgstr "各通知タイプの通知内容と受信者をカスタマイズします。"
+msgstr "各通知タイプの通知内容と受信者をカスタマイズしてください。"
 
 #: admin/options.php:1824
 msgid "Some themes may block revision preview."
@@ -1658,28 +1650,28 @@ msgstr "一部のテーマでは、正しいリビジョンプレビューを表
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
-msgstr "通常はこれを有効にする必要がありますが、他のプラグインの postmeta データとの衝突を回避するためには例外です。"
+msgstr "通常はこれを有効にする必要がありますが、他のプラグインのpostmetaデータとの競合を回避するためには無効にする場合があります。"
 
 #: admin/options.php:1921
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
-msgstr "ユーザーが公開できない場合、%s の権限を要求して他の人の未公開投稿を編集できるようにします。"
+msgstr "ユーザーが公開できない場合、他の未公開投稿を編集するために%sを要求します。"
 
 #: admin/options.php:1927
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
-msgstr "ユーザーが公開できない場合、他の人の未公開投稿を編集するために edit_others_drafts 権限を要求します。"
+msgstr "ユーザーが公開できない場合、他の未公開投稿を編集するためにedit_others_drafts権限を要求します。"
 
 #: admin/options.php:1933
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
-msgstr "投稿固有の権限が投稿へのアクセスを制限または拡張する場合、その権限をリビジョンにも適用します。"
+msgstr "投稿固有の権限が投稿へのアクセスを制限または拡大する場合、それらの権限をそのリビジョンにも適用します。"
 
 #: admin/options.php:1945
 msgid "Rank Math SEO may prevent Revision update on some sites."
-msgstr "Rank Math SEOは、一部のサイトでリビジョンの更新を防ぐ可能性があります。"
+msgstr "Rank Math SEOは、一部のサイトで改訂の更新を防ぐ場合があります。"
 
 #: admin/options.php:1952
 #: includes/CoreAdmin.php:205, fuzzy
@@ -1698,33 +1690,33 @@ msgstr "翻訳がある投稿で、その翻訳よりも最近更新した (お�
 
 #: admin/options.php:1971
 msgid "Show descriptive captions for PublishPress Revisions settings."
-msgstr "PublishPressリビジョン設定の説明的キャプションを表示します。"
+msgstr "PublishPress Revisions設定の説明的キャプションを表示します。"
 
 #: admin/options.php:1989
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
-msgstr "プラグイン設定、新しいリビジョンの内容および関連データは削除されますが、リビジョン / Revisions Proの最後のコピーが削除された後のみです。"
+msgstr "プラグイン設定、新しい改訂の内容および関連データは削除されますが、最後のRevisions / Revisions Proのコピーが削除された後のみです。"
 
 #: admin/options.php:2010
 msgid "Unlock Pro Integrations"
-msgstr "Pro統合を解除"
+msgstr "Pro統合を解除する"
 
 #: admin/options.php:2011
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
-msgstr "最適な互換性と迅速で専門的なサポートのためにProバージョンにアップグレードしてください。"
+msgstr "最適な互換性と迅速で専門的なサポートのためにProバージョンにアップグレードします。"
 
 #: admin/options.php:2029
 #: admin/options.php:2282
 msgid "Admin"
-msgstr "管理者"
+msgstr "admin"
 
 #: admin/options.php:2032
-#: admin/options.php:2280
+#: admin/options.php:2280, fuzzy
 msgid "Builder"
-msgstr "ビルダー"
+msgstr "Builder"
 
 #: admin/options.php:2035
 #: admin/options.php:2284
@@ -1779,51 +1771,51 @@ msgid ""
 "reset to DEFAULTS.  Are you sure?"
 msgstr "このフォームのすべての設定 (選択しなかったタブの設定も含む) を「初期設定」にリセットします。 よろしいですか ?"
 
-#: admin/options.php:2288
+#: admin/options.php:2288, fuzzy
 msgid "Commerce"
-msgstr "コマース"
+msgstr "Commerce"
 
-#: admin/options.php:2292
+#: admin/options.php:2292, fuzzy
 msgid "Multilang"
-msgstr "マルチランゲージ"
+msgstr "Multilang"
 
-#: admin/options.php:2294
+#: admin/options.php:2294, fuzzy
 msgid "Community"
-msgstr "コミュニティ"
+msgstr "Community"
 
-#: admin/options.php:2306
+#: admin/options.php:2306, fuzzy
 msgid "Pro"
-msgstr "プロ"
+msgstr "Pro"
 
-#: admin/options.php:2311
+#: admin/options.php:2311, fuzzy
 msgid "Supported"
-msgstr "サポート済み"
+msgstr "Supported"
 
 #: admin/options.php:2314
-#: admin/options.php:2368
+#: admin/options.php:2368, fuzzy
 msgid "Active Plugin"
-msgstr "アクティブプラグイン"
+msgstr "Active Plugin"
 
 #: admin/options.php:2326
 msgid "Supported by PublishPress Revisions"
-msgstr "PublishPress Revisionsによってサポートされています"
+msgstr "PublishPress Revisions によってサポートされています"
 
 #: admin/options.php:2328
 msgid "Supported by Revisions Pro"
-msgstr "Revisions Proによってサポートされています"
+msgstr "Revisions Pro によってサポートされています"
 
 #: admin/options.php:2341
 msgid "Integration Active"
-msgstr "統合がアクティブ"
+msgstr "統合がアクティブです"
 
 #: admin/options.php:2343
 msgid "Upgrade to Pro to enable this integration"
-msgstr "この統合を有効にするにはProにアップグレードしてください"
+msgstr "この統合を有効にするには Pro にアップグレードしてください"
 
 #: admin/options.php:2352
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
-msgstr "%s統合を解除して、リビジョンソリューションを強化してください。"
+msgstr "%s 統合を解除して、リビジョンソリューションを向上させてください。"
 
 #: admin/options.php:2368
 msgid "Active Plugin Integration"
@@ -1831,11 +1823,11 @@ msgstr "アクティブプラグイン統合"
 
 #: admin/options.php:2378
 msgid "Supported Plugin Integration"
-msgstr "サポートプラグイン統合"
+msgstr "サポートされたプラグイン統合"
 
 #: admin/options.php:2388
 msgid "Supported Plugin"
-msgstr "サポートプラグイン"
+msgstr "サポートされたプラグイン"
 
 #: admin/post-edit-block-ui_rvy.php:164
 msgid "Now"
@@ -1856,7 +1848,7 @@ msgstr "続行するには変更を保存してください。"
 
 #: admin/post-editor-workflow-ui_rvy.php:39
 msgid "Please save changes to the revision before submitting it."
-msgstr "提出する前にリビジョンの変更を保存してください。"
+msgstr "提出する前に、リビジョンへの変更を保存してください。"
 
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
@@ -2057,7 +2049,7 @@ msgstr[0] "%s 改訂が提出されました。"
 #, php-format
 msgid "%s revision declined."
 msgid_plural "%s revisions declined."
-msgstr[0] "%s 改訂が拒否されました。"
+msgstr[0] "%s 改訂が却下されました。"
 
 #: admin/revision-queue_rvy.php:84
 #, php-format
@@ -2069,7 +2061,7 @@ msgstr[0] "%s 改訂が承認されました。"
 #, php-format
 msgid "%s revision unscheduled."
 msgid_plural "%s revisions unscheduled."
-msgstr[0] "%s の改訂はスケジュールされていません。"
+msgstr[0] "%s の改訂は未定です。"
 
 #: admin/revision-queue_rvy.php:86
 #, php-format
@@ -2080,7 +2072,7 @@ msgstr[0] "%s の改訂が公開されました。"
 #: admin/revision-queue_rvy.php:156
 #, php-format
 msgid " (Post Author: %s)"
-msgstr "(投稿者: %s)"
+msgstr " (投稿者: %s)"
 
 #: admin/revision-queue_rvy.php:165
 #, php-format
@@ -2185,12 +2177,12 @@ msgstr "Advanced Custom Fields"
 
 #: classes/PublishPress/Revisionary.php:108
 msgid "Compatibility with ACF custom fields."
-msgstr "ACFカスタムフィールドとの互換性。"
+msgstr "ACF カスタムフィールドとの互換性。"
 
 #: classes/PublishPress/Revisionary.php:112
 #: classes/PublishPress/Revisionary.php:200
 msgid "Store custom fields with revisions"
-msgstr "改訂と共にカスタムフィールドを保存"
+msgstr "修正と共にカスタムフィールドを保存"
 
 #: classes/PublishPress/Revisionary.php:113
 #: classes/PublishPress/Revisionary.php:201
@@ -2200,15 +2192,15 @@ msgstr "カスタムフィールドの変更を表示"
 #: classes/PublishPress/Revisionary.php:114
 #: classes/PublishPress/Revisionary.php:202
 msgid "Update custom fields on revision publication"
-msgstr "改訂公開時にカスタムフィールドを更新"
+msgstr "修正公開時にカスタムフィールドを更新"
 
-#: classes/PublishPress/Revisionary.php:122
+#: classes/PublishPress/Revisionary.php:122, fuzzy
 msgid "ACF Extended"
-msgstr "ACF拡張"
+msgstr "ACF Extended"
 
 #: classes/PublishPress/Revisionary.php:123
 msgid "Support ACFE data model."
-msgstr "ACFEデータモデルをサポート。"
+msgstr "ACFE データモデルをサポート。"
 
 #: classes/PublishPress/Revisionary.php:127
 msgid "Support ACFE single_meta data type"
@@ -2225,25 +2217,25 @@ msgstr "Beaver Builder"
 
 #: classes/PublishPress/Revisionary.php:137
 msgid "Integration with Beaver Builder's front end editor."
-msgstr "ビーバービルダーのフロントエンドエディタとの統合。"
+msgstr "Beaver Builder のフロントエンドエディタとの統合。"
 
 #: classes/PublishPress/Revisionary.php:141
 #: classes/PublishPress/Revisionary.php:156
 #: classes/PublishPress/Revisionary.php:171
 msgid "Front end Revision submission"
-msgstr "フロントエンド改訂提出"
+msgstr "フロントエンド修正提出"
 
 #: classes/PublishPress/Revisionary.php:142
 #: classes/PublishPress/Revisionary.php:157
 #: classes/PublishPress/Revisionary.php:172
 msgid "Front end Revision editing"
-msgstr "フロントエンド改訂編集"
+msgstr "フロントエンド修正編集"
 
 #: classes/PublishPress/Revisionary.php:143
 #: classes/PublishPress/Revisionary.php:158
 #: classes/PublishPress/Revisionary.php:173
 msgid "Revision preview and redirects"
-msgstr "改訂プレビューとリダイレクト"
+msgstr "修正プレビューとリダイレクト"
 
 #: classes/PublishPress/Revisionary.php:151, fuzzy
 msgid "Divi"
@@ -2251,7 +2243,7 @@ msgstr "Divi"
 
 #: classes/PublishPress/Revisionary.php:152
 msgid "Integration with Divi Builder and Divi Theme."
-msgstr "DiviビルダーとDiviテーマとの統合。"
+msgstr "Divi Builder と Divi Theme との統合。"
 
 #: classes/PublishPress/Revisionary.php:166
 #: includes/CoreAdmin.php:198, fuzzy
@@ -2297,11 +2289,11 @@ msgstr "Polylang翻訳との互換性。"
 
 #: classes/PublishPress/Revisionary.php:215
 msgid "Revisions carry over Polylang data"
-msgstr "リビジョンはPolylangデータを引き継ぎます"
+msgstr "リビジョンはPolylangデータを引き継ぐ"
 
 #: classes/PublishPress/Revisionary.php:216
 msgid "Translation retained on Revision approval"
-msgstr "リビジョン承認時に翻訳が保持されます"
+msgstr "リビジョン承認時に翻訳を保持"
 
 #: classes/PublishPress/Revisionary.php:224, fuzzy
 msgid "PublishPress Planner"
@@ -2309,7 +2301,7 @@ msgstr "PublishPress Planner"
 
 #: classes/PublishPress/Revisionary.php:225
 msgid "PublishPress Planner Integration."
-msgstr "PublishPress Plannerの統合。"
+msgstr "PublishPress Planner統合。"
 
 #: classes/PublishPress/Revisionary.php:229
 msgid "Planner Notifications for revision actions"
@@ -2317,7 +2309,7 @@ msgstr "リビジョンアクションのためのプランナー通知"
 
 #: classes/PublishPress/Revisionary.php:230
 msgid "Revision schedule shown in Calendar"
-msgstr "カレンダーに表示されるリビジョンスケジュール"
+msgstr "カレンダーに表示されたリビジョンスケジュール"
 
 #: classes/PublishPress/Revisionary.php:238
 #: includes/CoreAdmin.php:203
@@ -2338,7 +2330,7 @@ msgstr "製品バリエーションとの互換性"
 
 #: classes/PublishPress/Revisionary.php:245
 msgid "Priority on ongoing compatibility"
-msgstr "進行中の互換性に優先度"
+msgstr "継続的な互換性の優先度"
 
 #: classes/PublishPress/Revisionary.php:253
 #: includes/CoreAdmin.php:204, fuzzy
@@ -2347,7 +2339,7 @@ msgstr "WPML"
 
 #: classes/PublishPress/Revisionary.php:254
 msgid "Multilingual revisioning with WPML."
-msgstr "WPMLによる多言語リビジョン"
+msgstr "WPMLによる多言語リビジョン管理。"
 
 #: classes/PublishPress/Revisionary.php:258
 msgid "Language-specific revisions"
@@ -2447,7 +2439,7 @@ msgstr "これは %s (%s での公開用) です。%s %s %s"
 #: front_rvy.php:706
 #, php-format
 msgid "The revision was approved and is now live on the site. %s"
-msgstr "修正が承認され、現在サイトに公開されています。%s"
+msgstr "改訂が承認され、現在サイトに公開されています。%s"
 
 #: front_rvy.php:707
 #, php-format
@@ -2478,9 +2470,7 @@ msgstr "投稿したリビジョン"
 msgid ""
 "You're using PublishPress Revisions Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"PublishPress Revisions Free を使用しています。Pro バージョンにはさらに多くの機能とサポートがあります。%sPro "
-"にアップグレード%s"
+msgstr "PublishPress Revisions Free を使用しています。Pro バージョンにはさらに多くの機能とサポートがあります。%sPro にアップグレード%s"
 
 #: includes/CoreAdmin.php:190
 msgid "Upgrade to Revisions Pro"
@@ -2561,7 +2551,7 @@ msgstr "プレビューと承認: "
 
 #: revision-workflow_rvy.php:187
 msgid "New Revisions: "
-msgstr "新しい改訂: "
+msgstr "新しい改訂："
 
 #: revision-workflow_rvy.php:189
 #, php-format
@@ -2679,7 +2669,7 @@ msgstr "予約変更"
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
-msgstr[0] "スケジュール済み <span class=\\\"count\\\">(%d)</span>"
+msgstr[0] "スケジュールされた <span class=\\\"count\\\">(%d)</span>"
 
 #: rvy_init-functions.php:344
 msgid "Unsubmitted Revision"
@@ -2726,7 +2716,7 @@ msgstr "未投稿"
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] "未提出 <span class=\\\"count\\\">(%s)</span>"
+msgstr[0] "未送信 <span class=\\\"count\\\">(%s)</span>"
 
 #: rvy_init-functions.php:361
 msgid "Submitted Revision"
@@ -2791,7 +2781,7 @@ msgstr "予約済"
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
-msgstr[0] "予定済み <span class=\\\"count\\\">(%s)</span>"
+msgstr[0] "スケジュール済み <span class=\\\"count\\\">(%s)</span>"
 
 #: rvy_init-functions.php:490
 #, php-format
@@ -2889,7 +2879,7 @@ msgstr "\"%s\" の"
 #, php-format
 msgctxt "Author Name"
 msgid "by %s "
-msgstr "%s による "
+msgstr "%s によって "
 
 #: admin/revision-queue_rvy.php:150
 #, php-format
