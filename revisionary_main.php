@@ -333,23 +333,6 @@ class Revisionary
 
 		add_filter('wp_dropdown_pages', [$this, 'fltDropdownPages'], 10, 3);
 
-		if (!class_exists('\PublishPressBundledTranslations\BundledTranslations') && (!defined('PUBLISHPRESS_BUNDLED_TRANSLATIONS_ENABLED') || PUBLISHPRESS_BUNDLED_TRANSLATIONS_ENABLED)) {
-			add_filter(
-                'load_textdomain_mofile',
-                function ($mofile, $domain) {
-					if (($domain === 'revisionary') && (false !== strpos($mofile, WP_LANG_DIR . '/plugins/'))) {
-						$pluginMofile = plugin_dir_path(REVISIONARY_FILE) . 'languages/' . 'revisionary' . '-' . determine_locale() . '.mo';
-
-                        if (file_exists($pluginMofile)) {
-                            return $pluginMofile;
-                        }
-                    }
-            
-                    return $mofile;
-                }
-            , 10, 2);
-        }
-
 		if (!defined('REVISIONARY_DISABLE_RVY_INIT_ACTION')) {
 			do_action( 'rvy_init', $this );
 		}

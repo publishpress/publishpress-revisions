@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3fed025e226338255f00e0da7c2a7ac",
+    "content-hash": "2ad7b7cf32d07f037f929bba05cc0822",
     "packages": [],
     "packages-dev": [
         {
@@ -5987,16 +5987,16 @@
         },
         {
             "name": "publishpress/dev-workspace",
-            "version": "1.1.7",
+            "version": "dev-testing-translations",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/dev-workspace.git",
-                "reference": "27603e4e7025d7d158ef1b12cc9bd985f28508a5"
+                "reference": "f690c3ccbd729b54e0cbd4e402005ecd2e3efce3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/dev-workspace/zipball/27603e4e7025d7d158ef1b12cc9bd985f28508a5",
-                "reference": "27603e4e7025d7d158ef1b12cc9bd985f28508a5",
+                "url": "https://api.github.com/repos/publishpress/dev-workspace/zipball/f690c3ccbd729b54e0cbd4e402005ecd2e3efce3",
+                "reference": "f690c3ccbd729b54e0cbd4e402005ecd2e3efce3",
                 "shasum": ""
             },
             "require": {
@@ -6027,7 +6027,7 @@
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^10",
                 "publishpress/publishpress-phpcs-standards": "^1",
-                "publishpress/translations": "^1",
+                "publishpress/translations": "dev-development",
                 "spatie/ray": "^1.41",
                 "squizlabs/php_codesniffer": "^3.8",
                 "symfony/http-client": "^7.1",
@@ -6053,9 +6053,9 @@
             "description": "Shared Composer scripts for PublishPress plugins",
             "support": {
                 "issues": "https://github.com/publishpress/dev-workspace/issues",
-                "source": "https://github.com/publishpress/dev-workspace/tree/1.1.7"
+                "source": "https://github.com/publishpress/dev-workspace/tree/testing-translations"
             },
-            "time": "2026-04-15T13:42:56+00:00"
+            "time": "2026-04-15T19:49:52+00:00"
         },
         {
             "name": "publishpress/publishpress-phpcs-standards",
@@ -6105,16 +6105,16 @@
         },
         {
             "name": "publishpress/translations",
-            "version": "v1.0.5",
+            "version": "dev-development",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-publishpress-translator.git",
-                "reference": "07ff1d2fe1d62e4881dc8ab430b267badd9074ae"
+                "reference": "673a4da85714d618eeb21a5a50b84cec55acedfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-publishpress-translator/zipball/07ff1d2fe1d62e4881dc8ab430b267badd9074ae",
-                "reference": "07ff1d2fe1d62e4881dc8ab430b267badd9074ae",
+                "url": "https://api.github.com/repos/publishpress/library-publishpress-translator/zipball/673a4da85714d618eeb21a5a50b84cec55acedfc",
+                "reference": "673a4da85714d618eeb21a5a50b84cec55acedfc",
                 "shasum": ""
             },
             "require": {
@@ -6133,6 +6133,7 @@
                 "szepeviktor/phpstan-wordpress": "^1.3",
                 "wp-coding-standards/wpcs": "^3"
             },
+            "default-branch": true,
             "bin": [
                 "bin/publishpress-translate"
             ],
@@ -6155,9 +6156,9 @@
             "description": "AI-powered translation automation for PublishPress plugins using Potomatic",
             "support": {
                 "issues": "https://github.com/publishpress/library-publishpress-translator/issues",
-                "source": "https://github.com/publishpress/library-publishpress-translator/tree/v1.0.5"
+                "source": "https://github.com/publishpress/library-publishpress-translator/tree/development"
             },
-            "time": "2026-04-16T11:43:34+00:00"
+            "time": "2026-04-16T11:42:40+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -13395,12 +13396,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "53134e3c93c9f0a8f2276f1a3f9c688ee5f3e45d"
+                "reference": "abcfe295c630e44ef7805371464b687225b57a42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/53134e3c93c9f0a8f2276f1a3f9c688ee5f3e45d",
-                "reference": "53134e3c93c9f0a8f2276f1a3f9c688ee5f3e45d",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/abcfe295c630e44ef7805371464b687225b57a42",
+                "reference": "abcfe295c630e44ef7805371464b687225b57a42",
                 "shasum": ""
             },
             "require": {
@@ -13471,7 +13472,7 @@
                 "issues": "https://github.com/wp-cli/wp-cli/issues",
                 "source": "https://github.com/wp-cli/wp-cli"
             },
-            "time": "2026-04-15T08:17:00+00:00"
+            "time": "2026-04-17T07:15:32+00:00"
         },
         {
             "name": "wp-cli/wp-cli-bundle",
@@ -13664,7 +13665,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "publishpress/dev-workspace": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
