@@ -5,7 +5,7 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 3.8.0-rc4
+ * Version: 3.8.0-rc5
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Min WP Version: 5.5
@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '3.8.0-rc4';
+$pp_revisions_version = '3.8.0-rc5';
 
 global $wp_version;
 
@@ -170,6 +170,23 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
     }
 
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
+    // Load bundled-translations library
+	$bundledTranslationsPath = '/publishpress/bundled-translations/core/include.php';
+	if (file_exists(REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath)) {
+		require_once REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath;
+	}
+
+    // Initialize bundled translations
+	add_action('plugins_loaded', function() {
+		if (class_exists('PublishPress\BundledTranslations\BundledTranslations')) {
+			$bundledTranslations = new PublishPress\BundledTranslations\BundledTranslations(
+				'revisionary',
+				__DIR__ . '/languages',
+				__FILE__
+			);
+			$bundledTranslations->init();
+		}
+	}, 10);
 }
 
 if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_loaded_by_pro)) {
