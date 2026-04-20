@@ -11,7 +11,7 @@
  * Min WP Version: 5.5
  * Requires PHP: 7.2.5
  * 
- * Copyright (c) 2025 PublishPress
+ * Copyright (c) 2026 PublishPress
  *
  * GNU General Public License, Free Software Foundation <https://www.gnu.org/licenses/gpl-3.0.html>
  *
@@ -30,7 +30,7 @@
  *
  * @package     PublishPress\Revisions
  * @author      PublishPress
- * @copyright   Copyright (C) 2025 PublishPress. All rights reserved.
+ * @copyright   Copyright (C) 2026 PublishPress. All rights reserved.
  *
  **/
 
@@ -170,7 +170,8 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
     }
 
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
-    // Load bundled-translations library
+    
+	// Load bundled-translations library
 	$bundledTranslationsPath = '/publishpress/bundled-translations/core/include.php';
 	if (file_exists(REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath)) {
 		require_once REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath;
