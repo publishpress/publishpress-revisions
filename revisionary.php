@@ -170,7 +170,8 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
     }
 
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
-    // Load bundled-translations library
+    
+	// Load bundled-translations library
 	$bundledTranslationsPath = '/publishpress/bundled-translations/core/include.php';
 	if (file_exists(REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath)) {
 		require_once REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath;
