@@ -673,7 +673,7 @@ function pp_revisions_get_revision_statuses() {
 
 function rvy_bulk_remove_revision_statuses() {
     global $wpdb;
-    
+
     $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));
 
     $wpdb->query("UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ('$revision_status_csv')");                             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -782,7 +782,7 @@ function pp_revisions_plugin_deactivation() {
 
     $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));
 
-    $wpdb->query("UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ('$revision_status_csv')");
+    $wpdb->query("UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ('$revision_status_csv')");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
     if ($timestamp = wp_next_scheduled('rvy_mail_buffer_hook')) {
         wp_unschedule_event($timestamp,'rvy_mail_buffer_hook');

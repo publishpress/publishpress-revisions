@@ -1971,7 +1971,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		$hint = esc_html__( 'Show descriptive captions for PublishPress Revisions settings.', 'revisionary' );
 		$this->option_checkbox( 'display_hints', $tab, $section, $hint, '' );
 
-		$results = $wpdb->get_results("SHOW INDEXES FROM $wpdb->posts");
+		$results = $wpdb->get_results("SHOW INDEXES FROM $wpdb->posts");			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		
 		$have_pp_revisions_index = false;
 

@@ -128,6 +128,7 @@ class RevisionaryAdmin
             );
             
             // @todo: Ideally, WordPress would provide a post-translation filter to eliminate the need for gettext filtering.
+			// @phpcs:ignore Squiz.PHP.CommentedOutCode.Found
             /* 
             add_filter(
                 'plugins_list', 
@@ -140,7 +141,6 @@ class RevisionaryAdmin
 						$plugins['all'][$plugin_relpath]['Title'] = 'PublishPress Revisions Free';
                         $plugins['all'][$plugin_relpath]['AuthorName'] = 'PublishPress';
                     }
-
                     return $plugins;
                 }, 50
             );

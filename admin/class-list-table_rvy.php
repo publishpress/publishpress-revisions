@@ -475,7 +475,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if (/*(empty($_REQUEST['author']) || !empty($args['status_count'])) && */ empty($args['my_published_count'])) {
+		if (empty($args['my_published_count'])) {
 			$revision_status_csv =  implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 			$own_revision_and = '';
@@ -618,10 +618,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$where .= " AND $where_append";
 
-		if (!empty($_REQUEST['modified'])) {
+		if (!empty($_REQUEST['modified'])) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$where .= $wpdb->prepare(
 				" AND DATE($p.post_modified) = %s",					// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				date('Y-m-d', $_REQUEST['modified'])
+				date('Y-m-d', intval($_REQUEST['modified']))		// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			);
 		}
 
@@ -925,7 +925,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
 
-		return '<abbr title="' . esc_attr( $saved_time ) . '">' . $result . '</abbr>';
+		echo '<abbr title="' . esc_attr( $saved_time ) . '">' . esc_html($result) . '</abbr>';
 	}
 
 	protected function handle_published_row_actions( $post, $column_name ) {
@@ -1460,10 +1460,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
-		$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv')");
+		$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv')");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		
 		$id_csv = implode( "','", $author_ids);
-		$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");
+		$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");						 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 		$authors = [];
 
@@ -1499,7 +1499,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
-		$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') ORDER BY ID DESC LIMIT 60");
+		$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') ORDER BY ID DESC LIMIT 60");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		
 		$post_dates = [];
 
@@ -1532,13 +1532,13 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		? intval( $_REQUEST['published_post'] )																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		: '';
 
-		$post_ids = $wpdb->get_col("SELECT comment_count FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') AND post_status NOT IN ('trash', 'auto-draft', 'inherit') ORDER BY post_modified_gmt DESC LIMIT 60");
+		$post_ids = $wpdb->get_col("SELECT comment_count FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') AND post_status NOT IN ('trash', 'auto-draft', 'inherit') ORDER BY post_modified_gmt DESC LIMIT 60");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		
 		$post_id_csv = implode("','", array_map('intval', $post_ids));
 
 		$posts = [];
 
-		$results = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE ID IN ('$post_id_csv') ORDER BY post_title");
+		$results = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE ID IN ('$post_id_csv') ORDER BY post_title");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 		foreach ($results as $row) {
 			$posts[$row->ID] = $row->post_title;
@@ -1563,13 +1563,13 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		<?php
 		$current_option = isset( $_REQUEST['post_author'] ) && ! empty( $_REQUEST['post_author'] )	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		? intval( $_REQUEST['post_author'] )																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		? intval( $_REQUEST['post_author'] )														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		: '';
 		
-		$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE ID IN ('$post_id_csv') AND post_status NOT IN ('trash', 'auto-draft', 'inherit')");
+		$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE ID IN ('$post_id_csv') AND post_status NOT IN ('trash', 'auto-draft', 'inherit')");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 		$id_csv = implode( "','", $author_ids);
-		$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");
+		$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 		$authors = [];
 
@@ -1776,8 +1776,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	public function column_date( $post ) {
-		$url = add_query_arg('modified', strtotime(date('Y-m-d', strtotime($post->post_modified))), $_SERVER['REQUEST_URI']);
-		echo '<a href="' . esc_url($url) . '">' . $this->friendly_date($post->post_modified, $post->post_modified_gmt). '</a>';
+		$url = add_query_arg('modified', strtotime(date('Y-m-d', strtotime($post->post_modified))), $_SERVER['REQUEST_URI']);	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DateTime.RestrictedFunctions.date_date
+		echo '<a href="' . esc_url($url) . '">';
+		$this->friendly_date($post->post_modified, $post->post_modified_gmt);
+		echo '</a>';
 	}
 	
 	protected function apply_edit_link( $url, $label ) {
@@ -1817,9 +1819,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$post_type_object = get_post_type_object( $post->post_type );
 
 		$can_read_post = current_user_can('read_post', $post->ID);
-
 		$can_edit_post    = current_user_can( 'edit_post', $post->ID );
-
 		$can_read_post = $can_read_post || $can_edit_post; // @todo
 
 		$actions          = array();
