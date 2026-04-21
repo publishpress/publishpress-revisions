@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[3.8.0] - 16 Apr 2026
+[3.8.0] - 20 Apr 2026
 - Feature : More view filters on Past Revisions screen
 - Feature : More view filters on New Revisions screen
 - Feature : Option to add index to posts table for Revision queries
