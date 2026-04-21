@@ -229,7 +229,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$this->heading_spacing( $count );
 			printf(
 				esc_html__( 'Revision Date: %s' ,'revisionary' ),
-				date('Y-m-d', intval($_REQUEST['revision_date']))									//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				date('Y-m-d', intval($_REQUEST['revision_date']))									//phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			);
 			$count++;
 		}
@@ -249,7 +249,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$this->heading_spacing( $count );
 			printf(
 				esc_html__( 'Publication Date: %s' ,'revisionary' ),
-				date('Y-m-d', intval($_REQUEST['origin_post_date']))								//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				date('Y-m-d', intval($_REQUEST['origin_post_date']))								//phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			);
 			$count++;
 		}
@@ -330,7 +330,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				AND p3.post_type = 'revision'
 			) AS post_count";
 
-		if (!empty($_REQUEST['origin_post_date'])) {
+		if (!empty($_REQUEST['origin_post_date'])) {																	// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$gmt_offset = get_option('gmt_offset');
 
 			if ($gmt_offset > 0) {
@@ -368,7 +368,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			) AS parent_prev_revision_status";
 		}
 
-		if (!empty($_REQUEST['approved_by'])) {
+		if (!empty($_REQUEST['approved_by'])) {																			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$query .= ", (
 				SELECT meta_value  
 				FROM $wpdb->postmeta pm
@@ -421,7 +421,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		if( isset( $args['revision_date'] ) ) {
 			$query .= $wpdb->prepare(
 				"{$this->having_and( $count )} DATE(post_modified) = %s",					// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				date('Y-m-d', $args['revision_date'])
+				date('Y-m-d', $args['revision_date'])										// @phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 			);
 			$count++;
 		}
@@ -431,12 +431,12 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 			$query .= $wpdb->prepare(
-				"{$this->having_and( $count )} "
-				. "r3.post_mime_type NOT IN ('$revision_status_csv') AND ("
+				"{$this->having_and( $count )} "																		 // @phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				. "r3.post_mime_type NOT IN ('$revision_status_csv') AND ("												 // @phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				. "(parent_prev_revision_status IS NULL AND parent_revision_published_gmt IS NULL AND DATE(revision_published) = %s)"
 				. " OR (DATE(post_modified) = %s AND revision_published IS NULL AND prev_revision_status IS NULL) )",	 // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				date('Y-m-d', $args['origin_post_date']),
-				date('Y-m-d', $args['origin_post_date'])
+				date('Y-m-d', $args['origin_post_date']),																 // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				date('Y-m-d', $args['origin_post_date'])																 // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 			);
 
 			$count++;
@@ -704,14 +704,14 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				break;
 
 			case 'post_modified':
-				$url = add_query_arg('revision_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);
+				$url = add_query_arg('revision_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);	// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 				return '<a href="' . esc_url($url) . '">' . $this->friendly_date($item->post_modified, $item->post_modified_gmt). '</a>';
 
 				break;
 
 			case 'origin_post_date':
 				if ($this->direct_edit) {
-					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);
+					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 					return '<a href="' . esc_url($url) . '">' . $this->friendly_date($item->post_modified, $item->post_modified_gmt). '</a>';
 
 					break;
@@ -724,7 +724,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 						$published_gmt = $item->post_date_gmt;
 					}
 
-					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);
+					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 					return '<a href="' . esc_url($url) . '">' . $this->friendly_date(get_date_from_gmt($published_gmt), $published_gmt). '</a>';
 				}
 
@@ -853,10 +853,10 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval( $_REQUEST['post_author'] )														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_type = 'revision'");
+			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_type = 'revision'");	 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			
 			$id_csv = implode( "','", $author_ids);
-			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");
+			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')"); 	 // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 
 			$authors = [];
 
@@ -890,7 +890,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval($_REQUEST['revision_date'])															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type = 'revision' ORDER BY ID DESC LIMIT 60");
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type = 'revision' ORDER BY ID DESC LIMIT 60");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 			
 			$post_dates = [];
 
@@ -923,7 +923,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval($_REQUEST['origin_post_date'])																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_date) FROM $wpdb->posts WHERE post_type != 'revision' AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60");
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_date) FROM $wpdb->posts WHERE post_type != 'revision' AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60");	 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			
 			$post_dates = [];
 
@@ -931,7 +931,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				$post_dates[strtotime($date_str)] = $date_str;
 			}
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type != 'revision' AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60");
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type != 'revision' AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
 			foreach ($_dates as $date_str) {
 				$post_dates[strtotime($date_str)] = $date_str;
@@ -948,7 +948,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				$revision_published_clause = "meta_value";
 			}
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE($revision_published_clause) FROM $wpdb->postmeta WHERE meta_key = '_rvy_published_gmt' ORDER BY meta_id DESC LIMIT 60");
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE($revision_published_clause) FROM $wpdb->postmeta WHERE meta_key = '_rvy_published_gmt' ORDER BY meta_id DESC LIMIT 60");				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 			foreach ($_dates as $date_str) {
 				$post_dates[strtotime($date_str)] = $date_str;
@@ -978,13 +978,13 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			<?php
 			$current_option = isset( $_REQUEST['approved_by'] ) && ! empty( $_REQUEST['approved_by'] )	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			? intval( $_REQUEST['approved_by'] )																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			? intval( $_REQUEST['approved_by'] )														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_approver_ids = $wpdb->get_col("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = '_rvy_approved_by'");
+			$_approver_ids = $wpdb->get_col("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = '_rvy_approved_by'");		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
 			$id_csv = implode( "','", $_approver_ids);
-			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");
+			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 			$approvers = [];
 
@@ -1017,10 +1017,10 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval( $_REQUEST['origin_post_author'] )																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_type != 'revision'");
+			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_type != 'revision'"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
 			$id_csv = implode( "','", $author_ids);
-			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");
+			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");   // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 			$authors = [];
 

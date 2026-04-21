@@ -132,7 +132,7 @@ if (!empty($_REQUEST['post_status'])) {																//phpcs:ignore WordPress.
 if (!empty($_REQUEST['post_type']) && !empty($published_title)) {									//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$filters['post_type'] = sprintf(_x('of %s "%s"', 'Revisions of Post "Post Title"', 'revisionary'), $type_obj->labels->singular_name, $published_title);
 
-} elseif (!empty($_REQUEST['post_type'])) {
+} elseif (!empty($_REQUEST['post_type'])) {															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$filters['post_type'] = sprintf(_x('of %s', 'Posts / Pages / etc.', 'revisionary'), $type_obj->labels->name);
 
 } elseif (!empty($published_title)) {
@@ -146,8 +146,8 @@ if (!empty($_REQUEST['author'])) {																	 //phpcs:ignore WordPress.Sec
 }
 
 if (!empty($_REQUEST['modified'])) {																//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$filters['modified'] = (!empty($_REQUEST['modified'])) 										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	? sprintf(_x('on %s', 'revision date', 'revisionary'), date('Y-m-d', $_REQUEST['modified'])) 
+	$filters['modified'] = (!empty($_REQUEST['modified'])) 											//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	? sprintf(_x('on %s', 'revision date', 'revisionary'), date('Y-m-d', intval($_REQUEST['modified']))) 	//phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.DateTime.RestrictedFunctions.date_date
 	: '';
 }
 
