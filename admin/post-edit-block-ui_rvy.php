@@ -65,7 +65,7 @@ class RVY_PostBlockEditUI {
         if ($userTimezoneOffset != $serverTimezoneOffset) :
         ?>
             <style type="text/css">
-            .block-editor-publish-date-time-picker .components-button[aria-label="<?php esc_html_e('Now');?>"] {
+            .block-editor-publish-date-time-picker .components-button[aria-label="<?php esc_attr('Now');?>"] {
                 display: none !important;
             }
             </style>

@@ -5,7 +5,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_ur
 /**
  * @package     PublishPress\Revisions
  * @author      PublishPress <help@publishpress.com>
- * @copyright   Copyright (c) 2025 PublishPress. All rights reserved.
+ * @copyright   Copyright (c) 2026 PublishPress. All rights reserved.
  * @license     GPLv2 or later
  * @since       1.0.0
  */
@@ -128,13 +128,13 @@ class Revisionary
 
 			add_filter( 'map_meta_cap', array( $this, 'flt_limit_others_drafts' ), 10, 4 );
 
-			add_filter(
+			add_action(
 				'wp_loaded',
 				function() {
 					global $current_user;
 
-					if (isset($_REQUEST['context']) && ('edit' == $_REQUEST['context']) && empty($_POST)) {
-						if (0 === strpos($_SERVER['REQUEST_URI'], "/wp-json/wp/v2/blocks/")) {
+					if (isset($_REQUEST['context']) && ('edit' == $_REQUEST['context']) && empty($_POST)) {	 // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+						if (0 === strpos($_SERVER['REQUEST_URI'], "/wp-json/wp/v2/blocks/")) {				 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 							
 							$can_edit_any = false;
 									
@@ -165,7 +165,7 @@ class Revisionary
 				function ($server_class) {
 					global $current_user, $wpdb;
 			
-					if (empty($_POST)) {
+					if (empty($_POST)) {	// phpcs:ignore WordPress.Security.NonceVerification.Missing
 						$rest_bases = [];
 
 						foreach (get_post_types(['public' => true], 'object') as $queried_type_obj) {
@@ -180,7 +180,7 @@ class Revisionary
 						}
 
 						foreach($rest_bases as $rest_base) {
-							if (0 === strpos($_SERVER['REQUEST_URI'], "/wp-json/wp/v2/{$rest_base}?")) {
+							if (0 === strpos($_SERVER['REQUEST_URI'], "/wp-json/wp/v2/{$rest_base}?")) {					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 								if (rvy_get_option('query_loop_revision_editor_allowance') && current_user_can('read')) {
 									$can_edit_any = false;
 									

@@ -7,7 +7,7 @@ add_action( '_wp_put_post_revision', 'rvy_review_revision' );
 /**
  * @package     PublishPress\Revisions\RevisionaryAction
  * @author      PublishPress <help@publishpress.com>
- * @copyright   Copyright (c) 2025 PublishPress. All rights reserved.
+ * @copyright   Copyright (c) 2026 PublishPress. All rights reserved.
  * @license     GPLv2 or later
  * @since       1.0.0
  */
@@ -168,7 +168,7 @@ function rvy_revision_submit($revision_id = 0) {
 		do_action( 'revision_submitted', $published_id, $revision_id, $old_revision_status );
 
 		if (!empty($revision) && !empty($revision_before)) {
-		do_action( 'revisionary_submitted', $published_id, $revision, $revision_before );
+			do_action( 'revisionary_submitted', $published_id, $revision, $revision_before );
 		}
 	}
 

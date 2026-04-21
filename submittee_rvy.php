@@ -41,8 +41,8 @@ class Revisionary_Submittee {
 
 		rvy_refresh_options();
 
-		if (!empty($_REQUEST['add_revisions_index'])) {
-			$wpdb->query("CREATE INDEX pp_revisions ON $wpdb->posts (comment_count, post_mime_type)");
+		if (!empty($_REQUEST['add_revisions_index'])) {													// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$wpdb->query("CREATE INDEX pp_revisions ON $wpdb->posts (comment_count, post_mime_type)");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
 		}
 	}
 	
