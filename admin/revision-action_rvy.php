@@ -766,6 +766,26 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
 		$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
+
+		$post_type = get_post_field('post_type', $published_id);
+
+		if (!$post_type) {
+			$published_id = 0;
+		} elseif ('revision' == $post_type) {
+			if ('inherit' == get_post_field('post_status', $published_id)) {
+				$_published_id = get_post_field('post_parent', $published_id);
+				
+				if ($_published_id != $revision_id) {
+				  $published_id = $_published_id;  
+				}
+			}
+	
+			$post_type = get_post_field('post_type', $published_id);
+	
+			if (!$post_type || ('revision' == $post_type)) {
+				$published_id = 0;
+			}
+		}
 	}
 
 	if (empty($published_id)) {
@@ -774,6 +794,10 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 				return false;
 			}
 		}
+	}
+
+	if (rvy_in_revision_workflow($published_id)) {
+		$published_id = rvy_post_id($published_id);
 	}
 
 	if ('revision' == get_post_field('post_type', $published_id)) {
