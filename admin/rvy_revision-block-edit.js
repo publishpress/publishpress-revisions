@@ -35,20 +35,19 @@ rvyUI+='<div class="components-dropdown rvy-current-status">'
 +'</div>';if(statusWrapperClass){rvyUI+='</div>';}
 rvyUI+='</div>';$(refSelector).before(rvyUI);}}}
 if(rvyObjEdit[rvyObjEdit.currentStatus+'ActionURL']){var url=rvyObjEdit[rvyObjEdit.currentStatus+'ActionURL'];}else{var url='javascript:void(0)';}
-if(rvyObjEdit[rvyObjEdit.currentStatus+'ActionCaption']){var approveButtonHTML='';var mainDashicon='';if(rvyObjEdit.canPublish&&('pending'!=rvyObjEdit.currentStatus)&&('future'!=rvyObjEdit.currentStatus)){if(!rvyObjEdit.isStatusesPro){approveButtonHTML='<a href="'+rvyObjEdit['pendingActionURL']+'" class="revision-approve">'
+if(rvyObjEdit[rvyObjEdit.currentStatus+'ActionCaption']){var approveButtonHTML='';var mainDashicon='';if(rvyObjEdit.canPublish&&('pending'!=rvyObjEdit.currentStatus)&&('future'!=rvyObjEdit.currentStatus)){approveButtonHTML='<a href="'+rvyObjEdit['pendingActionURL']+'" class="revision-approve">'
 +'<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-approve">'
 +'<span class="dashicons dashicons-yes"></span>'
-+'<span class="rvy-caption">'+rvyObjEdit['approveCaption']+'</span></button></a>';}
-mainDashicon='dashicons-upload';}else{if('pending'==rvyObjEdit.currentStatus){mainDashicon='dashicons-yes';}else{mainDashicon='dashicons-upload';}}
++'<span class="rvy-caption">'+rvyObjEdit['approveCaption']+'</span></button></a>';mainDashicon='dashicons-upload';}else{if('pending'==rvyObjEdit.currentStatus){mainDashicon='dashicons-yes';}else{mainDashicon='dashicons-upload';}}
 var rvyPreviewLink='';if(rvyObjEdit[rvyObjEdit.currentStatus+'CompletedLinkCaption']){rvyPreviewLink='<br /><a href="'+rvyObjEdit[rvyObjEdit.currentStatus+'CompletedURL']+'" class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
 +rvyObjEdit[rvyObjEdit.currentStatus+'CompletedLinkCaption']+'</a>';}
 if(refSelector=='div.editor-post-panel__section'){divClass=' gutenberg-18-5';}else{divClass='';}
 if(refSelectorUseParent){var uiLoc=$(refSelector).parent();}else{var uiLoc=$(refSelector);}
-if(!$('div.rvy-creation-ui a.revision-approve').length){$(uiLoc).after('<div class="rvy-creation-ui rvy-submission-div'+divClass+'"><a href="'+url+'" class="revision-approve">'
+if(!$('div.rvy-creation-ui a.revision-approve').length){var buttonUI='<div class="rvy-creation-ui rvy-submission-div'+divClass+'">';if(!rvyObjEdit.isStatusesPro){buttonUI+='<a href="'+url+'" class="revision-approve">'
 +'<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
 +'<span class="dashicons '+mainDashicon+'"></span>'
-+'<span class="rvy-caption">'+rvyObjEdit[rvyObjEdit.currentStatus+'ActionCaption']+'</span></button></a>'
-+approveButtonHTML
++'<span class="rvy-caption">'+rvyObjEdit[rvyObjEdit.currentStatus+'ActionCaption']+'</span></button></a>';}
+buttonUI+=approveButtonHTML
 +rvyObjEdit.saveRevisionTooltip
 +'<div class="revision-submitting" style="display: none;">'
 +'<span class="revision-approve revision-submitting">'
@@ -61,7 +60,7 @@ if(!$('div.rvy-creation-ui a.revision-approve').length){$(uiLoc).after('<div cla
 +rvyObjEdit[rvyObjEdit.currentStatus+'CompletedCaption']+'</span> '
 +rvyPreviewLink
 +'</div>'
-+'</div>');}
++'</div>';$(uiLoc).after(buttonUI);}
 $('div.rvy-submission-div').trigger('loaded-ui');}
 $('.edit-post-post-schedule__toggle').after('<button class="components-button is-tertiary post-schedule-footnote" disabled>'+rvyObjEdit.onApprovalCaption+'</button>');}
 refSelector=null;url=null;approveButtonHTML=null;mainDashicon=null;rvyPreviewLink=null;$('button.post-schedule-footnote').toggle(!/\d/.test($('button.edit-post-post-schedule__toggle').html()));$('button.editor-post-trash').parent().css('text-align','right');}

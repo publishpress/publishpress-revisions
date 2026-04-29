@@ -303,12 +303,10 @@ jQuery(document).ready(function ($) {
 				var mainDashicon = '';
 				
                 if (rvyObjEdit.canPublish && ('pending' != rvyObjEdit.currentStatus) && ('future' != rvyObjEdit.currentStatus)) {
-                    if (!rvyObjEdit.isStatusesPro) {
-	                    approveButtonHTML = '<a href="' + rvyObjEdit['pendingActionURL'] + '" class="revision-approve">'
-	                        + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-approve">'
-	                        + '<span class="dashicons dashicons-yes"></span>'
-							+ '<span class="rvy-caption">' + rvyObjEdit['approveCaption'] + '</span></button></a>';
-	               	}
+                    approveButtonHTML = '<a href="' + rvyObjEdit['pendingActionURL'] + '" class="revision-approve">'
+                        + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-approve">'
+                        + '<span class="dashicons dashicons-yes"></span>'
+                        + '<span class="rvy-caption">' + rvyObjEdit['approveCaption'] + '</span></button></a>';
 						
                     mainDashicon = 'dashicons-upload';
                 } else {
@@ -339,11 +337,16 @@ jQuery(document).ready(function ($) {
                 }
 
                 if (!$('div.rvy-creation-ui a.revision-approve').length) {
-                    $(uiLoc).after('<div class="rvy-creation-ui rvy-submission-div' + divClass + '"><a href="' + url + '" class="revision-approve">'
+                    var buttonUI = '<div class="rvy-creation-ui rvy-submission-div' + divClass + '">';
+                    
+                    if (!rvyObjEdit.isStatusesPro) {
+                        buttonUI += '<a href="' + url + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
                         + '<span class="dashicons ' + mainDashicon + '"></span>'
-                        + '<span class="rvy-caption">' + rvyObjEdit[rvyObjEdit.currentStatus + 'ActionCaption'] + '</span></button></a>'
-                        + approveButtonHTML
+                        + '<span class="rvy-caption">' + rvyObjEdit[rvyObjEdit.currentStatus + 'ActionCaption'] + '</span></button></a>';
+                    }
+
+                    buttonUI += approveButtonHTML
                         + rvyObjEdit.saveRevisionTooltip
                         + '<div class="revision-submitting" style="display: none;">'
                         + '<span class="revision-approve revision-submitting">'
@@ -356,7 +359,9 @@ jQuery(document).ready(function ($) {
                         + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedCaption'] + '</span> '
                         + rvyPreviewLink
                         + '</div>'
-                        + '</div>');
+                        + '</div>';
+
+                    $(uiLoc).after(buttonUI);
                 }
 
                 $('div.rvy-submission-div').trigger('loaded-ui');
