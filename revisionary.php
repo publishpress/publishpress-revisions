@@ -140,7 +140,7 @@ if (false === $revisionary_loaded_by_pro) {
     }
 }
 
-if ( isset($_SERVER['SCRIPT_NAME']) && strpos( esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/index-extra.php' ) || strpos( esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/update.php' ) ) {
+if (isset($_SERVER['SCRIPT_NAME']) && (strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/index-extra.php') || strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/update.php'))) {
 	return;
 }
 
