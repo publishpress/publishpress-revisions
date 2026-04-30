@@ -1,0 +1,2897 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-17T23:25:19+00:00\n"
+"PO-Revision-Date: 2026-04-29 19:34+0000\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: revisionary\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: revisionary.php:3
+#. Plugin Name of the plugin
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#: revisionary.php:4, fuzzy
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#: revisionary.php:5
+#. Description of the plugin
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr "使用修订模型以团队合作和精准性维护发布的内容，以提交、批准和安排更改。"
+
+#: revisionary.php:6
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#: revisionary.php:7, fuzzy
+#. Author URI of the plugin
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/admin-init_rvy.php:112
+#: admin/admin-init_rvy.php:348
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "抱歉，您没有权限删除此修订。"
+
+#: admin/admin-init_rvy.php:204
+#: admin/admin-init_rvy.php:314
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "抱歉，您没有权限批准此修订。"
+
+#: admin/admin-init_rvy.php:241
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "抱歉，您没有权限提交此修订。"
+
+#: admin/admin-init_rvy.php:279
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "抱歉，您没有权限拒绝此修订。"
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "修订已被恢复。"
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "修订已安排发布。"
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "修订已发布。"
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr "创建此帖子的修订需要 unfiltered_html 权限。请参阅 %s文档%s。"
+
+#: admin/admin-posts_rvy.php:212
+#: rvy_init-functions.php:798
+msgid "The post already has a revision in process."
+msgstr "该帖子已经有一个修订正在进行中。"
+
+#: admin/admin-posts_rvy.php:294
+#: admin/class-list-table-archive.php:580
+#: rvy_init-functions.php:495
+msgid "Revision"
+msgstr "修订"
+
+#: admin/admin-posts_rvy.php:311
+msgid "Has Revision"
+msgstr "有修订"
+
+#: admin/admin-posts_rvy.php:326
+#: admin/admin_rvy.php:399
+#: admin/admin_rvy.php:469
+#: admin/options.php:159
+#: admin/options.php:639
+msgid "New Revisions"
+msgstr "新修订"
+
+#: admin/admin_lib-mu_rvy.php:10
+#: admin/options.php:335
+msgid "PublishPress Revisions Network Settings"
+msgstr "PublishPress 修订网络设置"
+
+#: admin/admin_lib-mu_rvy.php:10
+msgid "Network Settings"
+msgstr "网络设置"
+
+#: admin/admin_lib-mu_rvy.php:21
+#: admin/options.php:337
+msgid "PublishPress Revisions Network Defaults"
+msgstr "PublishPress 修订网络默认设置"
+
+#: admin/admin_lib-mu_rvy.php:21
+msgid "Network Defaults"
+msgstr "网络默认设置"
+
+#: admin/admin_rvy.php:166
+#, php-format
+msgid ""
+"Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
+"triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
+"Scheduling%s."
+msgstr "调度修订不可用，因为 WP-Cron 被禁用。如果您正在外部触发 WP-Cron，请参阅 %s修订 > 设置 > 新修订 > 调度%s。"
+
+#: admin/admin_rvy.php:350
+msgid "Revisions"
+msgstr "修订"
+
+#: admin/admin_rvy.php:408
+#: admin/admin_rvy.php:409
+#: admin/admin_rvy.php:470
+#: admin/options.php:158
+#: admin/options.php:542
+#: admin/revision-archive_rvy.php:81
+#: admin/revisions.php:237
+msgid "Past Revisions"
+msgstr "过去的修订"
+
+#: admin/admin_rvy.php:426
+#: admin/options.php:341
+msgid "PublishPress Revisions Settings"
+msgstr "PublishPress 修订设置"
+
+#: admin/admin_rvy.php:426
+#: admin/admin_rvy.php:473
+#: admin/options.php:153
+msgid "Settings"
+msgstr "设置"
+
+#: admin/admin_rvy.php:435
+#: admin/admin_rvy.php:436
+#: admin/admin_rvy.php:476
+#: admin/options.php:1780
+#: admin/options.php:1807
+#: admin/options.php:2015
+#: admin/options.php:2361
+#: includes/CoreAdmin.php:212
+msgid "Upgrade to Pro"
+msgstr "升级到专业版"
+
+#: admin/admin_rvy.php:517
+msgid "Can edit draft Posts from other users."
+msgstr "可以编辑其他用户的草稿帖子。"
+
+#: admin/admin_rvy.php:518
+msgid "Can edit Revisions from other users."
+msgstr "可以编辑其他用户的修订。"
+
+#: admin/admin_rvy.php:519
+msgid "Can see New Revisions from other users."
+msgstr "可以查看其他用户的新修订。"
+
+#: admin/admin_rvy.php:520
+msgid "Can access New Revisions."
+msgstr "可以访问新修订。"
+
+#: admin/admin_rvy.php:521
+msgid "Can manage Unsubmitted Revisions."
+msgstr "可以管理未提交的修订。"
+
+#: admin/admin_rvy.php:522
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr "预览其他用户的修订（无需编辑访问权限）。"
+
+#: admin/admin_rvy.php:523
+msgid "Restore an archived Revision as the current revision."
+msgstr "将归档的修订恢复为当前修订。"
+
+#: admin/admin_rvy.php:524
+msgid "View Past Revisions."
+msgstr "查看过去的修订。"
+
+#: admin/admin_rvy.php:554
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "如果您喜欢 %1$s，请给我们留下一个 %2$s 评分。谢谢！"
+
+#: admin/admin_rvy.php:565
+msgid "About PublishPress Revisions"
+msgstr "关于 PublishPress 修订"
+
+#: admin/admin_rvy.php:565
+msgid "About"
+msgstr "关于"
+
+#: admin/admin_rvy.php:567
+msgid "PublishPress Revisions Documentation"
+msgstr "PublishPress 修订文档"
+
+#: admin/admin_rvy.php:567
+msgid "Documentation"
+msgstr "文档"
+
+#: admin/admin_rvy.php:569
+msgid "Contact the PublishPress team"
+msgstr "联系 PublishPress 团队"
+
+#: admin/admin_rvy.php:569
+msgid "Contact"
+msgstr "联系"
+
+#: admin/agents_checklist_rvy.php:76
+#, php-format
+msgid "show current users (%d)"
+msgstr "显示当前用户 (%d)"
+
+#: admin/agents_checklist_rvy.php:78
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "显示符合条件的用户 (%d)"
+
+#: admin/agents_checklist_rvy.php:87
+msgid "filter:"
+msgstr "筛选："
+
+#: admin/agents_checklist_rvy.php:103
+msgid "select"
+msgstr "选择"
+
+#: admin/agents_checklist_rvy.php:111
+msgid "unselect"
+msgstr "取消选择"
+
+#: admin/class-list-table-archive.php:22
+msgid "This was an update to a revision which is still in the workflow process."
+msgstr "这是对仍在工作流程中的修订的更新。"
+
+#: admin/class-list-table-archive.php:24
+msgid "This was an update to a revision which was published after further editing."
+msgstr "这是对经过进一步编辑后发布的修订的更新。"
+
+#: admin/class-list-table-archive.php:202
+#, php-format
+msgid "Revision Author: %s"
+msgstr "修订作者：%s"
+
+#: admin/class-list-table-archive.php:221
+#, php-format
+msgid "Post Author: %s"
+msgstr "发布作者：%s"
+
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr "修订日期：%s"
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr "批准人：%s"
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr "发布时间：%s"
+
+#: admin/class-list-table-archive.php:272
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "“%s”的搜索结果"
+
+#: admin/class-list-table-archive.php:540
+#: admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1879
+#: admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95
+#: admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "删除修订"
+
+#: admin/class-list-table-archive.php:581
+#: admin/class-list-table_rvy.php:756
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:582
+#: rvy_init-functions.php:496
+msgid "Revised By"
+msgstr "修订人"
+
+#: admin/class-list-table-archive.php:583
+#: rvy_init-functions.php:497
+msgid "Revision Date"
+msgstr "修订日期"
+
+#: admin/class-list-table-archive.php:584
+msgid "Action"
+msgstr "操作"
+
+#: admin/class-list-table-archive.php:585
+msgid "Approved By"
+msgstr "批准者"
+
+#: admin/class-list-table-archive.php:586
+msgid "Published Date"
+msgstr "发布时间"
+
+#: admin/class-list-table-archive.php:587
+msgid "Published Author"
+msgstr "发布作者"
+
+#: admin/class-list-table-archive.php:616
+#: admin/class-list-table_rvy.php:922
+msgid "just now"
+msgstr "刚刚"
+
+#: admin/class-list-table-archive.php:621
+#: admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s分钟前"
+
+#: admin/class-list-table-archive.php:621
+#: admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minute ago"
+msgstr "%s分钟前"
+
+#: admin/class-list-table-archive.php:628
+#: admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hours ago"
+msgstr "%s小时前"
+
+#: admin/class-list-table-archive.php:628
+#: admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hour ago"
+msgstr "%s小时前"
+
+#: admin/class-list-table-archive.php:756
+#: functions.php:461
+msgid "Scheduled Revision Publication"
+msgstr "计划修订发布"
+
+#: admin/class-list-table-archive.php:760
+#: functions.php:465
+msgid "Revision Publication"
+msgstr "修订发布"
+
+#: admin/class-list-table-archive.php:770
+#: functions.php:475
+#, php-format
+msgid "Edit of %s"
+msgstr "%s的编辑"
+
+#: admin/class-list-table-archive.php:777
+#: functions.php:482
+msgid "Edit of published Revision"
+msgstr "已发布修订的编辑"
+
+#: admin/class-list-table-archive.php:780
+#: functions.php:485
+#: functions.php:548
+msgid "Direct Edit"
+msgstr "直接编辑"
+
+#: admin/class-list-table-archive.php:839
+#: admin/class-list-table_rvy.php:1461
+msgid "All Post Types"
+msgstr "所有帖子类型"
+
+#: admin/class-list-table-archive.php:872
+#: admin/class-list-table_rvy.php:1496
+msgid "All Revision Authors"
+msgstr "所有修订作者"
+
+#: admin/class-list-table-archive.php:906
+#: admin/class-list-table_rvy.php:1531
+msgid "All Revision Dates"
+msgstr "所有修订日期"
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr "所有发布日期"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr "所有批准者"
+
+#: admin/class-list-table-archive.php:1036
+#: admin/class-list-table_rvy.php:1602
+msgid "All Authors"
+msgstr "所有作者"
+
+#: admin/class-list-table-archive.php:1058
+#: admin/class-list-table_rvy.php:1638
+msgid "Reset Filters"
+msgstr "重置筛选器"
+
+#: admin/class-list-table-archive.php:1089
+#: admin/options.php:2026
+msgid "All"
+msgstr "所有"
+
+#: admin/class-list-table-archive.php:1103
+msgid "My Revisions"
+msgstr "我的修订"
+
+#: admin/class-list-table-archive.php:1157
+#, php-format
+msgid "Compare Changes in %s"
+msgstr "比较 %s 中的更改"
+
+#: admin/class-list-table-archive.php:1176
+#: admin/class-list-table_rvy.php:1903
+#: admin/post-editor-workflow-ui_rvy.php:233
+msgid "Preview Revision"
+msgstr "预览修订"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent revision"
+msgstr "编辑父修订"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent post"
+msgstr "编辑父帖子"
+
+#: admin/class-list-table-archive.php:1191
+msgid "Edit Parent"
+msgstr "编辑父项"
+
+#: admin/class-list-table-archive.php:1201
+msgid "List Revisions of this Post"
+msgstr "列出此帖子的修订"
+
+#: admin/class-list-table-archive.php:1202
+msgid "Filter"
+msgstr "筛选"
+
+#: admin/class-list-table-archive.php:1214
+msgid "Delete Past Revision"
+msgstr "删除过去的修订"
+
+#: admin/class-list-table-archive.php:1302
+msgid "No revisions found."
+msgstr "未找到修订。"
+
+#: admin/class-list-table_rvy.php:755
+#: admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "状态"
+
+#: admin/class-list-table_rvy.php:801
+msgid "View preview"
+msgstr "查看预览"
+
+#: admin/class-list-table_rvy.php:818, fuzzy
+msgid "Y/m/d, g:i:s a"
+msgstr "Y/m/d, g:i:s a"
+
+#: admin/class-list-table_rvy.php:828, fuzzy
+msgid "Y/m/d g:i a"
+msgstr "Y/m/d g:i a"
+
+#: admin/class-list-table_rvy.php:835
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "计划发布时间: %s"
+
+#: admin/class-list-table_rvy.php:838
+#, php-format
+msgid "Requested publication: %s"
+msgstr "请求发布时间: %s"
+
+#: admin/class-list-table_rvy.php:840
+msgid "This revision is not scheduled yet. It must be approved."
+msgstr "该修订尚未计划。必须获得批准。"
+
+#: admin/class-list-table_rvy.php:890
+#: admin/history_rvy.php:911
+msgid "No author"
+msgstr "无作者"
+
+#: admin/class-list-table_rvy.php:964
+#. translators: %s: post title
+msgid "Edit published post"
+msgstr "编辑已发布的帖子"
+
+#: admin/class-list-table_rvy.php:977
+#. translators: %s: post title
+#, php-format
+msgid "View only revisions of %s"
+msgstr "仅查看 %s 的修订版"
+
+#: admin/class-list-table_rvy.php:988
+#: admin/class-list-table_rvy.php:995
+msgid "View published post"
+msgstr "查看已发布的帖子"
+
+#: admin/class-list-table_rvy.php:1020
+msgid "Compare Past Revisions"
+msgstr "比较过去的修订"
+
+#: admin/class-list-table_rvy.php:1021
+msgid "History"
+msgstr "历史"
+
+#: admin/class-list-table_rvy.php:1301
+msgid "My Activity"
+msgstr "我的活动"
+
+#: admin/class-list-table_rvy.php:1310
+#, php-format
+msgid "All %s"
+msgstr "所有 %s"
+
+#: admin/class-list-table_rvy.php:1400
+msgid "Unschedule"
+msgstr "取消排程"
+
+#: admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1875
+#: admin/class-list-table_rvy.php:1879
+#: admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95
+#: admin/RevisionEditSubmitMetabox.php:62
+#. translators: %s: post title
+msgid "Discard Revision"
+msgstr "放弃修订"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "All Revision Statuses"
+msgstr "所有修订状态"
+
+#: admin/class-list-table_rvy.php:1567
+msgid "All Posts"
+msgstr "所有帖子"
+
+#: admin/class-list-table_rvy.php:1852
+#: admin/post-editor-workflow-ui_rvy.php:234
+#. translators: %s: post title
+msgid "Edit Revision"
+msgstr "编辑修订"
+
+#: admin/class-list-table_rvy.php:1917
+msgid "Compare Changes"
+msgstr "比较更改"
+
+#: admin/edit-revision-classic-ui_rvy.php:111
+msgid "Publish <b>on approval</b>"
+msgstr "发布 <b>待批准</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:142
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "修订已更新。 %s查看预览%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:144
+msgid "Revision updated."
+msgstr "修订已更新。"
+
+#: admin/history_rvy.php:87
+#: admin/history_rvy.php:91
+#: admin/history_rvy.php:97
+#: admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "复制"
+
+#: admin/history_rvy.php:87
+#: admin/history_rvy.php:91
+msgid "Copy content to the clipboard."
+msgstr "将内容复制到剪贴板。"
+
+#: admin/history_rvy.php:97
+#: admin/history_rvy.php:100
+msgid "Copy the above content to the clipboard."
+msgstr "将上述内容复制到剪贴板。"
+
+#: admin/history_rvy.php:282
+#: admin/history_rvy.php:302
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "比较 %s 的 \"%s\""
+
+#: admin/history_rvy.php:655
+#: admin/options.php:925
+msgid "Post Date"
+msgstr "帖子日期"
+
+#: admin/history_rvy.php:656
+msgid "Post Parent"
+msgstr "发布父项"
+
+#: admin/history_rvy.php:657
+msgid "Menu Order"
+msgstr "菜单顺序"
+
+#: admin/history_rvy.php:658
+msgid "Comment Status"
+msgstr "评论状态"
+
+#: admin/history_rvy.php:659
+msgid "Ping Status"
+msgstr "Ping 状态"
+
+#: admin/history_rvy.php:799
+msgid "Page Template"
+msgstr "页面模板"
+
+#: admin/history_rvy.php:802
+msgid "Featured Image"
+msgstr "特色图片"
+
+#: admin/history_rvy.php:806
+msgid "Beaver Builder Data"
+msgstr "Beaver Builder 数据"
+
+#: admin/history_rvy.php:807
+msgid "Beaver Builder Settings"
+msgstr "Beaver Builder 设置"
+
+#: admin/history_rvy.php:1058
+msgid "Scheduled for "
+msgstr "定于 "
+
+#: admin/history_rvy.php:1063
+msgid "Requested for "
+msgstr "请求于 "
+
+#: admin/history_rvy.php:1068
+msgid "Modified "
+msgstr "已修改 "
+
+#: admin/history_rvy.php:1073
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s 从现在起"
+
+#: admin/history_rvy.php:1084
+msgid "M j, Y @ g:i a"
+msgstr "Y年M月j日 @ g:i a"
+
+#: admin/history_rvy.php:1129
+msgid "M j, Y @ H:i"
+msgstr "Y年M月j日 @ H:i"
+
+#: admin/history_rvy.php:1216
+#: front_rvy.php:597
+#: front_rvy.php:607
+#: front_rvy.php:626
+#: front_rvy.php:657
+#: rvy_init-functions.php:293
+#: rvy_init-functions.php:311
+#: rvy_init-functions.php:350
+#: rvy_init-functions.php:367
+#: rvy_init-functions.php:384
+msgid "Approve"
+msgstr "批准"
+
+#: admin/history_rvy.php:1216
+msgid "Preview / Approve"
+msgstr "预览 / 批准"
+
+#: admin/history_rvy.php:1218
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:233
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "预览"
+
+#: admin/history_rvy.php:1312
+msgid "Preview / Restore"
+msgstr "预览 / 恢复"
+
+#: admin/history_rvy.php:1319
+msgid "Manage"
+msgstr "管理"
+
+#: admin/history_rvy.php:1320
+msgid "List"
+msgstr "列表"
+
+#: admin/options.php:123
+msgid "All settings on this tab are assigned network-wide."
+msgstr "此选项卡上的所有设置都分配给全网络。"
+
+#: admin/options.php:153
+msgid "Setting Scope"
+msgstr "设置范围"
+
+#: admin/options.php:157
+msgid "Features"
+msgstr "功能"
+
+#: admin/options.php:160
+msgid "Options"
+msgstr "选项"
+
+#: admin/options.php:161
+msgid "Integrations"
+msgstr "集成"
+
+#: admin/options.php:162
+msgid "Statuses"
+msgstr "状态"
+
+#: admin/options.php:163
+#: admin/options.php:958
+msgid "Notifications"
+msgstr "通知"
+
+#: admin/options.php:169
+msgid "Revision Submission"
+msgstr "修订提交"
+
+#: admin/options.php:177
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr "使用替代标签：“工作副本” > “变更请求” > “计划变更”"
+
+#: admin/options.php:178
+msgid "New Revisions access requires role capability"
+msgstr "新修订访问需要角色权限"
+
+#: admin/options.php:179
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "管理 %s 需要角色权限"
+
+#: admin/options.php:180
+msgid "Working Copy creation requires role capability"
+msgstr "创建工作副本需要角色权限"
+
+#: admin/options.php:180
+msgid "Revision creation requires role capability"
+msgstr "创建修订需要角色权限"
+
+#: admin/options.php:181
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr "帖子/页面列表：使用“编辑”标题链接 %s"
+
+#: admin/options.php:182
+#: admin/options.php:188
+#, php-format
+msgid "Enable %s"
+msgstr "启用 %s"
+
+#: admin/options.php:183
+msgid "Limit to one active revision per post"
+msgstr "每个帖子限制为一个活动修订"
+
+#: admin/options.php:184
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr "在抑制创建修订之前刷新“有修订”标志"
+
+#: admin/options.php:185
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr "如果帖子包含自定义 html，则需要 unfiltered_html 权限"
+
+#: admin/options.php:186
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr "自动提交由具有发布权限的用户创建的修订"
+
+#: admin/options.php:187
+msgid "Auto-submit revisions"
+msgstr "自动提交修订"
+
+#: admin/options.php:189
+msgid "Change Request submission require role capability"
+msgstr "变更请求提交需要角色权限"
+
+#: admin/options.php:189
+msgid "Revision submission requires role capability"
+msgstr "修订提交需要角色权限"
+
+#: admin/options.php:190
+msgid "Editing others' Revisions requires role capability"
+msgstr "编辑他人的修订需要角色权限"
+
+#: admin/options.php:191
+msgid "Listing others' Revisions requires role capability"
+msgstr "列出他人的修订需要角色权限"
+
+#: admin/options.php:192
+msgid "Users can always administer revisions to their own editable posts"
+msgstr "用户始终可以管理自己可编辑帖子中的修订"
+
+#: admin/options.php:193
+msgid "Also notify on Revision Update"
+msgstr "还要在修订更新时通知"
+
+#: admin/options.php:194
+msgid "Apply API actions to mimic Post Update"
+msgstr "应用 API 操作以模拟帖子更新"
+
+#: admin/options.php:195
+msgid "Hide html tags on Compare screen"
+msgstr "在比较屏幕上隐藏 HTML 标签"
+
+#: admin/options.php:196
+msgid "Hide copy buttons on Compare screen"
+msgstr "在比较屏幕上隐藏复制按钮"
+
+#: admin/options.php:197
+msgid "Use WP-Cron scheduling"
+msgstr "使用 WP-Cron 调度"
+
+#: admin/options.php:198
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "站点使用自定义触发器进行 WP-Cron 任务"
+
+#: admin/options.php:199
+msgid "Asynchronous Publishing"
+msgstr "异步发布"
+
+#: admin/options.php:200
+#: admin/options.php:201
+msgid "Update Publish Date"
+msgstr "更新发布日期"
+
+#: admin/options.php:202
+#: admin/options.php:203
+msgid "Update Modified Date"
+msgstr "更新修改日期"
+
+#: admin/options.php:206
+#: admin/options.php:207
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "使用 %1$s计划通知%2$s"
+
+#: admin/options.php:209
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "当提交 %s 时，给原作者发送电子邮件"
+
+#: admin/options.php:210
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "当 %s 被批准时，给原作者发送电子邮件"
+
+#: admin/options.php:211
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "当 %s 被批准时，给修订者发送电子邮件"
+
+#: admin/options.php:212
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "当 %s 被发布时，给原作者发送电子邮件"
+
+#: admin/options.php:213
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "当 %s 被发布时，给修订者发送电子邮件"
+
+#: admin/options.php:214
+msgid "Enable notification buffer"
+msgstr "启用通知缓冲区"
+
+#: admin/options.php:215
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "修订者可以为任何自定义 post type 创建一个新修订"
+
+#: admin/options.php:216
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "防止修订者编辑他人未发布的帖子"
+
+#: admin/options.php:217
+msgid "Add database index to posts table for Revision queries"
+msgstr "为修订查询在帖子表中添加数据库索引"
+
+#: admin/options.php:218
+msgid "Display Hints"
+msgstr "显示提示"
+
+#: admin/options.php:219
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "如果插件被删除，删除设置和修订"
+
+#: admin/options.php:220
+msgid "Show Preview Links"
+msgstr "显示预览链接"
+
+#: admin/options.php:221
+msgid "Preview Link Type"
+msgstr "预览链接类型"
+
+#: admin/options.php:222
+msgid "Modify preview link for better theme compatibility"
+msgstr "修改预览链接以更好地兼容主题"
+
+#: admin/options.php:223
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr "主题兼容性：对于首页修订预览，设置主页标志"
+
+#: admin/options.php:224
+msgid "Approve Button on Compare screen"
+msgstr "比较屏幕上的批准按钮"
+
+#: admin/options.php:225
+msgid "Copy revision comments to published post"
+msgstr "将修订评论复制到已发布的帖子"
+
+#: admin/options.php:226
+msgid "Compare Past Revisions ordering:"
+msgstr "比较过去修订的顺序："
+
+#: admin/options.php:227
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr "列出 %s 以供“我的活动”或“我帖子的修订”视图"
+
+#: admin/options.php:228
+msgid "Store custom fields of submitted and scheduled revisions for archive"
+msgstr "存储提交和计划修订的自定义字段以供归档"
+
+#: admin/options.php:229
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr "即使在修订发布后，也要保留修订编辑的归档"
+
+#: admin/options.php:230
+msgid "Show Current Revision top bar after revision publication"
+msgstr "在修订发布后显示当前修订的顶部栏"
+
+#: admin/options.php:231
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "在修订发布时，删除编辑评论"
+
+#: admin/options.php:232
+msgid "Enable deletion queue"
+msgstr "启用删除队列"
+
+#: admin/options.php:233
+msgid "Allow Past Revisions to be deleted"
+msgstr "允许删除过去的修订"
+
+#: admin/options.php:234
+msgid "Restoring a Revision requires role capability"
+msgstr "恢复修订需要角色权限"
+
+#: admin/options.php:235
+msgid "Compatibility Mode"
+msgstr "兼容模式"
+
+#: admin/options.php:236
+msgid "Planner Notifications Access-Limited"
+msgstr "计划通知访问限制"
+
+#: admin/options.php:237
+msgid "Maximum Revisions per post"
+msgstr "每篇文章的最大修订次数"
+
+#: admin/options.php:238
+msgid "Apply Post Permissions to Revisions"
+msgstr "将文章权限应用于修订"
+
+#: admin/options.php:239
+msgid "Enable legacy email notifications"
+msgstr "启用传统电子邮件通知"
+
+#: admin/options.php:240
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr "在文章编辑器中为批准按钮使用扩展说明"
+
+#: admin/options.php:241
+msgid "Allow the Author field to be modified by Revision"
+msgstr "允许修订修改作者字段"
+
+#: admin/options.php:242
+msgid "Create Revision button in editor opens new tab"
+msgstr "编辑器中的创建修订按钮打开新标签"
+
+#: admin/options.php:243
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr "查询循环块：调整修订者和贡献者权限以允许在修订编辑器中预览"
+
+#: admin/options.php:244
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "禁用修订编辑的 Rank Math SEO 面板"
+
+#: admin/options.php:245
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "允许自定义字段（文章元数据）进行修订"
+
+#: admin/options.php:246
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "提交修订的权限也启用修订创建"
+
+#: admin/options.php:251
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "当提交 %s 时，电子邮件通知指定的出版者"
+
+#: admin/options.php:252
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "当发布 %s 时，电子邮件通知指定的出版者"
+
+#: admin/options.php:253
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "当批准 %s 时，电子邮件通知指定的出版者"
+
+#: admin/options.php:255
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "当提交 %s 时，电子邮件通知编辑和管理员"
+
+#: admin/options.php:256
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "当发布 %s 时，电子邮件通知编辑和管理员"
+
+#: admin/options.php:257
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "当批准 %s 时，电子邮件通知编辑和管理员"
+
+#: admin/options.php:339
+msgid "PublishPress Revisions Site Settings"
+msgstr "PublishPress 修订网站设置"
+
+#: admin/options.php:369
+msgid "These are the default settings for options which can be adjusted per-site."
+msgstr "这些是每个站点可以调整的选项的默认设置。"
+
+#: admin/options.php:407
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr "使用此选项卡对 PublishPress Revisions 设置进行网络范围的更改。 %s"
+
+#: admin/options.php:410
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr "您还可以为特定站点设置指定 %1$s默认值%2$s。"
+
+#: admin/options.php:413
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr "在这里，您可以更改在每个站点上单独控制的设置的默认值。"
+
+#: admin/options.php:423
+#: admin/options.php:425
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr "请注意，%1$s 网络范围的设置%2$s 也可能可用。"
+
+#: admin/options.php:503
+msgid "License"
+msgstr "许可证"
+
+#: admin/options.php:546
+msgid "Past Revisions are earlier versions of a post."
+msgstr "过去的修订是帖子的早期版本。"
+
+#: admin/options.php:601
+msgid "This post type does not support Past Revisions."
+msgstr "此 post type 不支持过去的修订。"
+
+#: admin/options.php:643
+msgid "New Revisions are changes which are not yet published."
+msgstr "新修订是尚未发布的更改。"
+
+#: admin/options.php:732
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr "注意：第三方代码可能导致某些 post type 与 PublishPress Revisions 不兼容。"
+
+#: admin/options.php:742
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr "要在内容日历、概览和内容板上集成修订，请更新 %sPublishPress Planner Pro%s。"
+
+#: admin/options.php:763
+msgid "Ready to enhance your revision workflow?"
+msgstr "准备好增强您的修订工作流程了吗？"
+
+#: admin/options.php:766
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with "
+"custom revision statuses."
+msgstr "获取 PublishPress Statuses Pro，并通过自定义修订状态优化您的修订过程。"
+
+#: admin/options.php:772
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "在修订提交之前或之后定义您自己的状态"
+
+#: admin/options.php:775
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "新的预定义状态：延迟、需修改、被拒绝"
+
+#: admin/options.php:778
+msgid "Statuses can be specific to a post type"
+msgstr "状态可以特定于某个 post type"
+
+#: admin/options.php:781
+msgid "Control access to statuses per-role"
+msgstr "按角色控制对状态的访问"
+
+#: admin/options.php:784
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "状态工作流可以通过子状态进行嵌套"
+
+#: admin/options.php:793
+msgid "Get PublishPress Statuses Pro"
+msgstr "获取 PublishPress Statuses Pro"
+
+#: admin/options.php:798
+#: admin/options.php:816
+#: admin/options.php:1785
+#: admin/options.php:1803
+#: admin/options.php:2357
+#: admin/options.php:2371
+#: admin/options.php:2381
+#: admin/options.php:2391
+msgid "Learn More"
+msgstr "了解更多"
+
+#: admin/options.php:811, fuzzy
+msgid "Pro Plugin"
+msgstr "Pro Plugin"
+
+#: admin/options.php:812
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "安装状态 Pro 以解锁自定义修订状态。"
+
+#: admin/options.php:813
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr "为任何 post type 和角色配置，以匹配您的编辑工作流程。"
+
+#: admin/options.php:820
+msgid "Get Statuses Pro"
+msgstr "获取状态 Pro"
+
+#: admin/options.php:847
+msgid "Maximum revisions per post:"
+msgstr "每篇文章的最大修订次数："
+
+#: admin/options.php:849
+msgid "(unlimited)"
+msgstr "(无限)"
+
+#: admin/options.php:857
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr "请注意，归档也可以通过 %1$sPost Type%2$s 禁用。"
+
+#: admin/options.php:894
+#: admin/options.php:1065
+#: admin/options.php:1315
+#: admin/options.php:1341
+#: admin/options.php:1367
+#: admin/options.php:1395
+#: admin/options.php:1909
+#, php-format
+msgid "%s capability"
+msgstr "%s 权限"
+
+#: admin/options.php:899
+#: admin/options.php:1070
+#: admin/options.php:1320
+#: admin/options.php:1346
+#: admin/options.php:1372
+#: admin/options.php:1400
+#: admin/options.php:1914
+msgid "Assign capability to roles"
+msgstr "将权限分配给角色"
+
+#: admin/options.php:906
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "防止非管理员在没有 %s 的情况下恢复修订。"
+
+#: admin/options.php:912
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr "防止非管理员在没有 restore_revisions 权限的情况下恢复修订"
+
+#: admin/options.php:925
+msgid "Modification Date"
+msgstr "修改日期"
+
+#: admin/options.php:953
+msgid "Revision Creation"
+msgstr "修订创建"
+
+#: admin/options.php:954
+msgid "Submission"
+msgstr "提交"
+
+#: admin/options.php:955
+msgid "Scheduling"
+msgstr "调度"
+
+#: admin/options.php:956
+msgid "Publication"
+msgstr "发布"
+
+#: admin/options.php:957
+msgid "Management"
+msgstr "管理"
+
+#: admin/options.php:1015
+msgid "Create Revision capabilities"
+msgstr "创建修订权限"
+
+#: admin/options.php:1020
+#: admin/options.php:1045
+#: admin/options.php:1198
+msgid "Assign capabilities to roles"
+msgstr "将权限分配给角色"
+
+#: admin/options.php:1027
+#: admin/options.php:1205
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "如果用户无法编辑已发布的文章，则需要 %s。"
+
+#: admin/options.php:1033
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr "如果用户无法编辑已发布的帖子，则需要创建修订能力（copy_posts、copy_others_pages等）"
+
+#: admin/options.php:1041
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "要扩展页面列表，请分配 %s。"
+
+#: admin/options.php:1044
+msgid "Listing capabilities"
+msgstr "列出能力"
+
+#: admin/options.php:1051
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr "要扩展页面列表，请分配列出能力（list_others_pages、list_published_posts等）"
+
+#: admin/options.php:1057
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "此插件引入了一种新的用户角色，\"Revisor.\""
+
+#: admin/options.php:1077
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr "没有 %s 的用户进行修订将导致所有自定义 HTML 标签被删除。"
+
+#: admin/options.php:1083
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr "没有 unfiltered_html 能力的用户进行的修订将导致所有自定义 HTML 标签被删除。"
+
+#: admin/options.php:1100
+msgid "Broadest compat including Elementor, Divi, Beaver Builder"
+msgstr "兼容性最广，包括 Elementor、Divi、Beaver Builder"
+
+#: admin/options.php:1101
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr "标准存储架构以实现最广泛的第三方兼容性"
+
+#: admin/options.php:1106
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "通过 PublishPress 插件增强修订访问控制"
+
+#: admin/options.php:1117
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr "在增强模式下，修订的状态由标准 WordPress 架构存储。一些插件不兼容。"
+
+#: admin/options.php:1124
+msgid ""
+"Prevent Revision creation if the post already has another Revision in "
+"progress."
+msgstr "如果帖子已经有其他修订正在进行，则防止创建修订。"
+
+#: admin/options.php:1128
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr "通过在抑制新修订链接之前重新查询修订，解决缓存插件冲突。"
+
+#: admin/options.php:1158
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr "如果用户没有常规编辑链接，将 %s 链接重新命名为 \"编辑\"。"
+
+#: admin/options.php:1161
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr "默认标签为 \"未提交审批\"、\"已提交审批\"、\"计划修订\""
+
+#: admin/options.php:1179
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr "启用已发布的内容在 %s新修订%s 屏幕上被复制、编辑、提交审批和管理。"
+
+#: admin/options.php:1193
+msgid "Submit Revision capabilities"
+msgstr "提交修订能力"
+
+#: admin/options.php:1211
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr "如果用户无法编辑已发布的帖子，则需要提交修订能力（revise_posts、revise_others_pages等）"
+
+#: admin/options.php:1216
+#: admin/options.php:1250
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr "当 %s 发布时，将帖子发布日期更新为当前时间。"
+
+#: admin/options.php:1219
+#: admin/options.php:1253
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr "当 %s 发布时，将帖子修改日期更新为当前时间。"
+
+#: admin/options.php:1222
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr "当任何被允许提交修订的用户创建新修订时，自动提交它。"
+
+#: admin/options.php:1225
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr "如果用户可以直接编辑主帖子，则自动提交修订。"
+
+#: admin/options.php:1228
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr "这允许在比较屏幕中立即批准。如果禁用，则提供预览链接。"
+
+#: admin/options.php:1244
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr "如果编辑当前已发布的帖子或页面并设置未来日期，则更改将在所选日期之前不生效。"
+
+#: admin/options.php:1258
+msgid ""
+"Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
+"publication will fail if this setting is disabled."
+msgstr "使用 WP-Cron 机制发布计划的修订。在某些网站上，如果禁用此设置，则发布将失败。"
+
+#: admin/options.php:1262
+msgid ""
+"Publish scheduled revisions asynchronously, via a secondary http request "
+"from the server.  This is usually best since it eliminates delay, but some "
+"servers may not support it."
+msgstr "通过服务器的二次 http 请求异步发布计划的修订。这通常是最佳选择，因为它消除了延迟，但某些服务器可能不支持。"
+
+#: admin/options.php:1267
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr "WP-Cron 触发器已禁用，但计划任务仍使用自定义触发器执行。"
+
+#: admin/options.php:1281
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr "将按钮标记为“批准并发布”或“批准并安排”。"
+
+#: admin/options.php:1292
+msgid "This may improve compatibility with some plugins."
+msgstr "这可能提高与某些插件的兼容性。"
+
+#: admin/options.php:1327
+#, php-format
+msgid "Control New Revisions access with the %s."
+msgstr "通过 %s 控制新修订的访问。"
+
+#: admin/options.php:1333
+msgid "Control New Revisions access with the manage_revision_queue capability."
+msgstr "通过 manage_revision_queue 能力控制新修订的访问。"
+
+#: admin/options.php:1353
+#, php-format
+msgid "Users will need the %s to edit others' Unsubmitted Revisions."
+msgstr "用户需要 %s 才能编辑其他人的未提交修订。"
+
+#: admin/options.php:1359
+msgid ""
+"Users will need the manage_unsubmitted_revisions capability to edit others' "
+"Unsubmitted Revisions."
+msgstr "用户需要 manage_unsubmitted_revisions 能力才能编辑其他人的未提交修订。"
+
+#: admin/options.php:1379
+#: admin/options.php:1407
+#, php-format
+msgid "If the user can't edit the published post, require the %s."
+msgstr "如果用户无法编辑已发布的帖子，则需要 %s。"
+
+#: admin/options.php:1385
+msgid ""
+"If the user can't edit the published post, require the "
+"edit_others_revisions capability."
+msgstr "如果用户无法编辑已发布的帖子，则需要 edit_others_revisions 能力。"
+
+#: admin/options.php:1413
+msgid ""
+"If the user can't edit the published post, require the "
+"list_others_revisions capability."
+msgstr "如果用户无法编辑已发布的帖子，则需要 list_others_revisions 能力。"
+
+#: admin/options.php:1418
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr "绕过上述限制，以便其他人的修订可以登录用户自己的帖子。"
+
+#: admin/options.php:1429
+msgid "Regenerate \"post has revision\" flags"
+msgstr "重新生成“帖子有修订”标志"
+
+#: admin/options.php:1432
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr "如果帖子/页面屏幕上的“有修订”标签与新修订列表不匹配，请应用此维护操作。"
+
+#: admin/options.php:1457
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "为了增强通知，请安装 %sPublishPress Planner%s。"
+
+#: admin/options.php:1470
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "要增强通知，请更新 %sPublishPress Planner%s。"
+
+#: admin/options.php:1492
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr "使用可自定义的 %1$sPublishPress Planner Notifications system%2$s 发送修订操作通知。"
+
+#: admin/options.php:1493
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr "升级到 Revisions Pro，以使用可自定义的 %1$sPublishPress Planner Notifications system%2$s 发送修订操作通知。"
+
+#: admin/options.php:1505
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr "仅当用户能够编辑已发布的帖子时，匹配 Planner > Notifications 配置的用户才会收到修订通知。"
+
+#: admin/options.php:1547
+#: admin/options.php:1569
+msgid "Never"
+msgstr "从不"
+
+#: admin/options.php:1547
+#: admin/options.php:1569
+msgid "By default"
+msgstr "默认情况下"
+
+#: admin/options.php:1547
+#: admin/options.php:1569
+msgid "Always"
+msgstr "始终"
+
+#: admin/options.php:1558
+#: admin/options.php:1605
+msgid "select recipients"
+msgstr "选择收件人"
+
+#: admin/options.php:1619
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr "为了避免通知失败，一旦超出分钟、小时或天数限制，缓冲邮件将延迟发送"
+
+#: admin/options.php:1640
+msgid "Notification Buffer"
+msgstr "通知缓冲区"
+
+#: admin/options.php:1668
+msgid "Notification Log"
+msgstr "通知日志"
+
+#: admin/options.php:1697
+msgid "Purge Notification Buffer"
+msgstr "清除通知缓冲区"
+
+#: admin/options.php:1703
+msgid "Truncate Notification Log"
+msgstr "截断通知日志"
+
+#: admin/options.php:1709
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "在最后一分钟内发送：%d / %d"
+
+#: admin/options.php:1710
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "在最后一小时内发送：%d / %d"
+
+#: admin/options.php:1711
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "在最后一天内发送：%d / %d"
+
+#: admin/options.php:1718
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "距离下次缓冲处理时间还有：%d 秒"
+
+#: admin/options.php:1729
+msgid "Show Notification Log / Buffer"
+msgstr "显示通知日志 / 缓冲区"
+
+#: admin/options.php:1731
+msgid "Show with message content"
+msgstr "显示带有消息内容"
+
+#: admin/options.php:1753
+msgid "Ready to enhance your revision notifications?"
+msgstr "准备好增强您的修订通知了吗？"
+
+#: admin/options.php:1756
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr "升级到 Revisions Pro 以与我们的 PublishPress Planner Notifications 框架集成。"
+
+#: admin/options.php:1762
+msgid "Customize notification message and subject"
+msgstr "自定义通知消息和主题"
+
+#: admin/options.php:1765
+msgid "Notify for a specific post type, category or term"
+msgstr "为特定的 post type、类别或术语发送通知"
+
+#: admin/options.php:1768
+msgid "Target specific roles, users, or user groups"
+msgstr "针对特定角色、用户或用户组"
+
+#: admin/options.php:1771
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "使用 PublishPress Planner Pro，将通知发送到 Slack 频道"
+
+#: admin/options.php:1798
+#: admin/options.php:2351
+msgid "Pro Feature"
+msgstr "专业功能"
+
+#: admin/options.php:1799
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr "升级到 Revisions Pro 以解锁 Planner Notifications 集成。"
+
+#: admin/options.php:1800
+msgid "Customize notification content and recipients for each notification type."
+msgstr "为每种通知类型自定义通知内容和接收者。"
+
+#: admin/options.php:1824
+msgid "Some themes may block revision preview."
+msgstr "某些主题可能会阻止修订预览。"
+
+#: admin/options.php:1841
+msgid "Published Post Slug"
+msgstr "已发布的帖子别名"
+
+#: admin/options.php:1842
+msgid "Revision Slug"
+msgstr "修订别名"
+
+#: admin/options.php:1843
+msgid "Revision ID only"
+msgstr "仅修订 ID"
+
+#: admin/options.php:1858
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr "某些主题或插件可能需要修订别名或修订 ID 链接类型，以便正确加载模板和显示字段。"
+
+#: admin/options.php:1867
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr "修订预览参数通过常量定义配置：%s"
+
+#: admin/options.php:1874
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr "调整预览链接以使用 \"rv_preview\" 参数，而不是 \"preview\"。实验以查看哪个与您的主题最匹配。"
+
+#: admin/options.php:1878
+msgid "Some themes may require this setting for correct revision preview display."
+msgstr "某些主题可能需要此设置以正确显示修订预览。"
+
+#: admin/options.php:1897
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr "通常应启用此项，除非需要解决与其他插件的 postmeta 数据的冲突。"
+
+#: admin/options.php:1921
+#, php-format
+msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr "如果用户无法发布，则要求 %s 编辑他人的未发布帖子。"
+
+#: admin/options.php:1927
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to "
+"edit others' unpublished Posts."
+msgstr "如果用户无法发布，则要求 edit_others_drafts 能力以编辑他人的未发布帖子。"
+
+#: admin/options.php:1933
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr "如果特定帖子的权限限制或扩展对帖子的访问，则这些权限也应应用于其修订。"
+
+#: admin/options.php:1945
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr "Rank Math SEO 可能会阻止某些站点的修订更新。"
+
+#: admin/options.php:1952
+#: includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML 翻译管理"
+
+#: admin/options.php:1957
+msgid "Sync \"Needs Update\" flags"
+msgstr "同步 \"需要更新\" 标记"
+
+#: admin/options.php:1961
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr "对于任何翻译已更新（可能通过修订批准）且更新日期晚于其翻译的帖子，设置 \"需要更新\"。"
+
+#: admin/options.php:1971
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "显示 PublishPress 修订设置的描述性标题。"
+
+#: admin/options.php:1989
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr "插件设置、新修订内容和相关数据将被删除，但仅在最后一份修订 / 修订专业版被删除后。"
+
+#: admin/options.php:2010
+msgid "Unlock Pro Integrations"
+msgstr "解锁专业集成"
+
+#: admin/options.php:2011
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr "升级到专业版以获得最佳兼容性和及时的专业支持。"
+
+#: admin/options.php:2029
+#: admin/options.php:2282
+msgid "Admin"
+msgstr "admin"
+
+#: admin/options.php:2032
+#: admin/options.php:2280
+msgid "Builder"
+msgstr "构建器"
+
+#: admin/options.php:2035
+#: admin/options.php:2284
+msgid "Cache"
+msgstr "缓存"
+
+#: admin/options.php:2038
+msgid "E-Commerce"
+msgstr "电子商务"
+
+#: admin/options.php:2041
+#: admin/options.php:2290
+msgid "Fields"
+msgstr "字段"
+
+#: admin/options.php:2045
+msgid "Multilingual"
+msgstr "多语言"
+
+#: admin/options.php:2049
+#: admin/options.php:2286, fuzzy
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2052
+#: admin/options.php:2296
+msgid "Workflow"
+msgstr "工作流"
+
+#: admin/options.php:2134
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr "指定要在网络范围内控制哪些 PublishPress 修订设置。未选中的设置将在每个站点上单独控制。"
+
+#: admin/options.php:2180
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "在网络范围内控制 \"%s\""
+
+#: admin/options.php:2207
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: admin/options.php:2208
+msgid "Revert to Defaults"
+msgstr "恢复默认设置"
+
+#: admin/options.php:2210
+msgid ""
+"All settings in this form (including those on unselected tabs) will be "
+"reset to DEFAULTS.  Are you sure?"
+msgstr "此表单中的所有设置（包括未选择的选项卡上的设置）将重置为默认值。您确定吗？"
+
+#: admin/options.php:2288, fuzzy
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2292, fuzzy
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2294, fuzzy
+msgid "Community"
+msgstr "Community"
+
+#: admin/options.php:2306, fuzzy
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2311, fuzzy
+msgid "Supported"
+msgstr "Supported"
+
+#: admin/options.php:2314
+#: admin/options.php:2368, fuzzy
+msgid "Active Plugin"
+msgstr "Active Plugin"
+
+#: admin/options.php:2326, fuzzy
+msgid "Supported by PublishPress Revisions"
+msgstr "Supported by PublishPress Revisions"
+
+#: admin/options.php:2328, fuzzy
+msgid "Supported by Revisions Pro"
+msgstr "Supported by Revisions Pro"
+
+#: admin/options.php:2341
+msgid "Integration Active"
+msgstr "集成已激活"
+
+#: admin/options.php:2343
+msgid "Upgrade to Pro to enable this integration"
+msgstr "升级到 Pro 以启用此集成"
+
+#: admin/options.php:2352
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "解锁 %s 集成以增强您的修订解决方案。"
+
+#: admin/options.php:2368
+msgid "Active Plugin Integration"
+msgstr "活动插件集成"
+
+#: admin/options.php:2378
+msgid "Supported Plugin Integration"
+msgstr "支持的插件集成"
+
+#: admin/options.php:2388
+msgid "Supported Plugin"
+msgstr "支持的插件"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "现在"
+
+#: admin/post-edit-block-ui_rvy.php:209
+#: admin/post-edit_rvy.php:343
+msgid "Author"
+msgstr "作者"
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(待批准)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid "Save changes to continue."
+msgstr "保存更改以继续。"
+
+#: admin/post-editor-workflow-ui_rvy.php:39
+msgid "Please save changes to the revision before submitting it."
+msgstr "请在提交之前保存对修订的更改。"
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+msgid "Preview this Revision"
+msgstr "预览此修订"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Publish"
+msgstr "查看 / 发布"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Approve"
+msgstr "查看 / 通过"
+
+#: admin/post-editor-workflow-ui_rvy.php:82
+msgid "View / Moderate saved revision"
+msgstr "查看 / 审核已保存的修订"
+
+#: admin/post-editor-workflow-ui_rvy.php:85
+msgid "View / Submit saved revision"
+msgstr "查看 / 提交已保存的修订"
+
+#: admin/post-editor-workflow-ui_rvy.php:94
+msgid "View unsaved changes"
+msgstr "查看未保存的更改"
+
+#: admin/post-editor-workflow-ui_rvy.php:98
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s 修订编辑"
+
+#: admin/post-editor-workflow-ui_rvy.php:109
+msgid "Revision Submission Error"
+msgstr "修订提交错误"
+
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:234
+#: front_rvy.php:536
+msgid "Edit"
+msgstr "编辑"
+
+#: admin/post-editor-workflow-ui_rvy.php:132
+msgid "Approve and Publish"
+msgstr "批准并发布"
+
+#: admin/post-editor-workflow-ui_rvy.php:137
+#: rvy_init-functions.php:308
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+msgid "Update in progress..."
+msgstr "更新中..."
+
+#: admin/post-editor-workflow-ui_rvy.php:141
+msgid "Approve and Schedule"
+msgstr "批准并安排"
+
+#: admin/post-editor-workflow-ui_rvy.php:174
+#: rvy_init-functions.php:297
+#: rvy_init-functions.php:315
+#: rvy_init-functions.php:333
+#: rvy_init-functions.php:353
+#: rvy_init-functions.php:370
+#: rvy_init-functions.php:387
+#: rvy_init-functions.php:500
+msgid "Update Revision"
+msgstr "更新修订"
+
+#: admin/post-editor-workflow-ui_rvy.php:240
+#, php-format
+msgid "Update post before creating %s."
+msgstr "在创建 %s 之前更新帖子。"
+
+#: admin/post-editor-workflow-ui_rvy.php:247
+msgid "Error Creating Revision"
+msgstr "创建修订时出错"
+
+#: admin/post-editor-workflow-ui_rvy.php:263
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "对于自定义字段更改，请编辑已安排的 %s。"
+
+#: admin/post-edit_rvy.php:28
+#: admin/post-edit_rvy.php:141
+msgid "Current Time"
+msgstr "当前时间"
+
+#: admin/post-edit_rvy.php:60
+#: front_rvy.php:572
+msgid "Delete"
+msgstr "删除"
+
+#: admin/post-edit_rvy.php:168
+msgid "View revision in progress"
+msgstr "查看进行中的修订"
+
+#: admin/post-edit_rvy.php:191
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "将此修订与已发布的副本或其他修订进行比较"
+
+#: admin/post-edit_rvy.php:226
+msgid "View / moderate saved revision"
+msgstr "查看 / 审核已保存的修订"
+
+#: admin/post-edit_rvy.php:229
+msgid "View saved revision"
+msgstr "查看已保存的修订"
+
+#: admin/revision-action_rvy.php:510
+#: admin/revision-action_rvy.php:596
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] 修订批准通知"
+
+#: admin/revision-action_rvy.php:511
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "对 %1$s \"%2$s\" 的修订已被批准。"
+
+#: admin/revision-action_rvy.php:515
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "提交者为 %1$s。"
+
+#: admin/revision-action_rvy.php:519
+#: admin/revision-action_rvy.php:605
+#, php-format
+msgid "It will be published on %s"
+msgstr "将于 %s 发布"
+
+#: admin/revision-action_rvy.php:523
+#: admin/revision-action_rvy.php:609
+msgid "Preview it here: "
+msgstr "在这里预览： "
+
+#: admin/revision-action_rvy.php:526
+#: admin/revision-action_rvy.php:612
+msgid "Editor: "
+msgstr "编辑： "
+
+#: admin/revision-action_rvy.php:528
+#: admin/revision-action_rvy.php:614
+#: admin/revision-action_rvy.php:1606
+#: admin/revision-action_rvy.php:1637
+#: admin/revision-action_rvy.php:1703
+msgid "View it online: "
+msgstr "在线查看： "
+
+#: admin/revision-action_rvy.php:597
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "您为 %1$s \"%2$s\" 提交的修订已被批准。"
+
+#: admin/revision-action_rvy.php:1598
+#: admin/revision-action_rvy.php:1626
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s 发布通知"
+
+#: admin/revision-action_rvy.php:1599
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr "您为 %1$s \"%2$s\" 提交的计划修订已发布。"
+
+#: admin/revision-action_rvy.php:1627
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "您 %1$s \"%2$s\" 的计划修订已发布。"
+
+#: admin/revision-archive_rvy.php:11
+msgid "Revision for:"
+msgstr "修订对象："
+
+#: admin/revision-archive_rvy.php:90
+msgid "Search Revisions"
+msgstr "搜索修订"
+
+#: admin/revision-queue_rvy.php:9
+#: admin/revision-queue_rvy.php:21
+msgid "You are not allowed to manage revisions."
+msgstr "您没有权限管理修订。"
+
+#: admin/revision-queue_rvy.php:13
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s 和 %s 都已禁用。请查看修订 > 设置。"
+
+#: admin/revision-queue_rvy.php:82
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s 修订已提交。"
+
+#: admin/revision-queue_rvy.php:83
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s 修订被拒绝。"
+
+#: admin/revision-queue_rvy.php:84
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s 修订已批准。"
+
+#: admin/revision-queue_rvy.php:85
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s 修订未安排。"
+
+#: admin/revision-queue_rvy.php:86
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s 修订已发布。"
+
+#: admin/revision-queue_rvy.php:156
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (帖子作者: %s)"
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid "New Revisions %s"
+msgstr "新的修订 %s"
+
+#: admin/revision-ui_rvy.php:45
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "出版商将被通知（但无法在此处选择）。"
+
+#: admin/revision-ui_rvy.php:47
+msgid "No email notifications will be sent."
+msgstr "将不发送电子邮件通知。"
+
+#: admin/revision-ui_rvy.php:97
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s （当前）"
+
+#: admin/revision-ui_rvy.php:101
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s （自动保存）"
+
+#: admin/revision-ui_rvy.php:112
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>（发布日期: %2$s）</span>"
+
+#: admin/revision-ui_rvy.php:114
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>（请求发布时间: %2$s）</span>"
+
+#: admin/revision-ui_rvy.php:287
+msgid "The revision will be deleted. Are you sure?"
+msgstr "该修订将被删除。您确定吗？"
+
+#: admin/revision-ui_rvy.php:380
+msgid "Modified Date"
+msgstr "修改日期"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "预览修订中"
+
+#: admin/RevisionEditSubmitMetabox.php:180, fuzzy
+#. translators: Publish box date formt, see http://php.net/date
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "发布 %son approval%s"
+
+#: admin/revisions.php:20
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>注意：</strong> 要可视化显示修订，请将以下代码添加到 foliopress-wysiwyg.php：<br "
+"/>&nbsp;&nbsp;if ( strpos( $_SERVER['REQUEST_URI'], "
+"'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:61
+msgid "Revision of this post is not allowed."
+msgstr "不允许该帖子的修订。"
+
+#: admin/revisions.php:64
+msgid "No revision specified."
+msgstr "未指定修订。"
+
+#: admin/revisions.php:72
+msgid "Past"
+msgstr "过去"
+
+#: admin/revisions.php:135
+#, php-format
+msgid "Revisions of %s"
+msgstr "%s 的修订"
+
+#: admin/revisions.php:165
+msgid "The requested revision does not exist."
+msgstr "请求的修订不存在。"
+
+#: admin/revisions.php:253
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:274
+#, php-format
+msgid "no %s revisions available."
+msgstr "没有 %s 个修订可用。"
+
+#: classes/PublishPress/Revisionary.php:107
+#: includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "高级自定义字段"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "与 ACF 自定义字段的兼容性。"
+
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:200
+msgid "Store custom fields with revisions"
+msgstr "存储带修订的自定义字段"
+
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:201
+msgid "Display custom field changes"
+msgstr "显示自定义字段的更改"
+
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:202
+msgid "Update custom fields on revision publication"
+msgstr "在修订发布时更新自定义字段"
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF 扩展"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "支持 ACFE 数据模型。"
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "支持 ACFE single_meta 数据类型"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "在比较屏幕上正确显示字段"
+
+#: classes/PublishPress/Revisionary.php:136
+#: includes/CoreAdmin.php:200, fuzzy
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "与 Beaver Builder 的前端编辑器集成。"
+
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:156
+#: classes/PublishPress/Revisionary.php:171
+msgid "Front end Revision submission"
+msgstr "前端修订提交"
+
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:172
+msgid "Front end Revision editing"
+msgstr "前端修订编辑"
+
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:173
+msgid "Revision preview and redirects"
+msgstr "修订预览和重定向"
+
+#: classes/PublishPress/Revisionary.php:151, fuzzy
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "与 Divi Builder 和 Divi 主题集成。"
+
+#: classes/PublishPress/Revisionary.php:166
+#: includes/CoreAdmin.php:198, fuzzy
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:167
+msgid "Integration with Elementor's front end editor."
+msgstr "与Elementor的前端编辑器集成。"
+
+#: classes/PublishPress/Revisionary.php:181, fuzzy
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:182
+msgid "Compatibility with Nitro Pack cache."
+msgstr "与Nitro Pack缓存的兼容性。"
+
+#: classes/PublishPress/Revisionary.php:186
+msgid "Clear cache on revision creation"
+msgstr "在创建修订时清除缓存"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Trigger update on revision approval"
+msgstr "在修订批准时触发更新"
+
+#: classes/PublishPress/Revisionary.php:195
+#: includes/CoreAdmin.php:202, fuzzy
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:196
+msgid "Compatibility with Pods custom fields."
+msgstr "与Pods自定义字段的兼容性。"
+
+#: classes/PublishPress/Revisionary.php:210, fuzzy
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:211
+msgid "Compatibility with Polylang translation."
+msgstr "与Polylang翻译的兼容性。"
+
+#: classes/PublishPress/Revisionary.php:215
+msgid "Revisions carry over Polylang data"
+msgstr "修订携带Polylang数据"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Translation retained on Revision approval"
+msgstr "在修订批准时保留翻译"
+
+#: classes/PublishPress/Revisionary.php:224, fuzzy
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:225
+msgid "PublishPress Planner Integration."
+msgstr "PublishPress Planner集成。"
+
+#: classes/PublishPress/Revisionary.php:229
+msgid "Planner Notifications for revision actions"
+msgstr "修订操作的Planner通知"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "Revision schedule shown in Calendar"
+msgstr "日历中显示修订计划"
+
+#: classes/PublishPress/Revisionary.php:238
+#: includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:239
+msgid "Revision submission and approval for products."
+msgstr "产品的修订提交和批准。"
+
+#: classes/PublishPress/Revisionary.php:243
+msgid "Product revisions"
+msgstr "产品修订"
+
+#: classes/PublishPress/Revisionary.php:244
+msgid "Compatible with Product Variations"
+msgstr "与产品变体的兼容性"
+
+#: classes/PublishPress/Revisionary.php:245
+msgid "Priority on ongoing compatibility"
+msgstr "对持续兼容性的优先级"
+
+#: classes/PublishPress/Revisionary.php:253
+#: includes/CoreAdmin.php:204, fuzzy
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:254
+msgid "Multilingual revisioning with WPML."
+msgstr "使用 WPML 的多语言修订。"
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Language-specific revisions"
+msgstr "特定语言的修订"
+
+#: classes/PublishPress/Revisionary.php:259
+msgid "Translation Management integration"
+msgstr "翻译管理集成"
+
+#: classes/PublishPress/Revisionary.php:267, fuzzy
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:268, fuzzy
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "Prevent indexing of revisions"
+msgstr "防止修订被索引"
+
+#: classes/PublishPress/Revisionary.php:273
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "与 Yoast SEO + Elementor 的兼容性"
+
+#: classes/PublishPress/Revisionary.php:274
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "与 Yoast SEO 字段比较修订"
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "修订状态"
+
+#: front_rvy.php:487
+#, php-format
+msgid "%sManage%s"
+msgstr "%s管理%s"
+
+#: front_rvy.php:498
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%s比较%s%s查看已发布文章%s"
+
+#: front_rvy.php:510
+#: front_rvy.php:525
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%s查看已发布文章%s"
+
+#: front_rvy.php:600
+#: rvy_init-functions.php:307
+#: rvy_init-functions.php:363
+msgid "Submit"
+msgstr "提交"
+
+#: front_rvy.php:612
+#: front_rvy.php:614
+#: front_rvy.php:662
+#: front_rvy.php:664
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "这是一个 %s。 %s %s %s"
+
+#: front_rvy.php:630
+msgid "Decline"
+msgstr "拒绝"
+
+#: front_rvy.php:643
+#: front_rvy.php:645
+#, php-format
+msgid "This is a %s (requested publish date: %s). %s %s %s"
+msgstr "这是一个 %s（请求的发布日期：%s）。 %s %s %s"
+
+#: front_rvy.php:649
+#: front_rvy.php:651
+#, php-format
+msgid "Revision status: %s (requested publish date: %s) %s %s %s"
+msgstr "修订状态：%s（请求的发布日期：%s） %s %s %s"
+
+#: front_rvy.php:668
+#: front_rvy.php:670
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "修订状态：%s %s %s %s"
+
+#: front_rvy.php:683
+#: rvy_init-functions.php:470
+msgid "Publish Now"
+msgstr "立即发布"
+
+#: front_rvy.php:686
+#: front_rvy.php:688
+#, php-format
+msgid "This is a %s (for publication on %s). %s %s %s"
+msgstr "这是一个 %s（在 %s 上发布）。 %s %s %s"
+
+#: front_rvy.php:706
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "修订已被批准，并且现在在网站上生效。 %s"
+
+#: front_rvy.php:707
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "这是当前修订。 %s"
+
+#: front_rvy.php:724
+msgid "Restore"
+msgstr "恢复"
+
+#: front_rvy.php:728
+#: front_rvy.php:730
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "这是一个过去的修订（来自 %s）。 %s %s"
+
+#: functions.php:532
+msgid "Scheduled Rev."
+msgstr "计划修订"
+
+#: functions.php:537
+#: functions.php:542
+msgid "Submitted Rev."
+msgstr "已提交修订"
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr "您正在使用 PublishPress Revisions Free。专业版具有更多功能和支持。 %s升级到专业版%s"
+
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "升级到 Revisions Pro"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr "升级到 PublishPress Revisions Pro，以与这些插件的关键功能集成："
+
+#: includes/CoreAdmin.php:199, fuzzy
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner：自定义通知"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "插件集成详情"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "需要修订支持吗？"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr "如果您需要帮助或有新的功能请求，请告诉我们。"
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "请求支持"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "详细文档也可以在插件网站上找到。"
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "查看知识库"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s 查询在 %2$s 秒内完成。%3$s MB 已使用。"
+
+#: revision-creation_rvy.php:216
+msgid "Could not insert revision into the database"
+msgstr "无法将修订插入数据库"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s 已更新"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s 更新了 %2$s 的 %3$s \"%4$s\"。"
+
+#: revision-workflow_rvy.php:174
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr "%1$s 提交了 %2$s \"%3$s\" 的更改。您可以查看这些更改以便可能发布："
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "预览和审批："
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "新修订："
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "编辑 %s："
+
+#: revisionary.php:120
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>此插件可以被删除。</strong>"
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "每 2 分钟"
+
+#: rvy_init-functions.php:287
+#: rvy_init-functions.php:299
+msgid "Working Copy"
+msgstr "工作副本"
+
+#: rvy_init-functions.php:288
+msgid "Create Working Copy"
+msgstr "创建工作副本"
+
+#: rvy_init-functions.php:290
+msgid "Creating Working Copy..."
+msgstr "正在创建工作副本..."
+
+#: rvy_init-functions.php:291
+msgid "Working Copy ready"
+msgstr "工作副本已准备好"
+
+#: rvy_init-functions.php:292
+#: rvy_init-functions.php:310
+msgid "Approve Changes"
+msgstr "批准更改"
+
+#: rvy_init-functions.php:294
+#: rvy_init-functions.php:312
+msgid "Approving Changes..."
+msgstr "正在批准更改..."
+
+#: rvy_init-functions.php:295
+#: rvy_init-functions.php:313
+#: rvy_init-functions.php:331
+msgid "Publish Changes"
+msgstr "发布更改"
+
+#: rvy_init-functions.php:296
+#: rvy_init-functions.php:314
+#: rvy_init-functions.php:332
+#: rvy_init-functions.php:352
+#: rvy_init-functions.php:369
+#: rvy_init-functions.php:386
+msgid "Save Revision"
+msgstr "保存修订"
+
+#: rvy_init-functions.php:298
+msgid "Working Copies"
+msgstr "工作副本"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "工作副本 <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:305
+#: rvy_init-functions.php:317
+msgid "Change Request"
+msgstr "变更请求"
+
+#: rvy_init-functions.php:306
+msgid "Submit Change Request"
+msgstr "提交变更请求"
+
+#: rvy_init-functions.php:309
+msgid "Changes Submitted"
+msgstr "已提交更改"
+
+#: rvy_init-functions.php:316
+msgid "Change Requests"
+msgstr "变更请求"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "变更请求 <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:319
+msgid "Enable Change Requests"
+msgstr "启用变更请求"
+
+#: rvy_init-functions.php:324
+#: rvy_init-functions.php:335
+msgid "Scheduled Change"
+msgstr "计划变更"
+
+#: rvy_init-functions.php:325
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:329
+#: rvy_init-functions.php:330
+msgid "Schedule Changes"
+msgstr "安排变更"
+
+#: rvy_init-functions.php:328
+msgid "Changes are Scheduled."
+msgstr "变更已安排。"
+
+#: rvy_init-functions.php:334
+msgid "Scheduled Changes"
+msgstr "已安排的变更"
+
+#: rvy_init-functions.php:336
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "已安排 <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:344
+msgid "Unsubmitted Revision"
+msgstr "未提交的修订"
+
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:346
+msgid "Create Revision"
+msgstr "创建修订"
+
+#: rvy_init-functions.php:347
+msgid "Creating Revision..."
+msgstr "正在创建修订..."
+
+#: rvy_init-functions.php:348
+msgid "The Revision is ready to edit."
+msgstr "修订已准备好进行编辑。"
+
+#: rvy_init-functions.php:348
+msgid "Revision ready to edit."
+msgstr "修订准备好进行编辑。"
+
+#: rvy_init-functions.php:349
+#: rvy_init-functions.php:366
+#: rvy_init-functions.php:383
+msgid "Approve Revision"
+msgstr "批准修订"
+
+#: rvy_init-functions.php:351
+#: rvy_init-functions.php:368
+#: rvy_init-functions.php:385
+msgid "Publish Revision"
+msgstr "发布修订"
+
+#: rvy_init-functions.php:354
+msgid "Unsubmitted Revisions"
+msgstr "未提交的修订"
+
+#: rvy_init-functions.php:355
+msgid "Not Submitted"
+msgstr "未提交"
+
+#: rvy_init-functions.php:356
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "未提交 <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:361
+msgid "Submitted Revision"
+msgstr "提交的修订"
+
+#: rvy_init-functions.php:362
+#: rvy_init-functions.php:503
+msgid "Submit Revision"
+msgstr "提交修订"
+
+#: rvy_init-functions.php:365
+msgid "The Revision is Submitted"
+msgstr "修订已提交"
+
+#: rvy_init-functions.php:365
+msgid "Revision Submitted"
+msgstr "修订已提交"
+
+#: rvy_init-functions.php:371
+msgid "Submitted Revisions"
+msgstr "提交的修订"
+
+#: rvy_init-functions.php:372
+msgid "Submitted"
+msgstr "已提交"
+
+#: rvy_init-functions.php:373
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "已提交 <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:378
+msgid "Scheduled Revision"
+msgstr "计划修订"
+
+#: rvy_init-functions.php:379
+msgid "Schedule Revision"
+msgstr "计划修订"
+
+#: rvy_init-functions.php:380
+msgid "Schedule"
+msgstr "计划"
+
+#: rvy_init-functions.php:382
+msgid "The Revision is Scheduled"
+msgstr "修订已计划"
+
+#: rvy_init-functions.php:382
+msgid "Revision Scheduled"
+msgstr "修订已计划"
+
+#: rvy_init-functions.php:388
+msgid "Scheduled Revisions"
+msgstr "计划的修订"
+
+#: rvy_init-functions.php:389
+msgid "Scheduled"
+msgstr "已计划"
+
+#: rvy_init-functions.php:390
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "已计划 <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:490
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%s我的副本和更改%s(%s)"
+
+#: rvy_init-functions.php:491
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%s我的修订%s(%s)"
+
+#: rvy_init-functions.php:493
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%s对我的帖子进行的修订%s(%s)</span>"
+
+#: rvy_init-functions.php:498
+msgid "Post Author"
+msgstr "帖子作者"
+
+#: rvy_init-functions.php:499
+msgid "Published Post"
+msgstr "已发布的帖子"
+
+#: rvy_init-functions.php:504
+msgid "Submit Changes"
+msgstr "提交更改"
+
+#: rvy_init-functions.php:708
+msgid "Revisor"
+msgstr "修订者"
+
+#: rvy_init-functions.php:811
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post."
+msgstr "创建此帖子的修订需要 unfiltered_html 权限。"
+
+#: rvy_init-functions.php:1263
+msgid "Revision Workflow"
+msgstr "修订工作流程"
+
+#: admin/admin_rvy.php:310
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "修订"
+
+#: admin/class-list-table-archive.php:1161
+#: admin/class-list-table_rvy.php:1918
+#: admin/post-edit_rvy.php:190
+#: admin/post-edit_rvy.php:254
+#: admin/post-edit_rvy.php:268
+msgctxt "revisions"
+msgid "Compare"
+msgstr "比较"
+
+#: admin/class-list-table_rvy.php:1926
+msgctxt "revisions"
+msgid "Decline"
+msgstr "拒绝"
+
+#: admin/history_rvy.php:1130, fuzzy
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/options.php:2144
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/revision-queue_rvy.php:133
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "的 %s \"%s\""
+
+#: admin/revision-queue_rvy.php:136
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "的 %s"
+
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "的 \"%s\""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "由 %s "
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "在 %s"
+
+#: admin/revision-ui_rvy.php:78, fuzzy
+#. translators: revision date format, see http://php.net/date
+msgctxt "revision date format"
+msgid "j F, Y @ g:i a"
+msgstr "j F, Y @ g:i a"
+
+#: admin/revision-ui_rvy.php:107, fuzzy
+msgctxt "revision schedule date format"
+msgid "j F, Y, g:i a"
+msgstr "j F, Y, g:i a"
+
+#: rvy_init-functions.php:720
+msgctxt "User role"
+msgid "Revisor"
+msgstr "修订者"

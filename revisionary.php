@@ -5,7 +5,7 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 3.8.0
+ * Version: 3.8.1
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Min WP Version: 5.5
@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '3.8.0';
+$pp_revisions_version = '3.8.1';
 
 global $wp_version;
 
@@ -140,7 +140,7 @@ if (false === $revisionary_loaded_by_pro) {
     }
 }
 
-if ( isset($_SERVER['SCRIPT_NAME']) && strpos( esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/index-extra.php' ) || strpos( esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/update.php' ) ) {
+if (isset($_SERVER['SCRIPT_NAME']) && (strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/index-extra.php') || strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/update.php'))) {
 	return;
 }
 

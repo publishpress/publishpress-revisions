@@ -857,6 +857,22 @@ class Revisionary
 		if (rvy_in_revision_workflow($revision)) {
 			if (empty($revision->comment_count)) {
 				if ($main_post_id = get_post_meta($revision->ID, '_rvy_base_post_id', true)) {
+					if ('revision' == get_post_field('post_type', $main_post_id)) {
+						if ('inherit' == get_post_field('post_status', $main_post_id)) {
+							$_main_post_id = get_post_field('post_parent', $main_post_id);
+						
+						    if ($_main_post_id != $revision->ID) {
+						      $main_post_id = $_main_post_id;  
+						    }
+						}
+				
+						$post_type = get_post_field('post_type', $main_post_id);
+				
+						if (!$post_type || ('revision' == $post_type)) {
+							return;
+						}
+					}
+					
 					if ($main_post_id != $revision->ID) {
 						// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 						$wpdb->update($wpdb->posts, ['comment_count' => $main_post_id], ['ID' => $revision->ID]);
