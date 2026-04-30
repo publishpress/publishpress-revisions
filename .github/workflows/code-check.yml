@@ -2,7 +2,20 @@ name: Code Checks (PHP Compatibility, Lint, VIP)
 permissions:
   contents: read
 on:
+  push:
+    branches:
+      - 'master'
+      - 'development'
+      - 'release/*'
+      - 'release-*'
+
+  pull_request:
+    branches:
+      - '*'
+
   workflow_call:
+
+  workflow_dispatch:
 
 env:
   DEV_SCRIPTS_DIR: ${{ github.workspace }}/vendor/publishpress/dev-workspace/scripts
