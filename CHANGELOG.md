@@ -1,6 +1,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[3.8.1-beta]
+- Fixed : Revisions failed to publish under some conditions
+- Fixed : Compat - Elementor - Revision previews were not formatted correctly under some conditions
+- Fixed : Compat - PublishPress Permissions - Create Revision Permissions also granted editing access under some configurations (also requires Permissions 4.8.2)
+- Fixed : Compat - PublishPress Statuses Pro - Approve button in revision editor submits revision instead of approving if Statuses Pro is active
+- Fixed : PHP Warning for undefined server variable SCRIPT_NAME
+
 [3.8.0] - 20 Apr 2026
 - Feature : More view filters on Past Revisions screen
 - Feature : More view filters on New Revisions screen
