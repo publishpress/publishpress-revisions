@@ -1,23 +1,12 @@
 name: Deploy assets/readme to WordPress.org
+permissions:
+  contents: read
 on:
   push:
     branches:
       - 'master'
 
-  workflow_dispatch:
-
 jobs:
   deploy-to-trunk:
-    name: Deploy assets/readme to trunk
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-
-      - name: WordPress.org plugin asset/readme update
-        uses: 10up/action-wordpress-plugin-asset-update@stable
-        env:
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SLUG: revisionary
-          IGNORE_OTHER_FILES: true
+    # v2.0.0
+    uses: publishpress/github-workflows/.github/workflows/deploy-free-assets.yml@0f5e3a3488accd905de7b26e9d57364e303837f5
