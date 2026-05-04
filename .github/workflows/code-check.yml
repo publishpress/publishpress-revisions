@@ -1,8 +1,13 @@
-name: Code checks
+name: Code Checks (PHP Compatibility, Lint, VIP)
+permissions:
+  contents: read
 on:
   push:
     branches:
       - 'master'
+      - 'development'
+      - 'release/*'
+      - 'release-*'
 
   pull_request:
     branches:
@@ -11,41 +16,42 @@ on:
   workflow_call:
 
   workflow_dispatch:
-    inputs:
-      tmate_enabled:
-        type: boolean
-        description: 'Enable "tmate" for debugging'
-        required: false
-        default: false
+
+env:
+  DEV_SCRIPTS_DIR: ${{ github.workspace }}/vendor/publishpress/dev-workspace/scripts
+
 jobs:
   check:
-    name: Check the code
+    name: Run code checks
     runs-on: ubuntu-latest
     steps:
-      - name: Setup tmate session for Debugging, if inputs.tmate_enabled is true
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ inputs.tmate_enabled }}
-        timeout-minutes: 10
+      - name: Checkout repository
+        # actions/checkout@v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Set up PHP
+        # shivammathur/setup-php@2.37.0
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f
         with:
-          detached: true
+          php-version: 8.3
+          extensions: mbstring,xml,curl,zip,intl,bcmath,gettext,mysqli,phar,gd,iconv,yaml
 
-      - name: Checkout code
-        uses: actions/checkout@master
-
-      - name: Create .env file
+      - name: Create root .env file
         run: |
           cp $GITHUB_WORKSPACE/.env.example $GITHUB_WORKSPACE/.env
 
-      - name: Prepare composer
-        run: |
-          $GITHUB_WORKSPACE/dev-workspace/run composer validate
-          $GITHUB_WORKSPACE/dev-workspace/run composer install
+      - name: Validate Composer configuration
+        run: composer validate
 
-      - name: Show version of tools inside the dev-workspace
-        run: |
-          $GITHUB_WORKSPACE/dev-workspace/run composer info:versions
+      - name: Install Composer dependencies
+        run: composer install
 
-      - name: Run Lint check
-        run: |
-          $GITHUB_WORKSPACE/dev-workspace/run composer check:lint
+      - name: Show dev-workspace tool versions
+        run: composer info:version
 
+      - name: Add dev-workspace scripts to PATH
+        run: echo "$DEV_SCRIPTS_DIR" >> "$GITHUB_PATH"
+
+      - name: Run PHP lint
+        run: |
+          composer lint:php

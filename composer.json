@@ -25,7 +25,8 @@
       "phpstan/extension-installer": true,
       "php-http/discovery": true,
       "publishpress/dev-workspace": true
-    }
+    },
+    "process-timeout": 0
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -33,7 +34,7 @@
     "php": ">=7.2.5"
   },
   "require-dev": {
-    "publishpress/dev-workspace": "dev-development"
+    "publishpress/dev-workspace": "^1.2"
   },
   "scripts": {
       "check:lint": "phplint",
