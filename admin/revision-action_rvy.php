@@ -632,13 +632,20 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 
 		$type_obj = get_post_type_object($post->post_type);
 
+		$edit_redirect = !empty($scheduled) && (
+			(!empty($_REQUEST['rvy_redirect']) && ('edit' == sanitize_key($_REQUEST['rvy_redirect'])))
+			|| defined('REVISIONARY_SCHEDULE_CONTINUE_EDITING') 
+			|| apply_filters('revisionary_revision_schedule_continue_editing', false, $revision->ID)
+		);
+
 		if ( empty( $_REQUEST['rvy_redirect'] ) && ! $scheduled && is_post_type_viewable($type_obj) ) {
 			$redirect = (rvy_get_option('show_current_revision_bar'))
 			? add_query_arg('mark_current_revision', 1, $published_url)
 			: $published_url;
 			
 			$redirect = add_query_arg('rvy_approval', 1, $redirect);
-		} elseif ( !empty($_REQUEST['rvy_redirect']) && 'edit' == esc_url_raw($_REQUEST['rvy_redirect']) ) {
+
+		} elseif ($edit_redirect) {
 			$redirect = add_query_arg( $last_arg, "post.php?post=$revision_id&action=edit" );
 
 		} elseif (is_post_type_viewable($type_obj)) {
