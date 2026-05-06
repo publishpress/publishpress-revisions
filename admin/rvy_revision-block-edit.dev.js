@@ -3,7 +3,7 @@
 *
 * By Kevin Behrens
 *
-* Copyright 2025, PublishPress
+* Copyright 2026, PublishPress
 */
 jQuery(document).ready(function ($) {
 	// Initialization operations to perform once React loads the relevant elements
@@ -72,13 +72,6 @@ jQuery(document).ready(function ($) {
             $('.rvy-creation-ui').remove();
         }
 
-        /*
-        if ($('.rvy-creation-ui').length || !$('div.editor-sidebar__panel .editor-post-status').length) {
-            $('button.revision-approve').html('<span class="dashicons dashicons-yes"></span>' + approveCaption);
-            return;
-        }
-        */
-
         if (approveCaption) {
             if ($('button.rvy-direct-approve:visible').length) {
                 $('button.rvy-direct-approve:visible span.rvy-caption').html(approveCaption);
@@ -91,30 +84,25 @@ jQuery(document).ready(function ($) {
 
         var refSelectorUseParent = false;
 
-		// @todo: legacy support?
-        //if ($('div.edit-post-sidebar div.edit-post-post-status div.editor-post-panel__row:last').length) {
-        //    var refSelector = 'div.edit-post-sidebar div.edit-post-post-status div.editor-post-panel__row:last';
-        //} else {
-            if ($('div.edit-post-post-schedule').length) {
-                var refSelector = 'div.edit-post-post-schedule';
-	        } else {
-	            var refSelector = 'div.edit-post-post-visibility';
-	
-	            if (!$(refSelector).length) {
-                    if ($('button.editor-post-trash').length) {
-                        refSelector = 'button.editor-post-trash';
-                        refSelectorUseParent = true;
+        if ($('div.edit-post-post-schedule').length) {
+            var refSelector = 'div.edit-post-post-schedule';
+        } else {
+            var refSelector = 'div.edit-post-post-visibility';
+
+            if (!$(refSelector).length) {
+                if ($('button.editor-post-trash').length) {
+                    refSelector = 'button.editor-post-trash';
+                    refSelectorUseParent = true;
+                } else {
+                    // Gutenberg 18.5
+                    if ($('div.editor-post-panel__section').length) {
+                        refSelector = 'div.editor-post-panel__section';
                     } else {
-                        // Gutenberg 18.5
-                        if ($('div.editor-post-panel__section').length) {
-                            refSelector = 'div.editor-post-panel__section';
-                        } else {
-                            refSelector = 'div.edit-post-post-status h2';
-                        }
+                        refSelector = 'div.edit-post-post-status h2';
                     }
-	            }
-	        }
-        //}
+                }
+            }
+        }
 
         if (refSelectorUseParent) {
             var foundUIloc = $(refSelector).parent().length;
@@ -414,10 +402,6 @@ jQuery(document).ready(function ($) {
 		return false;
 	});
 	
-	function RvyGetRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
-
     function rvySubmitCopy() {
         var revisionaryCreateDone = function () {
             if (wp.data.select('core/editor').isEditedPostDirty()) {
