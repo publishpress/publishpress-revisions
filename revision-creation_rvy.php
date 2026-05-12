@@ -107,7 +107,7 @@ class RevisionCreation {
 	}
 
 	private function insert_post($data, $post_id, $post_status, $args) {
-		global $wpdb;
+		global $wpdb, $revisionary;
 
 		$data['post_status'] = apply_filters('revisionary_copy_post_status', $post_status, $post_id);
 
@@ -118,6 +118,26 @@ class RevisionCreation {
 
 		} elseif (!empty($base_post) && !empty($base_post->post_mime_type) && rvy_is_revision_status($base_post->post_mime_type)) {
 			$post_id = $base_post->comment_count;
+		}
+
+		$enabled_fields = $revisionary->enabled_fields_copy;
+
+		$disabled_fields = array_fill_keys(
+			['ID', 'comment_count', 'post_name', 'guid'], 
+			true
+		);
+
+		if (is_array($enabled_fields)) {
+			$data = array_diff_key(
+				$data,
+				array_filter(
+					$enabled_fields, 
+					function($val) {
+						return !(is_null($val) || ($val === false));
+					}
+				),
+				$disabled_fields
+			);
 		}
 
 		$data['post_name'] = wp_unique_post_slug($base_post->post_name, $post_id, $post_status, $base_post->post_type, $base_post->post_parent);
@@ -135,7 +155,19 @@ class RevisionCreation {
 
 		// If term selections are not posted for revision, store current published terms
 		revisionary_copy_terms($post_id, $copy_id);
-		revisionary_copy_postmeta($post_id, $copy_id);
+
+		if (is_array($enabled_fields)) {
+			$skip_post_meta = array_filter(
+				$enabled_fields, 
+				function($val) {
+					return !(is_null($val) || ($val === false));
+				}
+			);
+		} else {
+			$skip_post_meta = [];
+		}
+
+		revisionary_copy_postmeta($post_id, $copy_id, compact('skip_post_meta'));
 
 		if ($post_id != $copy_id) {
 			rvy_update_post_meta($copy_id, '_rvy_source_post_id', $post_id);

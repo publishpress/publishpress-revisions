@@ -29,6 +29,9 @@ class Revisionary
 	var $enabled_post_types_copy = [];
 	var $hidden_post_types_copy = [];
 
+	var $enabled_fields = true;
+	var $enabled_fields_copy = true;
+
 	var $post_edit_ui;
 
 	// minimal config retrieval to support pre-init usage by WP_Scoped_User before text domain is loaded
@@ -81,8 +84,10 @@ class Revisionary
 		}
 
 		$this->setPostTypes();
+		$this->setFields();
 		$this->setPostTypesArchive();
 		$this->setPostTypesCopy();
+		$this->setFieldsCopy();
 
 		rvy_refresh_options_sitewide();
 
@@ -727,6 +732,14 @@ class Revisionary
 			'revisionary_copy_post_types', 
 			$this->enabled_post_types_copy
 		);
+	}
+
+	public function setFields() {
+	    $this->enabled_fields = get_option('rvy_enabled_fields', true);
+	}
+
+	public function setFieldsCopy() {
+	    $this->enabled_fields_copy = get_option('rvy_enabled_fields_copy', true);
 	}
 
 	function fltNumRevisions ($num, $post) {

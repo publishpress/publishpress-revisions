@@ -260,7 +260,7 @@ if ( defined('RVY_CONTENT_ROLES') ) {
 
 $this->form_options = apply_filters('revisionary_option_sections', [
 'features' => [
-	'post_types' =>			 ['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'],
+	'post_types' =>			 ['enabled_post_types', 'enabled_fields', 'enabled_post_types_archive', 'enabled_post_types_copy', 'enabled_fields_copy'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
 	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
@@ -527,7 +527,9 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 	$section = 'post_types';				// --- POST TYPES SECTION ---
 
 	if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
-		<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+		<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>>
+		<tr><td>
+		<div class="rvy-opt-wrap">
 
 		<table id="rvy_post_types_frame">
 		<tr>
@@ -595,13 +597,15 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			<div class="agp-vtight_input">
 				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="0"/>
 				<label for="<?php echo esc_attr($id); ?>">
-					<?php if (!empty($locked_types[$key])):
-						echo $revisionary->admin->tooltipText(							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							'<input name="' . esc_attr($name) . '" type="checkbox" id="' . esc_attr($id) . '" value="0" disabled />',
-							esc_html__('This post type does not support Past Revisions.', 'revisionary')
-						);
-					?>
-					<?php else: ?>
+
+				<?php 
+				if (!empty($locked_types[$key])):
+					echo $revisionary->admin->tooltipText(							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						'<input name="' . esc_attr($name) . '" type="checkbox" id="' . esc_attr($id) . '" value="0" disabled />',
+						esc_html__('This post type does not support Past Revisions.', 'revisionary')
+					);
+				
+				else: ?>
 					<input name="<?php echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
 						value="1" <?php checked('1', !empty($revisionary->enabled_post_types_archive[$key])); ?> />
 					<?php endif;?>
@@ -622,10 +626,10 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
 						}
 					}
-
-					echo '</div>';
 				endif;
-
+				?>
+			</div>
+		<?php
 		} // end foreach src_otype
 		?>
 		</td>
@@ -691,41 +695,107 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			<?php if ('nav_menu' == $key) : ?>
 				<input name="<?php echo esc_attr($name); ?>" type="hidden" id="<?php echo esc_attr($id); ?>" value="1"/>
 			<?php else : ?>
+			
 			<?php if (isset($hidden_types[$key])) : ?>
 				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_types[$key]); ?>"/>
 			<?php else : 
 					$locked = (!empty($locked_types[$key])) ? ' disabled ' : '';
 				?>
-			<div class="agp-vtight_input">
+				<div class="agp-vtight_input">
+				
 				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>"/>
 				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
-					<input name="<?php if (empty($locked_types[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
-						value="1" <?php checked('1', !empty($revisionary->enabled_post_types[$key])); echo esc_attr($locked); ?> />
+				<input name="<?php if (empty($locked_types[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
+					value="1" <?php checked('1', !empty($revisionary->enabled_post_types[$key])); echo esc_attr($locked); ?> />
 
-					<?php
-					if (isset($obj->labels_pp)) {
-						echo esc_html($obj->labels_pp->name);
-					} elseif (isset($obj->labels->name)) {
-						echo esc_html($obj->labels->name);
-					} else {
-						echo esc_html($key);
-					}
+				<?php
+				if (isset($obj->labels_pp)) {
+					echo esc_html($obj->labels_pp->name);
+				} elseif (isset($obj->labels->name)) {
+					echo esc_html($obj->labels->name);
+				} else {
+					echo esc_html($key);
+				}
+				?>
 
-					echo '</label>';
+				</label>
 					
-					if (!empty($revisionary->enabled_post_types[$key]) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'])) {
-						if ($cap_type_obj = get_post_type_object($obj->capability_type)) {
-							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
-						}
+				<?php
+				if (!empty($revisionary->enabled_post_types[$key]) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'])) {
+					if ($cap_type_obj = get_post_type_object($obj->capability_type)) {
+						echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
 					}
+				}
+				?>
 
-					echo '</div>';
+				</div>
+
+				<?php
 				endif;
 			endif; // displaying checkbox UI
 
 		} // end foreach src_otype
 		?>
-		</div>
+
+		<?php
+		$option_name = 'enabled_fields';
+
+		$this->all_options []= $option_name;
+		?>
+		<br />
+		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Revision Fields', 'revisionary');?></h3>
+		<?php
+		$available_fields = [
+			'post_content' => 	__('Content', 'revisionary'),
+			'post_title' => 	__('Title', 'revisionary'),
+			'post_date' => 		__('Date', 'revisionary'),
+			'post_status' => 	__('Status', 'revisionary'),
+			'post_name' => 		__('Slug', 'revisionary'),
+			'post_excerpt' => 	__('Excerpt', 'revisionary'),
+			'post_author' => 	__('Author', 'revisionary'),
+			'post_password' => 	__('Password', 'revisionary')
+		];
+		
+		$available_meta_fields = [
+			'_thumbnail_id' =>		__('Thumnbnail', 'revisionary'), 
+			'_wp_page_template' =>	__('Template', 'revisionary'), 
+			'_format' =>			__('Format', 'revisionary')
+		];
+
+		$hidden_fields = [];
+		$locked_fields = [];
+
+		foreach (array_merge($available_fields, $available_meta_fields) as $key => $field_title) {
+			$id = $option_name . '-' . $key;
+			$name = $option_name . "[$key]";
+			?>
+
+			<?php if (isset($hidden_fields[$key])) : ?>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_fields[$key]); ?>"/>
+			<?php else : 
+				$locked = (!empty($locked_fields[$key])) ? ' disabled ' : '';
+			?>
+				<div class="agp-vtight_input">
+				
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_fields[$key])) ? '0' : '1';?>"/>
+				
+				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
+
+				<input name="<?php if (empty($locked_fields[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
+					value="1" <?php checked('1', (true === $revisionary->enabled_fields )|| !empty($revisionary->enabled_fields[$key])); echo esc_attr($locked); ?> />
+
+				<?php
+				echo esc_html($field_title);
+				?>
+
+				</label>
+
+				</div>
+				<?php
+			endif;
+
+		}
+		?>
 		</td>
 
 		<?php
@@ -760,8 +830,8 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 		$_ordered_types = rvy_order_types($type_names);
 
-		$ordered_types['page'] = $types['page'];
 		$ordered_types['post'] = $types['post'];
+		$ordered_types['page'] = $types['page'];
 		
 		$ordered_types = array_merge(
 			$ordered_types,
@@ -794,30 +864,94 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			<?php else : 
 					$locked = (!empty($locked_types[$key])) ? ' disabled ' : '';
 				?>
-			<div class="agp-vtight_input">
+				<div class="agp-vtight_input">
+
 				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>"/>
+
 				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
-					<input name="<?php if (empty($locked_types[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
-						value="1" <?php checked('1', !empty($revisionary->enabled_post_types_copy[$key])); echo esc_attr($locked); ?> />
+					
+				<input name="<?php if (empty($locked_types[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
+					value="1" <?php checked('1', !empty($revisionary->enabled_post_types_copy[$key])); echo esc_attr($locked); ?> />
 
-					<?php
-					if (isset($obj->labels_pp)) {
-						echo esc_html($obj->labels_pp->name);
-					} elseif (isset($obj->labels->name)) {
-						echo esc_html($obj->labels->name);
-					} else {
-						echo esc_html($key);
-					}
+				<?php
+				if (isset($obj->labels_pp)) {
+					echo esc_html($obj->labels_pp->name);
+				} elseif (isset($obj->labels->name)) {
+					echo esc_html($obj->labels->name);
+				} else {
+					echo esc_html($key);
+				}
+				?>
 
-					echo '</label>';
+				</label>
 
-					echo '</div>';
+				</div>
+
+				<?php
 				endif;
 			endif; // displaying checkbox UI
 
 		} // end foreach src_otype
+
+
+		$option_name = 'enabled_fields_copy';
+
+		$this->all_options []= $option_name;
 		?>
-		</div>
+		<br />
+		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Fields', 'revisionary');?></h3>
+		<?php
+		$available_fields = [
+			'post_content' => 	__('Content', 'revisionary'),
+			'post_title' => 	__('Title', 'revisionary'),
+			'post_date' => 		__('Date', 'revisionary'),
+			'post_status' => 	__('Status', 'revisionary'),
+			'post_name' => 		__('Slug', 'revisionary'),
+			'post_excerpt' => 	__('Excerpt', 'revisionary'),
+			'post_author' => 	__('Author', 'revisionary'),
+			'post_password' => 	__('Password', 'revisionary')
+		];
+		
+		$available_meta_fields = [
+			'post_thumbnail' =>	__('Thumnbnail', 'revisionary'), 
+			'post_template' =>	__('Template', 'revisionary'), 
+			'post_format' =>	__('Format', 'revisionary')
+		];
+
+		$hidden_fields = [];
+		$locked_fields = [];
+
+		foreach (array_merge($available_fields, $available_meta_fields) as $key => $field_title) {
+			$id = $option_name . '-' . $key;
+			$name = $option_name . "[$key]";
+			?>
+
+			<?php if (isset($hidden_fields[$key])) : ?>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_fields[$key]); ?>"/>
+			<?php else : 
+				$locked = (!empty($locked_fields[$key])) ? ' disabled ' : '';
+			?>
+				<div class="agp-vtight_input">
+				
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_fields[$key])) ? '0' : '1';?>"/>
+				
+				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
+
+				<input name="<?php if (empty($locked_fields[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
+					value="1" <?php checked('1', (true === $revisionary->enabled_fields_copy )|| !empty($revisionary->enabled_fields_copy[$key])); echo esc_attr($locked); ?> />
+
+				<?php
+				echo esc_html($field_title);
+				?>
+
+				</label>
+
+				</div>
+				<?php
+			endif;
+
+		}
+		?>
 		</td>
 	
 	</tr></table>

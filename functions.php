@@ -129,7 +129,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         return;
     }
 
-    $defaults = ['empty_target_only' => false, 'apply_deletions' => false];
+    $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
         $$var = $args[$var];
@@ -164,7 +164,10 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
     $target_meta_keys = (array) \get_post_custom_keys( $to_post_id );
 
-    $skip_meta_keys = ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count'];
+    $skip_meta_keys = array_merge(
+        $skip_meta_keys,
+        ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count']
+    );
 
     if (!defined('REVISIONARY_REVISE_ELEMENTOR_CSS')) {
         $skip_meta_keys = array_merge($skip_meta_keys, ['_elementor_css', '_elementor_element_cache']);
