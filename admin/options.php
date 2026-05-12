@@ -260,7 +260,7 @@ if ( defined('RVY_CONTENT_ROLES') ) {
 
 $this->form_options = apply_filters('revisionary_option_sections', [
 'features' => [
-	'post_types' =>			 ['enabled_post_types', 'enabled_post_types_archive'],
+	'post_types' =>			 ['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
 	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
@@ -538,7 +538,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->register_option($option_name);
 
 		?>
-		<td style="padding-right: 100px">
+		<td style="padding-right: 70px">
 		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Past Revisions', 'revisionary');?>
         <?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -635,7 +635,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 		$this->all_options []= $option_name;
 		?>
-		<td>
+		<td style="padding-right: 70px">
 		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('New Revisions', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -725,7 +725,102 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 		} // end foreach src_otype
 		?>
-		</div></td></tr></table>
+		</div>
+		</td>
+
+		<?php
+		$option_name = 'enabled_post_types_copy';
+
+		$this->all_options []= $option_name;
+		?>
+		<td>
+		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Post', 'revisionary');?>
+		<?php 
+		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'',
+			esc_html__('Copy post directly without using the revision process.', 'revisionary'),
+			true
+		);
+		?>
+		</h3>
+		<?php
+		$hidden_types = $revisionary->getHiddenPostTypesCopy();
+		$locked_types = [];
+
+		$types = array_merge(
+			get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'),
+			$revisionary->getAvailablePrivatePostTypes()
+		);
+
+		$type_names = [];
+
+		foreach ($types as $key => $obj) {
+			$type_names[$key] = $obj->label;
+		}
+
+		$_ordered_types = rvy_order_types($type_names);
+
+		$ordered_types['page'] = $types['page'];
+		$ordered_types['post'] = $types['post'];
+		
+		$ordered_types = array_merge(
+			$ordered_types,
+			array_diff_key(
+				$_ordered_types,
+				array_fill_keys(['page', 'post'], true)
+			)
+		);
+
+		foreach (array_keys($ordered_types) as $key) {
+			if (!$key) {
+				continue;
+			}
+
+			if (!isset($types[$key])) {
+				continue;
+			}
+
+			$obj = $types[$key];
+
+			$id = $option_name . '-' . $key;
+			$name = $option_name . "[$key]";
+			?>
+
+			<?php if ('nav_menu' == $key) : ?>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" id="<?php echo esc_attr($id); ?>" value="1"/>
+			<?php else : ?>
+			<?php if (isset($hidden_types[$key])) : ?>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_types[$key]); ?>"/>
+			<?php else : 
+					$locked = (!empty($locked_types[$key])) ? ' disabled ' : '';
+				?>
+			<div class="agp-vtight_input">
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>"/>
+				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
+					<input name="<?php if (empty($locked_types[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
+						value="1" <?php checked('1', !empty($revisionary->enabled_post_types_copy[$key])); echo esc_attr($locked); ?> />
+
+					<?php
+					if (isset($obj->labels_pp)) {
+						echo esc_html($obj->labels_pp->name);
+					} elseif (isset($obj->labels->name)) {
+						echo esc_html($obj->labels->name);
+					} else {
+						echo esc_html($key);
+					}
+
+					echo '</label>';
+
+					echo '</div>';
+				endif;
+			endif; // displaying checkbox UI
+
+		} // end foreach src_otype
+		?>
+		</div>
+		</td>
+	
+	</tr></table>
 
 	<div class="rvy-subtext">
 	<?php
