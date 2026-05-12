@@ -14,6 +14,28 @@ add_action( '_wp_put_post_revision', 'rvy_review_revision' );
 function rvy_revision_diff() {
 }
 
+function rvy_post_copy($post_id = 0, $args = []) {
+	if (!$post_id) {
+		if (isset($_REQUEST['post'])) {									//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$post_id = (int) $_REQUEST['post'];							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} else {
+			return;
+		}
+	}
+
+	if (!empty($args['force']) || current_user_can('duplicate_post', $post_id)) {
+		require_once( dirname(REVISIONARY_FILE).'/revision-creation_rvy.php' );
+		$rvy_creation = new PublishPress\Revisions\RevisionCreation();
+
+		$post_status = 'draft';
+		$revision_id = $rvy_creation->copyPost($post_id, $post_status, $args);
+	} else {
+		$revision_id = 0;
+	}
+
+	return $revision_id;
+}
+
 function rvy_revision_create($post_id = 0, $args = []) {
 	if (!$post_id) {
 		if (isset($_REQUEST['post'])) {									//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -653,7 +675,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		} else {
 			$redirect = admin_url("post.php?post={$post->ID}&action=edit");
 		}
-		
+
 	} while (0);
 	
 	clean_post_cache($revision_id);
@@ -807,7 +829,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		$published_id = rvy_post_id($published_id);
 	}
 
-	if ('revision' == get_post_field('post_type', $published_id)) {
+    if ('revision' == get_post_field('post_type', $published_id)) {
 		return false;
 	}
 
@@ -1024,7 +1046,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 			}
 		
 			$post_id = $post->ID;
-		
+
 			/*
 			* If a limit for the number of revisions to keep has been set,
 			* delete the oldest ones.
