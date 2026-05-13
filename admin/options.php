@@ -750,16 +750,17 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'post_title' => 	__('Title', 'revisionary'),
 			'post_date' => 		__('Date', 'revisionary'),
 			'post_status' => 	__('Status', 'revisionary'),
+			'post_parent' =>	__('Parent', 'revisionary'),
 			'post_name' => 		__('Slug', 'revisionary'),
 			'post_excerpt' => 	__('Excerpt', 'revisionary'),
 			'post_author' => 	__('Author', 'revisionary'),
-			'post_password' => 	__('Password', 'revisionary')
+			/* 'post_password' => 	__('Password', 'revisionary') */
 		];
 		
 		$available_meta_fields = [
 			'_thumbnail_id' =>		__('Thumnbnail', 'revisionary'), 
 			'_wp_page_template' =>	__('Template', 'revisionary'), 
-			'_format' =>			__('Format', 'revisionary')
+			/* '_format' =>			__('Format', 'revisionary') */
 		];
 
 		$hidden_fields = [];
@@ -906,16 +907,17 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'post_title' => 	__('Title', 'revisionary'),
 			'post_date' => 		__('Date', 'revisionary'),
 			'post_status' => 	__('Status', 'revisionary'),
+			'post_parent' =>	__('Parent', 'revisionary'),
 			'post_name' => 		__('Slug', 'revisionary'),
 			'post_excerpt' => 	__('Excerpt', 'revisionary'),
 			'post_author' => 	__('Author', 'revisionary'),
-			'post_password' => 	__('Password', 'revisionary')
+			/* 'post_password' => 	__('Password', 'revisionary') */
 		];
 		
 		$available_meta_fields = [
 			'post_thumbnail' =>	__('Thumnbnail', 'revisionary'), 
 			'post_template' =>	__('Template', 'revisionary'), 
-			'post_format' =>	__('Format', 'revisionary')
+			/* 'post_format' =>	__('Format', 'revisionary') */
 		];
 
 		$hidden_fields = [];
