@@ -930,7 +930,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 				array_filter(
 					$enabled_fields, 
 					function($val) {
-						return !(is_null($val) || ($val === false));
+						return is_null($val) || !$val;
 					}
 				),
 				$disabled_fields
@@ -1035,7 +1035,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		$skip_post_meta = array_filter(
 			$enabled_fields, 
 			function($val) {
-				return !(is_null($val) || ($val === false));
+				return is_null($val) || !$val;
 			}
 		);
 	} else {

@@ -133,7 +133,7 @@ class RevisionCreation {
 				array_filter(
 					$enabled_fields, 
 					function($val) {
-						return !(is_null($val) || ($val === false));
+						return is_null($val) || !$val;
 					}
 				),
 				$disabled_fields
@@ -160,7 +160,7 @@ class RevisionCreation {
 			$skip_post_meta = array_filter(
 				$enabled_fields, 
 				function($val) {
-					return !(is_null($val) || ($val === false));
+					return is_null($val) || !$val;
 				}
 			);
 		} else {
