@@ -157,8 +157,23 @@ class RevisionCreation {
 		// Use the newly generated $post_ID.
 		$where = array( 'ID' => $copy_id );
 
+		$_args = ['skip_taxonomies' => []];
+
+		if (is_array($enabled_fields) && empty($enabled_fields['taxonomies'])) {
+			$_args['include_taxonomies'] = ['category', 'post_tag'];
+		}
+
+		if (is_array($enabled_fields) && empty($enabled_fields['category'])) {
+			$_args['skip_taxonomies'] []= 'category';
+		}
+
+		if (is_array($enabled_fields) && empty($enabled_fields['post_tag'])) {
+			$_args['skip_taxonomies'] []= 'post_tag';
+		}
+
 		// If term selections are not posted for revision, store current published terms
-		revisionary_copy_terms($post_id, $copy_id);
+		revisionary_copy_terms($post_id, $copy_id, $_args);
+
 
 		if (is_array($enabled_fields)) {
 			$skip_post_meta = array_filter(

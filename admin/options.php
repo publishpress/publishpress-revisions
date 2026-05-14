@@ -754,19 +754,18 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'post_name' => 		__('Slug', 'revisionary'),
 			'post_excerpt' => 	__('Excerpt', 'revisionary'),
 			'post_author' => 	__('Author', 'revisionary'),
+			'_thumbnail_id' =>		__('Thumnbnail', 'revisionary'), 
+			'_wp_page_template' =>	__('Template', 'revisionary'), 
+			'category' =>		__('Categories', 'revisionary'),
+			'post_tag' =>		__('Tags', 'revisionary'),
+			'taxonomies' =>		__('Taxonomies', 'revisionary')
 			/* 'post_password' => 	__('Password', 'revisionary') */
 		];
 		
-		$available_meta_fields = [
-			'_thumbnail_id' =>		__('Thumnbnail', 'revisionary'), 
-			'_wp_page_template' =>	__('Template', 'revisionary'), 
-			/* '_format' =>			__('Format', 'revisionary') */
-		];
-
 		$hidden_fields = [];
 		$locked_fields = [];
 
-		foreach (array_merge($available_fields, $available_meta_fields) as $key => $field_title) {
+		foreach ($available_fields as $key => $field_title) {
 			$id = $option_name . '-' . $key;
 			$name = $option_name . "[$key]";
 			?>
@@ -794,7 +793,6 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				</div>
 				<?php
 			endif;
-
 		}
 		?>
 		</td>
@@ -911,19 +909,18 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'post_name' => 		__('Slug', 'revisionary'),
 			'post_excerpt' => 	__('Excerpt', 'revisionary'),
 			'post_author' => 	__('Author', 'revisionary'),
+			'post_thumbnail' =>	__('Thumnbnail', 'revisionary'), 
+			'post_template' =>	__('Template', 'revisionary'), 
+			'category' =>		__('Categories', 'revisionary'),
+			'post_tag' =>		__('Tags', 'revisionary'),
+			'taxonomies' =>		__('Taxonomies', 'revisionary')
 			/* 'post_password' => 	__('Password', 'revisionary') */
 		];
 		
-		$available_meta_fields = [
-			'post_thumbnail' =>	__('Thumnbnail', 'revisionary'), 
-			'post_template' =>	__('Template', 'revisionary'), 
-			/* 'post_format' =>	__('Format', 'revisionary') */
-		];
-
 		$hidden_fields = [];
 		$locked_fields = [];
 
-		foreach (array_merge($available_fields, $available_meta_fields) as $key => $field_title) {
+		foreach ($available_fields as $key => $field_title) {
 			$id = $option_name . '-' . $key;
 			$name = $option_name . "[$key]";
 			?>
@@ -951,7 +948,6 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				</div>
 				<?php
 			endif;
-
 		}
 		?>
 		</td>

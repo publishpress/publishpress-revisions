@@ -1044,8 +1044,22 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	revisionary_copy_postmeta($revision, $published->ID, ['skip_post_meta' => $skip_post_meta, 'apply_empty' => !$is_imported]);
 
+	$_args = ['apply_empty' => !$is_imported, 'applying_revision' => true, 'skip_taxonomies' => []];
+
+	if (is_array($enabled_fields) && empty($enabled_fields['taxonomies'])) {
+		$_args['include_taxonomies'] = ['category', 'post_tag'];
+	}
+
+	if (is_array($enabled_fields) && empty($enabled_fields['category'])) {
+		$_args['skip_taxonomies'] []= 'category';
+	}
+
+	if (is_array($enabled_fields) && empty($enabled_fields['post_tag'])) {
+		$_args['skip_taxonomies'] []= 'post_tag';
+	}
+
 	// Allow Multiple Authors revisions to be applied to published post. Revision post_author is forced to actual submitting user.
-	revisionary_copy_terms($revision_id, $post_id, ['apply_empty' => !$is_imported, 'applying_revision' => true]);
+	revisionary_copy_terms($revision_id, $post_id, $_args);
 
 	if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION') && $published_authors) {
 		// Make sure Multiple Authors values were not wiped due to incomplete revision data

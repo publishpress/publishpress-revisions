@@ -40,8 +40,8 @@ class Editor_Features {
                 'rvy-features-block-script', 
                 'ppc_features', 
                 [
-                'disabled_panel' => implode(',', $restrict_elements)
-                /*'taxonomies' => implode(",", get_taxonomies())*/
+                'disabled_panel' => implode(',', $restrict_elements),
+                'taxonomies' => implode(",", get_taxonomies())
                 ]
             );
 
@@ -121,21 +121,21 @@ class Editor_Features {
             
             /*
             'sticky'    =>         ['label' => esc_html__( 'Stick this post to the front page' ) , 'elements' => '.components-panel .components-panel__body.edit-post-post-status .edit-post-post-url + .components-panel__row'],
+            */
             
-            'categories' =>        [
+            'category' =>        [
                 'label'        => esc_html__('Categories'), 
                 'elements'     => 'taxonomy-panel-category',
                 'support_key'  => 'category',
                 'support_type' => 'taxonomy'
             ],
 
-            'tags' =>              [
+            'post_tag' =>              [
                 'label'        => esc_html__('Tags'),
                 'elements'     => 'taxonomy-panel-post_tag',
                 'support_key'  => 'post_tag',
                 'support_type' => 'taxonomy'
             ],
-            */
 
             'post_parent' =>             [
                 'label'        => esc_html__('Parent'),
@@ -170,10 +170,24 @@ class Editor_Features {
             */
         ];
         
+        $elements['taxonomies'] = [
+            'label'        => esc_html__('Taxonomies', 'revisionary'),
+            'support_key'  => 'taxonomy',
+            'support_type' => 'taxonomy'
+        ];
+        
+        $elems = [];
+
+        foreach (get_taxonomies(['show_ui' => true], 'names') as $taxonomy) {
+            $elems []= "taxonomy-panel-$taxonomy";
+        }
+
+        $elements['taxonomies']['elements'] = implode(', ', $elems);
+
         /*
         foreach (get_taxonomies(['show_ui' => true], 'object') as $taxonomy => $tx_obj) {
             if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'])) {
-                $elements[$k][$tx_obj->name] = [
+                $elements[$tx_obj->name] = [
                     'label'        => $tx_obj->label, 
                     'elements'     => "taxonomy-panel-$taxonomy",
                     'support_key'  => $tx_obj->name,
