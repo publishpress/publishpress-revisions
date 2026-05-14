@@ -144,7 +144,11 @@ class RevisionCreation {
 
 		do_action( 'revisionary_pre_copy_post', $post_id, $data );
 
+		add_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
+
 		$copy_id = wp_insert_post(\wp_slash($data), true);
+
+		remove_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
 
 		if (is_wp_error($copy_id)) {
 			return new \WP_Error(esc_html__( 'Could not insert post into the database', 'revisionary'));
@@ -184,6 +188,10 @@ class RevisionCreation {
 		do_action('revisionary_copy_post', $copy_id, $post_status);
 
 		return (int) $copy_id; // only return array in calling function should return
+	}
+
+	function disregardEmptyContent($maybe_empty) {
+		return false;
 	}
 
 	// Create a new revision, usually 'draft-revision' (Working Copy) or 'future-revision' (Scheduled Revision)
