@@ -202,6 +202,17 @@ class RevisionaryAdmin
 
 		// Planner Notifications integration
 		add_filter('posts_clauses_request', [$this, 'fltPostsClauses'], 50, 2);
+
+		// Ensure copied posts and revisions with empty title, content and excerpt can still be trashed
+		add_filter('wp_insert_post_empty_content', [$this, 'maybeDisregardEmptyContent'], 10, 2);
+	}
+
+	function maybeDisregardEmptyContent($empty, $postarr) {
+		if (!empty($postarr['post_status']) && ('trash' == $postarr['post_status'])) {
+			$empty = false;
+		}
+
+		return $empty;
 	}
 
 	function fltPostsClauses($clauses, $_wp_query = false, $args = [])

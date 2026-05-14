@@ -8,6 +8,8 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url
 class RevisionaryEditRevisionBlockUI {
 	function __construct () {
         add_action('admin_print_scripts', [$this, 'admin_print_scripts'], 99);
+
+		$this->applyEditorRestrictions();
     }
     
     function admin_print_scripts() {
@@ -24,5 +26,23 @@ class RevisionaryEditRevisionBlockUI {
 				</script>
 			<?php
 		}
+
+		?>
+		<style type='text/css'>
+		input.restore-revision {display:none !important;}
+		</style>
+		<?php
 	}
+
+	private function applyEditorRestrictions() {
+        global $pagenow;
+
+        // Return if not a post editor request
+        if (!in_array($pagenow, ['post.php', 'post-new.php'])) {
+            return;
+        }
+
+		require_once (dirname(__FILE__) . '/restrict-editor-features.php');
+		\PublishPress\Revisions\Editor_Features::applyRestrictions();
+    }
 }

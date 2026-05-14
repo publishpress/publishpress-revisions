@@ -785,7 +785,7 @@ function rvy_revision_restore() {
 }
 
 function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
-	global $wpdb;
+	global $wpdb, $revisionary;
 	
 	if ( ! $revision = get_post( $revision_id ) ) {
 		return $revision;
@@ -916,6 +916,28 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$revision_content = $update['post_content'];
 
+	if (rvy_is_revision_status($original_revision_status)) {
+		$enabled_fields = $revisionary->enabled_fields;
+
+		$disabled_fields = array_fill_keys(
+			[], 
+			true
+		);
+
+		if (is_array($enabled_fields)) {
+			$update = array_diff_key(
+				$update,
+				array_filter(
+					$enabled_fields, 
+					function($val) {
+						return is_null($val) || !$val;
+					}
+				),
+				$disabled_fields
+			);
+		}
+	}
+
 	if (defined('REVISIONARY_APPLY_REVISION_WP_UPDATE')) {
 		$post_id = wp_update_post( $update );
 	} else {
@@ -1009,10 +1031,35 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
-	revisionary_copy_postmeta($revision, $published->ID, ['apply_empty' => !$is_imported]);
+	if (is_array($enabled_fields)) {
+		$skip_post_meta = array_filter(
+			$enabled_fields, 
+			function($val) {
+				return is_null($val) || !$val;
+			}
+		);
+	} else {
+		$skip_post_meta = [];
+	}
+
+	revisionary_copy_postmeta($revision, $published->ID, ['skip_post_meta' => $skip_post_meta, 'apply_empty' => !$is_imported]);
+
+	$_args = ['apply_empty' => !$is_imported, 'applying_revision' => true, 'skip_taxonomies' => []];
+
+	if (is_array($enabled_fields) && empty($enabled_fields['taxonomies'])) {
+		$_args['include_taxonomies'] = ['category', 'post_tag'];
+	}
+
+	if (is_array($enabled_fields) && empty($enabled_fields['category'])) {
+		$_args['skip_taxonomies'] []= 'category';
+	}
+
+	if (is_array($enabled_fields) && empty($enabled_fields['post_tag'])) {
+		$_args['skip_taxonomies'] []= 'post_tag';
+	}
 
 	// Allow Multiple Authors revisions to be applied to published post. Revision post_author is forced to actual submitting user.
-	revisionary_copy_terms($revision_id, $post_id, ['apply_empty' => !$is_imported, 'applying_revision' => true]);
+	revisionary_copy_terms($revision_id, $post_id, $_args);
 
 	if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION') && $published_authors) {
 		// Make sure Multiple Authors values were not wiped due to incomplete revision data

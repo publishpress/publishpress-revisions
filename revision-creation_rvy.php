@@ -107,7 +107,7 @@ class RevisionCreation {
 	}
 
 	private function insert_post($data, $post_id, $post_status, $args) {
-		global $wpdb;
+		global $wpdb, $revisionary;
 
 		$data['post_status'] = apply_filters('revisionary_copy_post_status', $post_status, $post_id);
 
@@ -120,11 +120,35 @@ class RevisionCreation {
 			$post_id = $base_post->comment_count;
 		}
 
+		$enabled_fields = $revisionary->enabled_fields_copy;
+
+		$disabled_fields = array_fill_keys(
+			['ID', 'comment_count', 'post_name', 'guid'], 
+			true
+		);
+
+		if (is_array($enabled_fields)) {
+			$data = array_diff_key(
+				$data,
+				array_filter(
+					$enabled_fields, 
+					function($val) {
+						return is_null($val) || !$val;
+					}
+				),
+				$disabled_fields
+			);
+		}
+
 		$data['post_name'] = wp_unique_post_slug($base_post->post_name, $post_id, $post_status, $base_post->post_type, $base_post->post_parent);
 
 		do_action( 'revisionary_pre_copy_post', $post_id, $data );
 
+		add_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
+
 		$copy_id = wp_insert_post(\wp_slash($data), true);
+
+		remove_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
 
 		if (is_wp_error($copy_id)) {
 			return new \WP_Error(esc_html__( 'Could not insert post into the database', 'revisionary'));
@@ -133,9 +157,36 @@ class RevisionCreation {
 		// Use the newly generated $post_ID.
 		$where = array( 'ID' => $copy_id );
 
+		$_args = ['skip_taxonomies' => []];
+
+		if (is_array($enabled_fields) && empty($enabled_fields['taxonomies'])) {
+			$_args['include_taxonomies'] = ['category', 'post_tag'];
+		}
+
+		if (is_array($enabled_fields) && empty($enabled_fields['category'])) {
+			$_args['skip_taxonomies'] []= 'category';
+		}
+
+		if (is_array($enabled_fields) && empty($enabled_fields['post_tag'])) {
+			$_args['skip_taxonomies'] []= 'post_tag';
+		}
+
 		// If term selections are not posted for revision, store current published terms
-		revisionary_copy_terms($post_id, $copy_id);
-		revisionary_copy_postmeta($post_id, $copy_id);
+		revisionary_copy_terms($post_id, $copy_id, $_args);
+
+
+		if (is_array($enabled_fields)) {
+			$skip_post_meta = array_filter(
+				$enabled_fields, 
+				function($val) {
+					return is_null($val) || !$val;
+				}
+			);
+		} else {
+			$skip_post_meta = [];
+		}
+
+		revisionary_copy_postmeta($post_id, $copy_id, compact('skip_post_meta'));
 
 		if ($post_id != $copy_id) {
 			rvy_update_post_meta($copy_id, '_rvy_source_post_id', $post_id);
@@ -152,6 +203,10 @@ class RevisionCreation {
 		do_action('revisionary_copy_post', $copy_id, $post_status);
 
 		return (int) $copy_id; // only return array in calling function should return
+	}
+
+	function disregardEmptyContent($maybe_empty) {
+		return false;
 	}
 
 	// Create a new revision, usually 'draft-revision' (Working Copy) or 'future-revision' (Scheduled Revision)
