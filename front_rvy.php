@@ -41,8 +41,6 @@ class RevisionaryFront {
 
 		remove_action( 'init', 'register_block_core_post_comments' );
 
-		add_action('init', [$this, 'actFixRevisionPreviewStatus'], 5);
-
 		do_action('revisionary_front_init');
 	}
 
@@ -66,59 +64,6 @@ class RevisionaryFront {
 		}
 
 		return $clauses;
-	}
-
-	function actFixRevisionPreviewStatus() {
-		global $wpdb;
-
-		if ($post_id = rvy_detect_post_id()) {
-			if ($_post = get_post($post_id)) {
-				if (('revision' == $_post->post_type) && rvy_is_revision_status($_post->post_mime_type)) {
-					if (rvy_get_option('permissions_compat_mode')) {
-						return;
-					}
-					
-					$post_status = str_replace('-revision', '', $_post->post_mime_type);
-
-					if (!in_array($post_status, ['draft', 'pending', 'future'])) {
-						$post_status = 'pending';
-					}
-
-					if ($_post->post_parent) {
-						$post_type = get_post_field('post_type', $_post->post_parent);
-						$comment_count = $_post->post_parent;
-
-					} elseif ($_post->comment_count) {
-						$post_type = get_post_field('post_type', $_post->comment_count);
-						$comment_count = $_post->comment_count;
-					}
-
-					$post_parent = get_post_field('post_parent', $comment_count);
-
-					if (!empty($post_type)) {
-
-						// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-						$wpdb->update(
-							$wpdb->posts, 
-							compact('post_status', 'post_type', 'comment_count', 'post_parent'), 
-							['ID' => $post_id]								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						);
-
-						if (defined('ELEMENTOR_VERSION') && rvy_get_option('elementor_revision_ensure_css_file')) {
-							global $rvy_site_options, $rvy_blog_options;
-
-							if ( isset($rvy_site_options["rvy_elementor_revision_ensure_css_file"]) ) {
-								$rvy_site_options["rvy_elementor_revision_ensure_css_file"] = 0;
-							}
-
-							if ( isset($rvy_blog_options["rvy_elementor_revision_ensure_css_file"]) ) {
-								$rvy_blog_options["rvy_elementor_revision_ensure_css_file"] = 0;
-							}
-						}
-					}
-				}
-			}
-		}
 	}
 
 	function fltGetPostMeta($meta_val, $object_id, $meta_key, $single, $meta_type) {
