@@ -1649,7 +1649,8 @@ function rvy_rest_cache_skip($skip) {
 	}
 
 	$uri = esc_url_raw($_SERVER['REQUEST_URI']);
-	$uncached_params = array_merge($uncached_params, ['rvy_ajax_field', 'rvy_ajax_value']);
+
+	$uncached_params = ['rvy_ajax_field', 'rvy_ajax_value'];
 
 	foreach($uncached_params as $param) {
 		if (strpos($uri, $param)) {
