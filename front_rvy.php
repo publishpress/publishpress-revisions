@@ -361,6 +361,10 @@ class RevisionaryFront {
 			} else {
 				$published_post_id = rvy_post_id($revision_id);
 
+				if (!current_user_can('read_post', $revision_id) && !current_user_can('edit_post', $published_post_id)) {
+					return;
+				}
+
 				do_action('revisionary_preview_load', $revision_id, $published_post_id);
 
 				if (!defined('REVISIONARY_PREVIEW_NO_META_MIRROR') && !class_exists('CWS_PageLinksTo')) {
