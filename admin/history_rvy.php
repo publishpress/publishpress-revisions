@@ -471,6 +471,10 @@ class RevisionaryHistory
             return;
         }
 
+        $rvy_revisions = array_filter($rvy_revisions, function($rev) {
+            return current_user_can('read_post', $rev->ID) || current_user_can('edit_post', $rev->ID);
+        });
+
         if (!current_user_can('edit_post', $revision_id) && !current_user_can('read_post', $revision_id)) {
             return;
         }
