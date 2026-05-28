@@ -165,7 +165,7 @@ class RevisionaryAdminPosts {
 				'admin_print_footer_scripts',
 				function () use ($link) {
 					if ($ipos = strpos($link, '&')) {
-						$link = substr($link, 0, $ipos - 1);
+						$link = substr($link, 0, $ipos);
 					}
 				?>
 					<script type="text/javascript">
