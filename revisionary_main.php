@@ -1147,10 +1147,6 @@ class Revisionary
 				$post_id = 0;
 			}
 
-			if (rvy_in_revision_workflow($post_id)) {
-				return array_diff_key($caps, [$cap => true]);
-			}
-
 			$filter_args = [];
 
 			$this->skip_revisor_post_caps_workaround = true;
