@@ -65,6 +65,11 @@ class RevisionCreation {
 			'menu_order',                 
 		];
 
+		if ($is_revision = rvy_in_revision_workflow($post_id)) {
+			$set_post_properties []= 'comment_count';
+			$set_post_properties []= 'post_mime_type';
+		}
+
 		$data = [];
 
 		foreach($set_post_properties as $prop) {
@@ -82,6 +87,10 @@ class RevisionCreation {
 
 		if (is_array($post_data)) {
 			$data = array_merge($data, $post_data);
+		}
+
+		if ($is_revision) {
+			$args['force_revision_copy'] = true;
 		}
 
 		$copy_id = $this->insert_post($data, $post_id, $post_status, $args);
@@ -116,16 +125,20 @@ class RevisionCreation {
 		if (!empty($base_post) && !empty($base_post->post_status) && ('revision' == $base_post->post_type)) {
 			$post_id = $base_post->post_parent;
 
-		} elseif (!empty($base_post) && !empty($base_post->post_mime_type) && rvy_is_revision_status($base_post->post_mime_type)) {
+		} elseif (!empty($base_post) && !empty($base_post->post_mime_type) && rvy_is_revision_status($base_post->post_mime_type) && empty($args['force_revision_copy'])) {
 			$post_id = $base_post->comment_count;
 		}
 
 		$enabled_fields = $revisionary->enabled_fields_copy;
 
 		$disabled_fields = array_fill_keys(
-			['ID', 'comment_count', 'post_name', 'guid'], 
+			['ID', 'post_name', 'guid'], 
 			true
 		);
+
+		if (empty($args['force_revision_copy'])) {
+			$disabled_fields []= 'comment_count';
+		}
 
 		if (is_array($enabled_fields)) {
 			$data = array_diff_key(
@@ -140,6 +153,11 @@ class RevisionCreation {
 			);
 		}
 
+		if (!empty($args['force_revision_copy'])) {
+			$enabled_fields ['comment_count'] = 1;
+			$enabled_fields ['post_mime_type'] = 1;
+		}
+
 		$data['post_name'] = wp_unique_post_slug($base_post->post_name, $post_id, $post_status, $base_post->post_type, $base_post->post_parent);
 
 		do_action( 'revisionary_pre_copy_post', $post_id, $data );
@@ -149,6 +167,13 @@ class RevisionCreation {
 		$copy_id = wp_insert_post(\wp_slash($data), true);
 
 		remove_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
+
+		if (!empty($args['force_revision_copy'])) {
+			$update_data = ['comment_count' => rvy_post_id($post_id)];
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->update($wpdb->posts, $update_data, ['ID' => $copy_id]);
+		}
 
 		if (is_wp_error($copy_id)) {
 			return new \WP_Error(esc_html__( 'Could not insert post into the database', 'revisionary'));
