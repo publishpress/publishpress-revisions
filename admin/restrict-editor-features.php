@@ -119,10 +119,6 @@ class Editor_Features {
 
             'post_name' =>         ['label' => esc_html__('Permalink', 'revisionary'), 'elements' => '.editor-post-panel__row:has(.editor-post-url__panel-dropdown)'],
             
-            /*
-            'sticky'    =>         ['label' => esc_html__( 'Stick this post to the front page' ) , 'elements' => '.components-panel .components-panel__body.edit-post-post-status .edit-post-post-url + .components-panel__row'],
-            */
-            
             'category' =>        [
                 'label'        => esc_html__('Categories'), 
                 'elements'     => 'taxonomy-panel-category',
@@ -160,14 +156,6 @@ class Editor_Features {
                 'elements'    => 'post-excerpt',
                 'support_key' => 'excerpt'
             ],
-
-            /*
-            'post_attributes' => [
-                'label'       => esc_html__('Post Attributes', 'revisionary'), 
-                'elements'    => 'page-attributes',
-                'support_key' => 'page-attributes'
-            ],
-            */
         ];
         
         $elements['taxonomies'] = [
@@ -184,6 +172,7 @@ class Editor_Features {
 
         $elements['taxonomies']['elements'] = implode(', ', $elems);
 
+        // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
         /*
         foreach (get_taxonomies(['show_ui' => true], 'object') as $taxonomy => $tx_obj) {
             if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'])) {

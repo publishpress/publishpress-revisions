@@ -759,7 +759,6 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'category' =>		__('Categories', 'revisionary'),
 			'post_tag' =>		__('Tags', 'revisionary'),
 			'taxonomies' =>		__('Taxonomies', 'revisionary')
-			/* 'post_password' => 	__('Password', 'revisionary') */
 		];
 		
 		$hidden_fields = [];
@@ -914,7 +913,6 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'category' =>		__('Categories', 'revisionary'),
 			'post_tag' =>		__('Tags', 'revisionary'),
 			'taxonomies' =>		__('Taxonomies', 'revisionary')
-			/* 'post_password' => 	__('Password', 'revisionary') */
 		];
 		
 		$hidden_fields = [];
