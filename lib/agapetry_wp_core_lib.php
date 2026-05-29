@@ -65,10 +65,3 @@ function awp_post_type_from_uri() {
 	}
 }
 }
-
-// wrapper for __(), prevents WP strings from being forced into plugin .po
-if ( ! function_exists( '__awp' ) ) {
-function __awp( $string, $unused = '' ) {
-	return esc_html__( $string );		
-}
-}
