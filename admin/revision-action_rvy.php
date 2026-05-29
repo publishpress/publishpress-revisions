@@ -1206,8 +1206,6 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	$trigger_post_update_actions = rvy_get_option('trigger_post_update_actions');
 
 	if ($trigger_post_update_actions || (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && defined('PUBLISHPRESS_VERSION') && rvy_get_option('use_publishpress_notifications'))) {
-		global $revisionary;
-
 		$_published = get_post($published->ID);
 
 		if (!defined('RVY_NO_TRANSITION_STATUS_ACTION')) {
