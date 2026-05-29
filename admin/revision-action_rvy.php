@@ -537,7 +537,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 				$message .= sprintf( esc_html__('The submitter was %1$s.', 'revisionary'), $revisor->display_name ) . "\r\n\r\n";
 
 			if ( $scheduled ) {
-				$datef = __awp( 'M j, Y @ g:i a' );
+				$datef = esc_html__( 'M j, Y @ g:i a' );
 				$message .= sprintf( esc_html__('It will be published on %s', 'revisionary' ), agp_date_i18n( $datef, strtotime($revision->post_date) ) ) . "\r\n\r\n";
 				
 				if (rvy_get_option('revision_preview_links')) {
@@ -623,7 +623,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 				}
 
 				if ( $scheduled ) {
-					$datef = __awp( 'M j, Y @ g:i a' );
+					$datef = esc_html__( 'M j, Y @ g:i a' );
 					$message .= sprintf( esc_html__('It will be published on %s', 'revisionary' ), agp_date_i18n( $datef, strtotime($revision->post_date) ) ) . "\r\n\r\n";
 					
 					if (rvy_get_option('revision_preview_links')) {
