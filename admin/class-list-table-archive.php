@@ -1188,7 +1188,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					'<a href="%1$s" title="%2$s" aria-label="%2$s">%3$s</a>',
 					$edit_link,
 					(rvy_in_revision_workflow($item->post_parent)) ? esc_attr__('Edit parent revision', 'revisionary') : esc_attr__('Edit parent post', 'revisionary'),
-					esc_html__( 'Edit Parent', 'revisionary' )
+					str_replace(' ', '&nbsp;', esc_html__( 'Edit Parent', 'revisionary' ))
 				);
 			}
 		}
