@@ -802,7 +802,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<td>
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Post', 'revisionary');?>
+		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Posts', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
