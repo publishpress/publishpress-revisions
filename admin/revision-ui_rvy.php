@@ -252,7 +252,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			else
 				$class = "rvy-revision-row alternate"; 
 			
-			$datef = __awp( 'M j, Y @ g:i a' );
+			$datef = esc_html__( 'M j, Y @ g:i a' );
 			
 			$rows .= "<tr class='" . esc_attr($class) . "'>";
 
