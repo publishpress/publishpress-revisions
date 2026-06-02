@@ -18,15 +18,17 @@ class RevisionaryPostEditorMetaboxes {
 	}
 	
 	function add_meta_boxes() {
+		global $wp_version;
+
 		$object_type = rvy_detect_post_type();
 		
-		if ( rvy_get_option( 'pending_revisions' ) ) {
+		if ( rvy_get_option( 'pending_revisions' ) && (rvy_get_option('enable_classic_metaboxes') || !version_compare($wp_version, '7.0', '>=')) ) {
 			require_once( dirname(__FILE__).'/revision-ui_rvy.php' );
 			
 			add_meta_box( 'pending_revisions', pp_revisions_status_label('pending-revision', 'plural'), [$this, 'rvy_metabox_revisions_pending'], $object_type, 'advanced', 'high' );
 		}
 			
-		if ( rvy_get_option( 'scheduled_revisions' ) ) {
+		if ( rvy_get_option( 'scheduled_revisions' ) && (rvy_get_option('enable_classic_metaboxes') || !version_compare($wp_version, '7.0', '>=')) ) {
 			require_once( dirname(__FILE__).'/revision-ui_rvy.php' );
 
 			add_meta_box( 'future_revisions', pp_revisions_status_label('future-revision', 'plural'), [$this, 'rvy_metabox_revisions_future'], $object_type );
