@@ -133,7 +133,7 @@ class RvyOptionUI {
 
 function options_ui( $sitewide = false, $customize_defaults = false ) {
 
-global $revisionary, $wpdb;
+global $revisionary, $wpdb, $wp_version;
 global $rvy_options_sitewide, $rvy_default_options;
 
 if ( ! current_user_can( 'manage_options' ) || ( $sitewide && ! is_super_admin() ) )
@@ -244,6 +244,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'revision_edit_disable_rank_math' => 		esc_html__('Disable Rank Math SEO panel for Revision edit', 'revisionary'),
 	'enable_postmeta_revision' =>				esc_html__('Allow custom fields (post meta) to be revisioned', 'revisionary'),
 	'submit_permission_enables_creation' =>		esc_html__('Permission for Submit Revision also enables Revision creation', 'revisionary'),
+	'enable_classic_metaboxes' =>				esc_html__('Enable classic metaboxes in editor', 'revisionary'),
 	]
 );
 
@@ -266,7 +267,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
-	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'display_hints', 'delete_settings_on_uninstall'],
+	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
 	'license' =>			 ['edd_key'],
 ]
 ]);
@@ -1496,8 +1497,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$hint = sprintf(esc_html__( 'When a %s is published, update post modified date to current time.', 'revisionary' ), pp_revisions_status_label('future-revision', 'name'));
 			$this->option_checkbox( 'scheduled_revision_update_modified_date', $tab, $section, $hint, '' );
 
-			global $wp_version;
-			
 			$hint = esc_html__( 'Publish scheduled revisions using the WP-Cron mechanism. On some sites, publication will fail if this setting is disabled.', 'revisionary' );
 			$this->option_checkbox( 'scheduled_publish_cron', $tab, $section, $hint, '' );
 
@@ -2211,6 +2210,14 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		<?php endif;?>
 
 		<?php
+
+		if (version_compare($wp_version, '7.0', '>=')) {
+			echo '<br>';
+			$hint = '';
+			$this->option_checkbox( 'enable_classic_metaboxes', $tab, $section, $hint, '' );
+		    echo '<br>';
+		}
+
 		$hint = esc_html__( 'Show descriptive captions for PublishPress Revisions settings.', 'revisionary' );
 		$this->option_checkbox( 'display_hints', $tab, $section, $hint, '' );
 
