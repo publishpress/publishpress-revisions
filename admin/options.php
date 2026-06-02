@@ -743,7 +743,16 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<br />
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Revision Fields', 'revisionary');?></h3>
+		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Revision Fields', 'revisionary');?>
+		<?php 
+		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'',
+			esc_html__('Specify fields which can be modified by New Revisions.', 'revisionary'),
+			true
+		);
+		?>
+		</h3>
+
 		<?php
 		$available_fields = [
 			'post_content' => 	__('Content', 'revisionary'),
@@ -897,7 +906,16 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<br />
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Fields', 'revisionary');?></h3>
+		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Fields', 'revisionary');?>
+		<?php 
+		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'',
+			esc_html__('Specify fields to include when Posts are copied.', 'revisionary'),
+			true
+		);
+		?>
+		</h3>
+
 		<?php
 		$available_fields = [
 			'post_content' => 	__('Content', 'revisionary'),
