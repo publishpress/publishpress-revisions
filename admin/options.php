@@ -763,7 +763,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			'post_name' => 		__('Slug', 'revisionary'),
 			'post_excerpt' => 	__('Excerpt', 'revisionary'),
 			'post_author' => 	__('Author', 'revisionary'),
-			'_thumbnail_id' =>		__('Thumnbnail', 'revisionary'), 
+			'_thumbnail_id' =>		__('Thumbnail', 'revisionary'), 
 			'_wp_page_template' =>	__('Template', 'revisionary'), 
 			'category' =>		__('Categories', 'revisionary'),
 			'post_tag' =>		__('Tags', 'revisionary'),
