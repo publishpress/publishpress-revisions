@@ -599,6 +599,12 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
         }
     }
 
+    if (version_compare($last_ver, '3.8.2', '<')) {
+        if (get_option('rvy_permissions_compat_mode')) {
+            $wpdb->query("UPDATE $wpdb->posts SET post_status = 'future-revision' WHERE post_mime_type = 'future-revision'");
+        }
+    }
+
     if (version_compare($last_ver, '3.7.20', '<')) {
         if ($role = @get_role('administrator')) {
             $role->add_cap('view_revision_archive');

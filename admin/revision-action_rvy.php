@@ -472,23 +472,23 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		// If requested publish date is in the future, schedule the revision
 		} else {
 			if ( 'future-revision' != $revision->post_mime_type ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$wpdb->update( $wpdb->posts, array( 'post_mime_type' => 'future-revision' ), array( 'ID' => $revision->ID ) );
+				$update_fields = ['post_mime_type' => 'future-revision'];
+
+				$_post_status = (rvy_get_option('rvy_permissions_compat_mode')) ? 'future-revision' : 'pending';
+				$update_fields['post_status'] = apply_filters('revisionary_post_revision_status', $_post_status, 'future-revision', $revision->ID);
+
+				$wpdb->update( $wpdb->posts, $update_fields, array( 'ID' => $revision->ID ) );  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				
 				rvy_update_next_publish_date(['revision_id' => $revision_id]);
-				
 				$db_action = true;
-				
 				clean_post_cache( $revision->ID );
 
 				$revision_before = (object) (array) $revision;
 				$revision->post_mime_type = 'future-revision';
-				$revision->status = apply_filters('revisionary_post_revision_status', 'future', 'future-revision', $revision_id);
 
 				do_action('revisionary_scheduled', $post->ID, $revision, $revision_before);
 			} else {
-				// this scheduled revision is already approved, so don't included in reported bulk approval count
-				$approval_error = true;
+				$approval_error = true;	 // This scheduled revision is already approved, so don't included in reported bulk approval count
 			}
 
 			$revision_status = 'future-revision';
