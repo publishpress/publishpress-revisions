@@ -600,7 +600,8 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
     }
 
     if (version_compare($last_ver, '3.8.2', '<')) {
-        $wpdb->query(
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->query( 
             $wpdb->prepare(
                 "UPDATE $wpdb->posts SET post_status = %s WHERE post_mime_type = 'future-revision'", 
                 (get_option('rvy_permissions_compat_mode')) ? 'future-revision' : 'pending'
