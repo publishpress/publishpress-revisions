@@ -1,0 +1,3048 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"POT-Creation-Date: 2026-06-02T20:52:49+00:00\n"
+"PO-Revision-Date: 2026-04-17 11:07+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: revisionary\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : (n >= 2 && n <= 4) ? 1 : 2;\n"
+
+#. Plugin Name of the plugin
+#: revisionary.php:3
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#. Plugin URI of the plugin
+#: revisionary.php:4
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#. Description of the plugin
+#: revisionary.php:5
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Udržujte publikovaný obsah s tímovou prácou a presnosťou pomocou modelu "
+"Revisions na predloženie, schválenie a naplánovanie zmien."
+
+#. Author of the plugin
+#: revisionary.php:6
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#. Author URI of the plugin
+#: revisionary.php:7
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/admin-init_rvy.php:112 admin/admin-init_rvy.php:348
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "Prepáčte, nemáte povolenie na odstránenie tejto revízie."
+
+#: admin/admin-init_rvy.php:204 admin/admin-init_rvy.php:314
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "Prepáčte, nemáte povolenie na schválenie tejto revízie."
+
+#: admin/admin-init_rvy.php:241
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "Prepáčte, nemáte povolenie na predloženie tejto revízie."
+
+#: admin/admin-init_rvy.php:279
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "Prepáčte, nemáte povolenie na odmietnutie tejto revízie."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "Revízia bola obnovená."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "Revízia bola naplánovaná na publikovanie."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "Revízia bola publikovaná."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"Na vytvorenie revízie tohto príspevku je potrebná schopnosť unfiltered_html. "
+"Pozrite sa na %s dokumentáciu %s."
+
+#: admin/admin-posts_rvy.php:212 rvy_init-functions.php:798
+msgid "The post already has a revision in process."
+msgstr "Príspevok už má revíziu v procese."
+
+#: admin/admin-posts_rvy.php:294 admin/class-list-table-archive.php:580
+#: rvy_init-functions.php:495
+msgid "Revision"
+msgstr "Revízia"
+
+#: admin/admin-posts_rvy.php:311
+msgid "Has Revision"
+msgstr "Má revíziu"
+
+#: admin/admin-posts_rvy.php:322 admin/admin_rvy.php:410
+#: admin/admin_rvy.php:480 admin/options.php:159 admin/options.php:644
+msgid "New Revisions"
+msgstr "Nové revízie"
+
+#: admin/admin-posts_rvy.php:346 admin/history_rvy.php:87
+#: admin/history_rvy.php:91 admin/history_rvy.php:97 admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "Kopírovať"
+
+#: admin/admin_lib-mu_rvy.php:10 admin/options.php:336
+msgid "PublishPress Revisions Network Settings"
+msgstr "Nastavenia siete PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:10
+msgid "Network Settings"
+msgstr "Nastavenia siete"
+
+#: admin/admin_lib-mu_rvy.php:21 admin/options.php:338
+msgid "PublishPress Revisions Network Defaults"
+msgstr "Predvolené nastavenia siete PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:21
+msgid "Network Defaults"
+msgstr "Predvoľby siete"
+
+#: admin/admin_rvy.php:166
+#, php-format
+msgid ""
+"Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
+"triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
+"Scheduling%s."
+msgstr ""
+"Plánované revízie sú nedostupné, pretože WP-Cron je zakázaný. Ak spúšťate WP-"
+"Cron externé, pozrite sa na %sRevízie > Nastavenia > Nové revízie > "
+"Plánovanie%s."
+
+#: admin/admin_rvy.php:321
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Revízie"
+
+#: admin/admin_rvy.php:361
+msgid "Revisions"
+msgstr "Revízie"
+
+#: admin/admin_rvy.php:419 admin/admin_rvy.php:420 admin/admin_rvy.php:481
+#: admin/options.php:158 admin/options.php:545
+#: admin/revision-archive_rvy.php:81 admin/revisions.php:237
+msgid "Past Revisions"
+msgstr "Minulé revízie"
+
+#: admin/admin_rvy.php:437 admin/options.php:342
+msgid "PublishPress Revisions Settings"
+msgstr "Nastavenia revízií PublishPress"
+
+#: admin/admin_rvy.php:437 admin/admin_rvy.php:484 admin/options.php:153
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: admin/admin_rvy.php:446 admin/admin_rvy.php:447 admin/admin_rvy.php:487
+#: admin/options.php:2022 admin/options.php:2049 admin/options.php:2265
+#: admin/options.php:2611 includes/CoreAdmin.php:212
+msgid "Upgrade to Pro"
+msgstr "Upgradovať na Pro"
+
+#: admin/admin_rvy.php:528
+msgid "Can edit draft Posts from other users."
+msgstr "Môže upravovať koncepty príspevkov od iných používateľov."
+
+#: admin/admin_rvy.php:529
+msgid "Can edit Revisions from other users."
+msgstr "Môže upravovať revízie od iných používateľov."
+
+#: admin/admin_rvy.php:530
+msgid "Can see New Revisions from other users."
+msgstr "Môže vidieť nové revízie od iných používateľov."
+
+#: admin/admin_rvy.php:531
+msgid "Can access New Revisions."
+msgstr "Môže pristupovať k novým revíziám."
+
+#: admin/admin_rvy.php:532
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Môže spravovať neodoslané revízie."
+
+#: admin/admin_rvy.php:533
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr "Náhľad revízií iného používateľa (bez potrebného prístupu na úpravy)."
+
+#: admin/admin_rvy.php:534
+msgid "Restore an archived Revision as the current revision."
+msgstr "Obnoviť archivovanú revíziu ako aktuálnu revíziu."
+
+#: admin/admin_rvy.php:535
+msgid "View Past Revisions."
+msgstr "Zobraziť minulé revízie."
+
+#: admin/admin_rvy.php:565
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Ak sa vám páči %1$s, prosím, zanechajte nám %2$s hodnotenie. Ďakujeme!"
+
+#: admin/admin_rvy.php:576
+msgid "About PublishPress Revisions"
+msgstr "O revíziách PublishPress"
+
+#: admin/admin_rvy.php:576
+msgid "About"
+msgstr "O"
+
+#: admin/admin_rvy.php:578
+msgid "PublishPress Revisions Documentation"
+msgstr "Dokumentácia revízií PublishPress"
+
+#: admin/admin_rvy.php:578
+msgid "Documentation"
+msgstr "Dokumentácia"
+
+#: admin/admin_rvy.php:580
+msgid "Contact the PublishPress team"
+msgstr "Kontaktujte tím PublishPress"
+
+#: admin/admin_rvy.php:580
+msgid "Contact"
+msgstr "Kontakt"
+
+#: admin/agents_checklist_rvy.php:76
+#, php-format
+msgid "show current users (%d)"
+msgstr "zobraziť aktuálnych používateľov (%d)"
+
+#: admin/agents_checklist_rvy.php:78
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "zobraziť oprávnených používateľov (%d)"
+
+#: admin/agents_checklist_rvy.php:87
+msgid "filter:"
+msgstr "filter:"
+
+#: admin/agents_checklist_rvy.php:103
+msgid "select"
+msgstr "vybrať"
+
+#: admin/agents_checklist_rvy.php:111
+msgid "unselect"
+msgstr "zrušiť výber"
+
+#: admin/class-list-table-archive.php:22
+msgid ""
+"This was an update to a revision which is still in the workflow process."
+msgstr ""
+"Toto bol aktualizovaný revízny dokument, ktorý je stále v procese pracovného "
+"postupu."
+
+#: admin/class-list-table-archive.php:24
+msgid ""
+"This was an update to a revision which was published after further editing."
+msgstr ""
+"Toto bol aktualizovaný revízny dokument, ktorý bol publikovaný po ďalšom "
+"úprave."
+
+#: admin/class-list-table-archive.php:202
+#, php-format
+msgid "Revision Author: %s"
+msgstr "Autor revízie: %s"
+
+#: admin/class-list-table-archive.php:221
+#, php-format
+msgid "Post Author: %s"
+msgstr "Autor príspevku: %s"
+
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr "Dátum revízie: %s"
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr "Schválené: %s"
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr "Dátum publikácie: %s"
+
+#: admin/class-list-table-archive.php:272
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Výsledky vyhľadávania pre \"%s\""
+
+#: admin/class-list-table-archive.php:540 admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "Odstrániť revíziu"
+
+#: admin/class-list-table-archive.php:581 admin/class-list-table_rvy.php:756
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:582 rvy_init-functions.php:496
+msgid "Revised By"
+msgstr "Revidoval"
+
+#: admin/class-list-table-archive.php:583 rvy_init-functions.php:497
+msgid "Revision Date"
+msgstr "Dátum revízie"
+
+#: admin/class-list-table-archive.php:584
+msgid "Action"
+msgstr "Akcia"
+
+#: admin/class-list-table-archive.php:585
+msgid "Approved By"
+msgstr "Schválil"
+
+#: admin/class-list-table-archive.php:586
+msgid "Published Date"
+msgstr "Dátum publikovania"
+
+#: admin/class-list-table-archive.php:587
+msgid "Published Author"
+msgstr "Publikovaný autor"
+
+#: admin/class-list-table-archive.php:616 admin/class-list-table_rvy.php:922
+msgid "just now"
+msgstr "pred chvíľou"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s minútami dozadu"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minute ago"
+msgstr "%s minútou dozadu"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hours ago"
+msgstr "%s hodinami dozadu"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hour ago"
+msgstr "%s hodinou dozadu"
+
+#: admin/class-list-table-archive.php:756 functions.php:466
+msgid "Scheduled Revision Publication"
+msgstr "Naplánované publikovanie revízie"
+
+#: admin/class-list-table-archive.php:760 functions.php:470
+msgid "Revision Publication"
+msgstr "Publikovanie revízie"
+
+#: admin/class-list-table-archive.php:770 functions.php:480
+#, php-format
+msgid "Edit of %s"
+msgstr "Úprava %s"
+
+#: admin/class-list-table-archive.php:777 functions.php:487
+msgid "Edit of published Revision"
+msgstr "Úprava publikovanej revízie"
+
+#: admin/class-list-table-archive.php:780 functions.php:490 functions.php:553
+msgid "Direct Edit"
+msgstr "Priama úprava"
+
+#: admin/class-list-table-archive.php:839 admin/class-list-table_rvy.php:1461
+msgid "All Post Types"
+msgstr "Všetky typy príspevkov"
+
+#: admin/class-list-table-archive.php:872 admin/class-list-table_rvy.php:1496
+msgid "All Revision Authors"
+msgstr "Všetci autori revízií"
+
+#: admin/class-list-table-archive.php:906 admin/class-list-table_rvy.php:1531
+msgid "All Revision Dates"
+msgstr "Všetky dátumy revízií"
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr "Všetky dátumy publikovania"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr "Všetci schvaľovatelia"
+
+#: admin/class-list-table-archive.php:1036 admin/class-list-table_rvy.php:1602
+msgid "All Authors"
+msgstr "Všetci autori"
+
+#: admin/class-list-table-archive.php:1058 admin/class-list-table_rvy.php:1638
+msgid "Reset Filters"
+msgstr "Resetovať filtre"
+
+#: admin/class-list-table-archive.php:1089 admin/options.php:2276
+msgid "All"
+msgstr "Všetko"
+
+#: admin/class-list-table-archive.php:1103
+msgid "My Revisions"
+msgstr "Moje revízie"
+
+#: admin/class-list-table-archive.php:1157
+#, php-format
+msgid "Compare Changes in %s"
+msgstr "Porovnať zmeny v %s"
+
+#: admin/class-list-table-archive.php:1161 admin/class-list-table_rvy.php:1918
+#: admin/post-edit_rvy.php:190 admin/post-edit_rvy.php:254
+#: admin/post-edit_rvy.php:268
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Porovnať"
+
+#: admin/class-list-table-archive.php:1176 admin/class-list-table_rvy.php:1903
+#: admin/post-editor-workflow-ui_rvy.php:233
+msgid "Preview Revision"
+msgstr "Náhľad revízie"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent revision"
+msgstr "Upraviť rodičovskú revíziu"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent post"
+msgstr "Upraviť rodičovský príspevok"
+
+#: admin/class-list-table-archive.php:1191
+msgid "Edit Parent"
+msgstr "Upraviť rodiča"
+
+#: admin/class-list-table-archive.php:1201
+msgid "List Revisions of this Post"
+msgstr "Zoznam revízií tohto príspevku"
+
+#: admin/class-list-table-archive.php:1202
+msgid "Filter"
+msgstr "Filter"
+
+#: admin/class-list-table-archive.php:1214
+msgid "Delete Past Revision"
+msgstr "Zmazať minulú revíziu"
+
+#: admin/class-list-table-archive.php:1302
+msgid "No revisions found."
+msgstr "Žiadne revízie nenájdené."
+
+#: admin/class-list-table_rvy.php:755 admin/options.php:762
+#: admin/options.php:925 admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "Stav"
+
+#: admin/class-list-table_rvy.php:801
+msgid "View preview"
+msgstr "Zobraziť náhľad"
+
+#: admin/class-list-table_rvy.php:818
+msgid "Y/m/d, g:i:s a"
+msgstr "Y/m/d, g:i:s a"
+
+#: admin/class-list-table_rvy.php:828
+msgid "Y/m/d g:i a"
+msgstr "Y/m/d g:i a"
+
+#: admin/class-list-table_rvy.php:835
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Naplánované zverejnenie: %s"
+
+#: admin/class-list-table_rvy.php:838
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Žiadané zverejnenie: %s"
+
+#: admin/class-list-table_rvy.php:840
+msgid "This revision is not scheduled yet. It must be approved."
+msgstr "Táto revízia ešte nie je naplánovaná. Musí byť schválená."
+
+#: admin/class-list-table_rvy.php:890 admin/history_rvy.php:915
+msgid "No author"
+msgstr "Bez autora"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:964
+msgid "Edit published post"
+msgstr "Upraviť zverejnený príspevok"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:977
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Zobraziť iba revízie %s"
+
+#: admin/class-list-table_rvy.php:988 admin/class-list-table_rvy.php:995
+msgid "View published post"
+msgstr "Zobraziť publikovaný príspevok"
+
+#: admin/class-list-table_rvy.php:1020
+msgid "Compare Past Revisions"
+msgstr "Porovnať minulé revízie"
+
+#: admin/class-list-table_rvy.php:1021
+msgid "History"
+msgstr "História"
+
+#: admin/class-list-table_rvy.php:1301
+msgid "My Activity"
+msgstr "Moja aktivita"
+
+#: admin/class-list-table_rvy.php:1310
+#, php-format
+msgid "All %s"
+msgstr "Všetky %s"
+
+#: admin/class-list-table_rvy.php:1400
+msgid "Unschedule"
+msgstr "Zrušiť plánovanie"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1404 admin/class-list-table_rvy.php:1875
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Discard Revision"
+msgstr "Zahodiť revíziu"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "All Revision Statuses"
+msgstr "Všetky stavy revízií"
+
+#: admin/class-list-table_rvy.php:1567
+msgid "All Posts"
+msgstr "Všetky príspevky"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1852
+#: admin/post-editor-workflow-ui_rvy.php:234
+msgid "Edit Revision"
+msgstr "Upraviť revíziu"
+
+#: admin/class-list-table_rvy.php:1917
+msgid "Compare Changes"
+msgstr "Porovnať zmeny"
+
+#: admin/class-list-table_rvy.php:1929
+#, fuzzy
+#| msgid "Approve"
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Schváliť"
+
+#: admin/class-list-table_rvy.php:1936
+#, fuzzy
+#| msgid "Publish Now"
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Publikovať teraz"
+
+#: admin/class-list-table_rvy.php:1945
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Odmietnuť"
+
+#: admin/edit-revision-classic-ui_rvy.php:111
+msgid "Publish <b>on approval</b>"
+msgstr "Publikovať <b>po schválení</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:142
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Revízia bola aktualizovaná. %sZobraziť náhľad%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:144
+msgid "Revision updated."
+msgstr "Revízia bola aktualizovaná."
+
+#: admin/history_rvy.php:87 admin/history_rvy.php:91
+msgid "Copy content to the clipboard."
+msgstr "Kopírovať obsah do schránky."
+
+#: admin/history_rvy.php:97 admin/history_rvy.php:100
+msgid "Copy the above content to the clipboard."
+msgstr "Kopírovať vyššie uvedený obsah do schránky."
+
+#: admin/history_rvy.php:282 admin/history_rvy.php:302
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Porovnať %s z \"%s\""
+
+#: admin/history_rvy.php:659 admin/options.php:1169
+msgid "Post Date"
+msgstr "Dátum príspevku"
+
+#: admin/history_rvy.php:660
+msgid "Post Parent"
+msgstr "Príspevok rodiča"
+
+#: admin/history_rvy.php:661
+msgid "Menu Order"
+msgstr "Poradie v ponuke"
+
+#: admin/history_rvy.php:662
+msgid "Comment Status"
+msgstr "Stav komentára"
+
+#: admin/history_rvy.php:663
+msgid "Ping Status"
+msgstr "Stav pingu"
+
+#: admin/history_rvy.php:803
+msgid "Page Template"
+msgstr "Šablóna stránky"
+
+#: admin/history_rvy.php:806
+msgid "Featured Image"
+msgstr "Hlavný obrázok"
+
+#: admin/history_rvy.php:810
+msgid "Beaver Builder Data"
+msgstr "Údaje Beaver Builder"
+
+#: admin/history_rvy.php:811
+msgid "Beaver Builder Settings"
+msgstr "Nastavenia Beaver Builder"
+
+#: admin/history_rvy.php:1062
+msgid "Scheduled for "
+msgstr "Naplánované na "
+
+#: admin/history_rvy.php:1067
+msgid "Requested for "
+msgstr "Požadované na "
+
+#: admin/history_rvy.php:1072
+msgid "Modified "
+msgstr "Upravené "
+
+#: admin/history_rvy.php:1077
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s od teraz"
+
+#: admin/history_rvy.php:1088
+msgid "M j, Y @ g:i a"
+msgstr "M j, Y @ g:i a"
+
+#: admin/history_rvy.php:1133
+msgid "M j, Y @ H:i"
+msgstr "M j, Y @ H:i"
+
+#: admin/history_rvy.php:1134
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/history_rvy.php:1220 front_rvy.php:546 front_rvy.php:556
+#: front_rvy.php:575 front_rvy.php:606 rvy_init-functions.php:293
+#: rvy_init-functions.php:311 rvy_init-functions.php:350
+#: rvy_init-functions.php:367 rvy_init-functions.php:384
+msgid "Approve"
+msgstr "Schváliť"
+
+#: admin/history_rvy.php:1220
+msgid "Preview / Approve"
+msgstr "Náhľad / Schváliť"
+
+#: admin/history_rvy.php:1222 admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:233
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Náhľad"
+
+#: admin/history_rvy.php:1317
+msgid "Preview / Restore"
+msgstr "Náhľad / Obnoviť"
+
+#: admin/history_rvy.php:1324
+msgid "Manage"
+msgstr "Spravovať"
+
+#: admin/history_rvy.php:1325
+msgid "List"
+msgstr "Zoznam"
+
+#: admin/options.php:123
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Všetky nastavenia na tomto paneli sú priradené na celú sieť."
+
+#: admin/options.php:153
+msgid "Setting Scope"
+msgstr "Rozsah nastavení"
+
+#: admin/options.php:157
+msgid "Features"
+msgstr "Funkcie"
+
+#: admin/options.php:160
+msgid "Options"
+msgstr "Možnosti"
+
+#: admin/options.php:161
+msgid "Integrations"
+msgstr "Integrácie"
+
+#: admin/options.php:162
+msgid "Statuses"
+msgstr "Stavy"
+
+#: admin/options.php:163 admin/options.php:1202
+msgid "Notifications"
+msgstr "Oznámenia"
+
+#: admin/options.php:169
+msgid "Revision Submission"
+msgstr "Odovzdanie revízie"
+
+#: admin/options.php:177
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr ""
+"Použiť alternatívne označovanie: \"Pracovná kópia\" > \"Žiadosť o zmenu\" > "
+"\"Naplánovaná zmena\""
+
+#: admin/options.php:178
+msgid "New Revisions access requires role capability"
+msgstr "Na prístup k novým revíziám je potrebná schopnosť roly"
+
+#: admin/options.php:179
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Správa %s vyžaduje schopnosť roly"
+
+#: admin/options.php:180
+msgid "Working Copy creation requires role capability"
+msgstr "Vytvorenie pracovnej kópie vyžaduje schopnosť roly"
+
+#: admin/options.php:180
+msgid "Revision creation requires role capability"
+msgstr "Vytvorenie revízie vyžaduje schopnosť roly"
+
+#: admin/options.php:181
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr "Zoznam príspevkov / strán: Použiť popis \"Upraviť\" pre %s odkaz"
+
+#: admin/options.php:182 admin/options.php:188
+#, php-format
+msgid "Enable %s"
+msgstr "Povoliť %s"
+
+#: admin/options.php:183
+msgid "Limit to one active revision per post"
+msgstr "Obmedziť na jednu aktívnu revíziu na príspevok"
+
+#: admin/options.php:184
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr "Obnoviť vlajku \"Má revíziu\" pred potlačením Vytvoriť revíziu"
+
+#: admin/options.php:185
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr ""
+"Ak príspevok obsahuje vlastný html, vyžaduje sa schopnosť unfiltered_html"
+
+#: admin/options.php:186
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr ""
+"Automaticky odosielať revízie vytvorené používateľom so schopnosťou "
+"publikovania"
+
+#: admin/options.php:187
+msgid "Auto-submit revisions"
+msgstr "Automaticky odosielať revízie"
+
+#: admin/options.php:189
+msgid "Change Request submission require role capability"
+msgstr "Zaslanie požiadavky na zmenu vyžaduje schopnosť role"
+
+#: admin/options.php:189
+msgid "Revision submission requires role capability"
+msgstr "Zaslanie revízie vyžaduje schopnosť role"
+
+#: admin/options.php:190
+msgid "Editing others' Revisions requires role capability"
+msgstr "Úprava revízií iných vyžaduje schopnosť role"
+
+#: admin/options.php:191
+msgid "Listing others' Revisions requires role capability"
+msgstr "Zoznam revízií iných vyžaduje schopnosť role"
+
+#: admin/options.php:192
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Používatelia môžu vždy spravovať revízie svojich editovateľných príspevkov"
+
+#: admin/options.php:193
+msgid "Also notify on Revision Update"
+msgstr "Tiež upozorniť na aktualizáciu revízie"
+
+#: admin/options.php:194
+msgid "Apply API actions to mimic Post Update"
+msgstr "Aplikovať API akcie na napodobnenie aktualizácie príspevku"
+
+#: admin/options.php:195
+msgid "Hide html tags on Compare screen"
+msgstr "Skryť html tagy na obrazovke porovnania"
+
+#: admin/options.php:196
+msgid "Hide copy buttons on Compare screen"
+msgstr "Skryť tlačidlá na kopírovanie na obrazovke porovnania"
+
+#: admin/options.php:197
+msgid "Use WP-Cron scheduling"
+msgstr "Použiť plánovanie WP-Cron"
+
+#: admin/options.php:198
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "Web používa vlastný spúšťač pre úlohy WP-Cron"
+
+#: admin/options.php:199
+msgid "Asynchronous Publishing"
+msgstr "Asynchrónne publikovanie"
+
+#: admin/options.php:200 admin/options.php:201
+msgid "Update Publish Date"
+msgstr "Aktualizovať dátum publikovania"
+
+#: admin/options.php:202 admin/options.php:203
+msgid "Update Modified Date"
+msgstr "Aktualizovať dátum úpravy"
+
+#: admin/options.php:206 admin/options.php:207
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Použiť %1$sOznámenia Plánovača%2$s"
+
+#: admin/options.php:209
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Poslať e-mail pôvodnému autorovi, keď je zaslaný %s"
+
+#: admin/options.php:210
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Poslať e-mail pôvodnému autorovi, keď je %s schválené"
+
+#: admin/options.php:211
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Poslať e-mail revisorovi, keď je %s schválené"
+
+#: admin/options.php:212
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Poslať e-mail pôvodnému autorovi, keď je %s publikované"
+
+#: admin/options.php:213
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Poslať e-mail revisorovi, keď je %s publikované"
+
+#: admin/options.php:214
+msgid "Enable notification buffer"
+msgstr "Povoliť vyrovnávaciu pamäť oznámení"
+
+#: admin/options.php:215
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "Revízori môžu vytvoriť novú revíziu pre akýkoľvek post type"
+
+#: admin/options.php:216
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Zabrániť revízorom v úprave nepublikovaných príspevkov iných"
+
+#: admin/options.php:217
+msgid "Add database index to posts table for Revision queries"
+msgstr "Pridať index databázy do tabuľky príspevkov pre dotazy na revízie"
+
+#: admin/options.php:218
+msgid "Display Hints"
+msgstr "Zobraziť nápovedy"
+
+#: admin/options.php:219
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Vymazať nastavenia a revízie, ak je plugin odstránený"
+
+#: admin/options.php:220
+msgid "Show Preview Links"
+msgstr "Zobraziť odkazy na náhľad"
+
+#: admin/options.php:221
+msgid "Preview Link Type"
+msgstr "Typ odkazu na náhľad"
+
+#: admin/options.php:222
+msgid "Modify preview link for better theme compatibility"
+msgstr "Upraviť odkaz na náhľad pre lepšiu kompatibilitu s témou"
+
+#: admin/options.php:223
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr ""
+"Kompatibilita témy: Pre náhľad revízie na úvodnej stránke nastavte domovskú "
+"vlajku"
+
+#: admin/options.php:224
+msgid "Approve Button on Compare screen"
+msgstr "Tlačidlo schváliť na obrazovke porovnania"
+
+#: admin/options.php:225
+msgid "Copy revision comments to published post"
+msgstr "Kopírovať komentáre k revízii do publikovaného príspevku"
+
+#: admin/options.php:226
+msgid "Compare Past Revisions ordering:"
+msgstr "Porovnať usporiadanie minulých revízií:"
+
+#: admin/options.php:227
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr ""
+"Zoznam %s pre zobrazenie \"Moja aktivita\" alebo \"Revízie mojich "
+"príspevkov\""
+
+#: admin/options.php:228
+msgid "Store custom fields of submitted and scheduled revisions for archive"
+msgstr "Uložiť vlastné polia predložených a naplánovaných revízií do archívu"
+
+#: admin/options.php:229
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr "Udržiavať archív úprav revízií, aj keď je revízia publikovaná"
+
+#: admin/options.php:230
+msgid "Show Current Revision top bar after revision publication"
+msgstr "Zobraziť horný panel aktuálnej revízie po publikovaní revízie"
+
+#: admin/options.php:231
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "Pri publikovaní revízie vymazať redakčné komentáre"
+
+#: admin/options.php:232
+msgid "Enable deletion queue"
+msgstr "Povoliť frontu na vymazanie"
+
+#: admin/options.php:233
+msgid "Allow Past Revisions to be deleted"
+msgstr "Povoliť vymazanie minulých revízií"
+
+#: admin/options.php:234
+msgid "Restoring a Revision requires role capability"
+msgstr "Obnovenie revízie vyžaduje schopnosti rolí"
+
+#: admin/options.php:235
+msgid "Compatibility Mode"
+msgstr "Režim kompatibility"
+
+#: admin/options.php:236
+msgid "Planner Notifications Access-Limited"
+msgstr "Prístup k oznámeniam plánovača obmedzený"
+
+#: admin/options.php:237
+msgid "Maximum Revisions per post"
+msgstr "Maximálne revízie na príspevok"
+
+#: admin/options.php:238
+msgid "Apply Post Permissions to Revisions"
+msgstr "Použiť oprávnenia príspevku na revízie"
+
+#: admin/options.php:239
+msgid "Enable legacy email notifications"
+msgstr "Povoliť dedičné e-mailové oznámenia"
+
+#: admin/options.php:240
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr "Použiť rozšírené popisy pre tlačidlo Schváliť v editore príspevkov"
+
+#: admin/options.php:241
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Povoliť úpravu poľa Autor pomocou revízie"
+
+#: admin/options.php:242
+msgid "Create Revision button in editor opens new tab"
+msgstr "Tlačidlo Vytvoriť revíziu v editore otvorí novú kartu"
+
+#: admin/options.php:243
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Dotazovací blok slučky: Upravte schopnosti revidenta a prispievateľa, aby "
+"ste umožnili náhľad v editore revízií"
+
+#: admin/options.php:244
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Zakázať panel Rank Math SEO pre úpravy revízií"
+
+#: admin/options.php:245
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "Povoliť vlastné polia (meta príspevku) na revíziu"
+
+#: admin/options.php:246
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "Oprávnenie na odoslanie revízie tiež umožňuje vytvorenie revízie"
+
+#: admin/options.php:247
+msgid "Enable classic metaboxes in editor"
+msgstr ""
+
+#: admin/options.php:252
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "E-mailom upozorniť určených vydavateľov, keď je odoslaný %s"
+
+#: admin/options.php:253
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "E-mailom upozorniť určených vydavateľov, keď je zverejnený %s"
+
+#: admin/options.php:254
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "E-mailom upozorniť určených vydavateľov, keď je schválený %s"
+
+#: admin/options.php:256
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "E-mailom upozorniť redaktorov a administrátorov, keď je odoslaný %s"
+
+#: admin/options.php:257
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "E-mailom upozorniť redaktorov a administrátorov, keď je zverejnený %s"
+
+#: admin/options.php:258
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "E-mailom upozorniť redaktorov a administrátorov, keď je schválený %s"
+
+#: admin/options.php:340
+msgid "PublishPress Revisions Site Settings"
+msgstr "Nastavenia webu PublishPress Revisions"
+
+#: admin/options.php:370
+msgid ""
+"These are the default settings for options which can be adjusted per-site."
+msgstr ""
+"Toto sú predvolené nastavenia pre možnosti, ktoré je možné upraviť na úrovni "
+"stránky."
+
+#: admin/options.php:408
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Použite túto kartu na vykonanie zmien na úrovni siete v nastaveniach "
+"PublishPress Revisions. %s"
+
+#: admin/options.php:411
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr ""
+"Môžete tiež špecifikovať %1$spredvolené hodnoty pre nastavenia špecifické "
+"pre stránku%2$s."
+
+#: admin/options.php:414
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Tu môžete zmeniť predvolenú hodnotu pre nastavenia, ktoré sú spravované "
+"samostatne na každej stránke."
+
+#: admin/options.php:424 admin/options.php:426
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr ""
+"Všimnite si, že %1$snastavenia na úrovni siete%2$s môžu byť tiež k "
+"dispozícii."
+
+#: admin/options.php:504
+msgid "License"
+msgstr "Licencia"
+
+#: admin/options.php:549
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Minulé revízie sú skoršie verzie príspevku."
+
+#: admin/options.php:606
+msgid "This post type does not support Past Revisions."
+msgstr "Tento post type nepodporuje minulé revízie."
+
+#: admin/options.php:648
+msgid "New Revisions are changes which are not yet published."
+msgstr "Nové revízie sú zmeny, ktoré ešte neboli publikované."
+
+#: admin/options.php:747
+#, fuzzy
+#| msgid "Revisions"
+msgid "Revision Fields"
+msgstr "Revízie"
+
+#: admin/options.php:751
+#, fuzzy
+#| msgid "Allow the Author field to be modified by Revision"
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Povoliť úpravu poľa Autor pomocou revízie"
+
+#: admin/options.php:759 admin/options.php:922
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Kontakt"
+
+#: admin/options.php:760 admin/options.php:923
+msgid "Title"
+msgstr ""
+
+#: admin/options.php:761 admin/options.php:924
+#, fuzzy
+#| msgid "Post Date"
+msgid "Date"
+msgstr "Dátum príspevku"
+
+#: admin/options.php:763 admin/options.php:926
+#, fuzzy
+#| msgid "Edit Parent"
+msgid "Parent"
+msgstr "Upraviť rodiča"
+
+#: admin/options.php:764 admin/options.php:927
+msgid "Slug"
+msgstr ""
+
+#: admin/options.php:765 admin/options.php:928
+msgid "Excerpt"
+msgstr ""
+
+#: admin/options.php:766 admin/options.php:929
+#: admin/post-edit-block-ui_rvy.php:209 admin/post-edit_rvy.php:343
+msgid "Author"
+msgstr "Autor"
+
+#: admin/options.php:767 admin/options.php:930
+msgid "Thumnbnail"
+msgstr ""
+
+#: admin/options.php:768 admin/options.php:931
+#, fuzzy
+#| msgid "Page Template"
+msgid "Template"
+msgstr "Šablóna stránky"
+
+#: admin/options.php:769 admin/options.php:932
+msgid "Categories"
+msgstr ""
+
+#: admin/options.php:770 admin/options.php:933
+msgid "Tags"
+msgstr ""
+
+#: admin/options.php:771 admin/options.php:934
+#: admin/restrict-editor-features.php:162
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/options.php:815
+#, fuzzy
+#| msgid "All Posts"
+msgid "Copy Posts"
+msgstr "Všetky príspevky"
+
+#: admin/options.php:819
+#, fuzzy
+#| msgid "The post already has a revision in process."
+msgid "Copy post directly without using the revision process."
+msgstr "Príspevok už má revíziu v procese."
+
+#: admin/options.php:910
+#, fuzzy
+#| msgid "Fields"
+msgid "Copy Fields"
+msgstr "Polia"
+
+#: admin/options.php:914
+msgid "Specify fields to include when Posts are copied."
+msgstr ""
+
+#: admin/options.php:976
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Poznámka: Kód tretej strany môže spôsobiť, že niektoré post typy budú "
+"nekompatibilné s PublishPress Revisions."
+
+#: admin/options.php:986
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"Pre integráciu revízií na Obsahu Kalendára, Prehľade a Obsahu Tabule, prosím "
+"aktualizujte %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1007
+msgid "Ready to enhance your revision workflow?"
+msgstr "Ste pripravení vylepšiť svoj pracovný tok revízií?"
+
+#: admin/options.php:1010
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with custom "
+"revision statuses."
+msgstr ""
+"Získajte PublishPress Statuses Pro a optimalizujte svoj proces revízií s "
+"vlastnými stavmi revízií."
+
+#: admin/options.php:1016
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Definujte svoje vlastné stavy pred alebo po odoslaní revízie"
+
+#: admin/options.php:1019
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "Nové preddefinované stavy: Odložené, Potrebuje prácu, Zamietnuté"
+
+#: admin/options.php:1022
+msgid "Statuses can be specific to a post type"
+msgstr "Stavy môžu byť špecifické pre post type"
+
+#: admin/options.php:1025
+msgid "Control access to statuses per-role"
+msgstr "Ovládajte prístup k stavom podľa rolí"
+
+#: admin/options.php:1028
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "Pracovný tok stavov môže byť vnorený so sub-stavmi"
+
+#: admin/options.php:1037
+msgid "Get PublishPress Statuses Pro"
+msgstr "Získajte PublishPress Statuses Pro"
+
+#: admin/options.php:1042 admin/options.php:1060 admin/options.php:2027
+#: admin/options.php:2045 admin/options.php:2607 admin/options.php:2621
+#: admin/options.php:2631 admin/options.php:2641
+msgid "Learn More"
+msgstr "Dozvedieť sa viac"
+
+#: admin/options.php:1055
+msgid "Pro Plugin"
+msgstr "Pro Plugin"
+
+#: admin/options.php:1056
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "Nainštalujte Statusy Pro, aby ste odomkli vlastné stavy revízií."
+
+#: admin/options.php:1057
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Nakonfigurujte pre akýkoľvek post type a rolu, aby vyhovovali vášmu "
+"pracovného postupu úprav."
+
+#: admin/options.php:1064
+msgid "Get Statuses Pro"
+msgstr "Získať Statusy Pro"
+
+#: admin/options.php:1091
+msgid "Maximum revisions per post:"
+msgstr "Maximálny počet revízií na príspevok:"
+
+#: admin/options.php:1093
+msgid "(unlimited)"
+msgstr "(neobmedzené)"
+
+#: admin/options.php:1101
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr "Upozorňujeme, že archiváciu môže tiež zakázať %1$sPost Type%2$s."
+
+#: admin/options.php:1138 admin/options.php:1309 admin/options.php:1557
+#: admin/options.php:1583 admin/options.php:1609 admin/options.php:1637
+#: admin/options.php:2151
+#, php-format
+msgid "%s capability"
+msgstr "%s schopnosť"
+
+#: admin/options.php:1143 admin/options.php:1314 admin/options.php:1562
+#: admin/options.php:1588 admin/options.php:1614 admin/options.php:1642
+#: admin/options.php:2156
+msgid "Assign capability to roles"
+msgstr "Priradiť schopnosti rolám"
+
+#: admin/options.php:1150
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Zabrániť neadministrátorom v obnovení revízie bez %s."
+
+#: admin/options.php:1156
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Zabrániť neadministrátorom v obnovení revízie bez schopnosti "
+"restore_revisions"
+
+#: admin/options.php:1169
+msgid "Modification Date"
+msgstr "Dátum úpravy"
+
+#: admin/options.php:1197
+msgid "Revision Creation"
+msgstr "Vytvorenie revízie"
+
+#: admin/options.php:1198
+msgid "Submission"
+msgstr "Odovzdanie"
+
+#: admin/options.php:1199
+msgid "Scheduling"
+msgstr "Plánovanie"
+
+#: admin/options.php:1200
+msgid "Publication"
+msgstr "Publikovanie"
+
+#: admin/options.php:1201
+msgid "Management"
+msgstr "Správa"
+
+#: admin/options.php:1259
+msgid "Create Revision capabilities"
+msgstr "Vytvoriť schopnosti revízií"
+
+#: admin/options.php:1264 admin/options.php:1289 admin/options.php:1442
+msgid "Assign capabilities to roles"
+msgstr "Priradiť schopnosti rolám"
+
+#: admin/options.php:1271 admin/options.php:1449
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "Ak používateľ nemôže upravovať publikovaný príspevok, vyžadujte %s."
+
+#: admin/options.php:1277
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"Ak používateľ nemôže upraviť publikovaný príspevok, vyžaduje sa schopnosť "
+"vytvárať revízie (copy_posts, copy_others_pages, atď.)"
+
+#: admin/options.php:1285
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "Na rozšírenie zoznamu stránok priraďte %s."
+
+#: admin/options.php:1288
+msgid "Listing capabilities"
+msgstr "Zoznamové schopnosti"
+
+#: admin/options.php:1295
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"Na rozšírenie zoznamu stránok priraďte zoznamové schopnosti "
+"(list_others_pages, list_published_posts, atď.)"
+
+#: admin/options.php:1301
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Tento plugin zavádza novú rolu používateľa, \"Revisor.\""
+
+#: admin/options.php:1321
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"Revízia používateľom, ktorý nemá %s, spôsobí odstránenie všetkých vlastných "
+"HTML tagov."
+
+#: admin/options.php:1327
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"Revízia používateľom, ktorý nemá schopnosť unfiltered_html, spôsobí "
+"odstránenie všetkých vlastných HTML tagov."
+
+#: admin/options.php:1344
+msgid "Broadest compat including Elementor, Divi, Beaver Builder"
+msgstr "Najširšia kompatibilita vrátane Elementor, Divi, Beaver Builder"
+
+#: admin/options.php:1345
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr "Štandardné úložné schéma pre najširšiu kompatibilitu s 3. stranami"
+
+#: admin/options.php:1350
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "Vylepšená kontrola prístupu k revíziám s pluginmi PublishPress"
+
+#: admin/options.php:1361
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"V rozšírenom režime sa stav revízie ukladá podľa štandardného schémy "
+"WordPress. Niektoré pluginy sú nekompatibilné."
+
+#: admin/options.php:1368
+msgid ""
+"Prevent Revision creation if the post already has another Revision in "
+"progress."
+msgstr ""
+"Zabráňte vytvoreniu revízie, ak príspevok už má inú revíziu v priebehu."
+
+#: admin/options.php:1372
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Obíďte konflikty pluginov na vyrovnávacej pamäti opätovným dotazovaním na "
+"revízie pred potlačením odkazu na novú revíziu."
+
+#: admin/options.php:1402
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Ak používateľ nemá bežný odkaz na úpravu, premenovať odkaz %s na \"Upraviť.\""
+
+#: admin/options.php:1405
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"Predvolené štítky sú \"Nebolo predložené na schválenie\", \"Predložené na "
+"schválenie\", \"Naplánovaná revízia\""
+
+#: admin/options.php:1423
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Povoliť kopírovanie, úpravu, predloženie na schválenie a správu "
+"publikovaného obsahu na obrazovke %sNové revízie%s."
+
+#: admin/options.php:1437
+msgid "Submit Revision capabilities"
+msgstr "Predložiť schopnosti revízie"
+
+#: admin/options.php:1455
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"Ak používateľ nemôže upraviť publikovaný príspevok, vyžaduje sa schopnosť "
+"predložiť revíziu (revise_posts, revise_others_pages, atď.)"
+
+#: admin/options.php:1460 admin/options.php:1494
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr ""
+"Keď je %s publikovaný, aktualizujte dátum publikovania príspevku na aktuálny "
+"čas."
+
+#: admin/options.php:1463 admin/options.php:1497
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr ""
+"Keď je %s publikovaný, aktualizujte dátum úpravy príspevku na aktuálny čas."
+
+#: admin/options.php:1466
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Keď je vytvorená nová revízia akýmkoľvek používateľom, ktorý má povolenie na "
+"zasielanie revízií, automaticky ju odošli."
+
+#: admin/options.php:1469
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Automaticky odosielaj revízie, ak môže používateľ priamo upraviť hlavnú "
+"príspevok."
+
+#: admin/options.php:1472
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"To umožňuje okamžité schválenie v rámci obrazovky Porovnať. Ak je zakázané, "
+"namiesto toho je poskytnutý odkaz na náhľad."
+
+#: admin/options.php:1488
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Ak je upravený aktuálne publikovaný príspevok alebo stránka a nastavený "
+"budúci dátum, zmena nebude aplikovaná až do vybraného dátumu."
+
+#: admin/options.php:1500
+msgid ""
+"Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
+"publication will fail if this setting is disabled."
+msgstr ""
+"Publikuj naplánované revízie pomocou mechanizmu WP-Cron. Na niektorých "
+"stránkach zverejnenie zlyhá, ak je toto nastavenie zakázané."
+
+#: admin/options.php:1504
+msgid ""
+"Publish scheduled revisions asynchronously, via a secondary http request "
+"from the server.  This is usually best since it eliminates delay, but some "
+"servers may not support it."
+msgstr ""
+"Publikuj naplánované revízie asynchrónne, prostredníctvom sekundárneho http "
+"požiadavku zo servera. To je zvyčajne najlepšie, pretože to eliminuje "
+"oneskorenie, ale niektoré servery to nemusia podporovať."
+
+#: admin/options.php:1509
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"Spúšťač WP-Cron je zakázaný, ale naplánované úlohy sú stále vykonávané "
+"pomocou vlastného spúšťača."
+
+#: admin/options.php:1523
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr ""
+"Označte tlačidlo ako \"Schváliť a publikovať\" alebo \"Schváliť a naplánovať."
+"\""
+
+#: admin/options.php:1534
+msgid "This may improve compatibility with some plugins."
+msgstr "To môže zlepšiť kompatibilitu s niektorými pluginmi."
+
+#: admin/options.php:1569
+#, php-format
+msgid "Control New Revisions access with the %s."
+msgstr "Ovládajte prístup k Novým revíziám pomocou %s."
+
+#: admin/options.php:1575
+msgid "Control New Revisions access with the manage_revision_queue capability."
+msgstr ""
+"Ovládajte prístup k Novým revíziám pomocou schopnosti manage_revision_queue."
+
+#: admin/options.php:1595
+#, php-format
+msgid "Users will need the %s to edit others' Unsubmitted Revisions."
+msgstr ""
+"Používatelia budú potrebovať %s na úpravu nezverejnených revízií iných."
+
+#: admin/options.php:1601
+msgid ""
+"Users will need the manage_unsubmitted_revisions capability to edit others' "
+"Unsubmitted Revisions."
+msgstr ""
+"Používatelia budú potrebovať schopnosť manage_unsubmitted_revisions na "
+"úpravu nezverejnených revízií iných."
+
+#: admin/options.php:1621 admin/options.php:1649
+#, php-format
+msgid "If the user can't edit the published post, require the %s."
+msgstr "Ak používateľ nemôže upraviť publikovaný príspevok, vyžaduje sa %s."
+
+#: admin/options.php:1627
+msgid ""
+"If the user can't edit the published post, require the edit_others_revisions "
+"capability."
+msgstr ""
+"Ak používateľ nemôže upraviť publikovaný príspevok, vyžaduje sa schopnosť "
+"edit_others_revisions."
+
+#: admin/options.php:1655
+msgid ""
+"If the user can't edit the published post, require the list_others_revisions "
+"capability."
+msgstr ""
+"Ak používateľ nemôže upraviť publikovaný príspevok, vyžaduje sa schopnosť "
+"list_others_revisions."
+
+#: admin/options.php:1660
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Obíďte vyššie uvedené obmedzenia pre revízie iných na vlastných príspevkoch "
+"prihláseného používateľa."
+
+#: admin/options.php:1671
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Regenerujte \"príspevok má revíziu\" vlajky"
+
+#: admin/options.php:1674
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Aplikujte túto údržbovú operáciu, ak štítky Má revíziu na obrazovkách "
+"Príspevky / Stránky nezhodujú s výpisom Nových revízií."
+
+#: admin/options.php:1699
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "Pre vylepšené upozornenia nainštalujte %sPublishPress Planner%s."
+
+#: admin/options.php:1712
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "Pre vylepšené oznámenia aktualizujte %sPublishPress Planner%s."
+
+#: admin/options.php:1734
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Odosielajte oznámenia o akciách revízií pomocou prispôsobiteľného "
+"%1$sPublishPress Planner Notifications systému%2$s."
+
+#: admin/options.php:1735
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Prejdite na Revisions Pro, aby ste mohli odosielať oznámenia o akciách "
+"revízií pomocou prispôsobiteľného %1$sPublishPress Planner Notifications "
+"systému%2$s."
+
+#: admin/options.php:1747
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Používatelia zodpovedajúci konfigurácii Planner > Oznámenia dostanú "
+"oznámenia o revíziách iba vtedy, ak môžu upravovať zverejnený príspevok."
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Never"
+msgstr "Nikdy"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "By default"
+msgstr "Predvolene"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Always"
+msgstr "Vždy"
+
+#: admin/options.php:1800 admin/options.php:1847
+msgid "select recipients"
+msgstr "vybrať príjemcov"
+
+#: admin/options.php:1861
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"Aby ste predišli zlyhaniam oznámení, ukladajte e-maily na oneskorené "
+"odosielanie, ak sú prekročené limity jednej minúty, hodiny alebo dňa"
+
+#: admin/options.php:1882
+msgid "Notification Buffer"
+msgstr "Buffer oznámení"
+
+#: admin/options.php:1910
+msgid "Notification Log"
+msgstr "Záznam oznámení"
+
+#: admin/options.php:1939
+msgid "Purge Notification Buffer"
+msgstr "Vyprázdniť buffer oznámení"
+
+#: admin/options.php:1945
+msgid "Truncate Notification Log"
+msgstr "Zarezať záznam oznámení"
+
+#: admin/options.php:1951
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Odoslané za poslednú minútu: %d / %d"
+
+#: admin/options.php:1952
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Odoslané za poslednú hodinu: %d / %d"
+
+#: admin/options.php:1953
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Odoslané za posledný deň: %d / %d"
+
+#: admin/options.php:1960
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Sekundy do ďalšieho spracovania bufferu: %d"
+
+#: admin/options.php:1971
+msgid "Show Notification Log / Buffer"
+msgstr "Zobraziť záznam oznámení / Buffer"
+
+#: admin/options.php:1973
+msgid "Show with message content"
+msgstr "Zobraziť s obsahom správy"
+
+#: admin/options.php:1995
+msgid "Ready to enhance your revision notifications?"
+msgstr "Ste pripravení vylepšiť svoje oznámenia o revíziách?"
+
+#: admin/options.php:1998
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Aktualizujte na Revisions Pro pre integráciu s naším rámcom oznámení "
+"PublishPress Planner."
+
+#: admin/options.php:2004
+msgid "Customize notification message and subject"
+msgstr "Prispôsobte správu a predmet oznámenia"
+
+#: admin/options.php:2007
+msgid "Notify for a specific post type, category or term"
+msgstr "Oznamovať pre konkrétny post type, kategóriu alebo termín"
+
+#: admin/options.php:2010
+msgid "Target specific roles, users, or user groups"
+msgstr "Cieliť na konkrétne role, používateľov alebo používateľské skupiny"
+
+#: admin/options.php:2013
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "S PublishPress Planner Pro, posielajte oznámenia na Slack kanál"
+
+#: admin/options.php:2040 admin/options.php:2601
+msgid "Pro Feature"
+msgstr "Pro funkcia"
+
+#: admin/options.php:2041
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr ""
+"Aktualizujte na Revisions Pro, aby ste odomkli integráciu oznámení Planner."
+
+#: admin/options.php:2042
+msgid ""
+"Customize notification content and recipients for each notification type."
+msgstr "Prispôsobte obsah a príjemcov oznámenia pre každý typ oznámenia."
+
+#: admin/options.php:2066
+msgid "Some themes may block revision preview."
+msgstr "Niektoré témy môžu zablokovať náhľad revízie."
+
+#: admin/options.php:2083
+msgid "Published Post Slug"
+msgstr "Slug publikovaného príspevku"
+
+#: admin/options.php:2084
+msgid "Revision Slug"
+msgstr "Slug revízie"
+
+#: admin/options.php:2085
+msgid "Revision ID only"
+msgstr "Iba ID revízie"
+
+#: admin/options.php:2100
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Niektoré témy alebo pluginy môžu vyžadovať typ odkazu Slug revízie alebo ID "
+"revízie pre správne načítanie šablóny a zobrazenie polí."
+
+#: admin/options.php:2109
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr ""
+"Argument náhľadu revízie je nakonfigurovaný prostredníctvom definície "
+"konštanty: %s"
+
+#: admin/options.php:2116
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Upravte odkazy na náhľad, aby používali argument \"rv_preview\" namiesto "
+"\"náhľad\". Experimentujte, aby ste zistili, čo najlepšie funguje s vašou "
+"témou."
+
+#: admin/options.php:2120
+msgid ""
+"Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Niektoré témy môžu vyžadovať toto nastavenie pre správne zobrazenie náhľadu "
+"revízie."
+
+#: admin/options.php:2139
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"Toto by malo byť zvyčajne povolené, pokiaľ sa nejedná o obchádzanie "
+"konfliktov s inými údajmi postmeta iného pluginu."
+
+#: admin/options.php:2163
+#, php-format
+msgid ""
+"If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Ak používateľ nemôže publikovať, vyžaduje sa %s na úpravu nepublikovaných "
+"príspevkov iných používateľov."
+
+#: admin/options.php:2169
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to edit "
+"others' unpublished Posts."
+msgstr ""
+"Ak používateľ nemôže publikovať, vyžaduje sa schopnosť edit_others_drafts na "
+"úpravu nepublikovaných príspevkov iných používateľov."
+
+#: admin/options.php:2175
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Ak špecifické oprávnenia príspevku obmedzujú alebo rozširujú prístup k "
+"príspevku, použite tieto oprávnenia aj na jeho revízie."
+
+#: admin/options.php:2187
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr ""
+"Rank Math SEO môže zabrániť aktualizácii revízie na niektorých stránkach."
+
+#: admin/options.php:2194 includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML Správa prekladu"
+
+#: admin/options.php:2199
+msgid "Sync \"Needs Update\" flags"
+msgstr "Synchronizovať \"Potrebné aktualizácie\" označenia"
+
+#: admin/options.php:2203
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Nastaviť \"Potrebné aktualizácie\" pre akýkoľvek príspevok s prekladmi, "
+"ktorý bol aktualizovaný (možno schválením revízie) nedávnejšie ako jeho "
+"preklady."
+
+#: admin/options.php:2221
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "Zobraziť popisné titulky pre nastavenia PublishPress Revisions."
+
+#: admin/options.php:2239
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"Nastavenia pluginu, obsah nových revízií a súvisiace údaje budú vymazané, "
+"ale iba po vymazaní poslednej kópie Revisions / Revisions Pro."
+
+#: admin/options.php:2260
+msgid "Unlock Pro Integrations"
+msgstr "Odomknúť Pro integrácie"
+
+#: admin/options.php:2261
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Upraviť na Pro verziu pre optimálnu kompatibilitu a rýchlu, profesionálnu "
+"podporu."
+
+#: admin/options.php:2279 admin/options.php:2532
+msgid "Admin"
+msgstr "admin"
+
+#: admin/options.php:2282 admin/options.php:2530
+msgid "Builder"
+msgstr "Builder"
+
+#: admin/options.php:2285 admin/options.php:2534
+msgid "Cache"
+msgstr "Cache"
+
+#: admin/options.php:2288
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#: admin/options.php:2291 admin/options.php:2540
+msgid "Fields"
+msgstr "Polia"
+
+#: admin/options.php:2295
+msgid "Multilingual"
+msgstr "Viacjazyčný"
+
+#: admin/options.php:2299 admin/options.php:2536
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2302 admin/options.php:2546
+msgid "Workflow"
+msgstr "Pracovný tok"
+
+#: admin/options.php:2384
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Určte, ktoré nastavenia PublishPress Revisions sa majú ovládať celosietovo. "
+"Nevybrané nastavenia sa ovládajú samostatne na každej stránke."
+
+#: admin/options.php:2394
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/options.php:2430
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "celosietové ovládanie \"%s\""
+
+#: admin/options.php:2457
+msgid "Save Changes"
+msgstr "Uložiť zmeny"
+
+#: admin/options.php:2458
+msgid "Revert to Defaults"
+msgstr "Vrátiť na predvolené hodnoty"
+
+#: admin/options.php:2460
+msgid ""
+"All settings in this form (including those on unselected tabs) will be reset "
+"to DEFAULTS.  Are you sure?"
+msgstr ""
+"Všetky nastavenia v tomto formulári (vrátane tých na nevybraných kartách) "
+"budú resetované na VÝCHOZIE. Ste si istý?"
+
+#: admin/options.php:2538
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2542
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2544
+msgid "Community"
+msgstr "Community"
+
+#: admin/options.php:2556
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2561
+msgid "Supported"
+msgstr "Supported"
+
+#: admin/options.php:2564 admin/options.php:2618
+msgid "Active Plugin"
+msgstr "Aktívny plugin"
+
+#: admin/options.php:2576
+msgid "Supported by PublishPress Revisions"
+msgstr "Podporované spoločnosťou PublishPress Revisions"
+
+#: admin/options.php:2578
+msgid "Supported by Revisions Pro"
+msgstr "Podporované spoločnosťou Revisions Pro"
+
+#: admin/options.php:2591
+msgid "Integration Active"
+msgstr "Integrácia aktívna"
+
+#: admin/options.php:2593
+msgid "Upgrade to Pro to enable this integration"
+msgstr "Prejdite na Pro, aby ste aktivovali túto integráciu"
+
+#: admin/options.php:2602
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "Odomknite %s integráciu, aby ste vylepšili vaše riešenie pre revízie."
+
+#: admin/options.php:2618
+msgid "Active Plugin Integration"
+msgstr "Integrácia aktívneho pluginu"
+
+#: admin/options.php:2628
+msgid "Supported Plugin Integration"
+msgstr "Integrácia podporovaného pluginu"
+
+#: admin/options.php:2638
+msgid "Supported Plugin"
+msgstr "Podporovaný plugin"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Teraz"
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(na schválenie)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid "Save changes to continue."
+msgstr "Uložte zmeny, aby ste mohli pokračovať."
+
+#: admin/post-editor-workflow-ui_rvy.php:39
+msgid "Please save changes to the revision before submitting it."
+msgstr "Uložte prosím zmeny v revízii pred jej odoslaním."
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+msgid "Preview this Revision"
+msgstr "Náhľad tejto revízie"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Publish"
+msgstr "Zobraziť / Publikovať"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Approve"
+msgstr "Zobraziť / Schváliť"
+
+#: admin/post-editor-workflow-ui_rvy.php:82
+msgid "View / Moderate saved revision"
+msgstr "Zobraziť / Moderovať uloženú revíziu"
+
+#: admin/post-editor-workflow-ui_rvy.php:85
+msgid "View / Submit saved revision"
+msgstr "Zobraziť / Odoslať uloženú revíziu"
+
+#: admin/post-editor-workflow-ui_rvy.php:94
+msgid "View unsaved changes"
+msgstr "Zobraziť neuložené zmeny"
+
+#: admin/post-editor-workflow-ui_rvy.php:98
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Úprava revízie"
+msgstr[1] "%s%s Úpravy revízií"
+msgstr[2] ""
+
+#: admin/post-editor-workflow-ui_rvy.php:109
+msgid "Revision Submission Error"
+msgstr "Chyba pri odosielaní revízie"
+
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:234 front_rvy.php:485
+msgid "Edit"
+msgstr "Upraviť"
+
+#: admin/post-editor-workflow-ui_rvy.php:132
+msgid "Approve and Publish"
+msgstr "Schváliť a publikovať"
+
+#: admin/post-editor-workflow-ui_rvy.php:137 rvy_init-functions.php:308
+#: rvy_init-functions.php:327 rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+msgid "Update in progress..."
+msgstr "Aktualizácia prebieha..."
+
+#: admin/post-editor-workflow-ui_rvy.php:141
+msgid "Approve and Schedule"
+msgstr "Schváliť a naplánovať"
+
+#: admin/post-editor-workflow-ui_rvy.php:174 rvy_init-functions.php:297
+#: rvy_init-functions.php:315 rvy_init-functions.php:333
+#: rvy_init-functions.php:353 rvy_init-functions.php:370
+#: rvy_init-functions.php:387 rvy_init-functions.php:500
+msgid "Update Revision"
+msgstr "Aktualizovať revíziu"
+
+#: admin/post-editor-workflow-ui_rvy.php:240
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Aktualizujte príspevok pred vytvorením %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:247
+msgid "Error Creating Revision"
+msgstr "Chyba pri vytváraní revízie"
+
+#: admin/post-editor-workflow-ui_rvy.php:263
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "Pre zmeny v custom field, upravte naplánovaný %s."
+
+#: admin/post-edit_rvy.php:28 admin/post-edit_rvy.php:141
+msgid "Current Time"
+msgstr "Aktuálny čas"
+
+#: admin/post-edit_rvy.php:60 front_rvy.php:521
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: admin/post-edit_rvy.php:168
+msgid "View revision in progress"
+msgstr "Zobraziť revíziu v priebehu"
+
+#: admin/post-edit_rvy.php:191
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "Porovnať túto revíziu s publikovanou kópiou alebo s inými revíziami"
+
+#: admin/post-edit_rvy.php:226
+msgid "View / moderate saved revision"
+msgstr "Zobraziť / moderovať uloženú revíziu"
+
+#: admin/post-edit_rvy.php:229
+msgid "View saved revision"
+msgstr "Zobraziť uloženú revíziu"
+
+#: admin/restrict-editor-features.php:113
+msgid "Status & visibility"
+msgstr ""
+
+#: admin/restrict-editor-features.php:120
+msgid "Permalink"
+msgstr ""
+
+#: admin/restrict-editor-features.php:149
+#, fuzzy
+#| msgid "Featured Image"
+msgid "Featured image"
+msgstr "Hlavný obrázok"
+
+#: admin/revision-action_rvy.php:532 admin/revision-action_rvy.php:618
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Oznámenie o schválení revízie"
+
+#: admin/revision-action_rvy.php:533
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "Revízia k %1$s \"%2$s\" bola schválená."
+
+#: admin/revision-action_rvy.php:537
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "Odosielateľ bol %1$s."
+
+#: admin/revision-action_rvy.php:541 admin/revision-action_rvy.php:627
+#, php-format
+msgid "It will be published on %s"
+msgstr "Bude zverejnená dňa %s"
+
+#: admin/revision-action_rvy.php:545 admin/revision-action_rvy.php:631
+msgid "Preview it here: "
+msgstr "Náhľad tu: "
+
+#: admin/revision-action_rvy.php:548 admin/revision-action_rvy.php:634
+msgid "Editor: "
+msgstr "Editor: "
+
+#: admin/revision-action_rvy.php:550 admin/revision-action_rvy.php:636
+#: admin/revision-action_rvy.php:1680 admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1777
+msgid "View it online: "
+msgstr "Zobraziť online: "
+
+#: admin/revision-action_rvy.php:619
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "Revízia, ktorú ste odoslali pre %1$s \"%2$s\", bola schválená."
+
+#: admin/revision-action_rvy.php:1672 admin/revision-action_rvy.php:1700
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s Oznámenie o publikácii"
+
+#: admin/revision-action_rvy.php:1673
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr ""
+"Naplánovaná revízia, ktorú ste odoslali pre %1$s \"%2$s\", bola zverejnená."
+
+#: admin/revision-action_rvy.php:1701
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "Naplánovaná revízia vášho %1$s \"%2$s\" bola zverejnená."
+
+#: admin/revision-archive_rvy.php:11
+msgid "Revision for:"
+msgstr "Revízia pre:"
+
+#: admin/revision-archive_rvy.php:90
+msgid "Search Revisions"
+msgstr "Hľadať revízie"
+
+#: admin/revision-queue_rvy.php:9 admin/revision-queue_rvy.php:21
+msgid "You are not allowed to manage revisions."
+msgstr "Nemáte oprávnenie spravovať revízie."
+
+#: admin/revision-queue_rvy.php:13
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s a %s sú obidva zakázané. Pozrite sa na Revízie > Nastavenia."
+
+#: admin/revision-queue_rvy.php:82
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s revízia odoslaná."
+msgstr[1] ""
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:83
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s revízia zamietnutá."
+msgstr[1] ""
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:84
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s revízia schválená."
+msgstr[1] ""
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:85
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s revízia neplánovaná."
+msgstr[1] "%s revízie neplánované."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:86
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s revízia publikovaná."
+msgstr[1] "%s revízie publikované."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:133
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "z %s \"%s\""
+
+#: admin/revision-queue_rvy.php:136
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "z %s"
+
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "z \"%s\""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "od %s "
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "dňa %s"
+
+#: admin/revision-queue_rvy.php:156
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Autor príspevku: %s)"
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid "New Revisions %s"
+msgstr "Nové revízie %s"
+
+#: admin/revision-ui_rvy.php:45
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "Vydavatelia budú informovaní (ale nemôžu byť vybraní tu)."
+
+#: admin/revision-ui_rvy.php:47
+msgid "No email notifications will be sent."
+msgstr "Nebudú odoslané žiadne e-mailové oznámenia."
+
+#. translators: revision date format, see http://php.net/date
+#: admin/revision-ui_rvy.php:78
+msgctxt "revision date format"
+msgid "j F, Y @ g:i a"
+msgstr "j F, Y @ g:i a"
+
+#: admin/revision-ui_rvy.php:97
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (Aktuálne)"
+
+#: admin/revision-ui_rvy.php:101
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Automatické uloženie)"
+
+#: admin/revision-ui_rvy.php:107
+msgctxt "revision schedule date format"
+msgid "j F, Y, g:i a"
+msgstr "j F, Y, g:i a"
+
+#: admin/revision-ui_rvy.php:112
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Dátum publikácie: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:114
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Žiadaná publikácia: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:287
+msgid "The revision will be deleted. Are you sure?"
+msgstr "Revízia bude zmazaná. Ste si istý?"
+
+#: admin/revision-ui_rvy.php:380
+msgid "Modified Date"
+msgstr "Dátum úpravy"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "Náhľad revízie prebieha"
+
+#. translators: Publish box date formt, see http://php.net/date
+#: admin/RevisionEditSubmitMetabox.php:180
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Publikovať %son schválenie%s"
+
+#: admin/revisions.php:20
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Poznámka:</strong> Pre vizuálne zobrazenie revízií pridajte "
+"nasledujúci kód do foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:61
+msgid "Revision of this post is not allowed."
+msgstr "Revizia tohto príspevku nie je povolená."
+
+#: admin/revisions.php:64
+msgid "No revision specified."
+msgstr "Nebola špecifikovaná žiadna revízia."
+
+#: admin/revisions.php:72
+msgid "Past"
+msgstr "Minulé"
+
+#: admin/revisions.php:135
+#, php-format
+msgid "Revisions of %s"
+msgstr "Revízie %s"
+
+#: admin/revisions.php:165
+msgid "The requested revision does not exist."
+msgstr "Požadovaná revízia neexistuje."
+
+#: admin/revisions.php:253
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:274
+#, php-format
+msgid "no %s revisions available."
+msgstr "žiadne %s revízie nie sú k dispozícii."
+
+#: classes/PublishPress/Revisionary.php:107 includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "Kompatibilita s ACF vlastnými poliami."
+
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:200
+msgid "Store custom fields with revisions"
+msgstr "Uložiť vlastné polia s revíziami"
+
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:201
+msgid "Display custom field changes"
+msgstr "Zobraziť zmeny vlastného poľa"
+
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:202
+msgid "Update custom fields on revision publication"
+msgstr "Aktualizovať vlastné polia pri publikovaní revízie"
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "Podpora ACFE dátového modelu."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "Podpora ACFE single_meta dátového typu"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "Správne zobrazenie poľa na obrazovke Porovnať"
+
+#: classes/PublishPress/Revisionary.php:136 includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Integrácia s front-end editorom Beaver Builder'a."
+
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:156
+#: classes/PublishPress/Revisionary.php:171
+msgid "Front end Revision submission"
+msgstr "Odoslanie revízie z front-endu"
+
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:172
+msgid "Front end Revision editing"
+msgstr "Úprava revízie z front-endu"
+
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:173
+msgid "Revision preview and redirects"
+msgstr "Náhľad revízie a presmerovania"
+
+#: classes/PublishPress/Revisionary.php:151
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Integrácia s Divi Builderom a Divi témou."
+
+#: classes/PublishPress/Revisionary.php:166 includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:167
+msgid "Integration with Elementor's front end editor."
+msgstr "Integrácia s editorom front endu Elementor'a."
+
+#: classes/PublishPress/Revisionary.php:181
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:182
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Kompatibilita s cache Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:186
+msgid "Clear cache on revision creation"
+msgstr "Vymazanie cache pri vytvorení revízie"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Trigger update on revision approval"
+msgstr "Spustenie aktualizácie pri schválení revízie"
+
+#: classes/PublishPress/Revisionary.php:195 includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:196
+msgid "Compatibility with Pods custom fields."
+msgstr "Kompatibilita s vlastnými poľami Pods."
+
+#: classes/PublishPress/Revisionary.php:210
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:211
+msgid "Compatibility with Polylang translation."
+msgstr "Kompatibilita s prekladom Polylang."
+
+#: classes/PublishPress/Revisionary.php:215
+msgid "Revisions carry over Polylang data"
+msgstr "Revízie prenášajú dáta Polylang"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Translation retained on Revision approval"
+msgstr "Preklad zachovaný pri schválení revízie"
+
+#: classes/PublishPress/Revisionary.php:224
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:225
+msgid "PublishPress Planner Integration."
+msgstr "Integrácia PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:229
+msgid "Planner Notifications for revision actions"
+msgstr "Upozornenia Plannera na akcie revízií"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "Revision schedule shown in Calendar"
+msgstr "Harmonogram revízií zobrazený v kalendári"
+
+#: classes/PublishPress/Revisionary.php:238 includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:239
+msgid "Revision submission and approval for products."
+msgstr "Predloženie a schválenie revízií pre produkty."
+
+#: classes/PublishPress/Revisionary.php:243
+msgid "Product revisions"
+msgstr "Revízie produktov"
+
+#: classes/PublishPress/Revisionary.php:244
+msgid "Compatible with Product Variations"
+msgstr "Kompatibilné s variáciami produktov"
+
+#: classes/PublishPress/Revisionary.php:245
+msgid "Priority on ongoing compatibility"
+msgstr "Priorita na prebiehajúcej kompatibilite"
+
+#: classes/PublishPress/Revisionary.php:253 includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:254
+msgid "Multilingual revisioning with WPML."
+msgstr "Viacjazyčné revízie s WPML."
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Language-specific revisions"
+msgstr "Revizie špecifické pre jazyk"
+
+#: classes/PublishPress/Revisionary.php:259
+msgid "Translation Management integration"
+msgstr "Integrácia správy prekladov"
+
+#: classes/PublishPress/Revisionary.php:267
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:268
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "Prevent indexing of revisions"
+msgstr "Zabrániť indexovaniu revízií"
+
+#: classes/PublishPress/Revisionary.php:273
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Kompatibilita pre Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:274
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Porovnať revízie s poľami Yoast SEO"
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "Stav revízie"
+
+#: front_rvy.php:436
+#, php-format
+msgid "%sManage%s"
+msgstr "%sSpravovať%s"
+
+#: front_rvy.php:447
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sPorovnať%s%sZobraziť publikovaný príspevok%s"
+
+#: front_rvy.php:459 front_rvy.php:474
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sZobraziť publikovaný príspevok%s"
+
+#: front_rvy.php:549 rvy_init-functions.php:307 rvy_init-functions.php:363
+msgid "Submit"
+msgstr "Odoslať"
+
+#: front_rvy.php:561 front_rvy.php:563 front_rvy.php:611 front_rvy.php:613
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Toto je %s. %s %s %s"
+
+#: front_rvy.php:579
+msgid "Decline"
+msgstr "Odmietnuť"
+
+#: front_rvy.php:592 front_rvy.php:594
+#, php-format
+msgid "This is a %s (requested publish date: %s). %s %s %s"
+msgstr "Toto je %s (požadovaný dátum publikovania: %s). %s %s %s"
+
+#: front_rvy.php:598 front_rvy.php:600
+#, php-format
+msgid "Revision status: %s (requested publish date: %s) %s %s %s"
+msgstr "Stav revízie: %s (požadovaný dátum publikovania: %s) %s %s %s"
+
+#: front_rvy.php:617 front_rvy.php:619
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Stav revízie: %s %s %s %s"
+
+#: front_rvy.php:632 rvy_init-functions.php:470
+msgid "Publish Now"
+msgstr "Publikovať teraz"
+
+#: front_rvy.php:635 front_rvy.php:637
+#, php-format
+msgid "This is a %s (for publication on %s). %s %s %s"
+msgstr "Toto je %s (na publikovanie na %s). %s %s %s"
+
+#: front_rvy.php:655
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "Revizia bola schválená a teraz je aktívna na stránke. %s"
+
+#: front_rvy.php:656
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Toto je aktuálna revízia. %s"
+
+#: front_rvy.php:673
+msgid "Restore"
+msgstr "Obnoviť"
+
+#: front_rvy.php:677 front_rvy.php:679
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Toto je minulé vydanie (z %s). %s %s"
+
+#: functions.php:537
+msgid "Scheduled Rev."
+msgstr "Naplánovaná rev."
+
+#: functions.php:542 functions.php:547
+msgid "Submitted Rev."
+msgstr "Odoslaná rev."
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"Používate PublishPress Revisions Free. Pro verzia má viac funkcií a podporu. "
+"%sPrejdite na Pro%s"
+
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Prejdite na Revisions Pro"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Prejdite na PublishPress Revisions Pro pre integráciu s kľúčovými funkciami "
+"týchto pluginov:"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: Vlastné notifikácie"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "Detaily integrácie pluginu"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "Potrebujete podporu pre revízie?"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr ""
+"Ak potrebujete pomoc alebo máte požiadavku na novú funkciu, dajte nám vedieť."
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "Požiadať o podporu"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Podrobná dokumentácia je tiež dostupná na webovej stránke pluginu."
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "Zobraziť znalostnú bázu"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s dopytov za %2$s sekúnd. %3$s MB použité."
+
+#: revision-creation_rvy.php:179
+#, fuzzy
+#| msgid "Could not insert revision into the database"
+msgid "Could not insert post into the database"
+msgstr "Nepodarilo sa vložiť revíziu do databázy"
+
+#: revision-creation_rvy.php:401
+msgid "Could not insert revision into the database"
+msgstr "Nepodarilo sa vložiť revíziu do databázy"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s Aktualizované"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s aktualizoval a %2$s %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:174
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s odoslal zmeny do %2$s \"%3$s\". Môžete si prezrieť zmeny na možnú "
+"publikáciu:"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "Náhľad a schválenie: "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "Nové revízie: "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "Upraviť %s: "
+
+#: revisionary.php:120
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Tento plugin môže byť odstránený.</strong>"
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "Každé 2 minúty"
+
+#: rvy_init-functions.php:287 rvy_init-functions.php:299
+msgid "Working Copy"
+msgstr "Pracovná kópia"
+
+#: rvy_init-functions.php:288
+msgid "Create Working Copy"
+msgstr "Vytvoriť pracovnú kópiu"
+
+#: rvy_init-functions.php:290
+msgid "Creating Working Copy..."
+msgstr "Vytváranie pracovnej kópie..."
+
+#: rvy_init-functions.php:291
+msgid "Working Copy ready"
+msgstr "Pracovná kópia je pripravená"
+
+#: rvy_init-functions.php:292 rvy_init-functions.php:310
+msgid "Approve Changes"
+msgstr "Schváliť zmeny"
+
+#: rvy_init-functions.php:294 rvy_init-functions.php:312
+msgid "Approving Changes..."
+msgstr "Schvaľovanie zmien..."
+
+#: rvy_init-functions.php:295 rvy_init-functions.php:313
+#: rvy_init-functions.php:331
+msgid "Publish Changes"
+msgstr "Publikovať zmeny"
+
+#: rvy_init-functions.php:296 rvy_init-functions.php:314
+#: rvy_init-functions.php:332 rvy_init-functions.php:352
+#: rvy_init-functions.php:369 rvy_init-functions.php:386
+msgid "Save Revision"
+msgstr "Uložiť revíziu"
+
+#: rvy_init-functions.php:298
+msgid "Working Copies"
+msgstr "Pracovné kópie"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Pracovné kópie <span class=\"count\">(%d)</span>"
+msgstr[1] "Pracovná kópia <span class=\"count\">(%d)</span>"
+msgstr[2] "Pracovné kópie <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:305 rvy_init-functions.php:317
+msgid "Change Request"
+msgstr "Žiadosť o zmenu"
+
+#: rvy_init-functions.php:306
+msgid "Submit Change Request"
+msgstr "Odoslať žiadosť o zmenu"
+
+#: rvy_init-functions.php:309
+msgid "Changes Submitted"
+msgstr "Zmeny odoslané"
+
+#: rvy_init-functions.php:316
+msgid "Change Requests"
+msgstr "Žiadosti o zmenu"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Žiadosti o zmenu <span class=\"count\">(%d)</span>"
+msgstr[1] "Žiadosti o zmenu <span class=\"count\">(%d)</span>"
+msgstr[2] "Žiadosti o zmenu <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:319
+msgid "Enable Change Requests"
+msgstr "Povoliť žiadosti o zmenu"
+
+#: rvy_init-functions.php:324 rvy_init-functions.php:335
+msgid "Scheduled Change"
+msgstr "Naplánovaná zmena"
+
+#: rvy_init-functions.php:325 rvy_init-functions.php:326
+#: rvy_init-functions.php:329 rvy_init-functions.php:330
+msgid "Schedule Changes"
+msgstr "Naplánovať zmeny"
+
+#: rvy_init-functions.php:328
+msgid "Changes are Scheduled."
+msgstr "Zmeny sú naplánované."
+
+#: rvy_init-functions.php:334
+msgid "Scheduled Changes"
+msgstr "Naplánované zmeny"
+
+#: rvy_init-functions.php:336
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Naplánované <span class=\"count\">(%d)</span>"
+msgstr[1] "Naplánované <span class=\"count\">(%d)</span>"
+msgstr[2] "Naplánované <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:344
+msgid "Unsubmitted Revision"
+msgstr "Neodoslaná revízia"
+
+#: rvy_init-functions.php:345 rvy_init-functions.php:346
+msgid "Create Revision"
+msgstr "Vytvoriť revíziu"
+
+#: rvy_init-functions.php:347
+msgid "Creating Revision..."
+msgstr "Vytváranie revízie..."
+
+#: rvy_init-functions.php:348
+msgid "The Revision is ready to edit."
+msgstr "Revízia je pripravená na úpravy."
+
+#: rvy_init-functions.php:348
+msgid "Revision ready to edit."
+msgstr "Revízia pripravená na úpravy."
+
+#: rvy_init-functions.php:349 rvy_init-functions.php:366
+#: rvy_init-functions.php:383
+msgid "Approve Revision"
+msgstr "Schváliť revíziu"
+
+#: rvy_init-functions.php:351 rvy_init-functions.php:368
+#: rvy_init-functions.php:385
+msgid "Publish Revision"
+msgstr "Zverejniť revíziu"
+
+#: rvy_init-functions.php:354
+msgid "Unsubmitted Revisions"
+msgstr "Neodoslané revízie"
+
+#: rvy_init-functions.php:355
+msgid "Not Submitted"
+msgstr "Nebol odoslaný"
+
+#: rvy_init-functions.php:356
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Nebol odoslaný <span class=\"count\">(%s)</span>"
+msgstr[1] "Nebol odoslaný <span class=\"count\">(%s)</span>"
+msgstr[2] "Nebol odoslaný <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:361
+msgid "Submitted Revision"
+msgstr "Odoslaná revízia"
+
+#: rvy_init-functions.php:362 rvy_init-functions.php:503
+msgid "Submit Revision"
+msgstr "Odoslať revíziu"
+
+#: rvy_init-functions.php:365
+msgid "The Revision is Submitted"
+msgstr "Revízia bola odoslaná"
+
+#: rvy_init-functions.php:365
+msgid "Revision Submitted"
+msgstr "Revízia odoslaná"
+
+#: rvy_init-functions.php:371
+msgid "Submitted Revisions"
+msgstr "Odoslané revízie"
+
+#: rvy_init-functions.php:372
+msgid "Submitted"
+msgstr "Odoslané"
+
+#: rvy_init-functions.php:373
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Odoslané <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Odoslané <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+
+#: rvy_init-functions.php:378
+msgid "Scheduled Revision"
+msgstr "Naplánovaná revízia"
+
+#: rvy_init-functions.php:379
+msgid "Schedule Revision"
+msgstr "Naplánovať revíziu"
+
+#: rvy_init-functions.php:380
+msgid "Schedule"
+msgstr "Naplánovať"
+
+#: rvy_init-functions.php:382
+msgid "The Revision is Scheduled"
+msgstr "Revízia je naplánovaná"
+
+#: rvy_init-functions.php:382
+msgid "Revision Scheduled"
+msgstr "Revízia naplánovaná"
+
+#: rvy_init-functions.php:388
+msgid "Scheduled Revisions"
+msgstr "Naplánované revízie"
+
+#: rvy_init-functions.php:389
+msgid "Scheduled"
+msgstr "Naplánované"
+
+#: rvy_init-functions.php:390
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Naplánované <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Naplánované <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+
+#: rvy_init-functions.php:490
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sMoje kópie & zmeny%s(%s)"
+msgstr[1] "%sMoje kópie & zmeny%s(%s)"
+msgstr[2] ""
+
+#: rvy_init-functions.php:491
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sMoje revízie%s(%s)"
+msgstr[1] "%sMoje revízie%s(%s)"
+msgstr[2] ""
+
+#: rvy_init-functions.php:493
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sRevízie k mojim príspevkom%s(%s)</span>"
+msgstr[1] "%sRevízie k mojim príspevkom%s(%s)"
+msgstr[2] ""
+
+#: rvy_init-functions.php:498
+msgid "Post Author"
+msgstr "Autor príspevku"
+
+#: rvy_init-functions.php:499
+msgid "Published Post"
+msgstr "Publikovaný príspevok"
+
+#: rvy_init-functions.php:504
+msgid "Submit Changes"
+msgstr "Odoslať zmeny"
+
+#: rvy_init-functions.php:708
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:720
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:811
+msgid ""
+"The unfiltered_html capability is required to create a revision of this post."
+msgstr ""
+"Na vytvorenie revízie tohto príspevku je potrebná schopnosť unfiltered_html."
+
+#: rvy_init-functions.php:1263
+msgid "Revision Workflow"
+msgstr "Pracovný tok revízií"

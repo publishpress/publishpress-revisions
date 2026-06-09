@@ -16,17 +16,6 @@ class PluginCompat {
         add_filter('presspermit_exception_clause', [$this, 'fltPressPermitExceptionClause'], 10, 4);
 
         if (defined('CUSTOM_PERMALINKS_PLUGIN_VERSION') && !is_admin() && !$revisionary->doing_rest) {
-
-			function enable_custom_permalinks_workaround($retval) {
-				add_filter('query', [$this, 'flt_custom_permalinks_query']);
-				return $retval;
-			}
-		
-			function disable_custom_permalinks_workaround($retval) {
-				remove_filter('query', [$this, 'flt_custom_permalinks_query']);
-				return $retval;
-			}
-
 			add_filter('custom_permalinks_request_ignore', function($retval) {
 				add_filter('query', [$this, 'flt_custom_permalinks_query']);
 				return $retval;

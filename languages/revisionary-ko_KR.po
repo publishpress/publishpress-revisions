@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-04-30 15:53+0000\n"
+"PO-Revision-Date: 2026-06-03 19:36+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: ko_KR\n"
@@ -95,16 +95,25 @@ msgstr "수정본"
 msgid "Has Revision"
 msgstr "수정본 있음"
 
-#: admin/admin-posts_rvy.php:326
-#: admin/admin_rvy.php:399
-#: admin/admin_rvy.php:469
+#: admin/admin-posts_rvy.php:322
+#: admin/admin_rvy.php:410
+#: admin/admin_rvy.php:480
 #: admin/options.php:159
-#: admin/options.php:639
+#: admin/options.php:638
 msgid "New Revisions"
 msgstr "새 수정본"
 
+#: admin/admin-posts_rvy.php:346
+#: admin/history_rvy.php:87
+#: admin/history_rvy.php:91
+#: admin/history_rvy.php:97
+#: admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "복사"
+
 #: admin/admin_lib-mu_rvy.php:10
-#: admin/options.php:335
+#: admin/options.php:336
 msgid "PublishPress Revisions Network Settings"
 msgstr "PublishPress Revisions 네트워크 설정"
 
@@ -113,7 +122,7 @@ msgid "Network Settings"
 msgstr "네트워크 설정"
 
 #: admin/admin_lib-mu_rvy.php:21
-#: admin/options.php:337
+#: admin/options.php:338
 msgid "PublishPress Revisions Network Defaults"
 msgstr "PublishPress Revisions 네트워크 기본값"
 
@@ -131,100 +140,100 @@ msgstr ""
 "WP-Cron이 비활성화되어 있으므로 예약된 수정 사항을 사용할 수 없습니다. 외부에서 WP-Cron을 트리거하는 경우 %s수정 사항 "
 "> 설정 > 새 수정 사항 > 예약%s를 참조하세요."
 
-#: admin/admin_rvy.php:350
+#: admin/admin_rvy.php:361
 msgid "Revisions"
 msgstr "수정 사항"
 
-#: admin/admin_rvy.php:408
-#: admin/admin_rvy.php:409
-#: admin/admin_rvy.php:470
+#: admin/admin_rvy.php:419
+#: admin/admin_rvy.php:420
+#: admin/admin_rvy.php:481
 #: admin/options.php:158
-#: admin/options.php:542
+#: admin/options.php:545
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
 msgid "Past Revisions"
 msgstr "과거 수정 사항"
 
-#: admin/admin_rvy.php:426
-#: admin/options.php:341
+#: admin/admin_rvy.php:437
+#: admin/options.php:342
 msgid "PublishPress Revisions Settings"
 msgstr "PublishPress 수정 사항 설정"
 
-#: admin/admin_rvy.php:426
-#: admin/admin_rvy.php:473
+#: admin/admin_rvy.php:437
+#: admin/admin_rvy.php:484
 #: admin/options.php:153
 msgid "Settings"
 msgstr "설정"
 
-#: admin/admin_rvy.php:435
-#: admin/admin_rvy.php:436
-#: admin/admin_rvy.php:476
-#: admin/options.php:1780
-#: admin/options.php:1807
-#: admin/options.php:2015
-#: admin/options.php:2361
+#: admin/admin_rvy.php:446
+#: admin/admin_rvy.php:447
+#: admin/admin_rvy.php:487
+#: admin/options.php:2016
+#: admin/options.php:2043
+#: admin/options.php:2259
+#: admin/options.php:2605
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr "Pro로 업그레이드"
 
-#: admin/admin_rvy.php:517
+#: admin/admin_rvy.php:528
 msgid "Can edit draft Posts from other users."
 msgstr "다른 사용자의 초안 게시물을 편집할 수 있습니다."
 
-#: admin/admin_rvy.php:518
+#: admin/admin_rvy.php:529
 msgid "Can edit Revisions from other users."
 msgstr "다른 사용자의 수정 사항을 편집할 수 있습니다."
 
-#: admin/admin_rvy.php:519
+#: admin/admin_rvy.php:530
 msgid "Can see New Revisions from other users."
 msgstr "다른 사용자의 새 수정 사항을 볼 수 있습니다."
 
-#: admin/admin_rvy.php:520
+#: admin/admin_rvy.php:531
 msgid "Can access New Revisions."
 msgstr "새 수정 사항에 접근할 수 있습니다."
 
-#: admin/admin_rvy.php:521
+#: admin/admin_rvy.php:532
 msgid "Can manage Unsubmitted Revisions."
 msgstr "제출되지 않은 수정 사항을 관리할 수 있습니다."
 
-#: admin/admin_rvy.php:522
+#: admin/admin_rvy.php:533
 msgid "Preview other user's Revisions (without needing editing access)."
 msgstr "다른 사용자의 수정 사항 미리보기 (편집 권한 없이)."
 
-#: admin/admin_rvy.php:523
+#: admin/admin_rvy.php:534
 msgid "Restore an archived Revision as the current revision."
 msgstr "아카이브된 수정 사항을 현재 수정 사항으로 복원합니다."
 
-#: admin/admin_rvy.php:524
+#: admin/admin_rvy.php:535
 msgid "View Past Revisions."
 msgstr "과거 수정 사항 보기."
 
-#: admin/admin_rvy.php:554
+#: admin/admin_rvy.php:565
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr "%1$s를 좋아하신다면, %2$s 평가를 남겨주세요. 감사합니다!"
 
-#: admin/admin_rvy.php:565
+#: admin/admin_rvy.php:576
 msgid "About PublishPress Revisions"
 msgstr "PublishPress 수정 사항에 대해"
 
-#: admin/admin_rvy.php:565
+#: admin/admin_rvy.php:576
 msgid "About"
 msgstr "정보"
 
-#: admin/admin_rvy.php:567
+#: admin/admin_rvy.php:578
 msgid "PublishPress Revisions Documentation"
 msgstr "PublishPress 수정 사항 문서"
 
-#: admin/admin_rvy.php:567
+#: admin/admin_rvy.php:578
 msgid "Documentation"
 msgstr "문서"
 
-#: admin/admin_rvy.php:569
+#: admin/admin_rvy.php:580
 msgid "Contact the PublishPress team"
 msgstr "PublishPress 팀에 연락하기"
 
-#: admin/admin_rvy.php:569
+#: admin/admin_rvy.php:580
 msgid "Contact"
 msgstr "연락하기"
 
@@ -358,29 +367,29 @@ msgid "%s hour ago"
 msgstr "%s 시간 전"
 
 #: admin/class-list-table-archive.php:756
-#: functions.php:461
+#: functions.php:466
 msgid "Scheduled Revision Publication"
 msgstr "예약된 수정 발행"
 
 #: admin/class-list-table-archive.php:760
-#: functions.php:465
+#: functions.php:470
 msgid "Revision Publication"
 msgstr "수정 발행"
 
 #: admin/class-list-table-archive.php:770
-#: functions.php:475
+#: functions.php:480
 #, php-format
 msgid "Edit of %s"
 msgstr "%s의 편집"
 
 #: admin/class-list-table-archive.php:777
-#: functions.php:482
+#: functions.php:487
 msgid "Edit of published Revision"
 msgstr "발행된 수정의 편집"
 
 #: admin/class-list-table-archive.php:780
-#: functions.php:485
-#: functions.php:548
+#: functions.php:490
+#: functions.php:553
 msgid "Direct Edit"
 msgstr "직접 편집"
 
@@ -418,7 +427,7 @@ msgid "Reset Filters"
 msgstr "필터 재설정"
 
 #: admin/class-list-table-archive.php:1089
-#: admin/options.php:2026
+#: admin/options.php:2270
 msgid "All"
 msgstr "모두"
 
@@ -466,6 +475,8 @@ msgid "No revisions found."
 msgstr "수정사항을 찾을 수 없습니다."
 
 #: admin/class-list-table_rvy.php:755
+#: admin/options.php:756
+#: admin/options.php:919
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "상태"
@@ -497,7 +508,7 @@ msgid "This revision is not scheduled yet. It must be approved."
 msgstr "이 수정사항은 아직 예정되지 않았습니다. 승인이 필요합니다."
 
 #: admin/class-list-table_rvy.php:890
-#: admin/history_rvy.php:911
+#: admin/history_rvy.php:915
 msgid "No author"
 msgstr "저자 없음"
 
@@ -581,14 +592,6 @@ msgstr "수정사항이 업데이트되었습니다."
 
 #: admin/history_rvy.php:87
 #: admin/history_rvy.php:91
-#: admin/history_rvy.php:97
-#: admin/history_rvy.php:100
-#: rvy_init-functions.php:289
-msgid "Copy"
-msgstr "복사"
-
-#: admin/history_rvy.php:87
-#: admin/history_rvy.php:91
 msgid "Copy content to the clipboard."
 msgstr "내용을 클립보드에 복사합니다."
 
@@ -603,73 +606,73 @@ msgstr "위의 내용을 클립보드에 복사합니다."
 msgid "Compare %s of \"%s\""
 msgstr "\"%s\"의 %s 비교"
 
-#: admin/history_rvy.php:655
-#: admin/options.php:925
+#: admin/history_rvy.php:659
+#: admin/options.php:1163
 msgid "Post Date"
 msgstr "게시 날짜"
 
-#: admin/history_rvy.php:656
+#: admin/history_rvy.php:660
 msgid "Post Parent"
 msgstr "상위 게시물"
 
-#: admin/history_rvy.php:657
+#: admin/history_rvy.php:661
 msgid "Menu Order"
 msgstr "메뉴 순서"
 
-#: admin/history_rvy.php:658
+#: admin/history_rvy.php:662
 msgid "Comment Status"
 msgstr "댓글 상태"
 
-#: admin/history_rvy.php:659
+#: admin/history_rvy.php:663
 msgid "Ping Status"
 msgstr "핑 상태"
 
-#: admin/history_rvy.php:799
+#: admin/history_rvy.php:803
 msgid "Page Template"
 msgstr "페이지 템플릿"
 
-#: admin/history_rvy.php:802
+#: admin/history_rvy.php:806
 msgid "Featured Image"
 msgstr "대표 이미지"
 
-#: admin/history_rvy.php:806
+#: admin/history_rvy.php:810
 msgid "Beaver Builder Data"
 msgstr "비버 빌더 데이터"
 
-#: admin/history_rvy.php:807
+#: admin/history_rvy.php:811
 msgid "Beaver Builder Settings"
 msgstr "비버 빌더 설정"
 
-#: admin/history_rvy.php:1058
+#: admin/history_rvy.php:1062
 msgid "Scheduled for "
 msgstr "예약됨 "
 
-#: admin/history_rvy.php:1063
+#: admin/history_rvy.php:1067
 msgid "Requested for "
 msgstr "요청됨 "
 
-#: admin/history_rvy.php:1068
+#: admin/history_rvy.php:1072
 msgid "Modified "
 msgstr "수정됨 "
 
-#: admin/history_rvy.php:1073
+#: admin/history_rvy.php:1077
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s 후"
 
-#: admin/history_rvy.php:1084, fuzzy
+#: admin/history_rvy.php:1088, fuzzy
 msgid "M j, Y @ g:i a"
 msgstr "M j, Y @ g:i a"
 
-#: admin/history_rvy.php:1129, fuzzy
+#: admin/history_rvy.php:1133, fuzzy
 msgid "M j, Y @ H:i"
 msgstr "M j, Y @ H:i"
 
-#: admin/history_rvy.php:1216
-#: front_rvy.php:597
-#: front_rvy.php:607
-#: front_rvy.php:626
-#: front_rvy.php:657
+#: admin/history_rvy.php:1220
+#: front_rvy.php:546
+#: front_rvy.php:556
+#: front_rvy.php:575
+#: front_rvy.php:606
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:311
 #: rvy_init-functions.php:350
@@ -678,11 +681,11 @@ msgstr "M j, Y @ H:i"
 msgid "Approve"
 msgstr "승인"
 
-#: admin/history_rvy.php:1216
+#: admin/history_rvy.php:1220
 msgid "Preview / Approve"
 msgstr "미리보기 / 승인"
 
-#: admin/history_rvy.php:1218
+#: admin/history_rvy.php:1222
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 #: admin/post-editor-workflow-ui_rvy.php:233
@@ -690,15 +693,15 @@ msgstr "미리보기 / 승인"
 msgid "Preview"
 msgstr "미리보기"
 
-#: admin/history_rvy.php:1312
+#: admin/history_rvy.php:1317
 msgid "Preview / Restore"
 msgstr "미리보기 / 복원"
 
-#: admin/history_rvy.php:1319
+#: admin/history_rvy.php:1324
 msgid "Manage"
 msgstr "관리"
 
-#: admin/history_rvy.php:1320
+#: admin/history_rvy.php:1325
 msgid "List"
 msgstr "목록"
 
@@ -727,7 +730,7 @@ msgid "Statuses"
 msgstr "상태"
 
 #: admin/options.php:163
-#: admin/options.php:958
+#: admin/options.php:1196
 msgid "Notifications"
 msgstr "알림"
 
@@ -1013,376 +1016,470 @@ msgstr "사용자 정의 필드(게시물 메타)가 수정될 수 있도록 허
 msgid "Permission for Submit Revision also enables Revision creation"
 msgstr "수정 제출 권한은 수정 생성도 가능하게 합니다"
 
-#: admin/options.php:251
+#: admin/options.php:247
+msgid "Enable classic metaboxes in editor"
+msgstr "편집기에서 클래식 메타박스 활성화"
+
+#: admin/options.php:252
 #, php-format
 msgid "Email designated Publishers when a %s is submitted"
 msgstr "%s가 제출되면 지정된 게시자에게 이메일 발송"
 
-#: admin/options.php:252
+#: admin/options.php:253
 #, php-format
 msgid "Email designated Publishers when a %s is published"
 msgstr "%s가 게시되면 지정된 게시자에게 이메일 발송"
 
-#: admin/options.php:253
+#: admin/options.php:254
 #, php-format
 msgid "Email designated Publishers when a %s is approved"
 msgstr "%s가 승인되면 지정된 게시자에게 이메일 발송"
 
-#: admin/options.php:255
+#: admin/options.php:256
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
 msgstr "%s가 제출되면 편집자와 관리자에게 이메일 발송"
 
-#: admin/options.php:256
+#: admin/options.php:257
 #, php-format
 msgid "Email Editors and Administrators when a %s is published"
 msgstr "%s가 게시되면 편집자와 관리자에게 이메일 발송"
 
-#: admin/options.php:257
+#: admin/options.php:258
 #, php-format
 msgid "Email Editors and Administrators when a %s is approved"
 msgstr "%s가 승인되면 편집자와 관리자에게 이메일 발송"
 
-#: admin/options.php:339
+#: admin/options.php:340
 msgid "PublishPress Revisions Site Settings"
 msgstr "PublishPress Revisions 사이트 설정"
 
-#: admin/options.php:369
+#: admin/options.php:370
 msgid "These are the default settings for options which can be adjusted per-site."
 msgstr "이것은 사이트별로 조정할 수 있는 옵션의 기본 설정입니다."
 
-#: admin/options.php:407
+#: admin/options.php:408
 #, php-format
 msgid ""
 "Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
 "settings. %s"
 msgstr "이 탭을 사용하여 PublishPress Revisions 설정에 대해 네트워크 전체 변경을 수행하십시오. %s"
 
-#: admin/options.php:410
+#: admin/options.php:411
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
 msgstr "사이트별 설정에 대한 %1$s기본값%2$s도 지정할 수 있습니다."
 
-#: admin/options.php:413
+#: admin/options.php:414
 msgid ""
 "Here you can change the default value for settings which are controlled "
 "separately on each site."
 msgstr "여기에서 각 사이트에서 별도로 제어되는 설정의 기본값을 변경할 수 있습니다."
 
-#: admin/options.php:423
-#: admin/options.php:425
+#: admin/options.php:424
+#: admin/options.php:426
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
 msgstr "%1$s네트워크 전체 설정%2$s도 있을 수 있습니다."
 
-#: admin/options.php:503
+#: admin/options.php:504
 msgid "License"
 msgstr "라이센스"
 
-#: admin/options.php:546
+#: admin/options.php:549
 msgid "Past Revisions are earlier versions of a post."
 msgstr "과거 리비전은 게시물의 이전 버전입니다."
 
-#: admin/options.php:601
+#: admin/options.php:606
 msgid "This post type does not support Past Revisions."
 msgstr "이 post type은 과거 리비전을 지원하지 않습니다."
 
-#: admin/options.php:643
+#: admin/options.php:642
 msgid "New Revisions are changes which are not yet published."
 msgstr "새로운 리비전은 아직 게시되지 않은 변경 사항입니다."
 
-#: admin/options.php:732
+#: admin/options.php:741
+msgid "Revision Fields"
+msgstr "수정 필드"
+
+#: admin/options.php:745
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "새로운 수정본으로 수정할 수 있는 필드를 지정하세요."
+
+#: admin/options.php:753
+#: admin/options.php:916
+msgid "Content"
+msgstr "내용"
+
+#: admin/options.php:754
+#: admin/options.php:917
+msgid "Title"
+msgstr "제목"
+
+#: admin/options.php:755
+#: admin/options.php:918
+msgid "Date"
+msgstr "날짜"
+
+#: admin/options.php:757
+#: admin/options.php:920
+msgid "Parent"
+msgstr "부모"
+
+#: admin/options.php:758
+#: admin/options.php:921
+msgid "Slug"
+msgstr "슬러그"
+
+#: admin/options.php:759
+#: admin/options.php:922
+msgid "Excerpt"
+msgstr "발췌"
+
+#: admin/options.php:760
+#: admin/options.php:923
+#: admin/post-edit-block-ui_rvy.php:209
+#: admin/post-edit_rvy.php:343
+msgid "Author"
+msgstr "작성자"
+
+#: admin/options.php:761
+msgid "Thumbnail"
+msgstr "썸네일"
+
+#: admin/options.php:762
+#: admin/options.php:925
+msgid "Template"
+msgstr "템플릿"
+
+#: admin/options.php:763
+#: admin/options.php:926
+msgid "Categories"
+msgstr "카테고리"
+
+#: admin/options.php:764
+#: admin/options.php:927
+msgid "Tags"
+msgstr "태그"
+
+#: admin/options.php:765
+#: admin/options.php:928
+#: admin/restrict-editor-features.php:162
+msgid "Taxonomies"
+msgstr "Taxonomies"
+
+#: admin/options.php:809
+msgid "Copy Posts"
+msgstr "게시물 복사"
+
+#: admin/options.php:813
+msgid "Copy post directly without using the revision process."
+msgstr "수정 프로세스를 사용하지 않고 직접 게시물을 복사합니다."
+
+#: admin/options.php:904
+msgid "Copy Fields"
+msgstr "필드 복사"
+
+#: admin/options.php:908
+msgid "Specify fields to include when Posts are copied."
+msgstr "게시물이 복사될 때 포함할 필드를 지정하세요."
+
+#: admin/options.php:924
+msgid "Thumnbnail"
+msgstr "썸네일"
+
+#: admin/options.php:970
 msgid ""
 "Note: Third party code may cause some post types to be incompatible with "
 "PublishPress Revisions."
 msgstr "참고: 타사 코드는 일부 post type이 PublishPress Revisions와 호환되지 않게 만들 수 있습니다."
 
-#: admin/options.php:742
+#: admin/options.php:980
 #, php-format
 msgid ""
 "For Revisions integration on the Content Calendar, Overview and Content "
 "Board, please update %sPublishPress Planner Pro%s."
 msgstr "컨텐츠 캘린더, 개요 및 컨텐츠 보드에서 리비전 통합을 위해 %sPublishPress Planner Pro%s를 업데이트하십시오."
 
-#: admin/options.php:763
+#: admin/options.php:1001
 msgid "Ready to enhance your revision workflow?"
 msgstr "리비전 워크플로우를 향상할 준비가 되셨습니까?"
 
-#: admin/options.php:766
+#: admin/options.php:1004
 msgid ""
 "Get PublishPress Statuses Pro and optimize your revision process with "
 "custom revision statuses."
 msgstr "PublishPress Statuses Pro를 얻고 사용자 정의 리비전 상태로 리비전 프로세스를 최적화하십시오."
 
-#: admin/options.php:772
+#: admin/options.php:1010
 msgid "Define your own statuses before or after Revision Submitted"
 msgstr "리비전 제출 전후에 자신의 상태를 정의하십시오."
 
-#: admin/options.php:775
+#: admin/options.php:1013
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
 msgstr "새로운 미리 정의된 상태: 보류, 작업 필요, 거부됨"
 
-#: admin/options.php:778
+#: admin/options.php:1016
 msgid "Statuses can be specific to a post type"
 msgstr "상태는 post type에 특정할 수 있습니다."
 
-#: admin/options.php:781
+#: admin/options.php:1019
 msgid "Control access to statuses per-role"
 msgstr "역할별로 상태에 대한 접근을 제어하십시오."
 
-#: admin/options.php:784
+#: admin/options.php:1022
 msgid "Status workflow can be nested with sub-statuses"
 msgstr "상태 워크플로우는 하위 상태로 중첩될 수 있습니다."
 
-#: admin/options.php:793
+#: admin/options.php:1031
 msgid "Get PublishPress Statuses Pro"
 msgstr "PublishPress Statuses Pro를 얻으십시오."
 
-#: admin/options.php:798
-#: admin/options.php:816
-#: admin/options.php:1785
-#: admin/options.php:1803
-#: admin/options.php:2357
-#: admin/options.php:2371
-#: admin/options.php:2381
-#: admin/options.php:2391
+#: admin/options.php:1036
+#: admin/options.php:1054
+#: admin/options.php:2021
+#: admin/options.php:2039
+#: admin/options.php:2601
+#: admin/options.php:2615
+#: admin/options.php:2625
+#: admin/options.php:2635
 msgid "Learn More"
 msgstr "자세히 알아보기"
 
-#: admin/options.php:811, fuzzy
+#: admin/options.php:1049, fuzzy
 msgid "Pro Plugin"
 msgstr "Pro Plugin"
 
-#: admin/options.php:812
+#: admin/options.php:1050
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr "사용자 정의 수정 상태를 잠금 해제하려면 Statuses Pro를 설치하세요."
 
-#: admin/options.php:813
+#: admin/options.php:1051
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr "편집 워크플로에 맞게 모든 post type 및 역할을 구성하세요."
 
-#: admin/options.php:820
+#: admin/options.php:1058
 msgid "Get Statuses Pro"
 msgstr "Statuses Pro 받기"
 
-#: admin/options.php:847
+#: admin/options.php:1085
 msgid "Maximum revisions per post:"
 msgstr "게시물당 최대 수정 수:"
 
-#: admin/options.php:849
+#: admin/options.php:1087
 msgid "(unlimited)"
 msgstr "(무제한)"
 
-#: admin/options.php:857
+#: admin/options.php:1095
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
 msgstr "%1$sPost Type%2$s에 의해 아카이빙이 비활성화될 수 있습니다."
 
-#: admin/options.php:894
-#: admin/options.php:1065
-#: admin/options.php:1315
-#: admin/options.php:1341
-#: admin/options.php:1367
-#: admin/options.php:1395
-#: admin/options.php:1909
+#: admin/options.php:1132
+#: admin/options.php:1303
+#: admin/options.php:1551
+#: admin/options.php:1577
+#: admin/options.php:1603
+#: admin/options.php:1631
+#: admin/options.php:2145
 #, php-format
 msgid "%s capability"
 msgstr "%s 권한"
 
-#: admin/options.php:899
-#: admin/options.php:1070
-#: admin/options.php:1320
-#: admin/options.php:1346
-#: admin/options.php:1372
-#: admin/options.php:1400
-#: admin/options.php:1914
+#: admin/options.php:1137
+#: admin/options.php:1308
+#: admin/options.php:1556
+#: admin/options.php:1582
+#: admin/options.php:1608
+#: admin/options.php:1636
+#: admin/options.php:2150
 msgid "Assign capability to roles"
 msgstr "역할에 권한 할당"
 
-#: admin/options.php:906
+#: admin/options.php:1144
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
 msgstr "비관리자가 %s 없이 수정을 복원하지 못하도록 방지합니다."
 
-#: admin/options.php:912
+#: admin/options.php:1150
 msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
 msgstr "비관리자가 restore_revisions 권한 없이 수정을 복원하지 못하도록 방지합니다."
 
-#: admin/options.php:925
+#: admin/options.php:1163
 msgid "Modification Date"
 msgstr "수정 날짜"
 
-#: admin/options.php:953
+#: admin/options.php:1191
 msgid "Revision Creation"
 msgstr "수정 생성"
 
-#: admin/options.php:954
+#: admin/options.php:1192
 msgid "Submission"
 msgstr "제출"
 
-#: admin/options.php:955
+#: admin/options.php:1193
 msgid "Scheduling"
 msgstr "일정 설정"
 
-#: admin/options.php:956
+#: admin/options.php:1194
 msgid "Publication"
 msgstr "발행"
 
-#: admin/options.php:957
+#: admin/options.php:1195
 msgid "Management"
 msgstr "관리"
 
-#: admin/options.php:1015
+#: admin/options.php:1253
 msgid "Create Revision capabilities"
 msgstr "수정 권한 생성"
 
-#: admin/options.php:1020
-#: admin/options.php:1045
-#: admin/options.php:1198
+#: admin/options.php:1258
+#: admin/options.php:1283
+#: admin/options.php:1436
 msgid "Assign capabilities to roles"
 msgstr "역할에 권한 할당"
 
-#: admin/options.php:1027
-#: admin/options.php:1205
+#: admin/options.php:1265
+#: admin/options.php:1443
 #, php-format
 msgid "If the user can't edit the published post, require %s."
 msgstr "사용자가 게시된 게시물을 편집할 수 없는 경우, %s를 요구합니다."
 
-#: admin/options.php:1033
+#: admin/options.php:1271
 msgid ""
 "If the user can't edit the published post, require Create Revision "
 "capabilities (copy_posts, copy_others_pages, etc.)"
 msgstr "사용자가 게시된 게시물을 편집할 수 없는 경우, 수정 생성 권한(복사_게시물, 복사_다른_페이지 등)을 요구합니다."
 
-#: admin/options.php:1041
+#: admin/options.php:1279
 #, php-format
 msgid "To expand the Pages list, assign %s."
 msgstr "페이지 목록을 확장하려면 %s를 할당하십시오."
 
-#: admin/options.php:1044
+#: admin/options.php:1282
 msgid "Listing capabilities"
 msgstr "리스트 작성 권한"
 
-#: admin/options.php:1051
+#: admin/options.php:1289
 msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
 msgstr "페이지 목록을 확장하려면 리스트 작성 권한(다른_페이지_목록, 게시된_게시물_목록 등)을 할당하십시오."
 
-#: admin/options.php:1057
+#: admin/options.php:1295
 msgid "This plugin introduces a new user role, \"Revisor.\""
 msgstr "이 플러그인은 새로운 사용자 역할인 \"Revisor\"를 도입합니다."
 
-#: admin/options.php:1077
+#: admin/options.php:1315
 #, php-format
 msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
 "to be stripped out."
 msgstr "%s가 없는 사용자가 수정을 할 경우 모든 사용자 정의 HTML 태그가 제거됩니다."
 
-#: admin/options.php:1083
+#: admin/options.php:1321
 msgid ""
 "Revision by a user who does not have the unfiltered_html capability will "
 "cause all custom html tags to be stripped out."
 msgstr "unfiltered_html 권한이 없는 사용자가 수정을 할 경우 모든 사용자 정의 HTML 태그가 제거됩니다."
 
-#: admin/options.php:1100
+#: admin/options.php:1338
 msgid "Broadest compat including Elementor, Divi, Beaver Builder"
 msgstr "Elementor, Divi, Beaver Builder를 포함한 가장 폭넓은 호환성"
 
-#: admin/options.php:1101
+#: admin/options.php:1339
 msgid "Standard storage schema for broadest 3rd party compat"
 msgstr "가장 폭넓은 3자 호환성을 위한 표준 저장 스키마"
 
-#: admin/options.php:1106
+#: admin/options.php:1344
 msgid "Enhanced Revision access control with PublishPress plugins"
 msgstr "PublishPress 플러그인으로 개선된 수정 접근 제어"
 
-#: admin/options.php:1117
+#: admin/options.php:1355
 msgid ""
 "In enhanced mode, a Revision's status is stored by standard WordPress "
 "schema. Some plugins are incompatible."
 msgstr "개선된 모드에서는 수정의 상태가 표준 WordPress 스키마에 의해 저장됩니다. 일부 플러그인은 호환되지 않습니다."
 
-#: admin/options.php:1124
+#: admin/options.php:1362
 msgid ""
 "Prevent Revision creation if the post already has another Revision in "
 "progress."
 msgstr "게시물에 다른 수정이 진행 중인 경우 수정 생성을 방지합니다."
 
-#: admin/options.php:1128
+#: admin/options.php:1366
 msgid ""
 "Work around cache plugin conflicts by requerying for revisions before "
 "suppressing the New Revision link."
 msgstr "새 수정 링크를 억제하기 전에 수정에 대해 다시 쿼리하여 캐시 플러그인 충돌을 해결합니다."
 
-#: admin/options.php:1158
+#: admin/options.php:1396
 #, php-format
 msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
 "\"Edit.\""
 msgstr "사용자에게 일반 편집 링크가 없는 경우 %s 링크의 이름을 \"Edit\"로 변경합니다."
 
-#: admin/options.php:1161
+#: admin/options.php:1399
 msgid ""
 "Default labels are \"Not Submitted for Approval\", \"Submitted for "
 "Approval\", \"Scheduled Revision\""
 msgstr "기본 레이블은 \"승인 대기 중 아님\", \"승인 제출됨\", \"예정된 수정\"입니다."
 
-#: admin/options.php:1179
+#: admin/options.php:1417
 #, php-format
 msgid ""
 "Enable published content to be copied, edited, submitted for approval and "
 "managed on the %sNew Revisions%s screen."
 msgstr "게시된 콘텐츠가 %s새 수정%s 화면에서 복사, 편집, 승인 제출 및 관리될 수 있도록 활성화합니다."
 
-#: admin/options.php:1193
+#: admin/options.php:1431
 msgid "Submit Revision capabilities"
 msgstr "수정 제출 권한"
 
-#: admin/options.php:1211
+#: admin/options.php:1449
 msgid ""
 "If the user can't edit the published post, require Submit Revision "
 "capabilities (revise_posts, revise_others_pages, etc.)"
 msgstr "사용자가 게시된 게시물을 편집할 수 없는 경우 수정 제출 권한(게시물_수정, 다른_페이지_수정 등)을 요구합니다."
 
-#: admin/options.php:1216
-#: admin/options.php:1250
+#: admin/options.php:1454
+#: admin/options.php:1488
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr "%s가 게시될 때, 게시물 게시 날짜를 현재 시간으로 업데이트합니다."
 
-#: admin/options.php:1219
-#: admin/options.php:1253
+#: admin/options.php:1457
+#: admin/options.php:1491
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr "%s가 게시될 때, 게시물 수정 날짜를 현재 시간으로 업데이트합니다."
 
-#: admin/options.php:1222
+#: admin/options.php:1460
 msgid ""
 "When a new revision is created by any user who is allowed to submit "
 "revisions, automatically submit it."
 msgstr "어떤 사용자가 수정 사항 제출을 허용받아 새 수정이 생성되면 자동으로 제출합니다."
 
-#: admin/options.php:1225
+#: admin/options.php:1463
 msgid "Auto-submit revisions if the user can directly edit the main post."
 msgstr "사용자가 주요 게시물을 직접 편집할 수 있는 경우 수정 사항을 자동으로 제출합니다."
 
-#: admin/options.php:1228
+#: admin/options.php:1466
 msgid ""
 "This allows immediate approval within the Compare screen. If disabled, a "
 "Preview link is provided instead."
 msgstr "이 기능은 비교 화면 내에서 즉각적인 승인을 허용합니다. 비활성화된 경우 대신 미리보기 링크가 제공됩니다."
 
-#: admin/options.php:1244
+#: admin/options.php:1482
 msgid ""
 "If a currently published post or page is edited and a future date set, the "
 "change will not be applied until the selected date."
 msgstr "현재 게시된 게시물이나 페이지가 편집되고 미래 날짜가 설정된 경우, 선택한 날짜까지 변경 사항이 적용되지 않습니다."
 
-#: admin/options.php:1258
+#: admin/options.php:1494
 msgid ""
 "Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
 "publication will fail if this setting is disabled."
@@ -1390,7 +1487,7 @@ msgstr ""
 "WP-Cron 메커니즘을 사용하여 예약된 수정 사항을 게시합니다. 일부 사이트에서는 이 설정이 비활성화된 경우 게시가 실패할 수 "
 "있습니다."
 
-#: admin/options.php:1262
+#: admin/options.php:1498
 msgid ""
 "Publish scheduled revisions asynchronously, via a secondary http request "
 "from the server.  This is usually best since it eliminates delay, but some "
@@ -1399,243 +1496,243 @@ msgstr ""
 "서버에서의 보조 http 요청을 통해 비동기적으로 예약된 수정 사항을 게시합니다. 일반적으로 지연을 없애므로 최선의 방법이지만 일부 "
 "서버에서는 이를 지원하지 않을 수 있습니다."
 
-#: admin/options.php:1267
+#: admin/options.php:1503
 msgid ""
 "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
 "using a custom trigger."
 msgstr "WP-Cron 트리거가 비활성화되어 있지만 예약된 작업은 여전히 사용자 정의 트리거를 사용하여 실행됩니다."
 
-#: admin/options.php:1281
+#: admin/options.php:1517
 msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
 msgstr "버튼의 캡션을 \"승인 및 게시\" 또는 \"승인 및 예약\"으로 설정합니다."
 
-#: admin/options.php:1292
+#: admin/options.php:1528
 msgid "This may improve compatibility with some plugins."
 msgstr "이는 일부 플러그인과의 호환성을 개선할 수 있습니다."
 
-#: admin/options.php:1327
+#: admin/options.php:1563
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr "%s로 새 수정 사항 접근을 제어합니다."
 
-#: admin/options.php:1333
+#: admin/options.php:1569
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr "manage_revision_queue 기능으로 새 수정 사항 접근을 제어합니다."
 
-#: admin/options.php:1353
+#: admin/options.php:1589
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr "사용자는 다른 사용자의 미제출 수정 사항을 편집하기 위해 %s가 필요합니다."
 
-#: admin/options.php:1359
+#: admin/options.php:1595
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
 msgstr "사용자는 다른 사용자의 미제출 수정 사항을 편집하기 위해 manage_unsubmitted_revisions 기능이 필요합니다."
 
-#: admin/options.php:1379
-#: admin/options.php:1407
+#: admin/options.php:1615
+#: admin/options.php:1643
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr "사용자가 게시된 게시물을 편집할 수 없는 경우, %s를 요구합니다."
 
-#: admin/options.php:1385
+#: admin/options.php:1621
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
 msgstr "사용자가 게시된 게시물을 편집할 수 없는 경우, edit_others_revisions 기능을 요구합니다."
 
-#: admin/options.php:1413
+#: admin/options.php:1649
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
 msgstr "사용자가 게시된 게시물을 편집할 수 없는 경우, list_others_revisions 기능을 요구합니다."
 
-#: admin/options.php:1418
+#: admin/options.php:1654
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
 msgstr "로그인한 사용자의 자신의 게시물에 대한 다른 사용자의 수정 사항에 대해 위의 제한을 우회합니다."
 
-#: admin/options.php:1429
+#: admin/options.php:1665
 msgid "Regenerate \"post has revision\" flags"
 msgstr "“게시물에 수정이 있습니다” 플래그를 재생성합니다"
 
-#: admin/options.php:1432
+#: admin/options.php:1668
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
 msgstr "게시물 / 페이지 화면의 Has Revision 레이블이 새 수정 사항 목록과 불일치하는 경우 이 유지 관리 작업을 적용합니다."
 
-#: admin/options.php:1457
+#: admin/options.php:1693
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "향상된 알림을 위해 %sPublishPress Planner%s를 설치합니다."
 
-#: admin/options.php:1470
+#: admin/options.php:1706
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "향상된 알림을 위해 %sRevisions Pro%s를 업데이트하세요."
 
-#: admin/options.php:1492
+#: admin/options.php:1728
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
 "Planner Notifications system%2$s."
 msgstr "%1$sRevisions Pro 알림 시스템%2$s을 사용하여 수정 작업 알림을 전송하세요."
 
-#: admin/options.php:1493
+#: admin/options.php:1729
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
 "customizable %1$sPublishPress Planner Notifications system%2$s."
 msgstr "수정 작업 알림을 전송하려면 %1$sRevisions Pro 알림 시스템%2$s으로 업그레이드하세요."
 
-#: admin/options.php:1505
+#: admin/options.php:1741
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
 msgstr "Planner > Notifications 구성에 맞는 사용자만 게시된 게시물을 편집할 수 있는 경우 수정 알림을 받습니다."
 
-#: admin/options.php:1547
-#: admin/options.php:1569
+#: admin/options.php:1783
+#: admin/options.php:1805
 msgid "Never"
 msgstr "절대"
 
-#: admin/options.php:1547
-#: admin/options.php:1569
+#: admin/options.php:1783
+#: admin/options.php:1805
 msgid "By default"
 msgstr "기본값"
 
-#: admin/options.php:1547
-#: admin/options.php:1569
+#: admin/options.php:1783
+#: admin/options.php:1805
 msgid "Always"
 msgstr "항상"
 
-#: admin/options.php:1558
-#: admin/options.php:1605
+#: admin/options.php:1794
+#: admin/options.php:1841
 msgid "select recipients"
 msgstr "수신자 선택"
 
-#: admin/options.php:1619
+#: admin/options.php:1855
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
 msgstr "알림 실패를 피하려면 이메일을 버퍼링하여 지연 전송이 한 분, 한 시간 또는 하루 제한을 초과할 때까지 기다리세요."
 
-#: admin/options.php:1640
+#: admin/options.php:1876
 msgid "Notification Buffer"
 msgstr "알림 버퍼"
 
-#: admin/options.php:1668
+#: admin/options.php:1904
 msgid "Notification Log"
 msgstr "알림 로그"
 
-#: admin/options.php:1697
+#: admin/options.php:1933
 msgid "Purge Notification Buffer"
 msgstr "알림 버퍼 정리"
 
-#: admin/options.php:1703
+#: admin/options.php:1939
 msgid "Truncate Notification Log"
 msgstr "알림 로그 자르기"
 
-#: admin/options.php:1709
+#: admin/options.php:1945
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "지난 분에 전송됨: %d / %d"
 
-#: admin/options.php:1710
+#: admin/options.php:1946
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "지난 시간에 전송됨: %d / %d"
 
-#: admin/options.php:1711
+#: admin/options.php:1947
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "지난 하루에 전송됨: %d / %d"
 
-#: admin/options.php:1718
+#: admin/options.php:1954
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "다음 버퍼 처리 시간까지 남은 초: %d"
 
-#: admin/options.php:1729
+#: admin/options.php:1965
 msgid "Show Notification Log / Buffer"
 msgstr "알림 로그 / 버퍼 표시"
 
-#: admin/options.php:1731
+#: admin/options.php:1967
 msgid "Show with message content"
 msgstr "메시지 내용과 함께 표시"
 
-#: admin/options.php:1753
+#: admin/options.php:1989
 msgid "Ready to enhance your revision notifications?"
 msgstr "수정 알림을 향상시킬 준비가 되셨나요?"
 
-#: admin/options.php:1756
+#: admin/options.php:1992
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
 msgstr "PublishPress Planner Notifications 프레임워크와 통합하기 위해 Revisions Pro로 업그레이드하십시오."
 
-#: admin/options.php:1762
+#: admin/options.php:1998
 msgid "Customize notification message and subject"
 msgstr "알림 메시지 및 제목 사용자 정의"
 
-#: admin/options.php:1765
+#: admin/options.php:2001
 msgid "Notify for a specific post type, category or term"
 msgstr "특정 post type, 카테고리 또는 용어에 대해 알림"
 
-#: admin/options.php:1768
+#: admin/options.php:2004
 msgid "Target specific roles, users, or user groups"
 msgstr "특정 역할, 사용자 또는 사용자 그룹을 타겟팅"
 
-#: admin/options.php:1771
+#: admin/options.php:2007
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "PublishPress Planner Pro를 사용하여 Slack 채널에 알림 전송"
 
-#: admin/options.php:1798
-#: admin/options.php:2351
+#: admin/options.php:2034
+#: admin/options.php:2595
 msgid "Pro Feature"
 msgstr "Pro 기능"
 
-#: admin/options.php:1799
+#: admin/options.php:2035
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr "Planner Notifications 통합을 해제하려면 Revisions Pro로 업그레이드하십시오."
 
-#: admin/options.php:1800
+#: admin/options.php:2036
 msgid "Customize notification content and recipients for each notification type."
 msgstr "각 알림 유형에 대해 알림 내용 및 수신자를 사용자 정의하십시오."
 
-#: admin/options.php:1824
+#: admin/options.php:2060
 msgid "Some themes may block revision preview."
 msgstr "일부 테마는 수정 미리보기를 차단할 수 있습니다."
 
-#: admin/options.php:1841
+#: admin/options.php:2077
 msgid "Published Post Slug"
 msgstr "게시된 게시물 슬러그"
 
-#: admin/options.php:1842
+#: admin/options.php:2078
 msgid "Revision Slug"
 msgstr "수정 슬러그"
 
-#: admin/options.php:1843
+#: admin/options.php:2079
 msgid "Revision ID only"
 msgstr "수정 ID만"
 
-#: admin/options.php:1858
+#: admin/options.php:2094
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
 msgstr "일부 테마나 플러그인은 올바른 템플릿 로딩 및 필드 표시를 위해 수정 슬러그 또는 수정 ID 링크 유형을 요구할 수 있습니다."
 
-#: admin/options.php:1867
+#: admin/options.php:2103
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "수정 미리보기 인수는 상수 정의에 의해 구성됩니다: %s"
 
-#: admin/options.php:1874
+#: admin/options.php:2110
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -1643,201 +1740,200 @@ msgstr ""
 "미리보기 링크를 \"preview\" 대신 \"rv_preview\" 인수를 사용하도록 조정하십시오. 어떤 것이 귀하의 테마와 가장 잘 "
 "작동하는지 실험해보십시오."
 
-#: admin/options.php:1878
+#: admin/options.php:2114
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr "일부 테마는 올바른 수정 미리보기 표시를 위해 이 설정이 필요할 수 있습니다."
 
-#: admin/options.php:1897
+#: admin/options.php:2133
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
 msgstr "일반적으로 이는 활성화되어 있어야 하며, 다른 플러그인의 postmeta 데이터와의 충돌을 피하기 위해서 제외될 수 있습니다."
 
-#: admin/options.php:1921
+#: admin/options.php:2157
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr "사용자가 게시할 수 없는 경우, 다른 사람의 미게시 게시물을 편집하려면 %s가 필요합니다."
 
-#: admin/options.php:1927
+#: admin/options.php:2163
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
 msgstr "사용자가 게시할 수 없는 경우, 다른 사람의 미게시 게시물을 편집하려면 edit_others_drafts 기능이 필요합니다."
 
-#: admin/options.php:1933
+#: admin/options.php:2169
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
 msgstr "게시물 특정 권한이 게시물에 대한 접근을 제한하거나 확장하는 경우, 해당 권한을 수정에도 적용하십시오."
 
-#: admin/options.php:1945
+#: admin/options.php:2181
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO는 일부 사이트에서 Revision 업데이트를 방지할 수 있습니다."
 
-#: admin/options.php:1952
+#: admin/options.php:2188
 #: includes/CoreAdmin.php:205, fuzzy
 msgid "WPML Translation Management"
 msgstr "WPML Translation Management"
 
-#: admin/options.php:1957
+#: admin/options.php:2193
 msgid "Sync \"Needs Update\" flags"
 msgstr "동기화 \"업데이트 필요\" 플래그"
 
-#: admin/options.php:1961
+#: admin/options.php:2197
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
 msgstr "번역이 최근에 업데이트된 경우 (아마도 Revision 승인에 의해) 모든 포스트에 대해 \"업데이트 필요\"를 설정합니다."
 
-#: admin/options.php:1971
+#: admin/options.php:2215
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "PublishPress Revisions 설정에 대한 설명 캡션을 표시합니다."
 
-#: admin/options.php:1989
+#: admin/options.php:2233
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
-msgstr "플러그인 설정, 새 Revisions 콘텐츠 및 관련 데이터는 삭제되지만, 마지막 Revisions / Revisions Pro 복사본이 삭제된 후에만 삭제됩니다."
+msgstr ""
+"플러그인 설정, 새 Revisions 콘텐츠 및 관련 데이터는 삭제되지만, 마지막 Revisions / Revisions Pro "
+"복사본이 삭제된 후에만 삭제됩니다."
 
-#: admin/options.php:2010
+#: admin/options.php:2254
 msgid "Unlock Pro Integrations"
 msgstr "Pro 통합 잠금 해제"
 
-#: admin/options.php:2011
+#: admin/options.php:2255
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
 msgstr "최적의 호환성과 신속하며 전문적인 지원을 위해 Pro 버전으로 업그레이드하십시오."
 
-#: admin/options.php:2029
-#: admin/options.php:2282
+#: admin/options.php:2273
+#: admin/options.php:2526
 msgid "Admin"
 msgstr "admin"
 
-#: admin/options.php:2032
-#: admin/options.php:2280, fuzzy
+#: admin/options.php:2276
+#: admin/options.php:2524, fuzzy
 msgid "Builder"
 msgstr "Builder"
 
-#: admin/options.php:2035
-#: admin/options.php:2284, fuzzy
+#: admin/options.php:2279
+#: admin/options.php:2528, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2038, fuzzy
+#: admin/options.php:2282, fuzzy
 msgid "E-Commerce"
 msgstr "E-Commerce"
 
-#: admin/options.php:2041
-#: admin/options.php:2290, fuzzy
+#: admin/options.php:2285
+#: admin/options.php:2534, fuzzy
 msgid "Fields"
 msgstr "Fields"
 
-#: admin/options.php:2045
+#: admin/options.php:2289
 msgid "Multilingual"
 msgstr "다국어"
 
-#: admin/options.php:2049
-#: admin/options.php:2286, fuzzy
+#: admin/options.php:2293
+#: admin/options.php:2530, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2052
 #: admin/options.php:2296
+#: admin/options.php:2540
 msgid "Workflow"
 msgstr "워크플로우"
 
-#: admin/options.php:2134
+#: admin/options.php:2378
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
-msgstr "네트워크 전체에서 제어할 PublishPress Revisions 설정을 지정합니다. 선택되지 않은 설정은 각 사이트에서 별도로 제어됩니다."
+msgstr ""
+"네트워크 전체에서 제어할 PublishPress Revisions 설정을 지정합니다. 선택되지 않은 설정은 각 사이트에서 별도로 "
+"제어됩니다."
 
-#: admin/options.php:2180
+#: admin/options.php:2424
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "\"%s\"의 네트워크 전체 제어"
 
-#: admin/options.php:2207
+#: admin/options.php:2451
 msgid "Save Changes"
 msgstr "변경 사항 저장"
 
-#: admin/options.php:2208
+#: admin/options.php:2452
 msgid "Revert to Defaults"
 msgstr "기본값으로 되돌리기"
 
-#: admin/options.php:2210
+#: admin/options.php:2454
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
 msgstr "이 양식의 모든 설정(선택되지 않은 탭의 설정 포함)은 기본값(DEFAULTS)으로 재설정됩니다. 확실합니까?"
 
-#: admin/options.php:2288
+#: admin/options.php:2532
 msgid "Commerce"
 msgstr "상업"
 
-#: admin/options.php:2292
+#: admin/options.php:2536
 msgid "Multilang"
 msgstr "다국어"
 
-#: admin/options.php:2294
+#: admin/options.php:2538
 msgid "Community"
 msgstr "커뮤니티"
 
-#: admin/options.php:2306
+#: admin/options.php:2550
 msgid "Pro"
 msgstr "프로"
 
-#: admin/options.php:2311
+#: admin/options.php:2555
 msgid "Supported"
 msgstr "지원됨"
 
-#: admin/options.php:2314
-#: admin/options.php:2368
+#: admin/options.php:2558
+#: admin/options.php:2612
 msgid "Active Plugin"
 msgstr "활성 플러그인"
 
-#: admin/options.php:2326
+#: admin/options.php:2570
 msgid "Supported by PublishPress Revisions"
 msgstr "PublishPress Revisions에 의해 지원됨"
 
-#: admin/options.php:2328
+#: admin/options.php:2572
 msgid "Supported by Revisions Pro"
 msgstr "Revisions Pro에 의해 지원됨"
 
-#: admin/options.php:2341
+#: admin/options.php:2585
 msgid "Integration Active"
 msgstr "통합 활성화"
 
-#: admin/options.php:2343
+#: admin/options.php:2587
 msgid "Upgrade to Pro to enable this integration"
 msgstr "이 통합을 활성화하려면 Pro로 업그레이드하세요"
 
-#: admin/options.php:2352
+#: admin/options.php:2596
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "%s 통합을 잠금 해제하여 귀하의 리비전 솔루션을 강화하세요."
 
-#: admin/options.php:2368
+#: admin/options.php:2612
 msgid "Active Plugin Integration"
 msgstr "활성 플러그인 통합"
 
-#: admin/options.php:2378
+#: admin/options.php:2622
 msgid "Supported Plugin Integration"
 msgstr "지원 플러그인 통합"
 
-#: admin/options.php:2388
+#: admin/options.php:2632
 msgid "Supported Plugin"
 msgstr "지원 플러그인"
 
 #: admin/post-edit-block-ui_rvy.php:164
 msgid "Now"
 msgstr "지금"
-
-#: admin/post-edit-block-ui_rvy.php:209
-#: admin/post-edit_rvy.php:343
-msgid "Author"
-msgstr "작성자"
 
 #: admin/post-editor-workflow-ui_rvy.php:34
 msgid "(on approval)"
@@ -1888,7 +1984,7 @@ msgstr "수정 제출 오류"
 
 #: admin/post-editor-workflow-ui_rvy.php:123
 #: admin/post-editor-workflow-ui_rvy.php:234
-#: front_rvy.php:536
+#: front_rvy.php:485
 msgid "Edit"
 msgstr "편집"
 
@@ -1939,7 +2035,7 @@ msgid "Current Time"
 msgstr "현재 시간"
 
 #: admin/post-edit_rvy.php:60
-#: front_rvy.php:572
+#: front_rvy.php:521
 msgid "Delete"
 msgstr "삭제"
 
@@ -1959,65 +2055,77 @@ msgstr "저장된 수정 사항 보기 / 조정하기"
 msgid "View saved revision"
 msgstr "저장된 수정 사항 보기"
 
-#: admin/revision-action_rvy.php:510
-#: admin/revision-action_rvy.php:596
+#: admin/restrict-editor-features.php:113
+msgid "Status & visibility"
+msgstr "상태 및 가시성"
+
+#: admin/restrict-editor-features.php:120
+msgid "Permalink"
+msgstr "퍼머링크"
+
+#: admin/restrict-editor-features.php:149
+msgid "Featured image"
+msgstr "특집 이미지"
+
+#: admin/revision-action_rvy.php:532
+#: admin/revision-action_rvy.php:618
 #, php-format
 msgid "[%s] Revision Approval Notice"
 msgstr "[%s] 수정 승인 알림"
 
-#: admin/revision-action_rvy.php:511
+#: admin/revision-action_rvy.php:533
 #, php-format
 msgid "A revision to the %1$s \"%2$s\" has been approved."
 msgstr "%1$s \"%2$s\"에 대한 수정이 승인되었습니다."
 
-#: admin/revision-action_rvy.php:515
+#: admin/revision-action_rvy.php:537
 #, php-format
 msgid "The submitter was %1$s."
 msgstr "제출자는 %1$s였습니다."
 
-#: admin/revision-action_rvy.php:519
-#: admin/revision-action_rvy.php:605
+#: admin/revision-action_rvy.php:541
+#: admin/revision-action_rvy.php:627
 #, php-format
 msgid "It will be published on %s"
 msgstr "%s에 게시될 예정입니다."
 
-#: admin/revision-action_rvy.php:523
-#: admin/revision-action_rvy.php:609
+#: admin/revision-action_rvy.php:545
+#: admin/revision-action_rvy.php:631
 msgid "Preview it here: "
 msgstr "여기에서 미리보기: "
 
-#: admin/revision-action_rvy.php:526
-#: admin/revision-action_rvy.php:612
+#: admin/revision-action_rvy.php:548
+#: admin/revision-action_rvy.php:634
 msgid "Editor: "
 msgstr "편집자: "
 
-#: admin/revision-action_rvy.php:528
-#: admin/revision-action_rvy.php:614
-#: admin/revision-action_rvy.php:1606
-#: admin/revision-action_rvy.php:1637
-#: admin/revision-action_rvy.php:1703
+#: admin/revision-action_rvy.php:550
+#: admin/revision-action_rvy.php:636
+#: admin/revision-action_rvy.php:1680
+#: admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1777
 msgid "View it online: "
 msgstr "온라인에서 보기: "
 
-#: admin/revision-action_rvy.php:597
+#: admin/revision-action_rvy.php:619
 #, php-format
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr "%1$s \"%2$s\"에 대해 제출한 수정이 승인되었습니다."
 
-#: admin/revision-action_rvy.php:1598
-#: admin/revision-action_rvy.php:1626
+#: admin/revision-action_rvy.php:1672
+#: admin/revision-action_rvy.php:1700
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr "[%s] %s 게시 알림"
 
-#: admin/revision-action_rvy.php:1599
+#: admin/revision-action_rvy.php:1673
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
 "published."
 msgstr "%1$s \"%2$s\"에 대해 제출한 예정된 수정이 게시되었습니다."
 
-#: admin/revision-action_rvy.php:1627
+#: admin/revision-action_rvy.php:1701
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr "귀하의 %1$s \"%2$s\"에 대한 예정된 수정이 게시되었습니다."
@@ -2374,95 +2482,95 @@ msgstr "Yoast SEO 필드에 대한 수정 비교"
 msgid "Revision Status"
 msgstr "수정 상태"
 
-#: front_rvy.php:487
+#: front_rvy.php:436
 #, php-format
 msgid "%sManage%s"
 msgstr "%s관리%s"
 
-#: front_rvy.php:498
+#: front_rvy.php:447
 #, php-format
 msgid "%sCompare%s%sView Published Post%s"
 msgstr "%s비교%s%s게시된 게시물 보기%s"
 
-#: front_rvy.php:510
-#: front_rvy.php:525
+#: front_rvy.php:459
+#: front_rvy.php:474
 #, php-format
 msgid "%sView Published Post%s"
 msgstr "%s게시된 게시물 보기%s"
 
-#: front_rvy.php:600
+#: front_rvy.php:549
 #: rvy_init-functions.php:307
 #: rvy_init-functions.php:363
 msgid "Submit"
 msgstr "제출"
 
-#: front_rvy.php:612
-#: front_rvy.php:614
-#: front_rvy.php:662
-#: front_rvy.php:664
+#: front_rvy.php:561
+#: front_rvy.php:563
+#: front_rvy.php:611
+#: front_rvy.php:613
 #, php-format
 msgid "This is a %s. %s %s %s"
 msgstr "이것은 %s입니다. %s %s %s"
 
-#: front_rvy.php:630
+#: front_rvy.php:579
 msgid "Decline"
 msgstr "거부"
 
-#: front_rvy.php:643
-#: front_rvy.php:645
+#: front_rvy.php:592
+#: front_rvy.php:594
 #, php-format
 msgid "This is a %s (requested publish date: %s). %s %s %s"
 msgstr "이것은 %s입니다 (요청된 게시 날짜: %s). %s %s %s"
 
-#: front_rvy.php:649
-#: front_rvy.php:651
+#: front_rvy.php:598
+#: front_rvy.php:600
 #, php-format
 msgid "Revision status: %s (requested publish date: %s) %s %s %s"
 msgstr "수정 상태: %s (요청된 게시 날짜: %s) %s %s %s"
 
-#: front_rvy.php:668
-#: front_rvy.php:670
+#: front_rvy.php:617
+#: front_rvy.php:619
 #, php-format
 msgid "Revision status: %s %s %s %s"
 msgstr "수정 상태: %s %s %s %s"
 
-#: front_rvy.php:683
+#: front_rvy.php:632
 #: rvy_init-functions.php:470
 msgid "Publish Now"
 msgstr "지금 게시"
 
-#: front_rvy.php:686
-#: front_rvy.php:688
+#: front_rvy.php:635
+#: front_rvy.php:637
 #, php-format
 msgid "This is a %s (for publication on %s). %s %s %s"
 msgstr "이것은 %s입니다 (게시를 위한 %s). %s %s %s"
 
-#: front_rvy.php:706
+#: front_rvy.php:655
 #, php-format
 msgid "The revision was approved and is now live on the site. %s"
 msgstr "수정이 승인되었으며 이제 사이트에서 라이브입니다. %s"
 
-#: front_rvy.php:707
+#: front_rvy.php:656
 #, php-format
 msgid "This is the Current Revision. %s"
 msgstr "현재 수정입니다. %s"
 
-#: front_rvy.php:724
+#: front_rvy.php:673
 msgid "Restore"
 msgstr "복원"
 
-#: front_rvy.php:728
-#: front_rvy.php:730
+#: front_rvy.php:677
+#: front_rvy.php:679
 #, php-format
 msgid "This is a Past Revision (from %s). %s %s"
 msgstr "이것은 과거 수정입니다 (from %s). %s %s"
 
-#: functions.php:532
+#: functions.php:537
 msgid "Scheduled Rev."
 msgstr "예정된 수정"
 
-#: functions.php:537
 #: functions.php:542
+#: functions.php:547
 msgid "Submitted Rev."
 msgstr "제출된 수정"
 
@@ -2471,7 +2579,9 @@ msgstr "제출된 수정"
 msgid ""
 "You're using PublishPress Revisions Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr "당신은 PublishPress Revisions Free를 사용하고 있습니다. Pro 버전은 더 많은 기능과 지원을 제공합니다. %sPro로 업그레이드%s"
+msgstr ""
+"당신은 PublishPress Revisions Free를 사용하고 있습니다. Pro 버전은 더 많은 기능과 지원을 제공합니다. "
+"%sPro로 업그레이드%s"
 
 #: includes/CoreAdmin.php:190
 msgid "Upgrade to Revisions Pro"
@@ -2520,7 +2630,11 @@ msgstr "지식 기반 보기"
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s 쿼리가 %2$s 초 안에 처리되었습니다. %3$s MB 사용됨."
 
-#: revision-creation_rvy.php:216
+#: revision-creation_rvy.php:179
+msgid "Could not insert post into the database"
+msgstr "게시물을 데이터베이스에 삽입할 수 없습니다."
+
+#: revision-creation_rvy.php:401
 msgid "Could not insert revision into the database"
 msgstr "수정을 데이터베이스에 삽입할 수 없습니다."
 
@@ -2828,7 +2942,7 @@ msgstr "이 게시물의 수정을 생성하려면 unfiltered_html 기능이 필
 msgid "Revision Workflow"
 msgstr "수정 작업 흐름"
 
-#: admin/admin_rvy.php:310
+#: admin/admin_rvy.php:321
 msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "수정 사항"
@@ -2842,17 +2956,27 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "비교"
 
-#: admin/class-list-table_rvy.php:1926
+#: admin/class-list-table_rvy.php:1929
+msgctxt "revisions"
+msgid "Approve"
+msgstr "승인"
+
+#: admin/class-list-table_rvy.php:1936
+msgctxt "revisions"
+msgid "Publish"
+msgstr "게시"
+
+#: admin/class-list-table_rvy.php:1945
 msgctxt "revisions"
 msgid "Decline"
 msgstr "거부"
 
-#: admin/history_rvy.php:1130, fuzzy
+#: admin/history_rvy.php:1134, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2144
+#: admin/options.php:2388
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"

@@ -165,7 +165,7 @@ class RevisionaryAdminPosts {
 				'admin_print_footer_scripts',
 				function () use ($link) {
 					if ($ipos = strpos($link, '&')) {
-						$link = substr($link, 0, $ipos - 1);
+						$link = substr($link, 0, $ipos);
 					}
 				?>
 					<script type="text/javascript">
@@ -315,11 +315,7 @@ class RevisionaryAdminPosts {
 	}
 
 	function revisions_row_action_link($actions = array()) {
-		global $post;
-
-		if (!empty($post) && !rvy_is_supported_post_type($post->post_type)) {
-            return $actions;
-        }
+		global $post, $revisionary;
 
 		if (!empty($this->post_revision_count[$post->ID])) {
 			if ( 'trash' != $post->post_status && wp_check_post_lock( $post->ID ) === false ) {
@@ -337,12 +333,20 @@ class RevisionaryAdminPosts {
 				}
 			}
 
-			if (rvy_get_option('pending_revisions') && current_user_can('copy_post', $post->ID) && !$revision_blocked) {
-				$uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw($_SERVER['REQUEST_URI']) : '';
-				$referer_arg = '&referer=' . $uri;
+			$uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw($_SERVER['REQUEST_URI']) : '';
+			$referer_arg = '&referer=' . $uri;
 
-				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+
+			if (!empty($revisionary->enabled_post_types_copy[$post->post_type]) && current_user_can('duplicate_post', $post->ID)) {
+				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy{$referer_arg}$redirect_arg");
+				
+				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);
+				$actions['copy_post'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Copy', 'revisionary') . '</a>';
+			}
+
+			if (rvy_is_supported_post_type($post->post_type) && current_user_can('copy_post', $post->ID) && rvy_get_option('pending_revisions') && !$revision_blocked) {
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=revise{$referer_arg}$redirect_arg");
 				
 				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);

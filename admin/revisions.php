@@ -70,8 +70,8 @@ if ( empty($revision_id) && ! $left && ! $right ) {
 
 $revision_status_captions = array( 
 	'inherit' => esc_html__( 'Past', 'revisionary' ), 
-	'pending-revision' => __awp('Pending', 'revisionary'), 
-	'future-revision' => __awp( 'Scheduled', 'revisionary' ) 
+	'pending-revision' => esc_html__('Pending'), 
+	'future-revision' => esc_html__( 'Scheduled' ) 
 );
 
 if( 'edit' == $_action )

@@ -252,7 +252,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			else
 				$class = "rvy-revision-row alternate"; 
 			
-			$datef = __awp( 'M j, Y @ g:i a' );
+			$datef = esc_html__( 'M j, Y @ g:i a' );
 			
 			$rows .= "<tr class='" . esc_attr($class) . "'>";
 
@@ -288,7 +288,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 
 						$rows .= '<a href="' . esc_url(wp_nonce_url( $link, 'delete-revision_' . $revision->ID )) . '" class="rvy-delete" onclick="' 
 						. "javascript:if (confirm('" . esc_attr($delete_msg) . "')) {return true;} else {return false;}"
-						. '" >' . esc_html(__awp('Delete')) 
+						. '" >' . esc_html__('Delete')
 						. '</a>';
 					}
 				}
@@ -310,7 +310,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 				$rows .= "<td>$date</td>";
 
 				$rows .= "<td>"
-				. '<a href="' . esc_url(site_url("?p={$revision->ID}&amp;mark_current_revision=1")) . '" target="_blank">' . esc_html(__awp( 'Preview' )) . '</a>'
+				. '<a href="' . esc_url(site_url("?p={$revision->ID}&amp;mark_current_revision=1")) . '" target="_blank">' . esc_html__( 'Preview' ) . '</a>'
 				. "</td>";
 
 				$rows .= "<td>" . esc_html($name) . "</td>";
@@ -380,7 +380,7 @@ jQuery(document).ready( function($) {
 esc_html_e( 'Modified Date', 'revisionary' ); 
 ?></th>
 	<th scope="col"></th>
-	<th scope="col"><?php echo esc_html(__awp( 'Author' )); ?></th>
+	<th scope="col"><?php echo esc_html__( 'Author' ); ?></th>
 	<th scope="col" class="action-links"><?php esc_html_e( 'Actions' ); ?></th>
 	<th scope="col"  style='text-align:right'><input id='rvy-rev-checkall' type='checkbox' name='rvy-rev-checkall' value='' /></th>
 </tr>

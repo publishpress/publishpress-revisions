@@ -1,0 +1,3061 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"POT-Creation-Date: 2026-06-02T20:52:49+00:00\n"
+"PO-Revision-Date: 2026-04-17 11:20+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: bg-BG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: revisionary\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: revisionary.php:3
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#. Plugin URI of the plugin
+#: revisionary.php:4
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#. Description of the plugin
+#: revisionary.php:5
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Поддържайте публикувано съдържание с екипна работа и прецизност, като "
+"използвате модела за ревизии, за да подавате, одобрявате и планирате промени."
+
+#. Author of the plugin
+#: revisionary.php:6
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#. Author URI of the plugin
+#: revisionary.php:7
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/admin-init_rvy.php:112 admin/admin-init_rvy.php:348
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "Съжаляваме, нямате право да изтривате тази ревизия."
+
+#: admin/admin-init_rvy.php:204 admin/admin-init_rvy.php:314
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "Съжаляваме, нямате право да одобрявате тази ревизия."
+
+#: admin/admin-init_rvy.php:241
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "Съжаляваме, нямате право да подавате тази ревизия."
+
+#: admin/admin-init_rvy.php:279
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "Съжаляваме, нямате право да отхвърляте тази ревизия."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "Ревизията беше възстановена."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "Ревизията беше планирана за публикуване."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "Ревизията беше публикувана."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"Изисква се способността unfiltered_html, за да се създаде ревизия на тази "
+"публикация. Вижте %sдокументацията%s."
+
+#: admin/admin-posts_rvy.php:212 rvy_init-functions.php:798
+msgid "The post already has a revision in process."
+msgstr "Публикацията вече има ревизия в процес на обработка."
+
+#: admin/admin-posts_rvy.php:294 admin/class-list-table-archive.php:580
+#: rvy_init-functions.php:495
+msgid "Revision"
+msgstr "Ревизия"
+
+#: admin/admin-posts_rvy.php:311
+msgid "Has Revision"
+msgstr "Има ревизия"
+
+#: admin/admin-posts_rvy.php:322 admin/admin_rvy.php:410
+#: admin/admin_rvy.php:480 admin/options.php:159 admin/options.php:644
+msgid "New Revisions"
+msgstr "Нови ревизии"
+
+#: admin/admin-posts_rvy.php:346 admin/history_rvy.php:87
+#: admin/history_rvy.php:91 admin/history_rvy.php:97 admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "Копирай"
+
+#: admin/admin_lib-mu_rvy.php:10 admin/options.php:336
+msgid "PublishPress Revisions Network Settings"
+msgstr "Настройки на мрежата на PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:10
+msgid "Network Settings"
+msgstr "Настройки на мрежата"
+
+#: admin/admin_lib-mu_rvy.php:21 admin/options.php:338
+msgid "PublishPress Revisions Network Defaults"
+msgstr "По подразбиране на мрежата на PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:21
+msgid "Network Defaults"
+msgstr "Настройки на мрежата"
+
+#: admin/admin_rvy.php:166
+#, php-format
+msgid ""
+"Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
+"triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
+"Scheduling%s."
+msgstr ""
+"Планираните ревизии не са налични, защото WP-Cron е деактивиран. Ако "
+"задействате WP-Cron отвън, вижте %sРевизии > Настройки > Нови ревизии > "
+"Планиране%s."
+
+#: admin/admin_rvy.php:321
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Ревизии"
+
+#: admin/admin_rvy.php:361
+msgid "Revisions"
+msgstr "Ревизии"
+
+#: admin/admin_rvy.php:419 admin/admin_rvy.php:420 admin/admin_rvy.php:481
+#: admin/options.php:158 admin/options.php:545
+#: admin/revision-archive_rvy.php:81 admin/revisions.php:237
+msgid "Past Revisions"
+msgstr "Предишни ревизии"
+
+#: admin/admin_rvy.php:437 admin/options.php:342
+msgid "PublishPress Revisions Settings"
+msgstr "Настройки на PublishPress Ревизии"
+
+#: admin/admin_rvy.php:437 admin/admin_rvy.php:484 admin/options.php:153
+msgid "Settings"
+msgstr "Настройки"
+
+#: admin/admin_rvy.php:446 admin/admin_rvy.php:447 admin/admin_rvy.php:487
+#: admin/options.php:2022 admin/options.php:2049 admin/options.php:2265
+#: admin/options.php:2611 includes/CoreAdmin.php:212
+msgid "Upgrade to Pro"
+msgstr "Премини към Pro"
+
+#: admin/admin_rvy.php:528
+msgid "Can edit draft Posts from other users."
+msgstr "Може да редактира чернови публикации на други потребители."
+
+#: admin/admin_rvy.php:529
+msgid "Can edit Revisions from other users."
+msgstr "Може да редактира ревизии на други потребители."
+
+#: admin/admin_rvy.php:530
+msgid "Can see New Revisions from other users."
+msgstr "Може да вижда нови ревизии на други потребители."
+
+#: admin/admin_rvy.php:531
+msgid "Can access New Revisions."
+msgstr "Може да получава достъп до новите ревизии."
+
+#: admin/admin_rvy.php:532
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Може да управлява непредставени ревизии."
+
+#: admin/admin_rvy.php:533
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr ""
+"Преглед на ревизиите на друг потребител (без нужда от достъп за редактиране)."
+
+#: admin/admin_rvy.php:534
+msgid "Restore an archived Revision as the current revision."
+msgstr "Възстанови архивирана ревизия като текуща ревизия."
+
+#: admin/admin_rvy.php:535
+msgid "View Past Revisions."
+msgstr "Преглед на предишни ревизии."
+
+#: admin/admin_rvy.php:565
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Ако харесвате %1$s, моля, оставете ни %2$s оценка. Благодаря ви!"
+
+#: admin/admin_rvy.php:576
+msgid "About PublishPress Revisions"
+msgstr "За PublishPress Ревизии"
+
+#: admin/admin_rvy.php:576
+msgid "About"
+msgstr "За"
+
+#: admin/admin_rvy.php:578
+msgid "PublishPress Revisions Documentation"
+msgstr "Документация на PublishPress Ревизии"
+
+#: admin/admin_rvy.php:578
+msgid "Documentation"
+msgstr "Документация"
+
+#: admin/admin_rvy.php:580
+msgid "Contact the PublishPress team"
+msgstr "Свържете се с екипа на PublishPress"
+
+#: admin/admin_rvy.php:580
+msgid "Contact"
+msgstr "Свържете се"
+
+#: admin/agents_checklist_rvy.php:76
+#, php-format
+msgid "show current users (%d)"
+msgstr "покажи текущи потребители (%d)"
+
+#: admin/agents_checklist_rvy.php:78
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "покажи допустими потребители (%d)"
+
+#: admin/agents_checklist_rvy.php:87
+msgid "filter:"
+msgstr "филтър:"
+
+#: admin/agents_checklist_rvy.php:103
+msgid "select"
+msgstr "избери"
+
+#: admin/agents_checklist_rvy.php:111
+msgid "unselect"
+msgstr "отмени избор"
+
+#: admin/class-list-table-archive.php:22
+msgid ""
+"This was an update to a revision which is still in the workflow process."
+msgstr "Това беше актуализация на ревизия, която все още е в процес на работа."
+
+#: admin/class-list-table-archive.php:24
+msgid ""
+"This was an update to a revision which was published after further editing."
+msgstr ""
+"Това беше актуализация на ревизия, която беше публикувана след допълнително "
+"редактиране."
+
+#: admin/class-list-table-archive.php:202
+#, php-format
+msgid "Revision Author: %s"
+msgstr "Автор на ревизията: %s"
+
+#: admin/class-list-table-archive.php:221
+#, php-format
+msgid "Post Author: %s"
+msgstr "Автор на публикацията: %s"
+
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr "Дата на ревизията: %s"
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr "Одобрено от: %s"
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr "Дата на публикуване: %s"
+
+#: admin/class-list-table-archive.php:272
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Резултати от търсенето за \"%s\""
+
+#: admin/class-list-table-archive.php:540 admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "Изтрий ревизия"
+
+#: admin/class-list-table-archive.php:581 admin/class-list-table_rvy.php:756
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:582 rvy_init-functions.php:496
+msgid "Revised By"
+msgstr "Ревизирано от"
+
+#: admin/class-list-table-archive.php:583 rvy_init-functions.php:497
+msgid "Revision Date"
+msgstr "Дата на ревизията"
+
+#: admin/class-list-table-archive.php:584
+msgid "Action"
+msgstr "Действие"
+
+#: admin/class-list-table-archive.php:585
+msgid "Approved By"
+msgstr "Одобрено от"
+
+#: admin/class-list-table-archive.php:586
+msgid "Published Date"
+msgstr "Дата на публикуване"
+
+#: admin/class-list-table-archive.php:587
+msgid "Published Author"
+msgstr "Публикуван автор"
+
+#: admin/class-list-table-archive.php:616 admin/class-list-table_rvy.php:922
+msgid "just now"
+msgstr "току-що"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s минути преди"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minute ago"
+msgstr "%s минута преди"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hours ago"
+msgstr "%s часа преди"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hour ago"
+msgstr "%s час преди"
+
+#: admin/class-list-table-archive.php:756 functions.php:466
+msgid "Scheduled Revision Publication"
+msgstr "Планирано публикуване на ревизия"
+
+#: admin/class-list-table-archive.php:760 functions.php:470
+msgid "Revision Publication"
+msgstr "Публикуване на ревизия"
+
+#: admin/class-list-table-archive.php:770 functions.php:480
+#, php-format
+msgid "Edit of %s"
+msgstr "Редакция на %s"
+
+#: admin/class-list-table-archive.php:777 functions.php:487
+msgid "Edit of published Revision"
+msgstr "Редакция на публикувана ревизия"
+
+#: admin/class-list-table-archive.php:780 functions.php:490 functions.php:553
+msgid "Direct Edit"
+msgstr "Директна редакция"
+
+#: admin/class-list-table-archive.php:839 admin/class-list-table_rvy.php:1461
+msgid "All Post Types"
+msgstr "Всички типове публикации"
+
+#: admin/class-list-table-archive.php:872 admin/class-list-table_rvy.php:1496
+msgid "All Revision Authors"
+msgstr "Всички автори на ревизии"
+
+#: admin/class-list-table-archive.php:906 admin/class-list-table_rvy.php:1531
+msgid "All Revision Dates"
+msgstr "Всички дати на ревизии"
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr "Всички дати на публикуване"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr "Всички одобрили"
+
+#: admin/class-list-table-archive.php:1036 admin/class-list-table_rvy.php:1602
+msgid "All Authors"
+msgstr "Всички автори"
+
+#: admin/class-list-table-archive.php:1058 admin/class-list-table_rvy.php:1638
+msgid "Reset Filters"
+msgstr "Нулиране на филтрите"
+
+#: admin/class-list-table-archive.php:1089 admin/options.php:2276
+msgid "All"
+msgstr "Всички"
+
+#: admin/class-list-table-archive.php:1103
+msgid "My Revisions"
+msgstr "Моите ревизии"
+
+#: admin/class-list-table-archive.php:1157
+#, php-format
+msgid "Compare Changes in %s"
+msgstr "Сравни промените в %s"
+
+#: admin/class-list-table-archive.php:1161 admin/class-list-table_rvy.php:1918
+#: admin/post-edit_rvy.php:190 admin/post-edit_rvy.php:254
+#: admin/post-edit_rvy.php:268
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Сравни"
+
+#: admin/class-list-table-archive.php:1176 admin/class-list-table_rvy.php:1903
+#: admin/post-editor-workflow-ui_rvy.php:233
+msgid "Preview Revision"
+msgstr "Преглед на ревизията"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent revision"
+msgstr "Редактиране на родителската ревизия"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent post"
+msgstr "Редактиране на родителския пост"
+
+#: admin/class-list-table-archive.php:1191
+msgid "Edit Parent"
+msgstr "Редактиране на родителя"
+
+#: admin/class-list-table-archive.php:1201
+msgid "List Revisions of this Post"
+msgstr "Списък с ревизии на този пост"
+
+#: admin/class-list-table-archive.php:1202
+msgid "Filter"
+msgstr "Филтър"
+
+#: admin/class-list-table-archive.php:1214
+msgid "Delete Past Revision"
+msgstr "Изтриване на стара ревизия"
+
+#: admin/class-list-table-archive.php:1302
+msgid "No revisions found."
+msgstr "Няма намерени ревизии."
+
+#: admin/class-list-table_rvy.php:755 admin/options.php:762
+#: admin/options.php:925 admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "Статус"
+
+#: admin/class-list-table_rvy.php:801
+msgid "View preview"
+msgstr "Преглед на прегледа"
+
+#: admin/class-list-table_rvy.php:818
+msgid "Y/m/d, g:i:s a"
+msgstr "Y/m/d, g:i:s a"
+
+#: admin/class-list-table_rvy.php:828
+msgid "Y/m/d g:i a"
+msgstr "Y/m/d g:i a"
+
+#: admin/class-list-table_rvy.php:835
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Планирана публикация: %s"
+
+#: admin/class-list-table_rvy.php:838
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Заявена публикация: %s"
+
+#: admin/class-list-table_rvy.php:840
+msgid "This revision is not scheduled yet. It must be approved."
+msgstr "Тази ревизия все още не е планирана. Тя трябва да бъде одобрена."
+
+#: admin/class-list-table_rvy.php:890 admin/history_rvy.php:915
+msgid "No author"
+msgstr "Няма автор"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:964
+msgid "Edit published post"
+msgstr "Редактиране на публикуван пост"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:977
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Преглед на само ревизиите на %s"
+
+#: admin/class-list-table_rvy.php:988 admin/class-list-table_rvy.php:995
+msgid "View published post"
+msgstr "Преглед на публикувано пост"
+
+#: admin/class-list-table_rvy.php:1020
+msgid "Compare Past Revisions"
+msgstr "Сравни предишни ревизии"
+
+#: admin/class-list-table_rvy.php:1021
+msgid "History"
+msgstr "История"
+
+#: admin/class-list-table_rvy.php:1301
+msgid "My Activity"
+msgstr "Моята активност"
+
+#: admin/class-list-table_rvy.php:1310
+#, php-format
+msgid "All %s"
+msgstr "Всички %s"
+
+#: admin/class-list-table_rvy.php:1400
+msgid "Unschedule"
+msgstr "Отмяна на графика"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1404 admin/class-list-table_rvy.php:1875
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Discard Revision"
+msgstr "Отхвърли ревизия"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "All Revision Statuses"
+msgstr "Всички статуси на ревизии"
+
+#: admin/class-list-table_rvy.php:1567
+msgid "All Posts"
+msgstr "Всички постове"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1852
+#: admin/post-editor-workflow-ui_rvy.php:234
+msgid "Edit Revision"
+msgstr "Редактиране на ревизия"
+
+#: admin/class-list-table_rvy.php:1917
+msgid "Compare Changes"
+msgstr "Сравни промените"
+
+#: admin/class-list-table_rvy.php:1929
+#, fuzzy
+#| msgid "Approve"
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Одобри"
+
+#: admin/class-list-table_rvy.php:1936
+#, fuzzy
+#| msgid "Publish Now"
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Публикувай сега"
+
+#: admin/class-list-table_rvy.php:1945
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Отхвърли"
+
+#: admin/edit-revision-classic-ui_rvy.php:111
+msgid "Publish <b>on approval</b>"
+msgstr "Публикувай <b>при одобрение</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:142
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Ревизията е обновена. %sПреглед на предварителния изглед%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:144
+msgid "Revision updated."
+msgstr "Ревизията е обновена."
+
+#: admin/history_rvy.php:87 admin/history_rvy.php:91
+msgid "Copy content to the clipboard."
+msgstr "Копирайте съдържанието в клипборда."
+
+#: admin/history_rvy.php:97 admin/history_rvy.php:100
+msgid "Copy the above content to the clipboard."
+msgstr "Копирайте горното съдържание в клипборда."
+
+#: admin/history_rvy.php:282 admin/history_rvy.php:302
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Сравни %s на \"%s\""
+
+#: admin/history_rvy.php:659 admin/options.php:1169
+msgid "Post Date"
+msgstr "Дата на поста"
+
+#: admin/history_rvy.php:660
+msgid "Post Parent"
+msgstr "Родител на публикацията"
+
+#: admin/history_rvy.php:661
+msgid "Menu Order"
+msgstr "Ред в менюто"
+
+#: admin/history_rvy.php:662
+msgid "Comment Status"
+msgstr "Статус на коментара"
+
+#: admin/history_rvy.php:663
+msgid "Ping Status"
+msgstr "Статус на пинга"
+
+#: admin/history_rvy.php:803
+msgid "Page Template"
+msgstr "Шаблон на страницата"
+
+#: admin/history_rvy.php:806
+msgid "Featured Image"
+msgstr "Избрано изображение"
+
+#: admin/history_rvy.php:810
+msgid "Beaver Builder Data"
+msgstr "Данни за Beaver Builder"
+
+#: admin/history_rvy.php:811
+msgid "Beaver Builder Settings"
+msgstr "Настройки на Beaver Builder"
+
+#: admin/history_rvy.php:1062
+msgid "Scheduled for "
+msgstr "Планирано за "
+
+#: admin/history_rvy.php:1067
+msgid "Requested for "
+msgstr "Заявено за "
+
+#: admin/history_rvy.php:1072
+msgid "Modified "
+msgstr "Модифицирано "
+
+#: admin/history_rvy.php:1077
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s от сега"
+
+#: admin/history_rvy.php:1088
+msgid "M j, Y @ g:i a"
+msgstr "M j, Y @ g:i a"
+
+#: admin/history_rvy.php:1133
+msgid "M j, Y @ H:i"
+msgstr "M j, Y @ H:i"
+
+#: admin/history_rvy.php:1134
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/history_rvy.php:1220 front_rvy.php:546 front_rvy.php:556
+#: front_rvy.php:575 front_rvy.php:606 rvy_init-functions.php:293
+#: rvy_init-functions.php:311 rvy_init-functions.php:350
+#: rvy_init-functions.php:367 rvy_init-functions.php:384
+msgid "Approve"
+msgstr "Одобри"
+
+#: admin/history_rvy.php:1220
+msgid "Preview / Approve"
+msgstr "Преглед / Одобри"
+
+#: admin/history_rvy.php:1222 admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:233
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Преглед"
+
+#: admin/history_rvy.php:1317
+msgid "Preview / Restore"
+msgstr "Преглед / Възстанови"
+
+#: admin/history_rvy.php:1324
+msgid "Manage"
+msgstr "Управлявай"
+
+#: admin/history_rvy.php:1325
+msgid "List"
+msgstr "Списък"
+
+#: admin/options.php:123
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Всички настройки на този раздел са зададени за цялата мрежа."
+
+#: admin/options.php:153
+msgid "Setting Scope"
+msgstr "Обхват на настройките"
+
+#: admin/options.php:157
+msgid "Features"
+msgstr "Функции"
+
+#: admin/options.php:160
+msgid "Options"
+msgstr "Опции"
+
+#: admin/options.php:161
+msgid "Integrations"
+msgstr "Интеграции"
+
+#: admin/options.php:162
+msgid "Statuses"
+msgstr "Статуси"
+
+#: admin/options.php:163 admin/options.php:1202
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: admin/options.php:169
+msgid "Revision Submission"
+msgstr "Предаване на ревизия"
+
+#: admin/options.php:177
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr ""
+"Използвайте алтернативно означение: \"Работна Копие\" > \"Заявка за "
+"промяна\" > \"Планирана промяна\""
+
+#: admin/options.php:178
+msgid "New Revisions access requires role capability"
+msgstr "Достъпът до нови ревизии изисква ролеви капацитет"
+
+#: admin/options.php:179
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Управлението на %s изисква ролеви капацитет"
+
+#: admin/options.php:180
+msgid "Working Copy creation requires role capability"
+msgstr "Създаването на Работна Копие изисква ролеви капацитет"
+
+#: admin/options.php:180
+msgid "Revision creation requires role capability"
+msgstr "Създаването на ревизия изисква ролеви капацитет"
+
+#: admin/options.php:181
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr ""
+"Списък с публикации / страници: Използвайте надпис \"Редактиране\" за връзка "
+"%s"
+
+#: admin/options.php:182 admin/options.php:188
+#, php-format
+msgid "Enable %s"
+msgstr "Активирайте %s"
+
+#: admin/options.php:183
+msgid "Limit to one active revision per post"
+msgstr "Ограничете до една активна ревизия на публикация"
+
+#: admin/options.php:184
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr "Обновете флага \"Има Ревизия\" преди да потиснете Създаване на Ревизия"
+
+#: admin/options.php:185
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr ""
+"Ако публикацията съдържа персонализиран html, изисквайте unfiltered_html "
+"капацитет"
+
+#: admin/options.php:186
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr ""
+"Автоматично предаване на ревизии, създадени от потребител с капацитет за "
+"публикуване"
+
+#: admin/options.php:187
+msgid "Auto-submit revisions"
+msgstr "Автоматично предаване на ревизии"
+
+#: admin/options.php:189
+msgid "Change Request submission require role capability"
+msgstr "Изисква се роля за подаване на искане за промяна"
+
+#: admin/options.php:189
+msgid "Revision submission requires role capability"
+msgstr "Изисква се роля за подаване на ревизия"
+
+#: admin/options.php:190
+msgid "Editing others' Revisions requires role capability"
+msgstr "Редактирането на ревизии на други изисква роля"
+
+#: admin/options.php:191
+msgid "Listing others' Revisions requires role capability"
+msgstr "Изброяването на ревизии на други изисква роля"
+
+#: admin/options.php:192
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Потребителите винаги могат да администрират ревизии на собствените си "
+"редактируеми публикации"
+
+#: admin/options.php:193
+msgid "Also notify on Revision Update"
+msgstr "Също така уведомявайте за актуализация на ревизия"
+
+#: admin/options.php:194
+msgid "Apply API actions to mimic Post Update"
+msgstr "Прилагане на API действия, за да се имитира актуализация на публикация"
+
+#: admin/options.php:195
+msgid "Hide html tags on Compare screen"
+msgstr "Скриване на HTML тагове на екрана за сравнение"
+
+#: admin/options.php:196
+msgid "Hide copy buttons on Compare screen"
+msgstr "Скриване на копирането на бутони на екрана за сравнение"
+
+#: admin/options.php:197
+msgid "Use WP-Cron scheduling"
+msgstr "Използвайте WP-Cron график"
+
+#: admin/options.php:198
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "Сайтът използва персонализиран тригер за WP-Cron задачи"
+
+#: admin/options.php:199
+msgid "Asynchronous Publishing"
+msgstr "Асинхронно публикуване"
+
+#: admin/options.php:200 admin/options.php:201
+msgid "Update Publish Date"
+msgstr "Актуализиране на датата на публикуване"
+
+#: admin/options.php:202 admin/options.php:203
+msgid "Update Modified Date"
+msgstr "Актуализиране на датата на модификация"
+
+#: admin/options.php:206 admin/options.php:207
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Използвайте %1$sУведомления на планирача%2$s"
+
+#: admin/options.php:209
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Имейл на оригиналния автор, когато бъде подаден %s"
+
+#: admin/options.php:210
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Имейл на оригиналния автор, когато %s бъде одобрен"
+
+#: admin/options.php:211
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Имейл на ревизора, когато %s бъде одобрен"
+
+#: admin/options.php:212
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Имейл на оригиналния автор, когато %s бъде публикуван"
+
+#: admin/options.php:213
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Имейл на ревизора, когато %s бъде публикуван"
+
+#: admin/options.php:214
+msgid "Enable notification buffer"
+msgstr "Активирайте буфер за известия"
+
+#: admin/options.php:215
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "Ревизорите могат да създават нова ревизия за всякакъв тип пост"
+
+#: admin/options.php:216
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Превенция на Ревизорите да редактират непубликувани постове на други"
+
+#: admin/options.php:217
+msgid "Add database index to posts table for Revision queries"
+msgstr ""
+"Добавете индекс на базата данни към таблицата с постове за запитвания за "
+"Ревизии"
+
+#: admin/options.php:218
+msgid "Display Hints"
+msgstr "Покажете указания"
+
+#: admin/options.php:219
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Изтрийте настройки и Ревизии, ако плъгинът бъде изтрит"
+
+#: admin/options.php:220
+msgid "Show Preview Links"
+msgstr "Покажете връзки за преглед"
+
+#: admin/options.php:221
+msgid "Preview Link Type"
+msgstr "Тип на връзката за преглед"
+
+#: admin/options.php:222
+msgid "Modify preview link for better theme compatibility"
+msgstr "Модифицирайте връзката за преглед за по-добра съвместимост с темата"
+
+#: admin/options.php:223
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr ""
+"Съвместимост с темата: За преглед на ревизията на началната страница, "
+"задайте флаг за домашна страница"
+
+#: admin/options.php:224
+msgid "Approve Button on Compare screen"
+msgstr "Бутона за одобрение на екрана за сравнение"
+
+#: admin/options.php:225
+msgid "Copy revision comments to published post"
+msgstr "Копирайте коментарите на ревизията в публикувания пост"
+
+#: admin/options.php:226
+msgid "Compare Past Revisions ordering:"
+msgstr "Сравнете подредбата на предишните Ревизии:"
+
+#: admin/options.php:227
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr ""
+"Списък %s за изглед \"Моето действие\" или \"Ревизии на моите постове\""
+
+#: admin/options.php:228
+msgid "Store custom fields of submitted and scheduled revisions for archive"
+msgstr ""
+"Съхранявайте потребителските полета на подадените и планирани ревизии за "
+"архив"
+
+#: admin/options.php:229
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr ""
+"Запазете архив на редакциите на ревизии, дори след публикуването на ревизията"
+
+#: admin/options.php:230
+msgid "Show Current Revision top bar after revision publication"
+msgstr "Покажете текущия бар за ревизии след публикуването на ревизията"
+
+#: admin/options.php:231
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "При публикуване на ревизия, изтрийте редакторските коментари"
+
+#: admin/options.php:232
+msgid "Enable deletion queue"
+msgstr "Активирайте опашката за изтриване"
+
+#: admin/options.php:233
+msgid "Allow Past Revisions to be deleted"
+msgstr "Позволете изтриването на предишни Ревизии"
+
+#: admin/options.php:234
+msgid "Restoring a Revision requires role capability"
+msgstr "Възстановяването на ревизия изисква ролеви способности"
+
+#: admin/options.php:235
+msgid "Compatibility Mode"
+msgstr "Режим на съвместимост"
+
+#: admin/options.php:236
+msgid "Planner Notifications Access-Limited"
+msgstr "Достъп до известия на планирания - ограничен"
+
+#: admin/options.php:237
+msgid "Maximum Revisions per post"
+msgstr "Максимален брой ревизии на публикация"
+
+#: admin/options.php:238
+msgid "Apply Post Permissions to Revisions"
+msgstr "Приложи разрешения за публикации към ревизии"
+
+#: admin/options.php:239
+msgid "Enable legacy email notifications"
+msgstr "Активиране на наследствени имейл известия"
+
+#: admin/options.php:240
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr ""
+"Използвай разширени надписи за бутона „Одобри“ в редактора на публикации"
+
+#: admin/options.php:241
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Позволи полето Автор да бъде модифицирано от ревизия"
+
+#: admin/options.php:242
+msgid "Create Revision button in editor opens new tab"
+msgstr "Бутонът за създаване на ревизия в редактора отваря нов таб"
+
+#: admin/options.php:243
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Блок за запитване: Настройте способностите на Ревизор и Съавтор, за да "
+"позволите преглед в редактора на ревизии"
+
+#: admin/options.php:244
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Деактивиране на панела Rank Math SEO за редактиране на ревизия"
+
+#: admin/options.php:245
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr ""
+"Позволи персонализирани полета (мета на публикацията) да бъдат ревизирани"
+
+#: admin/options.php:246
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr ""
+"Разрешението за изпращане на ревизия също активира създаването на ревизия"
+
+#: admin/options.php:247
+msgid "Enable classic metaboxes in editor"
+msgstr ""
+
+#: admin/options.php:252
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "Имейл до определените публикации, когато е подаден %s"
+
+#: admin/options.php:253
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "Имейл до определените публикации, когато е публикуван %s"
+
+#: admin/options.php:254
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "Имейл до определените публикации, когато е одобрен %s"
+
+#: admin/options.php:256
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "Имейл до редакторите и администраторите, когато е подаден %s"
+
+#: admin/options.php:257
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "Имейл до редакторите и администраторите, когато е публикуван %s"
+
+#: admin/options.php:258
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "Имейл до редакторите и администраторите, когато е одобрен %s"
+
+#: admin/options.php:340
+msgid "PublishPress Revisions Site Settings"
+msgstr "Настройки на сайта PublishPress Revisions"
+
+#: admin/options.php:370
+msgid ""
+"These are the default settings for options which can be adjusted per-site."
+msgstr ""
+"Това са настройките по подразбиране за опции, които могат да бъдат "
+"коригирани за всеки сайт."
+
+#: admin/options.php:408
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Използвайте този раздел, за да направите промени за цялата мрежа в "
+"настройките на PublishPress Revisions. %s"
+
+#: admin/options.php:411
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr ""
+"Можете също да зададете %1$s настройки по подразбиране за специфични за "
+"сайта настройки %2$s."
+
+#: admin/options.php:414
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Тук можете да промените стойността по подразбиране за настройки, които се "
+"контролират отделно на всеки сайт."
+
+#: admin/options.php:424 admin/options.php:426
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr ""
+"Обърнете внимание, че %1$s настройките за цялата мрежа %2$s също могат да "
+"бъдат налични."
+
+#: admin/options.php:504
+msgid "License"
+msgstr "Лиценз"
+
+#: admin/options.php:549
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Предишните ревизии са по-ранни версии на пост."
+
+#: admin/options.php:606
+msgid "This post type does not support Past Revisions."
+msgstr "Този пост тип не поддържа предишни ревизии."
+
+#: admin/options.php:648
+msgid "New Revisions are changes which are not yet published."
+msgstr "Новите ревизии са промени, които все още не са публикувани."
+
+#: admin/options.php:747
+#, fuzzy
+#| msgid "Revisions"
+msgid "Revision Fields"
+msgstr "Ревизии"
+
+#: admin/options.php:751
+#, fuzzy
+#| msgid "Allow the Author field to be modified by Revision"
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Позволи полето Автор да бъде модифицирано от ревизия"
+
+#: admin/options.php:759 admin/options.php:922
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Свържете се"
+
+#: admin/options.php:760 admin/options.php:923
+msgid "Title"
+msgstr ""
+
+#: admin/options.php:761 admin/options.php:924
+#, fuzzy
+#| msgid "Post Date"
+msgid "Date"
+msgstr "Дата на поста"
+
+#: admin/options.php:763 admin/options.php:926
+#, fuzzy
+#| msgid "Edit Parent"
+msgid "Parent"
+msgstr "Редактиране на родителя"
+
+#: admin/options.php:764 admin/options.php:927
+msgid "Slug"
+msgstr ""
+
+#: admin/options.php:765 admin/options.php:928
+msgid "Excerpt"
+msgstr ""
+
+#: admin/options.php:766 admin/options.php:929
+#: admin/post-edit-block-ui_rvy.php:209 admin/post-edit_rvy.php:343
+msgid "Author"
+msgstr "Автор"
+
+#: admin/options.php:767 admin/options.php:930
+msgid "Thumnbnail"
+msgstr ""
+
+#: admin/options.php:768 admin/options.php:931
+#, fuzzy
+#| msgid "Page Template"
+msgid "Template"
+msgstr "Шаблон на страницата"
+
+#: admin/options.php:769 admin/options.php:932
+msgid "Categories"
+msgstr ""
+
+#: admin/options.php:770 admin/options.php:933
+msgid "Tags"
+msgstr ""
+
+#: admin/options.php:771 admin/options.php:934
+#: admin/restrict-editor-features.php:162
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/options.php:815
+#, fuzzy
+#| msgid "All Posts"
+msgid "Copy Posts"
+msgstr "Всички постове"
+
+#: admin/options.php:819
+#, fuzzy
+#| msgid "The post already has a revision in process."
+msgid "Copy post directly without using the revision process."
+msgstr "Публикацията вече има ревизия в процес на обработка."
+
+#: admin/options.php:910
+#, fuzzy
+#| msgid "Fields"
+msgid "Copy Fields"
+msgstr "Полета"
+
+#: admin/options.php:914
+msgid "Specify fields to include when Posts are copied."
+msgstr ""
+
+#: admin/options.php:976
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Забележка: Код на трети страни може да причини несъвместимост на някои пост "
+"типове с PublishPress Revisions."
+
+#: admin/options.php:986
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"За интеграция на ревизии в Календара на съдържанието, Прегледа и Дъската за "
+"съдържание, моля, актуализирайте %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1007
+msgid "Ready to enhance your revision workflow?"
+msgstr "Готови ли сте да подобрите работния процес на ревизиите си?"
+
+#: admin/options.php:1010
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with custom "
+"revision statuses."
+msgstr ""
+"Вземете PublishPress Statuses Pro и оптимизирайте процеса на ревизия с "
+"персонализирани статуси на ревизия."
+
+#: admin/options.php:1016
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Определете собствените си статуси преди или след изпратената ревизия"
+
+#: admin/options.php:1019
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr ""
+"Нови предварително зададени статуси: Отложен, Нуждае се от работа, Отхвърлен"
+
+#: admin/options.php:1022
+msgid "Statuses can be specific to a post type"
+msgstr "Статусите могат да бъдат специфични за пост тип"
+
+#: admin/options.php:1025
+msgid "Control access to statuses per-role"
+msgstr "Контролирайте достъпа до статусите по роля"
+
+#: admin/options.php:1028
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "Работният поток на статусите може да бъде вложен с подстатуси"
+
+#: admin/options.php:1037
+msgid "Get PublishPress Statuses Pro"
+msgstr "Вземете PublishPress Statuses Pro"
+
+#: admin/options.php:1042 admin/options.php:1060 admin/options.php:2027
+#: admin/options.php:2045 admin/options.php:2607 admin/options.php:2621
+#: admin/options.php:2631 admin/options.php:2641
+msgid "Learn More"
+msgstr "Научете повече"
+
+#: admin/options.php:1055
+msgid "Pro Plugin"
+msgstr "Pro Plugin"
+
+#: admin/options.php:1056
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr ""
+"Инсталирайте Statuses Pro, за да отключите персонализирани статути на "
+"ревизии."
+
+#: admin/options.php:1057
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Конфигурирайте за всеки post type и роля, за да съответства на вашия работен "
+"процес на редактиране."
+
+#: admin/options.php:1064
+msgid "Get Statuses Pro"
+msgstr "Вземете Statuses Pro"
+
+#: admin/options.php:1091
+msgid "Maximum revisions per post:"
+msgstr "Максимални ревизии на пост:"
+
+#: admin/options.php:1093
+msgid "(unlimited)"
+msgstr "(неограничен)"
+
+#: admin/options.php:1101
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr ""
+"Обърнете внимание, че архивирането също може да бъде деактивирано от "
+"%1$sPost Type%2$s."
+
+#: admin/options.php:1138 admin/options.php:1309 admin/options.php:1557
+#: admin/options.php:1583 admin/options.php:1609 admin/options.php:1637
+#: admin/options.php:2151
+#, fuzzy, php-format
+msgid "%s capability"
+msgstr "%s capability"
+
+#: admin/options.php:1143 admin/options.php:1314 admin/options.php:1562
+#: admin/options.php:1588 admin/options.php:1614 admin/options.php:1642
+#: admin/options.php:2156
+msgid "Assign capability to roles"
+msgstr "Присвойте capability на роли"
+
+#: admin/options.php:1150
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Предотвратете на не-администратори да възстановят ревизия без %s."
+
+#: admin/options.php:1156
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Предотвратете на не-администратори да възстановят ревизия без capability за "
+"възстановяване на ревизии"
+
+#: admin/options.php:1169
+msgid "Modification Date"
+msgstr "Дата на модификация"
+
+#: admin/options.php:1197
+msgid "Revision Creation"
+msgstr "Създаване на ревизия"
+
+#: admin/options.php:1198
+msgid "Submission"
+msgstr "Представяне"
+
+#: admin/options.php:1199
+msgid "Scheduling"
+msgstr "Планиране"
+
+#: admin/options.php:1200
+msgid "Publication"
+msgstr "Публикация"
+
+#: admin/options.php:1201
+msgid "Management"
+msgstr "Управление"
+
+#: admin/options.php:1259
+msgid "Create Revision capabilities"
+msgstr "Създаване на способности за ревизия"
+
+#: admin/options.php:1264 admin/options.php:1289 admin/options.php:1442
+msgid "Assign capabilities to roles"
+msgstr "Присвояване на способности на роли"
+
+#: admin/options.php:1271 admin/options.php:1449
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr ""
+"Ако потребителят не може да редактира публикувания пост, изисквайте %s."
+
+#: admin/options.php:1277
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"Ако потребителят не може да редактира публикуваното съобщение, изисквайте "
+"права за създаване на ревизии (copy_posts, copy_others_pages и т.н.)"
+
+#: admin/options.php:1285
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "За да разширите списъка със страници, задайте %s."
+
+#: admin/options.php:1288
+msgid "Listing capabilities"
+msgstr "Права за изброяване"
+
+#: admin/options.php:1295
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"За да разширите списъка със страници, задайте права за изброяване "
+"(list_others_pages, list_published_posts и т.н.)"
+
+#: admin/options.php:1301
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Този плъгин въвежда нова роля на потребителя, \"Ревизор.\""
+
+#: admin/options.php:1321
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"Ревизия от потребител, който няма %s, ще доведе до премахване на всички "
+"персонализирани HTML тагове."
+
+#: admin/options.php:1327
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"Ревизия от потребител, който няма правото unfiltered_html, ще доведе до "
+"премахване на всички персонализирани HTML тагове."
+
+#: admin/options.php:1344
+msgid "Broadest compat including Elementor, Divi, Beaver Builder"
+msgstr "Най-широка съвместимост, включваща Elementor, Divi, Beaver Builder"
+
+#: admin/options.php:1345
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr ""
+"Стандартна схема за съхранение за най-широка съвместимост с трети страни"
+
+#: admin/options.php:1350
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "Подобрено управление на достъпа до ревизии с плъгини на PublishPress"
+
+#: admin/options.php:1361
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"В подобрен режим статусът на ревизията се съхранява по стандартната схема на "
+"WordPress. Някои плъгини са несъвместими."
+
+#: admin/options.php:1368
+msgid ""
+"Prevent Revision creation if the post already has another Revision in "
+"progress."
+msgstr ""
+"Превенция на създаването на ревизия, ако съобщението вече има друга ревизия "
+"в процес на работа."
+
+#: admin/options.php:1372
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Заобикаляне на конфликтите с плъгини за кеширане, като се извърши нова "
+"заявка за ревизии преди да се скрие линкът за нова ревизия."
+
+#: admin/options.php:1402
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Ако потребителят няма редовен линк за редактиране, променете заглавието на "
+"%s линка на \"Редактиране.\""
+
+#: admin/options.php:1405
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"По подразбиране етикетите са \"Не е подадено за одобрение\", \"Подадено за "
+"одобрение\", \"Планирана ревизия\""
+
+#: admin/options.php:1423
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Позволете публикуваното съдържание да бъде копирано, редактирано, подадено "
+"за одобрение и управлявано на екрана %sNew Revisions%s."
+
+#: admin/options.php:1437
+msgid "Submit Revision capabilities"
+msgstr "Права за подаване на ревизия"
+
+#: admin/options.php:1455
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"Ако потребителят не може да редактира публикуваното съобщение, изисквайте "
+"права за подаване на ревизия (revise_posts, revise_others_pages и т.н.)"
+
+#: admin/options.php:1460 admin/options.php:1494
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr ""
+"Когато %s е публикувано, актуализирайте датата на публикуване на съобщението "
+"до текущото време."
+
+#: admin/options.php:1463 admin/options.php:1497
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr ""
+"Когато %s е публикувано, актуализирайте датата на модифициране на "
+"съобщението до текущото време."
+
+#: admin/options.php:1466
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Когато нова ревизия бъде създадена от който и да е потребител, който има "
+"право да подава ревизии, автоматично я подавайте."
+
+#: admin/options.php:1469
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Автоматично подавайте ревизии, ако потребителят може директно да редактира "
+"основната публикация."
+
+#: admin/options.php:1472
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"Това позволява незабавно одобрение в екрана за сравнение. Ако е "
+"деактивирано, вместо това се предоставя връзка за преглед."
+
+#: admin/options.php:1488
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Ако в момента публикувана публикация или страница бъде редактирана и бъде "
+"зададена бъдеща дата, промяната няма да бъде приложена до избраната дата."
+
+#: admin/options.php:1500
+msgid ""
+"Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
+"publication will fail if this setting is disabled."
+msgstr ""
+"Публикувайте планирани ревизии, използвайки механизма WP-Cron. На някои "
+"сайтове публикацията ще се провали, ако тази настройка е деактивирана."
+
+#: admin/options.php:1504
+msgid ""
+"Publish scheduled revisions asynchronously, via a secondary http request "
+"from the server.  This is usually best since it eliminates delay, but some "
+"servers may not support it."
+msgstr ""
+"Публикувайте планирани ревизии асинхронно, чрез второ http искане от "
+"сървъра. Това обикновено е най-доброто, тъй като елиминира забавянето, но "
+"някои сървъри може да не го поддържат."
+
+#: admin/options.php:1509
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"Триггерът на WP-Cron е деактивиран, но планираните задачи все още се "
+"изпълняват с помощта на персонализиран триггер."
+
+#: admin/options.php:1523
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr ""
+"Озаглавете бутона като \"Одобри и публикувай\" или \"Одобри и планирай.\""
+
+#: admin/options.php:1534
+msgid "This may improve compatibility with some plugins."
+msgstr "Това може да подобри съвместимостта с някои плъгини."
+
+#: admin/options.php:1569
+#, php-format
+msgid "Control New Revisions access with the %s."
+msgstr "Контролирайте достъпа до новите ревизии с %s."
+
+#: admin/options.php:1575
+msgid "Control New Revisions access with the manage_revision_queue capability."
+msgstr ""
+"Контролирайте достъпа до новите ревизии с капабилността "
+"manage_revision_queue."
+
+#: admin/options.php:1595
+#, php-format
+msgid "Users will need the %s to edit others' Unsubmitted Revisions."
+msgstr ""
+"Потребителите ще се нуждаят от %s, за да редактират неревизирани ревизии на "
+"други."
+
+#: admin/options.php:1601
+msgid ""
+"Users will need the manage_unsubmitted_revisions capability to edit others' "
+"Unsubmitted Revisions."
+msgstr ""
+"Потребителите ще се нуждаят от капабилността manage_unsubmitted_revisions, "
+"за да редактират неревизирани ревизии на други."
+
+#: admin/options.php:1621 admin/options.php:1649
+#, php-format
+msgid "If the user can't edit the published post, require the %s."
+msgstr ""
+"Ако потребителят не може да редактира публикуваната публикация, изисквайте "
+"%s."
+
+#: admin/options.php:1627
+msgid ""
+"If the user can't edit the published post, require the edit_others_revisions "
+"capability."
+msgstr ""
+"Ако потребителят не може да редактира публикуваната публикация, изисквайте "
+"капабилността edit_others_revisions."
+
+#: admin/options.php:1655
+msgid ""
+"If the user can't edit the published post, require the list_others_revisions "
+"capability."
+msgstr ""
+"Ако потребителят не може да редактира публикуваната публикация, изисквайте "
+"капабилността list_others_revisions."
+
+#: admin/options.php:1660
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Игнорирайте горните ограничения за ревизиите на други за публикации на "
+"влезлия потребител."
+
+#: admin/options.php:1671
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Прегенерирайте флаговете \"публикацията има ревизия\""
+
+#: admin/options.php:1674
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Приложете тази поддръжка, ако етикетите Has Revision на екрана за "
+"публикации / страници не съвпадат с списъка за нови ревизии."
+
+#: admin/options.php:1699
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "За подобрени уведомления инсталирайте %sPublishPress Planner%s."
+
+#: admin/options.php:1712
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "За подобрени известия, актуализирайте %sPublishPress Planner%s."
+
+#: admin/options.php:1734
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Изпращайте известия за действия по прегледи, използвайки персонализираната "
+"система %1$sPublishPress Planner Notifications%2$s."
+
+#: admin/options.php:1735
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Актуализирайте до Revisions Pro, за да изпращате известия за действия по "
+"прегледи, използвайки персонализираната система %1$sPublishPress Planner "
+"Notifications%2$s."
+
+#: admin/options.php:1747
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Потребителите, съответстващи на конфигурацията на Planner > Известия, "
+"получават известия за прегледи само ако могат да редактират публикуваната "
+"публикация."
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Never"
+msgstr "Никога"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "By default"
+msgstr "По подразбиране"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Always"
+msgstr "Винаги"
+
+#: admin/options.php:1800 admin/options.php:1847
+msgid "select recipients"
+msgstr "изберете получатели"
+
+#: admin/options.php:1861
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"За да избегнете провал на известията, буферирайте имейлите за забавено "
+"изпращане, след като бъдат надвишени лимитите от минута, час или ден"
+
+#: admin/options.php:1882
+msgid "Notification Buffer"
+msgstr "Буфер за известия"
+
+#: admin/options.php:1910
+msgid "Notification Log"
+msgstr "Журнал на известията"
+
+#: admin/options.php:1939
+msgid "Purge Notification Buffer"
+msgstr "Изчистете буфера за известия"
+
+#: admin/options.php:1945
+msgid "Truncate Notification Log"
+msgstr "Съкратете журнала на известията"
+
+#: admin/options.php:1951
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Изпратени в последната минута: %d / %d"
+
+#: admin/options.php:1952
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Изпратени в последния час: %d / %d"
+
+#: admin/options.php:1953
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Изпратени в последния ден: %d / %d"
+
+#: admin/options.php:1960
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Секунди до следващото време за обработка на буфера: %d"
+
+#: admin/options.php:1971
+msgid "Show Notification Log / Buffer"
+msgstr "Покажи журнала на известията / буфера"
+
+#: admin/options.php:1973
+msgid "Show with message content"
+msgstr "Покажи с съдържание на съобщението"
+
+#: admin/options.php:1995
+msgid "Ready to enhance your revision notifications?"
+msgstr "Готови ли сте да подобрите известията за вашите прегледи?"
+
+#: admin/options.php:1998
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Актуализирайте до Revisions Pro за интеграция с нашата рамка за известия на "
+"PublishPress Planner."
+
+#: admin/options.php:2004
+msgid "Customize notification message and subject"
+msgstr "Персонализирайте съобщението и темата на известието"
+
+#: admin/options.php:2007
+msgid "Notify for a specific post type, category or term"
+msgstr "Известявайте за конкретен post type, категория или термин"
+
+#: admin/options.php:2010
+msgid "Target specific roles, users, or user groups"
+msgstr "Целете конкретни роли, потребители или потребителски групи"
+
+#: admin/options.php:2013
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "С PublishPress Planner Pro изпращайте известия до Slack канал"
+
+#: admin/options.php:2040 admin/options.php:2601
+msgid "Pro Feature"
+msgstr "Pro функция"
+
+#: admin/options.php:2041
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr ""
+"Актуализирайте до Revisions Pro, за да отключите интеграцията на известията "
+"на Planner."
+
+#: admin/options.php:2042
+msgid ""
+"Customize notification content and recipients for each notification type."
+msgstr ""
+"Персонализирайте съдържанието и получателите на известията за всеки тип "
+"известие."
+
+#: admin/options.php:2066
+msgid "Some themes may block revision preview."
+msgstr "Някои теми може да блокират прегледа на ревизии."
+
+#: admin/options.php:2083
+msgid "Published Post Slug"
+msgstr "Published Post Slug"
+
+#: admin/options.php:2084
+msgid "Revision Slug"
+msgstr "Revision Slug"
+
+#: admin/options.php:2085
+msgid "Revision ID only"
+msgstr "Само Revision ID"
+
+#: admin/options.php:2100
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Някои теми или плъгини може да изискват тип на линка Revision Slug или "
+"Revision ID за правилно зареждане на шаблона и показване на полетата."
+
+#: admin/options.php:2109
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr ""
+"Аргументът за преглед на ревизията е конфигуриран чрез дефиниция на "
+"константа: %s"
+
+#: admin/options.php:2116
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Регулирайте линковете за преглед да използват аргумента \"rv_preview\" "
+"вместо \"preview\". Експериментирайте, за да видите кой работи най-добре с "
+"вашата тема."
+
+#: admin/options.php:2120
+msgid ""
+"Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Някои теми може да изискват тази настройка за правилно показване на прегледа "
+"на ревизията."
+
+#: admin/options.php:2139
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"Това обикновено трябва да бъде включено, освен ако не се налага да се "
+"заобиколят конфликти с данните на postmeta от друг плъгин."
+
+#: admin/options.php:2163
+#, php-format
+msgid ""
+"If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Ако потребителят не може да публикува, изисквайте %s, за да редактира "
+"непубликувани постове на други."
+
+#: admin/options.php:2169
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to edit "
+"others' unpublished Posts."
+msgstr ""
+"Ако потребителят не може да публикува, изисквайте правомощието "
+"edit_others_drafts, за да редактира непубликувани постове на други."
+
+#: admin/options.php:2175
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Ако разрешенията специфични за поста ограничават или разширяват достъпа до "
+"пост, приложете тези разрешения и за неговите ревизии."
+
+#: admin/options.php:2187
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr ""
+"Rank Math SEO може да предотврати актуализация на ревизия на някои сайтове."
+
+#: admin/options.php:2194 includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML Управление на преводи"
+
+#: admin/options.php:2199
+msgid "Sync \"Needs Update\" flags"
+msgstr "Синхронизиране на \"Нуждае се от актуализация\" флагове"
+
+#: admin/options.php:2203
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Задайте \"Нуждае се от актуализация\" за всяка публикация с преводи, която е "
+"била актуализирана (възможно чрез одобрение на ревизия) по-скоро от нейните "
+"преводи."
+
+#: admin/options.php:2221
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "Покажете описателни надписи за настройки на PublishPress Ревизии."
+
+#: admin/options.php:2239
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"Настройки на плъгина, съдържанието на нови ревизии и свързани данни ще бъдат "
+"изтрити, но само след като последната копие на Ревизии / Ревизии Про бъде "
+"изтрито."
+
+#: admin/options.php:2260
+msgid "Unlock Pro Integrations"
+msgstr "Отключване на Pro интеграции"
+
+#: admin/options.php:2261
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Актуализирайте до Pro версията за оптимална съвместимост и бърза, "
+"професионална поддръжка."
+
+#: admin/options.php:2279 admin/options.php:2532
+msgid "Admin"
+msgstr "admin"
+
+#: admin/options.php:2282 admin/options.php:2530
+msgid "Builder"
+msgstr "Builder"
+
+#: admin/options.php:2285 admin/options.php:2534
+msgid "Cache"
+msgstr "Cache"
+
+#: admin/options.php:2288
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#: admin/options.php:2291 admin/options.php:2540
+msgid "Fields"
+msgstr "Полета"
+
+#: admin/options.php:2295
+msgid "Multilingual"
+msgstr "Многоезичен"
+
+#: admin/options.php:2299 admin/options.php:2536
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2302 admin/options.php:2546
+msgid "Workflow"
+msgstr "Работен поток"
+
+#: admin/options.php:2384
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Уточнете кои настройки на PublishPress Ревизии да се контролират в мрежа. "
+"Неконтролираните настройки се контролират отделно на всеки сайт."
+
+#: admin/options.php:2394
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/options.php:2430
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "контрол на мрежово ниво на \"%s\""
+
+#: admin/options.php:2457
+msgid "Save Changes"
+msgstr "Запазване на промените"
+
+#: admin/options.php:2458
+msgid "Revert to Defaults"
+msgstr "Връщане към настройки по подразбиране"
+
+#: admin/options.php:2460
+msgid ""
+"All settings in this form (including those on unselected tabs) will be reset "
+"to DEFAULTS.  Are you sure?"
+msgstr ""
+"Всички настройки в тази форма (включително тези на неизбраните табове) ще "
+"бъдат нулирани до СТАНДАРТНИ. Сигурни ли сте?"
+
+#: admin/options.php:2538
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2542
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2544
+msgid "Community"
+msgstr "Community"
+
+#: admin/options.php:2556
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2561
+msgid "Supported"
+msgstr "Supported"
+
+#: admin/options.php:2564 admin/options.php:2618
+msgid "Active Plugin"
+msgstr "Активен плъгин"
+
+#: admin/options.php:2576
+msgid "Supported by PublishPress Revisions"
+msgstr "Поддържа се от PublishPress Revisions"
+
+#: admin/options.php:2578
+msgid "Supported by Revisions Pro"
+msgstr "Поддържа се от Revisions Pro"
+
+#: admin/options.php:2591
+msgid "Integration Active"
+msgstr "Интеграция активна"
+
+#: admin/options.php:2593
+msgid "Upgrade to Pro to enable this integration"
+msgstr "Актуализирайте до Pro, за да активирате тази интеграция"
+
+#: admin/options.php:2602
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "Разкрийте интеграцията %s, за да подобрите решението си за ревизии."
+
+#: admin/options.php:2618
+msgid "Active Plugin Integration"
+msgstr "Интеграция на активен плъгин"
+
+#: admin/options.php:2628
+msgid "Supported Plugin Integration"
+msgstr "Интеграция на поддържан плъгин"
+
+#: admin/options.php:2638
+msgid "Supported Plugin"
+msgstr "Поддържан плъгин"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Сега"
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(при одобрение)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid "Save changes to continue."
+msgstr "Запазете промените, за да продължите."
+
+#: admin/post-editor-workflow-ui_rvy.php:39
+msgid "Please save changes to the revision before submitting it."
+msgstr "Моля, запазете промените в ревизията преди да я изпратите."
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+msgid "Preview this Revision"
+msgstr "Преглед на това изменение"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Publish"
+msgstr "Преглед / Публикуване"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Approve"
+msgstr "Преглед / Одобряване"
+
+#: admin/post-editor-workflow-ui_rvy.php:82
+msgid "View / Moderate saved revision"
+msgstr "Преглед / Модериране на запазеното изменение"
+
+#: admin/post-editor-workflow-ui_rvy.php:85
+msgid "View / Submit saved revision"
+msgstr "Преглед / Изпращане на запазеното изменение"
+
+#: admin/post-editor-workflow-ui_rvy.php:94
+msgid "View unsaved changes"
+msgstr "Преглед на незапазени промени"
+
+#: admin/post-editor-workflow-ui_rvy.php:98
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Изменение Редактиране"
+msgstr[1] "%s%s Изменения Редактирания"
+
+#: admin/post-editor-workflow-ui_rvy.php:109
+msgid "Revision Submission Error"
+msgstr "Грешка при изпращане на изменение"
+
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:234 front_rvy.php:485
+msgid "Edit"
+msgstr "Редактиране"
+
+#: admin/post-editor-workflow-ui_rvy.php:132
+msgid "Approve and Publish"
+msgstr "Одобряване и Публикуване"
+
+#: admin/post-editor-workflow-ui_rvy.php:137 rvy_init-functions.php:308
+#: rvy_init-functions.php:327 rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+msgid "Update in progress..."
+msgstr "Актуализиране в ход..."
+
+#: admin/post-editor-workflow-ui_rvy.php:141
+msgid "Approve and Schedule"
+msgstr "Одобряване и Планиране"
+
+#: admin/post-editor-workflow-ui_rvy.php:174 rvy_init-functions.php:297
+#: rvy_init-functions.php:315 rvy_init-functions.php:333
+#: rvy_init-functions.php:353 rvy_init-functions.php:370
+#: rvy_init-functions.php:387 rvy_init-functions.php:500
+msgid "Update Revision"
+msgstr "Актуализиране на изменението"
+
+#: admin/post-editor-workflow-ui_rvy.php:240
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Актуализирайте публикацията преди създаването на %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:247
+msgid "Error Creating Revision"
+msgstr "Грешка при създаване на изменение"
+
+#: admin/post-editor-workflow-ui_rvy.php:263
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "За промени в custom field, редактирайте планирано %s."
+
+#: admin/post-edit_rvy.php:28 admin/post-edit_rvy.php:141
+msgid "Current Time"
+msgstr "Текущо време"
+
+#: admin/post-edit_rvy.php:60 front_rvy.php:521
+msgid "Delete"
+msgstr "Изтриване"
+
+#: admin/post-edit_rvy.php:168
+msgid "View revision in progress"
+msgstr "Преглед на изменението в ход"
+
+#: admin/post-edit_rvy.php:191
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "Сравнете това изменение с публикуваната версия или с други изменения"
+
+#: admin/post-edit_rvy.php:226
+msgid "View / moderate saved revision"
+msgstr "Преглед / модериране на запазена версия"
+
+#: admin/post-edit_rvy.php:229
+msgid "View saved revision"
+msgstr "Преглед на запазена версия"
+
+#: admin/restrict-editor-features.php:113
+msgid "Status & visibility"
+msgstr ""
+
+#: admin/restrict-editor-features.php:120
+msgid "Permalink"
+msgstr ""
+
+#: admin/restrict-editor-features.php:149
+#, fuzzy
+#| msgid "Featured Image"
+msgid "Featured image"
+msgstr "Избрано изображение"
+
+#: admin/revision-action_rvy.php:532 admin/revision-action_rvy.php:618
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Уведомление за одобрение на версия"
+
+#: admin/revision-action_rvy.php:533
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "Версията на %1$s \"%2$s\" е одобрена."
+
+#: admin/revision-action_rvy.php:537
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "Подателят беше %1$s."
+
+#: admin/revision-action_rvy.php:541 admin/revision-action_rvy.php:627
+#, php-format
+msgid "It will be published on %s"
+msgstr "Тя ще бъде публикувана на %s"
+
+#: admin/revision-action_rvy.php:545 admin/revision-action_rvy.php:631
+msgid "Preview it here: "
+msgstr "Прегледайте я тук: "
+
+#: admin/revision-action_rvy.php:548 admin/revision-action_rvy.php:634
+msgid "Editor: "
+msgstr "Редактор: "
+
+#: admin/revision-action_rvy.php:550 admin/revision-action_rvy.php:636
+#: admin/revision-action_rvy.php:1680 admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1777
+msgid "View it online: "
+msgstr "Прегледайте я онлайн: "
+
+#: admin/revision-action_rvy.php:619
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "Версията, която подадохте за %1$s \"%2$s\", е одобрена."
+
+#: admin/revision-action_rvy.php:1672 admin/revision-action_rvy.php:1700
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s Уведомление за публикуване"
+
+#: admin/revision-action_rvy.php:1673
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr "Планираната версия, която подадохте за %1$s \"%2$s\", е публикувана."
+
+#: admin/revision-action_rvy.php:1701
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "Планирана версия на вашето %1$s \"%2$s\" е публикувана."
+
+#: admin/revision-archive_rvy.php:11
+msgid "Revision for:"
+msgstr "Версия за:"
+
+#: admin/revision-archive_rvy.php:90
+msgid "Search Revisions"
+msgstr "Търсене на версии"
+
+#: admin/revision-queue_rvy.php:9 admin/revision-queue_rvy.php:21
+msgid "You are not allowed to manage revisions."
+msgstr "Нямате право да управлявате версиите."
+
+#: admin/revision-queue_rvy.php:13
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s и %s са и двете деактивирани. Вижте Версии > Настройки."
+
+#: admin/revision-queue_rvy.php:82
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s версия подадена."
+msgstr[1] "%s версии подадени."
+
+#: admin/revision-queue_rvy.php:83
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s версия отказана."
+msgstr[1] "%s версии отказани."
+
+#: admin/revision-queue_rvy.php:84
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s версия одобрена."
+msgstr[1] "%s версии одобрени."
+
+#: admin/revision-queue_rvy.php:85
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s ревизия не е насрочена."
+msgstr[1] "%s ревизии не са насрочени."
+
+#: admin/revision-queue_rvy.php:86
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s ревизия публикувана."
+msgstr[1] "%s ревизии публикувани."
+
+#: admin/revision-queue_rvy.php:133
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "от %s \"%s\""
+
+#: admin/revision-queue_rvy.php:136
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "от %s"
+
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "от \"%s\""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "от %s "
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "на %s"
+
+#: admin/revision-queue_rvy.php:156
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Автор на публикацията: %s)"
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid "New Revisions %s"
+msgstr "Новите ревизии %s"
+
+#: admin/revision-ui_rvy.php:45
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "Издателите ще бъдат уведомени (но не могат да бъдат избрани тук)."
+
+#: admin/revision-ui_rvy.php:47
+msgid "No email notifications will be sent."
+msgstr "Няма да бъдат изпратени имейл уведомления."
+
+#. translators: revision date format, see http://php.net/date
+#: admin/revision-ui_rvy.php:78
+msgctxt "revision date format"
+msgid "j F, Y @ g:i a"
+msgstr "j F, Y @ g:i a"
+
+#: admin/revision-ui_rvy.php:97
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (Текущ)"
+
+#: admin/revision-ui_rvy.php:101
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Автосъхранение)"
+
+#: admin/revision-ui_rvy.php:107
+msgctxt "revision schedule date format"
+msgid "j F, Y, g:i a"
+msgstr "j F, Y, g:i a"
+
+#: admin/revision-ui_rvy.php:112
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Дата на публикуване: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:114
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Заявена публикация: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:287
+msgid "The revision will be deleted. Are you sure?"
+msgstr "Ревизията ще бъде изтрита. Сигурни ли сте?"
+
+#: admin/revision-ui_rvy.php:380
+msgid "Modified Date"
+msgstr "Дата на модификация"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "Предварителен преглед на ревизията в процес на изработка"
+
+#. translators: Publish box date formt, see http://php.net/date
+#: admin/RevisionEditSubmitMetabox.php:180
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Публикувайте %son approval%s"
+
+#: admin/revisions.php:20
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Забележка:</strong> За визуално показване на ревизии, добавете "
+"следния код в foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:61
+msgid "Revision of this post is not allowed."
+msgstr "Ревизията на тази публикация не е разрешена."
+
+#: admin/revisions.php:64
+msgid "No revision specified."
+msgstr "Не е посочена ревизия."
+
+#: admin/revisions.php:72
+msgid "Past"
+msgstr "Минало"
+
+#: admin/revisions.php:135
+#, php-format
+msgid "Revisions of %s"
+msgstr "Ревизии на %s"
+
+#: admin/revisions.php:165
+msgid "The requested revision does not exist."
+msgstr "Заявената ревизия не съществува."
+
+#: admin/revisions.php:253
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:274
+#, php-format
+msgid "no %s revisions available."
+msgstr "няма %s ревизии на разположение."
+
+#: classes/PublishPress/Revisionary.php:107 includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "Съвместимост с ACF custom fields."
+
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:200
+msgid "Store custom fields with revisions"
+msgstr "Запазване на custom fields с ревизии"
+
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:201
+msgid "Display custom field changes"
+msgstr "Показване на промени в custom field"
+
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:202
+msgid "Update custom fields on revision publication"
+msgstr "Актуализиране на custom fields при публикуване на ревизия"
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "Поддръжка на ACFE модел на данни."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "Поддръжка на ACFE single_meta тип данни"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "Коректно показване на полета на екрана за сравнение"
+
+#: classes/PublishPress/Revisionary.php:136 includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Интеграция с редактора на предния край на Beaver Builder."
+
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:156
+#: classes/PublishPress/Revisionary.php:171
+msgid "Front end Revision submission"
+msgstr "Предна ревизия на подаване"
+
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:172
+msgid "Front end Revision editing"
+msgstr "Предна ревизия на редактиране"
+
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:173
+msgid "Revision preview and redirects"
+msgstr "Предварителен преглед на ревизия и пренасочвания"
+
+#: classes/PublishPress/Revisionary.php:151
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Интеграция с Divi Builder и Divi Theme."
+
+#: classes/PublishPress/Revisionary.php:166 includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:167
+msgid "Integration with Elementor's front end editor."
+msgstr "Интеграция с предния редактор на Elementor."
+
+#: classes/PublishPress/Revisionary.php:181
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:182
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Съвместимост с кеша на Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:186
+msgid "Clear cache on revision creation"
+msgstr "Изчистване на кеша при създаване на ревизия"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Trigger update on revision approval"
+msgstr "Стартиране на актуализация при одобрение на ревизия"
+
+#: classes/PublishPress/Revisionary.php:195 includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:196
+msgid "Compatibility with Pods custom fields."
+msgstr "Съвместимост с персонализираните полета на Pods."
+
+#: classes/PublishPress/Revisionary.php:210
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:211
+msgid "Compatibility with Polylang translation."
+msgstr "Съвместимост с превода на Polylang."
+
+#: classes/PublishPress/Revisionary.php:215
+msgid "Revisions carry over Polylang data"
+msgstr "Ревизиите пренасят данни от Polylang"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Translation retained on Revision approval"
+msgstr "Преводът остава при одобрение на ревизия"
+
+#: classes/PublishPress/Revisionary.php:224
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:225
+msgid "PublishPress Planner Integration."
+msgstr "Интеграция с PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:229
+msgid "Planner Notifications for revision actions"
+msgstr "Уведомления на Planner за действия с ревизии"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "Revision schedule shown in Calendar"
+msgstr "График на ревизии, показан в календара"
+
+#: classes/PublishPress/Revisionary.php:238 includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:239
+msgid "Revision submission and approval for products."
+msgstr "Представяне и одобрение на ревизии за продукти."
+
+#: classes/PublishPress/Revisionary.php:243
+msgid "Product revisions"
+msgstr "Ревизии на продукти"
+
+#: classes/PublishPress/Revisionary.php:244
+msgid "Compatible with Product Variations"
+msgstr "Съвместим с вариации на продуктите"
+
+#: classes/PublishPress/Revisionary.php:245
+msgid "Priority on ongoing compatibility"
+msgstr "Приоритет при текуща съвместимост"
+
+#: classes/PublishPress/Revisionary.php:253 includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:254
+msgid "Multilingual revisioning with WPML."
+msgstr "Многоезично ревизиране с WPML."
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Language-specific revisions"
+msgstr "Ревизии специфични за език"
+
+#: classes/PublishPress/Revisionary.php:259
+msgid "Translation Management integration"
+msgstr "Интеграция на управление на преводи"
+
+#: classes/PublishPress/Revisionary.php:267
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:268
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "Prevent indexing of revisions"
+msgstr "Предотвратяване на индексирането на ревизии"
+
+#: classes/PublishPress/Revisionary.php:273
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Съвместимост за Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:274
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Сравняване на ревизии с полета на Yoast SEO"
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "Статус на ревизия"
+
+#: front_rvy.php:436
+#, php-format
+msgid "%sManage%s"
+msgstr "%sУправлявай%s"
+
+#: front_rvy.php:447
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sСравни%s%sВиж публикуваната публикация%s"
+
+#: front_rvy.php:459 front_rvy.php:474
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sВиж публикуваната публикация%s"
+
+#: front_rvy.php:549 rvy_init-functions.php:307 rvy_init-functions.php:363
+msgid "Submit"
+msgstr "Изпрати"
+
+#: front_rvy.php:561 front_rvy.php:563 front_rvy.php:611 front_rvy.php:613
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Това е %s. %s %s %s"
+
+#: front_rvy.php:579
+msgid "Decline"
+msgstr "Откажи"
+
+#: front_rvy.php:592 front_rvy.php:594
+#, php-format
+msgid "This is a %s (requested publish date: %s). %s %s %s"
+msgstr "Това е %s (попитана дата на публикуване: %s). %s %s %s"
+
+#: front_rvy.php:598 front_rvy.php:600
+#, php-format
+msgid "Revision status: %s (requested publish date: %s) %s %s %s"
+msgstr "Статус на ревизия: %s (попитана дата на публикуване: %s) %s %s %s"
+
+#: front_rvy.php:617 front_rvy.php:619
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Статус на ревизия: %s %s %s %s"
+
+#: front_rvy.php:632 rvy_init-functions.php:470
+msgid "Publish Now"
+msgstr "Публикувай сега"
+
+#: front_rvy.php:635 front_rvy.php:637
+#, php-format
+msgid "This is a %s (for publication on %s). %s %s %s"
+msgstr "Това е %s (за публикуване на %s). %s %s %s"
+
+#: front_rvy.php:655
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "Ревизията беше одобрена и сега е активна на сайта. %s"
+
+#: front_rvy.php:656
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Това е текущата ревизия. %s"
+
+#: front_rvy.php:673
+msgid "Restore"
+msgstr "Възстанови"
+
+#: front_rvy.php:677 front_rvy.php:679
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Това е стари ревизия (от %s). %s %s"
+
+#: functions.php:537
+msgid "Scheduled Rev."
+msgstr "Планирана рев."
+
+#: functions.php:542 functions.php:547
+msgid "Submitted Rev."
+msgstr "Подадена рев."
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"Използвате безплатната версия на PublishPress Revisions. Професионалната "
+"версия предлага повече функции и поддръжка. %sАктуализирайте до Pro%s"
+
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Актуализирайте до Revisions Pro"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Актуализирайте до PublishPress Revisions Pro за интеграция с ключови функции "
+"на тези плъгини:"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: Персонализирани известия"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "Подробности за интеграцията на плъгини"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "Нуждаете ли се от поддръжка на ревизии?"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr ""
+"Ако имате нужда от помощ или имате ново искане за функция, уведомете ни."
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "Искане на поддръжка"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Подробна документация също е налична на уебсайта на плъгина."
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "Преглед на базата знания"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s заявки за %2$s секунди. Използвани %3$s MB."
+
+#: revision-creation_rvy.php:179
+#, fuzzy
+#| msgid "Could not insert revision into the database"
+msgid "Could not insert post into the database"
+msgstr "Не можа да се вмъкне ревизия в базата данни"
+
+#: revision-creation_rvy.php:401
+msgid "Could not insert revision into the database"
+msgstr "Не можа да се вмъкне ревизия в базата данни"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s актуализиран"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s актуализира %2$s на %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:174
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s подаде промени в %2$s \"%3$s\". Можете да прегледате промените за "
+"възможно публикуване:"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "Предварителен преглед и одобрение: "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "Нови ревизии: "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "Редактиране на %s: "
+
+#: revisionary.php:120
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Този плъгин може да бъде изтрит.</strong>"
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "На всеки 2 минути"
+
+#: rvy_init-functions.php:287 rvy_init-functions.php:299
+msgid "Working Copy"
+msgstr "Работна версия"
+
+#: rvy_init-functions.php:288
+msgid "Create Working Copy"
+msgstr "Създаване на работна версия"
+
+#: rvy_init-functions.php:290
+msgid "Creating Working Copy..."
+msgstr "Създаване на работна версия..."
+
+#: rvy_init-functions.php:291
+msgid "Working Copy ready"
+msgstr "Работната версия е готова"
+
+#: rvy_init-functions.php:292 rvy_init-functions.php:310
+msgid "Approve Changes"
+msgstr "Одобряване на промените"
+
+#: rvy_init-functions.php:294 rvy_init-functions.php:312
+msgid "Approving Changes..."
+msgstr "Одобрява се промените..."
+
+#: rvy_init-functions.php:295 rvy_init-functions.php:313
+#: rvy_init-functions.php:331
+msgid "Publish Changes"
+msgstr "Публикуване на промените"
+
+#: rvy_init-functions.php:296 rvy_init-functions.php:314
+#: rvy_init-functions.php:332 rvy_init-functions.php:352
+#: rvy_init-functions.php:369 rvy_init-functions.php:386
+msgid "Save Revision"
+msgstr "Запази ревизия"
+
+#: rvy_init-functions.php:298
+msgid "Working Copies"
+msgstr "Работни версии"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Работни версии <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Работни версии <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:305 rvy_init-functions.php:317
+msgid "Change Request"
+msgstr "Заявка за промяна"
+
+#: rvy_init-functions.php:306
+msgid "Submit Change Request"
+msgstr "Изпратете искане за промяна"
+
+#: rvy_init-functions.php:309
+msgid "Changes Submitted"
+msgstr "Промените са изпратени"
+
+#: rvy_init-functions.php:316
+msgid "Change Requests"
+msgstr "Искания за промяна"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Искания за промяна <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Искания за промяна <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:319
+msgid "Enable Change Requests"
+msgstr "Активирайте исканията за промяна"
+
+#: rvy_init-functions.php:324 rvy_init-functions.php:335
+msgid "Scheduled Change"
+msgstr "Планирана промяна"
+
+#: rvy_init-functions.php:325 rvy_init-functions.php:326
+#: rvy_init-functions.php:329 rvy_init-functions.php:330
+msgid "Schedule Changes"
+msgstr "Планирайте промените"
+
+#: rvy_init-functions.php:328
+msgid "Changes are Scheduled."
+msgstr "Промените са планирани."
+
+#: rvy_init-functions.php:334
+msgid "Scheduled Changes"
+msgstr "Планирани промени"
+
+#: rvy_init-functions.php:336
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Планирани <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Планирани <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:344
+msgid "Unsubmitted Revision"
+msgstr "Неизпратена ревизия"
+
+#: rvy_init-functions.php:345 rvy_init-functions.php:346
+msgid "Create Revision"
+msgstr "Създайте ревизия"
+
+#: rvy_init-functions.php:347
+msgid "Creating Revision..."
+msgstr "Създаване на ревизия..."
+
+#: rvy_init-functions.php:348
+msgid "The Revision is ready to edit."
+msgstr "Ревизията е готова за редактиране."
+
+#: rvy_init-functions.php:348
+msgid "Revision ready to edit."
+msgstr "Ревизията е готова за редактиране."
+
+#: rvy_init-functions.php:349 rvy_init-functions.php:366
+#: rvy_init-functions.php:383
+msgid "Approve Revision"
+msgstr "Одобрете ревизията"
+
+#: rvy_init-functions.php:351 rvy_init-functions.php:368
+#: rvy_init-functions.php:385
+msgid "Publish Revision"
+msgstr "Публикувайте ревизията"
+
+#: rvy_init-functions.php:354
+msgid "Unsubmitted Revisions"
+msgstr "Неизпратени ревизии"
+
+#: rvy_init-functions.php:355
+msgid "Not Submitted"
+msgstr "Не е изпратено"
+
+#: rvy_init-functions.php:356
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Не е изпратено <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Не е изпратено <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:361
+msgid "Submitted Revision"
+msgstr "Подадена Ревизия"
+
+#: rvy_init-functions.php:362 rvy_init-functions.php:503
+msgid "Submit Revision"
+msgstr "Подайте Ревизия"
+
+#: rvy_init-functions.php:365
+msgid "The Revision is Submitted"
+msgstr "Ревизията е Подадена"
+
+#: rvy_init-functions.php:365
+msgid "Revision Submitted"
+msgstr "Ревизия Подадена"
+
+#: rvy_init-functions.php:371
+msgid "Submitted Revisions"
+msgstr "Подадени Ревизии"
+
+#: rvy_init-functions.php:372
+msgid "Submitted"
+msgstr "Подадено"
+
+#: rvy_init-functions.php:373
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Подадено <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Подадени <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:378
+msgid "Scheduled Revision"
+msgstr "Планирана Ревизия"
+
+#: rvy_init-functions.php:379
+msgid "Schedule Revision"
+msgstr "Планирайте Ревизия"
+
+#: rvy_init-functions.php:380
+msgid "Schedule"
+msgstr "Планирайте"
+
+#: rvy_init-functions.php:382
+msgid "The Revision is Scheduled"
+msgstr "Ревизията е Планирана"
+
+#: rvy_init-functions.php:382
+msgid "Revision Scheduled"
+msgstr "Ревизия Планирана"
+
+#: rvy_init-functions.php:388
+msgid "Scheduled Revisions"
+msgstr "Планирани Ревизии"
+
+#: rvy_init-functions.php:389
+msgid "Scheduled"
+msgstr "Планирано"
+
+#: rvy_init-functions.php:390
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Планирано <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Планирано <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:490
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sМоите Копия & Промени%s(%s)"
+msgstr[1] "%sМоите Копия & Промени%s(%s)"
+
+#: rvy_init-functions.php:491
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sМоите Ревизии%s(%s)"
+msgstr[1] "%sМоите Ревизии%s(%s)"
+
+#: rvy_init-functions.php:493
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sРевизии на Моите Публикации%s(%s)</span>"
+msgstr[1] "%sРевизии на Моите Публикации%s(%s)"
+
+#: rvy_init-functions.php:498
+msgid "Post Author"
+msgstr "Автор на Публикацията"
+
+#: rvy_init-functions.php:499
+msgid "Published Post"
+msgstr "Публикувана Публикация"
+
+#: rvy_init-functions.php:504
+msgid "Submit Changes"
+msgstr "Изпрати промени"
+
+#: rvy_init-functions.php:708
+msgid "Revisor"
+msgstr "Ревизор"
+
+#: rvy_init-functions.php:720
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Ревизор"
+
+#: rvy_init-functions.php:811
+msgid ""
+"The unfiltered_html capability is required to create a revision of this post."
+msgstr ""
+"Необходима е способността unfiltered_html, за да се създаде ревизия на тази "
+"публикация."
+
+#: rvy_init-functions.php:1263
+msgid "Revision Workflow"
+msgstr "Работен поток на ревизията"

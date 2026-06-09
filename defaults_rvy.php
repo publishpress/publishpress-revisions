@@ -80,6 +80,7 @@ function rvy_default_options_sitewide() {
 		'enable_postmeta_revision' => true,
 		'submit_permission_enables_creation' => true,
 		'query_loop_revision_editor_allowance' => true,
+		'enable_classic_metaboxes' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -159,6 +160,7 @@ function rvy_default_options() {
 		'enable_postmeta_revision' => 1,
 		'submit_permission_enables_creation' => 1,
 		'query_loop_revision_editor_allowance' => 0,
+		'enable_classic_metaboxes' => 0,
 	);
 
 	return $def;

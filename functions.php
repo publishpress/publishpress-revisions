@@ -55,7 +55,7 @@ function pp_revisions_sanitize_key( $key ) {
 function revisionary_copy_terms($from_post, $target_id, $args = []) {
     global $wpdb;
 
-    $defaults = ['empty_target_only' => false];
+    $defaults = ['empty_target_only' => false, 'skip_taxonomies' => [], 'include_taxonomies' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
         $$var = $args[$var];
@@ -85,21 +85,23 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
         /**
          * Filters the taxonomy excludelist when copying a post.
          *
-         * @param array $taxonomies_blacklist The taxonomy excludelist from the options.
+         * @param array $skip_taxonomies The taxonomy excludelist from the options.
          *
          * @return array
          */
-        $taxonomies_blacklist = [];
-    
-        $taxonomies_blacklist = apply_filters('revisionary_skip_taxonomies', $taxonomies_blacklist);
+        $skip_taxonomies = apply_filters('revisionary_skip_taxonomies', $skip_taxonomies);
         
         if (defined('POLYLANG_VERSION')) {
             if (!empty($args['applying_revision'])) {
-                $taxonomies_blacklist = array_merge($taxonomies_blacklist, ['language', 'post_translations', 'term_language', 'term_translations', '']);
+                $skip_taxonomies = array_merge($skip_taxonomies, ['language', 'post_translations', 'term_language', 'term_translations', '']);
             }
         }
 
-        foreach (array_diff($post_taxonomies, $taxonomies_blacklist) as $taxonomy) {
+        if ($include_taxonomies) {
+            $post_taxonomies = array_intersect($post_taxonomies, $include_taxonomies);
+        }
+
+        foreach (array_diff($post_taxonomies, $skip_taxonomies) as $taxonomy) {
             if ($empty_target_only) {
                 $target_terms = wp_get_object_terms($target_id, $taxonomy, ['fields' => 'ids']);
                 if (!empty($target_terms)) {
@@ -129,7 +131,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         return;
     }
 
-    $defaults = ['empty_target_only' => false, 'apply_deletions' => false];
+    $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
         $$var = $args[$var];
@@ -164,7 +166,10 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
     $target_meta_keys = (array) \get_post_custom_keys( $to_post_id );
 
-    $skip_meta_keys = ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count'];
+    $skip_meta_keys = array_merge(
+        $skip_meta_keys,
+        ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count']
+    );
 
     if (!defined('REVISIONARY_REVISE_ELEMENTOR_CSS')) {
         $skip_meta_keys = array_merge($skip_meta_keys, ['_elementor_css', '_elementor_element_cache']);
@@ -592,6 +597,16 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
         if (class_exists('WpeCommon') || version_compare($wp_version, '5.9', '>=')) {
             update_option('rvy_scheduled_publish_cron', 1);  // trigger generation of cron schedules for existing scheduled revisions
         }
+    }
+
+    if (version_compare($last_ver, '3.8.2', '<')) {
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->query( 
+            $wpdb->prepare(
+                "UPDATE $wpdb->posts SET post_status = %s WHERE post_mime_type = 'future-revision'", 
+                (get_option('rvy_permissions_compat_mode')) ? 'future-revision' : 'pending'
+            )
+        );
     }
 
     if (version_compare($last_ver, '3.7.20', '<')) {

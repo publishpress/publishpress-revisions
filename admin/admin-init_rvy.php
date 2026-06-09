@@ -398,6 +398,10 @@ function rvy_admin_init() {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
 				add_action( 'wp_loaded', 'rvy_revision_delete' );
 				
+			} elseif ( ! empty($_GET['action']) && ('copy' == $_GET['action']) ) {
+				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
+				add_action( 'wp_loaded', 'rvy_post_copy' );
+
 			} elseif ( ! empty($_GET['action']) && ('revise' == $_GET['action']) ) {
 				if (!empty($_REQUEST['post'])) {
 					$post_id = intval($_REQUEST['post']);
@@ -453,7 +457,7 @@ function rvy_admin_init() {
 		include_once(REVISIONARY_PRO_ABSPATH . '/includes-pro/pro-activation-ajax.php');
 	}
 
-	if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty($_REQUEST['rvy_refresh_updates'])) {
+	if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty($_REQUEST['rvy_refresh_updates']) && check_admin_referer('rvy_refresh_updates') && current_user_can('update_plugins')) {
 		do_action('revisionary_refresh_updates');
 	}
 

@@ -1,0 +1,3077 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"POT-Creation-Date: 2026-06-02T20:52:49+00:00\n"
+"PO-Revision-Date: 2026-04-17 11:28+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: revisionary\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: revisionary.php:3
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#. Plugin URI of the plugin
+#: revisionary.php:4
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#. Description of the plugin
+#: revisionary.php:5
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Mantingueu el contingut publicat amb treball en equip i precisió utilitzant "
+"el model de revisions per enviar, aprovar i programar canvis."
+
+#. Author of the plugin
+#: revisionary.php:6
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#. Author URI of the plugin
+#: revisionary.php:7
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/admin-init_rvy.php:112 admin/admin-init_rvy.php:348
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "Ho sento, no tens permís per eliminar aquesta revisió."
+
+#: admin/admin-init_rvy.php:204 admin/admin-init_rvy.php:314
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "Ho sento, no tens permís per aprovar aquesta revisió."
+
+#: admin/admin-init_rvy.php:241
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "Ho sento, no tens permís per enviar aquesta revisió."
+
+#: admin/admin-init_rvy.php:279
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "Ho sento, no tens permís per rebutjar aquesta revisió."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "La revisió ha estat restaurada."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "La revisió ha estat programada per a la publicació."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "La revisió ha estat publicada."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"Es requereix la capacitat unfiltered_html per crear una revisió d'aquest "
+"article. Vegeu %sdocumentació%s."
+
+#: admin/admin-posts_rvy.php:212 rvy_init-functions.php:798
+msgid "The post already has a revision in process."
+msgstr "L'article ja té una revisió en procés."
+
+#: admin/admin-posts_rvy.php:294 admin/class-list-table-archive.php:580
+#: rvy_init-functions.php:495
+msgid "Revision"
+msgstr "Revisió"
+
+#: admin/admin-posts_rvy.php:311
+msgid "Has Revision"
+msgstr "Té Revisió"
+
+#: admin/admin-posts_rvy.php:322 admin/admin_rvy.php:410
+#: admin/admin_rvy.php:480 admin/options.php:159 admin/options.php:644
+msgid "New Revisions"
+msgstr "Noves Revisions"
+
+#: admin/admin-posts_rvy.php:346 admin/history_rvy.php:87
+#: admin/history_rvy.php:91 admin/history_rvy.php:97 admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "Copia"
+
+#: admin/admin_lib-mu_rvy.php:10 admin/options.php:336
+msgid "PublishPress Revisions Network Settings"
+msgstr "Configuració de Xarxa de PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:10
+msgid "Network Settings"
+msgstr "Configuració de Xarxa"
+
+#: admin/admin_lib-mu_rvy.php:21 admin/options.php:338
+msgid "PublishPress Revisions Network Defaults"
+msgstr "Valors per defecte de Xarxa de PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:21
+msgid "Network Defaults"
+msgstr "Predeterminats de la xarxa"
+
+#: admin/admin_rvy.php:166
+#, php-format
+msgid ""
+"Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
+"triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
+"Scheduling%s."
+msgstr ""
+"Les revisions programades no estan disponibles perquè WP-Cron està "
+"desactivat. Si estàs activant WP-Cron externament, consulta %sRevisions > "
+"Configuració > Noves revisions > Programació%s."
+
+#: admin/admin_rvy.php:321
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Revisions"
+
+#: admin/admin_rvy.php:361
+msgid "Revisions"
+msgstr "Revisions"
+
+#: admin/admin_rvy.php:419 admin/admin_rvy.php:420 admin/admin_rvy.php:481
+#: admin/options.php:158 admin/options.php:545
+#: admin/revision-archive_rvy.php:81 admin/revisions.php:237
+msgid "Past Revisions"
+msgstr "Revisions passades"
+
+#: admin/admin_rvy.php:437 admin/options.php:342
+msgid "PublishPress Revisions Settings"
+msgstr "Configuració de revisions de PublishPress"
+
+#: admin/admin_rvy.php:437 admin/admin_rvy.php:484 admin/options.php:153
+msgid "Settings"
+msgstr "Configuració"
+
+#: admin/admin_rvy.php:446 admin/admin_rvy.php:447 admin/admin_rvy.php:487
+#: admin/options.php:2022 admin/options.php:2049 admin/options.php:2265
+#: admin/options.php:2611 includes/CoreAdmin.php:212
+msgid "Upgrade to Pro"
+msgstr "Actualitza a Pro"
+
+#: admin/admin_rvy.php:528
+msgid "Can edit draft Posts from other users."
+msgstr "Pot editar esborranys de publicacions d'altres usuaris."
+
+#: admin/admin_rvy.php:529
+msgid "Can edit Revisions from other users."
+msgstr "Pot editar revisions d'altres usuaris."
+
+#: admin/admin_rvy.php:530
+msgid "Can see New Revisions from other users."
+msgstr "Pot veure noves revisions d'altres usuaris."
+
+#: admin/admin_rvy.php:531
+msgid "Can access New Revisions."
+msgstr "Pot accedir a noves revisions."
+
+#: admin/admin_rvy.php:532
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Pot gestionar revisions no enviades."
+
+#: admin/admin_rvy.php:533
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr ""
+"Previsualitzar les revisions d'altres usuaris (sense necessitat d'accés "
+"d'edició)."
+
+#: admin/admin_rvy.php:534
+msgid "Restore an archived Revision as the current revision."
+msgstr "Restaura una revisió arxivada com la revisió actual."
+
+#: admin/admin_rvy.php:535
+msgid "View Past Revisions."
+msgstr "Veure revisions passades."
+
+#: admin/admin_rvy.php:565
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Si t'agrada %1$s, si us plau deixa'ns una valoració de %2$s. Gràcies!"
+
+#: admin/admin_rvy.php:576
+msgid "About PublishPress Revisions"
+msgstr "Sobre les revisions de PublishPress"
+
+#: admin/admin_rvy.php:576
+msgid "About"
+msgstr "Sobre"
+
+#: admin/admin_rvy.php:578
+msgid "PublishPress Revisions Documentation"
+msgstr "Documentació de les revisions de PublishPress"
+
+#: admin/admin_rvy.php:578
+msgid "Documentation"
+msgstr "Documentació"
+
+#: admin/admin_rvy.php:580
+msgid "Contact the PublishPress team"
+msgstr "Contacta amb l'equip de PublishPress"
+
+#: admin/admin_rvy.php:580
+msgid "Contact"
+msgstr "Contacte"
+
+#: admin/agents_checklist_rvy.php:76
+#, php-format
+msgid "show current users (%d)"
+msgstr "mostrar usuaris actuals (%d)"
+
+#: admin/agents_checklist_rvy.php:78
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "mostrar usuaris elegibles (%d)"
+
+#: admin/agents_checklist_rvy.php:87
+msgid "filter:"
+msgstr "filtrar:"
+
+#: admin/agents_checklist_rvy.php:103
+msgid "select"
+msgstr "seleccionar"
+
+#: admin/agents_checklist_rvy.php:111
+msgid "unselect"
+msgstr "desseleccionar"
+
+#: admin/class-list-table-archive.php:22
+msgid ""
+"This was an update to a revision which is still in the workflow process."
+msgstr ""
+"Això era una actualització d'una revisió que encara està en el procés de "
+"flux de treball."
+
+#: admin/class-list-table-archive.php:24
+msgid ""
+"This was an update to a revision which was published after further editing."
+msgstr ""
+"Això era una actualització d'una revisió que va ser publicada després de més "
+"edició."
+
+#: admin/class-list-table-archive.php:202
+#, php-format
+msgid "Revision Author: %s"
+msgstr "Autor de la revisió: %s"
+
+#: admin/class-list-table-archive.php:221
+#, php-format
+msgid "Post Author: %s"
+msgstr "Autor de la publicació: %s"
+
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr "Data de la revisió: %s"
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr "Aprovada per: %s"
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr "Data de publicació: %s"
+
+#: admin/class-list-table-archive.php:272
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Resultats de la cerca per a \"%s\""
+
+#: admin/class-list-table-archive.php:540 admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "Suprimir revisió"
+
+#: admin/class-list-table-archive.php:581 admin/class-list-table_rvy.php:756
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:582 rvy_init-functions.php:496
+msgid "Revised By"
+msgstr "Revisat per"
+
+#: admin/class-list-table-archive.php:583 rvy_init-functions.php:497
+msgid "Revision Date"
+msgstr "Data de la revisió"
+
+#: admin/class-list-table-archive.php:584
+msgid "Action"
+msgstr "Acció"
+
+#: admin/class-list-table-archive.php:585
+msgid "Approved By"
+msgstr "Aprovat per"
+
+#: admin/class-list-table-archive.php:586
+msgid "Published Date"
+msgstr "Data de publicació"
+
+#: admin/class-list-table-archive.php:587
+msgid "Published Author"
+msgstr "Autor publicat"
+
+#: admin/class-list-table-archive.php:616 admin/class-list-table_rvy.php:922
+msgid "just now"
+msgstr "just ara"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s minuts enrere"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minute ago"
+msgstr "%s minut enrere"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hours ago"
+msgstr "%s hores enrere"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hour ago"
+msgstr "%s hora enrere"
+
+#: admin/class-list-table-archive.php:756 functions.php:466
+msgid "Scheduled Revision Publication"
+msgstr "Publicació de revisió programada"
+
+#: admin/class-list-table-archive.php:760 functions.php:470
+msgid "Revision Publication"
+msgstr "Publicació de revisió"
+
+#: admin/class-list-table-archive.php:770 functions.php:480
+#, php-format
+msgid "Edit of %s"
+msgstr "Edició de %s"
+
+#: admin/class-list-table-archive.php:777 functions.php:487
+msgid "Edit of published Revision"
+msgstr "Edició de revisió publicada"
+
+#: admin/class-list-table-archive.php:780 functions.php:490 functions.php:553
+msgid "Direct Edit"
+msgstr "Edició directa"
+
+#: admin/class-list-table-archive.php:839 admin/class-list-table_rvy.php:1461
+msgid "All Post Types"
+msgstr "Tots els tipus de publicacions"
+
+#: admin/class-list-table-archive.php:872 admin/class-list-table_rvy.php:1496
+msgid "All Revision Authors"
+msgstr "Tots els autors de revisió"
+
+#: admin/class-list-table-archive.php:906 admin/class-list-table_rvy.php:1531
+msgid "All Revision Dates"
+msgstr "Totes les dates de revisió"
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr "Totes les dates de publicació"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr "Tots els aprovadors"
+
+#: admin/class-list-table-archive.php:1036 admin/class-list-table_rvy.php:1602
+msgid "All Authors"
+msgstr "Tots els autors"
+
+#: admin/class-list-table-archive.php:1058 admin/class-list-table_rvy.php:1638
+msgid "Reset Filters"
+msgstr "Restablir filtres"
+
+#: admin/class-list-table-archive.php:1089 admin/options.php:2276
+msgid "All"
+msgstr "Tots"
+
+#: admin/class-list-table-archive.php:1103
+msgid "My Revisions"
+msgstr "Les meves revisions"
+
+#: admin/class-list-table-archive.php:1157
+#, php-format
+msgid "Compare Changes in %s"
+msgstr "Comparar canvis en %s"
+
+#: admin/class-list-table-archive.php:1161 admin/class-list-table_rvy.php:1918
+#: admin/post-edit_rvy.php:190 admin/post-edit_rvy.php:254
+#: admin/post-edit_rvy.php:268
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Comparar"
+
+#: admin/class-list-table-archive.php:1176 admin/class-list-table_rvy.php:1903
+#: admin/post-editor-workflow-ui_rvy.php:233
+msgid "Preview Revision"
+msgstr "Previsualitzar revisió"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent revision"
+msgstr "Editar revisió pare"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent post"
+msgstr "Editar publicació pare"
+
+#: admin/class-list-table-archive.php:1191
+msgid "Edit Parent"
+msgstr "Editar Pare"
+
+#: admin/class-list-table-archive.php:1201
+msgid "List Revisions of this Post"
+msgstr "Llistat de revisions d'aquesta publicació"
+
+#: admin/class-list-table-archive.php:1202
+msgid "Filter"
+msgstr "Filtrar"
+
+#: admin/class-list-table-archive.php:1214
+msgid "Delete Past Revision"
+msgstr "Eliminar revisió passada"
+
+#: admin/class-list-table-archive.php:1302
+msgid "No revisions found."
+msgstr "No s'han trobat revisions."
+
+#: admin/class-list-table_rvy.php:755 admin/options.php:762
+#: admin/options.php:925 admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "Estat"
+
+#: admin/class-list-table_rvy.php:801
+msgid "View preview"
+msgstr "Veure previsualització"
+
+#: admin/class-list-table_rvy.php:818
+msgid "Y/m/d, g:i:s a"
+msgstr "Y/m/d, g:i:s a"
+
+#: admin/class-list-table_rvy.php:828
+msgid "Y/m/d g:i a"
+msgstr "Y/m/d g:i a"
+
+#: admin/class-list-table_rvy.php:835
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Publicació programada: %s"
+
+#: admin/class-list-table_rvy.php:838
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Publicació sol·licitada: %s"
+
+#: admin/class-list-table_rvy.php:840
+msgid "This revision is not scheduled yet. It must be approved."
+msgstr "Aquesta revisió encara no està programada. Ha de ser aprovada."
+
+#: admin/class-list-table_rvy.php:890 admin/history_rvy.php:915
+msgid "No author"
+msgstr "Sense autor"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:964
+msgid "Edit published post"
+msgstr "Editar publicació publicada"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:977
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Veure només revisions de %s"
+
+#: admin/class-list-table_rvy.php:988 admin/class-list-table_rvy.php:995
+msgid "View published post"
+msgstr "Veure publicació publicada"
+
+#: admin/class-list-table_rvy.php:1020
+msgid "Compare Past Revisions"
+msgstr "Comparar revisions anteriors"
+
+#: admin/class-list-table_rvy.php:1021
+msgid "History"
+msgstr "Historial"
+
+#: admin/class-list-table_rvy.php:1301
+msgid "My Activity"
+msgstr "La meva activitat"
+
+#: admin/class-list-table_rvy.php:1310
+#, php-format
+msgid "All %s"
+msgstr "Tots %s"
+
+#: admin/class-list-table_rvy.php:1400
+msgid "Unschedule"
+msgstr "Desprogramar"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1404 admin/class-list-table_rvy.php:1875
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Discard Revision"
+msgstr "Descartar revisió"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "All Revision Statuses"
+msgstr "Tots els estats de revisió"
+
+#: admin/class-list-table_rvy.php:1567
+msgid "All Posts"
+msgstr "Totes les publicacions"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1852
+#: admin/post-editor-workflow-ui_rvy.php:234
+msgid "Edit Revision"
+msgstr "Editar revisió"
+
+#: admin/class-list-table_rvy.php:1917
+msgid "Compare Changes"
+msgstr "Comparar canvis"
+
+#: admin/class-list-table_rvy.php:1929
+#, fuzzy
+#| msgid "Approve"
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Aprovar"
+
+#: admin/class-list-table_rvy.php:1936
+#, fuzzy
+#| msgid "Publish Now"
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Publicar ara"
+
+#: admin/class-list-table_rvy.php:1945
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Rebutjar"
+
+#: admin/edit-revision-classic-ui_rvy.php:111
+msgid "Publish <b>on approval</b>"
+msgstr "Publicar <b>en aprovació</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:142
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Revisió actualitzada. %sVeure vista prèvia%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:144
+msgid "Revision updated."
+msgstr "Revisió actualitzada."
+
+#: admin/history_rvy.php:87 admin/history_rvy.php:91
+msgid "Copy content to the clipboard."
+msgstr "Copia el contingut al porta-retalls."
+
+#: admin/history_rvy.php:97 admin/history_rvy.php:100
+msgid "Copy the above content to the clipboard."
+msgstr "Copia el contingut anterior al porta-retalls."
+
+#: admin/history_rvy.php:282 admin/history_rvy.php:302
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Comparar %s de \"%s\""
+
+#: admin/history_rvy.php:659 admin/options.php:1169
+msgid "Post Date"
+msgstr "Data de publicació"
+
+#: admin/history_rvy.php:660
+msgid "Post Parent"
+msgstr "Publicació pare"
+
+#: admin/history_rvy.php:661
+msgid "Menu Order"
+msgstr "Ordre del menú"
+
+#: admin/history_rvy.php:662
+msgid "Comment Status"
+msgstr "Estat del comentari"
+
+#: admin/history_rvy.php:663
+msgid "Ping Status"
+msgstr "Estat del ping"
+
+#: admin/history_rvy.php:803
+msgid "Page Template"
+msgstr "Plantilla de pàgina"
+
+#: admin/history_rvy.php:806
+msgid "Featured Image"
+msgstr "Imatge destacada"
+
+#: admin/history_rvy.php:810
+msgid "Beaver Builder Data"
+msgstr "Dades de Beaver Builder"
+
+#: admin/history_rvy.php:811
+msgid "Beaver Builder Settings"
+msgstr "Configuració de Beaver Builder"
+
+#: admin/history_rvy.php:1062
+msgid "Scheduled for "
+msgstr "Programat per "
+
+#: admin/history_rvy.php:1067
+msgid "Requested for "
+msgstr "Sol·licitat per "
+
+#: admin/history_rvy.php:1072
+msgid "Modified "
+msgstr "Modificat "
+
+#: admin/history_rvy.php:1077
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s d'ara endavant"
+
+#: admin/history_rvy.php:1088
+msgid "M j, Y @ g:i a"
+msgstr "M j, Y @ g:i a"
+
+#: admin/history_rvy.php:1133
+msgid "M j, Y @ H:i"
+msgstr "M j, Y @ H:i"
+
+#: admin/history_rvy.php:1134
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/history_rvy.php:1220 front_rvy.php:546 front_rvy.php:556
+#: front_rvy.php:575 front_rvy.php:606 rvy_init-functions.php:293
+#: rvy_init-functions.php:311 rvy_init-functions.php:350
+#: rvy_init-functions.php:367 rvy_init-functions.php:384
+msgid "Approve"
+msgstr "Aprovar"
+
+#: admin/history_rvy.php:1220
+msgid "Preview / Approve"
+msgstr "Previsualitzar / Aprovar"
+
+#: admin/history_rvy.php:1222 admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:233
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Previsualitzar"
+
+#: admin/history_rvy.php:1317
+msgid "Preview / Restore"
+msgstr "Previsualitzar / Restaurar"
+
+#: admin/history_rvy.php:1324
+msgid "Manage"
+msgstr "Gestionar"
+
+#: admin/history_rvy.php:1325
+msgid "List"
+msgstr "Llista"
+
+#: admin/options.php:123
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Tots els ajustos d'aquesta pestanya s'assignen a tota la xarxa."
+
+#: admin/options.php:153
+msgid "Setting Scope"
+msgstr "Àmbit de configuració"
+
+#: admin/options.php:157
+msgid "Features"
+msgstr "Funcions"
+
+#: admin/options.php:160
+msgid "Options"
+msgstr "Opcions"
+
+#: admin/options.php:161
+msgid "Integrations"
+msgstr "Integracions"
+
+#: admin/options.php:162
+msgid "Statuses"
+msgstr "Estats"
+
+#: admin/options.php:163 admin/options.php:1202
+msgid "Notifications"
+msgstr "Notificacions"
+
+#: admin/options.php:169
+msgid "Revision Submission"
+msgstr "Presentació de revisions"
+
+#: admin/options.php:177
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr ""
+"Utilitzar etiquetatge alternatiu: \"Còpia de treball\" > \"Sol·licitud de "
+"canvi\" > \"Canvi programat\""
+
+#: admin/options.php:178
+msgid "New Revisions access requires role capability"
+msgstr "L'accés a noves revisions requereix capacitat de rol"
+
+#: admin/options.php:179
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Gestionar %s requereix capacitat de rol"
+
+#: admin/options.php:180
+msgid "Working Copy creation requires role capability"
+msgstr "La creació de còpies de treball requereix capacitat de rol"
+
+#: admin/options.php:180
+msgid "Revision creation requires role capability"
+msgstr "La creació de revisions requereix capacitat de rol"
+
+#: admin/options.php:181
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr ""
+"Llista de publicacions / Pàgines: Utilitzar el títol \"Editar\" per a "
+"l'enllaç %s"
+
+#: admin/options.php:182 admin/options.php:188
+#, php-format
+msgid "Enable %s"
+msgstr "Habilitar %s"
+
+#: admin/options.php:183
+msgid "Limit to one active revision per post"
+msgstr "Limitar a una revisió activa per publicació"
+
+#: admin/options.php:184
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr ""
+"Actualitzar la bandera \"Té revisió\" abans de suprimir la creació de revisió"
+
+#: admin/options.php:185
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr ""
+"Si la publicació conté html personalitzat, requereix la capacitat "
+"unfiltered_html"
+
+#: admin/options.php:186
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr ""
+"Enviar automàticament revisions creades per un usuari amb capacitat de "
+"publicació"
+
+#: admin/options.php:187
+msgid "Auto-submit revisions"
+msgstr "Enviar revisions automàticament"
+
+#: admin/options.php:189
+msgid "Change Request submission require role capability"
+msgstr "La sol·licitud de canvi requereix la capacitat de rol"
+
+#: admin/options.php:189
+msgid "Revision submission requires role capability"
+msgstr "La sol·licitud de revisió requereix la capacitat de rol"
+
+#: admin/options.php:190
+msgid "Editing others' Revisions requires role capability"
+msgstr "Editar les revisions d'altres requereix la capacitat de rol"
+
+#: admin/options.php:191
+msgid "Listing others' Revisions requires role capability"
+msgstr "Llistar les revisions d'altres requereix la capacitat de rol"
+
+#: admin/options.php:192
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Els usuaris sempre poden administrar les revisions dels seus propis articles "
+"editables"
+
+#: admin/options.php:193
+msgid "Also notify on Revision Update"
+msgstr "També notificar sobre l'actualització de la revisió"
+
+#: admin/options.php:194
+msgid "Apply API actions to mimic Post Update"
+msgstr "Aplicar accions de l'API per simular l'actualització de l'article"
+
+#: admin/options.php:195
+msgid "Hide html tags on Compare screen"
+msgstr "Amagar les etiquetes html a la pantalla de comparació"
+
+#: admin/options.php:196
+msgid "Hide copy buttons on Compare screen"
+msgstr "Amagar els botons de còpia a la pantalla de comparació"
+
+#: admin/options.php:197
+msgid "Use WP-Cron scheduling"
+msgstr "Utilitzar la programació WP-Cron"
+
+#: admin/options.php:198
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr ""
+"El lloc utilitza un activador personalitzat per a les tasques de WP-Cron"
+
+#: admin/options.php:199
+msgid "Asynchronous Publishing"
+msgstr "Publicació asíncrona"
+
+#: admin/options.php:200 admin/options.php:201
+msgid "Update Publish Date"
+msgstr "Actualitzar la data de publicació"
+
+#: admin/options.php:202 admin/options.php:203
+msgid "Update Modified Date"
+msgstr "Actualitzar la data modificada"
+
+#: admin/options.php:206 admin/options.php:207
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Utilitzar %1$sNotificacions del Planificador%2$s"
+
+#: admin/options.php:209
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Enviar correu electrònic al autor original quan es presenta un %s"
+
+#: admin/options.php:210
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Enviar correu electrònic al autor original quan es aprova un %s"
+
+#: admin/options.php:211
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Enviar correu electrònic al revisor quan es aprova un %s"
+
+#: admin/options.php:212
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Enviar correu electrònic al autor original quan es publica un %s"
+
+#: admin/options.php:213
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Enviar correu electrònic al revisor quan es publica un %s"
+
+#: admin/options.php:214
+msgid "Enable notification buffer"
+msgstr "Habilita el búfer de notificacions"
+
+#: admin/options.php:215
+msgid "Revisors can create a new revision for any custom post type"
+msgstr ""
+"Els revisors poden crear una nova revisió per a qualsevol tipus de post "
+"personalitzat"
+
+#: admin/options.php:216
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Impedir que els revisors editen els posts no publicats d'altres"
+
+#: admin/options.php:217
+msgid "Add database index to posts table for Revision queries"
+msgstr ""
+"Afegir índex de base de dades a la taula de posts per a consultes de revisió"
+
+#: admin/options.php:218
+msgid "Display Hints"
+msgstr "Mostrar pistes"
+
+#: admin/options.php:219
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Eliminar configuracions i revisions si el complement és eliminat"
+
+#: admin/options.php:220
+msgid "Show Preview Links"
+msgstr "Mostrar enllaços de vista prèvia"
+
+#: admin/options.php:221
+msgid "Preview Link Type"
+msgstr "Tipus d'enllaç de vista prèvia"
+
+#: admin/options.php:222
+msgid "Modify preview link for better theme compatibility"
+msgstr ""
+"Modificar l'enllaç de vista prèvia per a una millor compatibilitat amb el "
+"tema"
+
+#: admin/options.php:223
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr ""
+"Compatibilitat del tema: Per a la vista prèvia de revisió de la pàgina "
+"d'inici, estableix la bandera d'inici"
+
+#: admin/options.php:224
+msgid "Approve Button on Compare screen"
+msgstr "Botó d'aprovar a la pantalla de comparació"
+
+#: admin/options.php:225
+msgid "Copy revision comments to published post"
+msgstr "Copiar comentaris de revisió al post publicat"
+
+#: admin/options.php:226
+msgid "Compare Past Revisions ordering:"
+msgstr "Comparar l'ordre de revisions passades:"
+
+#: admin/options.php:227
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr ""
+"Llistar %s per a la vista \"La meva activitat\" o \"Revisions dels meus "
+"posts\""
+
+#: admin/options.php:228
+msgid "Store custom fields of submitted and scheduled revisions for archive"
+msgstr ""
+"Emmagatzemar camps personalitzats de revisions enviades i programades per a "
+"l'arxiu"
+
+#: admin/options.php:229
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr ""
+"Mantenir un arxiu d'edicions de revisió, fins i tot després que la revisió "
+"estigui publicada"
+
+#: admin/options.php:230
+msgid "Show Current Revision top bar after revision publication"
+msgstr ""
+"Mostrar la barra superior de la revisió actual després de la publicació de "
+"la revisió"
+
+#: admin/options.php:231
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "En la publicació de la revisió, eliminar comentaris editorials"
+
+#: admin/options.php:232
+msgid "Enable deletion queue"
+msgstr "Habilitar cua d'eliminació"
+
+#: admin/options.php:233
+msgid "Allow Past Revisions to be deleted"
+msgstr "Permetre que les revisions passades siguin eliminades"
+
+#: admin/options.php:234
+msgid "Restoring a Revision requires role capability"
+msgstr "Restaurar una revisió requereix capacitat de rol"
+
+#: admin/options.php:235
+msgid "Compatibility Mode"
+msgstr "Mode de compatibilitat"
+
+#: admin/options.php:236
+msgid "Planner Notifications Access-Limited"
+msgstr "Accés limitat a les notificacions del planificador"
+
+#: admin/options.php:237
+msgid "Maximum Revisions per post"
+msgstr "Màxim de revisions per publicació"
+
+#: admin/options.php:238
+msgid "Apply Post Permissions to Revisions"
+msgstr "Aplicar permisos de publicació a les revisions"
+
+#: admin/options.php:239
+msgid "Enable legacy email notifications"
+msgstr "Activar notificacions per correu electrònic de llegat"
+
+#: admin/options.php:240
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr ""
+"Utilitzar subtítols ampliats per al botó Aprovar en l'editor de publicacions"
+
+#: admin/options.php:241
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Permetre que el camp Autor es modifiqui per revisió"
+
+#: admin/options.php:242
+msgid "Create Revision button in editor opens new tab"
+msgstr "El botó Crear revisió en l'editor obre una nova pestanya"
+
+#: admin/options.php:243
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Bloc de consulta: Ajustar les capacitats de revisor i contribuent per "
+"permetre la visualització en l'editor de revisions"
+
+#: admin/options.php:244
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Desactivar el panell Rank Math SEO per a l'edició de revisions"
+
+#: admin/options.php:245
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr ""
+"Permetre que els camps personalitzats (meta de publicació) siguin revisables"
+
+#: admin/options.php:246
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "El permís per enviar revisió també habilita la creació de revisions"
+
+#: admin/options.php:247
+msgid "Enable classic metaboxes in editor"
+msgstr ""
+
+#: admin/options.php:252
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "Enviar correu electrònic als editors designats quan es presenta un %s"
+
+#: admin/options.php:253
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "Enviar correu electrònic als editors designats quan es publica un %s"
+
+#: admin/options.php:254
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "Enviar correu electrònic als editors designats quan es aprova un %s"
+
+#: admin/options.php:256
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr ""
+"Enviar correu electrònic als editors i administradors quan es presenta un %s"
+
+#: admin/options.php:257
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr ""
+"Enviar correu electrònic als editors i administradors quan es publica un %s"
+
+#: admin/options.php:258
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr ""
+"Enviar correu electrònic als editors i administradors quan es aprova un %s"
+
+#: admin/options.php:340
+msgid "PublishPress Revisions Site Settings"
+msgstr "Configuració del lloc de revisions de PublishPress"
+
+#: admin/options.php:370
+msgid ""
+"These are the default settings for options which can be adjusted per-site."
+msgstr ""
+"Aquests són els paràmetres predeterminats per opcions que es poden ajustar "
+"per a cada site."
+
+#: admin/options.php:408
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Utilitzeu aquesta pestanya per fer canvis a nivell de NETWORK-WIDE a les "
+"configuracions de PublishPress Revisions. %s"
+
+#: admin/options.php:411
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr ""
+"També podeu especificar %1$svalors predeterminats per a configuracions "
+"específiques del site%2$s."
+
+#: admin/options.php:414
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Aquí podeu canviar el valor predeterminat per a les configuracions que es "
+"controlen per separat en cada site."
+
+#: admin/options.php:424 admin/options.php:426
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr ""
+"Tingueu en compte que %1$s les configuracions a nivell de xarxa%2$s també "
+"poden estar disponibles."
+
+#: admin/options.php:504
+msgid "License"
+msgstr "Llicència"
+
+#: admin/options.php:549
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Les revisions anteriors són versions anteriors d'una publicació."
+
+#: admin/options.php:606
+msgid "This post type does not support Past Revisions."
+msgstr "Aquest post type no admet revisions anteriors."
+
+#: admin/options.php:648
+msgid "New Revisions are changes which are not yet published."
+msgstr "Les noves revisions són canvis que encara no s'han publicat."
+
+#: admin/options.php:747
+#, fuzzy
+#| msgid "Revisions"
+msgid "Revision Fields"
+msgstr "Revisions"
+
+#: admin/options.php:751
+#, fuzzy
+#| msgid "Allow the Author field to be modified by Revision"
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Permetre que el camp Autor es modifiqui per revisió"
+
+#: admin/options.php:759 admin/options.php:922
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Contacte"
+
+#: admin/options.php:760 admin/options.php:923
+msgid "Title"
+msgstr ""
+
+#: admin/options.php:761 admin/options.php:924
+#, fuzzy
+#| msgid "Post Date"
+msgid "Date"
+msgstr "Data de publicació"
+
+#: admin/options.php:763 admin/options.php:926
+#, fuzzy
+#| msgid "Edit Parent"
+msgid "Parent"
+msgstr "Editar Pare"
+
+#: admin/options.php:764 admin/options.php:927
+msgid "Slug"
+msgstr ""
+
+#: admin/options.php:765 admin/options.php:928
+msgid "Excerpt"
+msgstr ""
+
+#: admin/options.php:766 admin/options.php:929
+#: admin/post-edit-block-ui_rvy.php:209 admin/post-edit_rvy.php:343
+msgid "Author"
+msgstr "Autor"
+
+#: admin/options.php:767 admin/options.php:930
+msgid "Thumnbnail"
+msgstr ""
+
+#: admin/options.php:768 admin/options.php:931
+#, fuzzy
+#| msgid "Page Template"
+msgid "Template"
+msgstr "Plantilla de pàgina"
+
+#: admin/options.php:769 admin/options.php:932
+msgid "Categories"
+msgstr ""
+
+#: admin/options.php:770 admin/options.php:933
+msgid "Tags"
+msgstr ""
+
+#: admin/options.php:771 admin/options.php:934
+#: admin/restrict-editor-features.php:162
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/options.php:815
+#, fuzzy
+#| msgid "All Posts"
+msgid "Copy Posts"
+msgstr "Totes les publicacions"
+
+#: admin/options.php:819
+#, fuzzy
+#| msgid "The post already has a revision in process."
+msgid "Copy post directly without using the revision process."
+msgstr "L'article ja té una revisió en procés."
+
+#: admin/options.php:910
+#, fuzzy
+#| msgid "Fields"
+msgid "Copy Fields"
+msgstr "Camp"
+
+#: admin/options.php:914
+msgid "Specify fields to include when Posts are copied."
+msgstr ""
+
+#: admin/options.php:976
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Nota: El codi de tercers pot fer que alguns post types no siguin compatibles "
+"amb PublishPress Revisions."
+
+#: admin/options.php:986
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"Per a la integració de Revisions al Calendari de Contingut, Visió General i "
+"Tauler de Contingut, actualitzeu %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1007
+msgid "Ready to enhance your revision workflow?"
+msgstr "Preparat per millorar el vostre flux de treball de revisions?"
+
+#: admin/options.php:1010
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with custom "
+"revision statuses."
+msgstr ""
+"Obteniu PublishPress Statuses Pro i optimitzeu el vostre procés de revisions "
+"amb estats de revisió personalitzats."
+
+#: admin/options.php:1016
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Defineix els teus propis estats abans o després de la Revisió Enviada"
+
+#: admin/options.php:1019
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "Nous estats predefinits: Diferit, Necessita Treball, Rebutjat"
+
+#: admin/options.php:1022
+msgid "Statuses can be specific to a post type"
+msgstr "Els estats poden ser específics per a un post type"
+
+#: admin/options.php:1025
+msgid "Control access to statuses per-role"
+msgstr "Controla l'accés a estats per rol"
+
+#: admin/options.php:1028
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "El flux de treball d'estats pot estar arrelat amb sub-estats"
+
+#: admin/options.php:1037
+msgid "Get PublishPress Statuses Pro"
+msgstr "Obteniu PublishPress Statuses Pro"
+
+#: admin/options.php:1042 admin/options.php:1060 admin/options.php:2027
+#: admin/options.php:2045 admin/options.php:2607 admin/options.php:2621
+#: admin/options.php:2631 admin/options.php:2641
+msgid "Learn More"
+msgstr "Aprendre més"
+
+#: admin/options.php:1055
+msgid "Pro Plugin"
+msgstr "Pro Plugin"
+
+#: admin/options.php:1056
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr ""
+"Instal·la Statuses Pro per desbloquejar estats de revisió personalitzats."
+
+#: admin/options.php:1057
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Configura per a qualsevol post type i rol per adaptar el teu flux de treball "
+"d'edició."
+
+#: admin/options.php:1064
+msgid "Get Statuses Pro"
+msgstr "Obtenir Statuses Pro"
+
+#: admin/options.php:1091
+msgid "Maximum revisions per post:"
+msgstr "Revisions màximes per post:"
+
+#: admin/options.php:1093
+msgid "(unlimited)"
+msgstr "(il·limitat)"
+
+#: admin/options.php:1101
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr ""
+"Tingues en compte que l'arquivament també es pot desactivar mitjançant "
+"%1$sPost Type%2$s."
+
+#: admin/options.php:1138 admin/options.php:1309 admin/options.php:1557
+#: admin/options.php:1583 admin/options.php:1609 admin/options.php:1637
+#: admin/options.php:2151
+#, php-format
+msgid "%s capability"
+msgstr "%s capacitat"
+
+#: admin/options.php:1143 admin/options.php:1314 admin/options.php:1562
+#: admin/options.php:1588 admin/options.php:1614 admin/options.php:1642
+#: admin/options.php:2156
+msgid "Assign capability to roles"
+msgstr "Assignar capacitats als rols"
+
+#: admin/options.php:1150
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Evitar que els no administradors restaurin una revisió sense el %s."
+
+#: admin/options.php:1156
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Evitar que els no administradors restaurin una revisió sense la capacitat "
+"restore_revisions"
+
+#: admin/options.php:1169
+msgid "Modification Date"
+msgstr "Data de modificació"
+
+#: admin/options.php:1197
+msgid "Revision Creation"
+msgstr "Creació de revisió"
+
+#: admin/options.php:1198
+msgid "Submission"
+msgstr "Presentació"
+
+#: admin/options.php:1199
+msgid "Scheduling"
+msgstr "Programació"
+
+#: admin/options.php:1200
+msgid "Publication"
+msgstr "Publicació"
+
+#: admin/options.php:1201
+msgid "Management"
+msgstr "Gestió"
+
+#: admin/options.php:1259
+msgid "Create Revision capabilities"
+msgstr "Crear capacitats de revisió"
+
+#: admin/options.php:1264 admin/options.php:1289 admin/options.php:1442
+msgid "Assign capabilities to roles"
+msgstr "Assignar capacitats als rols"
+
+#: admin/options.php:1271 admin/options.php:1449
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "Si l'usuari no pot editar el post publicat, requereix %s."
+
+#: admin/options.php:1277
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"Si l'usuari no pot editar la publicació publicada, requereix capacitats de "
+"crear revisions (copy_posts, copy_others_pages, etc.)"
+
+#: admin/options.php:1285
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "Per expandir la llista de Pàgines, assigna %s."
+
+#: admin/options.php:1288
+msgid "Listing capabilities"
+msgstr "Capacitats de llistat"
+
+#: admin/options.php:1295
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"Per expandir la llista de Pàgines, assigna capacitats de llistat "
+"(list_others_pages, list_published_posts, etc.)"
+
+#: admin/options.php:1301
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Aquest plugin introdueix un nou rol d'usuari, \"Revisor.\""
+
+#: admin/options.php:1321
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"La revisió per un usuari que no té el %s farà que tots els tags html "
+"personalitzats siguin eliminats."
+
+#: admin/options.php:1327
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"La revisió per un usuari que no té la capacitat unfiltered_html farà que "
+"tots els tags html personalitzats siguin eliminats."
+
+#: admin/options.php:1344
+msgid "Broadest compat including Elementor, Divi, Beaver Builder"
+msgstr "Compatibilitat més àmplia incloent Elementor, Divi, Beaver Builder"
+
+#: admin/options.php:1345
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr ""
+"Esquema d'emmagatzematge estàndard per a la compatibilitat de tercers més "
+"àmplia"
+
+#: admin/options.php:1350
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "Control d'accés a revisions millorat amb els plugins de PublishPress"
+
+#: admin/options.php:1361
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"En mode millorat, l'estat d'una revisió es desa pel esquema estàndard de "
+"WordPress. Alguns plugins són incompatibles."
+
+#: admin/options.php:1368
+msgid ""
+"Prevent Revision creation if the post already has another Revision in "
+"progress."
+msgstr ""
+"Prevenir la creació de revisions si la publicació ja té una altra revisió en "
+"curs."
+
+#: admin/options.php:1372
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Solucionar els conflictes dels plugins de memòria cau tornant a consultar "
+"les revisions abans de suprimir l'enllaç de Nova Revisió."
+
+#: admin/options.php:1402
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Si l'usuari no té un enllaç d'edició regular, canvia el nom de l'enllaç %s a "
+"\"Editar.\""
+
+#: admin/options.php:1405
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"Les etiquetes per defecte són \"No presentat per a aprovació\", \"Presentat "
+"per a aprovació\", \"Revisió programada\""
+
+#: admin/options.php:1423
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Habilita que el contingut publicat sigui copiat, editat, presentat per a "
+"aprovació i gestionat a la pantalla de %sNoves Revisions%s."
+
+#: admin/options.php:1437
+msgid "Submit Revision capabilities"
+msgstr "Capacitats de presentar revisions"
+
+#: admin/options.php:1455
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"Si l'usuari no pot editar la publicació publicada, requereix capacitats de "
+"presentar revisions (revise_posts, revise_others_pages, etc.)"
+
+#: admin/options.php:1460 admin/options.php:1494
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr ""
+"Quan un %s és publicat, actualitza la data de publicació de la publicació a "
+"l'hora actual."
+
+#: admin/options.php:1463 admin/options.php:1497
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr ""
+"Quan un %s és publicat, actualitza la data modificada de la publicació a "
+"l'hora actual."
+
+#: admin/options.php:1466
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Quan es crea una nova revisió per qualsevol usuari que tingui permís per "
+"enviar revisions, envieu-la automàticament."
+
+#: admin/options.php:1469
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Auto-enviar revisions si l'usuari pot editar directament la publicació "
+"principal."
+
+#: admin/options.php:1472
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"Això permet una aprovació immediata dins de la pantalla Comparar. Si es "
+"desactiva, es proporciona un enllaç de Previsualització en el seu lloc."
+
+#: admin/options.php:1488
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Si es modifica una publicació o pàgina actualment publicada i es fixa una "
+"data futura, el canvi no s'aplicarà fins a la data seleccionada."
+
+#: admin/options.php:1500
+msgid ""
+"Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
+"publication will fail if this setting is disabled."
+msgstr ""
+"Publicar revisions programades utilitzant el mecanisme WP-Cron. En alguns "
+"llocs, la publicació fallarà si aquesta configuració està desactivada."
+
+#: admin/options.php:1504
+msgid ""
+"Publish scheduled revisions asynchronously, via a secondary http request "
+"from the server.  This is usually best since it eliminates delay, but some "
+"servers may not support it."
+msgstr ""
+"Publicar revisions programades de manera asincrònica, a través d'una "
+"sol·licitud http secundària del servidor. Això és normalment millor ja que "
+"elimina el retard, però alguns servidors poden no suportar-ho."
+
+#: admin/options.php:1509
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"El disparador WP-Cron està desactivat, però les tasques programades "
+"s'executen encara mitjançant un disparador personalitzat."
+
+#: admin/options.php:1523
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr "Titula el botó com a \"Aprovar i Publicar\" o \"Aprovar i Programar.\""
+
+#: admin/options.php:1534
+msgid "This may improve compatibility with some plugins."
+msgstr "Això pot millorar la compatibilitat amb alguns complements."
+
+#: admin/options.php:1569
+#, php-format
+msgid "Control New Revisions access with the %s."
+msgstr "Controla l'accés a les Noves Revisions amb el %s."
+
+#: admin/options.php:1575
+msgid "Control New Revisions access with the manage_revision_queue capability."
+msgstr ""
+"Controla l'accés a les Noves Revisions amb la capacitat "
+"manage_revision_queue."
+
+#: admin/options.php:1595
+#, php-format
+msgid "Users will need the %s to edit others' Unsubmitted Revisions."
+msgstr ""
+"Els usuaris necessitaran el %s per editar les Revisions No Enviades d'altres."
+
+#: admin/options.php:1601
+msgid ""
+"Users will need the manage_unsubmitted_revisions capability to edit others' "
+"Unsubmitted Revisions."
+msgstr ""
+"Els usuaris necessitaran la capacitat manage_unsubmitted_revisions per "
+"editar les Revisions No Enviades d'altres."
+
+#: admin/options.php:1621 admin/options.php:1649
+#, php-format
+msgid "If the user can't edit the published post, require the %s."
+msgstr "Si l'usuari no pot editar la publicació publicada, requereix el %s."
+
+#: admin/options.php:1627
+msgid ""
+"If the user can't edit the published post, require the edit_others_revisions "
+"capability."
+msgstr ""
+"Si l'usuari no pot editar la publicació publicada, requereix la capacitat "
+"edit_others_revisions."
+
+#: admin/options.php:1655
+msgid ""
+"If the user can't edit the published post, require the list_others_revisions "
+"capability."
+msgstr ""
+"Si l'usuari no pot editar la publicació publicada, requereix la capacitat "
+"list_others_revisions."
+
+#: admin/options.php:1660
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Salt de les restriccions anteriors per a les revisions d'altres sobre les "
+"pròpies publicacions de l'usuari connectat."
+
+#: admin/options.php:1671
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Regenerar les banderes \"la publicació té revisió\""
+
+#: admin/options.php:1674
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Aplica aquesta operació de manteniment si les etiquetes Has Revision a les "
+"pantalles de Publicacions / Pàgines no coincideixen amb la llista de Noves "
+"Revisions."
+
+#: admin/options.php:1699
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "Per a notícies millorades, instal·la %sPublishPress Planner%s."
+
+#: admin/options.php:1712
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "Per a notificacions millorades, actualitzeu %sPublishPress Planner%s."
+
+#: admin/options.php:1734
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Envieu notificacions d'accions de revisió utilitzant el sistema de "
+"notificacions personalitzable %1$sPublishPress Planner Notifications%2$s."
+
+#: admin/options.php:1735
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Actualitzeu a Revisions Pro per enviar notificacions d'accions de revisió "
+"utilitzant el sistema de notificacions personalitzable %1$sPublishPress "
+"Planner Notifications%2$s."
+
+#: admin/options.php:1747
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Els usuaris que coincideixen amb la configuració de Planner > Notifications "
+"reben notificacions de revisió només si poden editar la publicació publicada."
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Never"
+msgstr "Mai"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "By default"
+msgstr "Per defecte"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Always"
+msgstr "Sempre"
+
+#: admin/options.php:1800 admin/options.php:1847
+msgid "select recipients"
+msgstr "seleccioneu destinataris"
+
+#: admin/options.php:1861
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"Per evitar fallades de notificació, emmagatzemeu correus electrònics per a "
+"l'enviament retardat un cop s'excedeixen els límits de minuts, hores o dies"
+
+#: admin/options.php:1882
+msgid "Notification Buffer"
+msgstr "Buffer de Notificacions"
+
+#: admin/options.php:1910
+msgid "Notification Log"
+msgstr "Registre de Notificacions"
+
+#: admin/options.php:1939
+msgid "Purge Notification Buffer"
+msgstr "Netejar el Buffer de Notificacions"
+
+#: admin/options.php:1945
+msgid "Truncate Notification Log"
+msgstr "Truncar el Registre de Notificacions"
+
+#: admin/options.php:1951
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Enviat en l'últim minut: %d / %d"
+
+#: admin/options.php:1952
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Enviat en l'última hora: %d / %d"
+
+#: admin/options.php:1953
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Enviat en l'últim dia: %d / %d"
+
+#: admin/options.php:1960
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Segons fins al pròxim temps de processament del buffer: %d"
+
+#: admin/options.php:1971
+msgid "Show Notification Log / Buffer"
+msgstr "Mostrar Registre de Notificacions / Buffer"
+
+#: admin/options.php:1973
+msgid "Show with message content"
+msgstr "Mostrar amb el contingut del missatge"
+
+#: admin/options.php:1995
+msgid "Ready to enhance your revision notifications?"
+msgstr "Preparat per millorar les vostres notificacions de revisió?"
+
+#: admin/options.php:1998
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Actualitza a Revisions Pro per a la integració amb el nostre marc de "
+"notificacions de PublishPress Planner."
+
+#: admin/options.php:2004
+msgid "Customize notification message and subject"
+msgstr "Personalitza el missatge i l'assumpte de la notificació"
+
+#: admin/options.php:2007
+msgid "Notify for a specific post type, category or term"
+msgstr "Notifica per a un tipus de post, categoria o terme específic"
+
+#: admin/options.php:2010
+msgid "Target specific roles, users, or user groups"
+msgstr "Dirigeix-te a rols, usuaris o grups d'usuaris específics"
+
+#: admin/options.php:2013
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "Amb PublishPress Planner Pro, envia notificacions a un canal de Slack"
+
+#: admin/options.php:2040 admin/options.php:2601
+msgid "Pro Feature"
+msgstr "Funció Pro"
+
+#: admin/options.php:2041
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr ""
+"Actualitza a Revisions Pro per desbloquejar la integració de notificacions "
+"de Planner."
+
+#: admin/options.php:2042
+msgid ""
+"Customize notification content and recipients for each notification type."
+msgstr ""
+"Personalitza el contingut de la notificació i els destinataris per a cada "
+"tipus de notificació."
+
+#: admin/options.php:2066
+msgid "Some themes may block revision preview."
+msgstr "Alguns temes poden bloquejar la vista prèvia de revisions."
+
+#: admin/options.php:2083
+msgid "Published Post Slug"
+msgstr "Slug del post publicat"
+
+#: admin/options.php:2084
+msgid "Revision Slug"
+msgstr "Slug de revisió"
+
+#: admin/options.php:2085
+msgid "Revision ID only"
+msgstr "Només ID de revisió"
+
+#: admin/options.php:2100
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Alguns temes o plugins poden requerir el tipus de vincle Slug de revisió o "
+"ID de revisió per a una càrrega adequada de la plantilla i visualització "
+"dels camps."
+
+#: admin/options.php:2109
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr ""
+"L'argument de vista prèvia de la revisió es configura mitjançant la "
+"definició de constants: %s"
+
+#: admin/options.php:2116
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Ajusta els enllaços de vista prèvia per utilitzar l'argument \"rv_preview\" "
+"en lloc de \"preview\". Experimenta per veure quin funciona millor amb el "
+"teu tema."
+
+#: admin/options.php:2120
+msgid ""
+"Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Alguns temes poden requerir aquesta configuració per a una visualització "
+"correcta de la vista prèvia de revisions."
+
+#: admin/options.php:2139
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"Això hauria d'estar habilitat habitualment, excepte per evitar conflictes "
+"amb les dades postmeta d'un altre plugin."
+
+#: admin/options.php:2163
+#, php-format
+msgid ""
+"If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Si l'usuari no pot publicar, requereix el %s per editar els posts no "
+"publicats d'altres."
+
+#: admin/options.php:2169
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to edit "
+"others' unpublished Posts."
+msgstr ""
+"Si l'usuari no pot publicar, requereix la capacitat edit_others_drafts per "
+"editar els posts no publicats d'altres."
+
+#: admin/options.php:2175
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Si els permisos específics del post restringeixen o amplien l'accés a un "
+"post, aplica aquests permisos també a les seves revisions."
+
+#: admin/options.php:2187
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr ""
+"Rank Math SEO pot prevenir l'actualització de la revisió en alguns llocs."
+
+#: admin/options.php:2194 includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML Gestió de Traduccions"
+
+#: admin/options.php:2199
+msgid "Sync \"Needs Update\" flags"
+msgstr "Sincronitzar les banderes \"Necessita actualització\""
+
+#: admin/options.php:2203
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Estableix \"Necessita actualització\" per a qualsevol publicació amb "
+"traduccions que va ser actualitzada (possiblement per aprovació de revisió) "
+"més recentment que les seves traduccions."
+
+#: admin/options.php:2221
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr ""
+"Mostra subtítols descriptius per a la configuració de Revisiones de "
+"PublishPress."
+
+#: admin/options.php:2239
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"La configuració del plugin, el contingut de Noves Revisiones i les dades "
+"relacionades seran eliminades, però només després que la darrera còpia de "
+"Revisiones / Revisiones Pro sigui eliminada."
+
+#: admin/options.php:2260
+msgid "Unlock Pro Integrations"
+msgstr "Desbloquejar Integracions Pro"
+
+#: admin/options.php:2261
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Actualitza a la versió Pro per a una compatibilitat òptima i suport "
+"professional ràpid."
+
+#: admin/options.php:2279 admin/options.php:2532
+msgid "Admin"
+msgstr "admin"
+
+#: admin/options.php:2282 admin/options.php:2530
+msgid "Builder"
+msgstr "Constructor"
+
+#: admin/options.php:2285 admin/options.php:2534
+msgid "Cache"
+msgstr "Còpia cau"
+
+#: admin/options.php:2288
+msgid "E-Commerce"
+msgstr "Comerç electrònic"
+
+#: admin/options.php:2291 admin/options.php:2540
+msgid "Fields"
+msgstr "Camp"
+
+#: admin/options.php:2295
+msgid "Multilingual"
+msgstr "Multilingüe"
+
+#: admin/options.php:2299 admin/options.php:2536
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2302 admin/options.php:2546
+msgid "Workflow"
+msgstr "Flux de treball"
+
+#: admin/options.php:2384
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Especifica quines configuracions de Revisiones de PublishPress s'han de "
+"controlar a tota la xarxa. Les configuracions no seleccionades es controlen "
+"per separat a cada lloc."
+
+#: admin/options.php:2394
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/options.php:2430
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "control a tota la xarxa de \"%s\""
+
+#: admin/options.php:2457
+msgid "Save Changes"
+msgstr "Desa els canvis"
+
+#: admin/options.php:2458
+msgid "Revert to Defaults"
+msgstr "Torna als valors per defecte"
+
+#: admin/options.php:2460
+msgid ""
+"All settings in this form (including those on unselected tabs) will be reset "
+"to DEFAULTS.  Are you sure?"
+msgstr ""
+"Totes les configuracions d'aquest formulari (incloent les de les pestanyes "
+"no seleccionades) seran restablertes a VALORS PER DEFECTE. Esteu segurs?"
+
+#: admin/options.php:2538
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2542
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2544
+msgid "Community"
+msgstr "Community"
+
+#: admin/options.php:2556
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2561
+msgid "Supported"
+msgstr "Supported"
+
+#: admin/options.php:2564 admin/options.php:2618
+msgid "Active Plugin"
+msgstr "Plugin Actiu"
+
+#: admin/options.php:2576
+msgid "Supported by PublishPress Revisions"
+msgstr "Suportat per PublishPress Revisions"
+
+#: admin/options.php:2578
+msgid "Supported by Revisions Pro"
+msgstr "Suportat per Revisions Pro"
+
+#: admin/options.php:2591
+msgid "Integration Active"
+msgstr "Integració Activa"
+
+#: admin/options.php:2593
+msgid "Upgrade to Pro to enable this integration"
+msgstr "Actualitzeu a Pro per habilitar aquesta integració"
+
+#: admin/options.php:2602
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr ""
+"Desbloqueu la integració %s per millorar la vostra solució de revisions."
+
+#: admin/options.php:2618
+msgid "Active Plugin Integration"
+msgstr "Integració del Plugin Actiu"
+
+#: admin/options.php:2628
+msgid "Supported Plugin Integration"
+msgstr "Integració del Plugin Suportat"
+
+#: admin/options.php:2638
+msgid "Supported Plugin"
+msgstr "Plugin Suportat"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Ara"
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(en aprovació)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid "Save changes to continue."
+msgstr "Desa els canvis per continuar."
+
+#: admin/post-editor-workflow-ui_rvy.php:39
+msgid "Please save changes to the revision before submitting it."
+msgstr "Si us plau, deseu els canvis a la revisió abans de enviar-la."
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+msgid "Preview this Revision"
+msgstr "Veure aquesta Revisió"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Publish"
+msgstr "Veure / Publicar"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Approve"
+msgstr "Veure / Aprovar"
+
+#: admin/post-editor-workflow-ui_rvy.php:82
+msgid "View / Moderate saved revision"
+msgstr "Veure / Moderar revisió desada"
+
+#: admin/post-editor-workflow-ui_rvy.php:85
+msgid "View / Submit saved revision"
+msgstr "Veure / Enviar revisió desada"
+
+#: admin/post-editor-workflow-ui_rvy.php:94
+msgid "View unsaved changes"
+msgstr "Veure canvis no desats"
+
+#: admin/post-editor-workflow-ui_rvy.php:98
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Edició de Revisió"
+msgstr[1] "%s%s Edicions de Revisió"
+
+#: admin/post-editor-workflow-ui_rvy.php:109
+msgid "Revision Submission Error"
+msgstr "Error en l'Enviament de la Revisió"
+
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:234 front_rvy.php:485
+msgid "Edit"
+msgstr "Editar"
+
+#: admin/post-editor-workflow-ui_rvy.php:132
+msgid "Approve and Publish"
+msgstr "Aprovar i Publicar"
+
+#: admin/post-editor-workflow-ui_rvy.php:137 rvy_init-functions.php:308
+#: rvy_init-functions.php:327 rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+msgid "Update in progress..."
+msgstr "Actualització en curs..."
+
+#: admin/post-editor-workflow-ui_rvy.php:141
+msgid "Approve and Schedule"
+msgstr "Aprovar i Programar"
+
+#: admin/post-editor-workflow-ui_rvy.php:174 rvy_init-functions.php:297
+#: rvy_init-functions.php:315 rvy_init-functions.php:333
+#: rvy_init-functions.php:353 rvy_init-functions.php:370
+#: rvy_init-functions.php:387 rvy_init-functions.php:500
+msgid "Update Revision"
+msgstr "Actualitzar Revisió"
+
+#: admin/post-editor-workflow-ui_rvy.php:240
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Actualitzar la publicació abans de crear %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:247
+msgid "Error Creating Revision"
+msgstr "Error en Crear la Revisió"
+
+#: admin/post-editor-workflow-ui_rvy.php:263
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "Per als canvis al camp personalitzat, edita un %s programat."
+
+#: admin/post-edit_rvy.php:28 admin/post-edit_rvy.php:141
+msgid "Current Time"
+msgstr "Hora Actual"
+
+#: admin/post-edit_rvy.php:60 front_rvy.php:521
+msgid "Delete"
+msgstr "Eliminar"
+
+#: admin/post-edit_rvy.php:168
+msgid "View revision in progress"
+msgstr "Veure revisió en curs"
+
+#: admin/post-edit_rvy.php:191
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr ""
+"Comparar aquesta revisió amb la còpia publicada, o amb altres revisions"
+
+#: admin/post-edit_rvy.php:226
+msgid "View / moderate saved revision"
+msgstr "Veure / moderar la revisió desada"
+
+#: admin/post-edit_rvy.php:229
+msgid "View saved revision"
+msgstr "Veure la revisió desada"
+
+#: admin/restrict-editor-features.php:113
+msgid "Status & visibility"
+msgstr ""
+
+#: admin/restrict-editor-features.php:120
+msgid "Permalink"
+msgstr ""
+
+#: admin/restrict-editor-features.php:149
+#, fuzzy
+#| msgid "Featured Image"
+msgid "Featured image"
+msgstr "Imatge destacada"
+
+#: admin/revision-action_rvy.php:532 admin/revision-action_rvy.php:618
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Avís d'aprovació de la revisió"
+
+#: admin/revision-action_rvy.php:533
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "S'ha aprovat una revisió del %1$s \"%2$s\"."
+
+#: admin/revision-action_rvy.php:537
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "El presentador va ser %1$s."
+
+#: admin/revision-action_rvy.php:541 admin/revision-action_rvy.php:627
+#, php-format
+msgid "It will be published on %s"
+msgstr "Es publicarà el %s"
+
+#: admin/revision-action_rvy.php:545 admin/revision-action_rvy.php:631
+msgid "Preview it here: "
+msgstr "Previsualitza-ho aquí: "
+
+#: admin/revision-action_rvy.php:548 admin/revision-action_rvy.php:634
+msgid "Editor: "
+msgstr "Editor: "
+
+#: admin/revision-action_rvy.php:550 admin/revision-action_rvy.php:636
+#: admin/revision-action_rvy.php:1680 admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1777
+msgid "View it online: "
+msgstr "Veure-ho en línia: "
+
+#: admin/revision-action_rvy.php:619
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "La revisió que vas presentar per al %1$s \"%2$s\" s'ha aprovat."
+
+#: admin/revision-action_rvy.php:1672 admin/revision-action_rvy.php:1700
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s Avís de Publicació"
+
+#: admin/revision-action_rvy.php:1673
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr ""
+"La revisió programada que vas presentar per al %1$s \"%2$s\" s'ha publicat."
+
+#: admin/revision-action_rvy.php:1701
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "S'ha publicat una revisió programada del teu %1$s \"%2$s\"."
+
+#: admin/revision-archive_rvy.php:11
+msgid "Revision for:"
+msgstr "Revisió per:"
+
+#: admin/revision-archive_rvy.php:90
+msgid "Search Revisions"
+msgstr "Cerca de Revisons"
+
+#: admin/revision-queue_rvy.php:9 admin/revision-queue_rvy.php:21
+msgid "You are not allowed to manage revisions."
+msgstr "No tens permís per gestionar les revisions."
+
+#: admin/revision-queue_rvy.php:13
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s i %s estan desactivats. Veure Revisons > Configuració."
+
+#: admin/revision-queue_rvy.php:82
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s revisió presentada."
+msgstr[1] "%s revisions presentades."
+
+#: admin/revision-queue_rvy.php:83
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s revisió rebutjada."
+msgstr[1] "%s revisions rebutjades."
+
+#: admin/revision-queue_rvy.php:84
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s revisió aprovada."
+msgstr[1] "%s revisions aprovades."
+
+#: admin/revision-queue_rvy.php:85
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s revisió no programada."
+msgstr[1] ""
+
+#: admin/revision-queue_rvy.php:86
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s revisió publicada."
+msgstr[1] ""
+
+#: admin/revision-queue_rvy.php:133
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "de %s \"%s\""
+
+#: admin/revision-queue_rvy.php:136
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "de %s"
+
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "de \"%s\""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "per %s "
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "el %s"
+
+#: admin/revision-queue_rvy.php:156
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Autor de la publicació: %s)"
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid "New Revisions %s"
+msgstr "Noves revisions %s"
+
+#: admin/revision-ui_rvy.php:45
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "Els editors seran notificats (però no es poden seleccionar aquí)."
+
+#: admin/revision-ui_rvy.php:47
+msgid "No email notifications will be sent."
+msgstr "No s'enviaran notificacions per correu electrònic."
+
+#. translators: revision date format, see http://php.net/date
+#: admin/revision-ui_rvy.php:78
+msgctxt "revision date format"
+msgid "j F, Y @ g:i a"
+msgstr "j F, Y @ g:i a"
+
+#: admin/revision-ui_rvy.php:97
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (Actual)"
+
+#: admin/revision-ui_rvy.php:101
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Desa automàticament)"
+
+#: admin/revision-ui_rvy.php:107
+msgctxt "revision schedule date format"
+msgid "j F, Y, g:i a"
+msgstr "j F, Y, g:i a"
+
+#: admin/revision-ui_rvy.php:112
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Data de publicació: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:114
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Publicació sol·licitada: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:287
+msgid "The revision will be deleted. Are you sure?"
+msgstr "La revisió s'eliminarà. Estàs segur?"
+
+#: admin/revision-ui_rvy.php:380
+msgid "Modified Date"
+msgstr "Data modificada"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "Revisió de previsualització en curs"
+
+#. translators: Publish box date formt, see http://php.net/date
+#: admin/RevisionEditSubmitMetabox.php:180
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Publicar %son aprovació%s"
+
+#: admin/revisions.php:20
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Nota:</strong> Per a la visualització de revisions, afegeix el "
+"següent codi a foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:61
+msgid "Revision of this post is not allowed."
+msgstr "No es permet la revisió d'aquest post."
+
+#: admin/revisions.php:64
+msgid "No revision specified."
+msgstr "No s'ha especificat cap revisió."
+
+#: admin/revisions.php:72
+msgid "Past"
+msgstr "Passat"
+
+#: admin/revisions.php:135
+#, php-format
+msgid "Revisions of %s"
+msgstr "Revisions de %s"
+
+#: admin/revisions.php:165
+msgid "The requested revision does not exist."
+msgstr "La revisió sol·licitada no existeix."
+
+#: admin/revisions.php:253
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:274
+#, php-format
+msgid "no %s revisions available."
+msgstr "no %s revisions disponibles."
+
+#: classes/PublishPress/Revisionary.php:107 includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "Compatibilitat amb els camps personalitzats ACF."
+
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:200
+msgid "Store custom fields with revisions"
+msgstr "Emmagatzemar camps personalitzats amb revisions"
+
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:201
+msgid "Display custom field changes"
+msgstr "Mostrar canvis en els camps personalitzats"
+
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:202
+msgid "Update custom fields on revision publication"
+msgstr "Actualitzar camps personalitzats en la publicació de revisions"
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "Suport al model de dades ACFE."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "Suport al tipus de dada single_meta d'ACFE"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "Correcta visualització del camp a la pantalla de Comparar"
+
+#: classes/PublishPress/Revisionary.php:136 includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Integració amb l'editor del front end de Beaver Builder."
+
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:156
+#: classes/PublishPress/Revisionary.php:171
+msgid "Front end Revision submission"
+msgstr "Enviament de revisió del front end"
+
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:172
+msgid "Front end Revision editing"
+msgstr "Edició de revisió del front end"
+
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:173
+msgid "Revision preview and redirects"
+msgstr "Vista prèvia de revisió i redireccions"
+
+#: classes/PublishPress/Revisionary.php:151
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Integració amb Divi Builder i Divi Theme."
+
+#: classes/PublishPress/Revisionary.php:166 includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:167
+msgid "Integration with Elementor's front end editor."
+msgstr "Integració amb l'editor de front-end d'Elementor."
+
+#: classes/PublishPress/Revisionary.php:181
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:182
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Compatibilitat amb la memòria cau de Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:186
+msgid "Clear cache on revision creation"
+msgstr "Esborrar la memòria cau en la creació de revisions"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Trigger update on revision approval"
+msgstr "Activar actualització en l'aprovació de revisions"
+
+#: classes/PublishPress/Revisionary.php:195 includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:196
+msgid "Compatibility with Pods custom fields."
+msgstr "Compatibilitat amb els camps personalitzats de Pods."
+
+#: classes/PublishPress/Revisionary.php:210
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:211
+msgid "Compatibility with Polylang translation."
+msgstr "Compatibilitat amb la traducció de Polylang."
+
+#: classes/PublishPress/Revisionary.php:215
+msgid "Revisions carry over Polylang data"
+msgstr "Les revisions transmeten dades de Polylang"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Translation retained on Revision approval"
+msgstr "La traducció es conserva en l'aprovació de la revisió"
+
+#: classes/PublishPress/Revisionary.php:224
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:225
+msgid "PublishPress Planner Integration."
+msgstr "Integració de PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:229
+msgid "Planner Notifications for revision actions"
+msgstr "Notificacions de Planner per a accions de revisió"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "Revision schedule shown in Calendar"
+msgstr "Horari de revisions mostrat al Calendari"
+
+#: classes/PublishPress/Revisionary.php:238 includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:239
+msgid "Revision submission and approval for products."
+msgstr "Presentació i aprovació de revisions per a productes."
+
+#: classes/PublishPress/Revisionary.php:243
+msgid "Product revisions"
+msgstr "Revisions de producte"
+
+#: classes/PublishPress/Revisionary.php:244
+msgid "Compatible with Product Variations"
+msgstr "Compatible amb les Variacions de Producte"
+
+#: classes/PublishPress/Revisionary.php:245
+msgid "Priority on ongoing compatibility"
+msgstr "Prioritat en la compatibilitat en curs"
+
+#: classes/PublishPress/Revisionary.php:253 includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:254
+msgid "Multilingual revisioning with WPML."
+msgstr "Revisió multilingüe amb WPML."
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Language-specific revisions"
+msgstr "Revisions específiques de l'idioma"
+
+#: classes/PublishPress/Revisionary.php:259
+msgid "Translation Management integration"
+msgstr "Integració de Gestió de Traducions"
+
+#: classes/PublishPress/Revisionary.php:267
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:268
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "Prevent indexing of revisions"
+msgstr "Prevenir la indexació de revisions"
+
+#: classes/PublishPress/Revisionary.php:273
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Compatibilitat per a Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:274
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Comparar revisions amb camps de Yoast SEO"
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "Estat de la revisió"
+
+#: front_rvy.php:436
+#, php-format
+msgid "%sManage%s"
+msgstr "%sGestionar%s"
+
+#: front_rvy.php:447
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sComparar%s%sVeure la publicació publicada%s"
+
+#: front_rvy.php:459 front_rvy.php:474
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sVeure la publicació publicada%s"
+
+#: front_rvy.php:549 rvy_init-functions.php:307 rvy_init-functions.php:363
+msgid "Submit"
+msgstr "Enviar"
+
+#: front_rvy.php:561 front_rvy.php:563 front_rvy.php:611 front_rvy.php:613
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Això és un %s. %s %s %s"
+
+#: front_rvy.php:579
+msgid "Decline"
+msgstr "Declinar"
+
+#: front_rvy.php:592 front_rvy.php:594
+#, php-format
+msgid "This is a %s (requested publish date: %s). %s %s %s"
+msgstr "Això és un %s (data de publicació sol·licitada: %s). %s %s %s"
+
+#: front_rvy.php:598 front_rvy.php:600
+#, php-format
+msgid "Revision status: %s (requested publish date: %s) %s %s %s"
+msgstr "Estat de la revisió: %s (data de publicació sol·licitada: %s) %s %s %s"
+
+#: front_rvy.php:617 front_rvy.php:619
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Estat de la revisió: %s %s %s %s"
+
+#: front_rvy.php:632 rvy_init-functions.php:470
+msgid "Publish Now"
+msgstr "Publicar ara"
+
+#: front_rvy.php:635 front_rvy.php:637
+#, php-format
+msgid "This is a %s (for publication on %s). %s %s %s"
+msgstr "Això és un %s (per a la publicació a %s). %s %s %s"
+
+#: front_rvy.php:655
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "La revisió ha estat aprovada i ara està activa al lloc. %s"
+
+#: front_rvy.php:656
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Aquesta és la Revisió Actual. %s"
+
+#: front_rvy.php:673
+msgid "Restore"
+msgstr "Restaura"
+
+#: front_rvy.php:677 front_rvy.php:679
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Aquesta és una Revisió Anterior (de %s). %s %s"
+
+#: functions.php:537
+msgid "Scheduled Rev."
+msgstr "Rev. Programada"
+
+#: functions.php:542 functions.php:547
+msgid "Submitted Rev."
+msgstr "Rev. Enviada"
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"Estàs utilitzant PublishPress Revisions Free. La versió Pro té més funcions "
+"i suport. %sActualitza a Pro%s"
+
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Actualitza a Revisions Pro"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Actualitza a PublishPress Revisions Pro per a la integració amb funcions "
+"clau d'aquests plugins:"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: Notificacions Personalitzades"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "Detalls de la integració del plugin"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "Necessites Suport per a Revisió?"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr ""
+"Si necessites ajuda o tens una nova sol·licitud de funció, fes-nos-ho saber."
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "Sol·licita Suport"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr ""
+"La documentació detallada també està disponible al lloc web del plugin."
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "Veure la Base de Coneixement"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s consultes en %2$s segons. %3$s MB utilitzats."
+
+#: revision-creation_rvy.php:179
+#, fuzzy
+#| msgid "Could not insert revision into the database"
+msgid "Could not insert post into the database"
+msgstr "No es va poder inserir la revisió a la base de dades"
+
+#: revision-creation_rvy.php:401
+msgid "Could not insert revision into the database"
+msgstr "No es va poder inserir la revisió a la base de dades"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s Actualitzat"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s actualitzat a %2$s del %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:174
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s ha enviat canvis al %2$s \"%3$s\". Podeu revisar els canvis per a una "
+"possible publicació:"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "Previsualització i Aprovació: "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "Noves revisions: "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "Editar %s: "
+
+#: revisionary.php:120
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Aquest complement pot ser eliminat.</strong>"
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "Cada 2 minuts"
+
+#: rvy_init-functions.php:287 rvy_init-functions.php:299
+msgid "Working Copy"
+msgstr "Copia de treball"
+
+#: rvy_init-functions.php:288
+msgid "Create Working Copy"
+msgstr "Crear còpia de treball"
+
+#: rvy_init-functions.php:290
+msgid "Creating Working Copy..."
+msgstr "Creant còpia de treball..."
+
+#: rvy_init-functions.php:291
+msgid "Working Copy ready"
+msgstr "Copia de treball llesta"
+
+#: rvy_init-functions.php:292 rvy_init-functions.php:310
+msgid "Approve Changes"
+msgstr "Aprovar canvis"
+
+#: rvy_init-functions.php:294 rvy_init-functions.php:312
+msgid "Approving Changes..."
+msgstr "Aprovant canvis..."
+
+#: rvy_init-functions.php:295 rvy_init-functions.php:313
+#: rvy_init-functions.php:331
+msgid "Publish Changes"
+msgstr "Publicar canvis"
+
+#: rvy_init-functions.php:296 rvy_init-functions.php:314
+#: rvy_init-functions.php:332 rvy_init-functions.php:352
+#: rvy_init-functions.php:369 rvy_init-functions.php:386
+msgid "Save Revision"
+msgstr "Desar revisió"
+
+#: rvy_init-functions.php:298
+msgid "Working Copies"
+msgstr "Còpies de treball"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Còpies de treball <span class=\"count\">(%d)</span>"
+msgstr[1] "Còpia de treball <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:305 rvy_init-functions.php:317
+msgid "Change Request"
+msgstr "Sol·licitud de canvi"
+
+#: rvy_init-functions.php:306
+msgid "Submit Change Request"
+msgstr "Enviar sol·licitud de canvi"
+
+#: rvy_init-functions.php:309
+msgid "Changes Submitted"
+msgstr "Canvis enviats"
+
+#: rvy_init-functions.php:316
+msgid "Change Requests"
+msgstr "Sol·licituds de canvi"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Sol·licituds de canvi <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Sol·licituds de canvi <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:319
+msgid "Enable Change Requests"
+msgstr "Habilitar sol·licituds de canvi"
+
+#: rvy_init-functions.php:324 rvy_init-functions.php:335
+msgid "Scheduled Change"
+msgstr "Canvi programat"
+
+#: rvy_init-functions.php:325 rvy_init-functions.php:326
+#: rvy_init-functions.php:329 rvy_init-functions.php:330
+msgid "Schedule Changes"
+msgstr "Programar canvis"
+
+#: rvy_init-functions.php:328
+msgid "Changes are Scheduled."
+msgstr "Els canvis estan programats."
+
+#: rvy_init-functions.php:334
+msgid "Scheduled Changes"
+msgstr "Canvis programats"
+
+#: rvy_init-functions.php:336
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Programat <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Programat <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:344
+msgid "Unsubmitted Revision"
+msgstr "Revisió no enviada"
+
+#: rvy_init-functions.php:345 rvy_init-functions.php:346
+msgid "Create Revision"
+msgstr "Crear revisió"
+
+#: rvy_init-functions.php:347
+msgid "Creating Revision..."
+msgstr "Creant revisió..."
+
+#: rvy_init-functions.php:348
+msgid "The Revision is ready to edit."
+msgstr "La revisió està llesta per editar."
+
+#: rvy_init-functions.php:348
+msgid "Revision ready to edit."
+msgstr "Revisió llesta per editar."
+
+#: rvy_init-functions.php:349 rvy_init-functions.php:366
+#: rvy_init-functions.php:383
+msgid "Approve Revision"
+msgstr "Aprovar revisió"
+
+#: rvy_init-functions.php:351 rvy_init-functions.php:368
+#: rvy_init-functions.php:385
+msgid "Publish Revision"
+msgstr "Publicar revisió"
+
+#: rvy_init-functions.php:354
+msgid "Unsubmitted Revisions"
+msgstr "Revisions no enviades"
+
+#: rvy_init-functions.php:355
+msgid "Not Submitted"
+msgstr "No enviat"
+
+#: rvy_init-functions.php:356
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "No enviat <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "No enviat <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:361
+msgid "Submitted Revision"
+msgstr "Revisió Enviada"
+
+#: rvy_init-functions.php:362 rvy_init-functions.php:503
+msgid "Submit Revision"
+msgstr "Envia Revisió"
+
+#: rvy_init-functions.php:365
+msgid "The Revision is Submitted"
+msgstr "La Revisió està Enviada"
+
+#: rvy_init-functions.php:365
+msgid "Revision Submitted"
+msgstr "Revisió Enviada"
+
+#: rvy_init-functions.php:371
+msgid "Submitted Revisions"
+msgstr "Revisions Enviades"
+
+#: rvy_init-functions.php:372
+msgid "Submitted"
+msgstr "Enviat"
+
+#: rvy_init-functions.php:373
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Enviat <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Enviat <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:378
+msgid "Scheduled Revision"
+msgstr "Revisió Programada"
+
+#: rvy_init-functions.php:379
+msgid "Schedule Revision"
+msgstr "Programa Revisió"
+
+#: rvy_init-functions.php:380
+msgid "Schedule"
+msgstr "Programa"
+
+#: rvy_init-functions.php:382
+msgid "The Revision is Scheduled"
+msgstr "La Revisió està Programada"
+
+#: rvy_init-functions.php:382
+msgid "Revision Scheduled"
+msgstr "Revisió Programada"
+
+#: rvy_init-functions.php:388
+msgid "Scheduled Revisions"
+msgstr "Revisions Programades"
+
+#: rvy_init-functions.php:389
+msgid "Scheduled"
+msgstr "Programat"
+
+#: rvy_init-functions.php:390
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Programat <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Programat <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:490
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sLes Meves Còpies & Canvis%s(%s)"
+msgstr[1] "%sLes Meves Còpies & Canvis%s(%s)"
+
+#: rvy_init-functions.php:491
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sLes Meves Revisons%s(%s)"
+msgstr[1] "%sLes Meves Revisons%s(%s)"
+
+#: rvy_init-functions.php:493
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sRevisions als Meus Posts%s(%s)</span>"
+msgstr[1] "%sRevisions als Meus Posts%s(%s)"
+
+#: rvy_init-functions.php:498
+msgid "Post Author"
+msgstr "Autor del Post"
+
+#: rvy_init-functions.php:499
+msgid "Published Post"
+msgstr "Post Publicat"
+
+#: rvy_init-functions.php:504
+msgid "Submit Changes"
+msgstr "Enviar canvis"
+
+#: rvy_init-functions.php:708
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:720
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:811
+msgid ""
+"The unfiltered_html capability is required to create a revision of this post."
+msgstr ""
+"Es requereix la capacitat unfiltered_html per crear una revisió d'aquesta "
+"publicació."
+
+#: rvy_init-functions.php:1263
+msgid "Revision Workflow"
+msgstr "Flux de treball de revisió"

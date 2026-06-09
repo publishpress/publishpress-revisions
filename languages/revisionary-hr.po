@@ -1,0 +1,3040 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"POT-Creation-Date: 2026-06-02T20:52:49+00:00\n"
+"PO-Revision-Date: 2026-04-17 11:25+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: revisionary\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+">= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 "
+">= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
+
+#. Plugin Name of the plugin
+#: revisionary.php:3
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#. Plugin URI of the plugin
+#: revisionary.php:4
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#. Description of the plugin
+#: revisionary.php:5
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Održavajte objavljeni sadržaj s timskim radom i preciznošću koristeći model "
+"Revizije za podnošenje, odobravanje i planiranje promjena."
+
+#. Author of the plugin
+#: revisionary.php:6
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#. Author URI of the plugin
+#: revisionary.php:7
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/admin-init_rvy.php:112 admin/admin-init_rvy.php:348
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "Žao nam je, niste ovlašteni za brisanje ove revizije."
+
+#: admin/admin-init_rvy.php:204 admin/admin-init_rvy.php:314
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "Žao nam je, niste ovlašteni za odobravanje ove revizije."
+
+#: admin/admin-init_rvy.php:241
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "Žao nam je, niste ovlašteni za podnošenje ove revizije."
+
+#: admin/admin-init_rvy.php:279
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "Žao nam je, niste ovlašteni za odbijanje ove revizije."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "Revizija je vraćena."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "Revizija je zakazana za objavu."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "Revizija je objavljena."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"Za stvaranje revizije ovog posta potrebna je unfiltered_html sposobnost. "
+"Pogledajte %s dokumentaciju %s."
+
+#: admin/admin-posts_rvy.php:212 rvy_init-functions.php:798
+msgid "The post already has a revision in process."
+msgstr "Post već ima reviziju u procesu."
+
+#: admin/admin-posts_rvy.php:294 admin/class-list-table-archive.php:580
+#: rvy_init-functions.php:495
+msgid "Revision"
+msgstr "Revizija"
+
+#: admin/admin-posts_rvy.php:311
+msgid "Has Revision"
+msgstr "Ima reviziju"
+
+#: admin/admin-posts_rvy.php:322 admin/admin_rvy.php:410
+#: admin/admin_rvy.php:480 admin/options.php:159 admin/options.php:644
+msgid "New Revisions"
+msgstr "Nove revizije"
+
+#: admin/admin-posts_rvy.php:346 admin/history_rvy.php:87
+#: admin/history_rvy.php:91 admin/history_rvy.php:97 admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: admin/admin_lib-mu_rvy.php:10 admin/options.php:336
+msgid "PublishPress Revisions Network Settings"
+msgstr "Postavke mreže PublishPress Revizije"
+
+#: admin/admin_lib-mu_rvy.php:10
+msgid "Network Settings"
+msgstr "Postavke mreže"
+
+#: admin/admin_lib-mu_rvy.php:21 admin/options.php:338
+msgid "PublishPress Revisions Network Defaults"
+msgstr "Mrežne zadane postavke PublishPress Revizije"
+
+#: admin/admin_lib-mu_rvy.php:21
+msgid "Network Defaults"
+msgstr "Zadani mrežni postavke"
+
+#: admin/admin_rvy.php:166
+#, php-format
+msgid ""
+"Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
+"triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
+"Scheduling%s."
+msgstr ""
+"Zakazani revizije nisu dostupni jer je WP-Cron onemogućen. Ako pokrećete WP-"
+"Cron izvana, pogledajte %sRevizije > Postavke > Nove revizije > "
+"Zakazivanje%s."
+
+#: admin/admin_rvy.php:321
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Revizije"
+
+#: admin/admin_rvy.php:361
+msgid "Revisions"
+msgstr "Revizije"
+
+#: admin/admin_rvy.php:419 admin/admin_rvy.php:420 admin/admin_rvy.php:481
+#: admin/options.php:158 admin/options.php:545
+#: admin/revision-archive_rvy.php:81 admin/revisions.php:237
+msgid "Past Revisions"
+msgstr "Prošle revizije"
+
+#: admin/admin_rvy.php:437 admin/options.php:342
+msgid "PublishPress Revisions Settings"
+msgstr "Postavke revizija PublishPress"
+
+#: admin/admin_rvy.php:437 admin/admin_rvy.php:484 admin/options.php:153
+msgid "Settings"
+msgstr "Postavke"
+
+#: admin/admin_rvy.php:446 admin/admin_rvy.php:447 admin/admin_rvy.php:487
+#: admin/options.php:2022 admin/options.php:2049 admin/options.php:2265
+#: admin/options.php:2611 includes/CoreAdmin.php:212
+msgid "Upgrade to Pro"
+msgstr "Nadogradi na Pro"
+
+#: admin/admin_rvy.php:528
+msgid "Can edit draft Posts from other users."
+msgstr "Može uređivati nacrte objava drugih korisnika."
+
+#: admin/admin_rvy.php:529
+msgid "Can edit Revisions from other users."
+msgstr "Može uređivati revizije drugih korisnika."
+
+#: admin/admin_rvy.php:530
+msgid "Can see New Revisions from other users."
+msgstr "Može vidjeti nove revizije drugih korisnika."
+
+#: admin/admin_rvy.php:531
+msgid "Can access New Revisions."
+msgstr "Može pristupiti novim revizijama."
+
+#: admin/admin_rvy.php:532
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Može upravljati nepredanim revizijama."
+
+#: admin/admin_rvy.php:533
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr ""
+"Pregledaj revizije drugog korisnika (bez potrebnog pristupa za uređivanje)."
+
+#: admin/admin_rvy.php:534
+msgid "Restore an archived Revision as the current revision."
+msgstr "Vrati arhiviranu reviziju kao trenutnu reviziju."
+
+#: admin/admin_rvy.php:535
+msgid "View Past Revisions."
+msgstr "Pogledaj prošle revizije."
+
+#: admin/admin_rvy.php:565
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Ako vam se sviđa %1$s, molimo vas da nam ostavite %2$s ocjenu. Hvala!"
+
+#: admin/admin_rvy.php:576
+msgid "About PublishPress Revisions"
+msgstr "O PublishPress revizijama"
+
+#: admin/admin_rvy.php:576
+msgid "About"
+msgstr "O"
+
+#: admin/admin_rvy.php:578
+msgid "PublishPress Revisions Documentation"
+msgstr "Dokumentacija za revizije PublishPress"
+
+#: admin/admin_rvy.php:578
+msgid "Documentation"
+msgstr "Dokumentacija"
+
+#: admin/admin_rvy.php:580
+msgid "Contact the PublishPress team"
+msgstr "Kontaktirajte tim PublishPress"
+
+#: admin/admin_rvy.php:580
+msgid "Contact"
+msgstr "Kontakt"
+
+#: admin/agents_checklist_rvy.php:76
+#, php-format
+msgid "show current users (%d)"
+msgstr "prikaži trenutne korisnike (%d)"
+
+#: admin/agents_checklist_rvy.php:78
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "prikaži prihvatljive korisnike (%d)"
+
+#: admin/agents_checklist_rvy.php:87
+msgid "filter:"
+msgstr "filtriraj:"
+
+#: admin/agents_checklist_rvy.php:103
+msgid "select"
+msgstr "odaberi"
+
+#: admin/agents_checklist_rvy.php:111
+msgid "unselect"
+msgstr "ukloni odabir"
+
+#: admin/class-list-table-archive.php:22
+msgid ""
+"This was an update to a revision which is still in the workflow process."
+msgstr "Ovo je bila ažuriranje revizije koja je još uvijek u procesu rada."
+
+#: admin/class-list-table-archive.php:24
+msgid ""
+"This was an update to a revision which was published after further editing."
+msgstr ""
+"Ovo je bila ažuriranje revizije koja je objavljena nakon daljnjeg uređivanja."
+
+#: admin/class-list-table-archive.php:202
+#, php-format
+msgid "Revision Author: %s"
+msgstr "Autor revizije: %s"
+
+#: admin/class-list-table-archive.php:221
+#, php-format
+msgid "Post Author: %s"
+msgstr "Autor objave: %s"
+
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr "Datum revizije: %s"
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr "Odobrio: %s"
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr "Datum objave: %s"
+
+#: admin/class-list-table-archive.php:272
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Rezultati pretraživanja za \"%s\""
+
+#: admin/class-list-table-archive.php:540 admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "Izbriši reviziju"
+
+#: admin/class-list-table-archive.php:581 admin/class-list-table_rvy.php:756
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:582 rvy_init-functions.php:496
+msgid "Revised By"
+msgstr "Revidirao"
+
+#: admin/class-list-table-archive.php:583 rvy_init-functions.php:497
+msgid "Revision Date"
+msgstr "Datum revizije"
+
+#: admin/class-list-table-archive.php:584
+msgid "Action"
+msgstr "Akcija"
+
+#: admin/class-list-table-archive.php:585
+msgid "Approved By"
+msgstr "Odobrio"
+
+#: admin/class-list-table-archive.php:586
+msgid "Published Date"
+msgstr "Datum objave"
+
+#: admin/class-list-table-archive.php:587
+msgid "Published Author"
+msgstr "Autor objave"
+
+#: admin/class-list-table-archive.php:616 admin/class-list-table_rvy.php:922
+msgid "just now"
+msgstr "prije trenutka"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s minuta prije"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minute ago"
+msgstr "%s minuta prije"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hours ago"
+msgstr "%s sati prije"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hour ago"
+msgstr "%s sat prije"
+
+#: admin/class-list-table-archive.php:756 functions.php:466
+msgid "Scheduled Revision Publication"
+msgstr "Planirano objavljivanje revizije"
+
+#: admin/class-list-table-archive.php:760 functions.php:470
+msgid "Revision Publication"
+msgstr "Objavljivanje revizije"
+
+#: admin/class-list-table-archive.php:770 functions.php:480
+#, php-format
+msgid "Edit of %s"
+msgstr "Uređivanje %s"
+
+#: admin/class-list-table-archive.php:777 functions.php:487
+msgid "Edit of published Revision"
+msgstr "Uređivanje objavljene revizije"
+
+#: admin/class-list-table-archive.php:780 functions.php:490 functions.php:553
+msgid "Direct Edit"
+msgstr "Izravno uređivanje"
+
+#: admin/class-list-table-archive.php:839 admin/class-list-table_rvy.php:1461
+msgid "All Post Types"
+msgstr "Svi tipovi objava"
+
+#: admin/class-list-table-archive.php:872 admin/class-list-table_rvy.php:1496
+msgid "All Revision Authors"
+msgstr "Svi autori revizije"
+
+#: admin/class-list-table-archive.php:906 admin/class-list-table_rvy.php:1531
+msgid "All Revision Dates"
+msgstr "Svi datumi revizije"
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr "Svi datumi objave"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr "Svi odobravatelji"
+
+#: admin/class-list-table-archive.php:1036 admin/class-list-table_rvy.php:1602
+msgid "All Authors"
+msgstr "Svi autori"
+
+#: admin/class-list-table-archive.php:1058 admin/class-list-table_rvy.php:1638
+msgid "Reset Filters"
+msgstr "Poništi filtre"
+
+#: admin/class-list-table-archive.php:1089 admin/options.php:2276
+msgid "All"
+msgstr "Sve"
+
+#: admin/class-list-table-archive.php:1103
+msgid "My Revisions"
+msgstr "Moje revizije"
+
+#: admin/class-list-table-archive.php:1157
+#, php-format
+msgid "Compare Changes in %s"
+msgstr "Usporedi promjene u %s"
+
+#: admin/class-list-table-archive.php:1161 admin/class-list-table_rvy.php:1918
+#: admin/post-edit_rvy.php:190 admin/post-edit_rvy.php:254
+#: admin/post-edit_rvy.php:268
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Usporedi"
+
+#: admin/class-list-table-archive.php:1176 admin/class-list-table_rvy.php:1903
+#: admin/post-editor-workflow-ui_rvy.php:233
+msgid "Preview Revision"
+msgstr "Pregled revizije"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent revision"
+msgstr "Uredi roditeljsku reviziju"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent post"
+msgstr "Uredi roditeljski post"
+
+#: admin/class-list-table-archive.php:1191
+msgid "Edit Parent"
+msgstr "Uredi roditelja"
+
+#: admin/class-list-table-archive.php:1201
+msgid "List Revisions of this Post"
+msgstr "Popis revizija ovog posta"
+
+#: admin/class-list-table-archive.php:1202
+msgid "Filter"
+msgstr "Filtriraj"
+
+#: admin/class-list-table-archive.php:1214
+msgid "Delete Past Revision"
+msgstr "Izbriši prošlu reviziju"
+
+#: admin/class-list-table-archive.php:1302
+msgid "No revisions found."
+msgstr "Nema pronađenih revizija."
+
+#: admin/class-list-table_rvy.php:755 admin/options.php:762
+#: admin/options.php:925 admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "Status"
+
+#: admin/class-list-table_rvy.php:801
+msgid "View preview"
+msgstr "Pogledaj pregled"
+
+#: admin/class-list-table_rvy.php:818
+msgid "Y/m/d, g:i:s a"
+msgstr "Y/m/d, g:i:s a"
+
+#: admin/class-list-table_rvy.php:828
+msgid "Y/m/d g:i a"
+msgstr "Y/m/d g:i a"
+
+#: admin/class-list-table_rvy.php:835
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Zakazano objavljivanje: %s"
+
+#: admin/class-list-table_rvy.php:838
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Zatraženo objavljivanje: %s"
+
+#: admin/class-list-table_rvy.php:840
+msgid "This revision is not scheduled yet. It must be approved."
+msgstr "Ova revizija još nije zakazana. Mora biti odobrena."
+
+#: admin/class-list-table_rvy.php:890 admin/history_rvy.php:915
+msgid "No author"
+msgstr "Nema autora"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:964
+msgid "Edit published post"
+msgstr "Uredi objavljeni post"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:977
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Pogledajte samo revizije %s"
+
+#: admin/class-list-table_rvy.php:988 admin/class-list-table_rvy.php:995
+msgid "View published post"
+msgstr "Pogledajte objavljenu objavu"
+
+#: admin/class-list-table_rvy.php:1020
+msgid "Compare Past Revisions"
+msgstr "Usporedite prethodne revizije"
+
+#: admin/class-list-table_rvy.php:1021
+msgid "History"
+msgstr "Povijest"
+
+#: admin/class-list-table_rvy.php:1301
+msgid "My Activity"
+msgstr "Moja aktivnost"
+
+#: admin/class-list-table_rvy.php:1310
+#, php-format
+msgid "All %s"
+msgstr "Sve %s"
+
+#: admin/class-list-table_rvy.php:1400
+msgid "Unschedule"
+msgstr "Ukloni raspored"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1404 admin/class-list-table_rvy.php:1875
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Discard Revision"
+msgstr "Odbačena revizija"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "All Revision Statuses"
+msgstr "Svi statusi revizije"
+
+#: admin/class-list-table_rvy.php:1567
+msgid "All Posts"
+msgstr "Sve objave"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1852
+#: admin/post-editor-workflow-ui_rvy.php:234
+msgid "Edit Revision"
+msgstr "Uredi reviziju"
+
+#: admin/class-list-table_rvy.php:1917
+msgid "Compare Changes"
+msgstr "Usporedite promjene"
+
+#: admin/class-list-table_rvy.php:1929
+#, fuzzy
+#| msgid "Approve"
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Odobri"
+
+#: admin/class-list-table_rvy.php:1936
+#, fuzzy
+#| msgid "Publish Now"
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Objavi sada"
+
+#: admin/class-list-table_rvy.php:1945
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Odbaci"
+
+#: admin/edit-revision-classic-ui_rvy.php:111
+msgid "Publish <b>on approval</b>"
+msgstr "Objavi <b>na odobrenje</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:142
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Revizija ažurirana. %sPogledajte pregled%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:144
+msgid "Revision updated."
+msgstr "Revizija ažurirana."
+
+#: admin/history_rvy.php:87 admin/history_rvy.php:91
+msgid "Copy content to the clipboard."
+msgstr "Kopirajte sadržaj u međuspremnik."
+
+#: admin/history_rvy.php:97 admin/history_rvy.php:100
+msgid "Copy the above content to the clipboard."
+msgstr "Kopirajte gornji sadržaj u međuspremnik."
+
+#: admin/history_rvy.php:282 admin/history_rvy.php:302
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Usporedite %s od \"%s\""
+
+#: admin/history_rvy.php:659 admin/options.php:1169
+msgid "Post Date"
+msgstr "Datum objave"
+
+#: admin/history_rvy.php:660
+msgid "Post Parent"
+msgstr "Post roditelj"
+
+#: admin/history_rvy.php:661
+msgid "Menu Order"
+msgstr "Redoslijed izbornika"
+
+#: admin/history_rvy.php:662
+msgid "Comment Status"
+msgstr "Status komentara"
+
+#: admin/history_rvy.php:663
+msgid "Ping Status"
+msgstr "Status pinga"
+
+#: admin/history_rvy.php:803
+msgid "Page Template"
+msgstr "Predložak stranice"
+
+#: admin/history_rvy.php:806
+msgid "Featured Image"
+msgstr "Istaknuta slika"
+
+#: admin/history_rvy.php:810
+msgid "Beaver Builder Data"
+msgstr "Beaver Builder podaci"
+
+#: admin/history_rvy.php:811
+msgid "Beaver Builder Settings"
+msgstr "Beaver Builder postavke"
+
+#: admin/history_rvy.php:1062
+msgid "Scheduled for "
+msgstr "Planirano za "
+
+#: admin/history_rvy.php:1067
+msgid "Requested for "
+msgstr "Zatraženo za "
+
+#: admin/history_rvy.php:1072
+msgid "Modified "
+msgstr "Izmijenjeno "
+
+#: admin/history_rvy.php:1077
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s od sada"
+
+#: admin/history_rvy.php:1088
+msgid "M j, Y @ g:i a"
+msgstr "M j, Y @ g:i a"
+
+#: admin/history_rvy.php:1133
+msgid "M j, Y @ H:i"
+msgstr "M j, Y @ H:i"
+
+#: admin/history_rvy.php:1134
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/history_rvy.php:1220 front_rvy.php:546 front_rvy.php:556
+#: front_rvy.php:575 front_rvy.php:606 rvy_init-functions.php:293
+#: rvy_init-functions.php:311 rvy_init-functions.php:350
+#: rvy_init-functions.php:367 rvy_init-functions.php:384
+msgid "Approve"
+msgstr "Odobri"
+
+#: admin/history_rvy.php:1220
+msgid "Preview / Approve"
+msgstr "Pregled / Odobri"
+
+#: admin/history_rvy.php:1222 admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:233
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Pregled"
+
+#: admin/history_rvy.php:1317
+msgid "Preview / Restore"
+msgstr "Pregled / Vrati"
+
+#: admin/history_rvy.php:1324
+msgid "Manage"
+msgstr "Upravljanje"
+
+#: admin/history_rvy.php:1325
+msgid "List"
+msgstr "Popis"
+
+#: admin/options.php:123
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Sve postavke na ovoj kartici su dodijeljene mrežno."
+
+#: admin/options.php:153
+msgid "Setting Scope"
+msgstr "Opseg postavki"
+
+#: admin/options.php:157
+msgid "Features"
+msgstr "Značajke"
+
+#: admin/options.php:160
+msgid "Options"
+msgstr "Opcije"
+
+#: admin/options.php:161
+msgid "Integrations"
+msgstr "Integracije"
+
+#: admin/options.php:162
+msgid "Statuses"
+msgstr "Statusi"
+
+#: admin/options.php:163 admin/options.php:1202
+msgid "Notifications"
+msgstr "Obavijesti"
+
+#: admin/options.php:169
+msgid "Revision Submission"
+msgstr "Predaja revizije"
+
+#: admin/options.php:177
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr ""
+"Koristite alternativno označavanje: \"Radna Kopija\" > \"Zahtjev za "
+"Promjenu\" > \"Planirana Promjena\""
+
+#: admin/options.php:178
+msgid "New Revisions access requires role capability"
+msgstr "Pristup novim revizijama zahtijeva mogućnost uloge"
+
+#: admin/options.php:179
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Upravljanje %s zahtijeva mogućnost uloge"
+
+#: admin/options.php:180
+msgid "Working Copy creation requires role capability"
+msgstr "Kreiranje Radne Kopije zahtijeva mogućnost uloge"
+
+#: admin/options.php:180
+msgid "Revision creation requires role capability"
+msgstr "Kreiranje revizije zahtijeva mogućnost uloge"
+
+#: admin/options.php:181
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr "Popis Postova / Stranica: Koristite natpis \"Uredi\" za %s vezu"
+
+#: admin/options.php:182 admin/options.php:188
+#, php-format
+msgid "Enable %s"
+msgstr "Omogući %s"
+
+#: admin/options.php:183
+msgid "Limit to one active revision per post"
+msgstr "Ograniči na jednu aktivnu reviziju po postu"
+
+#: admin/options.php:184
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr ""
+"Osvježite \"Ima Reviziju\" oznaku prije nego što suprimirate Kreiraj Reviziju"
+
+#: admin/options.php:185
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr ""
+"Ako post sadrži prilagođeni html, zahtijevajte unfiltered_html mogućnost"
+
+#: admin/options.php:186
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr ""
+"Automatski podnesite revizije koje je kreirao korisnik s mogućnošću "
+"objavljivanja"
+
+#: admin/options.php:187
+msgid "Auto-submit revisions"
+msgstr "Automatski podnesite revizije"
+
+#: admin/options.php:189
+msgid "Change Request submission require role capability"
+msgstr "Podnošenje zahtjeva za promjenu zahtijeva ulogu sposobnosti"
+
+#: admin/options.php:189
+msgid "Revision submission requires role capability"
+msgstr "Podnošenje revizije zahtijeva ulogu sposobnosti"
+
+#: admin/options.php:190
+msgid "Editing others' Revisions requires role capability"
+msgstr "Uređivanje revizija drugih zahtijeva ulogu sposobnosti"
+
+#: admin/options.php:191
+msgid "Listing others' Revisions requires role capability"
+msgstr "Popis revizija drugih zahtijeva ulogu sposobnosti"
+
+#: admin/options.php:192
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Korisnici uvijek mogu upravljati revizijama svojih vlastitih uređivih postova"
+
+#: admin/options.php:193
+msgid "Also notify on Revision Update"
+msgstr "Također obavijestite o ažuriranju revizije"
+
+#: admin/options.php:194
+msgid "Apply API actions to mimic Post Update"
+msgstr "Primijenite API akcije za imitaciju ažuriranja posta"
+
+#: admin/options.php:195
+msgid "Hide html tags on Compare screen"
+msgstr "Sakrijte HTML oznake na ekranu usporedbe"
+
+#: admin/options.php:196
+msgid "Hide copy buttons on Compare screen"
+msgstr "Sakrijte gumbe za kopiranje na ekranu usporedbe"
+
+#: admin/options.php:197
+msgid "Use WP-Cron scheduling"
+msgstr "Koristite WP-Cron raspoređivanje"
+
+#: admin/options.php:198
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "Stranica koristi prilagođeni okidač za WP-Cron zadatke"
+
+#: admin/options.php:199
+msgid "Asynchronous Publishing"
+msgstr "Asinkrono objavljivanje"
+
+#: admin/options.php:200 admin/options.php:201
+msgid "Update Publish Date"
+msgstr "Ažurirajte datum objavljivanja"
+
+#: admin/options.php:202 admin/options.php:203
+msgid "Update Modified Date"
+msgstr "Ažurirajte datum izmjene"
+
+#: admin/options.php:206 admin/options.php:207
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Koristite %1$sObavijesti planera%2$s"
+
+#: admin/options.php:209
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Pošaljite e-poštu originalnom autoru kada je %s podnesen"
+
+#: admin/options.php:210
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Pošaljite e-poštu originalnom autoru kada je %s odobren"
+
+#: admin/options.php:211
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Pošaljite e-poštu revizoru kada je %s odobren"
+
+#: admin/options.php:212
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Pošaljite e-poštu originalnom autoru kada je %s objavljen"
+
+#: admin/options.php:213
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Pošaljite e-poštu revizoru kada je %s objavljen"
+
+#: admin/options.php:214
+msgid "Enable notification buffer"
+msgstr "Omogući obavijestni spremnik"
+
+#: admin/options.php:215
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "Revizori mogu stvoriti novu reviziju za bilo koji custom post type"
+
+#: admin/options.php:216
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Spriječi Revizore da uređuju neobjavljene Postove drugih"
+
+#: admin/options.php:217
+msgid "Add database index to posts table for Revision queries"
+msgstr "Dodaj indeks baze podataka u tablicu postova za upite Revizije"
+
+#: admin/options.php:218
+msgid "Display Hints"
+msgstr "Prikaži Savjete"
+
+#: admin/options.php:219
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Izbriši postavke i Revizije ako se dodatak izbriše"
+
+#: admin/options.php:220
+msgid "Show Preview Links"
+msgstr "Prikaži linkove za pregled"
+
+#: admin/options.php:221
+msgid "Preview Link Type"
+msgstr "Vrsta linka za pregled"
+
+#: admin/options.php:222
+msgid "Modify preview link for better theme compatibility"
+msgstr "Izmijeni link za pregled radi bolje kompatibilnosti teme"
+
+#: admin/options.php:223
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr ""
+"Tema Kompat: Za pregled revizije na početnoj stranici, postavi home oznaku"
+
+#: admin/options.php:224
+msgid "Approve Button on Compare screen"
+msgstr "Dugme odobri na usporedbi"
+
+#: admin/options.php:225
+msgid "Copy revision comments to published post"
+msgstr "Kopiraj komentare revizije u objavljeni post"
+
+#: admin/options.php:226
+msgid "Compare Past Revisions ordering:"
+msgstr "Usporedi redoslijed prošlih Revizija:"
+
+#: admin/options.php:227
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr "Popis %s za \"Moje Aktivnosti\" ili \"Revizije mojih Postova\" prikaz"
+
+#: admin/options.php:228
+msgid "Store custom fields of submitted and scheduled revisions for archive"
+msgstr "Pohrani prilagođena polja podnesenih i zakazanih revizija za arhivu"
+
+#: admin/options.php:229
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr "Zadrži arhivu izmjena revizija, čak i nakon što je revizija objavljena"
+
+#: admin/options.php:230
+msgid "Show Current Revision top bar after revision publication"
+msgstr "Prikaži gornju traku trenutne revizije nakon objave revizije"
+
+#: admin/options.php:231
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "Pri objavi revizije, izbriši Uredničke komentare"
+
+#: admin/options.php:232
+msgid "Enable deletion queue"
+msgstr "Omogući red brisanja"
+
+#: admin/options.php:233
+msgid "Allow Past Revisions to be deleted"
+msgstr "Dopusti brisanje prošlih Revizija"
+
+#: admin/options.php:234
+msgid "Restoring a Revision requires role capability"
+msgstr "Obnavljanje revizije zahtijeva mogućnost uloge"
+
+#: admin/options.php:235
+msgid "Compatibility Mode"
+msgstr "Način kompatibilnosti"
+
+#: admin/options.php:236
+msgid "Planner Notifications Access-Limited"
+msgstr "Obavijesti planera s ograničenim pristupom"
+
+#: admin/options.php:237
+msgid "Maximum Revisions per post"
+msgstr "Maksimalne revizije po objavi"
+
+#: admin/options.php:238
+msgid "Apply Post Permissions to Revisions"
+msgstr "Primijeni dopuštenja za objave na revizije"
+
+#: admin/options.php:239
+msgid "Enable legacy email notifications"
+msgstr "Omogući naslijeđene obavijesti e-poštom"
+
+#: admin/options.php:240
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr "Koristi proširene natpise za gumb Odobri u uređivaču objava"
+
+#: admin/options.php:241
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Dopusti da se polje Autor može mijenjati putem revizije"
+
+#: admin/options.php:242
+msgid "Create Revision button in editor opens new tab"
+msgstr "Gumb za stvaranje revizije u uređivaču otvara novu karticu"
+
+#: admin/options.php:243
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Blok upita: prilagodi mogućnosti revizora i suradnika za omogućavanje "
+"pregleda u uređivaču revizije"
+
+#: admin/options.php:244
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Onemogući Rank Math SEO panel za uređivanje revizije"
+
+#: admin/options.php:245
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "Dopusti prilagođena polja (meta objave) da budu revizirana"
+
+#: admin/options.php:246
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "Dopuštenje za predaju revizije također omogućuje stvaranje revizije"
+
+#: admin/options.php:247
+msgid "Enable classic metaboxes in editor"
+msgstr ""
+
+#: admin/options.php:252
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "Pošalji e-poštu imenovanim izdavačima kada je %s predano"
+
+#: admin/options.php:253
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "Pošalji e-poštu imenovanim izdavačima kada je %s objavljeno"
+
+#: admin/options.php:254
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "Pošalji e-poštu imenovanim izdavačima kada je %s odobreno"
+
+#: admin/options.php:256
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "Pošalji e-poštu urednicima i administratorima kada je %s predano"
+
+#: admin/options.php:257
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "Pošalji e-poštu urednicima i administratorima kada je %s objavljeno"
+
+#: admin/options.php:258
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "Pošalji e-poštu urednicima i administratorima kada je %s odobreno"
+
+#: admin/options.php:340
+msgid "PublishPress Revisions Site Settings"
+msgstr "Postavke stranice za revizije PublishPress"
+
+#: admin/options.php:370
+msgid ""
+"These are the default settings for options which can be adjusted per-site."
+msgstr "Ovo su zadane postavke za opcije koje se mogu prilagoditi po mjestu."
+
+#: admin/options.php:408
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Koristite ovu karticu za promjene na razini MREŽE u postavkama PublishPress "
+"Revisions. %s"
+
+#: admin/options.php:411
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr ""
+"Također možete odrediti %1$szadane postavke za specifične postavke "
+"mjesta%2$s."
+
+#: admin/options.php:414
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Ovdje možete promijeniti zadanu vrijednost za postavke koje se kontroliraju "
+"odvojeno na svakoj lokaciji."
+
+#: admin/options.php:424 admin/options.php:426
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr ""
+"Imajte na umu da %1$spostavke na razini mreže%2$s također mogu biti dostupne."
+
+#: admin/options.php:504
+msgid "License"
+msgstr "Licenca"
+
+#: admin/options.php:549
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Prošle Revizije su ranije verzije objave."
+
+#: admin/options.php:606
+msgid "This post type does not support Past Revisions."
+msgstr "Ova vrsta objave ne podržava Prošle Revizije."
+
+#: admin/options.php:648
+msgid "New Revisions are changes which are not yet published."
+msgstr "Nove Revizije su promjene koje još nisu objavljene."
+
+#: admin/options.php:747
+#, fuzzy
+#| msgid "Revisions"
+msgid "Revision Fields"
+msgstr "Revizije"
+
+#: admin/options.php:751
+#, fuzzy
+#| msgid "Allow the Author field to be modified by Revision"
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Dopusti da se polje Autor može mijenjati putem revizije"
+
+#: admin/options.php:759 admin/options.php:922
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Kontakt"
+
+#: admin/options.php:760 admin/options.php:923
+msgid "Title"
+msgstr ""
+
+#: admin/options.php:761 admin/options.php:924
+#, fuzzy
+#| msgid "Post Date"
+msgid "Date"
+msgstr "Datum objave"
+
+#: admin/options.php:763 admin/options.php:926
+#, fuzzy
+#| msgid "Edit Parent"
+msgid "Parent"
+msgstr "Uredi roditelja"
+
+#: admin/options.php:764 admin/options.php:927
+msgid "Slug"
+msgstr ""
+
+#: admin/options.php:765 admin/options.php:928
+msgid "Excerpt"
+msgstr ""
+
+#: admin/options.php:766 admin/options.php:929
+#: admin/post-edit-block-ui_rvy.php:209 admin/post-edit_rvy.php:343
+msgid "Author"
+msgstr "Autor"
+
+#: admin/options.php:767 admin/options.php:930
+msgid "Thumnbnail"
+msgstr ""
+
+#: admin/options.php:768 admin/options.php:931
+#, fuzzy
+#| msgid "Page Template"
+msgid "Template"
+msgstr "Predložak stranice"
+
+#: admin/options.php:769 admin/options.php:932
+msgid "Categories"
+msgstr ""
+
+#: admin/options.php:770 admin/options.php:933
+msgid "Tags"
+msgstr ""
+
+#: admin/options.php:771 admin/options.php:934
+#: admin/restrict-editor-features.php:162
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/options.php:815
+#, fuzzy
+#| msgid "All Posts"
+msgid "Copy Posts"
+msgstr "Sve objave"
+
+#: admin/options.php:819
+#, fuzzy
+#| msgid "The post already has a revision in process."
+msgid "Copy post directly without using the revision process."
+msgstr "Post već ima reviziju u procesu."
+
+#: admin/options.php:910
+#, fuzzy
+#| msgid "Fields"
+msgid "Copy Fields"
+msgstr "Polja"
+
+#: admin/options.php:914
+msgid "Specify fields to include when Posts are copied."
+msgstr ""
+
+#: admin/options.php:976
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Napomena: Kod treće strane može uzrokovati nekompatibilnost nekih vrsta "
+"objava s PublishPress Revisions."
+
+#: admin/options.php:986
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"Za integraciju Revizija na Kalendarskom sadržaju, Pregledu i Sadržajnoj "
+"ploči, molimo ažurirajte %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1007
+msgid "Ready to enhance your revision workflow?"
+msgstr "Spremni za poboljšanje vašeg tijeka revizije?"
+
+#: admin/options.php:1010
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with custom "
+"revision statuses."
+msgstr ""
+"Nabavite PublishPress Statuses Pro i optimizirajte svoj proces revizije s "
+"prilagođenim statusima revizije."
+
+#: admin/options.php:1016
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Definirajte svoje vlastite statuse prije ili nakon Podnošenja revizije"
+
+#: admin/options.php:1019
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "Novi unaprijed definirani statusi: Odgođeno, Treba raditi, Odbijeno"
+
+#: admin/options.php:1022
+msgid "Statuses can be specific to a post type"
+msgstr "Statusi mogu biti specifični za vrstu objave"
+
+#: admin/options.php:1025
+msgid "Control access to statuses per-role"
+msgstr "Kontrolirajte pristup statusima po ulozi"
+
+#: admin/options.php:1028
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "Tijek statusa može biti ugniježden s pod-statusima"
+
+#: admin/options.php:1037
+msgid "Get PublishPress Statuses Pro"
+msgstr "Nabavite PublishPress Statuses Pro"
+
+#: admin/options.php:1042 admin/options.php:1060 admin/options.php:2027
+#: admin/options.php:2045 admin/options.php:2607 admin/options.php:2621
+#: admin/options.php:2631 admin/options.php:2641
+msgid "Learn More"
+msgstr "Saznajte više"
+
+#: admin/options.php:1055
+msgid "Pro Plugin"
+msgstr "Pro Plugin"
+
+#: admin/options.php:1056
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr ""
+"Instalirajte Statuses Pro za otključavanje prilagođenih statusa revizije."
+
+#: admin/options.php:1057
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Konfigurirajte za bilo koju post type i ulogu kako bi odgovarali vašem "
+"radnom tijeku uređivanja."
+
+#: admin/options.php:1064
+msgid "Get Statuses Pro"
+msgstr "Nabavite Statuses Pro"
+
+#: admin/options.php:1091
+msgid "Maximum revisions per post:"
+msgstr "Maksimalne revizije po postu:"
+
+#: admin/options.php:1093
+msgid "(unlimited)"
+msgstr "(neograničeno)"
+
+#: admin/options.php:1101
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr ""
+"Imajte na umu da se arhiviranje također može onemogućiti putem %1$sPost "
+"Type%2$s."
+
+#: admin/options.php:1138 admin/options.php:1309 admin/options.php:1557
+#: admin/options.php:1583 admin/options.php:1609 admin/options.php:1637
+#: admin/options.php:2151
+#, php-format
+msgid "%s capability"
+msgstr "%s sposobnost"
+
+#: admin/options.php:1143 admin/options.php:1314 admin/options.php:1562
+#: admin/options.php:1588 admin/options.php:1614 admin/options.php:1642
+#: admin/options.php:2156
+msgid "Assign capability to roles"
+msgstr "Dodijelite sposobnosti ulogama"
+
+#: admin/options.php:1150
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Spriječite ne-administratore da restauriraju reviziju bez %s."
+
+#: admin/options.php:1156
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Spriječite ne-administratore da restauriraju reviziju bez sposobnosti "
+"restore_revisions"
+
+#: admin/options.php:1169
+msgid "Modification Date"
+msgstr "Datum izmjene"
+
+#: admin/options.php:1197
+msgid "Revision Creation"
+msgstr "Izrada revizije"
+
+#: admin/options.php:1198
+msgid "Submission"
+msgstr "Podnošenje"
+
+#: admin/options.php:1199
+msgid "Scheduling"
+msgstr "Zakazivanje"
+
+#: admin/options.php:1200
+msgid "Publication"
+msgstr "Objavljivanje"
+
+#: admin/options.php:1201
+msgid "Management"
+msgstr "Upravljanje"
+
+#: admin/options.php:1259
+msgid "Create Revision capabilities"
+msgstr "Stvorite sposobnosti revizije"
+
+#: admin/options.php:1264 admin/options.php:1289 admin/options.php:1442
+msgid "Assign capabilities to roles"
+msgstr "Dodijelite sposobnosti ulogama"
+
+#: admin/options.php:1271 admin/options.php:1449
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "Ako korisnik ne može uređivati objavljeni post, zahtijevajte %s."
+
+#: admin/options.php:1277
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"Ako korisnik ne može uređivati objavljeni post, zahtijevajte ovlasti za "
+"stvaranje revizije (copy_posts, copy_others_pages, itd.)"
+
+#: admin/options.php:1285
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "Za proširenje popisa stranica, dodijelite %s."
+
+#: admin/options.php:1288
+msgid "Listing capabilities"
+msgstr "Ovlasti za popis"
+
+#: admin/options.php:1295
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"Za proširenje popisa stranica, dodijelite ovlasti za popis "
+"(list_others_pages, list_published_posts, itd.)"
+
+#: admin/options.php:1301
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Ovaj dodatak uvodi novu korisničku ulogu, \"Revisor.\""
+
+#: admin/options.php:1321
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"Revizija od strane korisnika koji nema %s će uzrokovati da svi prilagođeni "
+"HTML tagovi budu uklonjeni."
+
+#: admin/options.php:1327
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"Revizija od strane korisnika koji nema ovlasti unfiltered_html će uzrokovati "
+"da svi prilagođeni HTML tagovi budu uklonjeni."
+
+#: admin/options.php:1344
+msgid "Broadest compat including Elementor, Divi, Beaver Builder"
+msgstr "Najšira kompatibilnost uključujući Elementor, Divi, Beaver Builder"
+
+#: admin/options.php:1345
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr "Standardna shema pohrane za najširu kompatibilnost s trećim stranama"
+
+#: admin/options.php:1350
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "Poboljšana kontrola pristupa revizijama s PublishPress dodacima"
+
+#: admin/options.php:1361
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"U poboljšanom načinu rada, status revizije se pohranjuje prema standardnoj "
+"WordPress shemi. Neki dodaci su nespojivi."
+
+#: admin/options.php:1368
+msgid ""
+"Prevent Revision creation if the post already has another Revision in "
+"progress."
+msgstr ""
+"Spriječite stvaranje revizije ako post već ima drugu reviziju u tijeku."
+
+#: admin/options.php:1372
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Zaobiđite sukobe dodataka za predmemoriju ponovnim upitom za revizije prije "
+"nego što potisnete vezu za novu reviziju."
+
+#: admin/options.php:1402
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Ako korisnik nema redovnu vezu za uređivanje, promijenite naziv veze %s u "
+"\"Uredi.\""
+
+#: admin/options.php:1405
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"Zadane oznake su \"Nije poslan na odobrenje\", \"Poslano na odobrenje\", "
+"\"Zakazana revizija\""
+
+#: admin/options.php:1423
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Omogućite da se objavljeni sadržaj može kopirati, uređivati, slati na "
+"odobrenje i upravljati na ekranu %sNove revizije%s."
+
+#: admin/options.php:1437
+msgid "Submit Revision capabilities"
+msgstr "Ovlasti za slanje revizije"
+
+#: admin/options.php:1455
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"Ako korisnik ne može uređivati objavljeni post, zahtijevajte ovlasti za "
+"slanje revizije (revise_posts, revise_others_pages, itd.)"
+
+#: admin/options.php:1460 admin/options.php:1494
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr ""
+"Kada je %s objavljen, ažurirajte datum objave posta na trenutno vrijeme."
+
+#: admin/options.php:1463 admin/options.php:1497
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr ""
+"Kada je %s objavljen, ažurirajte datum izmjene posta na trenutno vrijeme."
+
+#: admin/options.php:1466
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Kada korisnik koji ima pravo slati revizije kreira novu reviziju, automatski "
+"je pošaljite."
+
+#: admin/options.php:1469
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Automatski pošaljite revizije ako korisnik može izravno uređivati glavnu "
+"objavu."
+
+#: admin/options.php:1472
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"To omogućuje trenutno odobrenje unutar usporednog ekrana. Ako je "
+"onemogućeno, umjesto toga pruža se poveznica za pregled."
+
+#: admin/options.php:1488
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Ako se uređuje trenutno objavljena objava ili stranica i postavi budući "
+"datum, promjena neće biti primijenjena do odabranog datuma."
+
+#: admin/options.php:1500
+msgid ""
+"Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
+"publication will fail if this setting is disabled."
+msgstr ""
+"Objavite zakazane revizije koristeći WP-Cron mehanizam. Na nekim stranicama, "
+"objava će propasti ako je ova postavka onemogućena."
+
+#: admin/options.php:1504
+msgid ""
+"Publish scheduled revisions asynchronously, via a secondary http request "
+"from the server.  This is usually best since it eliminates delay, but some "
+"servers may not support it."
+msgstr ""
+"Objavite zakazane revizije asinkrono, putem sekundarnog http zahtjeva sa "
+"servera. To je obično najbolje jer uklanja kašnjenje, ali neki serveri to "
+"možda neće podržavati."
+
+#: admin/options.php:1509
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"WP-Cron okidač je onemogućen, ali zakazane zadaće se i dalje izvršavaju "
+"koristeći prilagođeni okidač."
+
+#: admin/options.php:1523
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr "Označite gumb kao \"Odobri i objavi\" ili \"Odobri i zakazuj.\""
+
+#: admin/options.php:1534
+msgid "This may improve compatibility with some plugins."
+msgstr "To može poboljšati kompatibilnost s nekim dodacima."
+
+#: admin/options.php:1569
+#, php-format
+msgid "Control New Revisions access with the %s."
+msgstr "Kontrolirajte pristup novim revizijama s %s."
+
+#: admin/options.php:1575
+msgid "Control New Revisions access with the manage_revision_queue capability."
+msgstr ""
+"Kontrolirajte pristup novim revizijama s mogućnošću manage_revision_queue."
+
+#: admin/options.php:1595
+#, php-format
+msgid "Users will need the %s to edit others' Unsubmitted Revisions."
+msgstr ""
+"Korisnici će trebati %s za uređivanje neobjavljenih revizija drugih "
+"korisnika."
+
+#: admin/options.php:1601
+msgid ""
+"Users will need the manage_unsubmitted_revisions capability to edit others' "
+"Unsubmitted Revisions."
+msgstr ""
+"Korisnici će trebati mogućnost manage_unsubmitted_revisions za uređivanje "
+"neobjavljenih revizija drugih korisnika."
+
+#: admin/options.php:1621 admin/options.php:1649
+#, php-format
+msgid "If the user can't edit the published post, require the %s."
+msgstr "Ako korisnik ne može uređivati objavljenu objavu, zahtijevajte %s."
+
+#: admin/options.php:1627
+msgid ""
+"If the user can't edit the published post, require the edit_others_revisions "
+"capability."
+msgstr ""
+"Ako korisnik ne može uređivati objavljenu objavu, zahtijevajte mogućnost "
+"edit_others_revisions."
+
+#: admin/options.php:1655
+msgid ""
+"If the user can't edit the published post, require the list_others_revisions "
+"capability."
+msgstr ""
+"Ako korisnik ne može uređivati objavljenu objavu, zahtijevajte mogućnost "
+"list_others_revisions."
+
+#: admin/options.php:1660
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Zaobiđite gore navedena ograničenja za revizije drugih korisnika na objavama "
+"koje pripadaju prijavljenom korisniku."
+
+#: admin/options.php:1671
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Ponovno generirajte oznake \"objava ima reviziju\""
+
+#: admin/options.php:1674
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Primijenite ovu operaciju održavanja ako oznake Has Revision na ekranima "
+"Objave / Stranice ne odgovaraju popisu Novih Revizija."
+
+#: admin/options.php:1699
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "Za poboljšane obavijesti, instalirajte %sPublishPress Planner%s."
+
+#: admin/options.php:1712
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "Za poboljšane obavijesti, ažurirajte %sPublishPress Planner%s."
+
+#: admin/options.php:1734
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Pošaljite obavijesti o akcijama revizije koristeći prilagodljivi "
+"%1$sPublishPress Planner Notifications sustav%2$s."
+
+#: admin/options.php:1735
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Nadogradite na Revisions Pro kako biste slali obavijesti o akcijama revizije "
+"koristeći prilagodljivi %1$sPublishPress Planner Notifications sustav%2$s."
+
+#: admin/options.php:1747
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Korisnici koji odgovaraju konfiguraciji Planner > Notifications dobivaju "
+"obavijesti o revizijama samo ako mogu uređivati objavljeni post."
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Never"
+msgstr "Nikada"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "By default"
+msgstr "Prema zadanim postavkama"
+
+#: admin/options.php:1789 admin/options.php:1811
+msgid "Always"
+msgstr "Uvijek"
+
+#: admin/options.php:1800 admin/options.php:1847
+msgid "select recipients"
+msgstr "odaberite primatelje"
+
+#: admin/options.php:1861
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"Kako biste izbjegli neuspjehe obavijesti, pohranjujte e-mailove za odgođeno "
+"slanje kada su prekoračena ograničenja od jedne minute, sata ili dana"
+
+#: admin/options.php:1882
+msgid "Notification Buffer"
+msgstr "Obavijestni međuspremnik"
+
+#: admin/options.php:1910
+msgid "Notification Log"
+msgstr "Dnevnik obavijesti"
+
+#: admin/options.php:1939
+msgid "Purge Notification Buffer"
+msgstr "Očisti obavijestni međuspremnik"
+
+#: admin/options.php:1945
+msgid "Truncate Notification Log"
+msgstr "Skraćivanje dnevnika obavijesti"
+
+#: admin/options.php:1951
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Poslano u posljednjoj minuti: %d / %d"
+
+#: admin/options.php:1952
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Poslano u posljednjem satu: %d / %d"
+
+#: admin/options.php:1953
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Poslano u posljednjem danu: %d / %d"
+
+#: admin/options.php:1960
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Sekunde do sljedećeg vremena obrade međuspremnika: %d"
+
+#: admin/options.php:1971
+msgid "Show Notification Log / Buffer"
+msgstr "Prikaži dnevnik obavijesti / međuspremnik"
+
+#: admin/options.php:1973
+msgid "Show with message content"
+msgstr "Prikaži s sadržajem poruke"
+
+#: admin/options.php:1995
+msgid "Ready to enhance your revision notifications?"
+msgstr "Spremni za poboljšanje svojih obavijesti o revizijama?"
+
+#: admin/options.php:1998
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Nadogradite na Revisions Pro za integraciju s našim PublishPress Planner "
+"Notifications okvirom."
+
+#: admin/options.php:2004
+msgid "Customize notification message and subject"
+msgstr "Prilagodite poruku i predmet obavijesti"
+
+#: admin/options.php:2007
+msgid "Notify for a specific post type, category or term"
+msgstr "Obavijestite za određeni post type, kategoriju ili termin"
+
+#: admin/options.php:2010
+msgid "Target specific roles, users, or user groups"
+msgstr "Ciljajte specifične uloge, korisnike ili korisničke grupe"
+
+#: admin/options.php:2013
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "S PublishPress Planner Pro, šaljite obavijesti na Slack kanal"
+
+#: admin/options.php:2040 admin/options.php:2601
+msgid "Pro Feature"
+msgstr "Pro značajka"
+
+#: admin/options.php:2041
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr ""
+"Nadogradite na Revisions Pro kako biste otključali integraciju Planner "
+"Notifications."
+
+#: admin/options.php:2042
+msgid ""
+"Customize notification content and recipients for each notification type."
+msgstr "Prilagodite sadržaj obavijesti i primatelje za svaku vrstu obavijesti."
+
+#: admin/options.php:2066
+msgid "Some themes may block revision preview."
+msgstr "Neki tematski elementi mogu blokirati pregled revizije."
+
+#: admin/options.php:2083
+msgid "Published Post Slug"
+msgstr "Objavljeni Post Slug"
+
+#: admin/options.php:2084
+msgid "Revision Slug"
+msgstr "Revision Slug"
+
+#: admin/options.php:2085
+msgid "Revision ID only"
+msgstr "Samo Revision ID"
+
+#: admin/options.php:2100
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Neki tematski elementi ili dodaci mogu zahtijevati Revision Slug ili "
+"Revision ID tip veze za ispravno učitavanje predloška i prikazivanje polja."
+
+#: admin/options.php:2109
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr "Argument za pregled revizije konfiguriran je definicijom konstante: %s"
+
+#: admin/options.php:2116
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Prilagodite poveznice za pregled da koriste \"rv_preview\" argument umjesto "
+"\"preview\". Eksperimentirajte da vidite što najbolje funkcionira s vašom "
+"temom."
+
+#: admin/options.php:2120
+msgid ""
+"Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Neki tematski elementi mogu zahtijevati ovu postavku za ispravno "
+"prikazivanje pregleda revizije."
+
+#: admin/options.php:2139
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"To obično treba biti omogućeno, osim ako se ne radi o rješavanju sukoba s "
+"podacima postmeta drugog dodatka."
+
+#: admin/options.php:2163
+#, php-format
+msgid ""
+"If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Ako korisnik ne može objaviti, zahtijevajte %s za uređivanje neobjavljenih "
+"Postova drugih korisnika."
+
+#: admin/options.php:2169
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to edit "
+"others' unpublished Posts."
+msgstr ""
+"Ako korisnik ne može objaviti, zahtijevajte mogućnost edit_others_drafts za "
+"uređivanje neobjavljenih Postova drugih korisnika."
+
+#: admin/options.php:2175
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Ako dozvole specifične za post ograničavaju ili proširuju pristup postu, "
+"primijenite te dozvole i na njegove revizije."
+
+#: admin/options.php:2187
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr "Rank Math SEO može spriječiti ažuriranje revizije na nekim stranicama."
+
+#: admin/options.php:2194 includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML Translation Management"
+
+#: admin/options.php:2199
+msgid "Sync \"Needs Update\" flags"
+msgstr "Sinkroniziraj \"Potrebno ažuriranje\" oznake"
+
+#: admin/options.php:2203
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Postavi \"Potrebno ažuriranje\" za bilo koju objavu s prijevodima koja je "
+"ažurirana (moguće odobrenjem revizije) nedavno u odnosu na svoje prijevode."
+
+#: admin/options.php:2221
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "Prikaži opisne natpise za postavke PublishPress Revizija."
+
+#: admin/options.php:2239
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"Postavke dodatka, sadržaj novih revizija i povezani podaci bit će obrisani, "
+"ali samo nakon što se obriše posljednja kopija Revizija / Revizija Pro."
+
+#: admin/options.php:2260
+msgid "Unlock Pro Integrations"
+msgstr "Otključaj Pro integracije"
+
+#: admin/options.php:2261
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Nadogradi na Pro verziju za optimalnu kompatibilnost i brzu, profesionalnu "
+"podršku."
+
+#: admin/options.php:2279 admin/options.php:2532
+msgid "Admin"
+msgstr "admin"
+
+#: admin/options.php:2282 admin/options.php:2530
+msgid "Builder"
+msgstr "Builder"
+
+#: admin/options.php:2285 admin/options.php:2534
+msgid "Cache"
+msgstr "Cache"
+
+#: admin/options.php:2288
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#: admin/options.php:2291 admin/options.php:2540
+msgid "Fields"
+msgstr "Polja"
+
+#: admin/options.php:2295
+msgid "Multilingual"
+msgstr "Višejezično"
+
+#: admin/options.php:2299 admin/options.php:2536
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2302 admin/options.php:2546
+msgid "Workflow"
+msgstr "Workflow"
+
+#: admin/options.php:2384
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Odredi koje postavke PublishPress Revizija treba kontrolirati na razini "
+"mreže. Neodabrane postavke se kontroliraju odvojeno na svakoj stranici."
+
+#: admin/options.php:2394
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/options.php:2430
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "kontrola na razini mreže \"%s\""
+
+#: admin/options.php:2457
+msgid "Save Changes"
+msgstr "Spremi promjene"
+
+#: admin/options.php:2458
+msgid "Revert to Defaults"
+msgstr "Vrati na zadane postavke"
+
+#: admin/options.php:2460
+msgid ""
+"All settings in this form (including those on unselected tabs) will be reset "
+"to DEFAULTS.  Are you sure?"
+msgstr ""
+"Sve postavke u ovom obrascu (uključujući one na neodabranim karticama) bit "
+"će vraćene na ZADANE. Jeste li sigurni?"
+
+#: admin/options.php:2538
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2542
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2544
+msgid "Community"
+msgstr "Community"
+
+#: admin/options.php:2556
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2561
+msgid "Supported"
+msgstr "Podržano"
+
+#: admin/options.php:2564 admin/options.php:2618
+msgid "Active Plugin"
+msgstr "Aktivni dodatak"
+
+#: admin/options.php:2576
+msgid "Supported by PublishPress Revisions"
+msgstr "Podržano od strane PublishPress Revisions"
+
+#: admin/options.php:2578
+msgid "Supported by Revisions Pro"
+msgstr "Podržano od strane Revisions Pro"
+
+#: admin/options.php:2591
+msgid "Integration Active"
+msgstr "Integracija aktivna"
+
+#: admin/options.php:2593
+msgid "Upgrade to Pro to enable this integration"
+msgstr "Nadogradite na Pro kako biste omogućili ovu integraciju"
+
+#: admin/options.php:2602
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "Otključajte %s integraciju za poboljšanje vašeg rješenja za revizije."
+
+#: admin/options.php:2618
+msgid "Active Plugin Integration"
+msgstr "Integracija aktivnog dodatka"
+
+#: admin/options.php:2628
+msgid "Supported Plugin Integration"
+msgstr "Integracija podržanog dodatka"
+
+#: admin/options.php:2638
+msgid "Supported Plugin"
+msgstr "Podržani dodatak"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Sada"
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(na odobrenju)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid "Save changes to continue."
+msgstr "Spremite promjene da biste nastavili."
+
+#: admin/post-editor-workflow-ui_rvy.php:39
+msgid "Please save changes to the revision before submitting it."
+msgstr "Molimo spremite promjene u reviziji prije nego što je pošaljete."
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+msgid "Preview this Revision"
+msgstr "Pregled ove revizije"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Publish"
+msgstr "Pogledaj / Objavi"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Approve"
+msgstr "Pogledaj / Odobri"
+
+#: admin/post-editor-workflow-ui_rvy.php:82
+msgid "View / Moderate saved revision"
+msgstr "Pogledaj / Moderiraj spremljenu reviziju"
+
+#: admin/post-editor-workflow-ui_rvy.php:85
+msgid "View / Submit saved revision"
+msgstr "Pogledaj / Pošalji spremljenu reviziju"
+
+#: admin/post-editor-workflow-ui_rvy.php:94
+msgid "View unsaved changes"
+msgstr "Pogledaj nespremljene promjene"
+
+#: admin/post-editor-workflow-ui_rvy.php:98
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Revizija Uređivanja"
+msgstr[1] "%s%s Revizije Uređivanja"
+msgstr[2] ""
+
+#: admin/post-editor-workflow-ui_rvy.php:109
+msgid "Revision Submission Error"
+msgstr "Greška pri slanju revizije"
+
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:234 front_rvy.php:485
+msgid "Edit"
+msgstr "Uredi"
+
+#: admin/post-editor-workflow-ui_rvy.php:132
+msgid "Approve and Publish"
+msgstr "Odobri i Objavi"
+
+#: admin/post-editor-workflow-ui_rvy.php:137 rvy_init-functions.php:308
+#: rvy_init-functions.php:327 rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+msgid "Update in progress..."
+msgstr "Ažuriranje u tijeku..."
+
+#: admin/post-editor-workflow-ui_rvy.php:141
+msgid "Approve and Schedule"
+msgstr "Odobri i Zakazuj"
+
+#: admin/post-editor-workflow-ui_rvy.php:174 rvy_init-functions.php:297
+#: rvy_init-functions.php:315 rvy_init-functions.php:333
+#: rvy_init-functions.php:353 rvy_init-functions.php:370
+#: rvy_init-functions.php:387 rvy_init-functions.php:500
+msgid "Update Revision"
+msgstr "Ažuriraj reviziju"
+
+#: admin/post-editor-workflow-ui_rvy.php:240
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Ažuriraj post prije nego što kreiraš %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:247
+msgid "Error Creating Revision"
+msgstr "Greška pri kreiranju revizije"
+
+#: admin/post-editor-workflow-ui_rvy.php:263
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "Za promjene u custom field-u, uredite zakazanu %s."
+
+#: admin/post-edit_rvy.php:28 admin/post-edit_rvy.php:141
+msgid "Current Time"
+msgstr "Trenutno Vrijeme"
+
+#: admin/post-edit_rvy.php:60 front_rvy.php:521
+msgid "Delete"
+msgstr "Izbriši"
+
+#: admin/post-edit_rvy.php:168
+msgid "View revision in progress"
+msgstr "Pogledaj reviziju u tijeku"
+
+#: admin/post-edit_rvy.php:191
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "Uporedi ovu reviziju s objavljenom kopijom ili s drugim revizijama"
+
+#: admin/post-edit_rvy.php:226
+msgid "View / moderate saved revision"
+msgstr "Pregled / moderiranje spremljene revizije"
+
+#: admin/post-edit_rvy.php:229
+msgid "View saved revision"
+msgstr "Pregled spremljene revizije"
+
+#: admin/restrict-editor-features.php:113
+msgid "Status & visibility"
+msgstr ""
+
+#: admin/restrict-editor-features.php:120
+msgid "Permalink"
+msgstr ""
+
+#: admin/restrict-editor-features.php:149
+#, fuzzy
+#| msgid "Featured Image"
+msgid "Featured image"
+msgstr "Istaknuta slika"
+
+#: admin/revision-action_rvy.php:532 admin/revision-action_rvy.php:618
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Obavijest o odobrenju revizije"
+
+#: admin/revision-action_rvy.php:533
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "Revizija za %1$s \"%2$s\" je odobrena."
+
+#: admin/revision-action_rvy.php:537
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "Podnositelj je bio %1$s."
+
+#: admin/revision-action_rvy.php:541 admin/revision-action_rvy.php:627
+#, php-format
+msgid "It will be published on %s"
+msgstr "Bit će objavljeno na %s"
+
+#: admin/revision-action_rvy.php:545 admin/revision-action_rvy.php:631
+msgid "Preview it here: "
+msgstr "Pogledajte ovdje: "
+
+#: admin/revision-action_rvy.php:548 admin/revision-action_rvy.php:634
+msgid "Editor: "
+msgstr "Urednik: "
+
+#: admin/revision-action_rvy.php:550 admin/revision-action_rvy.php:636
+#: admin/revision-action_rvy.php:1680 admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1777
+msgid "View it online: "
+msgstr "Pogledajte online: "
+
+#: admin/revision-action_rvy.php:619
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "Revizija koju ste podnijeli za %1$s \"%2$s\" je odobrena."
+
+#: admin/revision-action_rvy.php:1672 admin/revision-action_rvy.php:1700
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s Obavijest o objavi"
+
+#: admin/revision-action_rvy.php:1673
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr "Planirana revizija koju ste podnijeli za %1$s \"%2$s\" je objavljena."
+
+#: admin/revision-action_rvy.php:1701
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "Planirana revizija za vaš %1$s \"%2$s\" je objavljena."
+
+#: admin/revision-archive_rvy.php:11
+msgid "Revision for:"
+msgstr "Revizija za:"
+
+#: admin/revision-archive_rvy.php:90
+msgid "Search Revisions"
+msgstr "Pretraži revizije"
+
+#: admin/revision-queue_rvy.php:9 admin/revision-queue_rvy.php:21
+msgid "You are not allowed to manage revisions."
+msgstr "Niste ovlašteni upravljati revizijama."
+
+#: admin/revision-queue_rvy.php:13
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s i %s su oba onemogućena. Pogledajte Revizije > Postavke."
+
+#: admin/revision-queue_rvy.php:82
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s revizija podnesena."
+msgstr[1] "%s revizije podnesene."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:83
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s revizija odbijena."
+msgstr[1] "%s revizije odbijene."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:84
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s revizija odobrena."
+msgstr[1] "%s revizije odobrene."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:85
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s revizija nije zakazana."
+msgstr[1] "%s revizije nisu zakazane."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:86
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s revizija objavljena."
+msgstr[1] "%s revizije objavljene."
+msgstr[2] ""
+
+#: admin/revision-queue_rvy.php:133
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "od %s \"%s\""
+
+#: admin/revision-queue_rvy.php:136
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "od %s"
+
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "od \"%s\""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "od %s "
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "na %s"
+
+#: admin/revision-queue_rvy.php:156
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Autor posta: %s)"
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid "New Revisions %s"
+msgstr "Nove revizije %s"
+
+#: admin/revision-ui_rvy.php:45
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "Izdavači će biti obaviješteni (ali se ne mogu odabrati ovdje)."
+
+#: admin/revision-ui_rvy.php:47
+msgid "No email notifications will be sent."
+msgstr "Nema obavijesti putem e-pošte."
+
+#. translators: revision date format, see http://php.net/date
+#: admin/revision-ui_rvy.php:78
+msgctxt "revision date format"
+msgid "j F, Y @ g:i a"
+msgstr "j F, Y @ g:i a"
+
+#: admin/revision-ui_rvy.php:97
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (Trenutno)"
+
+#: admin/revision-ui_rvy.php:101
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Automatsko spremanje)"
+
+#: admin/revision-ui_rvy.php:107
+msgctxt "revision schedule date format"
+msgid "j F, Y, g:i a"
+msgstr "j F, Y, g:i a"
+
+#: admin/revision-ui_rvy.php:112
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Datum objave: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:114
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Zahtijevana objava: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:287
+msgid "The revision will be deleted. Are you sure?"
+msgstr "Revizija će biti izbrisana. Jeste li sigurni?"
+
+#: admin/revision-ui_rvy.php:380
+msgid "Modified Date"
+msgstr "Datum promjene"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "Pregled revizije u tijeku"
+
+#. translators: Publish box date formt, see http://php.net/date
+#: admin/RevisionEditSubmitMetabox.php:180
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Objavi %son odobrenju%s"
+
+#: admin/revisions.php:20
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Napomena:</strong> Za vizualno prikazivanje revizija, dodajte "
+"sljedeći kod u foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:61
+msgid "Revision of this post is not allowed."
+msgstr "Revizija ovog posta nije dozvoljena."
+
+#: admin/revisions.php:64
+msgid "No revision specified."
+msgstr "Nema specificirane revizije."
+
+#: admin/revisions.php:72
+msgid "Past"
+msgstr "Prošlo"
+
+#: admin/revisions.php:135
+#, php-format
+msgid "Revisions of %s"
+msgstr "Revizije %s"
+
+#: admin/revisions.php:165
+msgid "The requested revision does not exist."
+msgstr "Zatražena revizija ne postoji."
+
+#: admin/revisions.php:253
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:274
+#, php-format
+msgid "no %s revisions available."
+msgstr "nema %s revizija dostupnih."
+
+#: classes/PublishPress/Revisionary.php:107 includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "Kompatibilnost s ACF custom fields."
+
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:200
+msgid "Store custom fields with revisions"
+msgstr "Spremi custom fields s revizijama"
+
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:201
+msgid "Display custom field changes"
+msgstr "Prikaži promjene custom field-a"
+
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:202
+msgid "Update custom fields on revision publication"
+msgstr "Ažuriraj custom fields prilikom objave revizije"
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "Podrška za ACFE model podataka."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "Podrška za ACFE single_meta tip podataka"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "Ispravni prikaz polja na ekranu za usporedbu"
+
+#: classes/PublishPress/Revisionary.php:136 includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Integracija s front end editorom Beaver Builder-a."
+
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:156
+#: classes/PublishPress/Revisionary.php:171
+msgid "Front end Revision submission"
+msgstr "Predaja revizije s frontenda"
+
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:172
+msgid "Front end Revision editing"
+msgstr "Uređivanje revizije s frontenda"
+
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:173
+msgid "Revision preview and redirects"
+msgstr "Pregled revizije i preusmjeravanja"
+
+#: classes/PublishPress/Revisionary.php:151
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Integracija s Divi Builder-om i Divi temom."
+
+#: classes/PublishPress/Revisionary.php:166 includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:167
+msgid "Integration with Elementor's front end editor."
+msgstr "Integracija s Elementorovim uređivačem za prednji kraj."
+
+#: classes/PublishPress/Revisionary.php:181
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:182
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Kompatibilnost s Nitro Pack predmemorijom."
+
+#: classes/PublishPress/Revisionary.php:186
+msgid "Clear cache on revision creation"
+msgstr "Očisti predmemoriju prilikom stvaranja revizije"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Trigger update on revision approval"
+msgstr "Pokreni ažuriranje prilikom odobravanja revizije"
+
+#: classes/PublishPress/Revisionary.php:195 includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:196
+msgid "Compatibility with Pods custom fields."
+msgstr "Kompatibilnost s Pods prilagođenim poljima."
+
+#: classes/PublishPress/Revisionary.php:210
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:211
+msgid "Compatibility with Polylang translation."
+msgstr "Kompatibilnost s Polylang prijevodom."
+
+#: classes/PublishPress/Revisionary.php:215
+msgid "Revisions carry over Polylang data"
+msgstr "Revizije prenose Polylang podatke"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Translation retained on Revision approval"
+msgstr "Prijevod zadržan prilikom odobravanja revizije"
+
+#: classes/PublishPress/Revisionary.php:224
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:225
+msgid "PublishPress Planner Integration."
+msgstr "Integracija s PublishPress Plannerom."
+
+#: classes/PublishPress/Revisionary.php:229
+msgid "Planner Notifications for revision actions"
+msgstr "Obavijesti Plannera za akcije revizije"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "Revision schedule shown in Calendar"
+msgstr "Raspored revizija prikazan u Kalendaru"
+
+#: classes/PublishPress/Revisionary.php:238 includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:239
+msgid "Revision submission and approval for products."
+msgstr "Podnošenje i odobravanje revizija za proizvode."
+
+#: classes/PublishPress/Revisionary.php:243
+msgid "Product revisions"
+msgstr "Revizije proizvoda"
+
+#: classes/PublishPress/Revisionary.php:244
+msgid "Compatible with Product Variations"
+msgstr "Kompatibilno s varijacijama proizvoda"
+
+#: classes/PublishPress/Revisionary.php:245
+msgid "Priority on ongoing compatibility"
+msgstr "Prioritet na stalnoj kompatibilnosti"
+
+#: classes/PublishPress/Revisionary.php:253 includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:254
+msgid "Multilingual revisioning with WPML."
+msgstr "Višejezično reviziranje s WPML-om."
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Language-specific revisions"
+msgstr "Revizije specifične za jezik"
+
+#: classes/PublishPress/Revisionary.php:259
+msgid "Translation Management integration"
+msgstr "Integracija upravljanja prijevodima"
+
+#: classes/PublishPress/Revisionary.php:267
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:268
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "Prevent indexing of revisions"
+msgstr "Spriječi indeksiranje revizija"
+
+#: classes/PublishPress/Revisionary.php:273
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Kompatibilnost za Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:274
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Usporedi revizije s Yoast SEO poljima"
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "Status revizije"
+
+#: front_rvy.php:436
+#, php-format
+msgid "%sManage%s"
+msgstr "%sUpravljaj%s"
+
+#: front_rvy.php:447
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sUsporedi%s%sPogledaj objavljeni post%s"
+
+#: front_rvy.php:459 front_rvy.php:474
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sPogledaj objavljeni post%s"
+
+#: front_rvy.php:549 rvy_init-functions.php:307 rvy_init-functions.php:363
+msgid "Submit"
+msgstr "Pošalji"
+
+#: front_rvy.php:561 front_rvy.php:563 front_rvy.php:611 front_rvy.php:613
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Ovo je %s. %s %s %s"
+
+#: front_rvy.php:579
+msgid "Decline"
+msgstr "Odbij"
+
+#: front_rvy.php:592 front_rvy.php:594
+#, php-format
+msgid "This is a %s (requested publish date: %s). %s %s %s"
+msgstr "Ovo je %s (traženi datum objave: %s). %s %s %s"
+
+#: front_rvy.php:598 front_rvy.php:600
+#, php-format
+msgid "Revision status: %s (requested publish date: %s) %s %s %s"
+msgstr "Status revizije: %s (traženi datum objave: %s) %s %s %s"
+
+#: front_rvy.php:617 front_rvy.php:619
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Status revizije: %s %s %s %s"
+
+#: front_rvy.php:632 rvy_init-functions.php:470
+msgid "Publish Now"
+msgstr "Objavi sada"
+
+#: front_rvy.php:635 front_rvy.php:637
+#, php-format
+msgid "This is a %s (for publication on %s). %s %s %s"
+msgstr "Ovo je %s (za objavu na %s). %s %s %s"
+
+#: front_rvy.php:655
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "Revizija je odobrena i sada je dostupna na stranici. %s"
+
+#: front_rvy.php:656
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Ovo je trenutna revizija. %s"
+
+#: front_rvy.php:673
+msgid "Restore"
+msgstr "Vrati"
+
+#: front_rvy.php:677 front_rvy.php:679
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Ovo je prošla revizija (od %s). %s %s"
+
+#: functions.php:537
+msgid "Scheduled Rev."
+msgstr "Zakazana rev."
+
+#: functions.php:542 functions.php:547
+msgid "Submitted Rev."
+msgstr "Poslana rev."
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"Koristite PublishPress Revisions Free. Pro verzija ima više značajki i "
+"podrške. %sNadogradite na Pro%s"
+
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Nadogradite na Revisions Pro"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Nadogradite na PublishPress Revisions Pro za integraciju s ključnim "
+"značajkama ovih dodataka:"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: Prilagođene obavijesti"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "Detalji integracije dodataka"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "Trebate podršku za revizije?"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr "Ako trebate pomoć ili imate zahtjev za novom značajkom, javite nam."
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "Zatražite podršku"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Detaljna dokumentacija također je dostupna na web stranici dodatka."
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "Pogledajte bazu znanja"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s upita u %2$s sekundi. %3$s MB korišteno."
+
+#: revision-creation_rvy.php:179
+#, fuzzy
+#| msgid "Could not insert revision into the database"
+msgid "Could not insert post into the database"
+msgstr "Nije moguće umetnuti reviziju u bazu podataka"
+
+#: revision-creation_rvy.php:401
+msgid "Could not insert revision into the database"
+msgstr "Nije moguće umetnuti reviziju u bazu podataka"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s Ažurirano"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s je ažurirao %2$s %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:174
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s je poslao promjene na %2$s \"%3$s\". Možete pregledati promjene za "
+"moguću objavu:"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "Pregled i odobrenje: "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "Nove revizije: "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "Uredi %s: "
+
+#: revisionary.php:120
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Ovaj dodatak se može izbrisati.</strong>"
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "Svake 2 minute"
+
+#: rvy_init-functions.php:287 rvy_init-functions.php:299
+msgid "Working Copy"
+msgstr "Radna kopija"
+
+#: rvy_init-functions.php:288
+msgid "Create Working Copy"
+msgstr "Kreiraj radnu kopiju"
+
+#: rvy_init-functions.php:290
+msgid "Creating Working Copy..."
+msgstr "Kreiranje radne kopije..."
+
+#: rvy_init-functions.php:291
+msgid "Working Copy ready"
+msgstr "Radna kopija spremna"
+
+#: rvy_init-functions.php:292 rvy_init-functions.php:310
+msgid "Approve Changes"
+msgstr "Odobri promjene"
+
+#: rvy_init-functions.php:294 rvy_init-functions.php:312
+msgid "Approving Changes..."
+msgstr "Odobravanje promjena..."
+
+#: rvy_init-functions.php:295 rvy_init-functions.php:313
+#: rvy_init-functions.php:331
+msgid "Publish Changes"
+msgstr "Objavi promjene"
+
+#: rvy_init-functions.php:296 rvy_init-functions.php:314
+#: rvy_init-functions.php:332 rvy_init-functions.php:352
+#: rvy_init-functions.php:369 rvy_init-functions.php:386
+msgid "Save Revision"
+msgstr "Spremi reviziju"
+
+#: rvy_init-functions.php:298
+msgid "Working Copies"
+msgstr "Radne kopije"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Radne kopije <span class=\"count\">(%d)</span>"
+msgstr[1] "Radna kopija <span class=\"count\">(%d)</span>"
+msgstr[2] "Radne kopije <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:305 rvy_init-functions.php:317
+msgid "Change Request"
+msgstr "Zahtjev za promjenu"
+
+#: rvy_init-functions.php:306
+msgid "Submit Change Request"
+msgstr "Pošalji zahtjev za promjenu"
+
+#: rvy_init-functions.php:309
+msgid "Changes Submitted"
+msgstr "Promjene poslane"
+
+#: rvy_init-functions.php:316
+msgid "Change Requests"
+msgstr "Zahtjevi za promjenu"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Zahtjevi za promjenu <span class=\"count\">(%d)</span>"
+msgstr[1] "Zahtjev za promjenu <span class=\"count\">(%d)</span>"
+msgstr[2] "Zahtjevi za promjenu <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:319
+msgid "Enable Change Requests"
+msgstr "Omogući zahtjeve za promjenu"
+
+#: rvy_init-functions.php:324 rvy_init-functions.php:335
+msgid "Scheduled Change"
+msgstr "Zakazana promjena"
+
+#: rvy_init-functions.php:325 rvy_init-functions.php:326
+#: rvy_init-functions.php:329 rvy_init-functions.php:330
+msgid "Schedule Changes"
+msgstr "Zakaži promjene"
+
+#: rvy_init-functions.php:328
+msgid "Changes are Scheduled."
+msgstr "Promjene su zakazane."
+
+#: rvy_init-functions.php:334
+msgid "Scheduled Changes"
+msgstr "Zakazane promjene"
+
+#: rvy_init-functions.php:336
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Zakazane <span class=\"count\">(%d)</span>"
+msgstr[1] "Zakazana <span class=\"count\">(%d)</span>"
+msgstr[2] "Zakazane <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:344
+msgid "Unsubmitted Revision"
+msgstr "Neposlana revizija"
+
+#: rvy_init-functions.php:345 rvy_init-functions.php:346
+msgid "Create Revision"
+msgstr "Kreiraj reviziju"
+
+#: rvy_init-functions.php:347
+msgid "Creating Revision..."
+msgstr "Kreiranje revizije..."
+
+#: rvy_init-functions.php:348
+msgid "The Revision is ready to edit."
+msgstr "Revizija je spremna za uređivanje."
+
+#: rvy_init-functions.php:348
+msgid "Revision ready to edit."
+msgstr "Revizija spremna za uređivanje."
+
+#: rvy_init-functions.php:349 rvy_init-functions.php:366
+#: rvy_init-functions.php:383
+msgid "Approve Revision"
+msgstr "Odobri reviziju"
+
+#: rvy_init-functions.php:351 rvy_init-functions.php:368
+#: rvy_init-functions.php:385
+msgid "Publish Revision"
+msgstr "Objavi reviziju"
+
+#: rvy_init-functions.php:354
+msgid "Unsubmitted Revisions"
+msgstr "Neposlane revizije"
+
+#: rvy_init-functions.php:355
+msgid "Not Submitted"
+msgstr "Nije poslano"
+
+#: rvy_init-functions.php:356
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Nije poslano <span class=\"count\">(%s)</span>"
+msgstr[1] "Nije poslan <span class=\"count\">(%s)</span>"
+msgstr[2] "Nije poslano <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:361
+msgid "Submitted Revision"
+msgstr "Podnesena Revizija"
+
+#: rvy_init-functions.php:362 rvy_init-functions.php:503
+msgid "Submit Revision"
+msgstr "Podnesi Reviziju"
+
+#: rvy_init-functions.php:365
+msgid "The Revision is Submitted"
+msgstr "Revizija je podnesena"
+
+#: rvy_init-functions.php:365
+msgid "Revision Submitted"
+msgstr "Revizija podnesena"
+
+#: rvy_init-functions.php:371
+msgid "Submitted Revisions"
+msgstr "Podnesene Revizije"
+
+#: rvy_init-functions.php:372
+msgid "Submitted"
+msgstr "Podneseno"
+
+#: rvy_init-functions.php:373
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Podneseno <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Podneseno <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+
+#: rvy_init-functions.php:378
+msgid "Scheduled Revision"
+msgstr "Zakazana Revizija"
+
+#: rvy_init-functions.php:379
+msgid "Schedule Revision"
+msgstr "Zakazivanje Revizije"
+
+#: rvy_init-functions.php:380
+msgid "Schedule"
+msgstr "Zakazivanje"
+
+#: rvy_init-functions.php:382
+msgid "The Revision is Scheduled"
+msgstr "Revizija je zakazana"
+
+#: rvy_init-functions.php:382
+msgid "Revision Scheduled"
+msgstr "Revizija zakazana"
+
+#: rvy_init-functions.php:388
+msgid "Scheduled Revisions"
+msgstr "Zakazane Revizije"
+
+#: rvy_init-functions.php:389
+msgid "Scheduled"
+msgstr "Zakazano"
+
+#: rvy_init-functions.php:390
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Zakazano <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Zakazano <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+
+#: rvy_init-functions.php:490
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sMoje Kopije & Izmjene%s(%s)"
+msgstr[1] "%sMoje Kopije & Izmjene%s(%s)"
+msgstr[2] ""
+
+#: rvy_init-functions.php:491
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sMoje Revizije%s(%s)"
+msgstr[1] "%sMoje Revizije%s(%s)"
+msgstr[2] ""
+
+#: rvy_init-functions.php:493
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sRevizije za Moje Objave%s(%s)</span>"
+msgstr[1] "%sRevizije za Moje Objave%s(%s)"
+msgstr[2] ""
+
+#: rvy_init-functions.php:498
+msgid "Post Author"
+msgstr "Autor Objave"
+
+#: rvy_init-functions.php:499
+msgid "Published Post"
+msgstr "Objavljena Objava"
+
+#: rvy_init-functions.php:504
+msgid "Submit Changes"
+msgstr "Pošalji promjene"
+
+#: rvy_init-functions.php:708
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:720
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:811
+msgid ""
+"The unfiltered_html capability is required to create a revision of this post."
+msgstr ""
+"Potrebna je unfiltered_html sposobnost za stvaranje revizije ove objave."
+
+#: rvy_init-functions.php:1263
+msgid "Revision Workflow"
+msgstr "Revizijski tijek rada"
