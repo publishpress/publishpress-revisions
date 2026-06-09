@@ -1,17 +1,17 @@
-name: Deploy plugin to WordPress.org
+name: Deploy assets/readme to WordPress.org
+permissions:
+  contents: read
 on:
-  release:
-    types: [ released ]
+  push:
+    branches:
+      - 'master'
 
 jobs:
-  code-check:
-    name: Check the code
-    uses: ./.github/workflows/code-standards.yml
-    secrets: inherit
+  deploy-to-trunk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory /project
 
-  deploy-wp-org:
-    permissions:
-      contents: write
-    uses: publishpress/github-workflows/.github/workflows/deploy-free.yml@v3
-    needs: [code-check]
-    secrets: inherit
+      # v2.0.0
+      - uses: publishpress/github-workflows/.github/workflows/deploy-free-assets.yml@0f5e3a3488accd905de7b26e9d57364e303837f5
