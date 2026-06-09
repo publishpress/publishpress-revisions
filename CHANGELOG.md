@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[3.8.2] - 8 Jun 2026
+[3.8.2] - 9 Jun 2026
 - Added : Copy Post feature
 - Added : Specify post fields available for Revisions
 - Added : Specify post fields included in Post Copy
@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Draft posts may appear locked on Posts screen when they are actually editable
 - Changed : Adjust styling of Compare Revisions Buttons (WP 7.0 compat)
 - Changed : Make Pending Revision, Scheduled Revision listing metaboxes optional
+- Compat : WP REST Cache plugin compatibility hook can cause fatal error
+- Security : Revision Comparison request lists Pending Revisions to unauthorized Revisors
 
 [3.8.1] - 30 Apr 2026
 - Fixed : Revisions failed to publish under some conditions
