@@ -183,7 +183,7 @@ class RvyPostEdit {
             return;
         }
         ?>
-        <div id="preview-action" class="rvy-misc-actions" style="float: right; padding: 5px 10px 10px 5px">
+        <div id="preview-action" class="rvy-misc-actions" style="float: left; padding: 5px 10px 10px 0">
 
         <?php
         $compare_link = rvy_admin_url("revision.php?revision=$post->ID");
