@@ -8,6 +8,16 @@
 jQuery(document).ready( function($) {
     var rvySaveClicked = false;
     
+    var RvyInitializeBlockEditorModifications = function () {
+        if ($('#wpbody-content .wp-heading-inline').length) {
+			clearInterval(RvyInitInterval);
+			
+            $('#wpbody-content .wp-heading-inline').append(' '  + rvyObjEdit.revisionCaption + ' ');
+            console.log($('#wpbody-content wp-heading-inline').html());
+        }
+	}
+	var RvyInitInterval = setInterval(RvyInitializeBlockEditorModifications, 50);
+
     var RvyDisableSubmitButtons = function() {
         if (rvyObjEdit.disableSubmitUntilSave) {
             $('a.revision-approve, a.rvy-direct-approve').attr('disabled', 'disabled');

@@ -162,6 +162,7 @@ class RVY_PostBlockEditUI {
         : false;
 
         $args['nowCaption'] = esc_html__('Now', 'revisionary');
+        $args['revisionCaption'] = esc_html__('Revision', 'revisionary');
 
         wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
     }

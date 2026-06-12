@@ -100,6 +100,8 @@ class RvyPostEdit {
 
             $args['disableSubmitUntilSave'] = !defined('ET_BUILDER_PLUGIN_VERSION') && (false === stripos(get_template(), 'divi')) && !defined('REVISIONARY_EDITOR_NO_BUTTON_DISABLE');
 
+            $args['revisionCaption'] = esc_html__('Revision', 'revisionary');
+
             wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
 
             if (defined('PUBLISHPRESS_VERSION')) {
