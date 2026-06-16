@@ -16,6 +16,8 @@ jQuery(document).ready(function ($) {
             $('button.editor-post-switch-to-draft').hide();
 
 			$('div.components-notice-list').hide();	// autosave notice
+
+            $('#editor .editor-document-bar span.editor-document-bar__post-type-label').append(' '  + rvyObjEdit.revisionCaption + ' ');
         }
 	}
 	var RvyInitInterval = setInterval(RvyInitializeBlockEditorModifications, 50);
