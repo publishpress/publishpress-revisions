@@ -10,6 +10,8 @@ class RevisionaryEditRevisionClassicUI {
 		add_action('admin_head', [$this, 'hide_admin_divs']);
 		add_action('admin_head', [$this, 'actDeleteDuplicateRevision']);
 
+		add_action('admin_print_scripts', [$this, 'admin_print_scripts'], 99);
+
 		add_filter('post_updated_messages', [$this, 'fltPostUpdatedMessage']);
 
 		add_action('add_meta_boxes', [$this, 'act_replace_publish_metabox'], 10, 2);
@@ -40,6 +42,18 @@ class RevisionaryEditRevisionClassicUI {
 				}
 			);
 		endif;
+	}
+
+	function admin_print_scripts() {
+		?>
+		<style type='text/css'>
+		<?php if ($bgcolor = rvy_get_option('revision_editor_bg_color')) :?>
+			#wpwrap, #wp-content-editor-tools {
+				background-color: <?php echo sanitize_hex_color($bgcolor);?>;
+			}
+		<?php endif;?>
+		</style>
+		<?php
 	}
 
 	function actDeleteDuplicateRevision() {
