@@ -1,4 +1,5 @@
-jQuery(document).ready(function($){var rvySaveClicked=false;var RvyDisableSubmitButtons=function(){if(rvyObjEdit.disableSubmitUntilSave){$('a.revision-approve, a.rvy-direct-approve').attr('disabled','disabled');if(!rvySaveClicked){$('div.rvy-save-revision-tip').show();}}}
+jQuery(document).ready(function($){var rvySaveClicked=false;var RvyInitializeBlockEditorModifications=function(){if($('#wpbody-content .wp-heading-inline').length){clearInterval(RvyInitInterval);$('#wpbody-content .wp-heading-inline').append(' '+rvyObjEdit.revisionCaption+' ');}}
+var RvyInitInterval=setInterval(RvyInitializeBlockEditorModifications,50);var RvyDisableSubmitButtons=function(){if(rvyObjEdit.disableSubmitUntilSave){$('a.revision-approve, a.rvy-direct-approve').attr('disabled','disabled');if(!rvySaveClicked){$('div.rvy-save-revision-tip').show();}}}
 var RvySubmissionUI=function(){var refSelector='.rvy-misc-actions';if(!$(refSelector).length){var refSelector='#submitdiv div.misc-pub-section:last';}
 if(!$(refSelector).length){var refSelector='#submitdiv div.curtime';}
 if(typeof rvyObjEdit.updateCaption!='undefined'){if(rvyObjEdit[rvyObjEdit.currentStatus+'StatusCaption']&&(rvyObjEdit[rvyObjEdit.currentStatus+'StatusCaption']!=$('#post-status-display').html())){$('#post-status-display').html(rvyObjEdit[rvyObjEdit.currentStatus+'StatusCaption']);}}
