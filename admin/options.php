@@ -1452,57 +1452,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$this->option_checkbox( 'revise_posts_capability', $tab, $section, $hint, '', $checkbox_args );
 
-			$option = 'revision_editor_bg_color';
-			$this->all_options []= $option;
-			$color = rvy_get_option($option);
-
-			?>
-			<input type="hidden" name="revision_editor_bg_color" value="<?php echo esc_attr($color);?>"> 
-			<?php
-			$default = (\PublishPress\Revisions\Utils::isBlockEditorActive()) ? '#fff' : '#efe'; 
-
-			$this->colorPicker(esc_attr($color), 'revision_editor_bg_color_', compact('default'));
-			?>
-			<div class='rvy-subtext'>
-			<?php _e('Select a custom background color to show that a Revision is being edited.', 'revisionary');?>
-			</div>
-
-			<script>
-			jQuery(document).ready(function($) {
-				$(function () {
-					setTimeout(function() {
-						$('.revision-submission .wp-color-result-text').html('<?php echo esc_html($this->option_captions[$option]);?>');
-					}, 1000);
-				});
-
-				$(document).on('click', 'input[name="rvy_submit"]', function(e) {
-					function componentToHex(c) {
-						let hex = parseInt(c, 10).toString(16);
-						return hex.length == 1 ? "0" + hex : hex;
-					}
-
-					var bgcolor = $('.wp-color-result').css('background-color');
-					var hexcolor = bgcolor.replace("rgb(", "").replace(")", "").split(", ");
-
-					bgcolor = "#" + componentToHex(hexcolor[0]) + componentToHex(hexcolor[1]) + componentToHex(hexcolor[2]);
-
-					$('input[name="revision_editor_bg_color"]').val(bgcolor);
-				});
-			});
-			</script>
-
-			<style>
-			.revision-submission .wp-picker-container .wp-color-result.button {
-				margin-bottom: 0 !important;
-				font-size: 14px;
-			}
-
-			.revision-submission .wp-picker-container .wp-color-result-text {
-				line-height: 2.0
-			}
-			</style>
-
-			<?php
 			$hint = sprintf(esc_html__( 'When a %s is published, update post publish date to current time.', 'revisionary' ), pp_revisions_status_label('pending-revision', 'name'));
 			$this->option_checkbox( 'pending_revision_update_post_date', $tab, $section, $hint, '' );
 
