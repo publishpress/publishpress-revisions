@@ -13,7 +13,6 @@ jQuery(document).ready( function($) {
 			clearInterval(RvyInitInterval);
 			
             $('#wpbody-content .wp-heading-inline').append(' '  + rvyObjEdit.revisionCaption + ' ');
-            console.log($('#wpbody-content wp-heading-inline').html());
         }
 	}
 	var RvyInitInterval = setInterval(RvyInitializeBlockEditorModifications, 50);
