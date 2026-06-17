@@ -526,9 +526,11 @@ class RevisionaryHistory
             return $return;
         }
 
+        /*
         if (!rvy_in_revision_workflow($compare_from) && !rvy_in_revision_workflow($compare_to)) {
             return $return;
         }
+        */
 
         return $this->getRevisionUIDiff(rvy_post_id($compare_to), $compare_from, $compare_to);
     }

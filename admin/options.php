@@ -583,7 +583,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 			$obj = $types[$key];
 
-			if (!post_type_supports($key, 'revisions')) {
+			if (!post_type_supports($key, 'revisions') && (($key != 'product') || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION'))) {
 			    unset($revisionary->enabled_post_types_archive[$key]);
 			    $locked_types[$key] = true;
 			    $no_revision_types[$key] = true;
