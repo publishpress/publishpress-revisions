@@ -16,11 +16,18 @@ jQuery(document).ready(function ($) {
             $('button.editor-post-switch-to-draft').hide();
 
 			$('div.components-notice-list').hide();	// autosave notice
+        }
+	}
+	var RvyInitInterval = setInterval(RvyInitializeBlockEditorModifications, 50);
+
+    var RvyInitializeHeaderCaption = function () {
+        if ($('#editor .editor-document-bar span.editor-document-bar__post-type-label').length) {
+			clearInterval(RvyHeaderInterval);
 
             $('#editor .editor-document-bar span.editor-document-bar__post-type-label').append(' '  + rvyObjEdit.revisionCaption + ' ');
         }
 	}
-	var RvyInitInterval = setInterval(RvyInitializeBlockEditorModifications, 50);
+	var RvyHeaderInterval = setInterval(RvyInitializeHeaderCaption, 50);
 	
     var RvyHideElements = function () {
         var ediv = 'div.edit-post-sidebar ';
