@@ -31,7 +31,7 @@ var rvyPreviewLink='';if(rvyObjEdit[rvyObjEdit.currentStatus+'CompletedLinkCapti
 +rvyObjEdit[rvyObjEdit.currentStatus+'CompletedLinkCaption']+'</a>';}
 if(refSelector=='div.editor-post-panel__section'){divClass=' gutenberg-18-5';}else{divClass='';}
 if(refSelectorUseParent){var uiLoc=$(refSelector).parent();}else{var uiLoc=$(refSelector);}
-if(!$('div.rvy-creation-ui').length){var buttonUI='<div class="rvy-creation-ui rvy-submission-div'+divClass+'">';if(!approveButtonHTML){buttonUI+='<a href="'+url+'" class="revision-approve">'
+if(!$('div.rvy-creation-ui').length){var buttonUI='<div class="rvy-creation-ui rvy-submission-div'+divClass+'">';if(!approveButtonHTML||!rvyObjEdit.approveButtonReplacesSubmit){buttonUI+='<a href="'+url+'" class="revision-approve">'
 +'<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
 +'<span class="dashicons '+mainDashicon+'"></span>'
 +'<span class="rvy-caption">'+rvyObjEdit[rvyObjEdit.currentStatus+'ActionCaption']+'</span></button></a>';}

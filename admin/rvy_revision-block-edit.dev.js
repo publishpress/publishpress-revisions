@@ -231,7 +231,7 @@ jQuery(document).ready(function ($) {
                 if (!$('div.rvy-creation-ui').length) {
                     var buttonUI = '<div class="rvy-creation-ui rvy-submission-div' + divClass + '">';
                     
-                    if (!approveButtonHTML) {
+                    if (!approveButtonHTML || !rvyObjEdit.approveButtonReplacesSubmit) {
                         buttonUI += '<a href="' + url + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
                         + '<span class="dashicons ' + mainDashicon + '"></span>'
