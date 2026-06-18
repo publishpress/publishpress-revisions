@@ -358,7 +358,7 @@ class RevisionaryAdmin
 
 		// For Revisions Manager access, satisfy WordPress' demand that all admin links be properly defined in menu
 		if (isset($_SERVER['REQUEST_URI']) && (false !== strpos( urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'admin.php?page=rvy-revisions' )) ) {
-			add_submenu_page( 'none', esc_html__('Revisions', 'revisionary') . $count, esc_html__('Revisions', 'revisionary') . $count, 'read', 'rvy-revisions', 'rvy_include_admin_revisions' );
+			add_submenu_page( 'none', esc_html__('Revisions', 'revisionary'), esc_html__('Revisions', 'revisionary'), 'read', 'rvy-revisions', 'rvy_include_admin_revisions' );
 		}
 
 		$types = rvy_get_manageable_types();
@@ -423,29 +423,10 @@ class RevisionaryAdmin
 				}
 			}
 
-			$type_csv = implode("','", $post_types);
-
-			$post_status_csv = implode( "','", apply_filters('revisionary_menu_count_post_statuses', array_diff(get_post_stati(), ['trash', 'auto-draft', 'inherit'])));
-
-			if ($post_types && $post_status_csv) {
-				$revision_count = $wpdb->get_var(
-					apply_filters(
-						'revisionary_menu_count', 
-						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.post_status IN ('$post_status_csv') AND r.post_type IN ('$type_csv') AND r.post_mime_type IN ('pending-revision')"
-					)
-				);
-			}
-
-			if (!empty($revision_count)) {
-				$count_html = ' <span class="update-plugins count-' . $revision_count . '" style="vertical-align:baseline"><span class="plugin-count">' . $revision_count . '</span></span>';	
-			} else {
-				$count_html = '';
-			}
-
-			add_menu_page( esc_html__($_menu_caption, 'revisionary'), esc_html__($_menu_caption, 'revisionary') . $count_html, 'read', $menu_slug, $menu_func, 'dashicons-backup', 29 );
+			add_menu_page( esc_html__($_menu_caption, 'revisionary'), esc_html__($_menu_caption, 'revisionary'), 'read', $menu_slug, $menu_func, 'dashicons-backup', 29 );
 
 			if ($can_edit_any && array_filter($revisionary->enabled_post_types)) {
-				add_submenu_page('revisionary-q', esc_html__('New Revisions', 'revisionary'), esc_html__('New Revisions', 'revisionary') . $count_html, 'read', 'revisionary-q', [$this, 'moderation_queue']);
+				add_submenu_page('revisionary-q', esc_html__('New Revisions', 'revisionary'), esc_html__('New Revisions', 'revisionary'), 'read', 'revisionary-q', [$this, 'moderation_queue']);
 			}
 
 			do_action('revisionary_admin_menu');
