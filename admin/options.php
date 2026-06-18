@@ -2654,38 +2654,6 @@ private function renderIntegrations()
 	}
 }
 
-/**
- * Generate the color picker
- * $current_value   Selected icon for the status
- * $attributes      Insert attributes different to name and class. For example: 'default' => "#eee"
- */
-private function colorPicker($current_value = '', $field_name, $attributes = [])
-{
-	// Load Color Picker
-	if (is_admin()) {
-		wp_enqueue_style('wp-color-picker');
-		wp_enqueue_script(
-			'publishpress-color-picker',
-			RVY_URLPATH . '/common/libs/color-picker/color-picker.js',
-			['wp-color-picker'],
-			false,
-			true
-		);
-	}
-
-	$default_color = (!empty($attributes['default'])) ? $attributes['default'] : '#fff';
-
-	// Set default value if empty
-	if (!empty($current_value)) {
-		$pp_color = $current_value;
-	} else {
-		$pp_color = $default_color;
-	}
-
-	echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($field_name) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($default_color) . '" />';
-}
-
-
 } // end class RvyOptionUI
 
 
