@@ -50,7 +50,7 @@ jQuery(document).ready( function($) {
 
 			html += '</div>';
 			
-			$('#delete-action').before(html);
+			$('#major-publishing-actions').after('<div id="major-publishing-actions" style="border-top: none; padding-top: 0; padding-bottom: 0">' + html + '</div>');
 		}
 	}
 	var RvyUIInterval = setInterval(RvySubmissionUI, 100);

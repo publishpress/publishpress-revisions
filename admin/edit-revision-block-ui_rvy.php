@@ -30,6 +30,7 @@ class RevisionaryEditRevisionBlockUI {
 		?>
 		<style type='text/css'>
 		input.restore-revision {display:none !important;}
+
 		</style>
 		<?php
 	}

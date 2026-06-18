@@ -1,6 +1,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[3.8.3] - 17 Jun 2026
+- Fixed : Submit Revision button hidden from Administrators, Editors
+- Fixed : Revision Editor: Submit / Approve buttons may be hidden or shown inappropriately 
+- Fixed : Button styling issues in Classic Editor with WP 7.0
+- Changed : Differentiate Revision Editing from Normal Editing
+
 [3.8.2] - 9 Jun 2026
 - Added : Copy Post feature
 - Added : Specify post fields available for Revisions

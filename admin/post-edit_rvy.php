@@ -99,6 +99,7 @@ class RvyPostEdit {
             $args['isStatusesPro'] = rvy_status_revisions_active($post->post_type);
 
             $args['disableSubmitUntilSave'] = !defined('ET_BUILDER_PLUGIN_VERSION') && (false === stripos(get_template(), 'divi')) && !defined('REVISIONARY_EDITOR_NO_BUTTON_DISABLE');
+            $args['revisionCaption'] = esc_html__('Revision', 'revisionary');
 
             wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
 
@@ -183,7 +184,7 @@ class RvyPostEdit {
             return;
         }
         ?>
-        <div id="preview-action" class="rvy-misc-actions" style="float: right; padding: 5px 10px 10px 5px">
+        <div id="preview-action" class="rvy-misc-actions" style="float: left; padding: 5px 10px 10px 10px">
 
         <?php
         $compare_link = rvy_admin_url("revision.php?revision=$post->ID");

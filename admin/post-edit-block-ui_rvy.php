@@ -162,6 +162,9 @@ class RVY_PostBlockEditUI {
         : false;
 
         $args['nowCaption'] = esc_html__('Now', 'revisionary');
+        $args['revisionCaption'] = esc_html__('Revision', 'revisionary');
+
+        $args['approveButtonReplacesSubmit'] = defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && class_exists('PublishPress_Statuses') && method_exists('PublishPress_Statuses', 'getEnabledPostTypes') && in_array($post->post_type, \PublishPress_Statuses::getEnabledPostTypes());   // @todo: possible setting
 
         wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
     }

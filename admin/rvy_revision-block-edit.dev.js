@@ -19,6 +19,15 @@ jQuery(document).ready(function ($) {
         }
 	}
 	var RvyInitInterval = setInterval(RvyInitializeBlockEditorModifications, 50);
+
+    var RvyInitializeHeaderCaption = function () {
+        if ($('#editor .editor-document-bar span.editor-document-bar__post-type-label').length) {
+			clearInterval(RvyHeaderInterval);
+
+            $('#editor .editor-document-bar span.editor-document-bar__post-type-label').append(' '  + rvyObjEdit.revisionCaption + ' ');
+        }
+	}
+	var RvyHeaderInterval = setInterval(RvyInitializeHeaderCaption, 50);
 	
     var RvyHideElements = function () {
         var ediv = 'div.edit-post-sidebar ';
@@ -192,7 +201,7 @@ jQuery(document).ready(function ($) {
                 var approveButtonHTML = '';
 				var mainDashicon = '';
 				
-                if (rvyObjEdit.canPublish) {
+                if (rvyObjEdit.canPublish && ('pending' != rvyObjEdit.currentStatus) && ('future' != rvyObjEdit.currentStatus)) {
                     approveButtonHTML = '<a href="' + rvyObjEdit['pendingActionURL'] + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-approve">'
                         + '<span class="dashicons dashicons-yes"></span>'
@@ -229,7 +238,7 @@ jQuery(document).ready(function ($) {
                 if (!$('div.rvy-creation-ui').length) {
                     var buttonUI = '<div class="rvy-creation-ui rvy-submission-div' + divClass + '">';
                     
-                    if (!approveButtonHTML) {
+                    if ((!approveButtonHTML && rvyObjEdit.canPublish) || !rvyObjEdit.approveButtonReplacesSubmit) {
                         buttonUI += '<a href="' + url + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
                         + '<span class="dashicons ' + mainDashicon + '"></span>'

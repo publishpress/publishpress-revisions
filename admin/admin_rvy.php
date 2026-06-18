@@ -349,7 +349,7 @@ class RevisionaryAdmin
 	}
 
 	function build_menu() {
-		global $current_user, $revisionary;
+		global $current_user, $revisionary, $wpdb;
 
 		if ( isset($_SERVER['REQUEST_URI']) && (strpos( esc_url_raw($_SERVER['REQUEST_URI']), 'wp-admin/network/' )) )
 			return;
@@ -402,6 +402,25 @@ class RevisionaryAdmin
 			} else {
 				$menu_slug = 'revisionary-settings';
 				$menu_func = 'rvy_omit_site_options';
+			}
+
+			$post_types = array_keys(array_filter($revisionary->enabled_post_types));
+
+			if (!is_content_administrator_rvy()) {
+				foreach ($post_types as $post_type) {
+					if ($type_obj = get_post_type_object($post_type)) {
+						if (!empty($type_obj->cap->edit_published_posts) && !empty($type_obj->cap->edit_others_posts)) {
+							if (!current_user_can($type_obj->cap->edit_published_posts) || !current_user_can($type_obj->cap->edit_others_posts)) {
+
+								$approve_cap_name = str_replace('edit_', 'approve_', $type_obj->cap->edit_others_posts);
+								
+								if (!current_user_can($approve_cap_name)) {
+									$post_types = array_diff($post_types, [$post_type]);
+								}
+							}
+						}
+					}
+				}
 			}
 
 			add_menu_page( esc_html__($_menu_caption, 'revisionary'), esc_html__($_menu_caption, 'revisionary'), 'read', $menu_slug, $menu_func, 'dashicons-backup', 29 );

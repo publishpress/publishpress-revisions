@@ -197,6 +197,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'scheduled_publish_cron' =>					esc_html__('Use WP-Cron scheduling', 'revisionary'),
 	'wp_cron_usage_detected' =>					esc_html__('Site uses a custom trigger for WP-Cron tasks', 'revisionary'),
 	'async_scheduled_publish' => 				esc_html__('Asynchronous Publishing', 'revisionary'),
+	'revision_editor_bg_color' =>				esc_html__('Editor background color', 'revisionary'),
 	'scheduled_revision_update_post_date' => 	esc_html__('Update Publish Date', 'revisionary'),
 	'pending_revision_update_post_date' => 		esc_html__('Update Publish Date', 'revisionary'),
 	'scheduled_revision_update_modified_date' => esc_html__('Update Modified Date', 'revisionary'),
@@ -1669,7 +1670,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				echo "<div class='rvy-subtext'>" . esc_html($hint) . "</div>";
 			endif;?>
 		
-			</p>
 			<?php endif;
 		endif;
 
@@ -2653,7 +2653,6 @@ private function renderIntegrations()
 		$this->renderCompatibilityPack($integration);
 	}
 }
-
 
 } // end class RvyOptionUI
 

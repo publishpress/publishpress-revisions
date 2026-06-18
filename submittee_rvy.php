@@ -61,7 +61,9 @@ class Revisionary_Submittee {
 					if (is_array($_POST[$option_basename])) {
 						$value = array_map('sanitize_key', $_POST[$option_basename]);
 					} else {
-						if (is_numeric($_POST[$option_basename])) {
+						if ('revision_editor_bg_color' == $option_basename) {
+							$value = sanitize_hex_color($_POST[$option_basename]);
+						} elseif (is_numeric($_POST[$option_basename])) {
 							$value = intval($_POST[$option_basename]);
 						} else {
 							$value = sanitize_key($_POST[$option_basename]);
