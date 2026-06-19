@@ -189,6 +189,10 @@ class RevisionaryHistory
             $revision_id = absint( $to );
         }
 
+        if (!rvy_in_revision_workflow($revision_id)) {
+            return;
+        }
+
         $this->revision_id = $revision_id;
 
         $redirect = 'edit.php';
@@ -215,7 +219,7 @@ class RevisionaryHistory
                         return;
                     }
                 } else {
-                    if ($from && $from_revision = get_post($from)) {
+                    if (!empty($from) && $from_revision = get_post($from)) {
                         if (rvy_in_revision_workflow($from_revision)) {
                             $_revision_id = $revision_id;   // @todo: eliminate this?
                             $revision = $from_revision;
@@ -228,11 +232,7 @@ class RevisionaryHistory
                     }
                 }
 
-                if (!rvy_in_revision_workflow($revision)) {
-                    return;
-                }
-
-                if (!$published_post && !rvy_in_revision_workflow($from_revision)) {
+                if (empty($published_post) && !empty($from_revision) && !rvy_in_revision_workflow($from_revision)) {
                     if (!$published_post = get_post($revision->post_parent)) {
                         return;
                     }
@@ -382,6 +382,10 @@ class RevisionaryHistory
             return;
         }
 
+        if (!rvy_in_revision_workflow($revision_id)) {
+            return;
+        }
+
         if (!$from) {
             $from = $post->ID;
         }
@@ -523,10 +527,6 @@ class RevisionaryHistory
         }
 
         if ( ! $compare_to = get_post( $compare_to ) ) {
-            return $return;
-        }
-
-        if (!rvy_in_revision_workflow($compare_from) && !rvy_in_revision_workflow($compare_to)) {
             return $return;
         }
 

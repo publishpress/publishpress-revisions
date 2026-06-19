@@ -207,12 +207,12 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
                 foreach ( $meta_values as $meta_value ) {
                     $meta_value = maybe_unserialize( $meta_value );
-                    add_post_meta( $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
+                    add_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             } else {
                 foreach ( $meta_values as $meta_value ) {
                     $meta_value = maybe_unserialize( $meta_value );
-                    update_post_meta( $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
+                    update_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             }
         }
