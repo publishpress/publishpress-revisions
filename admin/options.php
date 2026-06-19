@@ -1461,6 +1461,10 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			<?php
 			$default = (\PublishPress\Revisions\Utils::isBlockEditorActive()) ? '#fff' : '#efe'; 
 
+			if (!$color) {
+				$color = (\PublishPress\Revisions\Utils::isBlockEditorActive()) ? '#f5deb3' : '#ffeecc';
+			}
+
 			$this->colorPicker(esc_attr($color), 'revision_editor_bg_color_', compact('default'));
 			?>
 			<div class='rvy-subtext'>
