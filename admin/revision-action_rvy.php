@@ -1098,7 +1098,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 			* If a limit for the number of revisions to keep has been set,
 			* delete the oldest ones.
 			*/
-			$revisions_to_keep = wp_revisions_to_keep( $post );
+			$revisions_to_keep = wp_revisions_to_keep(get_post($post));
 
 			if ($revisions_to_keep >= 0 ) {
 				$revisions = wp_get_post_revisions( $post_id, array( 'order' => 'ASC' ) );
