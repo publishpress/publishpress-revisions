@@ -575,7 +575,7 @@ class RevisionaryFront {
 						$approve_caption = esc_html__( 'Approve', 'revisionary' );
 
 						if ($can_publish && !defined('REVISIONARY_PREVIEW_NO_DECLINE_BUTTON')) {
-							$decline_url = wp_nonce_url(admin_url("post.php?post=$revision_id&action=decline_revision"), 'decline-revision');
+							$decline_url = wp_nonce_url(admin_url("post.php?post=$revision_id&action=decline_revision"), "decline-revision_{$post->ID}");
 							$decline_button = ($can_publish) ? '<a href="' . $decline_url . '" class="button button-secondary">' . esc_html__('Decline', 'revisionary') . '</a>' : '';
 						} else {
 							$decline_button = '';
