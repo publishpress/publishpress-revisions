@@ -190,6 +190,7 @@ class RevisionaryHistory
         }
 
         if (!rvy_in_revision_workflow($revision_id)) {
+            do_action('rvy_compare_past_revisions');
             return;
         }
 
@@ -465,51 +466,71 @@ class RevisionaryHistory
             return;
         }
 
-        if (!rvy_in_revision_workflow($revision)) {
-            return;
-        }
+        if (rvy_in_revision_workflow($revision)) {
+            $this->revision_status = $revision->post_mime_type;
 
-        $this->revision_status = $revision->post_mime_type;
+            if (!$rvy_revisions = $this->queryRevisions($post)) {
+                return;
+            }
 
-        if (!$rvy_revisions = $this->queryRevisions($post)) {
-            return;
-        }
+            $rvy_revisions = array_filter($rvy_revisions, function($rev) {
+                return current_user_can('read_post', $rev->ID) || current_user_can('edit_post', $rev->ID);
+            });
 
-        $rvy_revisions = array_filter($rvy_revisions, function($rev) {
-            return current_user_can('read_post', $rev->ID) || current_user_can('edit_post', $rev->ID);
-        });
+            if (!current_user_can('edit_post', $revision_id) && !current_user_can('read_post', $revision_id)) {
+                return;
+            }
 
-        if (!current_user_can('edit_post', $revision_id) && !current_user_can('read_post', $revision_id)) {
-            return;
-        }
+            $return = array();
+            @set_time_limit( 0 );
 
-        $return = array();
-        @set_time_limit( 0 );
+            $current_revision_id  = $post->ID;
 
-        $current_revision_id  = $post->ID;
-
-        $return[] = [
-            'id'     => "0:{$current_revision_id}",
-            'fields' => $this->getRevisionUIDiff( $post, $post->ID, $current_revision_id ),
-        ];
-
-        foreach($rvy_revisions as $rvy_revision) {
             $return[] = [
-                'id'     => "{$current_revision_id}:{$rvy_revision->ID}",
-                'fields' => $this->getRevisionUIDiff( $post, $current_revision_id, $rvy_revision->ID ),
+                'id'     => "0:{$current_revision_id}",
+                'fields' => $this->getRevisionUIDiff( $post, $post->ID, $current_revision_id ),
             ];
-        }
 
-        $rvy_revisions_copy = array_values($rvy_revisions);
-
-        foreach($rvy_revisions_copy as $revision_copy) {
             foreach($rvy_revisions as $rvy_revision) {
-                if ($revision_copy->ID != $rvy_revision->ID) {
-                    $return[] = [
-                        'id'     => "{$revision_copy->ID}:{$rvy_revision->ID}",
-                        'fields' => $this->getRevisionUIDiff( $post, $revision_copy->ID, $rvy_revision->ID ),
-                    ];
+                $return[] = [
+                    'id'     => "{$current_revision_id}:{$rvy_revision->ID}",
+                    'fields' => $this->getRevisionUIDiff( $post, $current_revision_id, $rvy_revision->ID ),
+                ];
+            }
+
+            $rvy_revisions_copy = array_values($rvy_revisions);
+
+            foreach($rvy_revisions_copy as $revision_copy) {
+                foreach($rvy_revisions as $rvy_revision) {
+                    if ($revision_copy->ID != $rvy_revision->ID) {
+                        $return[] = [
+                            'id'     => "{$revision_copy->ID}:{$rvy_revision->ID}",
+                            'fields' => $this->getRevisionUIDiff( $post, $revision_copy->ID, $rvy_revision->ID ),
+                        ];
+                    }
                 }
+            }
+        } else {
+            // Really just pre-loading the cache here.
+            $revisions = wp_get_post_revisions( $post->ID, array( 'check_enabled' => false ) );
+            if ( ! $revisions ) {
+                wp_send_json_error();
+            }
+
+            $return = array();
+
+            // Increase the script timeout limit to allow ample time for diff UI setup.
+            if ( function_exists( 'set_time_limit' ) ) {
+                set_time_limit( 5 * MINUTE_IN_SECONDS );
+            }
+
+            foreach ( $_REQUEST['compare'] as $compare_key ) {
+                list( $from, $to ) = explode( ':', $compare_key ); // from:to
+
+                $return[] = array(
+                    'id'     => $compare_key,
+                    'fields' => $this->getRevisionUIDiff( $post, $from, $to ),
+                );
             }
         }
 
