@@ -358,7 +358,7 @@ class RevisionaryAdmin
 
 		// For Revisions Manager access, satisfy WordPress' demand that all admin links be properly defined in menu
 		if (isset($_SERVER['REQUEST_URI']) && (false !== strpos( urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'admin.php?page=rvy-revisions' )) ) {
-			add_submenu_page( 'none', esc_html__('Revisions', 'revisionary') . $count, esc_html__('Revisions', 'revisionary') . $count, 'read', 'rvy-revisions', 'rvy_include_admin_revisions' );
+			add_submenu_page( 'none', esc_html__('Revisions', 'revisionary'), esc_html__('Revisions', 'revisionary'), 'read', 'rvy-revisions', 'rvy_include_admin_revisions' );
 		}
 
 		$types = rvy_get_manageable_types();
