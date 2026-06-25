@@ -28,10 +28,12 @@ class Editor_Features {
 
         // apply the stored restrictions by js and css
         if ($restrict_elements = array_unique($restrict_elements)) {
+            /* @todo: review
+            
             // script file
             wp_enqueue_script(
                 'rvy-features-block-script',
-                RVY_URLPATH . '/admin/rvy_editor_features.js',
+                RVY_URLPATH . '/admin/rvy_editor-features.js',
                 ['wp-blocks', 'wp-edit-post'],
                 PUBLISHPRESS_REVISIONS_VERSION
             );
@@ -44,6 +46,7 @@ class Editor_Features {
                 'taxonomies' => implode(",", get_taxonomies())
                 ]
             );
+            */
 
             self::addInlineStyle('' . implode(',', $restrict_elements) . ' {display:none !important;}');
         }
