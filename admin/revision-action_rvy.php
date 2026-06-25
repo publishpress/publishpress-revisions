@@ -244,7 +244,7 @@ function rvy_revision_decline($revision_id = 0) {
 		}
 
 		if (!$batch_process) {
-			check_admin_referer('decline-revision');
+			check_admin_referer( "decline-revision_{$revision_id}" );
 		}
 
 		$revision_before = (object) (array) $revision;
