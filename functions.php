@@ -796,6 +796,11 @@ function pp_revisions_plugin_activation() {
         }
     }
 
+    if (!get_option('revisionary_activation_done')) {
+        update_option('revisionary_activation_done', true); 
+        update_option('revisionary_activation', true); 
+    }
+
     // Revisions were prevented from being being listed as regular drafts / pending posts after plugin deactivation
     if (rvy_get_option('permissions_compat_mode')) {
         rvy_bulk_apply_revision_statuses();
