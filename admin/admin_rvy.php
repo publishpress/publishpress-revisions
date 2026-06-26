@@ -43,6 +43,14 @@ class RevisionaryAdmin
 			}
 		}
 
+		add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
+			if (get_option('revisionary_activation')) {
+				delete_option('revisionary_activation');
+				wp_safe_redirect(admin_url("admin.php?page=revisionary-archive"));
+				exit;
+			}
+		});
+
 		// ===== Special early exit if this is a plugin install script
 		if ( strpos($script_name, 'p-admin/plugins.php') || strpos($script_name, 'p-admin/plugin-install.php') || strpos($script_name, 'p-admin/plugin-editor.php') ) {
 			if (strpos($script_name, 'p-admin/plugin-install.php') && !empty($_SERVER['HTTP_REFERER']) && strpos(esc_url_raw($_SERVER['HTTP_REFERER']), '=rvy')) {
