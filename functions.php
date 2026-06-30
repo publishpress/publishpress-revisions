@@ -268,6 +268,18 @@ function rvy_revision_statuses($args = []) {
 	
 	$arr = apply_filters('rvy_revision_statuses', ['draft-revision', 'pending-revision', 'future-revision'], $args);
 
+    // Work around duplication of revision count for by Statuses Pro < 1.3.5
+    $rvy_seen_statuses = [];
+    foreach ($arr as $rvy_k => $rvy_status) {
+        $rvy_status_name = is_object($rvy_status) ? $rvy_status->name : $rvy_status;
+        if (isset($rvy_seen_statuses[$rvy_status_name])) {
+            unset($arr[$rvy_k]);
+        } else {
+            $rvy_seen_statuses[$rvy_status_name] = true;
+        }
+    }
+    $arr = array_values($arr);
+
     if ('object' == $output) {
         foreach($arr as $k => $status) {
             if (!is_object($status)) {
