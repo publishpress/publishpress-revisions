@@ -31,7 +31,6 @@ class Revisionary
 
 	var $enabled_fields = true;
 	var $enabled_fields_copy = true;
-
 	var $post_edit_ui;
 
 	// minimal config retrieval to support pre-init usage by WP_Scoped_User before text domain is loaded
@@ -60,9 +59,7 @@ class Revisionary
 						if (empty($wp_query) || empty($wp_query->queried_object_id)) {
 							return;
 						}
-
 						$post_id = $wp_query->queried_object_id;
-						
 						$post_type = get_post_field('post_type', $post_id);
 
 						if (!$post_type || empty($this->enabled_post_types[$post_type]) 
@@ -71,44 +68,47 @@ class Revisionary
 						) {
 							return;
 						}
-
 						?>
 						<style>
-						#rvyRevisionIndicator a {
-							z-index: 1;
+						#rvyRevisionIndicator {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						}
+						#rvyRevisionIndicator button {
+							z-index: 99;
 							position: fixed;
 							bottom: 5px;
 							right: 0;
+							height: 40px;
 							background-color: white;
 							color: #080;
-							padding: 5px 10px 0 5px;
+							padding: 5px 10px 5px 5px;
 							margin: 10px 15px 10px 10px;
-							font-size: 0.9em;
+							font-size: 15px;
+							cursor: pointer;
 							border-radius: 5px;
 							border: 1px solid #ccc;
 						}
-
 						#rvyRevisionIndicator a:hover, #rvyRevisionIndicator a:link, #rvyRevisionIndicator a:visited {
 							text-decoration: none !important;
 						}
-
 						#rvyRevisionIndicator img {
-							height: 2em;
-							padding-bottom: 5px;
+							height: 1.5em;
+							padding-right: 4px;
 						}
 						</style>
 						<?php
-
 						add_action(
 							'wp_body_open',
 							function() use ($post_id) {
 								$url = admin_url("admin.php?page=revisionary-q&published_post=$post_id");
 								?>
-
-								<span id="rvyRevisionIndicator"><a href="<?php echo esc_url($url);?>" class="button button-secondary">
+								<span id="rvyRevisionIndicator">
+								<a href="<?php echo esc_url($url);?>" class="button button-secondary"><button id="rvyRevisionIndicator">
 								<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>">
-								<?php _e('Revisions', 'revisionary');?>
-								</a></span>
+								<div><?php _e('Revisions', 'revisionary');?></div>
+								</button></a></span>
 								<?php
 							}
 						);
