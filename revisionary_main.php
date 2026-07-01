@@ -50,6 +50,73 @@ class Revisionary
 	function addFilters() {
 		global $script_name;
 
+		if (!is_admin() && is_user_logged_in()) {
+			add_action(
+				'wp_print_scripts', 
+				function() {
+					if (is_single() || is_page()) {
+						global $wp_query;
+						
+						if (empty($wp_query) || empty($wp_query->queried_object_id)) {
+							return;
+						}
+
+						$post_id = $wp_query->queried_object_id;
+						
+						$post_type = get_post_field('post_type', $post_id);
+
+						if (!$post_type || empty($this->enabled_post_types[$post_type]) 
+						|| !current_user_can('edit_post', $post_id)
+						|| !rvy_get_post_meta($post_id, '_rvy_has_revisions')
+						) {
+							return;
+						}
+
+						?>
+						<style>
+						#rvyRevisionIndicator a {
+							z-index: 1;
+							position: fixed;
+							bottom: 5px;
+							right: 0;
+							background-color: white;
+							color: #080;
+							padding: 5px 10px 0 5px;
+							margin: 10px 15px 10px 10px;
+							font-size: 0.9em;
+							border-radius: 5px;
+							border: 1px solid #ccc;
+						}
+
+						#rvyRevisionIndicator a:hover, #rvyRevisionIndicator a:link, #rvyRevisionIndicator a:visited {
+							text-decoration: none !important;
+						}
+
+						#rvyRevisionIndicator img {
+							height: 2em;
+							padding-bottom: 5px;
+						}
+						</style>
+						<?php
+
+						add_action(
+							'wp_body_open',
+							function() use ($post_id) {
+								$url = admin_url("admin.php?page=revisionary-q&published_post=$post_id");
+								?>
+
+								<span id="rvyRevisionIndicator"><a href="<?php echo esc_url($url);?>" class="button button-secondary">
+								<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>">
+								<?php _e('Revisions', 'revisionary');?>
+								</a></span>
+								<?php
+							}
+						);
+					}
+				}
+			);
+		}
+
 		add_filter('pre_wp_update_comment_count_now', [$this, 'fltUpdateCommentCountBypass'], 10, 3);
 		
 		// Ensure editing access to past revisions is not accidentally filtered. 
