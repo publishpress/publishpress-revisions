@@ -392,8 +392,8 @@ class RevisionaryHistory
         }
 
         $rvy_revisions = $this->queryRevisions($post);
-
         $revisions = $this->prepare_revisions_for_js( $post, $revision_id, $from, $rvy_revisions );
+
 
         add_filter('posts_clauses', [$this, 'fltRevisionClauses'], 5, 2);
 
