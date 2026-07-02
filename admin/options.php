@@ -2720,7 +2720,7 @@ private function renderIntegrations()
  * $current_value   Selected icon for the status
  * $attributes      Insert attributes different to name and class. For example: 'default' => "#eee"
  */
-private function colorPicker($current_value = '', $field_name, $attributes = [])
+private function colorPicker($current_value = '', $field_name = '', $attributes = [])
 {
 	// Load Color Picker
 	if (is_admin()) {
