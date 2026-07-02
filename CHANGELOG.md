@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[3.9.0]
+[3.9.0] - 2 Jul 2026
 - Added : Decline button in sidebar of Edit Revision screen
 - Added : Redirect to Past Revisions screen on first plugin activation
 - Added : Support WooCommerce Past Revisions, with custom field archiving
