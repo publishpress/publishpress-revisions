@@ -49,7 +49,7 @@ class Revisionary
 	function addFilters() {
 		global $script_name;
 
-		if (!is_admin() && is_user_logged_in()) {
+		if (!is_admin() && is_user_logged_in() && rvy_get_option('front_end_indicator')) {
 			add_action(
 				'wp_print_scripts', 
 				function() {
@@ -70,16 +70,14 @@ class Revisionary
 						}
 						?>
 						<style>
-						#rvyRevisionIndicator {
+						#rvyRevisionIndicator button {
 							display: flex;
 							justify-content: center;
 							align-items: center;
-						}
-						#rvyRevisionIndicator button {
 							z-index: 99;
 							position: fixed;
 							bottom: 5px;
-							right: 0;
+							left: 0;
 							height: 40px;
 							background-color: white;
 							color: #080;
@@ -105,7 +103,7 @@ class Revisionary
 								$url = admin_url("admin.php?page=revisionary-q&published_post=$post_id");
 								?>
 								<span id="rvyRevisionIndicator">
-								<a href="<?php echo esc_url($url);?>" class="button button-secondary"><button id="rvyRevisionIndicator">
+								<a href="<?php echo esc_url($url);?>" class="button button-secondary"><button>
 								<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>">
 								<div><?php _e('Revisions', 'revisionary');?></div>
 								</button></a></span>
