@@ -88,7 +88,7 @@ class FrontNotice {
                 bottom: 55px;
                 z-index: 999;
                 margin: 10px;
-                padding: 10px 44px 10px 12px;
+                padding: 10px 36px 10px 12px;
                 background: #fff8e5;
                 border: 1px solid #f0c36d;
                 border-left: 4px solid #dba617;
@@ -99,7 +99,7 @@ class FrontNotice {
 
             .rvy-frontend-notice button {
                 position: absolute;
-                top: 0;
+                top: 2px;
                 right: 5px;
                 padding: 0;
                 border: 0;
