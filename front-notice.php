@@ -28,7 +28,7 @@ class FrontNotice {
             left: 0;
             height: 40px;
             background-color: white;
-            color: #060;
+            color: black;
             padding: 5px 10px 5px 5px;
             margin: 10px 15px 10px 10px;
             font-size: 15px;
