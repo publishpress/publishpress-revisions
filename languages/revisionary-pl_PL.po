@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-07-02 18:48+0000\n"
+"PO-Revision-Date: 2026-07-07 20:14+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "&& (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
@@ -95,7 +95,7 @@ msgstr "Post ma już rewizję w toku."
 #: admin/admin-posts_rvy.php:294
 #: admin/class-list-table-archive.php:580
 #: admin/post-edit-block-ui_rvy.php:165
-#: admin/post-edit_rvy.php:102
+#: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
 msgid "Revision"
 msgstr "Rewizja"
@@ -151,7 +151,7 @@ msgstr ""
 "rewizje > Harmonogram%s."
 
 #: admin/admin_rvy.php:369
-#: revisionary_main.php:108
+#: front-notice.php:59
 msgid "Revisions"
 msgstr "Rewizje"
 
@@ -1174,7 +1174,7 @@ msgstr "Fragment"
 #: admin/options.php:762
 #: admin/options.php:925
 #: admin/post-edit-block-ui_rvy.php:212
-#: admin/post-edit_rvy.php:344
+#: admin/post-edit_rvy.php:345
 msgid "Author"
 msgstr "Autor"
 
@@ -2173,7 +2173,7 @@ msgid "For custom field changes, edit a scheduled %s."
 msgstr "Aby zmienić pole niestandardowe, edytuj zaplanowane %s."
 
 #: admin/post-edit_rvy.php:28
-#: admin/post-edit_rvy.php:142
+#: admin/post-edit_rvy.php:143
 msgid "Current Time"
 msgstr "Bieżący czas"
 
@@ -2182,19 +2182,19 @@ msgstr "Bieżący czas"
 msgid "Delete"
 msgstr "Usuń"
 
-#: admin/post-edit_rvy.php:169
+#: admin/post-edit_rvy.php:170
 msgid "View revision in progress"
 msgstr "Wyświetl rewizję w toku"
 
-#: admin/post-edit_rvy.php:192
+#: admin/post-edit_rvy.php:193
 msgid "Compare this revision to published copy, or to other revisions"
 msgstr "Porównaj tę rewizję z opublikowaną wersją lub z innymi rewizjami"
 
-#: admin/post-edit_rvy.php:227
+#: admin/post-edit_rvy.php:228
 msgid "View / moderate saved revision"
 msgstr "Wyświetl / moderuj zapisane wersje"
 
-#: admin/post-edit_rvy.php:230
+#: admin/post-edit_rvy.php:231
 msgid "View saved revision"
 msgstr "Wyświetl zapisaną wersję"
 
@@ -2634,6 +2634,15 @@ msgstr "Porównaj wersje z polami Yoast SEO"
 #: classes/PublishPress/Revisions/PlannerContentBoard.php:59
 msgid "Revision Status"
 msgstr "Status wersji"
+
+#: front-notice.php:179
+#, php-format
+msgid "This %s has new revisions. Click the button below to review them."
+msgstr "Ten %s ma nowe poprawki. Kliknij przycisk poniżej, aby je przejrzeć."
+
+#: front-notice.php:188
+msgid "Dismiss notice"
+msgstr "Odrzuć powiadomienie"
 
 #: front_rvy.php:436
 #, php-format
@@ -3124,9 +3133,9 @@ msgstr "Rewizje"
 
 #: admin/class-list-table-archive.php:1161
 #: admin/class-list-table_rvy.php:1918
-#: admin/post-edit_rvy.php:191
-#: admin/post-edit_rvy.php:255
-#: admin/post-edit_rvy.php:269
+#: admin/post-edit_rvy.php:192
+#: admin/post-edit_rvy.php:256
+#: admin/post-edit_rvy.php:270
 msgctxt "revisions"
 msgid "Compare"
 msgstr "Porównaj"
