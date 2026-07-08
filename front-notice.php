@@ -177,7 +177,7 @@ class FrontNotice {
 
         $notice_msg = sprintf(
             __('This %s has new revisions. Click the button below to review them.', 'revisionary'),
-            $type_obj->labels->singular_name
+            strtolower($type_obj->labels->singular_name)
         );
         ?>
         <div class="rvy-frontend-notice" role="status" aria-live="polite">
