@@ -31,7 +31,6 @@ class Revisionary
 
 	var $enabled_fields = true;
 	var $enabled_fields_copy = true;
-
 	var $post_edit_ui;
 
 	// minimal config retrieval to support pre-init usage by WP_Scoped_User before text domain is loaded
@@ -49,6 +48,35 @@ class Revisionary
 
 	function addFilters() {
 		global $script_name;
+
+		if (!is_admin() && is_user_logged_in() && rvy_get_option('front_end_indicator')) {
+			add_action(
+				'wp_enqueue_scripts', 
+				function() {
+					if (is_single() || is_page()) {
+						global $wp_query;
+						
+						if (empty($wp_query) || empty($wp_query->queried_object_id)) {
+							return;
+						}
+						$post_id = $wp_query->queried_object_id;
+						$post_type = get_post_field('post_type', $post_id);
+
+						if (!$post_type || empty($this->enabled_post_types[$post_type]) 
+						|| !current_user_can('edit_post', $post_id)
+						|| !rvy_get_post_meta($post_id, '_rvy_has_revisions')
+						) {
+							return;
+						}
+
+						require_once(dirname(__FILE__).'/front-notice.php' );
+
+						$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
+						$front_notice->enqueueScripts();
+					}
+				}
+			);
+		}
 
 		add_filter('pre_wp_update_comment_count_now', [$this, 'fltUpdateCommentCountBypass'], 10, 3);
 		
@@ -344,7 +372,17 @@ class Revisionary
 		if (!defined('REVISIONARY_DISABLE_RVY_INIT_ACTION')) {
 			do_action( 'rvy_init', $this );
 		}
+
+		add_action( 'wp_ajax_rvy_dismiss_frontend_notice', [$this, 'dismissFrontendNotice']);
 	}
+
+    function dismissFrontendNotice() {
+        if ( is_user_logged_in() ) {
+			check_ajax_referer( 'rvy_dismiss_frontend_notice', 'nonce' );
+			update_user_meta( get_current_user_id(), 'rvy_revisions_has_revisions_hint_dismissed', 1 );
+			wp_send_json_success();
+        }
+    }
 
 	// Work around unfilterable get_pages() query by replacing the wp_dropdown_pages() return array
 	function fltDropdownPages($output, $parsed_args, $pages) {

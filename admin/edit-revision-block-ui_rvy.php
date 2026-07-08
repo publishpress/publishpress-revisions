@@ -31,6 +31,11 @@ class RevisionaryEditRevisionBlockUI {
 		<style type='text/css'>
 		input.restore-revision {display:none !important;}
 
+		<?php if ($bgcolor = rvy_get_option('revision_editor_bg_color')) :?>
+			#editor .edit-post-header {
+				background-color: <?php echo sanitize_hex_color($bgcolor);?>;
+			}
+		<?php endif;?>
 		</style>
 		<?php
 	}

@@ -170,6 +170,9 @@ class PostEditorWorkflowUI {
             $vars['futureDeletionURL'] = '';
         }
 
+        $vars['declineCaption'] = esc_html__('Decline Revision', 'revisionary');
+        $vars['declineURL'] = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&amp;revision={$post->ID}&amp;action=decline$redirect_arg&amp;editor=1"), "decline-revision_{$post->ID}" );
+
         if ($block_editor) {
             $vars['updateCaption'] =  esc_html__('Update Revision', 'revisionary');
         } else {
