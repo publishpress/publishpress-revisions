@@ -207,12 +207,12 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
                 foreach ( $meta_values as $meta_value ) {
                     $meta_value = maybe_unserialize( $meta_value );
-                    add_post_meta( $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
+                    add_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             } else {
                 foreach ( $meta_values as $meta_value ) {
                     $meta_value = maybe_unserialize( $meta_value );
-                    update_post_meta( $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
+                    update_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             }
         }
@@ -267,6 +267,18 @@ function rvy_revision_statuses($args = []) {
 	}
 	
 	$arr = apply_filters('rvy_revision_statuses', ['draft-revision', 'pending-revision', 'future-revision'], $args);
+
+    // Work around duplication of revision count by Statuses Pro < 1.3.5
+    $rvy_seen_statuses = [];
+    foreach ($arr as $rvy_k => $rvy_status) {
+        $rvy_status_name = is_object($rvy_status) ? $rvy_status->name : $rvy_status;
+        if (isset($rvy_seen_statuses[$rvy_status_name])) {
+            unset($arr[$rvy_k]);
+        } else {
+            $rvy_seen_statuses[$rvy_status_name] = true;
+        }
+    }
+    $arr = array_values($arr);
 
     if ('object' == $output) {
         foreach($arr as $k => $status) {
@@ -794,6 +806,11 @@ function pp_revisions_plugin_activation() {
                 }
             }
         }
+    }
+
+    if (!get_option('revisionary_activation_done')) {
+        update_option('revisionary_activation_done', true); 
+        update_option('revisionary_activation', true); 
     }
 
     // Revisions were prevented from being being listed as regular drafts / pending posts after plugin deactivation

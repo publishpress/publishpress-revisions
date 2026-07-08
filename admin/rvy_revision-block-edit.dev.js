@@ -82,11 +82,7 @@ jQuery(document).ready(function ($) {
         }
 
         if (approveCaption) {
-            if ($('button.rvy-direct-approve:visible').length) {
-                $('button.rvy-direct-approve:visible span.rvy-caption').html(approveCaption);
-            } else {
-                $('button.revision-approve:visible span.rvy-caption').html(approveCaption);
-            }
+            $('button.rvy-direct-approve:visible span.rvy-caption').html(approveCaption);
         }
 
         $('button.edit-post-post-visibility__toggle, div.editor-post-url__panel-dropdown, div.components-checkbox-control').closest("div.editor-post-panel__row").hide();
@@ -201,12 +197,17 @@ jQuery(document).ready(function ($) {
                 var approveButtonHTML = '';
 				var mainDashicon = '';
 				
-                if (rvyObjEdit.canPublish && ('pending' != rvyObjEdit.currentStatus) && ('future' != rvyObjEdit.currentStatus)) {
+                if (rvyObjEdit.canPublish && ('future' != rvyObjEdit.currentStatus)) {
                     approveButtonHTML = '<a href="' + rvyObjEdit['pendingActionURL'] + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-approve">'
                         + '<span class="dashicons dashicons-yes"></span>'
-                        + '<span class="rvy-caption">' + rvyObjEdit['approveCaption'] + '</span></button></a>';
-						
+                        + '<span class="rvy-caption">' + rvyObjEdit['approveCaption'] + '</span></button></a>'
+                        
+                        + '<a href="' + rvyObjEdit['declineURL'] + '" class="revision-decline">'
+                        + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-decline">'
+                        + '<span class="dashicons dashicons-no"></span>'
+                        + '<span class="rvy-caption">' + rvyObjEdit['declineCaption'] + '</span></button></a>';
+                        
                     mainDashicon = 'dashicons-upload';
                 } else {
                     if ('pending' == rvyObjEdit.currentStatus) {
@@ -238,11 +239,18 @@ jQuery(document).ready(function ($) {
                 if (!$('div.rvy-creation-ui').length) {
                     var buttonUI = '<div class="rvy-creation-ui rvy-submission-div' + divClass + '">';
                     
-                    if ((!approveButtonHTML && rvyObjEdit.canPublish) || !rvyObjEdit.approveButtonReplacesSubmit) {
+                    if (('pending' != rvyObjEdit.currentStatus) && ((!approveButtonHTML && rvyObjEdit.canPublish) || !rvyObjEdit.approveButtonReplacesSubmit)) {
                         buttonUI += '<a href="' + url + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button">'
                         + '<span class="dashicons ' + mainDashicon + '"></span>'
                         + '<span class="rvy-caption">' + rvyObjEdit[rvyObjEdit.currentStatus + 'ActionCaption'] + '</span></button></a>';
+                    }
+
+                    if (!approveButtonHTML && rvyObjEdit.canPublish) {
+                        buttonUI += '<a href="' + rvyObjEdit['declineURL'] + '" class="revision-decline">'
+                        + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-decline">'
+                        + '<span class="dashicons dashicons-no"></span>'
+                        + '<span class="rvy-caption">' + rvyObjEdit['declineCaption'] + '</span></button></a>';
                     }
 
                     buttonUI += approveButtonHTML
@@ -375,11 +383,12 @@ jQuery(document).ready(function ($) {
     $(document).on('click', 'button.revision-approve', function () {
         // If autosave approvals are ever enabled, we will need this
         var isApproval = $(this).hasClass('rvy-direct-approve');
-		var isSubmission = (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'] == "") && !isApproval;
+        var isDecline = $(this).hasClass('rvy-direct-decline');
+		var isSubmission = (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'] == "") && !isApproval && !isDecline;
 		
 		$('button.revision-approve').hide();
 		
-		if (!isSubmission && (isApproval || ('future' == rvyObjEdit.currentStatus) || ('future-revision' == rvyObjEdit.currentStatus))) {
+		if (!isSubmission && (isApproval || isDecline || ('future' == rvyObjEdit.currentStatus) || ('future-revision' == rvyObjEdit.currentStatus))) {
             $('div.revision-approving').show().css('display', 'block');
             $('div.revision-approving span.ppr-submission-spinner').css('visibility', 'visible');
         }
@@ -394,7 +403,15 @@ jQuery(document).ready(function ($) {
 				rvyRedirectURL = $('div.rvy-creation-ui button.revision-approve').closest('a').attr('href');
 			}
         } else {
-            rvyRedirectURL = $('div.rvy-creation-ui a').attr('href');
+            if (isDecline) {
+                rvyRedirectURL = $('div.rvy-creation-ui button.rvy-direct-decline').closest('a').attr('href');
+
+                if (rvyRedirectURL == '') {
+                    rvyRedirectURL = $('div.rvy-creation-ui button.revision-decline').closest('a').attr('href');
+                }
+            } else {
+                rvyRedirectURL = $('div.rvy-creation-ui a').attr('href');
+            }
         }
 
         if (isSubmission) {

@@ -189,6 +189,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'revise_posts_capability' =>				rvy_get_option('revision_statuses_noun_labels') ? esc_html__("Change Request submission require role capability", 'revisionary') : esc_html__("Revision submission requires role capability", 'revisionary'),
 	'revisor_lock_others_revisions' =>			esc_html__("Editing others' Revisions requires role capability", 'revisionary'),
 	'revisor_hide_others_revisions' => 			esc_html__("Listing others' Revisions requires role capability", 'revisionary'),
+	'front_end_indicator' =>					esc_html__('Show indicator on front end if page has Revisions', 'revisionary'),
 	'admin_revisions_to_own_posts' =>			esc_html__("Users can always administer revisions to their own editable posts", 'revisionary'),
 	'revision_update_notifications' =>			esc_html__('Also notify on Revision Update', 'revisionary'),
 	'trigger_post_update_actions' => 			esc_html__('Apply API actions to mimic Post Update', 'revisionary'),
@@ -265,7 +266,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'post_types' =>			 ['enabled_post_types', 'enabled_fields', 'enabled_post_types_archive', 'enabled_post_types_copy', 'enabled_fields_copy'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
-	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
+	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'front_end_indicator', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
 	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
@@ -583,7 +584,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 			$obj = $types[$key];
 
-			if (!post_type_supports($key, 'revisions')) {
+			if (!post_type_supports($key, 'revisions') && (($key != 'product') || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION'))) {
 			    unset($revisionary->enabled_post_types_archive[$key]);
 			    $locked_types[$key] = true;
 			    $no_revision_types[$key] = true;
@@ -1339,7 +1340,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		? esc_html__('Broadest compat including Elementor, Divi, Beaver Builder', 'revisionary')
 		: esc_html__('Standard storage schema for broadest 3rd party compat', 'revisionary');
 
-		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
+		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
 		$captions = [
 			'' => $standard_caption, 
 			1 => esc_html__('Enhanced Revision access control with PublishPress plugins', 'revisionary'),
@@ -1452,6 +1453,61 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$this->option_checkbox( 'revise_posts_capability', $tab, $section, $hint, '', $checkbox_args );
 
+			$option = 'revision_editor_bg_color';
+			$this->all_options []= $option;
+			$color = rvy_get_option($option);
+
+			?>
+			<input type="hidden" name="revision_editor_bg_color" value="<?php echo esc_attr($color);?>"> 
+			<?php
+			$default = (\PublishPress\Revisions\Utils::isBlockEditorActive()) ? '#fff' : '#efe'; 
+
+			if (!$color) {
+				$color = (\PublishPress\Revisions\Utils::isBlockEditorActive()) ? '#f5deb3' : '#ffeecc';
+			}
+
+			$this->colorPicker(esc_attr($color), 'revision_editor_bg_color_', compact('default'));
+			?>
+			<div class='rvy-subtext'>
+			<?php _e('Select a custom background color to show that a Revision is being edited.', 'revisionary');?>
+			</div>
+
+			<script>
+			jQuery(document).ready(function($) {
+				$(function () {
+					setTimeout(function() {
+						$('.revision-submission .wp-color-result-text').html('<?php echo esc_html($this->option_captions[$option]);?>');
+					}, 1000);
+				});
+
+				$(document).on('click', 'input[name="rvy_submit"]', function(e) {
+					function componentToHex(c) {
+						let hex = parseInt(c, 10).toString(16);
+						return hex.length == 1 ? "0" + hex : hex;
+					}
+
+					var bgcolor = $('.wp-color-result').css('background-color');
+					var hexcolor = bgcolor.replace("rgb(", "").replace(")", "").split(", ");
+
+					bgcolor = "#" + componentToHex(hexcolor[0]) + componentToHex(hexcolor[1]) + componentToHex(hexcolor[2]);
+
+					$('input[name="revision_editor_bg_color"]').val(bgcolor);
+				});
+			});
+			</script>
+
+			<style>
+			.revision-submission .wp-picker-container .wp-color-result.button {
+				margin-bottom: 0 !important;
+				font-size: 14px;
+			}
+
+			.revision-submission .wp-picker-container .wp-color-result-text {
+				line-height: 2.0
+			}
+			</style>
+
+			<?php
 			$hint = sprintf(esc_html__( 'When a %s is published, update post publish date to current time.', 'revisionary' ), pp_revisions_status_label('pending-revision', 'name'));
 			$this->option_checkbox( 'pending_revision_update_post_date', $tab, $section, $hint, '' );
 
@@ -1657,6 +1713,11 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$hint = '';
 			$this->option_checkbox( 'list_unsubmitted_revisions', $tab, $section, $hint, '' );
+
+			echo '<br>';
+
+			$hint = esc_html__('If revisions were created for an editable page, include a floating Revisions button in front end views.', 'revisionary');
+			$this->option_checkbox('front_end_indicator', $tab, $section, $hint, '');
 
 			do_action('revisionary_option_ui_revision_queue_options', $this, $sitewide, $customize_defaults);
 			?>
@@ -2653,6 +2714,38 @@ private function renderIntegrations()
 		$this->renderCompatibilityPack($integration);
 	}
 }
+
+/**
+ * Generate the color picker
+ * $current_value   Selected icon for the status
+ * $attributes      Insert attributes different to name and class. For example: 'default' => "#eee"
+ */
+private function colorPicker($current_value = '', $field_name = '', $attributes = [])
+{
+	// Load Color Picker
+	if (is_admin()) {
+		wp_enqueue_style('wp-color-picker');
+		wp_enqueue_script(
+			'publishpress-color-picker',
+			RVY_URLPATH . '/common/libs/color-picker/color-picker.js',
+			['wp-color-picker'],
+			false,
+			true
+		);
+	}
+
+	$default_color = (!empty($attributes['default'])) ? $attributes['default'] : '#fff';
+
+	// Set default value if empty
+	if (!empty($current_value)) {
+		$pp_color = $current_value;
+	} else {
+		$pp_color = $default_color;
+	}
+
+	echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($field_name) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($default_color) . '" />';
+}
+
 
 } // end class RvyOptionUI
 

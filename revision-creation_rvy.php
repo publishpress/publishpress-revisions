@@ -141,6 +141,11 @@ class RevisionCreation {
 		}
 
 		if (is_array($enabled_fields)) {
+			if (!empty($args['force_revision_copy'])) {
+				$enabled_fields ['comment_count'] = 1;
+				$enabled_fields ['post_mime_type'] = 1;
+			}
+			
 			$data = array_diff_key(
 				$data,
 				array_filter(
@@ -151,11 +156,6 @@ class RevisionCreation {
 				),
 				$disabled_fields
 			);
-		}
-
-		if (!empty($args['force_revision_copy'])) {
-			$enabled_fields ['comment_count'] = 1;
-			$enabled_fields ['post_mime_type'] = 1;
 		}
 
 		$data['post_name'] = wp_unique_post_slug($base_post->post_name, $post_id, $post_status, $base_post->post_type, $base_post->post_parent);
