@@ -1,6 +1,19 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[3.9.0] - 8 Jul 2026
+- Added : Decline button in sidebar of Edit Revision screen
+- Added : Redirect to Past Revisions screen on first plugin activation
+- Added : Support WooCommerce Past Revisions, with custom field archiving
+- Added : Counter icon on Revisions menu 
+- Added : Option to change background color of Revision Editor
+- Added : Front end indicator that Revisions have been created for the Page
+- Fixed : Non-WP_Post value passed to wp_revisions_to_keep(), can result in fatal error
+- Fixed : Some elements in Revision editor sidebar are misaligned
+- Fixed : Post Copy fails with fatal error until plugin settings are re-saved
+- Fixed : New Revisions "All" filter count is doubled when PublishPress Statuses Pro is active
+- Fixed : Revision submenu item had redundant counter
+
 [3.8.3] - 17 Jun 2026
 - Fixed : Submit Revision button hidden from Administrators, Editors
 - Fixed : Revision Editor: Submit / Approve buttons may be hidden or shown inappropriately 
