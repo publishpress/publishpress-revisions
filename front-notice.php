@@ -28,7 +28,7 @@ class FrontNotice {
             left: 0;
             height: 40px;
             background-color: white;
-            color: #060;
+            color: black;
             padding: 5px 10px 5px 5px;
             margin: 10px 15px 10px 10px;
             font-size: 15px;
@@ -177,7 +177,7 @@ class FrontNotice {
 
         $notice_msg = sprintf(
             __('This %s has new revisions. Click the button below to review them.', 'revisionary'),
-            $type_obj->labels->singular_name
+            strtolower($type_obj->labels->singular_name)
         );
         ?>
         <div class="rvy-frontend-notice" role="status" aria-live="polite">
