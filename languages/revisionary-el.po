@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-07-02 18:48+0000\n"
+"PO-Revision-Date: 2026-07-07 20:14+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -93,7 +93,7 @@ msgstr "Η ανάρτηση έχει ήδη μια έκδοση σε διαδι�
 #: admin/admin-posts_rvy.php:294
 #: admin/class-list-table-archive.php:580
 #: admin/post-edit-block-ui_rvy.php:165
-#: admin/post-edit_rvy.php:102
+#: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
 msgid "Revision"
 msgstr "Έκδοση"
@@ -149,7 +149,7 @@ msgstr ""
 "%sΑναθεωρήσεις > Ρυθμίσεις > Νέες Αναθεωρήσεις > Προγραμματισμός%s."
 
 #: admin/admin_rvy.php:369
-#: revisionary_main.php:108
+#: front-notice.php:59
 msgid "Revisions"
 msgstr "Αναθεωρήσεις"
 
@@ -1202,7 +1202,7 @@ msgstr "Απόσπασμα"
 #: admin/options.php:762
 #: admin/options.php:925
 #: admin/post-edit-block-ui_rvy.php:212
-#: admin/post-edit_rvy.php:344
+#: admin/post-edit_rvy.php:345
 msgid "Author"
 msgstr "Συγγραφέας"
 
@@ -2240,7 +2240,7 @@ msgid "For custom field changes, edit a scheduled %s."
 msgstr "Για τις αλλαγές στο custom field, επεξεργαστείτε ένα προγραμματισμένο %s."
 
 #: admin/post-edit_rvy.php:28
-#: admin/post-edit_rvy.php:142
+#: admin/post-edit_rvy.php:143
 msgid "Current Time"
 msgstr "Τρέχουσα Ώρα"
 
@@ -2249,21 +2249,21 @@ msgstr "Τρέχουσα Ώρα"
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: admin/post-edit_rvy.php:169
+#: admin/post-edit_rvy.php:170
 msgid "View revision in progress"
 msgstr "Προβολή αναθεώρησης σε εξέλιξη"
 
-#: admin/post-edit_rvy.php:192
+#: admin/post-edit_rvy.php:193
 msgid "Compare this revision to published copy, or to other revisions"
 msgstr ""
 "Σύγκριση αυτής της αναθεώρησης με την δημοσιευμένη έκδοση ή με άλλες "
 "αναθεωρήσεις"
 
-#: admin/post-edit_rvy.php:227
+#: admin/post-edit_rvy.php:228
 msgid "View / moderate saved revision"
 msgstr "Προβολή / μέτρηση αποθηκευμένης αναθεώρησης"
 
-#: admin/post-edit_rvy.php:230
+#: admin/post-edit_rvy.php:231
 msgid "View saved revision"
 msgstr "Προβολή αποθηκευμένης αναθεώρησης"
 
@@ -2701,6 +2701,17 @@ msgstr "Σύγκριση αναθεωρήσεων με τα πεδία Yoast SEO
 #: classes/PublishPress/Revisions/PlannerContentBoard.php:59
 msgid "Revision Status"
 msgstr "Κατάσταση Αναθεώρησης"
+
+#: front-notice.php:179
+#, php-format
+msgid "This %s has new revisions. Click the button below to review them."
+msgstr ""
+"Αυτή η %s έχει νέες αναθεωρήσεις. Κάντε κλικ στο κουμπί παρακάτω για να τις "
+"αναθεωρήσετε."
+
+#: front-notice.php:188
+msgid "Dismiss notice"
+msgstr "Απόρριψη ειδοποίησης"
 
 #: front_rvy.php:436
 #, php-format
@@ -3186,9 +3197,9 @@ msgstr "Αναθεωρήσεις"
 
 #: admin/class-list-table-archive.php:1161
 #: admin/class-list-table_rvy.php:1918
-#: admin/post-edit_rvy.php:191
-#: admin/post-edit_rvy.php:255
-#: admin/post-edit_rvy.php:269
+#: admin/post-edit_rvy.php:192
+#: admin/post-edit_rvy.php:256
+#: admin/post-edit_rvy.php:270
 msgctxt "revisions"
 msgid "Compare"
 msgstr "Σύγκριση"

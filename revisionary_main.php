@@ -51,7 +51,7 @@ class Revisionary
 
 		if (!is_admin() && is_user_logged_in() && rvy_get_option('front_end_indicator')) {
 			add_action(
-				'wp_print_scripts', 
+				'wp_enqueue_scripts', 
 				function() {
 					if (is_single() || is_page()) {
 						global $wp_query;
@@ -68,48 +68,11 @@ class Revisionary
 						) {
 							return;
 						}
-						?>
-						<style>
-						#rvyRevisionIndicator button {
-							display: flex;
-							justify-content: center;
-							align-items: center;
-							z-index: 99;
-							position: fixed;
-							bottom: 5px;
-							left: 0;
-							height: 40px;
-							background-color: white;
-							color: #080;
-							padding: 5px 10px 5px 5px;
-							margin: 10px 15px 10px 10px;
-							font-size: 15px;
-							cursor: pointer;
-							border-radius: 5px;
-							border: 1px solid #ccc;
-						}
-						#rvyRevisionIndicator a:hover, #rvyRevisionIndicator a:link, #rvyRevisionIndicator a:visited {
-							text-decoration: none !important;
-						}
-						#rvyRevisionIndicator img {
-							height: 1.5em;
-							padding-right: 4px;
-						}
-						</style>
-						<?php
-						add_action(
-							'wp_body_open',
-							function() use ($post_id) {
-								$url = admin_url("admin.php?page=revisionary-q&published_post=$post_id");
-								?>
-								<span id="rvyRevisionIndicator">
-								<a href="<?php echo esc_url($url);?>" class="button button-secondary"><button>
-								<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>">
-								<div><?php _e('Revisions', 'revisionary');?></div>
-								</button></a></span>
-								<?php
-							}
-						);
+
+						require_once(dirname(__FILE__).'/front-notice.php' );
+
+						$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
+						$front_notice->enqueueScripts();
 					}
 				}
 			);
@@ -409,7 +372,17 @@ class Revisionary
 		if (!defined('REVISIONARY_DISABLE_RVY_INIT_ACTION')) {
 			do_action( 'rvy_init', $this );
 		}
+
+		add_action( 'wp_ajax_rvy_dismiss_frontend_notice', [$this, 'dismissFrontendNotice']);
 	}
+
+    function dismissFrontendNotice() {
+        if ( is_user_logged_in() ) {
+			check_ajax_referer( 'rvy_dismiss_frontend_notice', 'nonce' );
+			update_user_meta( get_current_user_id(), 'rvy_revisions_has_revisions_hint_dismissed', 1 );
+			wp_send_json_success();
+        }
+    }
 
 	// Work around unfilterable get_pages() query by replacing the wp_dropdown_pages() return array
 	function fltDropdownPages($output, $parsed_args, $pages) {
