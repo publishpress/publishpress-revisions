@@ -42,17 +42,15 @@ jQuery(document).ready( function($) {
 			}
 
 			html = html + '<div class="revision-creating" style="display: none;">'
-			+ '<span class="revision-approve revision-creating">' + rvyObjEdit.creatingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span>'
+			+ '<span class="revision-approve">' + rvyObjEdit.creatingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span>'
 			+ '</div>'
-
-			+ '<div class="revision-approve revision-created">' + rvyObjEdit.completedCaption + '</div> '
 
 			+ '<div class="revision-approve revision-created revision-created-buttons">';
 			
-			html = html + '<button type="button" class="revision-approve revision-created revision-edit ppr-clear-button" style="display: none">'
-			+ '<a href="javascript:void(0)" class="revision-approve revision-edit components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
-			+ rvyObjEdit.completedEditLinkCaption + '</a>'
-			+ '</button>'
+			html = html + '<a href="javascript:void(0)" class="revision-approve revision-edit components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
+			+ '<button type="button" class="revision-approve revision-created revision-edit ppr-clear-button" style="display: none">'
+			+ rvyObjEdit.completedEditLinkCaption + '</button>'
+			+ '</a>'
 			+ '</div>'
 
 			if (rvyObjEdit.scheduleCaption) {
@@ -150,7 +148,7 @@ jQuery(document).ready( function($) {
 			return;
 		}
 
-		$('button.revision-create').hide();
+		$('button.revision-create').hide().parent().hide();
 		$('div.revision-creating').show();
 		$('div.revision-creating span.ppr-submission-spinner').css('visibility', 'visible');
 
