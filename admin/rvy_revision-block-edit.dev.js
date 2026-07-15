@@ -222,8 +222,8 @@ jQuery(document).ready(function ($) {
 				var rvyPreviewLink = '';
 				
                 if (rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption']) {
-                    rvyPreviewLink = '<br /><button href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
-                        + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption'] + '</button>';
+                    rvyPreviewLink = '<a class="revision-preview" href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" target="_blank"><button class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
+                        + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption'] + '</button></a>';
 				}
 
                 if (refSelector == 'div.editor-post-panel__section') {
@@ -263,9 +263,7 @@ jQuery(document).ready(function ($) {
                         + '<div class="revision-approving" style="display: none;">'
                         + '<span class="revision-approve revision-submitting">'
                         + rvyObjEdit.approvingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
-                        + '<div class="revision-created" style="display: none; margin-top: 15px">'
-                        + '<span class="revision-approve revision-created">'
-                        + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedCaption'] + '</span> '
+                        + '<div class="revision-created" style="display: none;">'
                         + rvyPreviewLink
                         + '</div>'
                         + '</div>';

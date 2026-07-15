@@ -708,9 +708,13 @@ div.components-panel div.revision-created
 width: 100%;
 }
 
-div.components-panel div.components-panel a.revision-preview {
-width: 100%;
+div.components-panel .revision-preview {
 display: inherit;
+width: 100%;
+}
+
+div.components-panel a.revision-preview {
+text-decoration: none;
 }
 
 a.revision-approve button.is-primary {
@@ -764,7 +768,7 @@ max-width: inherit;
 width: 100%;
 }
 
-div.components-panel button.revision-create {
+div.components-panel button.revision-create, div.components-panel button.revision-schedule {
 margin-bottom: 8px;
 }
 
@@ -776,16 +780,21 @@ color: #655997;
 
 div.components-panel a.revision-edit {
 font-weight: normal;
-padding: 7px 7px 7px 7px;
+padding: 7px 0 7px 0;
 margin-top: 4px !important;
 margin-bottom: 9px !important;
 width: 100%;
 display: inherit;
+text-decoration: none;
 }
 
 div.rvy-submission-div button.revision-approve {
 margin-top: 8px;
 margin-bottom: 8px;
+}
+
+div.rvy-creation-ui button.revision-approve {
+display: inherit;
 }
 
 button.post-schedule-footnote {
