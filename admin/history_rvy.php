@@ -672,8 +672,8 @@ class RevisionaryHistory
         );
 
         if (
-        ((('future-revision' == $compare_from->post_mime_type) || ('future-revision' == $compare_to->post_mime_type)) && !rvy_get_option('scheduled_revision_update_post_date'))
-        || ((in_array($compare_from->post_mime_type, $revision_statuses) || in_array($compare_to->post_mime_type, $revision_statuses)) && !rvy_get_option('pending_revision_update_post_date'))
+        (((!empty($compare_from) && ('future-revision' == $compare_from->post_mime_type)) || ('future-revision' == $compare_to->post_mime_type)) && !rvy_get_option('scheduled_revision_update_post_date'))
+        || (((!empty($compare_from) && in_array($compare_from->post_mime_type, $revision_statuses)) || in_array($compare_to->post_mime_type, $revision_statuses)) && !rvy_get_option('pending_revision_update_post_date'))
         ) {
             unset($compare_fields['post_date']);
         }
@@ -686,7 +686,7 @@ class RevisionaryHistory
                 continue;
             }
 
-            if (('post_parent' == $field) && ($compare_from->$field != $compare_to->$field)) {
+            if (('post_parent' == $field) && !empty($compare_from) && ($compare_from->$field != $compare_to->$field)) {
                 if (!$parent_post = get_post($compare_from->$field)) {
                     $from_val = $compare_from->$field;
                 } else {
@@ -736,7 +736,7 @@ class RevisionaryHistory
             }
         }
 
-        $published_id = rvy_post_id($compare_from->ID);
+        $published_id = (!empty($compare_from)) ? rvy_post_id($compare_from->ID) : $compare_to->ID;
 		$is_beaver = defined('FL_BUILDER_VERSION') && get_post_meta($published_id, '_fl_builder_data', true);
 
         foreach( apply_filters('revisionary_compare_taxonomies', $taxonomies) as $taxonomy => $name) {
