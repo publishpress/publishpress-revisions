@@ -87,18 +87,20 @@ jQuery(document).ready(function ($) {
 
         $('button.edit-post-post-visibility__toggle, div.editor-post-url__panel-dropdown, div.components-checkbox-control').closest("div.editor-post-panel__row").hide();
 
-        var refSelectorUseParent = false;
+        refSelector = 'button.editor-post-trash';
+        refSelectorUseParent = false;
+        refSelectorBefore = true;
 
-        if ($('div.edit-post-post-schedule').length) {
-            var refSelector = 'div.edit-post-post-schedule';
-        } else {
-            var refSelector = 'div.edit-post-post-visibility';
+        if (!$(refSelector).length) {
+            var refSelectorUseParent = false;
+            refSelectorBefore = false;
 
-            if (!$(refSelector).length) {
-                if ($('button.editor-post-trash').length) {
-                    refSelector = 'button.editor-post-trash';
-                    refSelectorUseParent = true;
-                } else {
+            if ($('div.edit-post-post-schedule').length) {
+                var refSelector = 'div.edit-post-post-schedule';
+            } else {
+                var refSelector = 'div.edit-post-post-visibility';
+
+                if (!$(refSelector).length) {
                     // Gutenberg 18.5
                     if ($('div.editor-post-panel__section').length) {
                         refSelector = 'div.editor-post-panel__section';
@@ -220,8 +222,8 @@ jQuery(document).ready(function ($) {
 				var rvyPreviewLink = '';
 				
                 if (rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption']) {
-                    rvyPreviewLink = '<br /><a href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
-                        + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption'] + '</a>';
+                    rvyPreviewLink = '<br /><button href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
+                        + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption'] + '</button>';
 				}
 
                 if (refSelector == 'div.editor-post-panel__section') {
@@ -268,13 +270,19 @@ jQuery(document).ready(function ($) {
                         + '</div>'
                         + '</div>';
 
-                    $(uiLoc).after(buttonUI);
+                    if (refSelectorBefore) {
+                        $(uiLoc).before(buttonUI);
+                    } else {
+                        $(uiLoc).after(buttonUI);
+                    }
                 }
 
                 $('div.rvy-submission-div').trigger('loaded-ui');
             }
 
 			$('.edit-post-post-schedule__toggle').after('<button class="components-button is-tertiary post-schedule-footnote" disabled>' + rvyObjEdit.onApprovalCaption + '</button>');
+
+            $('button.editor-post-trash').insertBefore('div.rvy-author-selection:first');
         }
 
         refSelector = null;
@@ -441,8 +449,8 @@ jQuery(document).ready(function ($) {
 			// @todo: abstract this for other workflows
             rvyObjEdit.currentStatus = 'pending';
             $('.rvy-current-status').html(rvyObjEdit[rvyObjEdit.currentStatus + 'StatusCaption']);
-            $('a.revision-preview').attr('href', rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL']).show();
-            $('a.revision-edit').attr('href', rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedEditURL']).show();
+            $('.revision-preview').attr('href', rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL']).show();
+            $('.revision-edit').attr('href', rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedEditURL']).show();
 
             if ((typeof PPCustomStatuses != 'undefined') && (typeof PPCustomStatuses.statusRestProperty != 'undefined')) {
                 var ret = new Object();
