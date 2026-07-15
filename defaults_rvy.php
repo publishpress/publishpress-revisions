@@ -82,6 +82,7 @@ function rvy_default_options_sitewide() {
 		'query_loop_revision_editor_allowance' => true,
 		'enable_classic_metaboxes' => true,
 		'front_end_indicator' => true,
+		'admin_menu_pending_count_icon' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -163,6 +164,7 @@ function rvy_default_options() {
 		'query_loop_revision_editor_allowance' => 0,
 		'enable_classic_metaboxes' => 0,
 		'front_end_indicator' => 1,
+		'admin_menu_pending_count_icon' => 0,
 	);
 
 	return $def;
