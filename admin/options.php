@@ -189,6 +189,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'revise_posts_capability' =>				rvy_get_option('revision_statuses_noun_labels') ? esc_html__("Change Request submission require role capability", 'revisionary') : esc_html__("Revision submission requires role capability", 'revisionary'),
 	'revisor_lock_others_revisions' =>			esc_html__("Editing others' Revisions requires role capability", 'revisionary'),
 	'revisor_hide_others_revisions' => 			esc_html__("Listing others' Revisions requires role capability", 'revisionary'),
+	'admin_menu_pending_count_icon' =>			esc_html__('Show Submitted Revisions count in Admin menu', 'revisionary'),
 	'front_end_indicator' =>					esc_html__('Show indicator on front end if page has Revisions', 'revisionary'),
 	'admin_revisions_to_own_posts' =>			esc_html__("Users can always administer revisions to their own editable posts", 'revisionary'),
 	'revision_update_notifications' =>			esc_html__('Also notify on Revision Update', 'revisionary'),
@@ -266,7 +267,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'post_types' =>			 ['enabled_post_types', 'enabled_fields', 'enabled_post_types_archive', 'enabled_post_types_copy', 'enabled_fields_copy'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
-	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'front_end_indicator', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
+	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'show_current_revision_bar', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_menu_pending_count_icon', 'front_end_indicator', 'admin_revisions_to_own_posts', 'list_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
 	'revisions'		=>		 ['revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
@@ -623,6 +624,12 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 					}
 
 					echo '</label>';
+				endif;
+				
+				if (('product' == $key) && !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) :
+				    echo '<a href="https://publishpress.com/links/revisions-tooltip" target="_blank">'
+				    . '<span class="pp-tab-badge pp-pro-badge" style="background: #8B5CF6; color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; margin-left: 5px; vertical-align:text-bottom; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">' . esc_html__('PRO', 'revisionary') . '</span>'
+				    . '</a>';
 				endif;
 				?>
 			</div>
@@ -1715,6 +1722,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$this->option_checkbox( 'list_unsubmitted_revisions', $tab, $section, $hint, '' );
 
 			echo '<br>';
+
+			$hint = '';
+			$this->option_checkbox('admin_menu_pending_count_icon', $tab, $section, $hint, '');
 
 			$hint = esc_html__('If revisions were created for an editable page, include a floating Revisions button in front end views.', 'revisionary');
 			$this->option_checkbox('front_end_indicator', $tab, $section, $hint, '');
