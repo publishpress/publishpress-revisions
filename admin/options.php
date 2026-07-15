@@ -624,6 +624,12 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 					echo '</label>';
 				endif;
+				
+				if (('product' == $key) && !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) :
+				    echo '<a href="https://publishpress.com/links/revisions-tooltip" target="_blank">'
+				    . '<span class="pp-tab-badge pp-pro-badge" style="background: #8B5CF6; color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; margin-left: 5px; vertical-align:text-bottom; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">' . esc_html__('PRO', 'revisionary') . '</span>'
+				    . '</a>';
+				endif;
 				?>
 			</div>
 		<?php
