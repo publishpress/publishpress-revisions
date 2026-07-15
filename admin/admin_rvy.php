@@ -435,7 +435,7 @@ class RevisionaryAdmin
 
 			$post_status_csv = implode( "','", apply_filters('revisionary_menu_count_post_statuses', array_diff(get_post_stati(), ['trash', 'auto-draft', 'inherit'])));
 
-			if ($post_types && $post_status_csv) {
+			if ($post_types && $post_status_csv && rvy_get_option('admin_menu_pending_count_icon')) {
 				$revision_count = $wpdb->get_var(
 					apply_filters(
 						'revisionary_menu_count', 
