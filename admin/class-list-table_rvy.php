@@ -522,7 +522,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				|| (!empty($_REQUEST['author']) && ($current_user->ID != $_REQUEST['author']))					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				)
 			)
-			|| rvy_get_option('list_unsubmitted_revisions')
+			|| rvy_get_option('view_filters_include_unsubmitted_revisions')
 		) {
 			$revision_status_clause = '';
 		
