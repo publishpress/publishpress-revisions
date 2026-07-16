@@ -794,7 +794,7 @@ function rvy_post_revision_blocked($post, $args = []) {
 
 	if ($limit_per_post = rvy_get_option('revision_limit_per_post')) {
 		if (rvy_get_post_meta($post_id, '_rvy_has_revisions')) {
-			if ('submitted' == $limit_per_post) {
+			if ('submitted' === $limit_per_post) {
 				if (!$wpdb->get_var(
 					$wpdb->prepare(
 						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.post_status NOT IN ('draft', 'draft-revision')",
