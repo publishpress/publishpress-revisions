@@ -522,7 +522,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				|| (!empty($_REQUEST['author']) && ($current_user->ID != $_REQUEST['author']))					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				)
 			)
-			|| rvy_get_option('list_unsubmitted_revisions')
+			|| rvy_get_option('view_filters_include_unsubmitted_revisions')
 		) {
 			$revision_status_clause = '';
 		
@@ -1229,7 +1229,13 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			['has_cap_check' => true, 'source_alias' => 'p']
 		);
 
-		$status_csv = implode("','", array_map('sanitize_key', rvy_filtered_statuses()));
+		$use_statuses = (rvy_get_option('permissions_compat_mode')) ? rvy_revision_statuses() : rvy_filtered_statuses();
+
+		if (!rvy_get_option('view_filters_include_unsubmitted_revisions')) {
+			$use_statuses = array_diff($use_statuses, ['draft', 'draft-revision']);
+		}
+
+		$status_csv = implode("','", array_map('sanitize_key', $use_statuses));
 		$count_query .= " AND p.post_status IN ('$status_csv') AND r.post_status != 'trash'";
 
 		// work around some versions of PressPermit inserting non-aliased post_type reference into where clause under some configurations
