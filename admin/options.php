@@ -1388,18 +1388,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	$hide = empty(rvy_get_option('revision_limit_per_post'));
 	$hint = esc_html__('Work around cache plugin conflicts by requerying for revisions before suppressing the New Revision link.', 'revisionary');
 	$this->option_checkbox( 'revision_limit_compat_mode', $tab, $section, $hint, '', compact('hide') );
-	?>
-	<script type="text/javascript">
-	/* <![CDATA[ */
-	jQuery(document).ready( function($) {
-		$('#revision_limit_per_post').on('click', function(e) {
-			$('#revision_limit_compat_mode').closest('div').toggle($(e).prop('checked'));
-		});
-	});
-	/* ]]> */
-	</script>
 
-	<?php
 	if (defined('PRESSPERMIT_VERSION')) {
 		$hint = '';
 		$this->option_checkbox( 'submit_permission_enables_creation', $tab, $section, $hint, '');
