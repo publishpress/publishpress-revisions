@@ -479,7 +479,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if (empty($args['my_published_count'])) {
+		if (empty($args['my_published_count']) && (empty($_REQUEST['post_author']) || ($_REQUEST['post_author'] != $current_user->ID))) {
 			$revision_status_csv =  implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 			$own_revision_and = '';
@@ -533,7 +533,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		} elseif ((!$is_my_activity && !$is_count_query
 		&& (empty($_REQUEST['all'])																				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		&& (empty($_REQUEST['post_status']) || ('draft-revision' != sanitize_key($_REQUEST['post_status'])))	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		)) || !empty($args['my_published_count'])) {
+		)) || (!empty($args['my_published_count']) && !rvy_get_option('view_filters_include_unsubmitted_revisions'))) {
 			$revision_status_clause = "AND $p.post_mime_type != 'draft-revision' ";
 
 		} elseif (($is_my_activity && !$is_count_query) || (rvy_get_option('manage_unsubmitted_capability') && !current_user_can("manage_unsubmitted_revisions"))) {
