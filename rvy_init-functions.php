@@ -781,7 +781,7 @@ function rvy_post_revision_supported($post, $args = []) {
 }
 
 function rvy_post_revision_blocked($post, $args = []) {
-	global $wp_query;
+	global $wpdb;
 	static $unfiltered_html;
 
 	$revision_unfiltered_html_check = rvy_get_option('revision_unfiltered_html_check');
