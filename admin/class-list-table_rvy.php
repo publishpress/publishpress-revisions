@@ -145,6 +145,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	function do_query( $q = false ) {
+		global $wpdb, $current_user;
+		
 		if ( false === $q ) $q = $_REQUEST;										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		// === first, query published posts that have any Revisionary revisions ===
@@ -169,8 +171,6 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 		//$qp['meta_key'] = '_rvy_has_revisions';
-
-		global $wpdb;
 
 		if (!empty($q['post_author'])) {
 			do_action('revisionary_queue_pre_query');
@@ -296,6 +296,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$qr[$status_col] = [$q['post_status']];
 		} else {
 			$qr[$status_col] = rvy_revision_statuses();
+		}
+
+		if (!rvy_get_option('view_filters_include_unsubmitted_revisions') && empty($_REQUEST['all']) && empty($_REQUEST['post_status']) && (empty($_REQUEST['author']) || ($current_user->ID != $_REQUEST['author']))) {
+			$qr[$status_col] = array_diff($qr[$status_col], ['draft', 'draft-revision']);
 		}
 
 		if (!rvy_get_option('pending_revisions')) {
@@ -1229,13 +1233,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			['has_cap_check' => true, 'source_alias' => 'p']
 		);
 
-		$use_statuses = (rvy_get_option('permissions_compat_mode')) ? rvy_revision_statuses() : rvy_filtered_statuses();
+		$status_csv = implode("','", array_map('sanitize_key', rvy_filtered_statuses()));
 
-		if (!rvy_get_option('view_filters_include_unsubmitted_revisions')) {
-			$use_statuses = array_diff($use_statuses, ['draft', 'draft-revision']);
-		}
-
-		$status_csv = implode("','", array_map('sanitize_key', $use_statuses));
 		$count_query .= " AND p.post_status IN ('$status_csv') AND r.post_status != 'trash'";
 
 		// work around some versions of PressPermit inserting non-aliased post_type reference into where clause under some configurations
