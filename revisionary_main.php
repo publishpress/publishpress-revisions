@@ -84,10 +84,10 @@ class Revisionary
 								)
 							)
 						)) {
-						require_once(dirname(__FILE__).'/front-notice.php' );
+							require_once(dirname(__FILE__).'/front-notice.php' );
 
-						$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
-						$front_notice->enqueueScripts();
+							$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
+							$front_notice->enqueueScripts();
 						}
 					}
 				}
