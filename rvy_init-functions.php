@@ -781,6 +781,7 @@ function rvy_post_revision_supported($post, $args = []) {
 }
 
 function rvy_post_revision_blocked($post, $args = []) {
+	global $wp_query;
 	static $unfiltered_html;
 
 	$revision_unfiltered_html_check = rvy_get_option('revision_unfiltered_html_check');
@@ -791,8 +792,19 @@ function rvy_post_revision_blocked($post, $args = []) {
 
 	$post_id = (is_scalar($post)) ? $post : $post->ID;
 
-	if (1 === intval(rvy_get_option('revision_limit_per_post'))) {
+	if ($limit_per_post = rvy_get_option('revision_limit_per_post')) {
 		if (rvy_get_post_meta($post_id, '_rvy_has_revisions')) {
+			if ('submitted' == $limit_per_post) {
+				if (!$wpdb->get_var(
+					$wpdb->prepare(
+						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.post_status NOT IN ('draft', 'draft-revision')",
+						$post_id
+					)
+				)) {
+					return false;
+				}
+			}
+			
 			return [
 				'code' => 'blocked_revision_limit',
 				'description' => __('The post already has a revision in process.', 'revisionary')
