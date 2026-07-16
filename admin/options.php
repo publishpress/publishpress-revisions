@@ -180,7 +180,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'copy_posts_capability' =>					rvy_get_option('revision_statuses_noun_labels') ? esc_html__("Working Copy creation requires role capability", 'revisionary') : esc_html__("Revision creation requires role capability", 'revisionary'),
 	'caption_copy_as_edit' =>					sprintf(esc_html__('Posts / Pages list: Use "Edit" caption for %s link', 'revisionary'), pp_revisions_status_label('draft-revision', 'submit_short')),
 	'pending_revisions' => 						sprintf(esc_html__('Enable %s', 'revisionary'), $pending_revision_plural),
-	'revision_limit_per_post' =>				esc_html__("Revision Limit", 'revisionary'),
+	'revision_limit_per_post' =>				esc_html__('Revision Limit', 'revisionary'),
 	'revision_limit_compat_mode' =>				esc_html__('Refresh "Has Revision" flag before suppressing Create Revision', 'revisionary'),
 	'revision_unfiltered_html_check' =>			esc_html__("If post contains custom html, require unfiltered_html capability", 'revisionary'),
 	'auto_submit_revisions' =>					esc_html__("Auto-submit revisions created by a user with publishing capability", 'revisionary'),
@@ -1340,11 +1340,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->register_option($id);
 		$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
-		$standard_caption = esc_html__('Standard storage schema for broadest 3rd party compat', 'revisionary');
-
 		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
 		$captions = [
-			'' => $standard_caption, 
+			'' => esc_html__('Standard storage schema for broadest 3rd party compat', 'revisionary'), 
 			1 => esc_html__('Enhanced Revision access control with PublishPress plugins', 'revisionary'),
 		];
 
