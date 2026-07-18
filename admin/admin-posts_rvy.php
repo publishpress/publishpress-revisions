@@ -211,7 +211,12 @@ class RevisionaryAdminPosts {
 			?>
 			<div class='error' style="padding-top: 10px; padding-bottom: 10px"><?php esc_html_e('The post already has a revision in process.', 'revisionary');?>
 			</div>
-			<?php	
+			<?php																		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    	} elseif ( !empty($_GET['revision_action']) && ('blocked_term_excluded' == $_GET['revision_action'] ) ) {
+			?>
+			<div class='error' style="padding-top: 10px; padding-bottom: 10px"><?php esc_html_e('Revisions are disabled for posts in this term.', 'revisionary');?>
+			</div>
+			<?php
     	}
     }
     
