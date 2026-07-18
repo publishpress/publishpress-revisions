@@ -58,7 +58,9 @@ class Revisionary_Submittee {
 
 			foreach ( $reviewed_options as $option_basename ) {
 				if (isset($_POST[$option_basename])) {
-					if (is_array($_POST[$option_basename])) {
+					if ('revision_excluded_terms' == $option_basename) {
+						$value = rvy_sanitize_excluded_terms($_POST[$option_basename]);
+					} elseif (is_array($_POST[$option_basename])) {
 						$value = array_map('sanitize_key', $_POST[$option_basename]);
 					} else {
 						if ('revision_editor_bg_color' == $option_basename) {

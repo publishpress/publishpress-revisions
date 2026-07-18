@@ -165,6 +165,7 @@ function rvy_default_options() {
 		'enable_classic_metaboxes' => 0,
 		'front_end_indicator' => 1,
 		'admin_menu_pending_count_icon' => 0,
+		'revision_excluded_terms' => [],
 	);
 
 	return $def;

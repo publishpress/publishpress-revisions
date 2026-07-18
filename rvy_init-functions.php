@@ -792,6 +792,14 @@ function rvy_post_revision_blocked($post, $args = []) {
 
 	$post_id = (is_scalar($post)) ? $post : $post->ID;
 
+	// Exclude revisions for posts that belong to a selected term.
+	if (rvy_post_is_term_excluded($post_id)) {
+		return [
+			'code'        => 'blocked_term_excluded',
+			'description' => __('Revisions are disabled for posts in this term.', 'revisionary'),
+		];
+	}
+
 	if ($limit_per_post = rvy_get_option('revision_limit_per_post')) {
 		if (rvy_get_post_meta($post_id, '_rvy_has_revisions')) {
 			if ('submitted' === $limit_per_post) {
@@ -826,6 +834,98 @@ function rvy_post_revision_blocked($post, $args = []) {
 	}
 
 	return false;
+}
+
+/**
+ * Whether a post is excluded from revisions because it belongs to a selected term.
+ *
+ * The stored option is keyed by taxonomy: $excluded = [ 'category' => [3, 7], ... ].
+ *
+ * @param int|WP_Post $post Post ID or object.
+ * @return bool True if the post belongs to an excluded term in any taxonomy.
+ */
+function rvy_post_is_term_excluded($post) {
+	$_post = (is_scalar($post)) ? get_post($post) : $post;
+
+	if (empty($_post) || empty($_post->post_type)) {
+		return false;
+	}
+
+	$excluded = rvy_get_option('revision_excluded_terms');
+
+	if (empty($excluded) || !is_array($excluded)) {
+		return false;
+	}
+
+	$post_taxonomies = get_object_taxonomies($_post->post_type);
+	if (empty($post_taxonomies)) {
+		return false;
+	}
+
+	foreach ($post_taxonomies as $taxonomy) {
+		if (empty($excluded[$taxonomy]) || !is_array($excluded[$taxonomy])) {
+			continue;
+		}
+
+		$post_term_ids = wp_get_object_terms($_post->ID, $taxonomy, ['fields' => 'ids']);
+		if (is_wp_error($post_term_ids) || empty($post_term_ids)) {
+			continue;
+		}
+
+		if (array_intersect(array_map('intval', $post_term_ids), array_map('intval', $excluded[$taxonomy]))) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Sanitize the revision_excluded_terms setting (taxonomy slug => term IDs).
+ *
+ * Drops any taxonomy that is not a registered public taxonomy and any term ID
+ * that does not belong to its taxonomy, so stored data can be trusted at runtime.
+ *
+ * @param array $input Raw input, keyed by taxonomy slug.
+ * @return array Cleaned input: [ 'taxonomy' => [int, int, ...] ].
+ */
+function rvy_sanitize_excluded_terms($input) {
+	if (!is_array($input)) {
+		return [];
+	}
+
+	$public_taxonomies = get_taxonomies(['public' => true], 'names');
+
+	$clean = [];
+
+	foreach ($input as $taxonomy => $term_ids) {
+		$taxonomy = sanitize_key($taxonomy);
+
+		if (!$taxonomy || !in_array($taxonomy, $public_taxonomies, true)) {
+			continue;
+		}
+
+		$term_ids = array_filter(array_map('absint', (array) $term_ids));
+
+		if (empty($term_ids)) {
+			continue;
+		}
+
+		$existing = get_terms([
+			'taxonomy'   => $taxonomy,
+			'include'    => $term_ids,
+			'fields'     => 'ids',
+			'hide_empty' => false,
+		]);
+
+		if (is_wp_error($existing) || empty($existing)) {
+			continue;
+		}
+
+		$clean[$taxonomy] = array_values(array_map('intval', $existing));
+	}
+
+	return $clean;
 }
 
 if (!empty($_REQUEST['rvy_flush_flags'])) {
