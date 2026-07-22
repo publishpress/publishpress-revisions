@@ -34,6 +34,18 @@ class RevisionaryHistory
                 remove_action( 'admin_enqueue_scripts',  array( $hm_tor_plugin_loader, 'admin_enqueue_scripts' ), 20 );
             }
         }
+		
+		add_filter(
+			'_wp_post_revision_field_comment_status',
+			function($field_val) {
+				if (!empty($_REQUEST['revision']) 
+				&& (rvy_in_revision_workflow($_REQUEST['revision']) || rvy_in_revision_workflow(rvy_post_id($_REQUEST['revision'])))) {
+					$field_val = '';
+				}
+													  
+				return $field_val;
+			}, 99
+		);
 
 	   if (did_action('load-revision.php')) {
 		$this->actLoadRevision();
@@ -340,10 +352,6 @@ class RevisionaryHistory
     }
 
     public function actEnqueueScripts($hook_suffix='') {
-        if (!did_action('rvy_compare_revisions')) {
-            return;
-        }
-
         $revision_id = (isset($_REQUEST['revision'])) ? absint($_REQUEST['revision']) : '';     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $from = (isset($_REQUEST['from'])) ? (int) $_REQUEST['from'] : '';                      //phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $to = (isset($_REQUEST['to'])) ? (int) $_REQUEST['to'] : '';                            //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -360,22 +368,26 @@ class RevisionaryHistory
         }
 
         $post_id = (rvy_in_revision_workflow($revision)) ? rvy_post_id($revision->ID) : $revision->post_parent;
-
+		
         if (!$post = get_post($post_id)) {
             return;
         }
-
-        if (!rvy_in_revision_workflow($revision_id)) {
+		
+        if (!rvy_in_revision_workflow($revision_id) && !rvy_in_revision_workflow($post_id)) {
             return;
         }
-
+		
         if (!$from) {
             $from = $post->ID;
         }
 
-        $rvy_revisions = $this->queryRevisions($post);
-        $revisions = $this->prepare_revisions_for_js( $post, $revision_id, $from, $rvy_revisions );
-
+		if ('inherit' == get_post_field('post_status', $revision_id)) {
+        	$rvy_revisions = wp_get_post_revisions($post_id);
+		} else {
+			$rvy_revisions = $this->queryRevisions($post);
+		}
+        
+		$revisions = $this->prepare_revisions_for_js( $post, $revision_id, $from, $rvy_revisions );
 
         add_filter('posts_clauses', [$this, 'fltRevisionClauses'], 5, 2);
 
@@ -413,7 +425,7 @@ class RevisionaryHistory
 
     // port wp_ajax_get_revision_diffs() to support pending, scheduled revisions
     public function actAjaxRevisionDiffs() {
-        if (!isset($_REQUEST['post_id'])) {                                                     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (!isset($_REQUEST['post_id'])) {                                                     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return; 
         }
 
@@ -447,7 +459,7 @@ class RevisionaryHistory
         if (!$revision = get_post($revision_id)) {
             return;
         }
-
+		
         if (rvy_in_revision_workflow($revision)) {
             $this->revision_status = $revision->post_mime_type;
 
