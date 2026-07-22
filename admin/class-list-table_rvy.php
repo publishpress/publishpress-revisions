@@ -1816,7 +1816,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$request_url = add_query_arg($_REQUEST, rvy_admin_url('admin.php?page=revisionary-q'));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		$args = ['author' => get_the_author_meta( 'ID' )];
+		$args = ['author' => $post->post_author];
 		$this->apply_edit_link( add_query_arg('author', $args['author'], esc_url($request_url)), get_the_author_meta('display_name', $args['author']) );
 	}
 
