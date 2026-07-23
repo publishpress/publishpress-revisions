@@ -1377,7 +1377,7 @@ class Revisionary
 				$main_post_id = rvy_post_id($post_id);
 
 				// Normally, it does not make sense to allow direct post editing but not revision approval, so don't comp the settings UI with that option.
-				$can_approve = !defined('REVISIONARY_REQUIRE_APPROVE_CAP') && current_user_can('edit_post', $main_post_id);
+				$can_approve = !rvy_get_option('approve_capability') && current_user_can('edit_post', $main_post_id);
 				
 				if (!$can_approve) { // bypass capability check for those with full editing caps on main post
 					if ($_post = get_post($post_id)) {
