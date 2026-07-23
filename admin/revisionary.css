@@ -649,6 +649,13 @@ background-color: #ffffe0;
 border-color: #e6db55;
 }
 
+.editor-sidebar__panel .components-button.editor-post-trash {
+width: 100%;
+height: 36px;
+margin-top: 8px;
+margin-bottom: 8px;
+}
+
 #submitdiv_pps #save-action span.spinner {
 margin: 2px 2px 0;
 }
@@ -669,12 +676,19 @@ color: #655997 !important;
 }
 
 div.components-panel div.revision-submitting {
-  margin: 6px 0 6px 0;
+margin: 6px 0 6px 0;
+text-align: center;
 }
 
 div.components-panel div.revision-creating {
-  margin: 15px 0 15px 0;
-  padding: 6px 0 9px 80px; /*  @todo: review this spacing relative to button.revision-created */
+margin: 9px 0 5px 0;
+padding: 5px 0 5px 0; /*  @todo: review this spacing relative to button.revision-created */
+font-weight: bold;
+text-align: center;
+}
+
+div.components-panel div.revision-approving {
+text-align: center;
 }
 
 #major-publishing-actions div.revision-creating {
@@ -691,11 +705,20 @@ margin-top: 0;
 div.components-panel button.revision-approve,
 div.components-panel div.revision-created
 {
-	margin: 0 0 15px 0;
+width: 100%;
+}
+
+div.components-panel .revision-preview {
+display: inherit;
+width: 100%;
+}
+
+div.components-panel a.revision-preview {
+text-decoration: none;
 }
 
 a.revision-approve button.is-primary {
- margin-top: 15px;
+margin-top: 5px;
 }
 
 .edit-post-sidebar .ppr-purple-button.components-button.is-tertiary,
@@ -714,16 +737,7 @@ font-weight: bold;
 div.components-panel div.revision-created {
 font-weight: bold;
 text-align: center;
-margin: 0;
-}
-
-div.components-panel div.revision-created a.revision-approve {
-margin-top: 5px;
-}
-
-div.revision-created-buttons {
-margin-top: 5px !important;
-margin-bottom: 5px;
+margin: 3px 0 3px 0;
 }
 
 button.revision-created {
@@ -749,18 +763,38 @@ div.edit-post-revision-status span {
 width: 35%;
 }
 
-/*
-div.edit-post-post-schedule span {
-width: 30%;
+.rvy-author-selection #rvy_post_author {
+max-width: inherit;
+width: 100%;
 }
-*/
+
+div.components-panel button.revision-create, div.components-panel button.revision-schedule {
+margin-bottom: 8px;
+}
+
+div.components-panel button.revision-edit {
+margin-top: 0;
+padding-top: 2px;
+color: #655997;
+}
 
 div.components-panel a.revision-edit {
-text-decoration: underline;
-color: #135e96;
 font-weight: normal;
-text-align: left;
-padding: 0 7px 0 7px;
+padding: 7px 0 7px 0;
+margin-top: 4px !important;
+margin-bottom: 9px !important;
+width: 100%;
+display: inherit;
+text-decoration: none;
+}
+
+div.rvy-submission-div button.revision-approve {
+margin-top: 8px;
+margin-bottom: 8px;
+}
+
+div.rvy-creation-ui button.revision-approve {
+display: inherit;
 }
 
 button.post-schedule-footnote {
@@ -982,3 +1016,6 @@ table th#revision_post_count {
   width: 5%;
 }
 
+.revision-q .tablenav-pages {
+margin-top: 10px;
+}

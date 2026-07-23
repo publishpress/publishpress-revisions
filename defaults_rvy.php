@@ -57,7 +57,7 @@ function rvy_default_options_sitewide() {
 		'trigger_post_update_actions' => true,
 		'copy_revision_comments_to_post' => true,
 		'past_revisions_order_by' => true,
-		'list_unsubmitted_revisions' => true,
+		'view_filters_include_unsubmitted_revisions' => true,
 		'show_current_revision_bar' => true,
 		'rev_publication_delete_ed_comments' => true,
 		'deletion_queue' => true,
@@ -82,6 +82,8 @@ function rvy_default_options_sitewide() {
 		'query_loop_revision_editor_allowance' => true,
 		'enable_classic_metaboxes' => true,
 		'front_end_indicator' => true,
+		'admin_menu_pending_count_icon' => true,
+		'approve_capability' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -138,7 +140,7 @@ function rvy_default_options() {
 		'trigger_post_update_actions' => 0,
 		'copy_revision_comments_to_post' => 0,
 		'past_revisions_order_by' => '',
-		'list_unsubmitted_revisions' => 0,
+		'view_filters_include_unsubmitted_revisions' => 1,
 		'show_current_revision_bar' => 0,
 		'rev_publication_delete_ed_comments' => 0,
 		'deletion_queue' => 0,
@@ -163,6 +165,8 @@ function rvy_default_options() {
 		'query_loop_revision_editor_allowance' => 0,
 		'enable_classic_metaboxes' => 0,
 		'front_end_indicator' => 1,
+		'admin_menu_pending_count_icon' => 0,
+		'approve_capability' => defined('REVISIONARY_REQUIRE_APPROVE_CAP') && REVISIONARY_REQUIRE_APPROVE_CAP
 	);
 
 	return $def;

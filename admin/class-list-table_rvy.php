@@ -145,6 +145,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	function do_query( $q = false ) {
+		global $wpdb, $current_user;
+		
 		if ( false === $q ) $q = $_REQUEST;										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		// === first, query published posts that have any Revisionary revisions ===
@@ -169,8 +171,6 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 		//$qp['meta_key'] = '_rvy_has_revisions';
-
-		global $wpdb;
 
 		if (!empty($q['post_author'])) {
 			do_action('revisionary_queue_pre_query');
@@ -296,6 +296,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$qr[$status_col] = [$q['post_status']];
 		} else {
 			$qr[$status_col] = rvy_revision_statuses();
+		}
+
+		if (!rvy_get_option('view_filters_include_unsubmitted_revisions') && empty($_REQUEST['all']) && empty($_REQUEST['post_status']) && (empty($_REQUEST['author']) || ($current_user->ID != $_REQUEST['author']))) {
+			$qr[$status_col] = array_diff($qr[$status_col], ['draft', 'draft-revision']);
 		}
 
 		if (!rvy_get_option('pending_revisions')) {
@@ -475,7 +479,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if (empty($args['my_published_count'])) {
+		if (empty($args['my_published_count']) && (empty($_REQUEST['post_author']) || ($_REQUEST['post_author'] != $current_user->ID))) {
 			$revision_status_csv =  implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 			$own_revision_and = '';
@@ -522,14 +526,14 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				|| (!empty($_REQUEST['author']) && ($current_user->ID != $_REQUEST['author']))					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				)
 			)
-			|| rvy_get_option('list_unsubmitted_revisions')
+			|| rvy_get_option('view_filters_include_unsubmitted_revisions')
 		) {
 			$revision_status_clause = '';
 		
 		} elseif ((!$is_my_activity && !$is_count_query
 		&& (empty($_REQUEST['all'])																				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		&& (empty($_REQUEST['post_status']) || ('draft-revision' != sanitize_key($_REQUEST['post_status'])))	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		)) || !empty($args['my_published_count'])) {
+		)) || (!empty($args['my_published_count']) && !rvy_get_option('view_filters_include_unsubmitted_revisions'))) {
 			$revision_status_clause = "AND $p.post_mime_type != 'draft-revision' ";
 
 		} elseif (($is_my_activity && !$is_count_query) || (rvy_get_option('manage_unsubmitted_capability') && !current_user_can("manage_unsubmitted_revisions"))) {
@@ -1230,6 +1234,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		);
 
 		$status_csv = implode("','", array_map('sanitize_key', rvy_filtered_statuses()));
+
 		$count_query .= " AND p.post_status IN ('$status_csv') AND r.post_status != 'trash'";
 
 		// work around some versions of PressPermit inserting non-aliased post_type reference into where clause under some configurations
@@ -1811,7 +1816,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$request_url = add_query_arg($_REQUEST, rvy_admin_url('admin.php?page=revisionary-q'));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		$args = ['author' => get_the_author_meta( 'ID' )];
+		$args = ['author' => $post->post_author];
 		$this->apply_edit_link( add_query_arg('author', $args['author'], esc_url($request_url)), get_the_author_meta('display_name', $args['author']) );
 	}
 

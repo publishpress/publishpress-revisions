@@ -346,7 +346,7 @@ function rvy_status_registrations() {
 				'submit_short' => esc_html__('Create Revision', 'revisionary'), 
 				'submitting' => esc_html__('Creating Revision...', 'revisionary'),
 				'submitted' => ($block_editor) ? esc_html__('The Revision is ready to edit.', 'revisionary') : esc_html__('Revision ready to edit.', 'revisionary'),
-				'approve' => esc_html__('Approve Revision', 'revisionary'),
+				'approve' => ($block_editor) ? esc_html__('Approve Revision', 'revisionary') : esc_html__('Approve', 'revisionary'),
 				'approve_short' => esc_html__('Approve', 'revisionary'),
 				'publish' => esc_html__('Publish Revision', 'revisionary'),
 				'save' => esc_html__('Save Revision', 'revisionary'), 
@@ -363,7 +363,7 @@ function rvy_status_registrations() {
 				'submit_short' => esc_html__('Submit', 'revisionary'), 
 				'submitting' => esc_html__('Update in progress...', 'revisionary'),
 				'submitted' => ($block_editor) ? esc_html__('The Revision is Submitted', 'revisionary') : esc_html__('Revision Submitted', 'revisionary'),
-				'approve' => esc_html__('Approve Revision', 'revisionary'),
+				'approve' => ($block_editor) ? esc_html__('Approve Revision', 'revisionary') : esc_html__('Approve', 'revisionary'),
 				'approve_short' => esc_html__('Approve', 'revisionary'),
 				'publish' => esc_html__('Publish Revision', 'revisionary'), 
 				'save' => esc_html__('Save Revision', 'revisionary'), 
@@ -380,7 +380,7 @@ function rvy_status_registrations() {
 				'submit_short' => esc_html__('Schedule', 'revisionary'), 
 				'submitting' => esc_html__('Update in progress...', 'revisionary'),
 				'submitted' => ($block_editor) ? esc_html__('The Revision is Scheduled', 'revisionary') :  esc_html__('Revision Scheduled', 'revisionary'),
-				'approve' => esc_html__('Approve Revision', 'revisionary'), 
+				'approve' => ($block_editor) ? esc_html__('Approve Revision', 'revisionary') : esc_html__('Approve', 'revisionary'),
 				'approve_short' => esc_html__('Approve', 'revisionary'), 
 				'publish' => esc_html__('Publish Revision', 'revisionary'), 
 				'save' => esc_html__('Save Revision', 'revisionary'), 
@@ -781,6 +781,7 @@ function rvy_post_revision_supported($post, $args = []) {
 }
 
 function rvy_post_revision_blocked($post, $args = []) {
+	global $wpdb;
 	static $unfiltered_html;
 
 	$revision_unfiltered_html_check = rvy_get_option('revision_unfiltered_html_check');
@@ -791,8 +792,19 @@ function rvy_post_revision_blocked($post, $args = []) {
 
 	$post_id = (is_scalar($post)) ? $post : $post->ID;
 
-	if (1 === intval(rvy_get_option('revision_limit_per_post'))) {
+	if ($limit_per_post = rvy_get_option('revision_limit_per_post')) {
 		if (rvy_get_post_meta($post_id, '_rvy_has_revisions')) {
+			if ('submitted' === $limit_per_post) {
+				if (!$wpdb->get_var(
+					$wpdb->prepare(
+						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.post_status NOT IN ('draft', 'draft-revision')",
+						$post_id
+					)
+				)) {
+					return false;
+				}
+			}
+			
 			return [
 				'code' => 'blocked_revision_limit',
 				'description' => __('The post already has a revision in process.', 'revisionary')

@@ -53,6 +53,8 @@ class Revisionary
 			add_action(
 				'wp_enqueue_scripts', 
 				function() {
+					global $wpdb;
+					
 					if (is_single() || is_page()) {
 						global $wp_query;
 						
@@ -69,10 +71,24 @@ class Revisionary
 							return;
 						}
 
-						require_once(dirname(__FILE__).'/front-notice.php' );
+						$revision_status_csv = implode("','", array_map('sanitize_key', array_diff(rvy_revision_statuses(), ['draft-revision'])));
+                        $status_field = (rvy_get_option('permissions_compat_mode')) ? 'post_status' : 'post_mime_type';
 
-						$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
-						$front_notice->enqueueScripts();
+						if ($revision_count = $wpdb->get_var(
+							apply_filters(
+								'revisionary_front_count',
+								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+								$wpdb->prepare(
+									"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.$status_field IN ('$revision_status_csv')",
+									$post_id
+								)
+							)
+						)) {
+							require_once(dirname(__FILE__).'/front-notice.php' );
+
+							$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
+							$front_notice->enqueueScripts();
+						}
 					}
 				}
 			);
@@ -1361,7 +1377,7 @@ class Revisionary
 				$main_post_id = rvy_post_id($post_id);
 
 				// Normally, it does not make sense to allow direct post editing but not revision approval, so don't comp the settings UI with that option.
-				$can_approve = !defined('REVISIONARY_REQUIRE_APPROVE_CAP') && current_user_can('edit_post', $main_post_id);
+				$can_approve = !rvy_get_option('approve_capability') && current_user_can('edit_post', $main_post_id);
 				
 				if (!$can_approve) { // bypass capability check for those with full editing caps on main post
 					if ($_post = get_post($post_id)) {

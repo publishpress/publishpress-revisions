@@ -34,6 +34,18 @@ class RevisionaryHistory
                 remove_action( 'admin_enqueue_scripts',  array( $hm_tor_plugin_loader, 'admin_enqueue_scripts' ), 20 );
             }
         }
+		
+		add_filter(
+			'_wp_post_revision_field_comment_status',
+			function($field_val) {
+				if (!empty($_REQUEST['revision']) 
+				&& (rvy_in_revision_workflow($_REQUEST['revision']) || rvy_in_revision_workflow(rvy_post_id($_REQUEST['revision'])))) {
+					$field_val = '';
+				}
+													  
+				return $field_val;
+			}, 99
+		);
 
 	   if (did_action('load-revision.php')) {
 		$this->actLoadRevision();
@@ -82,16 +94,6 @@ class RevisionaryHistory
         /* <![CDATA[ */
         jQuery(document).ready( function($) {
             setTimeout(() => {
-                $('div.revisions-diff div.diff h2:nth(1)').css('display', 'inline-block').css('margin-right', '10px').after(
-                    '<div style="display:inline-block;width:45%"><button id="rvy_copy_new_content_top" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>'
-                    + '</button></div>'
-                ).after(
-                    '<div style="display:inline-block;width:45%"><button id="rvy_copy_old_content_top" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
-                    + '</button></div>'
-                );
-
                 $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after(
                     '<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy">'
                     + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
@@ -124,14 +126,6 @@ class RevisionaryHistory
                 })
                 
                 navigator.clipboard.writeText(content);
-            });
-
-            $(document).on('click', '#rvy_copy_old_content_top', function (e) {
-                $('#rvy_copy_old_content').trigger('click');
-            });
-
-            $(document).on('click', '#rvy_copy_new_content_top', function (e) {
-                $('#rvy_copy_new_content').trigger('click');
             });
         });
         /* ]]> */
@@ -358,10 +352,6 @@ class RevisionaryHistory
     }
 
     public function actEnqueueScripts($hook_suffix='') {
-        if (!did_action('rvy_compare_revisions')) {
-            return;
-        }
-
         $revision_id = (isset($_REQUEST['revision'])) ? absint($_REQUEST['revision']) : '';     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $from = (isset($_REQUEST['from'])) ? (int) $_REQUEST['from'] : '';                      //phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $to = (isset($_REQUEST['to'])) ? (int) $_REQUEST['to'] : '';                            //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -378,22 +368,26 @@ class RevisionaryHistory
         }
 
         $post_id = (rvy_in_revision_workflow($revision)) ? rvy_post_id($revision->ID) : $revision->post_parent;
-
+		
         if (!$post = get_post($post_id)) {
             return;
         }
-
-        if (!rvy_in_revision_workflow($revision_id)) {
+		
+        if (!rvy_in_revision_workflow($revision_id) && !rvy_in_revision_workflow($post_id)) {
             return;
         }
-
+		
         if (!$from) {
             $from = $post->ID;
         }
 
-        $rvy_revisions = $this->queryRevisions($post);
-        $revisions = $this->prepare_revisions_for_js( $post, $revision_id, $from, $rvy_revisions );
-
+		if ('inherit' == get_post_field('post_status', $revision_id)) {
+        	$rvy_revisions = wp_get_post_revisions($post_id);
+		} else {
+			$rvy_revisions = $this->queryRevisions($post);
+		}
+        
+		$revisions = $this->prepare_revisions_for_js( $post, $revision_id, $from, $rvy_revisions );
 
         add_filter('posts_clauses', [$this, 'fltRevisionClauses'], 5, 2);
 
@@ -431,7 +425,7 @@ class RevisionaryHistory
 
     // port wp_ajax_get_revision_diffs() to support pending, scheduled revisions
     public function actAjaxRevisionDiffs() {
-        if (!isset($_REQUEST['post_id'])) {                                                     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (!isset($_REQUEST['post_id'])) {                                                     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return; 
         }
 
@@ -465,7 +459,7 @@ class RevisionaryHistory
         if (!$revision = get_post($revision_id)) {
             return;
         }
-
+		
         if (rvy_in_revision_workflow($revision)) {
             $this->revision_status = $revision->post_mime_type;
 
@@ -690,8 +684,8 @@ class RevisionaryHistory
         );
 
         if (
-        ((('future-revision' == $compare_from->post_mime_type) || ('future-revision' == $compare_to->post_mime_type)) && !rvy_get_option('scheduled_revision_update_post_date'))
-        || ((in_array($compare_from->post_mime_type, $revision_statuses) || in_array($compare_to->post_mime_type, $revision_statuses)) && !rvy_get_option('pending_revision_update_post_date'))
+        (((!empty($compare_from) && ('future-revision' == $compare_from->post_mime_type)) || ('future-revision' == $compare_to->post_mime_type)) && !rvy_get_option('scheduled_revision_update_post_date'))
+        || (((!empty($compare_from) && in_array($compare_from->post_mime_type, $revision_statuses)) || in_array($compare_to->post_mime_type, $revision_statuses)) && !rvy_get_option('pending_revision_update_post_date'))
         ) {
             unset($compare_fields['post_date']);
         }
@@ -704,7 +698,7 @@ class RevisionaryHistory
                 continue;
             }
 
-            if (('post_parent' == $field) && ($compare_from->$field != $compare_to->$field)) {
+            if (('post_parent' == $field) && !empty($compare_from) && ($compare_from->$field != $compare_to->$field)) {
                 if (!$parent_post = get_post($compare_from->$field)) {
                     $from_val = $compare_from->$field;
                 } else {
@@ -754,7 +748,7 @@ class RevisionaryHistory
             }
         }
 
-        $published_id = rvy_post_id($compare_from->ID);
+        $published_id = (!empty($compare_from)) ? rvy_post_id($compare_from->ID) : $compare_to->ID;
 		$is_beaver = defined('FL_BUILDER_VERSION') && get_post_meta($published_id, '_fl_builder_data', true);
 
         foreach( apply_filters('revisionary_compare_taxonomies', $taxonomies) as $taxonomy => $name) {
