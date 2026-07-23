@@ -87,7 +87,7 @@ class FrontNotice {
                 left: 0;
                 bottom: 55px;
                 z-index: 999;
-                margin: 10px;
+                margin: 10px 40px 10px 10px;
                 padding: 10px 36px 10px 12px;
                 background: #fff8e5;
                 border: 1px solid #f0c36d;
