@@ -1,6 +1,19 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[3.9.1] - 23 Jul 2026
+- Changed : Styling of Revisions buttons in Revision Editor sidebar
+- Fixed : Compare Revisions may show blank or unmodified field values
+- Fixed : PHP Warnings on Compare Revisions screen
+- Fixed : Compare Revisions has redundant Copy button for WooCommerce fields
+- Added : Indicator of Pro support for WooCommerce
+- Fixed : Paging controls on New Revisions screen need margin
+- Fixed : Disabling option "List Unsubmitted Revisions for My Activity or Revisions to My Posts" has no effect
+- Changed : Disable Revisions menu count by default
+- Changed : Do not display front end indicator for Unsubmitted Revisions
+- Added : Limit to one Revision per post - option to ignore Unsubmitted Revisions
+- Added : Plugin setting to require Approve Revision capabilities
+
 [3.9.0] - 8 Jul 2026
 - Added : Decline button in sidebar of Edit Revision screen
 - Added : Redirect to Past Revisions screen on first plugin activation
