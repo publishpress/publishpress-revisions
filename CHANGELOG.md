@@ -1,7 +1,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[3.9.1] - 23 Jul 2026
+[3.9.2] - 28 Jul 2026
+- Changed : Editor sidebar button from "Approve Revision" to "Publish Revision"
+- Changed : Editor sidebar shows "Decline Revision" button only when Revisions status is not Unsubmitted
+- Fixed : Lang - button caption "View Saved Revision" was untranslated
+
+[3.9.1] - 24 Jul 2026
 - Changed : Styling of Revisions buttons in Revision Editor sidebar
 - Fixed : Compare Revisions may show blank or unmodified field values
 - Fixed : PHP Warnings on Compare Revisions screen
