@@ -203,13 +203,15 @@ jQuery(document).ready(function ($) {
                     approveButtonHTML = '<a href="' + rvyObjEdit['pendingActionURL'] + '" class="revision-approve">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-approve">'
                         + '<span class="dashicons dashicons-yes"></span>'
-                        + '<span class="rvy-caption">' + rvyObjEdit['approveCaption'] + '</span></button></a>'
+                        + '<span class="rvy-caption">' + rvyObjEdit['approveCaption'] + '</span></button></a>';
                         
-                        + '<a href="' + rvyObjEdit['declineURL'] + '" class="revision-decline">'
+                    if ('draft' != rvyObjEdit.currentStatus) {
+                        approveButtonHTML += '<a href="' + rvyObjEdit['declineURL'] + '" class="revision-decline">'
                         + '<button type="button" class="components-button revision-approve is-button is-primary ppr-purple-button rvy-direct-decline">'
                         + '<span class="dashicons dashicons-no"></span>'
                         + '<span class="rvy-caption">' + rvyObjEdit['declineCaption'] + '</span></button></a>';
-                        
+                    }
+
                     mainDashicon = 'dashicons-upload';
                 } else {
                     if ('pending' == rvyObjEdit.currentStatus) {
