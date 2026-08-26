@@ -60,7 +60,7 @@ function rvy_metabox_notification_list() {
 function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_date', $args = array() ) {
 	global $revisionary;
 	
-	$defaults = array( 'post' => false, 'format' => 'list' );
+	$defaults = array( 'post' => false, 'format' => 'list', 'datef' => '' );
 	$args = array_merge( $defaults, (array) $args );
 	foreach ( array_keys( $defaults ) as $var ) { $$var = $args[$var]; }
 	
@@ -75,8 +75,10 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 		return false;
 
 	/* translators: revision date format, see http://php.net/date */
-	$datef = _x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
-	
+	if (!$datef) {
+		$datef = _x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
+	}
+
 	$date = agp_date_i18n( $datef, strtotime( $revision->$date_field ) );
 	
 	// note: RS filter (un-requiring edit_published/private cap) will be applied to this cap check
@@ -189,8 +191,10 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 	case 'revision' : // just revisions - remove autosave later
 	case 'all' :
 	default :
-		if ( !$revisions = rvy_get_post_revisions( $post->ID, $status, array( 'orderby' => $sort_field ) ) )
+		if ( !$revisions = rvy_get_post_revisions( $post->ID, $status, array( 'orderby' => $sort_field ) ) ) {
 			return;
+		}
+
 		break;
 	}
 	
