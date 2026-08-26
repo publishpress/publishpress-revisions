@@ -144,7 +144,7 @@ function rvy_admin_init() {
 		$doaction = (!empty($_REQUEST['action']) && !is_numeric($_REQUEST['action'])) ? sanitize_key($_REQUEST['action']) : sanitize_key($_REQUEST['action2']);
 
 		if (empty($_POST) && in_array($_REQUEST['action'], ['decline_revision'])) {
-			$post_id = (!empty($_REQUEST['post'])) ? $_REQUEST['post'] : 0;
+			$post_id = (!empty($_REQUEST['post'])) ? intval($_REQUEST['post']) : 0;
 			check_admin_referer("decline-revision_{$post_id}");
 		} else {
 			check_admin_referer('bulk-revision-queue');
@@ -473,10 +473,6 @@ function rvy_admin_init() {
 			exit;
 		}
 	}
-}
-
-function rvy_dismissable_notice( $msg_id, $message ) {
-	return;
 }
 
 function rvy_get_post_revisions($post_id, $status = '', $args = '' ) {

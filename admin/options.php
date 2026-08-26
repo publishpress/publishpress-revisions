@@ -1969,10 +1969,12 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->option_checkbox( 'use_notification_buffer', $tab, $section, $hint, '' );
 
 		if (!empty($_REQUEST['truncate_mail_log'])) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			check_admin_referer('rvy_truncate_mail_log');
 			delete_option('revisionary_sent_mail');
 		}
 
 		if (!empty($_REQUEST['clear_mail_buffer'])) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			check_admin_referer('rvy_clear_mail_buffer');
 			delete_option('revisionary_mail_buffer');
 		}
 
@@ -2041,13 +2043,23 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				}
 			}
 
-			if (get_option('revisionary_mail_buffer')):?>
+			if (get_option('revisionary_mail_buffer')):
+				$clear_buffer_url = wp_nonce_url(
+					add_query_arg('clear_mail_buffer', '1', $uri),
+					'rvy_clear_mail_buffer'
+				);
+			?>
 				<br />
-				<a href="<?php echo esc_url(add_query_arg('clear_mail_buffer', '1', $uri));?>"><?php esc_html_e('Purge Notification Buffer', 'revisionary');?></a>
+				<a href="<?php echo esc_url($clear_buffer_url);?>"><?php esc_html_e('Purge Notification Buffer', 'revisionary');?></a>
 				<br />
 			<?php endif;?>
 
-			<?php if (get_option('revisionary_sent_mail')):?>
+			<?php if (get_option('revisionary_sent_mail')):
+				$truncate_log_url = wp_nonce_url(
+					add_query_arg('truncate_mail_log', '1', $uri),
+					'rvy_truncate_mail_log'
+				);
+			?>
 				<br />
 				<a href="<?php echo esc_url(add_query_arg('truncate_mail_log', '1', $uri));?>"><?php esc_html_e('Truncate Notification Log', 'revisionary');?></a>
 			<?php endif;
