@@ -38,8 +38,8 @@ class RevisionaryHistory
 		add_filter(
 			'_wp_post_revision_field_comment_status',
 			function($field_val) {
-				if (!empty($_REQUEST['revision']) 
-				&& (rvy_in_revision_workflow($_REQUEST['revision']) || rvy_in_revision_workflow(rvy_post_id($_REQUEST['revision'])))) {
+				if (!empty($_REQUEST['revision'])                                                                                                 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				&& (rvy_in_revision_workflow((int) $_REQUEST['revision']) || rvy_in_revision_workflow(rvy_post_id((int) $_REQUEST['revision'])))) {     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					$field_val = '';
 				}
 													  
@@ -518,7 +518,7 @@ class RevisionaryHistory
                 set_time_limit( 5 * MINUTE_IN_SECONDS );
             }
 
-            foreach ( $_REQUEST['compare'] as $compare_key ) {
+            foreach ( $_REQUEST['compare'] as $compare_key ) {                  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
                 list( $from, $to ) = explode( ':', $compare_key ); // from:to
 
                 $return[] = array(
