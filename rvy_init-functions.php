@@ -795,6 +795,7 @@ function rvy_post_revision_blocked($post, $args = []) {
 	if ($limit_per_post = rvy_get_option('revision_limit_per_post')) {
 		if (rvy_get_post_meta($post_id, '_rvy_has_revisions')) {
 			if ('submitted' === $limit_per_post) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				if (!$wpdb->get_var(
 					$wpdb->prepare(
 						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.post_status NOT IN ('draft', 'draft-revision')",
@@ -1277,16 +1278,6 @@ function rvy_halt( $msg, $title = '' ) {
 	wp_die( esc_html($msg), esc_html($title), array( 'response' => 200 ) );
 }
 
-function _revisionary_dashboard_dismiss_msg() {
-	$dismissals = get_option( 'revisionary_dismissals' );
-	if ( ! is_array( $dismissals ) )
-		$dismissals = array();
-
-	$msg_id = ( isset( $_REQUEST['msg_id'] ) ) ? sanitize_key($_REQUEST['msg_id']) : 'intro_revisor_role';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-	$dismissals[$msg_id] = true;
-	update_option( 'rvy_dismissals', $dismissals );
-}
-
 function rvy_is_supported_post_type($post_type) {
 	global $revisionary;
 
@@ -1320,11 +1311,6 @@ function rvy_get_manageable_types() {
 	);
 
 	return apply_filters('revisionary_supported_post_types', $types);
-}
-
-// thanks to GravityForms for the nifty dismissal script
-if (isset($_SERVER['PHP_SELF']) && in_array( basename($_SERVER['PHP_SELF']), array('admin.php', 'admin-ajax.php') ) ) {
-	add_action( 'wp_ajax_rvy_dismiss_msg', '_revisionary_dashboard_dismiss_msg' );
 }
 
 function rvy_is_network_activated($plugin_file = '')
