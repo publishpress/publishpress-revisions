@@ -1,0 +1,520 @@
+.visual-post-compare-only-wrap {
+	margin-right: 20px;
+}
+
+.visual-post-compare-loading {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 48px;
+}
+
+.visual-post-compare-screen__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	margin: 16px 0 0;
+}
+
+.visual-post-compare-screen__header h1 {
+	margin-bottom: 4px;
+}
+
+.visual-post-compare-screen__header p {
+	margin: 0;
+	color: #646970;
+}
+
+.visual-post-compare-revision {
+	/*max-width: 1100px;*/
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	margin-top: 15px;
+}
+
+.visual-post-compare-revision__body {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 280px;
+	min-height: 0;
+}
+
+.visual-post-compare-revision__canvas-shell {
+	position: relative;
+	min-width: 0;
+	min-height: 0;
+	border-right: 1px solid #dcdcde;
+}
+
+.visual-post-compare-revision__sidebar {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-self: stretch;
+	gap: 28px;
+	padding: 20px;
+	padding-left: 40px;
+	background: #fff;
+}
+
+.visual-post-compare-revision__sidebar > div {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	min-width: 0;
+	padding-bottom: 20px;
+}
+
+.visual-post-compare-revision__approve {
+	align-self: flex-start;
+	margin-top: 8px;
+}
+
+.visual-post-compare-revision__sidebar strong {
+	font-size: 14px;
+}
+
+.visual-post-compare-revision__sidebar span {
+	color: #646970;
+}
+
+
+.visual-post-compare-revision__status {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.visual-post-compare-revision__date-row {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: baseline;
+	gap: 0;
+}
+
+.visual-post-compare-revision__date-prefix,
+.visual-post-compare-revision__author {
+	color: #646970;
+}
+
+.visual-post-compare-revision__date-link {
+	color: #2271b1;
+	text-decoration: none;
+	margin-left: 4px;
+}
+
+.visual-post-compare-revision__date-link:hover,
+.visual-post-compare-revision__date-link:focus {
+	color: #135e96;
+	text-decoration: underline;
+}
+
+.visual-post-compare-revision__legend {
+	/*display: flex;*/
+	display: none;
+	gap: 16px;
+	padding: 10px 20px;
+	border-bottom: 1px solid #dcdcde;
+	font-size: 12px;
+}
+
+.visual-post-compare-revision__legend span::before {
+	content: '';
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 6px;
+	vertical-align: -1px;
+}
+
+.visual-post-compare-revision__legend .is-added::before {
+	background: #00a32a;
+}
+
+.visual-post-compare-revision__legend .is-removed::before {
+	background: #d63638;
+}
+
+.visual-post-compare-revision__legend .is-modified::before {
+	background: #dba617;
+}
+
+.visual-post-compare-revision__canvas {
+	box-sizing: border-box;
+	height: min(72vh, 760px);
+	min-height: 420px;
+	padding: 20px 32px 20px 20px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-gutter: stable;
+}
+
+.visual-post-compare-revision__live-preview {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+	/* Match WordPress' default editor typography when a theme does not provide
+	 * editor/global typography. Theme styles injected into the preview follow
+	 * this stylesheet and therefore retain normal precedence. */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+	background-color: inherit !important;
+}
+
+.visual-post-compare-revision__live-preview p {
+	line-height: 1.8;
+}
+
+.visual-post-compare-revision__live-preview .block-editor-block-list__layout {
+	box-sizing: border-box;
+	min-width: 0;
+}
+
+/* WordPress' editor/global styles target these root layout classes. Keep a
+ * conservative fallback content width for themes that do not define
+ * --wp--style--global--content-size, while allowing theme styles to override it. */
+.visual-post-compare-revision__live-preview.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
+.visual-post-compare-revision__live-preview.is-layout-constrained .block-editor-block-list__layout > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+	max-width: var(--wp--style--global--content-size, 840px);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.visual-post-compare-revision__live-preview.is-layout-constrained > .alignwide,
+.visual-post-compare-revision__live-preview.is-layout-constrained .block-editor-block-list__layout > .alignwide {
+	max-width: var(--wp--style--global--wide-size, 1100px);
+}
+
+.visual-post-compare-revision__live-preview.is-layout-constrained > .alignfull,
+.visual-post-compare-revision__live-preview.is-layout-constrained .block-editor-block-list__layout > .alignfull {
+	max-width: none;
+}
+
+/* Do not impose a plugin-specific width on table blocks. Core block and theme
+ * styles decide whether a table is auto-sized, constrained, wide, or full. */
+.visual-post-compare-revision__live-preview .wp-block-table {
+	width: auto;
+	max-width: 100%;
+}
+
+.visual-post-compare-revision__svg-filters {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+@media (max-width: 782px) {
+	.visual-post-compare-screen__header {
+		align-items: flex-start;
+	}
+
+	.visual-post-compare-revision__body {
+		grid-template-columns: minmax(0, 1fr) 220px;
+	}
+
+	.visual-post-compare-revision__sidebar {
+		gap: 20px;
+		padding: 16px;
+	}
+
+	.visual-post-compare-revision__canvas {
+		height: 68vh;
+		min-height: 360px;
+	}
+}
+
+@media (max-width: 600px) {
+	.visual-post-compare-revision__body {
+		grid-template-columns: 1fr;
+	}
+
+	.visual-post-compare-revision__canvas-shell {
+		border-right: 0;
+		border-bottom: 1px solid #dcdcde;
+	}
+
+	.visual-post-compare-revision__sidebar {
+		gap: 20px;
+	}
+}
+
+/* Revision diff classes. These also act as a non-iframe fallback; BlockPreview
+ * receives the same rules through additionalStyles and the renderer applies
+ * inline styles for the critical diff indicators. */
+.revision-diff-added {
+	background-color: rgba(0, 163, 42, 0.12);
+	text-decoration: none;
+}
+
+.revision-diff-removed {
+	text-decoration: line-through;
+	filter: url(#revision-removed-filter);
+}
+
+.revision-diff-format-added {
+	text-decoration: underline wavy #00a32a;
+	text-decoration-thickness: 2px;
+}
+
+.revision-diff-format-removed {
+	text-decoration: underline wavy #d63638;
+	text-decoration-thickness: 2px;
+}
+
+.revision-diff-format-changed {
+	text-decoration: underline wavy #9a7000;
+	text-decoration-thickness: 2px;
+}
+
+.is-revision-added {
+	box-shadow: inset 0 0 0 9999px rgba(0, 163, 42, 0.08);
+	outline: 3px solid #00a32a;
+	outline-offset: 2px;
+}
+
+.is-revision-removed {
+	outline: 3px dashed #d63638;
+	outline-offset: 2px;
+	filter: url(#revision-removed-filter);
+}
+
+.is-revision-modified {
+	outline: 3px dotted #9a7000;
+	outline-offset: 2px;
+}
+
+.visual-post-compare-revision__selector {
+	margin-bottom: 24px;
+}
+
+.visual-post-compare-revision__range-wrap {
+	position: relative;
+	height: 20px;
+}
+
+.visual-post-compare-revision__segmented-track {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 8px;
+	right: 8px;
+	display: grid;
+	grid-template-columns: repeat(var(--vpc-slider-intervals, 1), minmax(0, 1fr));
+	column-gap: 6px;
+	height: 4px;
+	background: transparent;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.visual-post-compare-revision__track-segment {
+	display: block;
+	min-width: 0;
+	height: 4px;
+	border-radius: 2px;
+	background: #8c8f94;
+}
+
+.visual-post-compare-revision__track-segment.is-filled {
+	background: var(--wp-admin-theme-color, #007cba);
+}
+
+.visual-post-compare-revision__range {
+	position: relative;
+	z-index: 3;
+	display: block;
+	width: 100%;
+	height: 20px;
+	margin: 0;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	background: transparent !important;
+}
+
+.visual-post-compare-revision__range::-webkit-slider-runnable-track {
+	height: 4px;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+.visual-post-compare-revision__range::-moz-range-track {
+	height: 4px;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+/* Keep the dedicated comparison thumb consistent across browsers, admin color
+ * schemes, themes, and future WordPress component styling. This intentionally
+ * does not inherit --wp-admin-theme-color. */
+.visual-post-compare-revision__range::-webkit-slider-thumb {
+	box-sizing: border-box !important;
+	width: 18px !important;
+	height: 18px !important;
+	margin-top: -7px !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	border: 2px solid #fff !important;
+	border-radius: 50% !important;
+	background: #3858e9 !important;
+	box-shadow: 0 0 0 1px #3858e9, 0 1px 2px rgba(0, 0, 0, 0.25) !important;
+	cursor: grab !important;
+}
+
+.visual-post-compare-revision__range::-moz-range-thumb {
+	box-sizing: border-box !important;
+	width: 18px !important;
+	height: 18px !important;
+	border: 2px solid #fff !important;
+	border-radius: 50% !important;
+	background: #3858e9 !important;
+	box-shadow: 0 0 0 1px #3858e9, 0 1px 2px rgba(0, 0, 0, 0.25) !important;
+	cursor: grab !important;
+}
+
+.visual-post-compare-revision__range:active::-webkit-slider-thumb {
+	cursor: grabbing !important;
+}
+
+.visual-post-compare-revision__range:active::-moz-range-thumb {
+	cursor: grabbing !important;
+}
+
+.visual-post-compare-revision__range:focus-visible::-webkit-slider-thumb {
+	box-shadow: 0 0 0 1px #3858e9, 0 0 0 4px rgba(56, 88, 233, 0.24) !important;
+}
+
+.visual-post-compare-revision__range:focus-visible::-moz-range-thumb {
+	box-shadow: 0 0 0 1px #3858e9, 0 0 0 4px rgba(56, 88, 233, 0.24) !important;
+}
+
+.visual-post-compare-revision__slider-tooltip {
+	position: absolute;
+	z-index: 3;
+	top: calc(100% + 8px);
+	box-sizing: border-box;
+	max-width: 180px;
+	padding: 6px 8px;
+	border-radius: 2px;
+	background: #1e1e1e;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.4;
+	white-space: nowrap;
+	pointer-events: none;
+}
+
+.visual-post-compare-revision__slider-tooltip::before {
+	content: '';
+	position: absolute;
+	top: -5px;
+	left: var(--vpc-tooltip-arrow-left, 50%);
+	width: 0;
+	height: 0;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #1e1e1e;
+	border-left: 5px solid transparent;
+	transform: translateX(-50%);
+}
+
+.visual-post-compare-revision__arrow {
+	opacity: 0;
+}
+
+/* Match the native Revision inspector metadata rows. */
+.visual-post-compare-editor-revision-fields .visual-post-compare-editor-revision-field {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	width: 100%;
+}
+
+.visual-post-compare-editor-revision-field__label {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.visual-post-compare-editor-revision-field__value {
+	min-width: 0;
+	text-align: right;
+}
+
+/* WordPress 7.0-style diff marker navigation aligned to the canvas scrollbar. */
+.visual-post-compare-revision__diff-markers {
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	right: -20px;
+	bottom: 0;
+	width: 24px;
+	pointer-events: none;
+	background-color: #eee;
+}
+
+.visual-post-compare-revision__diff-marker {
+	position: absolute;
+	right: 0;
+	box-sizing: border-box;
+	width: 24px;
+	min-width: 24px;
+	height: max(24px, var(--vpc-marker-height, 1%));
+	min-height: 24px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	pointer-events: auto;
+	transform: translateY(-50%);
+}
+
+.visual-post-compare-revision__diff-marker::before {
+	content: '';
+	position: absolute;
+	top: 3px;
+	right: 2px;
+	bottom: 3px;
+	width: 12px;
+	min-height: 18px;
+	border-radius: 2px 0 0 2px;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.visual-post-compare-revision__diff-marker.is-added::before {
+	background: #00a32a;
+}
+
+.visual-post-compare-revision__diff-marker.is-removed::before {
+	background: #d63638;
+}
+
+.visual-post-compare-revision__diff-marker.is-modified::before {
+	background: #dba617;
+}
+
+.visual-post-compare-revision__diff-marker:hover::before,
+.visual-post-compare-revision__diff-marker:focus-visible::before {
+	width: 16px;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1d2327;
+}
+
+.visual-post-compare-revision__diff-marker:focus-visible {
+	outline: none;
+}
+
+@media (max-width: 782px) {
+	.visual-post-compare-revision__diff-markers {
+		right: 0;
+		width: 20px;
+	}
+
+	.visual-post-compare-revision__diff-marker {
+		width: 20px;
+		min-width: 20px;
+	}
+}

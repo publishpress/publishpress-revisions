@@ -1151,7 +1151,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		if ( ( $can_read_post || $can_edit_post ) && $revisions_enabled ) {
 			$actions['diff'] = sprintf(
 				'<a href="%1$s" class="" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
-				admin_url( "revision.php?revision=$item->ID" ),
+				rvy_compare_url($item->ID),
 				esc_attr(
 					sprintf(
 						esc_html__( 'Compare Changes in %s', 'revisionary' ),
