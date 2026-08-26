@@ -298,6 +298,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$qr[$status_col] = rvy_revision_statuses();
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (!rvy_get_option('view_filters_include_unsubmitted_revisions') && empty($_REQUEST['all']) && empty($_REQUEST['post_status']) && (empty($_REQUEST['author']) || ($current_user->ID != $_REQUEST['author']))) {
 			$qr[$status_col] = array_diff($qr[$status_col], ['draft', 'draft-revision']);
 		}
