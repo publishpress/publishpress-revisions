@@ -256,7 +256,9 @@ final class Visual_Post_Compare {
 		wp_enqueue_style( 'wp-block-library' );
 		wp_enqueue_style( 'wp-format-library' );
 
-		$script_path = plugin_dir_path( __FILE__ ) . 'visual-post-compare-standalone.js';
+		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
+
+		$script_path = plugin_dir_path( __FILE__ ) . "visual-post-compare-standalone{$suffix}.js";
 		$style_path  = plugin_dir_path( __FILE__ ) . 'visual-post-compare.css';
 
 		wp_enqueue_script(
