@@ -163,6 +163,14 @@ class Revisionary
 			}
 		}
 
+		if (rvy_use_visual_compare() && (current_user_can('read') || is_content_administrator_rvy())) {
+			require_once(dirname(__FILE__).'/visual-compare_rvy.php');
+			new RevisionaryVisualCompare();
+
+		} elseif (is_admin() && !empty($_REQUEST['page']) && ('rvy-visual-compare' == $_REQUEST['page'])) {		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			wp_die(esc_html__('Visual compare is not enabled.', 'revisionary'));
+		}
+
 		add_filter('presspermit_is_preview', [$this, 'fltIsPreview']);
 		add_filter('presspermit_query_post_statuses', [$this, 'fltQueryPostStatuses'], 10, 2);
 

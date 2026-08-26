@@ -1500,6 +1500,42 @@ function rvy_is_post_author($post, $user = false) {
 	return false;
 }
 
+function rvy_use_visual_compare() {
+	global $wp_version;
+
+	return version_compare($wp_version, '7.0', '>=') && rvy_get_option('visual_compare');
+}
+
+function rvy_compare_url($revision, $args = []) {
+	if (!empty($args['post_id'])) {
+		$post_id = (int) $args['post_id'];
+	}
+
+	if (is_string($revision) && rvy_is_revision_status($revision)) {
+		$revision_id = $revision;
+	} else {
+		$revision_id = (is_object($revision) && isset($revision->ID)) ? $revision->ID : $revision;
+	}
+
+	if (!rvy_use_visual_compare()) {
+		$url = admin_url('revision.php');
+		
+		if (!empty($post_id)) {
+			$url = add_query_arg('post', $post_id, $url);
+		}
+
+		$url = add_query_arg('revision', $revision_id, $url);
+
+		return $url;
+	} else {
+		if (empty($post_id)) {
+			$post_id = rvy_post_id($revision_id);
+		}
+
+		return admin_url("admin.php?page=rvy-visual-compare&from=$post_id&to=$revision_id");
+	}
+}
+
 function rvy_preview_url($revision, $args = []) {
 	if (is_scalar($revision)) {
 		$revision = get_post($revision);
