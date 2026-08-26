@@ -15,6 +15,12 @@ display:inline-flex;
 display: none;
 }
 
+/* Classic Editor: Prevent transparent editor buttons from getting custom "is-revision" background color */
+#wpbody-content .page-title-action,
+#postdivrich #wp-content-media-buttons > button {
+background-color: white;
+}
+
 #submitdiv div.curtime {
 padding-bottom: 15px !important;
 }
