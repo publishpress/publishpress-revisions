@@ -74,7 +74,7 @@ class PostEditorWorkflowUI {
 
             } elseif ($can_publish) {
                 if (version_compare($wp_version, '5.5-beta', '>=')) {
-                    $vars['viewCaption'] = ($block_editor) ? esc_html__('Preview this Revision', 'revisionary') : esc_html__('Preview', 'revisionary');
+                    $vars['viewCaption'] = ($block_editor) ? esc_html__('Preview Revision', 'revisionary') : esc_html__('Preview', 'revisionary');
                 } else {
                     $vars['viewCaption'] = ('future-revision' == $post->post_mime_type) ? esc_html__('View / Publish', 'revisionary') : esc_html__('View / Approve', 'revisionary');
                 }
