@@ -10,10 +10,117 @@ function revisionary_unrevisioned_postmeta() {
 
 	$exclude = array_merge(
 		$exclude, 
-        array_fill_keys(['_rvy_base_post_id', '_rvy_has_revisions', '_rvy_published_gmt', '_rvy_approved_by', '_rvy_updated_by', '_pp_is_autodraft', '_pp_last_parent', '_edit_lock', '_edit_last', '_wp_old_slug', '_wp_attached_file', '_menu_item_classes', '_menu_item_menu_item_parent', '_menu_item_object', '_menu_item_object_id', '_menu_item_target', '_menu_item_type', '_menu_item_url', '_menu_item_xfn', '_rs_file_key', '_scoper_custom', '_scoper_last_parent', '_wp_attachment_backup_sizes', '_wp_attachment_metadata', '_wp_trash_meta_status', '_wp_trash_meta_time', '_last_attachment_ids', '_last_category_ids', '_encloseme', '_pingme', '_pp_statuses_last_main_status', 'peepso_postnotify', '_peepso_postnotify', '_rvy_subpost_original_source_id', 'jr_listing_views', '_jr_listing_views', '_wpas_*'], true)
+        array_fill_keys(['_rvy_base_post_id', '_rvy_has_revisions', '_rvy_published_gmt', '_rvy_approved_by', '_rvy_updated_by', '_rvy_attachment_original_file', '_rvy_attachment_revision_file', '_pp_is_autodraft', '_pp_last_parent', '_edit_lock', '_edit_last', '_wp_old_slug', '_wp_attached_file', '_menu_item_classes', '_menu_item_menu_item_parent', '_menu_item_object', '_menu_item_object_id', '_menu_item_target', '_menu_item_type', '_menu_item_url', '_menu_item_xfn', '_rs_file_key', '_scoper_custom', '_scoper_last_parent', '_wp_attachment_backup_sizes', '_wp_attachment_metadata', '_wp_trash_meta_status', '_wp_trash_meta_time', '_last_attachment_ids', '_last_category_ids', '_encloseme', '_pingme', '_pp_statuses_last_main_status', 'peepso_postnotify', '_peepso_postnotify', '_rvy_subpost_original_source_id', 'jr_listing_views', '_jr_listing_views', '_wpas_*'], true)
 	);
 	
 	return array_keys(array_filter($exclude));
+}
+
+function revisionary_attachment_revision_meta_keys() {
+	return ['_wp_attached_file', '_wp_attachment_backup_sizes', '_wp_attachment_metadata'];
+}
+
+function revisionary_relative_upload_path($file) {
+	$uploads = wp_get_upload_dir();
+
+	if (empty($uploads['basedir'])) {
+		return $file;
+	}
+
+	$file = wp_normalize_path($file);
+	$basedir = trailingslashit(wp_normalize_path($uploads['basedir']));
+
+	if (0 === strpos($file, $basedir)) {
+		return ltrim(substr($file, strlen($basedir)), '/');
+	}
+
+	return $file;
+}
+
+function revisionary_prepare_attachment_revision_files($published_id, $revision_id) {
+	if ('attachment' != get_post_type($published_id) || 'attachment' != get_post_type($revision_id)) {
+		return false;
+	}
+
+	$source_file = get_attached_file($published_id, true);
+
+	if (!$source_file || !file_exists($source_file) || !is_readable($source_file)) {
+		return false;
+	}
+
+	$path_info = pathinfo($source_file);
+	$extension = empty($path_info['extension']) ? '' : '.' . $path_info['extension'];
+	$filename = $path_info['filename'] . '-rvy-revision-' . (int) $revision_id . $extension;
+	$destination = trailingslashit($path_info['dirname']) . wp_unique_filename($path_info['dirname'], $filename);
+
+	if (!copy($source_file, $destination)) {
+		return false;
+	}
+
+	$relative_destination = revisionary_relative_upload_path($destination);
+
+	update_attached_file($revision_id, $relative_destination);
+	update_post_meta($revision_id, '_rvy_attachment_original_file', get_post_meta($published_id, '_wp_attached_file', true));
+	update_post_meta($revision_id, '_rvy_attachment_revision_file', $relative_destination);
+
+	$metadata = get_post_meta($published_id, '_wp_attachment_metadata', true);
+
+	if (is_array($metadata)) {
+		$metadata['file'] = $relative_destination;
+		update_post_meta($revision_id, '_wp_attachment_metadata', $metadata);
+	}
+
+	return $destination;
+}
+
+function revisionary_apply_attachment_revision_files($revision_id, $published_id) {
+	if ('attachment' != get_post_type($revision_id) || 'attachment' != get_post_type($published_id)) {
+		return false;
+	}
+
+	$revision_file = get_attached_file($revision_id, true);
+	$published_file = get_attached_file($published_id, true);
+
+	if (!$revision_file || !$published_file || !file_exists($revision_file) || !is_readable($revision_file)) {
+		return false;
+	}
+
+	if (!wp_mkdir_p(dirname($published_file))) {
+		return false;
+	}
+
+	if (wp_normalize_path($revision_file) != wp_normalize_path($published_file) && !copy($revision_file, $published_file)) {
+		return false;
+	}
+
+	if (file_exists(ABSPATH . 'wp-admin/includes/image.php')) {
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+		$metadata = wp_generate_attachment_metadata($published_id, $published_file);
+
+		if (!is_wp_error($metadata) && !empty($metadata)) {
+			wp_update_attachment_metadata($published_id, $metadata);
+		}
+	}
+
+	return true;
+}
+
+function revisionary_delete_attachment_revision_files($revision_id) {
+	$revision_file_meta = get_post_meta($revision_id, '_rvy_attachment_revision_file', true);
+
+	if (!$revision_file_meta) {
+		return;
+	}
+
+	$revision_file = get_attached_file($revision_id, true);
+
+	if (!$revision_file || !file_exists($revision_file)) {
+		return;
+	}
+
+	if (wp_normalize_path($revision_file_meta) == wp_normalize_path(revisionary_relative_upload_path($revision_file))) {
+		wp_delete_file($revision_file);
+	}
 }
 
 /**
@@ -131,7 +238,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         return;
     }
 
-    $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
+    $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => [], 'include_excluded_meta_keys' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
         $$var = $args[$var];
@@ -146,7 +253,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         return;
     }
 
-    $meta_excludelist = revisionary_unrevisioned_postmeta();
+    $meta_excludelist = array_diff(revisionary_unrevisioned_postmeta(), (array) $include_excluded_meta_keys);
 
     $meta_excludelist_string = '(' . implode( ')|(', $meta_excludelist ) . ')';
     if ( strpos( $meta_excludelist_string, '*' ) !== false ) {

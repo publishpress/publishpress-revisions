@@ -1,3 +1,42 @@
+.visual-post-compare-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin-right: 8px;
+}
+
+.visual-post-compare-toolbar__button {
+	position: relative;
+	min-width: 32px;
+	height: 32px;
+	padding: 0 8px;
+	border-radius: 4px;
+	flex-shrink: 0;
+}
+
+.visual-post-compare-toolbar__icon {
+	width: 18px;
+	height: 18px;
+	font-size: 18px;
+}
+
+.visual-post-compare-toolbar__count {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	min-width: 16px;
+	height: 16px;
+	padding: 0 3px;
+	border-radius: 999px;
+	background: var(--wp-admin-theme-color, #3858e9);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 16px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
 .visual-post-compare-panel h2 {
 	margin-bottom: -5px !important;	
 }

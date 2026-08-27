@@ -448,18 +448,26 @@ class RevisionCreation {
 			}
 		}
 
+		$postmeta_args = [];
+
+		if ('attachment' == get_post_type($main_post_id)) {
+			$postmeta_args['include_excluded_meta_keys'] = revisionary_attachment_revision_meta_keys();
+		}
+
 		if (!empty($args['meta_post_id']) && apply_filters('revisionary_use_autodraft_meta', true, $data)) {
 			revisionary_copy_terms($args['meta_post_id'], $revision_id);
-			revisionary_copy_postmeta($args['meta_post_id'], $revision_id);
+			revisionary_copy_postmeta($args['meta_post_id'], $revision_id, $postmeta_args);
 
 			// For taxonomies and meta keys not stored for the autosave, use published copies
 			revisionary_copy_terms($main_post_id, $revision_id, ['empty_target_only' => true]);
-			revisionary_copy_postmeta($main_post_id, $revision_id, ['empty_target_only' => true]);
+			revisionary_copy_postmeta($main_post_id, $revision_id, array_merge($postmeta_args, ['empty_target_only' => true]));
 		} else {
 			// If term selections are not posted for revision, store current published terms
 			revisionary_copy_terms($main_post_id, $revision_id);
-			revisionary_copy_postmeta($main_post_id, $revision_id);
+			revisionary_copy_postmeta($main_post_id, $revision_id, $postmeta_args);
 		}
+
+		revisionary_prepare_attachment_revision_files($main_post_id, $revision_id);
 
 		if ($main_post_id != $revision_id) {
 			rvy_update_post_meta($revision_id, '_rvy_base_post_id', $main_post_id);

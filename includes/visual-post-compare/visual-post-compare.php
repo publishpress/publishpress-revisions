@@ -327,7 +327,7 @@ final class Visual_Post_Compare {
 		wp_enqueue_script(
 			'rvy-visual-compare',
 			plugins_url( 'visual-post-compare.js', __FILE__ ),
-			array( 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
+			array( 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
 			file_exists( $script_path ) ? filemtime( $script_path ) : '0.11.0',
 			true
 		);

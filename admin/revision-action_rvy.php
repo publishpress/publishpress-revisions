@@ -953,9 +953,21 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		$set_slug = $published->post_name;
 	}
 
+	$is_attachment_revision = ('attachment' == $published->post_type) && ('attachment' == $revision->post_type);
+	$applied_post_mime_type = $published->post_mime_type;
+
+	if ($is_attachment_revision) {
+		$revision_file = get_attached_file($revision_id, true);
+		$filetype = $revision_file ? wp_check_filetype($revision_file) : [];
+
+		if (!empty($filetype['type'])) {
+			$applied_post_mime_type = $filetype['type'];
+		}
+	}
+
 	// Apply requested slug, if applicable. 
 	// Otherwise, work around unexplained reversion of editor-modified post slug back to default format on some sites  @todo: identify plugin interaction
-	$update_fields = ['post_name' => $set_slug, 'guid' => $published->guid, 'post_type' => $published->post_type, 'post_status' => $published->post_status, 'post_mime_type' => $published->post_mime_type];
+	$update_fields = ['post_name' => $set_slug, 'guid' => $published->guid, 'post_type' => $published->post_type, 'post_status' => $published->post_status, 'post_mime_type' => $applied_post_mime_type];
 
 	// Prevent wp_insert_post() from stripping inline html styles
 	if (!defined('RVY_DISABLE_REVISION_CONTENT_PASSTHRU')) {
@@ -1044,6 +1056,11 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	revisionary_copy_postmeta($revision, $published->ID, ['skip_post_meta' => $skip_post_meta, 'apply_empty' => !$is_imported]);
 
+	if ($is_attachment_revision) {
+		clean_post_cache($published->ID);
+		revisionary_apply_attachment_revision_files($revision_id, $published->ID);
+	}
+
 	$_args = ['apply_empty' => !$is_imported, 'applying_revision' => true, 'skip_taxonomies' => []];
 
 	if (is_array($enabled_fields) && empty($enabled_fields['taxonomies'])) {
@@ -1081,7 +1098,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 				'post_date_gmt' => current_time('mysql', 1), 
 				'post_parent' => $post_id, 
 				'comment_count' => 0,
-				'post_mime_type' => $published->post_mime_type
+				'post_mime_type' => $applied_post_mime_type
 				],
 				['ID' => $revision_id]
 			);
