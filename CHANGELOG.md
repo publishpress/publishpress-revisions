@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Broken Edit Revision button after creating revision in editor sidebar
 - Fixed : Preview Revision button in post editor sidebar is broken
 - Fixed : Delete Revision button in post editor sidebar has no border on one side
-- Fixed : Classic Editor button lose white background if custom color enabled for Revision editor
+- Fixed : Classic Editor buttons lose white background if custom color enabled for Revision editor
 
 [3.9.2] - 28 Jul 2026
 - Changed : Editor sidebar button from "Approve Revision" to "Publish Revision"
