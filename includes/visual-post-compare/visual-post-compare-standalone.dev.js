@@ -635,7 +635,7 @@
 		const previewProps = useBlockPreview({
 			blocks: diffResult.blocks,
 			props: {
-				className: 'editor-styles-wrapper is-root-container is-layout-constrained visual-post-compare-revision__live-preview',
+				className: 'visual-post-compare-revision__block-preview',
 			},
 		});
 
@@ -849,7 +849,14 @@
 								'aria-hidden': true,
 								dangerouslySetInnerHTML: { __html: REVISION_REMOVED_FILTER_SVG },
 							}),
+							el(
+							'div',
+							{ className: 'editor-styles-wrapper is-root-container is-layout-constrained visual-post-compare-revision__live-preview' },
+							comparison.to.title
+								? el('h1', { className: 'wp-block-post-title visual-post-compare-revision__post-title' }, comparison.to.title)
+								: null,
 							el('div', previewProps)
+						)
 						),
 						diffMarkerNav
 					),
