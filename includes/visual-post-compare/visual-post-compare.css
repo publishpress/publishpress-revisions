@@ -158,12 +158,13 @@
 	 * this stylesheet and therefore retain normal precedence. */
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: var(--wp--preset--font-size--medium, 20px);
-	line-height: 1.5;
+	line-height: var(--wp--custom--line-height, 1.4em);
 	padding: 10px !important;
 }
 
 .visual-post-compare-revision__live-preview div.block-editor-block-list__block p {
 	font-size: var(--wp--preset--font-size--medium, 20px);
+	line-height: var(--wp--custom--line-height, 1.4em);
 }
 
 .visual-post-compare-revision__post-title {
@@ -173,10 +174,6 @@
 	font-size: var(--heading--font-size-h1);
   	letter-spacing: var(--heading--letter-spacing-h1);
   	line-height: var(--heading--line-height-h1);
-}
-
-.visual-post-compare-revision__live-preview p {
-	line-height: 1.8;
 }
 
 .visual-post-compare-revision__live-preview .visual-post-compare-revision__block-preview,
