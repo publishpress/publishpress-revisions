@@ -28,6 +28,7 @@ class Editor_Features {
 
         // apply the stored restrictions by js and css
         if ($restrict_elements = array_unique($restrict_elements)) {
+            // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
             /* @todo: review
             
             // script file

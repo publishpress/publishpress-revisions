@@ -74,7 +74,7 @@ class PostEditorWorkflowUI {
 
             } elseif ($can_publish) {
                 if (version_compare($wp_version, '5.5-beta', '>=')) {
-                    $vars['viewCaption'] = ($block_editor) ? esc_html__('Preview this Revision', 'revisionary') : esc_html__('Preview', 'revisionary');
+                    $vars['viewCaption'] = ($block_editor) ? esc_html__('Preview Revision', 'revisionary') : esc_html__('Preview', 'revisionary');
                 } else {
                     $vars['viewCaption'] = ('future-revision' == $post->post_mime_type) ? esc_html__('View / Publish', 'revisionary') : esc_html__('View / Approve', 'revisionary');
                 }
@@ -213,7 +213,7 @@ class PostEditorWorkflowUI {
             $status_label = (count($_revisions) <= 1) ? pp_revisions_status_label('pending-revision', 'name') : pp_revisions_status_label('pending-revision', 'plural');
             $vars['pendingRevisionsCaption'] = sprintf('<span class="dashicons dashicons-edit"></span>&nbsp;%s %s', count($_revisions), $status_label);
 
-            $vars['pendingRevisionsURL'] = rvy_admin_url("revision.php?post_id=$post->ID&revision=pending-revision");   // @todo: fix i8n
+            $vars['pendingRevisionsURL'] = rvy_compare_url('pending-revision', ['post_id' => $post->ID]);
         } else {
             $vars['pendingRevisionsURL'] = '';
         }
@@ -224,7 +224,7 @@ class PostEditorWorkflowUI {
             $status_label = (count($_revisions) <= 1) ? pp_revisions_status_label('future-revision', 'name') : pp_revisions_status_label('future-revision', 'plural');
             $vars['scheduledRevisionsCaption'] = sprintf('<span class="dashicons dashicons-clock"></span>&nbsp;%s %s', count($_revisions), $status_label);
 
-            $vars['scheduledRevisionsURL'] = rvy_admin_url("revision.php?post_id=$post->ID&revision=future-revision");
+            $vars['scheduledRevisionsURL'] = rvy_compare_url('future-revision', ['post_id' => $post->ID]);
         } else {
             $vars['scheduledRevisionsURL'] = '';
         }

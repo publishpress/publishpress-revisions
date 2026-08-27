@@ -74,12 +74,12 @@ class Revisionary
 						$revision_status_csv = implode("','", array_map('sanitize_key', array_diff(rvy_revision_statuses(), ['draft-revision'])));
                         $status_field = (rvy_get_option('permissions_compat_mode')) ? 'post_status' : 'post_mime_type';
 
-						if ($revision_count = $wpdb->get_var(
-							apply_filters(
+						if ($revision_count = (int) $wpdb->get_var(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.NotPrepared
+							// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+							apply_filters(						
 								'revisionary_front_count',
-								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 								$wpdb->prepare(
-									"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.$status_field IN ('$revision_status_csv')",
+									"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.$status_field IN ('$revision_status_csv')", 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 									$post_id
 								)
 							)
@@ -161,6 +161,14 @@ class Revisionary
 				require_once(dirname(__FILE__).'/classes/PublishPress/Revisions/PostPreview.php');
 				new PublishPress\Revisions\PostPreview();
 			}
+		}
+
+		if (rvy_use_visual_compare() && (current_user_can('read') || is_content_administrator_rvy())) {
+			require_once(dirname(__FILE__).'/visual-compare_rvy.php');
+			new RevisionaryVisualCompare();
+
+		} elseif (is_admin() && !empty($_REQUEST['page']) && ('rvy-visual-compare' == $_REQUEST['page'])) {		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			wp_die(esc_html__('Visual compare is not enabled.', 'revisionary'));
 		}
 
 		add_filter('presspermit_is_preview', [$this, 'fltIsPreview']);

@@ -298,6 +298,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$qr[$status_col] = rvy_revision_statuses();
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (!rvy_get_option('view_filters_include_unsubmitted_revisions') && empty($_REQUEST['all']) && empty($_REQUEST['post_status']) && (empty($_REQUEST['author']) || ($current_user->ID != $_REQUEST['author']))) {
 			$qr[$status_col] = array_diff($qr[$status_col], ['draft', 'draft-revision']);
 		}
@@ -1020,7 +1021,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		if (!empty($last_past_revision[$post->ID])) {
 			$actions['history'] = sprintf(
 				'<a href="%1$s" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
-				admin_url("revision.php?revision={$last_past_revision[$post->ID]}"),
+				rvy_compare_url($last_past_revision[$post->ID]),
 				esc_attr__('Compare Past Revisions', 'revisionary'),
 				esc_html__( 'History', 'revisionary' )
 			);
@@ -1918,7 +1919,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		if ($can_edit_post) {  
 			$actions['diff'] = sprintf(
 				'<a href="%1$s" class="" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
-				admin_url("revision.php?revision=$post->ID"),
+				rvy_compare_url($post->ID),
 				esc_attr__('Compare Changes', 'revisionary'),
 				_x('Compare', 'revisions', 'revisionary')
 			);

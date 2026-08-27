@@ -222,12 +222,12 @@ jQuery(document).ready(function ($) {
 				}
 				
 				var rvyPreviewLink = '';
-				
-                if (rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption']) {
-                    rvyPreviewLink = '<a class="revision-preview" href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" target="_blank"><button class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
-                        + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption'] + '</button></a>';
-				}
-
+                
+                if (rvyObjEdit['viewCaption']) {
+                    rvyPreviewLink = '<a class="revision-preview" href="' + rvyObjEdit['viewURL'] + '" target="_blank"><button class="revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_preview">'
+                        + rvyObjEdit['viewCaption'] + '</button></a>';
+                }
+                
                 if (refSelector == 'div.editor-post-panel__section') {
                     divClass = ' gutenberg-18-5';
                 } else {
@@ -265,9 +265,7 @@ jQuery(document).ready(function ($) {
                         + '<div class="revision-approving" style="display: none;">'
                         + '<span class="revision-approve revision-submitting">'
                         + rvyObjEdit.approvingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
-                        + '<div class="revision-created" style="display: none;">'
                         + rvyPreviewLink
-                        + '</div>'
                         + '</div>';
 
                     if (refSelectorBefore) {

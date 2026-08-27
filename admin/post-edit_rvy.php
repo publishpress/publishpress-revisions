@@ -188,7 +188,7 @@ class RvyPostEdit {
         <div id="preview-action" class="rvy-misc-actions" style="float: left; padding: 5px 10px 10px 10px">
 
         <?php
-        $compare_link = rvy_admin_url("revision.php?revision=$post->ID");
+        $compare_link = rvy_compare_url($post->ID);
         $compare_button = _x('Compare', 'revisions', 'revisionary');
         $compare_title = esc_html__('Compare this revision to published copy, or to other revisions', 'revisionary');
         ?>
@@ -253,7 +253,7 @@ class RvyPostEdit {
 	            printf('%s' . esc_html(pp_revisions_status_label('future-revision', 'plural')) . ': %s', '<span class="dashicons dashicons-clock"></span>&nbsp;', '<b>' . esc_html(count($_revisions)) . '</b>');
 	            ?>
 	            <a class="hide-if-no-js"
-                    href="<?php echo esc_url(admin_url("revision.php?post_id=$post->ID&revision=future-revision")); ?>" target="_revision_diff"><?php _ex('Compare', 'revisions', 'revisionary'); ?></a>
+                    href="<?php echo esc_url(rvy_compare_url('future-revision', ['post_id' => $post->ID]));?>" target="_revision_diff"><?php _ex('Compare', 'revisions', 'revisionary'); ?></a>
 	            </div>
 	            <?php
 	        }
@@ -267,7 +267,7 @@ class RvyPostEdit {
 	            printf('%s' . esc_html(pp_revisions_status_label('pending-revision', 'plural')) . ': %s', '<span class="dashicons dashicons-edit"></span>&nbsp;', '<b>' . esc_html(count($_revisions)) . '</b>');
 	            ?>
 	            <a class="hide-if-no-js"
-                    href="<?php echo esc_url(admin_url("revision.php?post_id=$post->ID&revision=pending-revision")); ?>" target="_revision_diff"><?php _ex('Compare', 'revisions', 'revisionary'); ?></a>
+                    href="<?php echo esc_url(rvy_compare_url('pending-revision', ['post_id' => $post->ID]));?>" target="_revision_diff"><?php _ex('Compare', 'revisions', 'revisionary'); ?></a>
 	            </div>
 	            <?php
 	        }

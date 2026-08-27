@@ -431,21 +431,23 @@ class RevisionaryAdmin
 				}
 			}
 
-			$type_csv = implode("','", $post_types);
+			$type_csv = implode("','", array_map('sanitize_key', $post_types));
 
-			$post_status_csv = implode( "','", apply_filters('revisionary_menu_count_post_statuses', array_diff(get_post_stati(), ['trash', 'auto-draft', 'inherit'])));
+			$post_status_csv = implode( "','", array_map('sanitize_key', apply_filters('revisionary_menu_count_post_statuses', array_diff(get_post_stati(), ['trash', 'auto-draft', 'inherit']))));
 
 			if ($post_types && $post_status_csv && rvy_get_option('admin_menu_pending_count_icon')) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
 				$revision_count = $wpdb->get_var(
+					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					apply_filters(
 						'revisionary_menu_count', 
-						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.post_status IN ('$post_status_csv') AND r.post_type IN ('$type_csv') AND r.post_mime_type IN ('pending-revision')"
+						"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.post_status IN ('$post_status_csv') AND r.post_type IN ('$type_csv') AND r.post_mime_type IN ('pending-revision')"  // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					)
 				);
 			}
 
 			if (!empty($revision_count)) {
-				$count_html = ' <span class="update-plugins count-' . $revision_count . '" style="vertical-align:baseline"><span class="plugin-count">' . $revision_count . '</span></span>';	
+				$count_html = ' <span class="update-plugins count-' . intval($revision_count) . '" style="vertical-align:baseline"><span class="plugin-count">' . intval($revision_count) . '</span></span>';	
 			} else {
 				$count_html = '';
 			}

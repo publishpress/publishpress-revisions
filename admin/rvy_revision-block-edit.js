@@ -32,8 +32,8 @@ if(rvyObjEdit[rvyObjEdit.currentStatus+'ActionCaption']){var approveButtonHTML='
 +'<span class="dashicons dashicons-no"></span>'
 +'<span class="rvy-caption">'+rvyObjEdit['declineCaption']+'</span></button></a>';}
 mainDashicon='dashicons-upload';}else{if('pending'==rvyObjEdit.currentStatus){mainDashicon='dashicons-yes';}else{mainDashicon='dashicons-upload';}}
-var rvyPreviewLink='';if(rvyObjEdit[rvyObjEdit.currentStatus+'CompletedLinkCaption']){rvyPreviewLink='<a class="revision-preview" href="'+rvyObjEdit[rvyObjEdit.currentStatus+'CompletedURL']+'" target="_blank"><button class="revision-approve revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_copy">'
-+rvyObjEdit[rvyObjEdit.currentStatus+'CompletedLinkCaption']+'</button></a>';}
+var rvyPreviewLink='';if(rvyObjEdit['viewCaption']){rvyPreviewLink='<a class="revision-preview" href="'+rvyObjEdit['viewURL']+'" target="_blank"><button class="revision-preview components-button is-secondary ppr-purple-button" target="pp_revisions_preview">'
++rvyObjEdit['viewCaption']+'</button></a>';}
 if(refSelector=='div.editor-post-panel__section'){divClass=' gutenberg-18-5';}else{divClass='';}
 if(refSelectorUseParent){var uiLoc=$(refSelector).parent();}else{var uiLoc=$(refSelector);}
 if(!$('div.rvy-creation-ui').length){var buttonUI='<div class="rvy-creation-ui rvy-submission-div'+divClass+'">';if(('pending'!=rvyObjEdit.currentStatus)&&((!approveButtonHTML&&rvyObjEdit.canPublish)||!rvyObjEdit.approveButtonReplacesSubmit)){buttonUI+='<a href="'+url+'" class="revision-approve">'
@@ -52,9 +52,7 @@ buttonUI+=approveButtonHTML
 +'<div class="revision-approving" style="display: none;">'
 +'<span class="revision-approve revision-submitting">'
 +rvyObjEdit.approvingCaption+'</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
-+'<div class="revision-created" style="display: none;">'
 +rvyPreviewLink
-+'</div>'
 +'</div>';if(refSelectorBefore){$(uiLoc).before(buttonUI);}else{$(uiLoc).after(buttonUI);}}
 $('div.rvy-submission-div').trigger('loaded-ui');}
 $('.edit-post-post-schedule__toggle').after('<button class="components-button is-tertiary post-schedule-footnote" disabled>'+rvyObjEdit.onApprovalCaption+'</button>');$('button.editor-post-trash').insertBefore('div.rvy-author-selection:first');}
