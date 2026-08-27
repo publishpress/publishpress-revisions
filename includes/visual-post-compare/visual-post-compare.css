@@ -157,18 +157,39 @@
 	 * editor/global typography. Theme styles injected into the preview follow
 	 * this stylesheet and therefore retain normal precedence. */
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-size: 18px;
-	line-height: 1.5;
-	background-color: inherit !important;
+	font-size: var(--wp--preset--font-size--medium, 20px);
+	line-height: 1.6;
+	padding: 10px !important;
+}
+
+.visual-post-compare-revision__live-preview div.block-editor-block-list__block p {
+	font-size: var(--wp--preset--font-size--medium, 20px);
+}
+
+.visual-post-compare-revision__post-title {
+	box-sizing: border-box;
+	max-width: var(--wp--style--global--content-size, 840px);
+	margin: 0 auto 1.5rem;
+	font-size: var(--heading--font-size-h1);
+  	letter-spacing: var(--heading--letter-spacing-h1);
+  	line-height: var(--heading--line-height-h1);
 }
 
 .visual-post-compare-revision__live-preview p {
 	line-height: 1.8;
 }
 
+.visual-post-compare-revision__live-preview .visual-post-compare-revision__block-preview,
 .visual-post-compare-revision__live-preview .block-editor-block-list__layout {
 	box-sizing: border-box;
 	min-width: 0;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.visual-post-compare-revision__live-preview .block-editor-block-list__block,
+.visual-post-compare-revision__live-preview .wp-block {
+	font-size: inherit;
 }
 
 /* WordPress' editor/global styles target these root layout classes. Keep a

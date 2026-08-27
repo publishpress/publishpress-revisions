@@ -263,7 +263,7 @@ final class Visual_Post_Compare {
 
 		wp_enqueue_script(
 			'visual-post-compare-standalone',
-			plugins_url( 'visual-post-compare-standalone.js', __FILE__ ),
+			plugins_url( "visual-post-compare-standalone{$suffix}.js", __FILE__ ),
 			array( 'wp-api-fetch', 'wp-block-editor', 'wp-block-library', 'wp-block-serialization-default-parser', 'wp-blocks', 'wp-components', 'wp-element', 'wp-hooks', 'wp-i18n', 'wp-private-apis', 'wp-rich-text' ),
 			file_exists( $script_path ) ? filemtime( $script_path ) : '0.11.0',
 			true
