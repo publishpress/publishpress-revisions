@@ -212,7 +212,7 @@ jQuery(document).ready( function($) {
 				$('button.revision-created a.revision-preview').hide();
 			}
 
-			$('button.revision-created a.revision-edit').attr('href', rvyObjEdit.completedEditURL);
+			$('div.revision-created-buttons a.revision-edit').attr('href', rvyObjEdit.completedEditURL);
 		}
 
 		var revisionaryCreateError = function (data, txtStatus) {
