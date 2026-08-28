@@ -253,7 +253,6 @@ class Recent_Revisions_Block {
 
 	private static function render_revision_item( \WP_Post $revision, $previous, \WP_Post $post, $attributes ) {
 		$changes         = self::get_revision_changes( $revision, $previous );
-		$changed_labels  = $changes ? wp_list_pluck( $changes, 'label' ) : [self::get_empty_changes_label( $previous )];
 		$author          = get_userdata( $revision->post_author );
 		$can_show_diffs  = ! empty( $attributes['showDiff'] ) && current_user_can( 'edit_post', $post->ID );
 		$compare_url     = self::get_compare_url( $revision, $post );
@@ -278,10 +277,7 @@ class Recent_Revisions_Block {
 			$meta .= '<span class="rvy-recent-revisions__author">' . esc_html( sprintf( __( 'by %s', 'revisionary' ), $author->display_name ) ) . '</span>';
 		}
 
-		$change_items = '';
-		foreach ( $changed_labels as $label ) {
-			$change_items .= '<li>' . esc_html( $label ) . '</li>';
-		}
+		$change_summary = self::render_change_summary( $changes, $previous );
 
 		$diffs = '';
 		if ( $can_show_diffs ) {
@@ -293,20 +289,15 @@ class Recent_Revisions_Block {
 		}
 
 		return sprintf(
-			'<li class="rvy-recent-revisions__item"><div class="rvy-recent-revisions__revision">%1$s</div><div class="rvy-recent-revisions__meta">%2$s</div><div class="rvy-recent-revisions__changes"><span>%3$s</span><ul>%4$s</ul></div>%5$s</li>',
+			'<li class="rvy-recent-revisions__item"><div class="rvy-recent-revisions__revision">%1$s</div><div class="rvy-recent-revisions__meta">%2$s</div>%3$s%4$s</li>',
 			$title,
 			$meta,
-			esc_html__( 'Changed:', 'revisionary' ),
-			$change_items,
+			$change_summary,
 			$diffs
 		);
 	}
 
 	private static function get_revision_changes( \WP_Post $revision, $previous ) {
-		if ( ! $previous instanceof \WP_Post ) {
-			return [];
-		}
-
 		$fields = [
 			'post_title'   => __( 'Title', 'revisionary' ),
 			'post_content' => __( 'Content', 'revisionary' ),
@@ -315,21 +306,83 @@ class Recent_Revisions_Block {
 
 		$changes = [];
 		foreach ( $fields as $field => $label ) {
-			$before = isset( $previous->$field ) ? (string) $previous->$field : '';
+			$before = $previous instanceof \WP_Post && isset( $previous->$field ) ? (string) $previous->$field : '';
 			$after  = isset( $revision->$field ) ? (string) $revision->$field : '';
 
 			if ( self::normalize_comparison_text( $before ) === self::normalize_comparison_text( $after ) ) {
 				continue;
 			}
 
+			$fragments = self::get_change_fragments( $before, $after );
+
 			$changes[] = [
-				'field' => $field,
-				'label' => $label,
-				'diff'  => self::get_text_diff( $before, $after ),
+				'field'   => $field,
+				'label'   => $label,
+				'added'   => $fragments['added'],
+				'removed' => $fragments['removed'],
+				'diff'    => self::get_text_diff( $before, $after ),
 			];
 		}
 
 		return $changes;
+	}
+
+	private static function render_change_summary( array $changes, $previous ) {
+		if ( ! $changes ) {
+			return sprintf(
+				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--empty"><span>%s</span></div>',
+				esc_html( self::get_empty_changes_label( $previous ) )
+			);
+		}
+
+		$added_items   = self::render_change_fragment_items( $changes, 'added' );
+		$removed_items = self::render_change_fragment_items( $changes, 'removed' );
+		$output        = '';
+
+		if ( $added_items ) {
+			$output .= sprintf(
+				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--added"><span>%1$s</span><ul>%2$s</ul></div>',
+				esc_html__( 'Added:', 'revisionary' ),
+				$added_items
+			);
+		}
+
+		if ( $removed_items ) {
+			$output .= sprintf(
+				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--removed"><span>%1$s</span><ul>%2$s</ul></div>',
+				esc_html__( 'Removed:', 'revisionary' ),
+				$removed_items
+			);
+		}
+
+		if ( ! $output ) {
+			return sprintf(
+				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--empty"><span>%s</span></div>',
+				esc_html__( 'Only formatting or block markup changed.', 'revisionary' )
+			);
+		}
+
+		return $output;
+	}
+
+	private static function render_change_fragment_items( array $changes, $type ) {
+		$items = '';
+
+		foreach ( $changes as $change ) {
+			if ( empty( $change[ $type ] ) || ! is_array( $change[ $type ] ) ) {
+				continue;
+			}
+
+			foreach ( $change[ $type ] as $fragment ) {
+				$items .= sprintf(
+					'<li><span class="rvy-recent-revisions__field">%1$s</span> <span class="rvy-recent-revisions__fragment">%2$s</span></li>',
+					esc_html( $change['label'] ),
+					esc_html( $fragment )
+				);
+			}
+		}
+
+		return $items;
 	}
 
 	private static function get_empty_changes_label( $previous ) {
@@ -338,6 +391,166 @@ class Recent_Revisions_Block {
 		}
 
 		return __( 'Initial revision', 'revisionary' );
+	}
+
+	private static function get_change_fragments( $before, $after ) {
+		$before_words = self::get_comparison_words( $before );
+		$after_words  = self::get_comparison_words( $after );
+
+		if ( ! $before_words && ! $after_words ) {
+			return [
+				'added'   => [],
+				'removed' => [],
+			];
+		}
+
+		if ( count( $before_words ) > 180 || count( $after_words ) > 180 ) {
+			return self::get_bounded_change_fragments( $before_words, $after_words );
+		}
+
+		return self::get_word_diff_fragments( $before_words, $after_words );
+	}
+
+	private static function get_comparison_words( $text ) {
+		$text = self::normalize_comparison_text( $text );
+		if ( '' === $text ) {
+			return [];
+		}
+
+		return preg_split( '/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY );
+	}
+
+	private static function get_bounded_change_fragments( array $before_words, array $after_words ) {
+		$prefix_length = 0;
+		$before_count  = count( $before_words );
+		$after_count   = count( $after_words );
+
+		while (
+			$prefix_length < $before_count
+			&& $prefix_length < $after_count
+			&& $before_words[ $prefix_length ] === $after_words[ $prefix_length ]
+		) {
+			$prefix_length++;
+		}
+
+		$suffix_length = 0;
+		while (
+			$suffix_length < ( $before_count - $prefix_length )
+			&& $suffix_length < ( $after_count - $prefix_length )
+			&& $before_words[ $before_count - 1 - $suffix_length ] === $after_words[ $after_count - 1 - $suffix_length ]
+		) {
+			$suffix_length++;
+		}
+
+		$removed = array_slice( $before_words, $prefix_length, $before_count - $prefix_length - $suffix_length );
+		$added   = array_slice( $after_words, $prefix_length, $after_count - $prefix_length - $suffix_length );
+
+		return [
+			'added'   => self::prepare_change_fragments( [$added] ),
+			'removed' => self::prepare_change_fragments( [$removed] ),
+		];
+	}
+
+	private static function get_word_diff_fragments( array $before_words, array $after_words ) {
+		$matrix       = self::get_lcs_matrix( $before_words, $after_words );
+		$before_index = 0;
+		$after_index  = 0;
+		$added        = [];
+		$removed      = [];
+		$current_add  = [];
+		$current_del  = [];
+
+		while ( $before_index < count( $before_words ) && $after_index < count( $after_words ) ) {
+			if ( $before_words[ $before_index ] === $after_words[ $after_index ] ) {
+				self::store_change_run( $added, $current_add );
+				self::store_change_run( $removed, $current_del );
+				$before_index++;
+				$after_index++;
+				continue;
+			}
+
+			if ( $matrix[ $before_index + 1 ][ $after_index ] >= $matrix[ $before_index ][ $after_index + 1 ] ) {
+				$current_del[] = $before_words[ $before_index ];
+				$before_index++;
+			} else {
+				$current_add[] = $after_words[ $after_index ];
+				$after_index++;
+			}
+		}
+
+		while ( $before_index < count( $before_words ) ) {
+			$current_del[] = $before_words[ $before_index ];
+			$before_index++;
+		}
+
+		while ( $after_index < count( $after_words ) ) {
+			$current_add[] = $after_words[ $after_index ];
+			$after_index++;
+		}
+
+		self::store_change_run( $added, $current_add );
+		self::store_change_run( $removed, $current_del );
+
+		return [
+			'added'   => self::prepare_change_fragments( $added ),
+			'removed' => self::prepare_change_fragments( $removed ),
+		];
+	}
+
+	private static function get_lcs_matrix( array $before_words, array $after_words ) {
+		$before_count = count( $before_words );
+		$after_count  = count( $after_words );
+		$matrix       = array_fill( 0, $before_count + 1, array_fill( 0, $after_count + 1, 0 ) );
+
+		for ( $before_index = $before_count - 1; $before_index >= 0; $before_index-- ) {
+			for ( $after_index = $after_count - 1; $after_index >= 0; $after_index-- ) {
+				$matrix[ $before_index ][ $after_index ] = $before_words[ $before_index ] === $after_words[ $after_index ]
+					? $matrix[ $before_index + 1 ][ $after_index + 1 ] + 1
+					: max( $matrix[ $before_index + 1 ][ $after_index ], $matrix[ $before_index ][ $after_index + 1 ] );
+			}
+		}
+
+		return $matrix;
+	}
+
+	private static function store_change_run( array &$runs, array &$current_run ) {
+		if ( $current_run ) {
+			$runs[]      = $current_run;
+			$current_run = [];
+		}
+	}
+
+	private static function prepare_change_fragments( array $runs ) {
+		$fragments = [];
+
+		foreach ( $runs as $run ) {
+			if ( ! $run ) {
+				continue;
+			}
+
+			$fragment = self::trim_change_fragment( implode( ' ', $run ) );
+			if ( '' === $fragment ) {
+				continue;
+			}
+
+			$fragments[] = $fragment;
+
+			if ( count( $fragments ) >= 4 ) {
+				break;
+			}
+		}
+
+		return $fragments;
+	}
+
+	private static function trim_change_fragment( $fragment ) {
+		$fragment = trim( preg_replace( '/\s+/', ' ', (string) $fragment ) );
+
+		if ( function_exists( 'mb_strlen' ) && function_exists( 'mb_substr' ) ) {
+			return mb_strlen( $fragment ) > 140 ? mb_substr( $fragment, 0, 137 ) . '...' : $fragment;
+		}
+
+		return strlen( $fragment ) > 140 ? substr( $fragment, 0, 137 ) . '...' : $fragment;
 	}
 
 	private static function normalize_comparison_text( $text ) {
