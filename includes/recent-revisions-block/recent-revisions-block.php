@@ -291,7 +291,7 @@ class Recent_Revisions_Block {
 				if ( ! empty( $change['diff'] ) ) {
 					$diffs .= sprintf(
 						'<details class="rvy-recent-revisions__diff"><summary>%1$s</summary>%2$s</details>',
-						esc_html( self::get_contextual_change_label( $change, 'modified' ) ),
+						esc_html__( 'See All Changes', 'revisionary' ),
 						wp_kses_post( $change['diff'] )
 					);
 				}
@@ -404,9 +404,6 @@ class Recent_Revisions_Block {
 
 			case 'removed':
 				return __( 'Removed Content', 'revisionary' );
-
-			case 'modified':
-				return __( 'Modified Content', 'revisionary' );
 		}
 
 		return isset( $change['label'] ) ? $change['label'] : __( 'Content', 'revisionary' );
@@ -555,29 +552,42 @@ class Recent_Revisions_Block {
 				continue;
 			}
 
-			$fragment = self::trim_change_fragment( implode( ' ', $run ) );
-			if ( '' === $fragment ) {
-				continue;
-			}
-
-			$fragments[] = $fragment;
-
-			if ( count( $fragments ) >= 4 ) {
-				break;
+			foreach ( self::split_change_run( $run ) as $fragment ) {
+				if ( '' !== $fragment ) {
+					$fragments[] = $fragment;
+				}
 			}
 		}
 
 		return $fragments;
 	}
 
-	private static function trim_change_fragment( $fragment ) {
-		$fragment = trim( preg_replace( '/\s+/', ' ', (string) $fragment ) );
+	private static function split_change_run( array $run ) {
+		$fragments     = [];
+		$current_words = [];
 
-		if ( function_exists( 'mb_strlen' ) && function_exists( 'mb_substr' ) ) {
-			return mb_strlen( $fragment ) > 140 ? mb_substr( $fragment, 0, 137 ) . '...' : $fragment;
+		foreach ( $run as $word ) {
+			$current_words[] = $word;
+
+			if ( self::is_sentence_end( $word ) || count( $current_words ) >= 24 ) {
+				$fragments[]   = self::trim_change_fragment( implode( ' ', $current_words ) );
+				$current_words = [];
+			}
 		}
 
-		return strlen( $fragment ) > 140 ? substr( $fragment, 0, 137 ) . '...' : $fragment;
+		if ( $current_words ) {
+			$fragments[] = self::trim_change_fragment( implode( ' ', $current_words ) );
+		}
+
+		return $fragments;
+	}
+
+	private static function is_sentence_end( $word ) {
+		return (bool) preg_match( '/[.!?][\'")\]]*$/', (string) $word );
+	}
+
+	private static function trim_change_fragment( $fragment ) {
+		return trim( preg_replace( '/\s+/', ' ', (string) $fragment ) );
 	}
 
 	private static function normalize_comparison_text( $text ) {
