@@ -644,6 +644,9 @@ class Recent_Revisions_Block {
 	private static function clean_text_diff( $diff ) {
 		$diff = preg_replace( '#<td>\s*(?:\+|-|&nbsp;)?\s*</td>#i', '', (string) $diff );
 		$diff = preg_replace( '#<td\s+class=(["\'])diff-marker\1[^>]*>\s*(?:\+|-|&nbsp;)?\s*</td>#i', '', $diff );
+		$diff = preg_replace( '#<span\b[^>]*class=(["\'])[^"\']*\bdashicons(?:\s+dashicons-(?:plus|minus))?\b[^"\']*\1[^>]*></span>#i', '', $diff );
+		$diff = preg_replace( '#<span\b[^>]*class=(["\'])[^"\']*\bscreen-reader-text\b[^"\']*\1[^>]*>.*?</span>#is', '', $diff );
+		$diff = str_ireplace( [ '&nbsp;', '&#160;', '&#xa0;' ], ' ', $diff );
 
 		return $diff;
 	}

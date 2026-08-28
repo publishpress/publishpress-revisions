@@ -124,6 +124,8 @@
 }
 
 .rvy-recent-revisions__diff table.diff {
+	border-collapse: separate;
+	border-spacing: 0 0.45rem;
 	margin-top: 0.75rem;
 	width: 100%;
 }
@@ -134,12 +136,35 @@
 }
 
 .rvy-recent-revisions__diff table.diff td {
+	border-radius: 8px;
+	display: block;
+	line-height: 1.45;
+	padding: 0.45rem 0.6rem;
 	white-space: pre-wrap;
+}
+
+.rvy-recent-revisions__diff table.diff td:empty {
+	display: none;
 }
 
 .rvy-recent-revisions__diff table.diff td,
 .rvy-recent-revisions__diff table.diff th {
 	vertical-align: top;
+}
+
+.rvy-recent-revisions__diff .diff-addedline {
+	background: #e8f4ef;
+	color: #23483b;
+}
+
+.rvy-recent-revisions__diff .diff-deletedline {
+	background: #fdebe4;
+	color: #6d2f1f;
+}
+
+.rvy-recent-revisions__diff .diff-context {
+	background: rgba(255, 255, 255, 0.55);
+	color: #4d473f;
 }
 
 .rvy-recent-revisions__diff ins {
