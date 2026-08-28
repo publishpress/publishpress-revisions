@@ -606,7 +606,7 @@ class Recent_Revisions_Block {
 			return '';
 		}
 
-		return wp_text_diff(
+		$diff = wp_text_diff(
 			self::prepare_diff_text( $before ),
 			self::prepare_diff_text( $after ),
 			[
@@ -614,21 +614,34 @@ class Recent_Revisions_Block {
 				'title'           => '',
 			]
 		);
+
+		return self::clean_text_diff( $diff );
 	}
 
 	private static function prepare_diff_text( $text ) {
+		$charset = get_bloginfo( 'charset' );
+		$charset = $charset ? $charset : 'UTF-8';
 		$text = (string) $text;
 		$text = preg_replace( '/<!--\s*\/?wp:[\s\S]*?-->/', "\n\n", $text );
 		$text = preg_replace( '/<\s*br\s*\/?>/i', "\n", $text );
 		$text = preg_replace( '/<\/\s*(p|div|h[1-6]|li|blockquote|pre|figure|figcaption|td|th|tr|ul|ol)\s*>/i', "\n\n", $text );
 		$text = wp_strip_all_tags( $text );
 		$text = wp_specialchars_decode( $text, ENT_QUOTES );
+		$text = str_ireplace( [ '&nbsp;', '&#160;', '&#xa0;' ], ' ', $text );
+		$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, $charset );
 		$text = str_replace( "\xc2\xa0", ' ', $text );
 		$text = preg_replace( '/[ \t]+/', ' ', $text );
 		$text = preg_replace( '/[ \t]*\n[ \t]*/', "\n", $text );
 		$text = preg_replace( '/\n{3,}/', "\n\n", $text );
 
 		return trim( $text );
+	}
+
+	private static function clean_text_diff( $diff ) {
+		$diff = preg_replace( '#<td>\s*(?:\+|-|&nbsp;)?\s*</td>#i', '', (string) $diff );
+		$diff = preg_replace( '#<td\s+class=(["\'])diff-marker\1[^>]*>\s*(?:\+|-|&nbsp;)?\s*</td>#i', '', $diff );
+
+		return $diff;
 	}
 
 	private static function render_empty_notice( $message ) {
