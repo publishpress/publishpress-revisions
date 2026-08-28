@@ -616,6 +616,7 @@
 		const canvasRef = useRef(null);
 		const [diffMarkers, setDiffMarkers] = useState([]);
 		const [hasCanvasOverflow, setHasCanvasOverflow] = useState(false);
+		const [markerTrack, setMarkerTrack] = useState(null);
 		const diffResult = useMemo(() => {
 			try {
 				return {
@@ -663,6 +664,7 @@
 
 					if (!preview || !hasOverflow) {
 						setDiffMarkers([]);
+						setMarkerTrack(null);
 						return;
 					}
 
@@ -672,7 +674,11 @@
 						return !parentChanged || !preview.contains(parentChanged);
 					});
 					const canvasRect = canvas.getBoundingClientRect();
-					const canvasTop = window.scrollY + canvasRect.top;
+					const shellRect = canvas.parentElement.getBoundingClientRect();
+					setMarkerTrack({
+						top: canvasRect.top - shellRect.top + 200,
+						height: canvasRect.height - 200,
+					});
 					const canvasHeight = Math.max(canvas.scrollHeight, canvas.clientHeight, 1);
 
 					setDiffMarkers(nodes.map((node, index) => {
@@ -698,6 +704,11 @@
 			if (typeof ResizeObserver !== 'undefined') {
 				resizeObserver = new ResizeObserver(scheduleUpdate);
 				resizeObserver.observe(canvas);
+				resizeObserver.observe(canvas.parentElement);
+				const preview = canvas.querySelector('.visual-post-compare-revision__live-preview');
+				if (preview) {
+					resizeObserver.observe(preview);
+				}
 			}
 
 			if (typeof MutationObserver !== 'undefined') {
@@ -792,12 +803,17 @@
 			? [revisionMeta, currentMeta]
 			: [currentMeta, revisionMeta];
 
-		const diffMarkerNav = hasCanvasOverflow && diffMarkers.length
+		const diffMarkerNav = hasCanvasOverflow && markerTrack && diffMarkers.length
 			? el(
 				'nav',
 				{
 					className: 'visual-post-compare-revision__diff-markers',
 					'aria-label': __('Document changes', 'visual-post-compare'),
+					style: {
+						top: markerTrack.top + 'px',
+						height: markerTrack.height + 'px',
+						bottom: 'auto',
+					},
 				},
 				...diffMarkers.map((marker) => el('button', {
 					key: marker.key,
@@ -862,7 +878,7 @@
 					),
 				el(
 					'aside',
-					{ className: 'visual-post-compare-revision__sidebar' },
+					{ className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
 					metaColumns[0],
 					metaColumns[1]
 				)
