@@ -24,7 +24,7 @@
 	var ServerSideRender = wp.serverSideRender.default || wp.serverSideRender;
 
 	registerBlockType( 'revisionary/recent-revisions', {
-		title: __( 'Recent Revisions', 'revisionary' ),
+		title: __( 'Recent Content Changes', 'revisionary' ),
 		description: __( 'Display recent revisions and a summary of the fields changed in each revision.', 'revisionary' ),
 		icon: 'backup',
 		category: 'widgets',
@@ -85,7 +85,7 @@
 						el( TextControl, {
 							label: __( 'Heading', 'revisionary' ),
 							value: attributes.heading,
-							placeholder: __( 'Recent Revisions', 'revisionary' ),
+							placeholder: __( 'Recent Content Changes', 'revisionary' ),
 							onChange: function( value ) {
 								props.setAttributes( { heading: value } );
 							}

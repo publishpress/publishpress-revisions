@@ -39,7 +39,7 @@ class Recent_Revisions_Block {
 			self::BLOCK_NAME,
 			[
 				'api_version'     => 2,
-				'title'           => __( 'Recent Revisions', 'revisionary' ),
+				'title'           => __( 'Recent Content Changes', 'revisionary' ),
 				'description'     => __( 'Display recent revisions and a summary of the fields changed in each revision.', 'revisionary' ),
 				'category'        => 'widgets',
 				'icon'            => 'backup',
@@ -148,7 +148,7 @@ class Recent_Revisions_Block {
 
 		$heading = ! empty( $attributes['heading'] )
 			? $attributes['heading']
-			: __( 'Recent Revisions', 'revisionary' );
+			: __( 'Recent Content Changes', 'revisionary' );
 
 		$items         = '';
 		$display_count = 0;
