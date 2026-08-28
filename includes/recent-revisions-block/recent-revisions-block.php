@@ -276,9 +276,17 @@ class Recent_Revisions_Block {
 		return 'revision' === $revision->post_type && 'inherit' === $revision->post_status;
 	}
 
+	private static function can_view_revision_diffs( \WP_Post $post ) {
+		if ( self::is_post_publicly_viewable( $post ) ) {
+			return true;
+		}
+
+		return current_user_can( 'read_post', $post->ID );
+	}
+
 	private static function render_revision_item( \WP_Post $revision, $previous, \WP_Post $post, $attributes, array $changes = [] ) {
 		$author          = get_userdata( $revision->post_author );
-		$can_show_diffs  = ! empty( $attributes['showDiff'] ) && current_user_can( 'edit_post', $post->ID );
+		$can_show_diffs  = ! empty( $attributes['showDiff'] ) && self::can_view_revision_diffs( $post );
 		$revision_title  = mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $revision->post_modified );
 		$title           = '<time datetime="' . esc_attr( mysql_to_rfc3339( $revision->post_modified ) ) . '">' . esc_html( $revision_title ) . '</time>';
 		$meta            = '';
