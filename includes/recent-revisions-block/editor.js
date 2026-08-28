@@ -48,10 +48,6 @@
 				type: 'boolean',
 				default: true
 			},
-			showDate: {
-				type: 'boolean',
-				default: true
-			},
 			showDiff: {
 				type: 'boolean',
 				default: false
@@ -109,13 +105,6 @@
 							checked: !! attributes.showAuthor,
 							onChange: function( value ) {
 								props.setAttributes( { showAuthor: value } );
-							}
-						} ),
-						el( ToggleControl, {
-							label: __( 'Show date', 'revisionary' ),
-							checked: !! attributes.showDate,
-							onChange: function( value ) {
-								props.setAttributes( { showDate: value } );
 							}
 						} ),
 						el( ToggleControl, {

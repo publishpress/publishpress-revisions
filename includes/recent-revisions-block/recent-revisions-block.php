@@ -70,10 +70,6 @@ class Recent_Revisions_Block {
 						'type'    => 'boolean',
 						'default' => true,
 					],
-					'showDate'        => [
-						'type'    => 'boolean',
-						'default' => true,
-					],
 					'showDiff'        => [
 						'type'    => 'boolean',
 						'default' => false,
@@ -114,7 +110,6 @@ class Recent_Revisions_Block {
 				'postId'          => 0,
 				'count'           => 5,
 				'showAuthor'      => true,
-				'showDate'        => true,
 				'showDiff'        => false,
 				'includeWorkflow' => false,
 			]
@@ -255,23 +250,9 @@ class Recent_Revisions_Block {
 		$changes         = self::get_revision_changes( $revision, $previous );
 		$author          = get_userdata( $revision->post_author );
 		$can_show_diffs  = ! empty( $attributes['showDiff'] ) && current_user_can( 'edit_post', $post->ID );
-		$compare_url     = self::get_compare_url( $revision, $post );
-		$status_label    = self::get_revision_status_label( $revision );
-		$revision_title  = sprintf(
-			/* translators: %s: revision date. */
-			__( 'Revision from %s', 'revisionary' ),
-			mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $revision->post_modified )
-		);
-
-		$title = $compare_url
-			? '<a class="rvy-recent-revisions__revision-link" href="' . esc_url( $compare_url ) . '">' . esc_html( $revision_title ) . '</a>'
-			: esc_html( $revision_title );
-
-		$meta = '<span class="rvy-recent-revisions__status">' . esc_html( $status_label ) . '</span>';
-
-		if ( ! empty( $attributes['showDate'] ) ) {
-			$meta .= '<time datetime="' . esc_attr( mysql_to_rfc3339( $revision->post_modified ) ) . '">' . esc_html( mysql2date( get_option( 'date_format' ), $revision->post_modified ) ) . '</time>';
-		}
+		$revision_title  = mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $revision->post_modified );
+		$title           = '<time datetime="' . esc_attr( mysql_to_rfc3339( $revision->post_modified ) ) . '">' . esc_html( $revision_title ) . '</time>';
+		$meta            = '';
 
 		if ( ! empty( $attributes['showAuthor'] ) && $author ) {
 			$meta .= '<span class="rvy-recent-revisions__author">' . esc_html( sprintf( __( 'by %s', 'revisionary' ), $author->display_name ) ) . '</span>';
@@ -289,9 +270,9 @@ class Recent_Revisions_Block {
 		}
 
 		return sprintf(
-			'<li class="rvy-recent-revisions__item"><div class="rvy-recent-revisions__revision">%1$s</div><div class="rvy-recent-revisions__meta">%2$s</div>%3$s%4$s</li>',
+			'<li class="rvy-recent-revisions__item"><div class="rvy-recent-revisions__revision">%1$s</div>%2$s%3$s%4$s</li>',
 			$title,
-			$meta,
+			$meta ? '<div class="rvy-recent-revisions__meta">' . $meta . '</div>' : '',
 			$change_summary,
 			$diffs
 		);
@@ -341,8 +322,7 @@ class Recent_Revisions_Block {
 
 		if ( $added_items ) {
 			$output .= sprintf(
-				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--added"><span>%1$s</span><ul>%2$s</ul></div>',
-				esc_html__( 'Added:', 'revisionary' ),
+				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--added"><ul>%s</ul></div>',
 				$added_items
 			);
 		}
@@ -577,28 +557,6 @@ class Recent_Revisions_Block {
 				'title'           => '',
 			]
 		);
-	}
-
-	private static function get_compare_url( \WP_Post $revision, \WP_Post $post ) {
-		if ( ! current_user_can( 'read_post', $revision->ID ) || ! current_user_can( 'edit_post', $post->ID ) ) {
-			return '';
-		}
-
-		if ( function_exists( 'rvy_compare_url' ) ) {
-			return rvy_compare_url( $revision->ID, ['post_id' => $post->ID] );
-		}
-
-		return '';
-	}
-
-	private static function get_revision_status_label( \WP_Post $revision ) {
-		if ( rvy_in_revision_workflow( $revision ) ) {
-			$status_obj = get_post_status_object( $revision->post_mime_type );
-
-			return $status_obj && ! empty( $status_obj->label ) ? $status_obj->label : $revision->post_mime_type;
-		}
-
-		return __( 'Past Revision', 'revisionary' );
 	}
 
 	private static function render_empty_notice( $message ) {
