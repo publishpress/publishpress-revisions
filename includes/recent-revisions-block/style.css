@@ -1,0 +1,134 @@
+.wp-block-revisionary-recent-revisions,
+.rvy-recent-revisions {
+	border: 1px solid #d8d2c4;
+	border-radius: 14px;
+	background: linear-gradient(135deg, #fffdf8 0%, #f7f0e3 100%);
+	color: #2b2924;
+	padding: 1.25rem;
+}
+
+.rvy-recent-revisions.is-empty {
+	border-style: dashed;
+	color: #6f675b;
+}
+
+.rvy-recent-revisions__heading {
+	font-size: 1.35rem;
+	line-height: 1.2;
+	margin: 0 0 1rem;
+}
+
+.rvy-recent-revisions__list {
+	display: grid;
+	gap: 1rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rvy-recent-revisions__item {
+	background: rgba(255, 255, 255, 0.78);
+	border: 1px solid rgba(128, 110, 77, 0.18);
+	border-radius: 12px;
+	box-shadow: 0 10px 24px rgba(63, 50, 31, 0.07);
+	padding: 1rem;
+}
+
+.rvy-recent-revisions__revision {
+	font-weight: 700;
+	margin-bottom: 0.45rem;
+}
+
+.rvy-recent-revisions__revision-link {
+	color: #6d4d1f;
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.18em;
+}
+
+.rvy-recent-revisions__meta {
+	align-items: center;
+	color: #675f53;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0.9rem;
+	gap: 0.4rem 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.rvy-recent-revisions__status {
+	background: #efe3cf;
+	border-radius: 999px;
+	color: #5d421d;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	padding: 0.18rem 0.55rem;
+	text-transform: uppercase;
+}
+
+.rvy-recent-revisions__changes {
+	align-items: baseline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.rvy-recent-revisions__changes > span {
+	color: #4d473f;
+	font-weight: 700;
+}
+
+.rvy-recent-revisions__changes ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rvy-recent-revisions__changes li {
+	background: #e8f4ef;
+	border: 1px solid #c7dfd3;
+	border-radius: 999px;
+	color: #23483b;
+	font-size: 0.86rem;
+	padding: 0.16rem 0.55rem;
+}
+
+.rvy-recent-revisions__diff {
+	border-top: 1px solid rgba(128, 110, 77, 0.18);
+	margin-top: 0.85rem;
+	padding-top: 0.85rem;
+}
+
+.rvy-recent-revisions__diff summary {
+	cursor: pointer;
+	font-weight: 700;
+}
+
+.rvy-recent-revisions__diff table.diff {
+	margin-top: 0.75rem;
+	width: 100%;
+}
+
+.rvy-recent-revisions__diff ins {
+	background: #dff5e8;
+	text-decoration: none;
+}
+
+.rvy-recent-revisions__diff del {
+	background: #fde0d8;
+	text-decoration-thickness: 0.08em;
+}
+
+@media (max-width: 600px) {
+	.wp-block-revisionary-recent-revisions,
+	.rvy-recent-revisions {
+		padding: 1rem;
+	}
+
+	.rvy-recent-revisions__item {
+		padding: 0.85rem;
+	}
+}
