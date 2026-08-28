@@ -19,6 +19,7 @@
 	var useBlockProps = ( wp.blockEditor && wp.blockEditor.useBlockProps ) ? wp.blockEditor.useBlockProps : null;
 	var PanelBody = wp.components.PanelBody;
 	var RangeControl = wp.components.RangeControl;
+	var SelectControl = wp.components.SelectControl;
 	var TextControl = wp.components.TextControl;
 	var ToggleControl = wp.components.ToggleControl;
 	var ServerSideRender = wp.serverSideRender.default || wp.serverSideRender;
@@ -55,6 +56,10 @@
 			hideUnchanged: {
 				type: 'boolean',
 				default: true
+			},
+			changesLayout: {
+				type: 'string',
+				default: 'wrap'
 			},
 			includeWorkflow: {
 				type: 'boolean',
@@ -123,6 +128,17 @@
 							checked: attributes.hideUnchanged !== false,
 							onChange: function( value ) {
 								props.setAttributes( { hideUnchanged: value } );
+							}
+						} ),
+						el( SelectControl, {
+							label: __( 'Changes layout', 'revisionary' ),
+							value: attributes.changesLayout || 'wrap',
+							options: [
+								{ label: __( 'Wrapped', 'revisionary' ), value: 'wrap' },
+								{ label: __( 'List', 'revisionary' ), value: 'list' }
+							],
+							onChange: function( value ) {
+								props.setAttributes( { changesLayout: value } );
 							}
 						} ),
 						el( ToggleControl, {

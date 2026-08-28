@@ -78,6 +78,10 @@ class Recent_Revisions_Block {
 						'type'    => 'boolean',
 						'default' => true,
 					],
+					'changesLayout'   => [
+						'type'    => 'string',
+						'default' => 'wrap',
+					],
 					'includeWorkflow' => [
 						'type'    => 'boolean',
 						'default' => false,
@@ -116,6 +120,7 @@ class Recent_Revisions_Block {
 				'showAuthor'      => true,
 				'showDiff'        => false,
 				'hideUnchanged'   => true,
+				'changesLayout'   => 'wrap',
 				'includeWorkflow' => false,
 			]
 		);
@@ -295,7 +300,7 @@ class Recent_Revisions_Block {
 			$meta .= '<span class="rvy-recent-revisions__author">' . esc_html( sprintf( __( 'by %s', 'revisionary' ), $author->display_name ) ) . '</span>';
 		}
 
-		$change_summary = self::render_change_summary( $changes, $previous );
+		$change_summary = self::render_change_summary( $changes, $previous, $attributes );
 
 		$diffs = '';
 		if ( $can_show_diffs ) {
@@ -350,10 +355,14 @@ class Recent_Revisions_Block {
 		return $changes;
 	}
 
-	private static function render_change_summary( array $changes, $previous ) {
+	private static function render_change_summary( array $changes, $previous, array $attributes = [] ) {
+		$layout = ! empty( $attributes['changesLayout'] ) && 'list' === $attributes['changesLayout'] ? 'list' : 'wrap';
+		$class  = 'rvy-recent-revisions__changes rvy-recent-revisions__changes--' . $layout;
+
 		if ( ! $changes ) {
 			return sprintf(
-				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--empty"><span>%s</span></div>',
+				'<div class="%1$s rvy-recent-revisions__changes--empty"><span>%2$s</span></div>',
+				esc_attr( $class ),
 				esc_html( self::get_empty_changes_label( $previous ) )
 			);
 		}
@@ -364,21 +373,24 @@ class Recent_Revisions_Block {
 
 		if ( $added_items ) {
 			$output .= sprintf(
-				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--added"><ul>%s</ul></div>',
+				'<div class="%1$s rvy-recent-revisions__changes--added"><ul>%2$s</ul></div>',
+				esc_attr( $class ),
 				$added_items
 			);
 		}
 
 		if ( $removed_items ) {
 			$output .= sprintf(
-				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--removed"><ul>%s</ul></div>',
+				'<div class="%1$s rvy-recent-revisions__changes--removed"><ul>%2$s</ul></div>',
+				esc_attr( $class ),
 				$removed_items
 			);
 		}
 
 		if ( ! $output ) {
 			return sprintf(
-				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--empty"><span>%s</span></div>',
+				'<div class="%1$s rvy-recent-revisions__changes--empty"><span>%2$s</span></div>',
+				esc_attr( $class ),
 				esc_html__( 'Only formatting or block markup changed.', 'revisionary' )
 			);
 		}
