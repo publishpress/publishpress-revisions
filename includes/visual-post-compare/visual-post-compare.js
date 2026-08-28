@@ -89,13 +89,22 @@
 		const buttons = [];
 
 		if (pastSidebar) {
+			const lastUpdated = config.lastUpdated || {};
+			const lastUpdatedLabel = lastUpdated.label || __('Last updated', 'revisionary');
+			const lastUpdatedTitle = lastUpdated.title || '';
+			const revisionsUrl = lastUpdated.revisionsUrl || '';
+
 			buttons.push({
 				key: 'past',
 				sidebarKey: pastSidebar.key,
 				label: pastSidebar.label,
-				title: sprintf(__('Open %s', 'revisionary'), pastSidebar.label),
+				title: lastUpdatedTitle
+					? sprintf(__('Open %1$s. %2$s', 'revisionary'), pastSidebar.label, lastUpdatedTitle)
+					: sprintf(__('Open %s', 'revisionary'), pastSidebar.label),
 				iconClass: 'dashicons-backup',
 				count: pastSidebar.posts.length,
+				url: revisionsUrl,
+				metaLabel: lastUpdatedLabel,
 			});
 		}
 
@@ -180,6 +189,12 @@
 		button.title = buttonConfig.title;
 		button.addEventListener('click', function (event) {
 			event.preventDefault();
+
+			if (buttonConfig.url) {
+				window.location.href = buttonConfig.url;
+				return;
+			}
+
 			openComparisonSidebar(buttonConfig.sidebarKey);
 		});
 
@@ -194,6 +209,13 @@
 			count.textContent = String(buttonConfig.count);
 			count.setAttribute('aria-hidden', 'true');
 			button.appendChild(count);
+		}
+
+		if (buttonConfig.metaLabel) {
+			const metaLabel = document.createElement('span');
+			metaLabel.className = 'visual-post-compare-toolbar__meta';
+			metaLabel.textContent = buttonConfig.metaLabel;
+			button.appendChild(metaLabel);
 		}
 
 		const screenReaderLabel = document.createElement('span');
@@ -220,7 +242,9 @@
 			headerSettings.insertBefore(toolbar, headerSettings.firstChild);
 		}
 
-		const buttonKeys = toolbarButtons.map((button) => button.key + ':' + button.count).join(',');
+		const buttonKeys = toolbarButtons
+			.map((button) => button.key + ':' + button.count + ':' + (button.url || '') + ':' + (button.metaLabel || ''))
+			.join(',');
 
 		if (toolbar.getAttribute('data-button-keys') === buttonKeys) {
 			return;
