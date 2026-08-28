@@ -1,6 +1,9 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.0.1] - 28 Aug 2026
+- Changed : Styling improvements on Compare Revisions screen
+
 [4.0.0] - 27 Aug 2026
 - Added : Editor sidebar metaboxes link last ten Past Revisions, New Revisions and Scheduled Revisions for quick visual compare
 - Added : Dedicated visual compare screen for New Revisions and Past Revisions (available without editor access)

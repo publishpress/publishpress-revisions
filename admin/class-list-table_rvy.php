@@ -166,7 +166,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$qp['p'] = (int) $q['published_post'];
 		}
 
-		$qp['posts_per_page'] = -1;
+		$qp['posts_per_page'] = -1;		// phpcs:ignore WordPressVIPMinimum.Performance.NoPaging.posts_per_page_posts_per_page
 		$qp['fields'] = 'ids';
 		
 		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
