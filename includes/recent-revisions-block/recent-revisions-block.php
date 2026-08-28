@@ -335,14 +335,15 @@ class Recent_Revisions_Block {
 				continue;
 			}
 
-			$fragments = self::get_change_fragments( $before, $after );
+			$diff      = self::get_text_diff( $before, $after );
+			$fragments = self::get_change_fragments( $before, $after, $diff );
 
 			$changes[] = [
 				'field'   => $field,
 				'label'   => $label,
 				'added'   => $fragments['added'],
 				'removed' => $fragments['removed'],
-				'diff'    => self::get_text_diff( $before, $after ),
+				'diff'    => $diff,
 			];
 		}
 
@@ -429,7 +430,12 @@ class Recent_Revisions_Block {
 		return __( 'Initial revision', 'revisionary' );
 	}
 
-	private static function get_change_fragments( $before, $after ) {
+	private static function get_change_fragments( $before, $after, $diff = '' ) {
+		$diff_fragments = self::get_change_fragments_from_diff( $diff );
+		if ( $diff_fragments['added'] || $diff_fragments['removed'] ) {
+			return $diff_fragments;
+		}
+
 		$before_words = self::get_comparison_words( $before );
 		$after_words  = self::get_comparison_words( $after );
 
@@ -445,6 +451,41 @@ class Recent_Revisions_Block {
 		}
 
 		return self::get_word_diff_fragments( $before_words, $after_words );
+	}
+
+	private static function get_change_fragments_from_diff( $diff ) {
+		return [
+			'added'   => self::extract_diff_tag_fragments( $diff, 'ins' ),
+			'removed' => self::extract_diff_tag_fragments( $diff, 'del' ),
+		];
+	}
+
+	private static function extract_diff_tag_fragments( $diff, $tag ) {
+		$fragments = [];
+
+		if ( ! preg_match_all( '#<' . preg_quote( $tag, '#' ) . '\b[^>]*>(.*?)</' . preg_quote( $tag, '#' ) . '>#is', (string) $diff, $matches ) ) {
+			return $fragments;
+		}
+
+		foreach ( $matches[1] as $fragment ) {
+			$fragment = self::normalize_diff_fragment( $fragment );
+			if ( '' !== $fragment && ! in_array( $fragment, $fragments, true ) ) {
+				$fragments[] = $fragment;
+			}
+		}
+
+		return $fragments;
+	}
+
+	private static function normalize_diff_fragment( $fragment ) {
+		$charset = get_bloginfo( 'charset' );
+		$charset = $charset ? $charset : 'UTF-8';
+		$fragment = wp_strip_all_tags( (string) $fragment );
+		$fragment = str_ireplace( [ '&nbsp;', '&#160;', '&#xa0;' ], ' ', $fragment );
+		$fragment = html_entity_decode( $fragment, ENT_QUOTES | ENT_HTML5, $charset );
+		$fragment = str_replace( "\xc2\xa0", ' ', $fragment );
+
+		return self::trim_change_fragment( $fragment );
 	}
 
 	private static function get_comparison_words( $text ) {
