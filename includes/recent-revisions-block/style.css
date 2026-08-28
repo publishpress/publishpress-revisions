@@ -76,12 +76,9 @@
 }
 
 .rvy-recent-revisions__changes li {
-	background: #e8f4ef;
-	border: 1px solid #c7dfd3;
-	border-radius: 999px;
-	color: #23483b;
+	color: inherit;
 	font-size: 0.86rem;
-	padding: 0.16rem 0.55rem;
+	padding: 0.16rem 0;
 }
 
 .rvy-recent-revisions__changes--removed > span {
@@ -89,9 +86,7 @@
 }
 
 .rvy-recent-revisions__changes--removed li {
-	background: #fdebe4;
-	border-color: #f1c7ba;
-	color: #6d2f1f;
+	color: inherit;
 }
 
 .rvy-recent-revisions__changes--empty {
@@ -99,11 +94,23 @@
 }
 
 .rvy-recent-revisions__field {
-	font-weight: 700;
+	font-weight: 400;
 }
 
 .rvy-recent-revisions__fragment {
+	border-radius: 999px;
 	font-weight: 700;
+	padding: 0.08rem 0.35rem;
+}
+
+.rvy-recent-revisions__changes--added .rvy-recent-revisions__fragment {
+	background: #ccebdd;
+	color: #1f513d;
+}
+
+.rvy-recent-revisions__changes--removed .rvy-recent-revisions__fragment {
+	background: #f8d3c8;
+	color: #7a2f20;
 }
 
 .rvy-recent-revisions__fragment::before {
