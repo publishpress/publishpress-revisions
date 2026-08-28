@@ -74,6 +74,10 @@ class Recent_Revisions_Block {
 						'type'    => 'boolean',
 						'default' => false,
 					],
+					'hideUnchanged'   => [
+						'type'    => 'boolean',
+						'default' => true,
+					],
 					'includeWorkflow' => [
 						'type'    => 'boolean',
 						'default' => false,
@@ -111,6 +115,7 @@ class Recent_Revisions_Block {
 				'count'           => 5,
 				'showAuthor'      => true,
 				'showDiff'        => false,
+				'hideUnchanged'   => true,
 				'includeWorkflow' => false,
 			]
 		);
@@ -129,23 +134,43 @@ class Recent_Revisions_Block {
 			return '';
 		}
 
-		$count     = max( 1, min( 20, (int) $attributes['count'] ) );
-		$revisions = self::get_recent_revisions( $post_id, $count, ! empty( $attributes['includeWorkflow'] ) );
+		$count          = max( 1, min( 20, (int) $attributes['count'] ) );
+		$hide_unchanged = ! array_key_exists( 'hideUnchanged', $attributes ) || ! empty( $attributes['hideUnchanged'] );
+		$revisions      = self::get_recent_revisions( $post_id, $count, ! empty( $attributes['includeWorkflow'] ), $hide_unchanged );
 
 		if ( ! $revisions ) {
-			return self::render_empty_notice( __( 'No revisions are available yet.', 'revisionary' ) );
+			return self::render_empty_notice(
+				$hide_unchanged
+					? __( 'No revisions with tracked field changes are available yet.', 'revisionary' )
+					: __( 'No revisions are available yet.', 'revisionary' )
+			);
 		}
 
 		$heading = ! empty( $attributes['heading'] )
 			? $attributes['heading']
 			: __( 'Recent Revisions', 'revisionary' );
 
-		$items             = '';
-		$display_revisions = array_slice( $revisions, 0, $count );
+		$items         = '';
+		$display_count = 0;
 
-		foreach ( $display_revisions as $index => $revision ) {
+		foreach ( $revisions as $index => $revision ) {
 			$previous = isset( $revisions[ $index + 1 ] ) ? $revisions[ $index + 1 ] : null;
-			$items   .= self::render_revision_item( $revision, $previous, $post, $attributes );
+			$changes  = self::get_revision_changes( $revision, $previous );
+
+			if ( $hide_unchanged && ! $changes ) {
+				continue;
+			}
+
+			$items .= self::render_revision_item( $revision, $previous, $post, $attributes, $changes );
+			$display_count++;
+
+			if ( $display_count >= $count ) {
+				break;
+			}
+		}
+
+		if ( '' === $items ) {
+			return self::render_empty_notice( __( 'No revisions with tracked field changes are available yet.', 'revisionary' ) );
 		}
 
 		$wrapper_attributes = self::get_wrapper_attributes( ['class' => 'rvy-recent-revisions'] );
@@ -170,18 +195,19 @@ class Recent_Revisions_Block {
 		return absint( get_the_ID() );
 	}
 
-	private static function get_recent_revisions( $post_id, $count, $include_workflow ) {
+	private static function get_recent_revisions( $post_id, $count, $include_workflow, $hide_unchanged = true ) {
+		$revision_limit = $hide_unchanged ? min( 80, max( $count + 1, ( $count * 4 ) + 1 ) ) : $count + 1;
 		$revisions = wp_get_post_revisions(
 			$post_id,
 			[
-				'numberposts' => $count + 1,
+				'numberposts' => $revision_limit,
 				'orderby'     => 'post_modified_gmt',
 				'order'       => 'DESC',
 			]
 		);
 
 		if ( $include_workflow && current_user_can( 'edit_post', $post_id ) ) {
-			$workflow_revisions = self::get_workflow_revisions( $post_id, $count );
+			$workflow_revisions = self::get_workflow_revisions( $post_id, $revision_limit );
 			$revisions          = array_merge( $workflow_revisions, $revisions );
 			$revisions          = self::sort_revisions( $revisions );
 		}
@@ -193,7 +219,7 @@ class Recent_Revisions_Block {
 			}
 		);
 
-		return array_slice( array_values( $revisions ), 0, $count + 1 );
+		return array_values( $revisions );
 	}
 
 	private static function get_workflow_revisions( $post_id, $count ) {
@@ -246,8 +272,7 @@ class Recent_Revisions_Block {
 		return 'revision' === $revision->post_type && 'inherit' === $revision->post_status;
 	}
 
-	private static function render_revision_item( \WP_Post $revision, $previous, \WP_Post $post, $attributes ) {
-		$changes         = self::get_revision_changes( $revision, $previous );
+	private static function render_revision_item( \WP_Post $revision, $previous, \WP_Post $post, $attributes, array $changes = [] ) {
 		$author          = get_userdata( $revision->post_author );
 		$can_show_diffs  = ! empty( $attributes['showDiff'] ) && current_user_can( 'edit_post', $post->ID );
 		$revision_title  = mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $revision->post_modified );

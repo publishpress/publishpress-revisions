@@ -52,6 +52,10 @@
 				type: 'boolean',
 				default: false
 			},
+			hideUnchanged: {
+				type: 'boolean',
+				default: true
+			},
 			includeWorkflow: {
 				type: 'boolean',
 				default: false
@@ -112,6 +116,13 @@
 							checked: !! attributes.showDiff,
 							onChange: function( value ) {
 								props.setAttributes( { showDiff: value } );
+							}
+						} ),
+						el( ToggleControl, {
+							label: __( 'Hide revisions with no tracked field changes', 'revisionary' ),
+							checked: attributes.hideUnchanged !== false,
+							onChange: function( value ) {
+								props.setAttributes( { hideUnchanged: value } );
 							}
 						} ),
 						el( ToggleControl, {
