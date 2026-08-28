@@ -265,6 +265,10 @@ class Recent_Revisions_Block {
 			return false;
 		}
 
+		if ( wp_is_post_autosave( $revision ) ) {
+			return false;
+		}
+
 		if ( rvy_in_revision_workflow( $revision ) ) {
 			return current_user_can( 'edit_post', $post_id );
 		}
