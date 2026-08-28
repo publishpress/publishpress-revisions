@@ -289,7 +289,11 @@ class Recent_Revisions_Block {
 		if ( $can_show_diffs ) {
 			foreach ( $changes as $change ) {
 				if ( ! empty( $change['diff'] ) ) {
-					$diffs .= '<details class="rvy-recent-revisions__diff"><summary>' . esc_html( $change['label'] ) . '</summary>' . wp_kses_post( $change['diff'] ) . '</details>';
+					$diffs .= sprintf(
+						'<details class="rvy-recent-revisions__diff"><summary>%1$s</summary>%2$s</details>',
+						esc_html( self::get_contextual_change_label( $change, 'modified' ) ),
+						wp_kses_post( $change['diff'] )
+					);
 				}
 			}
 		}
@@ -380,13 +384,32 @@ class Recent_Revisions_Block {
 			foreach ( $change[ $type ] as $fragment ) {
 				$items .= sprintf(
 					'<li><span class="rvy-recent-revisions__field">%1$s</span> <span class="rvy-recent-revisions__fragment">%2$s</span></li>',
-					esc_html( $change['label'] ),
+					esc_html( self::get_contextual_change_label( $change, $type ) ),
 					esc_html( $fragment )
 				);
 			}
 		}
 
 		return $items;
+	}
+
+	private static function get_contextual_change_label( array $change, $type ) {
+		if ( empty( $change['field'] ) || 'post_content' !== $change['field'] ) {
+			return isset( $change['label'] ) ? $change['label'] : '';
+		}
+
+		switch ( $type ) {
+			case 'added':
+				return __( 'Added Content', 'revisionary' );
+
+			case 'removed':
+				return __( 'Removed Content', 'revisionary' );
+
+			case 'modified':
+				return __( 'Modified Content', 'revisionary' );
+		}
+
+		return isset( $change['label'] ) ? $change['label'] : __( 'Content', 'revisionary' );
 	}
 
 	private static function get_empty_changes_label( $previous ) {
