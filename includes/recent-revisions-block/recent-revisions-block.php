@@ -354,8 +354,7 @@ class Recent_Revisions_Block {
 
 		if ( $removed_items ) {
 			$output .= sprintf(
-				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--removed"><span>%1$s</span><ul>%2$s</ul></div>',
-				esc_html__( 'Removed:', 'revisionary' ),
+				'<div class="rvy-recent-revisions__changes rvy-recent-revisions__changes--removed"><ul>%s</ul></div>',
 				$removed_items
 			);
 		}
@@ -575,13 +574,28 @@ class Recent_Revisions_Block {
 		}
 
 		return wp_text_diff(
-			self::normalize_comparison_text( $before ),
-			self::normalize_comparison_text( $after ),
+			self::prepare_diff_text( $before ),
+			self::prepare_diff_text( $after ),
 			[
 				'show_split_view' => false,
 				'title'           => '',
 			]
 		);
+	}
+
+	private static function prepare_diff_text( $text ) {
+		$text = (string) $text;
+		$text = preg_replace( '/<!--\s*\/?wp:[\s\S]*?-->/', "\n\n", $text );
+		$text = preg_replace( '/<\s*br\s*\/?>/i', "\n", $text );
+		$text = preg_replace( '/<\/\s*(p|div|h[1-6]|li|blockquote|pre|figure|figcaption|td|th|tr|ul|ol)\s*>/i', "\n\n", $text );
+		$text = wp_strip_all_tags( $text );
+		$text = wp_specialchars_decode( $text, ENT_QUOTES );
+		$text = str_replace( "\xc2\xa0", ' ', $text );
+		$text = preg_replace( '/[ \t]+/', ' ', $text );
+		$text = preg_replace( '/[ \t]*\n[ \t]*/', "\n", $text );
+		$text = preg_replace( '/\n{3,}/', "\n\n", $text );
+
+		return trim( $text );
 	}
 
 	private static function render_empty_notice( $message ) {
