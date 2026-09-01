@@ -1170,6 +1170,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$this->all_options []= $id;
 			$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 	
+			echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 			echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='vertical-align: baseline'>";
 			$captions = ['' => esc_html__('Post Date', 'revisionary'), 'modified' => esc_html__('Modification Date', 'revisionary')];
 			foreach ( $captions as $key => $value) {
@@ -1342,6 +1343,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->register_option($id);
 		$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
+		echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
 		$captions = [
 			'' => esc_html__('Standard storage schema for broadest 3rd party compat', 'revisionary'), 
@@ -1369,6 +1371,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->register_option($id);
 		$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
+		echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
 		$captions = [
 			0 => esc_html__('Allow any number of Revisions per post.', 'revisionary'),
@@ -1892,6 +1895,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				$this->all_options []= $id;
 				$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
+				echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 				echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
 				$captions = array( 0 => esc_html__('Never', 'revisionary'), 1 => esc_html__('By default', 'revisionary'), 'always' => esc_html__('Always', 'revisionary') );
 				foreach ( $captions as $key => $value) {
@@ -1914,7 +1918,8 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				$this->all_options []= $id;
 				$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
-				echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
+					echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
+					echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
 				$captions = array( 0 => esc_html__('Never', 'revisionary'), 1 => esc_html__('By default', 'revisionary'), 'always' => esc_html__('Always', 'revisionary') );
 				foreach ( $captions as $key => $value) {
 					$selected = ( $current_setting == $key ) ? 'selected' : '';

@@ -325,7 +325,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			if ( $post->ID != $revision->ID 
 			&& ( $can_edit_post || ( ('pending-revision' == $status) && rvy_is_post_author($revision) ) )	// allow submitters to delete their own still-pending revisions
 			) {
-				$rows .= "<td style='text-align:right'><input class='rvy-rev-chk' type='checkbox' name='delete_revisions[]' value='" . esc_attr($revision->ID) . "' /></td>";
+				$rows .= "<td style='text-align:right'><input class='rvy-rev-chk' type='checkbox' name='delete_revisions[]' value='" . esc_attr($revision->ID) . "' aria-label='" . esc_attr__('Select revision for deletion', 'revisionary') . "' /></td>";
 				$can_delete_any = true;
 			} else
 				$rows .= "<td></td>";
@@ -386,7 +386,7 @@ esc_html_e( 'Modified Date', 'revisionary' );
 	<th scope="col"></th>
 	<th scope="col"><?php echo esc_html__( 'Author' ); ?></th>
 	<th scope="col" class="action-links"><?php esc_html_e( 'Actions' ); ?></th>
-	<th scope="col"  style='text-align:right'><input id='rvy-rev-checkall' type='checkbox' name='rvy-rev-checkall' value='' /></th>
+	<th scope="col"  style='text-align:right'><label class="screen-reader-text" for="rvy-rev-checkall"><?php esc_html_e('Select all revisions', 'revisionary'); ?></label><input id='rvy-rev-checkall' type='checkbox' name='rvy-rev-checkall' value='' /></th>
 </tr>
 </thead>
 <tbody>
@@ -402,7 +402,8 @@ echo $rows; 														// phpcs:ignore WordPress.Security.EscapeOutput.Output
 <?php if( $can_delete_any ):?>
 <br />
 <div class="alignright actions">
-<select name="action">
+<label class="screen-reader-text" for="rvy-revision-action"><?php esc_html_e('Select bulk action', 'revisionary'); ?></label>
+<select name="action" id="rvy-revision-action">
 <option value="" selected="selected"><?php esc_html_e('Bulk Actions'); ?></option>
 <option value="bulk-delete"><?php esc_html_e('Delete'); ?></option>
 </select>

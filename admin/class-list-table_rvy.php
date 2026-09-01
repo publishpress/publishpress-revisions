@@ -1444,6 +1444,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		<?php
 		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
 
+		echo '<label class="screen-reader-text" for="post_status">' . esc_html__( 'Filter by revision status', 'revisionary' ) . '</label>';
 		echo '<select name="post_status' . '" id="post_status" style="float:none">';
 		echo '<option value="">' . esc_html__('All Revision Statuses', 'revisionary') . "</option>\n";
 
@@ -1463,6 +1464,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		echo "</select>\n";
 
+		echo '<label class="screen-reader-text" for="post_type">' . esc_html__( 'Filter by post type', 'revisionary' ) . '</label>';
 		echo '<select name="post_type' . '" id="post_type" style="float:none">';
 		echo '<option value="">' . esc_html__( 'All Post Types', 'revisionary' ) . "</option>";
 
@@ -1496,7 +1498,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		asort($authors, SORT_STRING | SORT_FLAG_CASE);
 
 		?>
-		<select name="author" class="postform" style="float:none">
+		<label class="screen-reader-text" for="rvy-filter-author"><?php esc_html_e( 'Filter by revision author', 'revisionary' ); ?></label>
+		<select name="author" id="rvy-filter-author" class="postform" style="float:none">
 			<option <?php echo $current_option === '' ? 'selected' : '' ?>
 				value="">
 				<?php esc_html_e( 'All Revision Authors', 'revisionary' ) ?>
@@ -1531,7 +1534,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		arsort($post_dates);
 		?>
-		<select name="modified" class="postform" style="float:none">
+		<label class="screen-reader-text" for="rvy-filter-modified"><?php esc_html_e( 'Filter by revision date', 'revisionary' ); ?></label>
+		<select name="modified" id="rvy-filter-modified" class="postform" style="float:none">
 			<option <?php echo $current_option === '' ? 'selected' : '' ?>
 				value="">
 				<?php esc_html_e( 'All Revision Dates', 'revisionary' ) ?>
@@ -1567,7 +1571,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		?>
-		<select name="published_post" class="postform" style="float:none">
+		<label class="screen-reader-text" for="rvy-filter-published-post"><?php esc_html_e( 'Filter by published post', 'revisionary' ); ?></label>
+		<select name="published_post" id="rvy-filter-published-post" class="postform" style="float:none">
 			<option <?php echo $current_option === '' ? 'selected' : '' ?>
 				value="">
 				<?php esc_html_e( 'All Posts', 'revisionary' ) ?>
@@ -1602,7 +1607,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		asort($authors, SORT_STRING | SORT_FLAG_CASE);
 		?>
 
-		<select name="post_author" class="postform" style="float:none">
+		<label class="screen-reader-text" for="rvy-filter-post-author"><?php esc_html_e( 'Filter by published author', 'revisionary' ); ?></label>
+		<select name="post_author" id="rvy-filter-post-author" class="postform" style="float:none">
 			<option <?php echo $current_option === '' ? 'selected' : '' ?>
 				value="">
 				<?php esc_html_e( 'All Authors', 'revisionary' ) ?>
