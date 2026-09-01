@@ -383,7 +383,7 @@ jQuery(document).ready( function($) {
 
 esc_html_e( 'Modified Date', 'revisionary' ); 
 ?></th>
-	<th scope="col"></th>
+	<th scope="col"><?php esc_html_e( 'Preview', 'revisionary' ); ?></th>
 	<th scope="col"><?php echo esc_html__( 'Author' ); ?></th>
 	<th scope="col" class="action-links"><?php esc_html_e( 'Actions' ); ?></th>
 	<th scope="col"  style='text-align:right'><label class="screen-reader-text" for="rvy-rev-checkall"><?php esc_html_e('Select all revisions', 'revisionary'); ?></label><input id='rvy-rev-checkall' type='checkbox' name='rvy-rev-checkall' value='' /></th>
