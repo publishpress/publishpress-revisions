@@ -375,7 +375,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		if (!empty($_REQUEST['s'])) {											//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$qr['s'] = sanitize_text_field($_REQUEST['s']);						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$qr['s'] = sanitize_text_field(wp_unslash($_REQUEST['s']));						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		$qr = apply_filters('revisionary_queue_vars', $qr);
@@ -466,7 +466,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	function revisions_where_filter($where, $args = []) {
 		global $wpdb, $current_user, $revisionary;
 
-		$p = (!empty($args['alias'])) ? sanitize_text_field($args['alias']) : $wpdb->posts;
+		$p = (!empty($args['alias'])) ? sanitize_text_field(wp_unslash($args['alias'])) : $wpdb->posts;
 
 		$is_count_query = empty($args['revision_query']);
 
@@ -487,17 +487,18 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 			if (defined('ICL_SITEPRESS_VERSION')) {
 				if (!empty($_REQUEST['lang'])) {						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					$lang = sanitize_text_field($_REQUEST['lang']);		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					$lang = sanitize_text_field(wp_unslash($_REQUEST['lang']));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				} else {
 					global $sitepress;
 					if (!empty($sitepress) && method_exists($sitepress, 'get_admin_language_cookie')) {
-						$lang = sanitize_text_field($sitepress->get_admin_language_cookie());
+						$lang = sanitize_text_field(wp_unslash($sitepress->get_admin_language_cookie()));
 					}
 				}
 
 				if (!empty($lang)) {
 					$own_revision_and = $wpdb->prepare(
-						" AND $p.comment_count IN (SELECT element_id FROM {$wpdb->prefix}icl_translations WHERE element_type LIKE 'post_%' AND language_code = %s)",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+						" AND $p.comment_count IN (SELECT element_id FROM {$wpdb->prefix}icl_translations WHERE element_type LIKE %s AND language_code = %s)",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+						$wpdb->esc_like('post_') . '%',
 						$lang
 					);
 				}
@@ -664,7 +665,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$defaults = [
 				'has_cap_check' => false,   // TRUE: this function call is to determine per-post editing / deletion capability;  FALSE: just determining which posts to list
 				'post_types' => [],
-				'source_alias' => (!empty($args['alias'])) ? sanitize_text_field($args['alias']) : '',
+				'source_alias' => (!empty($args['alias'])) ? sanitize_text_field(wp_unslash($args['alias'])) : '',
 				'src_table' => '',
 				'apply_term_restrictions' => true,
 				'include_trash' => 0,
@@ -1194,7 +1195,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 		$where = $this->revisions_where_filter( 
 			$wpdb->prepare(
-				"$wpdb->posts.post_mime_type IN ('$revision_status_csv') $status_clause AND $wpdb->posts.post_author = '%d'",   // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"$wpdb->posts.post_mime_type IN ('$revision_status_csv') $status_clause AND $wpdb->posts.post_author = %d",   // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$current_user->ID
 			),
 			['status_count' => true]
@@ -1223,7 +1224,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$where = $this->revisions_where_filter( 
 			$wpdb->prepare(
-				"r.post_mime_type IN ('$revision_status_csv') AND p.post_author = '%d'", 	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"r.post_mime_type IN ('$revision_status_csv') AND p.post_author = %d", 	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$current_user->ID
 			),
 			['alias' => 'r', 'status_count' => true, 'my_published_count' => true]
@@ -1676,7 +1677,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		list( $columns, $hidden, $sortable, $primary ) = $this->get_column_info();
 
 		if (!empty($_SERVER['REQUEST_URI']) && !empty($_SERVER['HTTP_HOST'])) {
-			$current_url = set_url_scheme( esc_url(esc_url_raw($_SERVER['HTTP_HOST']) . esc_url_raw($_SERVER['REQUEST_URI']) ));
+			$current_url = set_url_scheme( esc_url(esc_url_raw(wp_unslash($_SERVER['HTTP_HOST'])) . esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) ));
 			$current_url = remove_query_arg( 'paged', $current_url );
 		} else {
 			$current_url = '';
@@ -1798,7 +1799,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	public function column_date( $post ) {
-		$url = add_query_arg('modified', strtotime(date('Y-m-d', strtotime($post->post_modified))), $_SERVER['REQUEST_URI']);	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DateTime.RestrictedFunctions.date_date
+		$url = add_query_arg('modified', strtotime(date('Y-m-d', strtotime($post->post_modified))), wp_unslash($_SERVER['REQUEST_URI']));	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DateTime.RestrictedFunctions.date_date
 		echo '<a href="' . esc_url($url) . '">';
 		$this->friendly_date($post->post_modified, $post->post_modified_gmt);
 		echo '</a>';
@@ -1865,7 +1866,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			&& current_user_can('copy_post', $main_post_id)
 			) {
 				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy$redirect_arg");
 				$actions['copy_revision'] = "<a href='$url'>" . esc_html__('Copy') . '</a>';
 			}
@@ -1974,7 +1975,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$this->extra_tablenav( $which );
 
 		if (!empty($_SERVER['REQUEST_URI'])) {
-			$_SERVER['REQUEST_URI'] = str_replace('#038;', '&', esc_url_raw($_SERVER['REQUEST_URI']));
+			$_SERVER['REQUEST_URI'] = str_replace('#038;', '&', esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])));
 		}
 
 		$this->pagination( $which );

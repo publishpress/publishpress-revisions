@@ -140,7 +140,7 @@ if (false === $revisionary_loaded_by_pro) {
     }
 }
 
-if (isset($_SERVER['SCRIPT_NAME']) && (strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/index-extra.php') || strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/update.php'))) {
+if (isset($_SERVER['SCRIPT_NAME']) && (strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'p-admin/index-extra.php') || strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'p-admin/update.php'))) {
 	return;
 }
 
@@ -265,7 +265,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 			require_once( dirname(__FILE__).'/lib/agapetry_wp_admin_lib.php');
 				
 			// skip WP version check and init operations when a WP plugin auto-update is in progress
-			if (isset($_SERVER['SCRIPT_NAME']) && false !== strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'update.php') )
+			if (isset($_SERVER['SCRIPT_NAME']) && false !== strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'update.php') )
 				return;
 		}
 
@@ -274,7 +274,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 		require_once( dirname(__FILE__).'/functions.php');
 
 		// avoid lockout in case of editing plugin via wp-admin
-		if ( defined('RS_DEBUG') && is_admin() && isset($_SERVER['REQUEST_URI']) && ( strpos( urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'p-admin/plugin-editor.php' ) || strpos( urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'p-admin/plugins.php' ) ) && false === strpos( esc_url_raw($_SERVER['REQUEST_URI']), 'activate' ) )
+		if ( defined('RS_DEBUG') && is_admin() && isset($_SERVER['REQUEST_URI']) && ( strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'p-admin/plugin-editor.php' ) || strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'p-admin/plugins.php' ) ) && false === strpos( esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'activate' ) )
 			return;
 
 		define('RVY_ABSPATH', __DIR__);

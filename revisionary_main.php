@@ -1,5 +1,5 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die( 'This page cannot be called directly.' );
 	
 /**
@@ -39,7 +39,7 @@ class Revisionary
 
 	function init() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-		if (isset($_SERVER['REQUEST_URI']) && is_admin() && (false !== strpos(esc_url_raw($_SERVER['REQUEST_URI']), 'revision.php')) && (!empty($_REQUEST['revision']))) {
+		if (isset($_SERVER['REQUEST_URI']) && is_admin() && (false !== strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'revision.php')) && (!empty($_REQUEST['revision']))) {
 			add_action('init', [$this, 'addFilters'], PHP_INT_MAX);
 		} else {
 			$this->addFilters();
@@ -102,7 +102,7 @@ class Revisionary
 		// Note: some filtering is needed to allow users with full editing permissions on the published post to access a Compare Revisions screen with Preview and Manage buttons
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-		if (is_admin() && isset($_SERVER['REQUEST_URI']) && (false !== strpos(esc_url_raw($_SERVER['REQUEST_URI']), 'revision.php')) && (!empty($_REQUEST['revision'])) && !is_content_administrator_rvy()) {
+		if (is_admin() && isset($_SERVER['REQUEST_URI']) && (false !== strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'revision.php')) && (!empty($_REQUEST['revision'])) && !is_content_administrator_rvy()) {
 			
 			if (!empty($_REQUEST['revision'])) {				// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 				$revision_id = (int) $_REQUEST['revision'];		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
@@ -194,7 +194,7 @@ class Revisionary
 					global $current_user;
 
 					if (isset($_REQUEST['context']) && ('edit' == $_REQUEST['context']) && empty($_POST)) {	 // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-						if (0 === strpos($_SERVER['REQUEST_URI'], "/wp-json/wp/v2/blocks/")) {				 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+						if (0 === strpos(wp_unslash($_SERVER['REQUEST_URI']), "/wp-json/wp/v2/blocks/")) {	 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 							
 							$can_edit_any = false;
 									
@@ -240,7 +240,7 @@ class Revisionary
 						}
 
 						foreach($rest_bases as $rest_base) {
-							if (0 === strpos($_SERVER['REQUEST_URI'], "/wp-json/wp/v2/{$rest_base}?")) {					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+							if (0 === strpos(wp_unslash($_SERVER['REQUEST_URI']), "/wp-json/wp/v2/{$rest_base}?")) {					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 								if (rvy_get_option('query_loop_revision_editor_allowance') && current_user_can('read')) {
 									$can_edit_any = false;
 									
