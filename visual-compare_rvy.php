@@ -264,10 +264,12 @@ class RevisionaryVisualCompare {
 			$posts = wp_get_post_revisions($main_post_id);
 
 		} elseif (is_array($status) && !empty($args['is_new_revision'])) {
+            $status_csv = implode("','", array_map('sanitize_key', $status));
+
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$posts = $wpdb->get_col(
 				$wpdb->prepare(
-					"SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ('" . implode("','", array_map('sanitize_key', $status)) . "') AND comment_count = %d ORDER BY ID DESC LIMIT %d",  // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					"SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ('" . $status_csv . "') AND comment_count = %d ORDER BY ID DESC LIMIT %d",  // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					$main_post_id,
 					$limit
 				)
