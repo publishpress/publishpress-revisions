@@ -15,54 +15,70 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	/**
 	 * Builds the dedicated compare_only comparison set.
 	 *
-	 * @param WP_Post $from           Target/current post.
-	 * @param WP_Post $to             URL-selected comparison post.
+	 * @param WP_Post $revision       URL-selected comparison post.
 	 * @param string  $comparison_key Optional sidebar definition key.
 	 * @return array
 	 */
-	public static function build( \WP_Post $from, \WP_Post $to, $comparison_key = '' ) {
+	public static function build( \WP_Post $revision, $comparison_key = '' ) {
 		/**
 		 * Filters additional posts available on the compare_only selection slider.
 		 *
 		 * @param array<int|WP_Post> $posts Additional post IDs and/or WP_Post objects.
-		 * @param WP_Post            $from  Fixed target/current post.
-		 * @param WP_Post            $to    URL-selected comparison post.
+		 * @param WP_Post            $revision URL-selected comparison post.
 		 */
-		$arr = (array) apply_filters( 'visual_post_compare_compare_only_posts', array(), $from, $to );
+		$arr = (array) apply_filters( 'visual_post_compare_listed_revisions', array(), $revision );
 
-		if (!empty($arr['posts'])) {
-			$additional = $arr['posts'];
+		if (!empty($arr['listed'])) {
+			$listed = $arr['listed'];
 		}
 
 		if (!empty($arr['comparison_key'])) {
 			$comparison_key = $arr['comparison_key'];
 		}
 
-		$comparison_posts = array( $to );
-		$seen             = array( $from->ID => true, $to->ID => true );
+        if (!$current_post_id = wp_is_post_revision($revision)) {
+			if (rvy_in_revision_workflow($revision)) {
+				$current_post_id = rvy_post_id($revision);
+			}
+		}
 
-		foreach ( $additional as $post_item ) {
+		if (!$current_post_id) {
+			return [];
+		}
+
+		if (!$current_post = get_post($current_post_id)) {
+			return [];
+		}
+		$comparison_posts = [];
+		$seen             = array( $current_post->ID => true );
+
+		foreach ( $listed as $post_item ) {
 			$post = $post_item instanceof \WP_Post ? $post_item : get_post( absint( $post_item ) );
 			if ( ! $post || isset( $seen[ $post->ID ] ) || ! current_user_can( 'read_post', $post->ID ) ) {
 				continue;
 			}
+
 			$seen[ $post->ID ]  = true;
 			$comparison_posts[] = $post;
 		}
 
-		$comparison_posts = Visual_Post_Compare::sort_comparison_posts( $comparison_posts, 'post_modified', 'DESC' );
+		if (empty($seen[ $post->ID ])) {
+			$comparison_posts []= $revision;
+		}
+
+
 
 		// Core's revisions selector reverses the REST collection visually. Mirror
 		// that behavior here: fixed current post first, then reversed comparison order.
-		$slider_posts = array_merge( array( $from ), array_reverse( $comparison_posts ) );
+		$slider_posts = array_merge( array( $current_post ), array_reverse( $comparison_posts ) );
 		$slider_data  = array_map( array( __CLASS__, 'post_data' ), $slider_posts );
 
 		return array(
 			'presentation' => self::presentation_options( $comparison_key, $comparison_posts ),
-			'from'         => self::post_data( $from ),
-			'to'           => self::post_data( $to ),
+			'current'      => self::post_data( $current_post ),
+			'revision'     => self::post_data( $revision ),
 			'posts'        => $slider_data,
-			'selectedId'   => (int) $to->ID,
+			'selectedId'   => (int) $revision->ID,
 			'canApprove'   => (wp_is_post_revision($to)) ?  (bool) current_user_can( 'edit_post', $from->ID ) : (bool) current_user_can( 'approve_revision', $to->ID ),
 		);
 	}

@@ -29,62 +29,56 @@ class RevisionaryVisualCompare {
 			);
 
             add_filter( 
-                'visual_post_compare_compare_only_posts', 
-                function ( $posts, $from, $to ) {
+                'visual_post_compare_listed_revisions', 
+                function ( $listed, $revision ) {
                     global $wpdb;
     
                     $comparison_key = '';
 
-                    if ($past_revision_parent = wp_is_post_revision($from)) {
-                        $posts = self::get_associated_posts($past_revision_parent, 'inherit', 30);
-                        $comparison_key = 'compare-past-revision';
-
-                    } elseif ($past_revision_parent = wp_is_post_revision($to)) {
-                        $posts = self::get_associated_posts($past_revision_parent, 'inherit', 30);
+                    if ($past_revision_parent = wp_is_post_revision($revision)) {
+                        $listed = self::get_associated_posts($past_revision_parent, 'inherit', 30);
                         $comparison_key = 'compare-past-revision';
 
                     } else {
-                        if (is_string($to) && rvy_is_revision_status($to)) {
-                            $main_post_id = rvy_post_id($from);
-                            $is_new_revision = $to;
+                        if (is_string($revision) && rvy_is_revision_status($revision)) {
+                            $main_post_id = rvy_post_id($revision);
+                            $is_new_revision = $revision;
 
-                        } elseif ($is_new_revision = rvy_in_revision_workflow($to)) {
-                            $main_post_id = rvy_post_id($to);
-        
-                        } elseif ($is_new_revision = rvy_in_revision_workflow($from)) {
-                            $main_post_id = rvy_post_id($from);
+                        } elseif ($is_new_revision = rvy_in_revision_workflow($revision)) {
+                            $main_post_id = rvy_post_id($revision);
                         }
         
                         if ($is_new_revision) {
                             // Dedicated compare screen defaults to including all revision statuses except draft and future
                             if ('future-revision' == $is_new_revision) {
-                                $posts = self::get_associated_posts($main_post_id, 'future-revision', 30);
+                                $listed = self::get_associated_posts($main_post_id, 'future-revision', 30);
                                 $comparison_key = 'compare-future-revision';
                             
                             } elseif ('pending-revision' == $is_new_revision) {
-                                $posts = self::get_associated_posts($main_post_id, 'pending-revision', 30);
+                                $listed = self::get_associated_posts($main_post_id, 'pending-revision', 30);
+                                $comparison_key = 'compare-pending-revision';
+
+                            } elseif ('draft-revision' == $is_new_revision) {
+                                $listed = self::get_associated_posts($main_post_id, 'draft-revision', 30);
                                 $comparison_key = 'compare-pending-revision';
 
                             } else {
-                                // For now, display only from > to comparison for custom revision statuses
-                                $posts = [$from, $to];
+                                // For now, display only A / B comparison for custom revision statuses
+                                $listed = [$main_post_id, $revision];
                                 $comparison_key = 'compare-pending-revision';
                             }
                         }
                     }
 
-                    return compact('posts', 'comparison_key');
+                    return compact('listed', 'comparison_key');
                 }
                 , 10, 3 
             );
 
             add_filter(
                 'visual_post_compare_compare_screen_headline',
-                function ( $headline, $pair, $comparison_key ) {
-                    $from = (is_array($pair) && isset($pair['from'])) ? $pair['from'] : 0;
-                    $to = (is_array($pair) && isset($pair['to'])) ? $pair['to'] : 0;
-
-                    if ($revision_status = rvy_in_revision_workflow($to)) {
+                function ( $headline, $revision_id, $comparison_key ) {
+                    if ($revision_status = rvy_in_revision_workflow($revision_id)) {
                         if (!empty($_REQUEST['revision']) && rvy_is_revision_status(sanitize_key($_REQUEST['revision']))) {                 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                             $status_obj = get_post_status_object(sanitize_key($_REQUEST['revision']));                                      // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                             $status_caption = (is_object($status_obj) && !empty($status_obj->label)) ? '(' . $status_obj->label . ')' : '';
@@ -98,10 +92,14 @@ class RevisionaryVisualCompare {
 
                         } elseif ('pending-revision' == $revision_status) {
                             $headline = __('Compare Submitted Revisions', 'revisionary');
+
+                        } elseif ('draft-revision' == $revision_status) {
+                            $headline = __('Compare Unsubmitted Revisions', 'revisionary');
+
                         } else {
-                            $headline = __('Compare New Revisions', 'revisionary');
+                            $headline = __('Compare New Revision', 'revisionary');
                         }
-                    } elseif (wp_is_post_revision($from) || wp_is_post_revision($to)) {
+                    } elseif (wp_is_post_revision($revision_id)) {
                         $headline = __('Compare Past Revisions', 'revisionary');
                     }
 
@@ -111,11 +109,8 @@ class RevisionaryVisualCompare {
 
             add_filter(
                 'visual_post_compare_compare_screen_approve_caption',
-                function ( $caption, $pair, $comparison_key ) {
-                    $from = (is_array($pair) && isset($pair['from'])) ? $pair['from'] : 0;
-                    $to = (is_array($pair) && isset($pair['to'])) ? $pair['to'] : 0;
-
-                    if (!rvy_in_revision_workflow($to) && (wp_is_post_revision($from) || wp_is_post_revision($to))) {
+                function ( $caption, $revision_id, $comparison_key ) {
+                    if (!rvy_in_revision_workflow($revision_id) && (wp_is_post_revision($revision_id))) {
                         $caption = __('Restore', 'revisionary');
                     }
 
@@ -125,11 +120,8 @@ class RevisionaryVisualCompare {
 
             add_filter(
                 'visual_post_compare_compare_screen_current_post_first',
-                function ( $current_post_first, $pair, $comparison_key ) {
-                    $from = (is_array($pair) && isset($pair['from'])) ? $pair['from'] : 0;
-                    $to = (is_array($pair) && isset($pair['to'])) ? $pair['to'] : 0;
-
-                    if (!rvy_in_revision_workflow($to) && (wp_is_post_revision($from) || wp_is_post_revision($to))) {
+                function ( $current_post_first, $revision_id, $comparison_key ) {
+                    if (!rvy_in_revision_workflow($revision_id) && (wp_is_post_revision($revision_id))) {
                         $current_post_first = false;
                     }
 
@@ -149,8 +141,8 @@ class RevisionaryVisualCompare {
         add_filter(
             'visual_post_compare_sidebars',
             function($sidebars, $post_id, $compare_class, $args = []) {
-                if (empty($post_id) && !empty($_REQUEST['from'])) {         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                    $post_id = intval($_REQUEST['from']);                   // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                if (empty($post_id) && !empty($_REQUEST['post'])) {         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                    $post_id = intval($_REQUEST['post']);                   // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 }
 
                 $metabox_limit = (defined('REVISIONARY_MAX_METABOX_ITEMS')) ? constant('REVISIONARY_MAX_METABOX_ITEMS') : 10;
