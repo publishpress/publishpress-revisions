@@ -142,63 +142,56 @@ final class Visual_Post_Compare {
 	}
 
 	/**
-	 * Parses and validates from/to query arguments.
+	 * Parses and validates revision query argument.
 	 *
 	 * @return array|WP_Error
 	 */
-	private static function get_url_pair() {
-		$from = isset( $_GET['from'] ) ? absint( $_GET['from'] ) : 0;	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$to   = isset( $_GET['to'] ) ? absint( $_GET['to'] ) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	private static function get_comparison_ids() {
+		$revision = isset( $_GET['revision'] ) ? absint( $_GET['revision'] ) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		if ( ! $from || ! $to || $from === $to ) {
-			return new \WP_Error(
-				'vpc_invalid_pair',
-				__( 'The comparison URL must contain two different valid post IDs in the from and to parameters.', 'revisionary' )
-			);
+		if (!$post = wp_is_post_revision($revision)) {
+			if (rvy_in_revision_workflow($revision)) {
+				$post = rvy_post_id($revision);
+			}
 		}
 
-		if ( ! get_post( $from ) || ! get_post( $to ) ) {
+		if ( !$post || ! get_post( $revision ) ) {
 			return new \WP_Error(
 				'vpc_missing_post',
-				__( 'One of the posts in the comparison URL could not be found.', 'revisionary' )
+				__( 'Invalid revision ID.', 'revisionary' )
 			);
 		}
 
-		return array( 'from' => $from, 'to' => $to );
+		return array( 'post' => $post, 'revision' => $revision );
 	}
 
 	/**
 	 * Validates the dedicated comparison screen request.
-	 *
-	 * All plugin comparisons use this screen in 0.11+.
 	 */
-	public static function route_compare_screen() {
-		$pair = self::get_url_pair();
-		if ( is_wp_error( $pair ) ) {
-			wp_die( esc_html( $pair->get_error_message() ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 400 ) );
+	private static function validate_compare_screen() {
+		$compare_ids = self::get_comparison_ids();
+		if ( is_wp_error( $compare_ids ) ) {
+			wp_die( esc_html( $compare_ids->get_error_message() ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 400 ) );
 		}
 
-		global $title;
-		$title = __('Compare Revisions', 'revisionary');	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		
-		if ( ! current_user_can( 'read_post', $pair['from'] ) || ! current_user_can( 'read_post', $pair['to'] ) ) {
-			wp_die( esc_html__( 'You are not allowed to read both posts in this comparison.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
+		if ( ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
+			wp_die( esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
 		}
 
-		if ( ! current_user_can( 'edit_post', $pair['to'] ) || ! current_user_can( 'read_post', $pair['from'] ) ) {
-			wp_die( esc_html__( 'You are not allowed to open this comparison in the editor.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
+		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) ) {
+			wp_die( esc_html__( 'You are not allowed to view this comparison.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
 		}
 	}
 
-	public static function render_compare_screen() {
-		$pair = self::get_url_pair();
-		if ( is_wp_error( $pair ) ) {
-			wp_die( esc_html( $pair->get_error_message() ) );
-		}
+	public static function route_compare_screen() {
+		self::validate_compare_screen();
 
-		if ( ! current_user_can( 'read_post', $pair['from'] ) || ! current_user_can( 'read_post', $pair['to'] ) ) {
-			wp_die( esc_html__( 'You are not allowed to read both posts in this comparison.', 'revisionary' ) );
-		}
+		global $title;
+		$title = __('Compare Revisions', 'revisionary');	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	}
+
+	public static function render_compare_screen() {
+		self::validate_compare_screen();
 		?>
 		<div class="wrap visual-post-compare-only-wrap">
 			<div id="visual-post-compare-root">
@@ -208,43 +201,43 @@ final class Visual_Post_Compare {
 	}
 
 	public static function enqueue_compare_screen_assets( $hook_suffix ) {
-		$pair = self::get_url_pair();
-		if ( is_wp_error( $pair ) ) {
+		$compare_ids = self::get_comparison_ids();
+		if ( is_wp_error( $compare_ids ) ) {
 			return;
 		}
 
-		if ( ! current_user_can( 'read_post', $pair['from'] ) || ! current_user_can( 'read_post', $pair['to'] ) ) {
+		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) || ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
 			return;
 		}
 
-		$comparison_key = isset( $_GET['comparison'] ) ? sanitize_key( wp_unslash( $_GET['comparison'] ) ) : '';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$comparison_key = '';
 		
 		$headline 		= apply_filters(
 			'visual_post_compare_compare_screen_headline',
 			__('Compare Revisions', 'revisionary'),
-			$pair,
+			$compare_ids['revision'],
 			$comparison_key
 		);
 
 		$approve_caption = apply_filters(
 			'visual_post_compare_compare_screen_approve_caption',
 			__('Approve', 'revisionary'),
-			$pair,
+			$compare_ids['revision'],
 			$comparison_key
 		);
 
 		$current_post_first = apply_filters(
 			'visual_post_compare_compare_screen_current_post_first',
 			true,
-			$pair,
+			$compare_ids['revision'],
 			$comparison_key
 		);
 
-		$to_post        = get_post( $pair['to'] );
+		$revision_post  = get_post( $compare_ids['revision'] );
 		$styles         = array();
 
-		if ( $to_post && class_exists( 'WP_Block_Editor_Context' ) && function_exists( 'get_block_editor_settings' ) ) {
-			$context  = new \WP_Block_Editor_Context( array( 'post' => $to_post ) );
+		if ( $revision_post && class_exists( 'WP_Block_Editor_Context' ) && function_exists( 'get_block_editor_settings' ) ) {
+			$context  = new \WP_Block_Editor_Context( array( 'post' => $revision_post ) );
 			$settings = get_block_editor_settings( array(), $context );
 			if ( ! empty( $settings['styles'] ) && is_array( $settings['styles'] ) ) {
 				$styles = $settings['styles'];
@@ -280,10 +273,10 @@ final class Visual_Post_Compare {
 			'visual-post-compare-standalone',
 			'window.VisualPostCompareStandalone=' . wp_json_encode(
 				array(
-					'from'            => $pair['from'],
-					'to'              => $pair['to'],
-					'comparisonKey'   => $comparison_key,
-					'headline'		   => is_scalar($headline) ? (string) $headline : __('Compare Revisions', 'revisionary'),
+					'current'          => $compare_ids['post'],
+					'revision'         => $compare_ids['revision'],
+					'comparisonKey'    => $comparison_key,
+					'headline'		   => is_scalar($headline) ? (string) $headline : esc_html__('Compare Revisions', 'revisionary'),
 					'approveCaption'   => is_scalar($approve_caption) ? (string) $approve_caption : __('Approve', 'revisionary'),
 					'currentPostFirst' => (bool) $current_post_first,
 					'restPath'         => '/' . self::REST_NS . '/comparison',

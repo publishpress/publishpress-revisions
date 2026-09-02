@@ -33,9 +33,8 @@ final class Visual_Post_Compare_Editor_Sidebar_Builder {
 				$url    = add_query_arg(
 					array(
 						'page'         => Visual_Post_Compare::PAGE_SLUG,
-						'from'         => (int) $current_post_id,
-						'to'           => (int) $post->ID,
-						'comparison'   => $definition['key'],
+						'revision'     => (int) $post->ID,
+
 					),
 					admin_url( 'admin.php' )
 				);
