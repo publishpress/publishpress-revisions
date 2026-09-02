@@ -349,8 +349,8 @@ final class Visual_Post_Compare {
 	 * Loads only the REST stack needed by the current REST request.
 	 */
 	public static function maybe_load_rest_handler() {
-		if ( (isset($_GET['rest_route']) && (false !== strpos( $_GET['rest_route'], self::REST_NS )))		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
-		|| (isset($_SERVER['REQUEST_URI']) && (false !== strpos( $_SERVER['REQUEST_URI'], self::REST_NS ))) // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
+		if ( (isset($_GET['rest_route']) && (false !== strpos( wp_unslash($_GET['rest_route']), self::REST_NS )))		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
+		|| (isset($_SERVER['REQUEST_URI']) && (false !== strpos( wp_unslash($_SERVER['REQUEST_URI']), self::REST_NS ))) // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
 		) {
 			self::load_dedicated_rest_handler();
 			Visual_Post_Compare_Dedicated_REST_Handler::register_routes();

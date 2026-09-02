@@ -944,7 +944,7 @@ function rvy_apply_custom_default_options() {
 			"SELECT meta_key, meta_value FROM $wpdb->sitemeta WHERE site_id = %d AND meta_key LIKE %s", 
 			$wpdb->siteid,
 			$wpdb->esc_like('rvy_default_') . '%'
-		)	
+		)
 	) ) {
 		foreach ( $results as $row ) {
 			$option_basename = str_replace( 'rvy_default_', '', $row->meta_key );
@@ -1011,7 +1011,7 @@ function rvy_retrieve_options( $sitewide = false ) {
 				"SELECT meta_key, meta_value FROM $wpdb->sitemeta WHERE site_id = %d AND meta_key LIKE %s",
 				$wpdb->siteid,
 				$wpdb->esc_like('rvy_') . '%'
-			) 	
+			)
 		) ) {
 			foreach ( $results as $row ) {
 				$rvy_site_options[$row->meta_key] = $row->meta_value;
