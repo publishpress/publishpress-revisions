@@ -32,7 +32,7 @@ function rvy_load_textdomain() {
 	if ( defined('RVY_TEXTDOMAIN_LOADED') )
 		return;
 
-	load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');
+	load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 
 	define('RVY_TEXTDOMAIN_LOADED', true);
 }
@@ -91,7 +91,7 @@ function rvy_admin_init() {
 		$sendback = remove_query_arg( array('deleted', 'ids', 'posts', '_wp_nonce', '_wp_http_referer'), $url);
 	
 		if ( isset( $_REQUEST['ids'] ) ) {
-			$post_ids =  array_map('intval', explode( ',', sanitize_text_field($_REQUEST['ids']) ));
+			$post_ids =  array_map('intval', explode( ',', sanitize_text_field(wp_unslash($_REQUEST['ids'])) ));
 		} elseif ( !empty( $_REQUEST['post'] ) ) {
 			$post_ids = array_map('intval', $_REQUEST['post']);
 		}
@@ -174,7 +174,7 @@ function rvy_admin_init() {
 		} elseif ( isset( $_REQUEST['media'] ) ) {
 			$post_ids =  array_map('intval', (array) $_REQUEST['media']);
 		} elseif ( isset( $_REQUEST['ids'] ) ) {
-			$post_ids =  array_map('intval', explode( ',', sanitize_text_field($_REQUEST['ids']) ));
+			$post_ids =  array_map('intval', explode( ',', sanitize_text_field(wp_unslash($_REQUEST['ids'])) ));
 		} elseif ( !empty( $_REQUEST['post'] ) ) {
 			$post_ids = array_map('intval', (array) $_REQUEST['post']);
 		}
@@ -386,7 +386,7 @@ function rvy_admin_init() {
 
 	// don't bother with the checks in this block unless action arg was passed
 	} elseif ( ! empty($_GET['action']) || ! empty($_POST['action']) ) {
-		if (isset($_SERVER['REQUEST_URI']) && false !== strpos(urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'admin.php') && !empty($_REQUEST['page']) && ('rvy-revisions' == $_REQUEST['page'])) {
+		if (isset($_SERVER['REQUEST_URI']) && false !== strpos(urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'admin.php') && !empty($_REQUEST['page']) && ('rvy-revisions' == $_REQUEST['page'])) {
 			if (!defined('REVISIONARY_ACTIONS_DISABLE_WP_INCLUSION')) {
 				include_once(ABSPATH . 'wp-admin/includes/post.php');
 			}
@@ -411,7 +411,7 @@ function rvy_admin_init() {
 		
 				if (!empty($arr) && is_array($arr) && !empty($arr['code'])) {
 					if (!empty($_REQUEST['referer'])) {
-						$url = add_query_arg('revision_action', $arr['code'], esc_url_raw($_REQUEST['referer']));
+						$url = add_query_arg('revision_action', $arr['code'], esc_url_raw(wp_unslash($_REQUEST['referer'])));
 						wp_redirect($url);
 						exit;
 					}
@@ -442,7 +442,7 @@ function rvy_admin_init() {
 			}
 		}
 		
-	} elseif (is_admin() && (false !== strpos(esc_url_raw($_SERVER['REQUEST_URI']), 'revision.php'))) { // endif action arg passed
+	} elseif (is_admin() && (false !== strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'revision.php'))) { // endif action arg passed
 
 		if (!empty($_REQUEST['revision'])) {
 			$revision_id = (int) $_REQUEST['revision'];

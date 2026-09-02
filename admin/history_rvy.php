@@ -397,7 +397,7 @@ class RevisionaryHistory
     public function fltRevisionQueryWhere($where, $args = []) {
         global $wpdb;
 
-        $p = (!empty($args['alias'])) ? sanitize_text_field($args['alias']) : $wpdb->posts;
+        $p = (!empty($args['alias'])) ? sanitize_text_field(wp_unslash($args['alias'])) : $wpdb->posts;
 
 		$post_id_csv = implode("','", array_map('intval', $this->published_post_ids));
 
@@ -444,8 +444,8 @@ class RevisionaryHistory
         if (!$revision_id && !$to && !empty($_REQUEST['compare'])) {                            //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $compare = sanitize_text_field(
                 is_array($_REQUEST['compare'])                                                  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                ? reset($_REQUEST['compare'])    //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-                : $_REQUEST['compare']                                                          //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                ? reset(wp_unslash($_REQUEST['compare']))    //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+                : wp_unslash($_REQUEST['compare'])                                                          //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             );
             
             list( $from, $to ) = explode( ':', $compare); // from:to
@@ -476,7 +476,6 @@ class RevisionaryHistory
             }
 
             $return = array();
-            @set_time_limit( 0 );
 
             $current_revision_id  = $post->ID;
 
@@ -513,12 +512,7 @@ class RevisionaryHistory
 
             $return = array();
 
-            // Increase the script timeout limit to allow ample time for diff UI setup.
-            if ( function_exists( 'set_time_limit' ) ) {
-                set_time_limit( 5 * MINUTE_IN_SECONDS );
-            }
-
-            foreach ( $_REQUEST['compare'] as $compare_key ) {                  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
+            foreach ( wp_unslash($_REQUEST['compare']) as $compare_key ) {                  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
                 list( $from, $to ) = explode( ':', $compare_key ); // from:to
 
                 $return[] = array(
@@ -546,6 +540,48 @@ class RevisionaryHistory
         }
 
         return $this->getRevisionUIDiff(rvy_post_id($compare_to), $compare_from, $compare_to);
+    }
+
+    private function wp_post_revision_fields( $post = array(), $deprecated = false ) {
+        static $fields = null;
+    
+        if ( ! is_array( $post ) ) {
+            $post = get_post( $post, ARRAY_A );
+        }
+    
+        if ( is_null( $fields ) ) {
+            // Allow these to be versioned.
+            $fields = array(
+                'post_title'   => __( 'Title' ),
+                'post_content' => __( 'Content' ),
+                'post_excerpt' => __( 'Excerpt' ),
+            );
+        }
+    
+        /**
+         * Filters the list of fields saved in post revisions.
+         *
+         * Included by default: 'post_title', 'post_content' and 'post_excerpt'.
+         *
+         * Disallowed fields: 'ID', 'post_name', 'post_parent', 'post_date',
+         * 'post_date_gmt', 'post_status', 'post_type', 'comment_count',
+         * and 'post_author'.
+         *
+         * @since 2.6.0
+         * @since 4.5.0 The `$post` parameter was added.
+         *
+         * @param string[] $fields List of fields to revision. Contains 'post_title',
+         *                         'post_content', and 'post_excerpt' by default.
+         * @param array    $post   A post array being processed for insertion as a post revision.
+         */
+        $fields = apply_filters( '_wp_post_revision_fields', $fields, $post );
+    
+        // WP uses these internally either in versioning or elsewhere - they cannot be versioned.
+        foreach ( array( 'ID', 'post_name', 'post_parent', 'post_date', 'post_date_gmt', 'post_status', 'post_type', 'comment_count', 'post_author' ) as $protect ) {
+            unset( $fields[ $protect ] );
+        }
+    
+        return $fields;
     }
 
     // port of core wp_get_revision_ui_diff() to allow comparison of pending, future revisions (published post ID stored in comment_count instead of post_parent)
@@ -581,7 +617,7 @@ class RevisionaryHistory
 
         $acf_active = function_exists('acf_get_setting');
 
-        foreach ( $all_meta_fields = _wp_post_revision_fields( $compare_to ) as $field => $name ) {
+        foreach ( $all_meta_fields = $this->wp_post_revision_fields( $compare_to ) as $field => $name ) {
             /**
              * Contextually filter a post revision field.
              *
@@ -826,7 +862,7 @@ class RevisionaryHistory
             $meta_fields['_fl_builder_data_settings'] = esc_html__('Beaver Builder Settings', 'revisionary');
         }
 
-        $native_fields = _wp_post_revision_fields( $to_meta, $compare_to );
+        $native_fields = $this->wp_post_revision_fields( $to_meta, $compare_to );
 
         $meta_fields = array_diff_key( apply_filters('revisionary_compare_meta_fields', $meta_fields), $native_fields );
 
@@ -1045,7 +1081,7 @@ class RevisionaryHistory
 	                if ((($type_obj && !is_post_type_viewable($type_obj)) || rvy_get_option('compare_revisions_direct_approval')) && current_user_can( 'edit_post', $published_post_id) ) {
                         
                                                                                                     //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                        $redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+                        $redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 
                         $revision_statuses = array_diff(
                             rvy_revision_statuses(),
@@ -1360,12 +1396,12 @@ class RevisionaryHistory
 
                 if (rvyRevisionID != rvyLastID) {
                     <?php if($show_preview_link):?>
-                    var rvyPreviewURL = '<?php echo esc_url_raw($preview_url);?>';
+                    var rvyPreviewURL = '<?php echo esc_url_raw(wp_unslash($preview_url));?>';
                     rvyPreviewURL = rvyPreviewURL.replace("page_id=" + <?php echo esc_attr($post_id);?>, "page_id=" + rvyRevisionID);
                     rvyPreviewURL = rvyPreviewURL.replace("p=" + <?php echo esc_attr($post_id);?>, "p=" + rvyRevisionID);
                     <?php endif;?>
 
-                    var rvyManageURL = '<?php echo esc_url_raw($manage_url);?>';
+                    var rvyManageURL = '<?php echo esc_url_raw(wp_unslash($manage_url));?>';
                     rvyManageURL = rvyManageURL.replace("revision=" + <?php echo esc_attr($post_id);?>, "revision=" + rvyRevisionID);
 
                     if(!$('span.rvy-compare-preview').length) {

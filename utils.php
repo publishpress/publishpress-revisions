@@ -16,11 +16,11 @@ class Utils {
 				return false;
 			}
 
-			if (0 === strpos(esc_url_raw($_SERVER['REQUEST_URI']), $path . '/wp-json/oembed/')) {
+			if (0 === strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $path . '/wp-json/oembed/')) {
 				return false;	
 			}
 	
-			if (0 === strpos(esc_url_raw($_SERVER['REQUEST_URI']), $path . '/wp-json/')) {
+			if (0 === strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $path . '/wp-json/')) {
 				return true;
 			}
 		}
@@ -315,11 +315,12 @@ class Utils {
 				WHERE post_parent = %d
 				AND post_type = 'revision'
 				AND post_status = 'inherit'
-				AND post_name LIKE '%" . intval($post_id) . "-autosave%'
+				AND post_name LIKE %s
 				AND post_author = %d
 				ORDER BY post_date DESC
 				LIMIT 1",
 				$post_id,
+				$wpdb->prepare(intval($post_id) . '-autosave') . '%',
 				$user_id
 			)
 		);

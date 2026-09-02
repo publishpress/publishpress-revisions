@@ -100,14 +100,14 @@ class PostEditorWorkflowUI {
             $vars['revisionEdits'] = '';
         }
                                                                                                         //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+        $redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 
         $draft_obj = get_post_status_object('draft-revision');
         $vars['draftStatusCaption'] = $draft_obj->label;
 
         $vars['draftAjaxField'] = (is_content_administrator_rvy() || current_user_can('set_revision_pending-revision', $post->ID)) ? 'submit_revision' : '';
         $vars['draftErrorCaption'] = esc_html__('Revision Submission Error', 'revisionary');
-        $vars['draftDeletionURL'] = get_delete_post_link($post->ID, '', false);
+        $vars['draftDeletionURL'] = get_delete_post_link($post->ID, '', '');
 
         if ($vars['draftAjaxField']) {
             $vars['draftActionCaption'] = pp_revisions_status_label('pending-revision', 'submit');
@@ -161,7 +161,7 @@ class PostEditorWorkflowUI {
             $vars['futureActionCaption'] = pp_revisions_status_label('future-revision', 'publish');
             $vars['futureActionURL'] = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&amp;revision={$post->ID}&amp;action=publish$redirect_arg&amp;editor=1"), "publish-post_$published_post_id|{$post->ID}" );
 
-            $vars['pendingDeletionURL'] = get_delete_post_link($post->ID, '', false);
+            $vars['pendingDeletionURL'] = get_delete_post_link($post->ID, '', '');
             $vars['futureDeletionURL'] = $vars['pendingDeletionURL'];
         } else {
             $vars['pendingActionURL'] = '';
@@ -229,7 +229,7 @@ class PostEditorWorkflowUI {
             $vars['scheduledRevisionsURL'] = '';
         }
                                                                                                 //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+        $redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
         $published_post_id = rvy_post_id($post->ID);
 
         $is_block_editor = \PublishPress\Revisions\Utils::isBlockEditorActive($post->post_type);

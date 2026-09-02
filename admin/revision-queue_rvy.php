@@ -166,11 +166,11 @@ if (!empty($filters['post_status'])) {
 ?></h1>
 
 <?php
-if ( isset( $_REQUEST['s'] ) && strlen( sanitize_text_field($_REQUEST['s']) ) ) {					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+if ( isset( $_REQUEST['s'] ) && strlen( sanitize_text_field(wp_unslash($_REQUEST['s'])) ) ) {					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	/* translators: %s: search keywords */															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	printf( 
 		' <span class="subtitle">' . esc_html__( 'Search results for "%s"' ) . '</span>', 
-		esc_html(wp_strip_all_tags(sanitize_text_field($_REQUEST['s']))) 							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		esc_html(wp_strip_all_tags(sanitize_text_field(wp_unslash($_REQUEST['s'])))) 							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	);
 }
 ?>
@@ -199,7 +199,7 @@ if (!empty($any_messages)) {
 
 foreach ( $bulk_counts as $message => $count ) {
 	if ( $message == 'trashed' && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field($_REQUEST['ids']));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo') . '</a> ';
 	
@@ -217,7 +217,7 @@ unset( $messages );
 if (!empty($_SERVER['REQUEST_URI'])) {
 	$_SERVER['REQUEST_URI'] = remove_query_arg( 
 		array( 'locked', 'skipped', 'updated', 'approved_count', 'published_count', 'deleted', 'trashed', 'untrashed' ), 
-		esc_url(esc_url_raw($_SERVER['REQUEST_URI'])) 												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		esc_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) 												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	);
 }
 ?>

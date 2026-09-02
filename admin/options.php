@@ -1,5 +1,5 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die( 'This page cannot be called directly.' );
 
 do_action('revisionary_load_options_ui');
@@ -68,9 +68,9 @@ class RvyOptionUI {
 		if (!empty($this->form_options[$tab_name][$section_name]) && in_array($option_name, $this->form_options[$tab_name][$section_name])) {
 			$this->all_options []= $option_name;
 
-			if (!isset($args['val'])) {
-				$return['val'] = rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
-			}
+
+			$return['val'] = (isset($args['val'])) ? $args['val'] : rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
+
 
 			echo "<div class='agp-vspaced_input'";
 
@@ -331,8 +331,8 @@ if ( $customize_defaults )
 	echo "<input type='hidden' name='rvy_options_customize_defaults' value='1' />";
 ?>
 
-<input type='hidden' name='ppr_tab' value='<?php !empty($_REQUEST['ppr_tab']) ? esc_attr(sanitize_key(str_replace('#', '', $_REQUEST['ppr_tab']))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
-<input type='hidden' name='ppr_subtab' value='<?php !empty($_REQUEST['ppr_subtab']) ? esc_attr(sanitize_key($_REQUEST['ppr_subtab'])) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
+<input type='hidden' name='ppr_tab' value='<?php !empty($_REQUEST['ppr_tab']) ? esc_attr(sanitize_key(str_replace('#', '', wp_unslash($_REQUEST['ppr_tab'])))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
+<input type='hidden' name='ppr_subtab' value='<?php !empty($_REQUEST['ppr_subtab']) ? esc_attr(sanitize_key(wp_unslash($_REQUEST['ppr_subtab']))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
 
 <table><tr>
 <td>
@@ -451,7 +451,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 <ul id="publishpress-revisions-settings-tabs" class="nav-tab-wrapper">
 	<?php
 	if (!empty($_REQUEST['ppr_tab'])) {															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$setActiveTab = str_replace('ppr-tab-', '', sanitize_key(str_replace('#', '', $_REQUEST['ppr_tab'])));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$setActiveTab = str_replace('ppr-tab-', '', sanitize_key(str_replace('#', '', wp_unslash($_REQUEST['ppr_tab']))));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	} else {
 		// Set first tab and content as active
 		$setActiveTab = '';
@@ -1641,6 +1641,24 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		<?php
 		$this->setSubsection('revision-queue');
 
+		if (version_compare($wp_version, '7.0', '>=')) {
+			$hint = esc_html__("Disable this setting if visual comparison shows your changes incorrectly. Some page-builders and themes don't support the new style of WordPress revisions.", 'revisionary');
+			$check_args = [];
+
+			if (!$setting = rvy_use_visual_compare()) {
+				if (rvy_visual_compare_disabled()) {
+					$check_args['disabled'] = true;
+					$hint = esc_html__('This feature is incompatible with page builder plugins.', 'revisionary');
+				}
+			}
+
+			$check_args['val'] = (int) $setting;
+			
+			$this->option_checkbox('visual_compare', $tab, $section, $hint, '', $check_args);
+
+
+		}
+
 		if ( 	// To avoid confusion, don't display any revision settings if pending revisions / scheduled revisions are unavailable
 			$pending_revisions_available || $scheduled_revisions_available ) :
 		
@@ -1760,11 +1778,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			echo '<br>';
 
-			if (version_compare($wp_version, '7.0', '>=')) {
-				$hint = '';
-				$this->option_checkbox('visual_compare', $tab, $section, $hint, '');
-			}
-
 			$hint = '';
 			$this->option_checkbox('admin_menu_pending_count_icon', $tab, $section, $hint, '');
 
@@ -1776,7 +1789,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	
 			<?php if (!empty($_SERVER['REQUEST_URI']) && !$customize_defaults && !$sitewide):?>
 			<p style="margin-top:25px">
-			<a href="<?php echo esc_url(wp_nonce_url(add_query_arg('rvy_flush_flags', 1, esc_url(esc_url_raw($_SERVER['REQUEST_URI']))), 'flush-flags') )?>"><?php esc_html_e('Regenerate "post has revision" flags', 'revisionary');?></a>
+			<a href="<?php echo esc_url(wp_nonce_url(add_query_arg('rvy_flush_flags', 1, esc_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])))), 'flush-flags') )?>"><?php esc_html_e('Regenerate "post has revision" flags', 'revisionary');?></a>
 			
 			<?php if ($this->display_hints) :
 				$hint = esc_html__('Apply this maintenance operation if Has Revision labels on Posts / Pages screens mismatch the New Revisions listing.', 'revisionary');
@@ -1979,7 +1992,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		}
 
 		if (!empty($_SERVER['REQUEST_URI'])) {
-			$uri = esc_url(esc_url_raw($_SERVER['REQUEST_URI']));
+			$uri = esc_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])));
 		} else {
 			$uri = '';
 		}

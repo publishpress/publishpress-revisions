@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-08-27 22:18+0000\n"
+"PO-Revision-Date: 2026-09-02 17:17+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -94,7 +94,8 @@ msgstr "Indlægget har allerede en revision i gang."
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:777
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:804
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:805
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151, fuzzy
 msgid "Revision"
 msgstr "Revision"
@@ -159,7 +160,7 @@ msgstr "Revisioner"
 #: admin/options.php:550
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
-#: visual-compare_rvy.php:164
+#: visual-compare_rvy.php:156
 msgid "Past Revisions"
 msgstr "Tidligere revisioner"
 
@@ -177,10 +178,10 @@ msgstr "Indstillinger"
 #: admin/admin_rvy.php:494
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:535
-#: admin/options.php:2141
-#: admin/options.php:2168
-#: admin/options.php:2384
-#: admin/options.php:2730
+#: admin/options.php:2154
+#: admin/options.php:2181
+#: admin/options.php:2397
+#: admin/options.php:2743
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr "Opgrader til Pro"
@@ -271,10 +272,12 @@ msgid "unselect"
 msgstr "fravælg"
 
 #: admin/class-list-table-archive.php:22
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:53
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr "Dette var en opdatering af en revision, som stadig er i arbejdsprocessen."
 
 #: admin/class-list-table-archive.php:24
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:54
 msgid "This was an update to a revision which was published after further editing."
 msgstr ""
 "Dette var en opdatering af en revision, der blev offentliggjort efter "
@@ -311,8 +314,8 @@ msgid "Search results for \"%s\""
 msgstr "Søgeresultater for \"%s\""
 
 #: admin/class-list-table-archive.php:540
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -320,7 +323,7 @@ msgid "Delete Revision"
 msgstr "Slet revision"
 
 #: admin/class-list-table-archive.php:581
-#: admin/class-list-table_rvy.php:761
+#: admin/class-list-table_rvy.php:762
 msgid "Post Type"
 msgstr "post type"
 
@@ -351,73 +354,83 @@ msgid "Published Author"
 msgstr "Udgivet forfatter"
 
 #: admin/class-list-table-archive.php:616
-#: admin/class-list-table_rvy.php:927
+#: admin/class-list-table_rvy.php:928
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:265
 msgid "just now"
 msgstr "lige nu"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s minutter siden"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minute ago"
 msgstr "%s minut siden"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hours ago"
 msgstr "%s timer siden"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hour ago"
 msgstr "%s time siden"
 
 #: admin/class-list-table-archive.php:756
 #: functions.php:478
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
 msgid "Scheduled Revision Publication"
 msgstr "Planlagt revisionsudgivelse"
 
 #: admin/class-list-table-archive.php:760
 #: functions.php:482
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
 msgid "Revision Publication"
 msgstr "Revisionsudgivelse"
 
 #: admin/class-list-table-archive.php:770
 #: functions.php:492
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:225
 #, php-format
 msgid "Edit of %s"
 msgstr "Redigering af %s"
 
 #: admin/class-list-table-archive.php:777
 #: functions.php:499
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:228
 msgid "Edit of published Revision"
 msgstr "Redigering af offentliggjort revision"
 
 #: admin/class-list-table-archive.php:780
 #: functions.php:502
 #: functions.php:565
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:231
 msgid "Direct Edit"
 msgstr "Direkte redigering"
 
 #: admin/class-list-table-archive.php:839
-#: admin/class-list-table_rvy.php:1467
+#: admin/class-list-table_rvy.php:1468
 msgid "All Post Types"
 msgstr "Alle indlægstyper"
 
 #: admin/class-list-table-archive.php:872
-#: admin/class-list-table_rvy.php:1502
+#: admin/class-list-table_rvy.php:1503
 msgid "All Revision Authors"
 msgstr "Alle revisionsforfattere"
 
 #: admin/class-list-table-archive.php:906
-#: admin/class-list-table_rvy.php:1537
+#: admin/class-list-table_rvy.php:1538
 msgid "All Revision Dates"
 msgstr "Alle revisionsdatoer"
 
@@ -430,17 +443,17 @@ msgid "All Approvers"
 msgstr "Alle godkendere"
 
 #: admin/class-list-table-archive.php:1036
-#: admin/class-list-table_rvy.php:1608
+#: admin/class-list-table_rvy.php:1609
 msgid "All Authors"
 msgstr "Alle forfattere"
 
 #: admin/class-list-table-archive.php:1058
-#: admin/class-list-table_rvy.php:1644
+#: admin/class-list-table_rvy.php:1645
 msgid "Reset Filters"
 msgstr "Nulstil filtre"
 
 #: admin/class-list-table-archive.php:1089
-#: admin/options.php:2395
+#: admin/options.php:2408
 msgid "All"
 msgstr "Alle"
 
@@ -454,7 +467,7 @@ msgid "Compare Changes in %s"
 msgstr "Sammenlign ændringer i %s"
 
 #: admin/class-list-table-archive.php:1176
-#: admin/class-list-table_rvy.php:1909
+#: admin/class-list-table_rvy.php:1910
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
@@ -488,85 +501,85 @@ msgstr "Slet tidligere revision"
 msgid "No revisions found."
 msgstr "Ingen revisioner fundet."
 
-#: admin/class-list-table_rvy.php:760
+#: admin/class-list-table_rvy.php:761
 #: admin/options.php:767
 #: admin/options.php:930
 #: admin/post-editor-workflow-ui_rvy.php:31, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: admin/class-list-table_rvy.php:806
+#: admin/class-list-table_rvy.php:807
 msgid "View preview"
 msgstr "Se forhåndsvisning"
 
-#: admin/class-list-table_rvy.php:823, fuzzy
+#: admin/class-list-table_rvy.php:824, fuzzy
 msgid "Y/m/d, g:i:s a"
 msgstr "Y/m/d, g:i:s a"
 
-#: admin/class-list-table_rvy.php:833, fuzzy
+#: admin/class-list-table_rvy.php:834, fuzzy
 msgid "Y/m/d g:i a"
 msgstr "Y/m/d g:i a"
 
-#: admin/class-list-table_rvy.php:840
+#: admin/class-list-table_rvy.php:841
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "Planlagt offentliggørelse: %s"
 
-#: admin/class-list-table_rvy.php:843
+#: admin/class-list-table_rvy.php:844
 #, php-format
 msgid "Requested publication: %s"
 msgstr "Anmodet offentliggørelse: %s"
 
-#: admin/class-list-table_rvy.php:845
+#: admin/class-list-table_rvy.php:846
 msgid "This revision is not scheduled yet. It must be approved."
 msgstr "Denne revision er endnu ikke planlagt. Den skal godkendes."
 
-#: admin/class-list-table_rvy.php:895
-#: admin/history_rvy.php:930
+#: admin/class-list-table_rvy.php:896
+#: admin/history_rvy.php:966
 msgid "No author"
 msgstr "Ingen forfatter"
 
-#: admin/class-list-table_rvy.php:969
+#: admin/class-list-table_rvy.php:970
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "Rediger offentliggjort indlæg"
 
-#: admin/class-list-table_rvy.php:982
+#: admin/class-list-table_rvy.php:983
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "Vis kun revisioner af %s"
 
-#: admin/class-list-table_rvy.php:993
-#: admin/class-list-table_rvy.php:1000
+#: admin/class-list-table_rvy.php:994
+#: admin/class-list-table_rvy.php:1001
 msgid "View published post"
 msgstr "Vis offentliggjort indlæg"
 
-#: admin/class-list-table_rvy.php:1025
-#: visual-compare_rvy.php:105
+#: admin/class-list-table_rvy.php:1026
+#: visual-compare_rvy.php:103
 msgid "Compare Past Revisions"
 msgstr "Sammenlign tidligere revisioner"
 
-#: admin/class-list-table_rvy.php:1026
+#: admin/class-list-table_rvy.php:1027
 msgid "History"
 msgstr "Historik"
 
-#: admin/class-list-table_rvy.php:1307
+#: admin/class-list-table_rvy.php:1308
 msgid "My Activity"
 msgstr "Min aktivitet"
 
-#: admin/class-list-table_rvy.php:1316
+#: admin/class-list-table_rvy.php:1317
 #, php-format
 msgid "All %s"
 msgstr "Alle %s"
 
-#: admin/class-list-table_rvy.php:1406
+#: admin/class-list-table_rvy.php:1407
 msgid "Unschedule"
 msgstr "Fjern planlægning"
 
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1881
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -574,21 +587,21 @@ msgstr "Fjern planlægning"
 msgid "Discard Revision"
 msgstr "Forkast revision"
 
-#: admin/class-list-table_rvy.php:1448
+#: admin/class-list-table_rvy.php:1449
 msgid "All Revision Statuses"
 msgstr "Alle revisionsstatusser"
 
-#: admin/class-list-table_rvy.php:1573
+#: admin/class-list-table_rvy.php:1574
 msgid "All Posts"
 msgstr "Alle indlæg"
 
-#: admin/class-list-table_rvy.php:1858
+#: admin/class-list-table_rvy.php:1859
 #: admin/post-editor-workflow-ui_rvy.php:237
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "Rediger revision"
 
-#: admin/class-list-table_rvy.php:1923
+#: admin/class-list-table_rvy.php:1924
 msgid "Compare Changes"
 msgstr "Sammenlign ændringer"
 
@@ -616,75 +629,75 @@ msgstr "Kopier det ovenstående indhold til udklipsholderen."
 msgid "Compare %s of \"%s\""
 msgstr "Sammenlign %s af \"%s\""
 
-#: admin/history_rvy.php:674
+#: admin/history_rvy.php:710
 #: admin/options.php:1174
 msgid "Post Date"
 msgstr "Indlægsdato"
 
-#: admin/history_rvy.php:675
+#: admin/history_rvy.php:711
 msgid "Post Parent"
 msgstr "Post Forælder"
 
-#: admin/history_rvy.php:676
+#: admin/history_rvy.php:712
 msgid "Menu Order"
 msgstr "Menuordre"
 
-#: admin/history_rvy.php:677
+#: admin/history_rvy.php:713
 msgid "Comment Status"
 msgstr "Kommentarstatus"
 
-#: admin/history_rvy.php:678
+#: admin/history_rvy.php:714
 msgid "Ping Status"
 msgstr "Pingstatus"
 
-#: admin/history_rvy.php:818
+#: admin/history_rvy.php:854
 msgid "Page Template"
 msgstr "Side Skabelon"
 
-#: admin/history_rvy.php:821
+#: admin/history_rvy.php:857
 msgid "Featured Image"
 msgstr "Fremhævet billede"
 
-#: admin/history_rvy.php:825, fuzzy
+#: admin/history_rvy.php:861, fuzzy
 msgid "Beaver Builder Data"
 msgstr "Beaver Builder Data"
 
-#: admin/history_rvy.php:826
+#: admin/history_rvy.php:862
 msgid "Beaver Builder Settings"
 msgstr "Beaver Builder Indstillinger"
 
-#: admin/history_rvy.php:1077
+#: admin/history_rvy.php:1113
 msgid "Scheduled for "
 msgstr "Planlagt til "
 
-#: admin/history_rvy.php:1082
+#: admin/history_rvy.php:1118
 msgid "Requested for "
 msgstr "Anmodet om "
 
-#: admin/history_rvy.php:1087
+#: admin/history_rvy.php:1123
 msgid "Modified "
 msgstr "Ændret "
 
-#: admin/history_rvy.php:1092
+#: admin/history_rvy.php:1128
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s fra nu"
 
-#: admin/history_rvy.php:1103
+#: admin/history_rvy.php:1139
 msgid "M j, Y @ g:i a"
 msgstr "M d, Y @ g:i a"
 
-#: admin/history_rvy.php:1148
+#: admin/history_rvy.php:1184
 msgid "M j, Y @ H:i"
 msgstr "M d, Y @ H:i"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 #: front_rvy.php:546
 #: front_rvy.php:556
 #: front_rvy.php:575
 #: front_rvy.php:606
-#: includes/visual-post-compare/visual-post-compare.php:231
-#: includes/visual-post-compare/visual-post-compare.php:287
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:248
+#: includes/visual-post-compare/visual-post-compare.php:226
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:311
 #: rvy_init-functions.php:349
@@ -693,16 +706,14 @@ msgstr "M d, Y @ H:i"
 #: rvy_init-functions.php:367
 #: rvy_init-functions.php:383
 #: rvy_init-functions.php:384
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Approve"
 msgstr "Godkend"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 msgid "Preview / Approve"
 msgstr "Forhåndsvisning / Godkend"
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1273
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 #: admin/post-editor-workflow-ui_rvy.php:236
@@ -710,15 +721,15 @@ msgstr "Forhåndsvisning / Godkend"
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
-#: admin/history_rvy.php:1331
+#: admin/history_rvy.php:1367
 msgid "Preview / Restore"
 msgstr "Forhåndsvisning / Gendan"
 
-#: admin/history_rvy.php:1338
+#: admin/history_rvy.php:1374
 msgid "Manage"
 msgstr "Administrer"
 
-#: admin/history_rvy.php:1339
+#: admin/history_rvy.php:1375
 msgid "List"
 msgstr "Liste"
 
@@ -1300,12 +1311,12 @@ msgstr "Få PublishPress Statuses Pro"
 
 #: admin/options.php:1047
 #: admin/options.php:1065
-#: admin/options.php:2146
-#: admin/options.php:2164
-#: admin/options.php:2726
-#: admin/options.php:2740
-#: admin/options.php:2750
-#: admin/options.php:2760
+#: admin/options.php:2159
+#: admin/options.php:2177
+#: admin/options.php:2739
+#: admin/options.php:2753
+#: admin/options.php:2763
+#: admin/options.php:2773
 msgid "Learn More"
 msgstr "Lær Mere"
 
@@ -1344,22 +1355,22 @@ msgstr "Bemærk, at arkivering også kan deaktiveres af %1$sPost Type%2$s."
 
 #: admin/options.php:1143
 #: admin/options.php:1314
-#: admin/options.php:1652
-#: admin/options.php:1678
-#: admin/options.php:1704
-#: admin/options.php:1732
-#: admin/options.php:2270
+#: admin/options.php:1670
+#: admin/options.php:1696
+#: admin/options.php:1722
+#: admin/options.php:1750
+#: admin/options.php:2283
 #, php-format
 msgid "%s capability"
 msgstr "%s kapabilitet"
 
 #: admin/options.php:1148
 #: admin/options.php:1319
-#: admin/options.php:1657
-#: admin/options.php:1683
-#: admin/options.php:1709
-#: admin/options.php:1737
-#: admin/options.php:2275
+#: admin/options.php:1675
+#: admin/options.php:1701
+#: admin/options.php:1727
+#: admin/options.php:1755
+#: admin/options.php:2288
 msgid "Assign capability to roles"
 msgstr "Tildel kapabilitet til roller"
 
@@ -1648,23 +1659,37 @@ msgstr "Mærk knappen som enten \"Godkend og Publicer\" eller \"Godkend og Planl
 msgid "This may improve compatibility with some plugins."
 msgstr "Dette kan forbedre kompatibiliteten med nogle plugins."
 
-#: admin/options.php:1664
+#: admin/options.php:1645
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"Deaktiver denne indstilling, hvis visuel sammenligning viser dine ændringer "
+"forkert. Nogle sidebyggerværktøjer og temaer understøtter ikke den nye stil "
+"af WordPress-revisioner."
+
+#: admin/options.php:1651
+msgid "This feature is incompatible with page builder plugins."
+msgstr "Denne funktion er inkompatibel med sidebygger-plugins."
+
+#: admin/options.php:1682
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr "Kontroller adgang til Nye Revisioner med %s."
 
-#: admin/options.php:1670
+#: admin/options.php:1688
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr "Kontroller adgang til Nye Revisioner med manage_revision_queue kapaciteten."
 
-#: admin/options.php:1690
+#: admin/options.php:1708
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr ""
 "Brugere vil have brug for %s for at redigere andres ikke-indsendte "
 "revisioner."
 
-#: admin/options.php:1696
+#: admin/options.php:1714
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
@@ -1672,13 +1697,13 @@ msgstr ""
 "Brugere vil have brug for kapaciteten manage_unsubmitted_revisions for at "
 "redigere andres ikke-indsendte revisioner."
 
-#: admin/options.php:1716
-#: admin/options.php:1744
+#: admin/options.php:1734
+#: admin/options.php:1762
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr "Hvis brugeren ikke kan redigere det offentliggjorte indlæg, kræv %s."
 
-#: admin/options.php:1722
+#: admin/options.php:1740
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
@@ -1686,7 +1711,7 @@ msgstr ""
 "Hvis brugeren ikke kan redigere det offentliggjorte indlæg, kræv "
 "edit_others_revisions kapaciteten."
 
-#: admin/options.php:1750
+#: admin/options.php:1768
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
@@ -1694,7 +1719,7 @@ msgstr ""
 "Hvis brugeren ikke kan redigere det offentliggjorte indlæg, kræv "
 "list_others_revisions kapaciteten."
 
-#: admin/options.php:1755
+#: admin/options.php:1773
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -1702,7 +1727,7 @@ msgstr ""
 "Omgå de ovenstående restriktioner for andres revisioner til den loggede "
 "brugers egne indlæg."
 
-#: admin/options.php:1771
+#: admin/options.php:1784
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -1710,11 +1735,11 @@ msgstr ""
 "Hvis der er oprettet revisioner for en redigerbar side, skal der inkluderes "
 "en flydende revisionsknap i frontend-visninger."
 
-#: admin/options.php:1779
+#: admin/options.php:1792
 msgid "Regenerate \"post has revision\" flags"
 msgstr "Regenerer \"indlæg har revision\" flag."
 
-#: admin/options.php:1782
+#: admin/options.php:1795
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1722,17 +1747,17 @@ msgstr ""
 "Anvend denne vedligeholdelsesoperation, hvis Has Revision labels på Indlæg "
 "/ Sider skærme ikke stemmer overens med listen over Nye Revisioner."
 
-#: admin/options.php:1806
+#: admin/options.php:1819
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "For forbedrede meddelelser, installer %sPublishPress Planner%s."
 
-#: admin/options.php:1819
+#: admin/options.php:1832
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "For forbedrede meddelelser, opdater %sPublishPress Planner%s."
 
-#: admin/options.php:1841
+#: admin/options.php:1854
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -1741,7 +1766,7 @@ msgstr ""
 "Send meddelelser om revisionshandlinger ved hjælp af det tilpasselige "
 "%1$sPublishPress Planner Notifications system%2$s."
 
-#: admin/options.php:1842
+#: admin/options.php:1855
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -1751,7 +1776,7 @@ msgstr ""
 "ved hjælp af det tilpasselige %1$sPublishPress Planner Notifications "
 "system%2$s."
 
-#: admin/options.php:1854
+#: admin/options.php:1867
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -1759,27 +1784,27 @@ msgstr ""
 "Brugere, der matcher Planner > Notifications konfigurationen, får "
 "revisionsmeddelelser kun, hvis de kan redigere det offentliggjorte indlæg."
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Never"
 msgstr "Aldrig"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "By default"
 msgstr "Som standard"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Always"
 msgstr "Altid"
 
-#: admin/options.php:1907
-#: admin/options.php:1954
+#: admin/options.php:1920
+#: admin/options.php:1967
 msgid "select recipients"
 msgstr "vælg modtagere"
 
-#: admin/options.php:1968
+#: admin/options.php:1981
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -1787,55 +1812,55 @@ msgstr ""
 "For at undgå meddelelsesfejl, buffere e-mails til forsinket sending, når "
 "grænserne for minutter, timer eller dage overskrides"
 
-#: admin/options.php:1991
+#: admin/options.php:2004
 msgid "Notification Buffer"
 msgstr "Meddelelsesbuffer"
 
-#: admin/options.php:2019
+#: admin/options.php:2032
 msgid "Notification Log"
 msgstr "Meddelelseslog"
 
-#: admin/options.php:2053
+#: admin/options.php:2066
 msgid "Purge Notification Buffer"
 msgstr "Tøm meddelelsesbuffer"
 
-#: admin/options.php:2064
+#: admin/options.php:2077
 msgid "Truncate Notification Log"
 msgstr "Afkort meddelelseslog"
 
-#: admin/options.php:2070
+#: admin/options.php:2083
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "Sendt i det sidste minut: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2084
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "Sendt i den sidste time: %d / %d"
 
-#: admin/options.php:2072
+#: admin/options.php:2085
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "Sendt i den sidste dag: %d / %d"
 
-#: admin/options.php:2079
+#: admin/options.php:2092
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "Sekunder indtil næste bufferbehandlingstid: %d"
 
-#: admin/options.php:2090
+#: admin/options.php:2103
 msgid "Show Notification Log / Buffer"
 msgstr "Vis meddelelseslog / buffer"
 
-#: admin/options.php:2092
+#: admin/options.php:2105
 msgid "Show with message content"
 msgstr "Vis med beskedindhold"
 
-#: admin/options.php:2114
+#: admin/options.php:2127
 msgid "Ready to enhance your revision notifications?"
 msgstr "Klar til at forbedre dine revisionsmeddelelser?"
 
-#: admin/options.php:2117
+#: admin/options.php:2130
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -1843,54 +1868,54 @@ msgstr ""
 "Opgrader til Revisions Pro for integration med vores PublishPress Planner "
 "Notifications framework."
 
-#: admin/options.php:2123
+#: admin/options.php:2136
 msgid "Customize notification message and subject"
 msgstr "Tilpas meddelelsesbesked og emne"
 
-#: admin/options.php:2126
+#: admin/options.php:2139
 msgid "Notify for a specific post type, category or term"
 msgstr "Underret om en specifik post type, kategori eller term"
 
-#: admin/options.php:2129
+#: admin/options.php:2142
 msgid "Target specific roles, users, or user groups"
 msgstr "Målret specifikke roller, brugere eller brugergrupper"
 
-#: admin/options.php:2132
+#: admin/options.php:2145
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "Med PublishPress Planner Pro kan du sende notifikationer til en Slack-kanal"
 
-#: admin/options.php:2159
-#: admin/options.php:2720
+#: admin/options.php:2172
+#: admin/options.php:2733
 msgid "Pro Feature"
 msgstr "Pro-funktion"
 
-#: admin/options.php:2160
+#: admin/options.php:2173
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr ""
 "Opgrader til Revisions Pro for at låse op for integration af Planner "
 "Notifications."
 
-#: admin/options.php:2161
+#: admin/options.php:2174
 msgid "Customize notification content and recipients for each notification type."
 msgstr "Tilpas meddelelsens indhold og modtagere for hver meddelsetype."
 
-#: admin/options.php:2185
+#: admin/options.php:2198
 msgid "Some themes may block revision preview."
 msgstr "Nogle temaer kan blokere revisionsvisningen."
 
-#: admin/options.php:2202
+#: admin/options.php:2215
 msgid "Published Post Slug"
 msgstr "Udgivet post slug"
 
-#: admin/options.php:2203
+#: admin/options.php:2216
 msgid "Revision Slug"
 msgstr "Revisions slug"
 
-#: admin/options.php:2204
+#: admin/options.php:2217
 msgid "Revision ID only"
 msgstr "Kun revisions-ID"
 
-#: admin/options.php:2219
+#: admin/options.php:2232
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -1898,12 +1923,12 @@ msgstr ""
 "Nogle temaer eller plugins kan kræve Revisions slug eller Revisions ID "
 "linktype for korrekt indlæsning af skabelon og visning af felter."
 
-#: admin/options.php:2228
+#: admin/options.php:2241
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "Revisionsvisningsargumentet er konfigureret ved konstantdefinition: %s"
 
-#: admin/options.php:2235
+#: admin/options.php:2248
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -1912,13 +1937,13 @@ msgstr ""
 "stedet for \"preview\". Eksperimentér for at se, hvad der fungerer bedst "
 "med dit tema."
 
-#: admin/options.php:2239
+#: admin/options.php:2252
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "Nogle temaer kan kræve denne indstilling for korrekt visning af "
 "revisionsvisningen."
 
-#: admin/options.php:2258
+#: admin/options.php:2271
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -1926,14 +1951,14 @@ msgstr ""
 "Dette bør normalt aktiveres, bortset fra for at omgå konflikter med et "
 "andet plugins postmeta-data."
 
-#: admin/options.php:2282
+#: admin/options.php:2295
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "Hvis brugeren ikke kan offentliggøre, kræv %s for at redigere andres "
 "uoffentliggjorte indlæg."
 
-#: admin/options.php:2288
+#: admin/options.php:2301
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -1941,7 +1966,7 @@ msgstr ""
 "Hvis brugeren ikke kan offentliggøre, kræv edit_others_drafts kapabilitet "
 "for at redigere andres uoffentliggjorte indlæg."
 
-#: admin/options.php:2294
+#: admin/options.php:2307
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -1949,20 +1974,20 @@ msgstr ""
 "Hvis postspecifikke tilladelser begrænser eller udvider adgangen til et "
 "indlæg, skal disse tilladelser også gælde for dets revisioner."
 
-#: admin/options.php:2306
+#: admin/options.php:2319
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO kan forhindre opdatering af revisioner på nogle websteder."
 
-#: admin/options.php:2313
+#: admin/options.php:2326
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
 msgstr "WPML Oversættelsesstyring"
 
-#: admin/options.php:2318
+#: admin/options.php:2331
 msgid "Sync \"Needs Update\" flags"
 msgstr "Synkroniser \"Kræver opdatering\" flag"
 
-#: admin/options.php:2322
+#: admin/options.php:2335
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -1971,11 +1996,11 @@ msgstr ""
 "blev opdateret (muligvis ved godkendelse af revision) mere for nylig end "
 "dets oversættelser."
 
-#: admin/options.php:2340
+#: admin/options.php:2353
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "Vis beskrivende overskrifter for PublishPress Revisioner indstillinger."
 
-#: admin/options.php:2358
+#: admin/options.php:2371
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -1984,11 +2009,11 @@ msgstr ""
 "slettet, men kun efter den sidste kopi af Revisioner / Revisioner Pro er "
 "slettet."
 
-#: admin/options.php:2379
+#: admin/options.php:2392
 msgid "Unlock Pro Integrations"
 msgstr "Lås op for Pro-integrationer"
 
-#: admin/options.php:2380
+#: admin/options.php:2393
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -1996,45 +2021,45 @@ msgstr ""
 "Opgrader til Pro-versionen for optimal kompatibilitet og hurtig, "
 "professionel support."
 
-#: admin/options.php:2398
-#: admin/options.php:2651
+#: admin/options.php:2411
+#: admin/options.php:2664
 msgid "Admin"
 msgstr "admin"
 
-#: admin/options.php:2401
-#: admin/options.php:2649, fuzzy
+#: admin/options.php:2414
+#: admin/options.php:2662, fuzzy
 msgid "Builder"
 msgstr "Builder"
 
-#: admin/options.php:2404
-#: admin/options.php:2653, fuzzy
+#: admin/options.php:2417
+#: admin/options.php:2666, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2407, fuzzy
+#: admin/options.php:2420, fuzzy
 msgid "E-Commerce"
 msgstr "E-Commerce"
 
-#: admin/options.php:2410
-#: admin/options.php:2659
+#: admin/options.php:2423
+#: admin/options.php:2672
 msgid "Fields"
 msgstr "Felter"
 
-#: admin/options.php:2414
+#: admin/options.php:2427
 msgid "Multilingual"
 msgstr "Flersproget"
 
-#: admin/options.php:2418
-#: admin/options.php:2655, fuzzy
+#: admin/options.php:2431
+#: admin/options.php:2668, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2421
-#: admin/options.php:2665
+#: admin/options.php:2434
+#: admin/options.php:2678
 msgid "Workflow"
 msgstr "Arbejdsgang"
 
-#: admin/options.php:2503
+#: admin/options.php:2516
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2043,20 +2068,20 @@ msgstr ""
 "netværksomspændende. Uvalgte indstillinger kontrolleres separat på hver "
 "side."
 
-#: admin/options.php:2549
+#: admin/options.php:2562
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "netværksomspændende kontrol af \"%s\""
 
-#: admin/options.php:2576
+#: admin/options.php:2589
 msgid "Save Changes"
 msgstr "Gem ændringer"
 
-#: admin/options.php:2577
+#: admin/options.php:2590
 msgid "Revert to Defaults"
 msgstr "Tilbage til standardindstillinger"
 
-#: admin/options.php:2579
+#: admin/options.php:2592
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2064,61 +2089,61 @@ msgstr ""
 "Alle indstillinger i denne formular (herunder dem på ikke-valgte faner) vil "
 "blive nulstillet til STANDARDINDSTILLINGER. Er du sikker?"
 
-#: admin/options.php:2657, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2661, fuzzy
+#: admin/options.php:2674, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2663, fuzzy
+#: admin/options.php:2676, fuzzy
 msgid "Community"
 msgstr "Community"
 
-#: admin/options.php:2675, fuzzy
+#: admin/options.php:2688, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2680
+#: admin/options.php:2693
 msgid "Supported"
 msgstr "Understøttet"
 
-#: admin/options.php:2683
-#: admin/options.php:2737
+#: admin/options.php:2696
+#: admin/options.php:2750
 msgid "Active Plugin"
 msgstr "Aktiv Plugin"
 
-#: admin/options.php:2695
+#: admin/options.php:2708
 msgid "Supported by PublishPress Revisions"
 msgstr "Understøttet af PublishPress Revisions"
 
-#: admin/options.php:2697
+#: admin/options.php:2710
 msgid "Supported by Revisions Pro"
 msgstr "Understøttet af Revisions Pro"
 
-#: admin/options.php:2710
+#: admin/options.php:2723
 msgid "Integration Active"
 msgstr "Integration Aktiv"
 
-#: admin/options.php:2712
+#: admin/options.php:2725
 msgid "Upgrade to Pro to enable this integration"
 msgstr "Opgrader til Pro for at aktivere denne integration"
 
-#: admin/options.php:2721
+#: admin/options.php:2734
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "Lås op for %s integration for at forbedre din revisionsløsning."
 
-#: admin/options.php:2737
+#: admin/options.php:2750
 msgid "Active Plugin Integration"
 msgstr "Aktiv Plugin Integration"
 
-#: admin/options.php:2747
+#: admin/options.php:2760
 msgid "Supported Plugin Integration"
 msgstr "Understøttet Plugin Integration"
 
-#: admin/options.php:2757
+#: admin/options.php:2770
 msgid "Supported Plugin"
 msgstr "Understøttet Plugin"
 
@@ -2773,7 +2798,8 @@ msgid "This is the Current Revision. %s"
 msgstr "Dette er den nuværende revision. %s"
 
 #: front_rvy.php:673
-#: visual-compare_rvy.php:119
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:179
+#: visual-compare_rvy.php:114
 msgid "Restore"
 msgstr "Gendan"
 
@@ -2847,95 +2873,135 @@ msgstr "Detaljeret dokumentation er også tilgængelig på plugin-webstedet."
 msgid "View Knowledge Base"
 msgstr "Se vidensbase"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:88
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:766
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:108
 msgid "Modified: "
 msgstr "Ændret: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:89
-#: includes/visual-post-compare/visual-post-compare.php:62
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:767
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:110
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Post Date: "
 msgstr "Postdato: "
 
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:112
+#, php-format
+msgid "Author: %s"
+msgstr "Forfatter: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:113
+#, fuzzy, php-format
+msgid "Status: %s"
+msgstr "Status: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:114
+#, php-format
+msgid "Action: %s"
+msgstr "Handling: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:115
+msgid "Current"
+msgstr "Aktuel"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:116
+#, php-format
+msgid "by: %s"
+msgstr "af: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:117
+msgid "Comparison legend"
+msgstr "Sammenligningslegende"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:118
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Added"
+msgstr "Tilføjet"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:119
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Removed"
+msgstr "Fjernet"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:120
+msgid "Modified"
+msgstr "Ændret"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:121
+msgid "Loading comparison..."
+msgstr "Indlæser sammenligning..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:122
+msgid "The target post content has been replaced with the approved content."
+msgstr "Indholdet af målindlægget er blevet erstattet med det godkendte indhold."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:123
+msgid "Classic compare screen"
+msgstr "Klassisk sammenligningsskærm"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:125
+msgid "Visual comparison settings"
+msgstr "Visuelle sammenligningsindstillinger"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:152
 msgid "Past Revision"
 msgstr "Tidligere revision"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:52
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:92
-msgid "Invalid comparison post IDs."
-msgstr "Ugyldige sammenligningspost-ID'er."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:180
+msgid "Restoring"
+msgstr "Gendanner"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:56
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:71
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:96
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:129
-msgid "One of the comparison posts could not be found."
-msgstr "En af sammenligningsposterne kunne ikke findes."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:245
+msgid "Publish"
+msgstr "Udgiv"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:60
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
-msgid "You are not allowed to read both comparison posts."
-msgstr "Du har ikke tilladelse til at læse begge sammenligningsposter."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:246
+msgid "Publishing"
+msgstr "Udgiver"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:100
-msgid "You are not allowed to read the approved post."
-msgstr "Du har ikke tilladelse til at læse den godkendte post."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:249
+msgid "Approving"
+msgstr "Godkender"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:104
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:133
-msgid "You are not allowed to update the target post."
-msgstr "Du har ikke tilladelse til at opdatere målposten."
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:58
+#: includes/visual-post-compare/visual-post-compare.php:180
+msgid "You are not allowed to view the revision."
+msgstr "Du har ikke tilladelse til at se revisionen."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:110
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:139
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:76
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:120
+#: includes/visual-post-compare/visual-post-compare.php:163
+msgid "Invalid revision ID."
+msgstr "Ugyldigt revisions-ID."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:93
 msgid "You are not allowed to approve the revision."
 msgstr "Du har ikke lov til at godkende revisionen."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
-msgid "Revision does not match target post."
-msgstr "Revisionen stemmer ikke overens med målindlægget."
-
-#: includes/visual-post-compare/visual-post-compare.php:156
-msgid ""
-"The comparison URL must contain two different valid post IDs in the from "
-"and to parameters."
-msgstr ""
-"Sammenlignings-URL'en skal indeholde to forskellige gyldige post-ID'er i "
-"fra og til parametrene."
-
-#: includes/visual-post-compare/visual-post-compare.php:163
-msgid "One of the posts in the comparison URL could not be found."
-msgstr "En af posterne i sammenlignings-URL'en kunne ikke findes."
-
-#: includes/visual-post-compare/visual-post-compare.php:178
-#: includes/visual-post-compare/visual-post-compare.php:182
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:189
-#: includes/visual-post-compare/visual-post-compare.php:224
-#: includes/visual-post-compare/visual-post-compare.php:286
+#: includes/visual-post-compare/visual-post-compare.php:176
+#: includes/visual-post-compare/visual-post-compare.php:180
+#: includes/visual-post-compare/visual-post-compare.php:184
+#: includes/visual-post-compare/visual-post-compare.php:192
+#: includes/visual-post-compare/visual-post-compare.php:219
+#: includes/visual-post-compare/visual-post-compare.php:281
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:944
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:998
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Compare Revisions"
 msgstr "Sammenlign Revisioner"
 
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:200
-msgid "You are not allowed to read both posts in this comparison."
-msgstr "Du har ikke tilladelse til at læse begge poster i denne sammenligning."
+#: includes/visual-post-compare/visual-post-compare.php:184
+msgid "You are not allowed to view this comparison."
+msgstr "Du har ikke tilladelse til at se denne sammenligning."
 
-#: includes/visual-post-compare/visual-post-compare.php:189
-msgid "You are not allowed to open this comparison in the editor."
-msgstr "Du har ikke tilladelse til at åbne denne sammenligning i redaktøren."
-
-#: lib/debug.php:117
+#: lib/debug.php:114
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s forespørgsler på %2$s sekunder. %3$s MB brugt."
@@ -3168,7 +3234,7 @@ msgid "Revision Submitted"
 msgstr "Revision indsendt"
 
 #: rvy_init-functions.php:371
-#: visual-compare_rvy.php:181
+#: visual-compare_rvy.php:173
 msgid "Submitted Revisions"
 msgstr "Indsendte revisioner"
 
@@ -3204,7 +3270,7 @@ msgid "Revision Scheduled"
 msgstr "Revision planlagt"
 
 #: rvy_init-functions.php:388
-#: visual-compare_rvy.php:196
+#: visual-compare_rvy.php:188
 msgid "Scheduled Revisions"
 msgstr "Planlagte revisioner"
 
@@ -3264,28 +3330,32 @@ msgstr ""
 "Kapaciteten unfiltered_html er nødvendig for at oprette en revision af "
 "dette indlæg."
 
-#: rvy_init-functions.php:1276
+#: rvy_init-functions.php:1278
 msgid "Revision Workflow"
 msgstr "Revisionsarbejdsgang"
 
-#: visual-compare_rvy.php:93
+#: visual-compare_rvy.php:87
 #, php-format
 msgid "Compare Revisions %s"
 msgstr "Sammenlign revisioner %s"
 
-#: visual-compare_rvy.php:97
+#: visual-compare_rvy.php:91
 msgid "Compare Scheduled Revisions"
 msgstr "Sammenlign planlagte revisioner"
 
-#: visual-compare_rvy.php:100
+#: visual-compare_rvy.php:94
 msgid "Compare Submitted Revisions"
 msgstr "Sammenlign indsendte revisioner"
 
-#: visual-compare_rvy.php:102
-msgid "Compare New Revisions"
-msgstr "Sammenlign nye revisioner"
+#: visual-compare_rvy.php:97
+msgid "Compare Unsubmitted Revisions"
+msgstr "Sammenlign ikke-indsendte revisioner"
 
-#: visual-compare_rvy.php:201
+#: visual-compare_rvy.php:100
+msgid "Compare New Revision"
+msgstr "Sammenlign ny revision"
+
+#: visual-compare_rvy.php:193
 msgid "Scheduled:"
 msgstr "Planlagt:"
 
@@ -3298,20 +3368,6 @@ msgstr "WordPress kerneblokdefinitioner er ikke tilgængelige på denne skærm."
 #: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr "WordPress kerneblokke kunne ikke registreres til sammenligning."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Removed"
-msgstr "Fjernet"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Added"
-msgstr "Tilføjet"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:159
 #: includes/visual-post-compare/visual-post-compare-standalone.js:105
@@ -3347,45 +3403,24 @@ msgstr ""
 msgid "Select comparison post"
 msgstr "Vælg sammenligningsindlæg"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:763
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-#, js-format
-msgid "by %s"
-msgstr "af %s"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:772
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Current"
-msgstr "Aktuel"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:773
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:795
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 #, js-format
 msgid "Post %d"
 msgstr "Indlæg %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:806
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Approving…"
-msgstr "Godkender…"
+#, fuzzy, js-format
+msgid "Revision %d"
+msgstr "Revision %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:908
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:959
 #: includes/visual-post-compare/visual-post-compare-standalone.js:156
 msgid "Unable to load this comparison."
 msgstr "Kan ikke indlæse denne sammenligning."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:157
-msgid "Loading comparison…"
-msgstr "Indlæser sammenligning…"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:929
-#: includes/visual-post-compare/visual-post-compare-standalone.js:159
-msgid "The target post content has been replaced with the approved content."
-msgstr "Indholdet af målindlægget er blevet erstattet med det godkendte indhold."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:933
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:987
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Unable to approve this comparison."
 msgstr "Kan ikke godkende denne sammenligning."
@@ -3396,7 +3431,7 @@ msgid "Revisions"
 msgstr "Revisioner"
 
 #: admin/class-list-table-archive.php:1161
-#: admin/class-list-table_rvy.php:1924
+#: admin/class-list-table_rvy.php:1925
 #: admin/post-edit_rvy.php:192
 #: admin/post-edit_rvy.php:256
 #: admin/post-edit_rvy.php:270
@@ -3404,27 +3439,27 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "Sammenlign"
 
-#: admin/class-list-table_rvy.php:1935
+#: admin/class-list-table_rvy.php:1936
 msgctxt "revisions"
 msgid "Approve"
 msgstr "Godkend"
 
-#: admin/class-list-table_rvy.php:1942
+#: admin/class-list-table_rvy.php:1943
 msgctxt "revisions"
 msgid "Publish"
 msgstr "Udgiv"
 
-#: admin/class-list-table_rvy.php:1951
+#: admin/class-list-table_rvy.php:1952
 msgctxt "revisions"
 msgid "Decline"
 msgstr "Afvis"
 
-#: admin/history_rvy.php:1149, fuzzy
+#: admin/history_rvy.php:1185, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2513
+#: admin/options.php:2526
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"

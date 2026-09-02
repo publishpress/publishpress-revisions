@@ -5,7 +5,7 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 4.0.1
+ * Version: 4.0.2
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Min WP Version: 5.5
@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '4.0.1';
+$pp_revisions_version = '4.0.2';
 
 global $wp_version;
 
@@ -140,7 +140,7 @@ if (false === $revisionary_loaded_by_pro) {
     }
 }
 
-if (isset($_SERVER['SCRIPT_NAME']) && (strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/index-extra.php') || strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'p-admin/update.php'))) {
+if (isset($_SERVER['SCRIPT_NAME']) && (strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'p-admin/index-extra.php') || strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'p-admin/update.php'))) {
 	return;
 }
 
@@ -237,7 +237,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 	function revisionary_load() {
 		global $pp_revisions_version;
 		
-		define('PUBLISHPRESS_REVISIONS_VERSION', '4.0.1');
+		define('PUBLISHPRESS_REVISIONS_VERSION', '4.0.2');
 
 		if ( ! defined( 'RVY_VERSION' ) ) {
 			define( 'RVY_VERSION', PUBLISHPRESS_REVISIONS_VERSION );  // back compat
@@ -265,7 +265,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 			require_once( dirname(__FILE__).'/lib/agapetry_wp_admin_lib.php');
 				
 			// skip WP version check and init operations when a WP plugin auto-update is in progress
-			if (isset($_SERVER['SCRIPT_NAME']) && false !== strpos(esc_url_raw($_SERVER['SCRIPT_NAME']), 'update.php') )
+			if (isset($_SERVER['SCRIPT_NAME']) && false !== strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'update.php') )
 				return;
 		}
 
@@ -274,7 +274,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 		require_once( dirname(__FILE__).'/functions.php');
 
 		// avoid lockout in case of editing plugin via wp-admin
-		if ( defined('RS_DEBUG') && is_admin() && isset($_SERVER['REQUEST_URI']) && ( strpos( urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'p-admin/plugin-editor.php' ) || strpos( urldecode(esc_url_raw($_SERVER['REQUEST_URI'])), 'p-admin/plugins.php' ) ) && false === strpos( esc_url_raw($_SERVER['REQUEST_URI']), 'activate' ) )
+		if ( defined('RS_DEBUG') && is_admin() && isset($_SERVER['REQUEST_URI']) && ( strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'p-admin/plugin-editor.php' ) || strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'p-admin/plugins.php' ) ) && false === strpos( esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'activate' ) )
 			return;
 
 		define('RVY_ABSPATH', __DIR__);

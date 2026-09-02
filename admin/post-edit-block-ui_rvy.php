@@ -31,7 +31,7 @@ if ($_post_id = rvy_detect_post_id()) {
                 if (!empty($_SERVER['REQUEST_URI'])) {
                     if (!get_transient("revisionary-post-edit-redirect-{$_post_id}")) {
                         set_transient("revisionary-post-edit-redirect-{$_post_id}", true, 30);
-                        wp_redirect(esc_url_raw($_SERVER['REQUEST_URI']));
+                        wp_redirect(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])));
                         exit;
                     }
                 }

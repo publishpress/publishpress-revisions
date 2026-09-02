@@ -68,8 +68,8 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			'orderby' 	=> $orderby,
 			'order'		=> $order
 		];
-		if( isset( $_REQUEST['s'] ) && ! empty( trim( sanitize_text_field($_REQUEST['s']) ) ) ) {							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$args['s'] = strtolower( sanitize_text_field( trim( sanitize_text_field($_REQUEST['s']) ) ) );					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( isset( $_REQUEST['s'] ) && ! empty( trim( sanitize_text_field(wp_unslash($_REQUEST['s'])) ) ) ) {							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$args['s'] = strtolower( trim( sanitize_text_field(wp_unslash($_REQUEST['s'])) ) );					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 		if( isset( $_REQUEST['origin_post'] ) && ! empty( $_REQUEST['origin_post'] ) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['origin_post'] = (int) $_REQUEST['origin_post'];										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -81,7 +81,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$args['post_author'] = (int) $_REQUEST['post_author'];										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 		if( isset( $_REQUEST['origin_post_type'] ) && ! empty( $_REQUEST['origin_post_type'] ) ) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$args['origin_post_type'] = sanitize_text_field( $_REQUEST['origin_post_type'] );			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$args['origin_post_type'] = sanitize_text_field( wp_unslash($_REQUEST['origin_post_type']) );			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 		if( isset( $_REQUEST['post_parent'] ) && ! empty( $_REQUEST['post_parent'] ) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['post_parent'] = (int) $_REQUEST['post_parent'];										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -265,14 +265,14 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 	 * @return string
 	 */
 	public function search_in_heading() {
-		if( isset( $_REQUEST['s'] ) && ! empty( trim( sanitize_text_field($_REQUEST['s']) ) ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( isset( $_REQUEST['s'] ) && ! empty( trim( sanitize_text_field(wp_unslash($_REQUEST['s'])) ) ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			echo '<span class="subtitle">';
 			
 			printf(
 				esc_html__( 'Search results for "%s"', 'revisionary' ),
 				esc_html(strtolower(
 					trim(
-						sanitize_text_field( $_REQUEST['s'] )										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						sanitize_text_field( wp_unslash($_REQUEST['s']) )										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					)
 				))
 			);
@@ -392,7 +392,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		// Only when Search input is valid
 		if( isset( $args['s'] ) ) {
 			$query .= $wpdb->prepare(
-				" AND LOWER(r.post_title) LIKE '%s'",
+				" AND LOWER(r.post_title) LIKE %s",
 				'%' . $wpdb->esc_like( $args['s'] ) . '%'
 			);
 		}
@@ -560,7 +560,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		$this->extra_tablenav( $which );
 
 		if (!empty($_SERVER['REQUEST_URI'])) {
-			$_SERVER['REQUEST_URI'] = str_replace('#038;', '&', esc_url_raw($_SERVER['REQUEST_URI']));
+			$_SERVER['REQUEST_URI'] = str_replace('#038;', '&', esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])));
 		}
 
 		$this->pagination( $which );
@@ -704,14 +704,14 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				break;
 
 			case 'post_modified':
-				$url = add_query_arg('revision_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);	// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+				$url = add_query_arg('revision_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), wp_unslash($_SERVER['REQUEST_URI']));	// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 				return '<a href="' . esc_url($url) . '">' . $this->friendly_date($item->post_modified, $item->post_modified_gmt). '</a>';
 
 				break;
 
 			case 'origin_post_date':
 				if ($this->direct_edit) {
-					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), wp_unslash($_SERVER['REQUEST_URI']));  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 					return '<a href="' . esc_url($url) . '">' . $this->friendly_date($item->post_modified, $item->post_modified_gmt). '</a>';
 
 					break;
@@ -724,7 +724,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 						$published_gmt = $item->post_date_gmt;
 					}
 
-					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), $_SERVER['REQUEST_URI']);  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+					$url = add_query_arg('origin_post_date', strtotime(date('Y-m-d', strtotime($item->post_modified))), wp_unslash($_SERVER['REQUEST_URI']));  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 					return '<a href="' . esc_url($url) . '">' . $this->friendly_date(get_date_from_gmt($published_gmt), $published_gmt). '</a>';
 				}
 
@@ -1193,7 +1193,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			}
 		}
 
-		$uri = (isset($_SERVER['REQUEST_URI'])) ? add_query_arg($_REQUEST, esc_url_raw($_SERVER['REQUEST_URI'])) : '';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$uri = (isset($_SERVER['REQUEST_URI'])) ? add_query_arg($_REQUEST, esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) : '';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		$actions['post_filter'] = sprintf(
 			'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',

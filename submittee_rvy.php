@@ -1,5 +1,5 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die();
 	
 
@@ -52,17 +52,17 @@ class Revisionary_Submittee {
 		check_admin_referer( 'rvy-update-options' );
 
 		$default_prefix = ( $customize_defaults ) ? 'default_' : '';
-		
+
 		if (!empty($_POST['all_options'])) {
-			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field($_POST['all_options'])));
+			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options']))));
 
 			foreach ( $reviewed_options as $option_basename ) {
 				if (isset($_POST[$option_basename])) {
 					if (is_array($_POST[$option_basename])) {
-						$value = array_map('sanitize_key', $_POST[$option_basename]);
+						$value = array_map('sanitize_key', wp_unslash($_POST[$option_basename]));
 					} else {
 						if ('revision_editor_bg_color' == $option_basename) {
-							$value = sanitize_hex_color($_POST[$option_basename]);
+							$value = sanitize_hex_color(wp_unslash($_POST[$option_basename]));
 						} elseif (is_numeric($_POST[$option_basename])) {
 							$value = intval($_POST[$option_basename]);
 						} else {
@@ -153,7 +153,7 @@ class Revisionary_Submittee {
 		$default_prefix = ( $customize_defaults ) ? 'default_' : '';
 
 		if (!empty($_POST['all_options'])) {
-			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field($_POST['all_options'])));
+			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options']))));
 			foreach ( $reviewed_options as $option_name ) {
 				rvy_delete_option($default_prefix . $option_name, $sitewide );
 			}
@@ -164,10 +164,10 @@ class Revisionary_Submittee {
 		check_admin_referer( 'rvy-update-options' );
 		
 		//phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$reviewed_options = isset($_POST['rvy_all_movable_options']) ? array_map('sanitize_key', explode(',', $_POST['rvy_all_movable_options'])) : array();
+		$reviewed_options = isset($_POST['rvy_all_movable_options']) ? array_map('sanitize_key', explode(',', wp_unslash($_POST['rvy_all_movable_options']))) : array();
 		
 
-		$options_sitewide = isset($_POST['rvy_options_sitewide']) ? array_map('sanitize_key', (array) $_POST['rvy_options_sitewide']) : array();
+		$options_sitewide = isset($_POST['rvy_options_sitewide']) ? array_map('sanitize_key', (array) wp_unslash($_POST['rvy_options_sitewide'])) : array();
 
 		update_site_option( "rvy_options_sitewide_reviewed", $reviewed_options );
 		update_site_option( "rvy_options_sitewide", $options_sitewide );

@@ -704,7 +704,7 @@ function pp_revisions_get_revision_statuses() {
             );
         }
 
-        $stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
+        $stored_statuses = get_terms(['taxonomy' => 'pp_revision_status', 'hide_empty' => false]);
 
         foreach ($stored_statuses as $status) {
             if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
@@ -747,7 +747,7 @@ function rvy_bulk_apply_revision_statuses() {
         );
     }
 
-    $stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
+    $stored_statuses = get_terms(['taxonomy' => 'pp_revision_status', 'hide_empty' => false]);
 
     foreach ($stored_statuses as $status) {
         if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {

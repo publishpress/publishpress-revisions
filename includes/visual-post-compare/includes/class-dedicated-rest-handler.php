@@ -21,9 +21,8 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 				'permission_callback' => array( __CLASS__, 'comparison_permissions' ),
 				'callback'            => array( __CLASS__, 'comparison_response' ),
 				'args'                => array(
-					'from'       => array( 'required' => true, 'sanitize_callback' => 'absint' ),
-					'to'         => array( 'required' => true, 'sanitize_callback' => 'absint' ),
-					'comparison' => array( 'required' => false, 'sanitize_callback' => 'sanitize_key' ),
+					'revision'   => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+
 				),
 			)
 		);
@@ -36,124 +35,89 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 				'permission_callback' => array( __CLASS__, 'approve_permissions' ),
 				'callback'            => array( __CLASS__, 'approve_response' ),
 				'args'                => array(
-					'from'       => array( 'required' => true, 'sanitize_callback' => 'absint' ),
-					'to'         => array( 'required' => true, 'sanitize_callback' => 'absint' ),
-					'comparison' => array( 'required' => false, 'sanitize_callback' => 'sanitize_key' ),
+					'revision'   => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+
 				),
 			)
 		);
 	}
 
 	public static function comparison_permissions( \WP_REST_Request $request ) {
-		$from = absint( $request['from'] );
-		$to   = absint( $request['to'] );
+		if ( $request['revision'] ) {
+			if (!$current_post_id = wp_is_post_revision($request['revision'])) {
+				if (rvy_in_revision_workflow($request['revision'])) {
+					$current_post_id = rvy_post_id($request['revision']);
+				}
+			}
 
-		if ( ! $from || ! $to || $from === $to ) {
-			return new \WP_Error( 'vpc_invalid_pair', __( 'Invalid comparison post IDs.', 'revisionary' ), array( 'status' => 400 ) );
+			if ( $current_post_id && current_user_can( 'read_post', $current_post_id ) && current_user_can( 'read_post', $request['revision'] ) ) {
+				return true;
+			}
 		}
 
-		if ( ! get_post( $from ) || ! get_post( $to ) ) {
-			return new \WP_Error( 'vpc_missing_post', __( 'One of the comparison posts could not be found.', 'revisionary' ), array( 'status' => 404 ) );
-		}
-
-		if ( ! current_user_can( 'read_post', $from ) || ! current_user_can( 'read_post', $to ) ) {
-			return new \WP_Error( 'vpc_forbidden', __( 'You are not allowed to read both comparison posts.', 'revisionary' ), array( 'status' => 403 ) );
-		}
-
-		return true;
+		return new \WP_Error( 'vpc_forbidden', __( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
 	}
 
 	public static function comparison_response( \WP_REST_Request $request ) {
-		$from = get_post( absint( $request['from'] ) );
-		$to   = get_post( absint( $request['to'] ) );
+		$revision = get_post( $request['revision'] );
 
-		if ( ! $from || ! $to ) {
-			return new \WP_Error( 'vpc_missing_post', __( 'One of the comparison posts could not be found.', 'revisionary' ), array( 'status' => 404 ) );
+		if ( is_wp_error( $revision ) ) {
+			return $revision;
 		}
 
-		if ( ! current_user_can( 'read_post', $from ) || ! current_user_can( 'read_post', $to ) ) {
-			return new \WP_Error( 'vpc_forbidden', __( 'You are not allowed to read both comparison posts.', 'revisionary' ), array( 'status' => 403 ) );
-		}
+		if ( $revision ) {
+			return rest_ensure_response(
+				Visual_Post_Compare_Dedicated_Payload_Builder::build(
+					$revision
 
-		return rest_ensure_response(
-			Visual_Post_Compare_Dedicated_Payload_Builder::build(
-				$from,
-				$to,
-				sanitize_key( (string) $request['comparison'] )
-			)
-		);
+				)
+			);
+		} else {
+			return new \WP_Error( 'vpc_invalid_revision', __( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
+		}
 	}
 
 	public static function approve_permissions( \WP_REST_Request $request ) {
-		$from = absint( $request['from'] );
-		$to   = absint( $request['to'] );
-
-		if ( ! $from || ! $to || $from === $to ) {
-			return new \WP_Error( 'vpc_invalid_pair', __( 'Invalid comparison post IDs.', 'revisionary' ), array( 'status' => 400 ) );
+		if ( $request['revision'] ) {
+			if ($past_revision_parent = wp_is_post_revision($request['revision'])) {
+				if ( current_user_can( 'read_post', $request['revision'] ) && current_user_can( 'edit_post', $past_revision_parent ) ) {
+					return true;
+				}
+			} elseif ( rvy_in_revision_workflow($request['revision']) ) {
+				if ( current_user_can( 'approve_revision', $request['revision'] ) ) {
+					return true;
+				}
+			}
 		}
-
-		if ( ! get_post( $from ) || ! get_post( $to ) ) {
-			return new \WP_Error( 'vpc_missing_post', __( 'One of the comparison posts could not be found.', 'revisionary' ), array( 'status' => 404 ) );
-		}
-
-		if ( ! current_user_can( 'read_post', $to ) ) {
-			return new \WP_Error( 'vpc_forbidden_source', __( 'You are not allowed to read the approved post.', 'revisionary' ), array( 'status' => 403 ) );
-		}
-
-		if ( ! current_user_can( 'edit_post', $from ) ) {
-			return new \WP_Error( 'vpc_forbidden', __( 'You are not allowed to update the target post.', 'revisionary' ), array( 'status' => 403 ) );
-		}
-
-		$past_revision_parent = wp_is_post_revision($to);
-
-		if ( ($past_revision_parent && !current_user_can( 'edit_post', $from )) || (!$past_revision_parent && !current_user_can( 'approve_revision', $to ))) {
-			return new \WP_Error( 'vpc_forbidden', __('You are not allowed to approve the revision.', 'revisionary'), array( 'status' => 403 ) );
-		}
-
-		if (rvy_in_revision_workflow($to) && (rvy_post_id($to) != $from)) {
-			return new \WP_Error( 'vpc_forbidden', __( 'Revision does not match target post.', 'revisionary' ), array( 'status' => 403 ) );
-		}
-
-		if ($past_revision_parent && ($past_revision_parent != $from)) {
-			return new \WP_Error( 'vpc_forbidden', __( 'Revision does not match target post.', 'revisionary' ), array( 'status' => 403 ) );
-		}
-
-		return true;
+			
+		return new \WP_Error( 'vpc_forbidden', __('You are not allowed to approve the revision.', 'revisionary'), array( 'status' => 403 ) );
 	}
 
 	public static function approve_response( \WP_REST_Request $request ) {
-		$from = get_post( absint( $request['from'] ) );
-		$to   = get_post( absint( $request['to'] ) );
+		$revision = get_post( $request['revision'] );
 
-		if ( ! $from || ! $to ) {
-			return new \WP_Error( 'vpc_missing_post', __( 'One of the comparison posts could not be found.', 'revisionary' ), array( 'status' => 404 ) );
-		}
-
-		if ( ! current_user_can( 'edit_post', $from->ID ) ) {
-			return new \WP_Error( 'vpc_forbidden', __( 'You are not allowed to update the target post.', 'revisionary' ), array( 'status' => 403 ) );
+		if ( is_wp_error( $revision ) ) {
+			return $revision;
 		}
 		
-		$past_revision_parent = wp_is_post_revision($to->ID);
+		if ( $revision ) {
+			require_once( dirname(REVISIONARY_FILE).'/admin/revision-action_rvy.php' );
+			$result = \rvy_apply_revision($revision->ID);
 
-		if ( ($past_revision_parent && !current_user_can( 'edit_post', $from->ID )) || (!$past_revision_parent && !current_user_can( 'approve_revision', $to->ID ))) {
-			return new \WP_Error( 'vpc_forbidden', __('You are not allowed to approve the revision.', 'revisionary'), array( 'status' => 403 ) );
+			if ( is_wp_error( $result ) ) {
+				return $result;
+			}
+
+			$response = Visual_Post_Compare_Dedicated_Payload_Builder::build(
+				$revision
+
+			);
+
+			$response['approved'] = true;
+
+			return rest_ensure_response( $response );
+		} else {
+			return new \WP_Error( 'vpc_invalid_revision', __( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
 		}
-
-		require_once( dirname(REVISIONARY_FILE).'/admin/revision-action_rvy.php');
-		$result = \rvy_apply_revision($to->ID);
-
-		if ( is_wp_error( $result ) ) {
-			return $result;
-		}
-
-		$from     = get_post( $from->ID );
-		$response = Visual_Post_Compare_Dedicated_Payload_Builder::build(
-			$from,
-			$to,
-			sanitize_key( (string) $request['comparison'] )
-		);
-		$response['approved'] = true;
-
-		return rest_ensure_response( $response );
 	}
 }
