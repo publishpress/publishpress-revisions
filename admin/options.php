@@ -68,9 +68,9 @@ class RvyOptionUI {
 		if (!empty($this->form_options[$tab_name][$section_name]) && in_array($option_name, $this->form_options[$tab_name][$section_name])) {
 			$this->all_options []= $option_name;
 
-			if (!isset($args['val'])) {
-				$return['val'] = rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
-			}
+
+			$return['val'] = (isset($args['val'])) ? $args['val'] : rvy_get_option($option_name, $this->sitewide, $this->customize_defaults, ['bypass_condition_check' => true]);
+
 
 			echo "<div class='agp-vspaced_input'";
 
@@ -1641,6 +1641,24 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		<?php
 		$this->setSubsection('revision-queue');
 
+		if (version_compare($wp_version, '7.0', '>=')) {
+			$hint = esc_html__("Disable this setting if visual comparison shows your changes incorrectly. Some page-builders and themes don't support the new style of WordPress revisions.", 'revisionary');
+			$check_args = [];
+
+			if (!$setting = rvy_use_visual_compare()) {
+				if (rvy_visual_compare_disabled()) {
+					$check_args['disabled'] = true;
+					$hint = esc_html__('This feature is incompatible with page builder plugins.', 'revisionary');
+				}
+			}
+
+			$check_args['val'] = (int) $setting;
+			
+			$this->option_checkbox('visual_compare', $tab, $section, $hint, '', $check_args);
+
+
+		}
+
 		if ( 	// To avoid confusion, don't display any revision settings if pending revisions / scheduled revisions are unavailable
 			$pending_revisions_available || $scheduled_revisions_available ) :
 		
@@ -1759,11 +1777,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$this->option_checkbox( 'view_filters_include_unsubmitted_revisions', $tab, $section, $hint, '' );
 
 			echo '<br>';
-
-			if (version_compare($wp_version, '7.0', '>=')) {
-				$hint = '';
-				$this->option_checkbox('visual_compare', $tab, $section, $hint, '');
-			}
 
 			$hint = '';
 			$this->option_checkbox('admin_menu_pending_count_icon', $tab, $section, $hint, '');
