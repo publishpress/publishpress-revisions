@@ -1,6 +1,23 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.0.2] - 2 Sep 2026
+- Changed : Changed revision comparison query arguments for better clarity
+- Changed : Simplified and clarified revision comparison permission checks
+- Changed : Security hardening for phpcs compliance
+- Added : Visual Compare sidebar displays status of current post
+- Added : Visual Compare sidebar displays approver and publication method for Past Revisions
+- Added : Visual Compare sidebar includes classic compare link
+- Added : Visual Compare sidebar includes settings link
+- Changed : Visual Compare sidebar links open in new window
+- Changed : Caption Visual Compare approve button "Restore" for Past Revisions
+- Changed : Caption Visual Compare approve button "Publish" for Scheduled Revisions
+- Changed : Disable Visual Compare if a page builder plugin is active
+- Fixed : Some Visual Compare strings are not translated
+- Fixed : When an Unsubmitted Revision is loaded for visual comparison, the post's other Unsubmitted Revisions are not available by slider
+- Fixed : After revision approval on Compare Revisions screen, Approve button unavailable until screen is reloaded
+- Fixed : When comparing Scheduled Revisions, current post's date is labeled as "Scheduled"
+
 [4.0.1] - 28 Aug 2026
 - Changed : Styling improvements on Compare Revisions screen
 
