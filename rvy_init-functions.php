@@ -1488,10 +1488,17 @@ function rvy_is_post_author($post, $user = false) {
 	return false;
 }
 
+function rvy_visual_compare_disabled() {
+	return (defined('REVISIONARY_DISABLE_VISUAL_COMPARE') && REVISIONARY_DISABLE_VISUAL_COMPARE)
+	|| (defined('ELEMENTOR_VERSION') && (!defined('REVISIONARY_ELEMENTOR_VISUAL_COMPARE') || ! REVISIONARY_ELEMENTOR_VISUAL_COMPARE))
+	|| (defined('ET_BUILDER_PLUGIN_VERSION') && (!defined('REVISIONARY_DIVI_VISUAL_COMPARE') || ! REVISIONARY_DIVI_VISUAL_COMPARE))
+	|| (defined('FL_BUILDER_VERSION') && (!defined('REVISIONARY_BEAVER_VISUAL_COMPARE') || ! REVISIONARY_BEAVER_VISUAL_COMPARE));
+}
+
 function rvy_use_visual_compare() {
 	global $wp_version;
 
-	return version_compare($wp_version, '7.0', '>=') && rvy_get_option('visual_compare');
+	return version_compare($wp_version, '7.0', '>=') && !rvy_visual_compare_disabled() && rvy_get_option('visual_compare');
 }
 
 function rvy_compare_url($revision, $args = []) {
@@ -1505,7 +1512,15 @@ function rvy_compare_url($revision, $args = []) {
 		$revision_id = (is_object($revision) && isset($revision->ID)) ? $revision->ID : $revision;
 	}
 
-	if (!rvy_use_visual_compare()) {
+	$use_visual = (isset($args['use_visual'])) ? $args['use_visual'] : rvy_use_visual_compare();
+
+	if ($use_visual) {
+		if (empty($post_id)) {
+			$post_id = rvy_post_id($revision_id);
+		}
+
+		$url = admin_url("admin.php?page=rvy-visual-compare&revision=$revision_id");
+	} else {
 		$url = admin_url('revision.php');
 		
 		if (!empty($post_id)) {
@@ -1513,15 +1528,9 @@ function rvy_compare_url($revision, $args = []) {
 		}
 
 		$url = add_query_arg('revision', $revision_id, $url);
+	}
 
 		return $url;
-	} else {
-		if (empty($post_id)) {
-			$post_id = rvy_post_id($revision_id);
-		}
-
-		return admin_url("admin.php?page=rvy-visual-compare&from=$post_id&to=$revision_id");
-	}
 }
 
 function rvy_preview_url($revision, $args = []) {
