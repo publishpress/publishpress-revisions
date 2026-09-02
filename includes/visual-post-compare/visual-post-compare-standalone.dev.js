@@ -532,7 +532,7 @@
 			return null;
 		}
 
-		const selectedId = Number(comparison.selectedId || (comparison.to && comparison.to.id));
+		const selectedId = Number(comparison.selectedId || (comparison.revision && comparison.revision.id));
 		const foundIndex = posts.findIndex((post) => Number(post.id) === selectedId);
 		const selectedIndex = foundIndex >= 0 ? foundIndex : 0;
 		const count = posts.length;
@@ -620,7 +620,7 @@
 		const diffResult = useMemo(() => {
 			try {
 				return {
-					blocks: diffRevisionContent(comparison.to.content || '', comparison.from.content || ''),
+					blocks: diffRevisionContent(comparison.revision.content || '', comparison.current.content || ''),
 					error: null,
 				};
 			} catch (error) {
@@ -778,16 +778,16 @@
 			presentation.showPostDate ? dateLine(post, presentation.postDatePrefix || __('Post Date: ', 'revisionary'), post.postDateLabel || post.postDate, 'is-post-date') : null,
 			presentation.showAuthor !== false ? authorLine(post) : null,
 		].filter(Boolean);
-		const isCurrentSelected = Number(comparison.to.id) === Number(comparison.from.id);
+		const isCurrentSelected = Number(comparison.revision.id) === Number(comparison.current.id);
 		const currentMeta = el('div', { key: 'current' },
 			el('span', { className: 'visual-post-compare-revision__status' }, __('Current', 'revisionary')),
-			el('strong', null, comparison.from.title || sprintf(__('Post %d', 'revisionary'), comparison.from.id)),
-			...details(comparison.from)
+			el('strong', null, comparison.current.title || sprintf(__('Post %d', 'revisionary'), comparison.current.id)),
+			...details(comparison.current)
 		);
 		const revisionMeta = isCurrentSelected ? el('div', {}, '') : el('div', { key: 'revision' },
-			presentation.showRightStatus !== false ? el('span', { className: 'visual-post-compare-revision__status' }, statusCaption(comparison.to) || __('Revision', 'revisionary')) : null,
-			el('strong', null, comparison.to.title || sprintf(__('Post %d', 'revisionary'), comparison.to.id)),
-			...details(comparison.to),
+			presentation.showRightStatus !== false ? el('span', { className: 'visual-post-compare-revision__status' }, 
+			el('strong', null, comparison.revision.title || sprintf(__('Revision %d', 'revisionary'), comparison.revision.id)),
+			...details(comparison.revision),
 			comparison.canApprove
 				? el(Button, {
 					variant: 'primary',
@@ -868,8 +868,8 @@
 							el(
 							'div',
 							{ className: 'editor-styles-wrapper is-root-container is-layout-constrained visual-post-compare-revision__live-preview' },
-							comparison.to.title
-								? el('h1', { className: 'wp-block-post-title visual-post-compare-revision__post-title' }, comparison.to.title)
+							comparison.revision.title
+								? el('h1', { className: 'wp-block-post-title visual-post-compare-revision__post-title' }, comparison.revision.title)
 								: null,
 							el('div', previewProps)
 						)
@@ -887,17 +887,17 @@
 	}
 
 	function normalizeCurrentPostPlacement(comparison) {
-		if (!comparison || !Array.isArray(comparison.posts) || !comparison.from) {
+		if (!comparison || !Array.isArray(comparison.posts) || !comparison.current) {
 			return comparison;
 		}
 
-		const fromId = Number(comparison.from.id);
-		const currentPost = comparison.posts.find((post) => Number(post.id) === fromId);
+		const currentId = Number(comparison.current.id);
+		const currentPost = comparison.posts.find((post) => Number(post.id) === currentId);
 		if (!currentPost) {
 			return comparison;
 		}
 
-		const otherPosts = comparison.posts.filter((post) => Number(post.id) !== fromId);
+		const otherPosts = comparison.posts.filter((post) => Number(post.id) !== currentId);
 		const posts = config.currentPostFirst === false
 			? [...otherPosts, currentPost]
 			: [currentPost, ...otherPosts];
@@ -913,7 +913,7 @@
 
 		useEffect(() => {
 			apiFetch({
-				path: config.restPath + '?from=' + encodeURIComponent(config.from) + '&to=' + encodeURIComponent(config.to) + (config.comparisonKey ? '&comparison=' + encodeURIComponent(config.comparisonKey) : ''),
+				path: config.restPath + '?revision=' + encodeURIComponent(config.revision),
 			})
 				.then((loadedComparison) => setComparison(normalizeCurrentPostPlacement(loadedComparison)))
 				.catch(setError);
@@ -930,7 +930,7 @@
 		}
 
 		const approve = async () => {
-			if (isApproving || !comparison.canApprove || Number(comparison.to.id) === Number(comparison.from.id)) {
+			if (isApproving || !comparison.canApprove || Number(comparison.revision.id) === Number(comparison.current.id)) {
 				return;
 			}
 
@@ -938,7 +938,7 @@
 			setApprovalNotice(null);
 			try {
 				const updatedComparison = await apiFetch({
-					path: config.approveRestPath + '?from=' + encodeURIComponent(config.from) + '&to=' + encodeURIComponent(comparison.to.id) + (config.comparisonKey ? '&comparison=' + encodeURIComponent(config.comparisonKey) : ''),
+					path: config.approveRestPath + '?revision=' + encodeURIComponent(comparison.revision.id),
 					method: 'POST',
 				});
 				setComparison(normalizeCurrentPostPlacement(updatedComparison));
@@ -964,7 +964,7 @@
 				comparison,
 				onSelect: (post) => {
 					setApprovalNotice(null);
-					setComparison({ ...comparison, to: post, selectedId: Number(post.id) });
+					setComparison({ ...comparison, revision: post, selectedId: Number(post.id) });
 				},
 			}),
 			el(RevisionPreview, { comparison, onApprove: approve, isApproving })
