@@ -184,6 +184,13 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			$approver_id = 0;
 
 			if ($published_gmt = get_post_meta($post->ID, '_rvy_published_gmt', true)) {
+				// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+				/*
+				if ($published_gmt && ($published_gmt != $post->post_date_gmt)) {
+					$_post['revision_published'] = self::friendly_date(get_date_from_gmt($published_gmt), $published_gmt);
+				}
+				*/
+
 				$_post['from_revision_workflow'] = get_post_meta($post->ID, '_rvy_prev_revision_status', true);
 				
 				if (!$_post['from_revision_workflow']) {
@@ -243,5 +250,40 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		}
 		
 		return $_post;
+	}
+
+	private static function friendly_date( $time, $time_gmt ) {
+		$timestamp_gmt 	= strtotime($time_gmt);
+		$current_time 	= time();
+		$time_diff		= $current_time - $timestamp_gmt;
+		
+		$timestamp 		= strtotime( $time );
+		$date_format 	= sanitize_text_field( get_option( 'date_format' ) );
+		$time_format 	= sanitize_text_field( get_option( 'time_format' ) );
+
+		if ( $time_diff < 60 ) {
+			$result = esc_html__( 'just now', 'revisionary' );
+
+		} elseif ( $time_diff < 3600 ) {
+			$diff = floor( $time_diff / 60 );
+			
+			$caption = ($diff > 1) ? esc_html__('%s minutes ago', 'revisionary') : esc_html__('%s minute ago', 'revisionary');
+
+			$result = sprintf($caption, $diff);
+
+		} elseif ( $time_diff < 86400 ) {
+			$diff = floor( $time_diff / 3600 );
+			
+			$caption = ($diff > 1) ? esc_html__('%s hours ago', 'revisionary') : esc_html__('%s hour ago', 'revisionary');
+
+			$result = sprintf($caption, $diff);
+
+		} else {
+			$result = date_i18n( "$date_format @ $time_format", $timestamp );
+		}
+
+		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
+
+		return $result;
 	}
 }
