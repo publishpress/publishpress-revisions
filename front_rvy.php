@@ -420,9 +420,9 @@ class RevisionaryFront {
 
 			$can_publish = current_user_can('edit_post', $published_post_id);
 
-			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');
+			load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 
 			$published_url = ($published_post_id) ? get_permalink($published_post_id) : '';
 			$diff_url = rvy_compare_url($revision_id);

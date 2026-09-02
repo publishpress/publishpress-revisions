@@ -17,7 +17,7 @@ class PlannerContentBoard {
                     function($actions, $post_id) {
                         // @todo: support revision trashing
                         if (rvy_in_revision_workflow($post_id)) {
-                            $actions['trash'] = '<a class="submitdelete" href="' . esc_url(get_delete_post_link($post_id, false, true)) . '">' . esc_html__('Delete') . '</a>';
+                            $actions['trash'] = '<a class="submitdelete" href="' . esc_url(get_delete_post_link($post_id, '', true)) . '">' . esc_html__('Delete') . '</a>';
                         }
 
                         return $actions;
@@ -178,7 +178,7 @@ class PlannerContentBoard {
 			static $stored_statuses;
 
 			if (!isset($stored_statuses)) {
-				$stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
+				$stored_statuses = get_terms(['taxonomy' => 'pp_revision_status', 'hide_empty' => false]);
 			}
 
 			foreach ($stored_statuses as $status) {

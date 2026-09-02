@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die();
 
 require_once( dirname(__FILE__).'/lib/agapetry_wp_core_lib.php');
@@ -663,9 +663,9 @@ function rvy_detect_post_id() {
 		$post_id = (int) $_GET['page_id'];			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
 													// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-	} elseif (defined('REST_REQUEST') && REST_REQUEST && isset($_SERVER['REQUEST_URI']) && strpos(esc_url_raw($_SERVER['REQUEST_URI']), 'autosaves')) {
+	} elseif (defined('REST_REQUEST') && REST_REQUEST && isset($_SERVER['REQUEST_URI']) && strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'autosaves')) {
 		require_once( dirname(__FILE__).'/rest_rvy.php' );
-		$post_id = Revisionary_REST::get_id_element(esc_url_raw($_SERVER['REQUEST_URI']), 1);	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+		$post_id = Revisionary_REST::get_id_element(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 1);	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
 	} elseif (defined('DOING_AJAX') && DOING_AJAX) {
 		$post_id = apply_filters('revisionary_detect_id', 0, ['is_ajax' => true]);
@@ -941,8 +941,9 @@ function rvy_apply_custom_default_options() {
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	if ( $results = $wpdb->get_results( 
 		$wpdb->prepare(
-			"SELECT meta_key, meta_value FROM $wpdb->sitemeta WHERE site_id = %d AND meta_key LIKE 'rvy_default_%'", 
-			$wpdb->siteid
+			"SELECT meta_key, meta_value FROM $wpdb->sitemeta WHERE site_id = %d AND meta_key LIKE %s", 
+			$wpdb->siteid,
+			$wpdb->esc_like('rvy_default_') . '%'
 		)	
 	) ) {
 		foreach ( $results as $row ) {
@@ -1007,8 +1008,9 @@ function rvy_retrieve_options( $sitewide = false ) {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		if ( $results = $wpdb->get_results( 
 			$wpdb->prepare(
-				"SELECT meta_key, meta_value FROM $wpdb->sitemeta WHERE site_id = %d AND meta_key LIKE 'rvy_%'",
-				$wpdb->siteid
+				"SELECT meta_key, meta_value FROM $wpdb->sitemeta WHERE site_id = %d AND meta_key LIKE %s",
+				$wpdb->siteid,
+				$wpdb->esc_like('rvy_') . '%'
 			) 	
 		) ) {
 			foreach ( $results as $row ) {
@@ -1349,12 +1351,12 @@ function rvy_init() {
 	} else {		// @todo: fix links instead
 		// fill in the missing args for Pending / Scheduled revision preview link from Edit Posts / Pages
 		if ( isset($_SERVER['HTTP_REFERER']) 																// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-		&& ( false !== strpos( urldecode(esc_url_raw($_SERVER['HTTP_REFERER'])),'p-admin/edit-pages.php') 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-		|| false !== strpos( urldecode(esc_url_raw($_SERVER['HTTP_REFERER'])),'p-admin/edit.php') ) ) {		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+		&& ( false !== strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER']))),'p-admin/edit-pages.php') 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+		|| false !== strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER']))),'p-admin/edit.php') ) ) {		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
 			if ( ! empty($_GET['p']) ) {																	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 				if ( rvy_get_option( 'scheduled_revisions' ) || rvy_get_option( 'pending_revisions' ) ) {
-					if ( $post = get_post( sanitize_text_field($_GET['p']) ) ) {							// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+					if ( $post = get_post( sanitize_text_field(wp_unslash($_GET['p'])) ) ) {							// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 						if (rvy_in_revision_workflow($post)) {
 							$preview_arg = (defined('RVY_PREVIEW_ARG')) ? sanitize_key(constant('RVY_PREVIEW_ARG')) : 'rv_preview';
 							$_GET[$preview_arg] = 1;
@@ -1372,7 +1374,7 @@ function rvy_init() {
 	}
 	
 	if (empty($_GET['action']) || (isset($_GET['action']) && ('publish_scheduled_revisions' != $_GET['action']))) {
-		if (isset($_SERVER['REQUEST_URI']) && ! strpos( esc_url_raw($_SERVER['REQUEST_URI']), 'login.php' ) && rvy_get_option( 'scheduled_revisions', -1, false, ['condition_check' => true] ) 
+		if (isset($_SERVER['REQUEST_URI']) && ! strpos( esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'login.php' ) && rvy_get_option( 'scheduled_revisions', -1, false, ['condition_check' => true] ) 
 		&& !rvy_get_option('scheduled_publish_cron')) {
 		
 			// If a previously requested asynchronous request was ineffective, perform the actions now
@@ -1652,7 +1654,7 @@ function rvy_rest_cache_compat() {
 		return;
 	}
 
-	$uri = esc_url_raw($_SERVER['REQUEST_URI']);
+	$uri = esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']));
 
 	$rest_cache_active = false;
 	foreach(['rvy_ajax_field', 'rvy_ajax_value'] as $param) {
@@ -1682,7 +1684,7 @@ function rvy_rest_cache_skip($skip) {
 		return $skip;
 	}
 
-	$uri = esc_url_raw($_SERVER['REQUEST_URI']);
+	$uri = esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']));
 
 	$uncached_params = ['rvy_ajax_field', 'rvy_ajax_value'];
 

@@ -6,7 +6,7 @@
  * @phpcs:disable WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_is_writable
  */
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die();
 	
 	
@@ -25,9 +25,6 @@ if ( ! function_exists('rvy_errlog') ) {
 		
 		if ( defined('RVY_DEBUG_LOGFILE') )
 			error_log($message . $append, 3, RVY_DEBUG_LOGFILE);
-		
-		elseif ( defined('RVY_ABSPATH') && is_writable(RS_ABSPATH) )
-			error_log($message . $append, 3, RVY_ABSPATH . '/php_debug.txt');
 	}
 }
 

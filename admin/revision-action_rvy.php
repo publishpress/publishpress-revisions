@@ -1,5 +1,5 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die( 'This page cannot be called directly.' );
 
 add_action( '_wp_put_post_revision', 'rvy_review_revision' );
@@ -768,7 +768,7 @@ function rvy_revision_restore() {
 		} elseif ( 'edit' == $_REQUEST['rvy_redirect'] ) {
 			$redirect = add_query_arg( $last_arg, "post.php?post={$post->ID}&action=edit" );
 		} else {
-			$redirect = add_query_arg( $last_arg, esc_url_raw($_REQUEST['rvy_redirect']) );
+			$redirect = add_query_arg( $last_arg, esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) );
 		}
 
 	} while (0);
@@ -1394,8 +1394,8 @@ function rvy_revision_delete() {
 		// before deleting the revision, note its status for redirect
 		wp_delete_post_revision( $revision_id );
 
-		if (!empty($_SERVER['HTTP_REFERER']) && strpos(esc_url_raw($_SERVER['HTTP_REFERER']), 'revisionary-archive')) {
-			$redirect = add_query_arg('deleted', '1', esc_url_raw($_SERVER['HTTP_REFERER']));
+		if (!empty($_SERVER['HTTP_REFERER']) && strpos(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])), 'revisionary-archive')) {
+			$redirect = add_query_arg('deleted', '1', esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])));
 		} else {
 			$redirect = "admin.php?page=revisionary-archive&origin_post={$revision->post_parent}&revision_status={$revision->post_mime_type}&deleted=1";
 		}
@@ -1404,7 +1404,7 @@ function rvy_revision_delete() {
 	} while (0);
 	
 	if ( ! empty( $_GET['return'] ) && ! empty( $_SERVER['HTTP_REFERER'] ) ) {
-		$redirect = str_replace( 'trashed=', 'deleted=', esc_url_raw($_SERVER['HTTP_REFERER']) );
+		$redirect = str_replace( 'trashed=', 'deleted=', esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])) );
 
 	} elseif ( ! $redirect ) {
 		if ( ! empty($post) && is_object($post) && ( 'post' != $post->post_type ) ) {
@@ -1880,8 +1880,8 @@ function rvy_publish_scheduled_revisions($args = []) {
 	if ( ! empty( $_GET['action']) && ( 'publish_scheduled_revisions' == $_GET['action'] ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		exit( 0 );
 	} elseif (!empty($_SERVER['REQUEST_URI'])) {
-		if ( in_array( esc_url_raw($_SERVER['REQUEST_URI']), $revised_uris ) ) {
-			wp_redirect( esc_url(esc_url_raw($_SERVER['REQUEST_URI'])) );  // if one of the revised pages is being accessed now, redirect back so revision is published on first access
+		if ( in_array( esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $revised_uris ) ) {
+			wp_redirect( esc_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) );  // if one of the revised pages is being accessed now, redirect back so revision is published on first access
 			exit;
 		}
 	}

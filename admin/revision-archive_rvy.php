@@ -53,7 +53,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	foreach ( $bulk_counts as $message => $count ) {
 		if ( $message == 'trashed' && isset( $_REQUEST['ids'] ) 								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		) {
-			$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field($_REQUEST['ids']));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			
 			echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo') . '</a> ';
 		
@@ -68,7 +68,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	unset( $messages );
 
 	if (!empty($_SERVER['REQUEST_URI'])) {
-		$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated', 'approved_count', 'published_count', 'deleted', 'trashed', 'untrashed' ), esc_url(esc_url_raw($_SERVER['REQUEST_URI'])) );
+		$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated', 'approved_count', 'published_count', 'deleted', 'trashed', 'untrashed' ), esc_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) );
 	}
 }
 
