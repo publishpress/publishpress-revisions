@@ -158,7 +158,7 @@ class RevisionaryVisualCompare {
                             [
                                 'currentPostFirst' => false,
                                 'restoreButtonCaption' => '',
-                                'showStatus' => false,
+                                'showStatus' => false
                             ]
                         );
                     }
@@ -173,7 +173,7 @@ class RevisionaryVisualCompare {
                             __( 'Submitted Revisions', 'revisionary' ),
                             $pending_revisions,
                             [
-                                'mime_type_status' => !rvy_get_option('permissions_compat_mode'),
+                                'mime_type_status' => !rvy_get_option('permissions_compat_mode')
                             ]
                         );
                     }
@@ -189,7 +189,7 @@ class RevisionaryVisualCompare {
                             $scheduled_revisions,
                             [   
                                 'sort_by' => 'post_date',
-                                'show_post_date' => true,
+                                'slider_post_date' => true,
                                 'post_date_prefix' => __( 'Scheduled:', 'revisionary' ),
                                 'mime_type_status' => !rvy_get_option('permissions_compat_mode'),
                             ]
@@ -275,15 +275,29 @@ class RevisionaryVisualCompare {
 				)
 			);
 		} elseif (rvy_is_revision_status($status)) {
-            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$posts = $wpdb->get_col(
-				$wpdb->prepare(
-					"SELECT ID FROM $wpdb->posts WHERE post_mime_type = %s AND comment_count = %d ORDER BY ID DESC LIMIT %d",
-					$status,
-					$main_post_id,
-					$limit
-				)
-			);
+            if ('future-revision' == $status) {
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                $posts = $wpdb->get_col(
+                    $wpdb->prepare(
+                        "SELECT ID FROM $wpdb->posts WHERE post_mime_type = %s AND comment_count = %d ORDER BY post_date DESC LIMIT %d",
+                        $status,
+                        $main_post_id,
+                        $limit
+                    )
+                );
+
+
+            } else {
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                $posts = $wpdb->get_col(
+                    $wpdb->prepare(
+                        "SELECT ID FROM $wpdb->posts WHERE post_mime_type = %s AND comment_count = %d ORDER BY ID DESC LIMIT %d",
+                        $status,
+                        $main_post_id,
+                        $limit
+                    )
+                );
+            }
 		}
 
 		if (count($posts) > $limit) {
