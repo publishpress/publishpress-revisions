@@ -72,7 +72,7 @@ class RevisionaryVisualCompare {
 
                     return compact('listed', 'comparison_key');
                 }
-                , 10, 3 
+                , 10, 2
             );
 
             add_filter(
