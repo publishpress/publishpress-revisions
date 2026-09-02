@@ -536,7 +536,7 @@
 		const foundIndex = posts.findIndex((post) => Number(post.id) === selectedId);
 		const selectedIndex = foundIndex >= 0 ? foundIndex : 0;
 		const count = posts.length;
-		const usePostDate = presentation.showPostDate === true;
+		const usePostDate = presentation.sliderPostDate === true;
 		const [hasFocus, setHasFocus] = useState(false);
 
 		const sliderDateLabel = (post) => usePostDate
@@ -760,7 +760,7 @@
 		const presentation = comparison.presentation || {};
 		const linkedValue = (post, value) => el(
 			'a',
-			{ href: post.url || '#', className: 'visual-post-compare-revision__date-link' },
+			{ href: post.url || '#', className: 'visual-post-compare-revision__date-link', target: '_blank' },
 			value
 		);
 		const statusCaption = (post) => presentation.mimeTypeStatus ? post.mimeTypeStatusLabel : post.statusLabel;
@@ -768,40 +768,73 @@
 			'div',
 			{ className: 'visual-post-compare-revision__date-row ' + className },
 			el('span', { className: 'visual-post-compare-revision__date-prefix' }, prefix),
-			linkedValue(post, value)
+			post.canEdit ? linkedValue(post, value) : null
 		);
 		const authorLine = (post) => post.authorName
-			? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(__('by %s', 'revisionary'), post.authorName))
+			? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(presentation.authorName, post.authorName))
 			: null;
 		const details = (post) => [
-			presentation.showModified !== false ? dateLine(post, presentation.modifiedPrefix || __('Modified: ', 'revisionary'), post.modifiedLabel || post.modified, 'is-modified-date') : null,
-			presentation.showPostDate ? dateLine(post, presentation.postDatePrefix || __('Post Date: ', 'revisionary'), post.postDateLabel || post.postDate, 'is-post-date') : null,
+			Number(post.id) === Number(comparison.current.id) ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(presentation.currentStatusCaption, post.statusLabel)) : null,
+			presentation.showPostDate ? dateLine(post, Number(post.id) !== Number(comparison.current.id) ? presentation.postDatePrefix : __('Post Date: ', 'revisionary'), post.postDateLabel || post.postDate, 'is-post-date') : null,
+			presentation.showModified !== false ? dateLine(post, presentation.modifiedPrefix, post.modifiedLabel || post.modified, 'is-modified-date') : null,
 			presentation.showAuthor !== false ? authorLine(post) : null,
+			Number(post.id) !== Number(comparison.current.id) && post.revision_action ? el('div', { className: 'visual-post-compare-revision__author visual-post-compare-revision__action' }, post.revision_action) : null,
+			Number(post.id) !== Number(comparison.current.id) && post.revision_published ? dateLine(post, presentation.approvedDatePrefix, post.revision_published, 'is-approved-date') : null,
+			Number(post.id) !== Number(comparison.current.id) && post.approver ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(presentation.approvedByCaption, post.approver)) : null,
+			
+			// @todo: current post status, revision type, approved by
+
 		].filter(Boolean);
 		const isCurrentSelected = Number(comparison.revision.id) === Number(comparison.current.id);
 		const currentMeta = el('div', { key: 'current' },
-			el('span', { className: 'visual-post-compare-revision__status' }, __('Current', 'revisionary')),
+			el('span', { className: 'visual-post-compare-revision__status' }, el(
+				'a',
+				{ href: comparison.current.viewURL || '#', className: 'visual-post-compare-view-link', target: '_blank' },
+				presentation.currentCaption
+			)),
 			el('strong', null, comparison.current.title || sprintf(__('Post %d', 'revisionary'), comparison.current.id)),
 			...details(comparison.current)
 		);
 		const revisionMeta = isCurrentSelected ? el('div', {}, '') : el('div', { key: 'revision' },
 			presentation.showRightStatus !== false ? el('span', { className: 'visual-post-compare-revision__status' }, 
+			comparison.revision.viewURL ? 
+			el(
+				'a',
+				{ href: comparison.revision.viewURL || '#', className: 'visual-post-compare-view-link', target: '_blank' },
+				statusCaption(comparison.revision) || __('Revision', 'revisionary')
+			) : statusCaption(comparison.revision) || __('Revision', 'revisionary')) : null,
 			el('strong', null, comparison.revision.title || sprintf(__('Revision %d', 'revisionary'), comparison.revision.id)),
 			...details(comparison.revision),
-			comparison.canApprove
+			comparison.revision.canApprove
 				? el(Button, {
 					variant: 'primary',
 					className: 'visual-post-compare-revision__approve',
 					onClick: onApprove,
 					isBusy: isApproving,
 					disabled: isApproving,
-				}, isApproving ? __('Approving…', 'revisionary') : config.approveCaption || __('Approve', 'revisionary'))
+				}, isApproving ? comparison.revision.approvingCaption : comparison.revision.approveCaption)
 				: null
 		);
 
+		const classicLink = (post) => el('div', { className: 'visual-post-compare-classic' },
+		el(
+			'a',
+			{ href: post.classicCompareURL || '#', className: 'visual-post-compare-classic-link', target: '_blank' },
+			presentation.classicCompareCaption
+		)
+		);
+
+		const settingsLink = el('div', { className: 'visual-post-settings' },
+		presentation.settingsCaption ? el(
+			'a',
+			{ href: presentation.settingsURL || '#', className: 'visual-post-settings-link', target: '_blank' },
+			presentation.settingsCaption
+		) : null
+		);
+
 		const metaColumns = config.currentPostFirst === false
-			? [revisionMeta, currentMeta]
-			: [currentMeta, revisionMeta];
+			? [revisionMeta, currentMeta, classicLink(comparison.revision), settingsLink]
+			: [currentMeta, revisionMeta, classicLink(comparison.revision), settingsLink];
 
 		const diffMarkerNav = hasCanvasOverflow && markerTrack && diffMarkers.length
 			? el(
@@ -842,10 +875,10 @@
 			{ className: 'visual-post-compare-revision' },
 			el(
 				'div',
-				{ className: 'visual-post-compare-revision__legend', 'aria-label': __('Comparison legend', 'visual-post-compare') },
-				el('span', { className: 'is-added' }, __('Added', 'visual-post-compare')),
-				el('span', { className: 'is-removed' }, __('Removed', 'visual-post-compare')),
-				el('span', { className: 'is-modified' }, __('Modified', 'visual-post-compare'))
+				{ className: 'visual-post-compare-revision__legend', 'aria-label': presentation.legendCaption },
+				el('span', { className: 'is-added' }, presentation.addedCaption),
+				el('span', { className: 'is-removed' }, presentation.removedCaption),
+				el('span', { className: 'is-modified' }, presentation.modifiedCaption)
 			),
 			el(
 				'div',
@@ -880,7 +913,9 @@
 					'aside',
 					{ className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
 					metaColumns[0],
-					metaColumns[1]
+					metaColumns[1],
+					metaColumns[2],
+					metaColumns[3]
 				)
 			)
 		);
@@ -926,11 +961,11 @@
 		}
 
 		if (!comparison) {
-			return el('div', { className: 'visual-post-compare-loading' }, el(Spinner), __('Loading comparison…', 'revisionary'));
+			return el('div', { className: 'visual-post-compare-loading' }, el(Spinner), config.loadingComparisonCaption);
 		}
 
 		const approve = async () => {
-			if (isApproving || !comparison.canApprove || Number(comparison.revision.id) === Number(comparison.current.id)) {
+			if (isApproving || !comparison.revision.canApprove || Number(comparison.revision.id) === Number(comparison.current.id)) {
 				return;
 			}
 
@@ -942,7 +977,10 @@
 					method: 'POST',
 				});
 				setComparison(normalizeCurrentPostPlacement(updatedComparison));
-				setApprovalNotice({ status: 'success', message: __('The target post content has been replaced with the approved content.', 'revisionary') });
+
+				const presentation = comparison.presentation || {};
+
+				setApprovalNotice({ status: 'success', message: presentation.revisionApplied });
 			} catch (approveError) {
 				setApprovalNotice({
 					status: 'error',

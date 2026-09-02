@@ -58,7 +58,8 @@ final class Visual_Post_Compare {
 				'show_right_status'           => true,
 				'mime_type_status'			  => false,
 				'show_modified'               => true,
-				'show_post_date'              => false,
+				'show_post_date'              => true,
+				'slider_post_date'            => false,  // use post_date for slider position label instead of post_modifed
 				'post_date_prefix'            => __('Post Date: ', 'revisionary'),
 				'show_author'                 => true,
 			)
@@ -91,6 +92,7 @@ final class Visual_Post_Compare {
 			'mimeTypeStatus'   => (bool) $args['mime_type_status'],
 			'showModified'     => (bool) $args['show_modified'],
 			'showPostDate'     => (bool) $args['show_post_date'],
+			'sliderPostDate'     => (bool) $args['slider_post_date'],
 			'postDatePrefix'   => (string) $args['post_date_prefix'],
 			'showAuthor'       => (bool) $args['show_author'],
 		);
@@ -277,7 +279,6 @@ final class Visual_Post_Compare {
 					'revision'         => $compare_ids['revision'],
 					'comparisonKey'    => $comparison_key,
 					'headline'		   => is_scalar($headline) ? (string) $headline : esc_html__('Compare Revisions', 'revisionary'),
-					'approveCaption'   => is_scalar($approve_caption) ? (string) $approve_caption : __('Approve', 'revisionary'),
 					'currentPostFirst' => (bool) $current_post_first,
 					'restPath'         => '/' . self::REST_NS . '/comparison',
 					'approveRestPath'  => '/' . self::REST_NS . '/approve',
