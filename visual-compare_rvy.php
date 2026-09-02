@@ -230,7 +230,7 @@ class RevisionaryVisualCompare {
 				}
 
 				if ( false !== strpos( $route_hint, 'rvy-visual-compare/v1' ) 
-				|| ( false !== strpos( $route_hint, '/revisions' ) || (isset( $_SERVER['HTTP_X_VPC_COMPARE'] ) && '1' === (string) $_SERVER['HTTP_X_VPC_COMPARE'] ) )   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
+				|| ( false !== strpos( $route_hint, '/revisions' ) || (isset( $_SERVER['HTTP_X_VPC_COMPARE'] ) && '1' === (string) wp_unslash($_SERVER['HTTP_X_VPC_COMPARE'] ) ) )   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
 				) {
 					add_filter( 
 						'visual_post_compare_editor_slider_posts', 
