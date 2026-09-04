@@ -20,6 +20,7 @@ require_once(dirname(__FILE__).'/utils.php');
 require_once(dirname(__FILE__).'/defaults_rvy.php');
 
 function _rvy_delete_revision($revision_id, $published_post_id) {
+	revisionary_delete_attachment_revision_files($revision_id);
 	revisionary_refresh_revision_flags($published_post_id, ['ignore_revision_ids' => $revision_id]);
 }
 
@@ -1307,12 +1308,24 @@ function rvy_get_manageable_types() {
 	$types = array_diff_key(
 		$types, 
 		array_fill_keys(
-			['attachment', 'psppnotif_workflow', 'tablepress_table', 'acf-field-group', 'acf-field', 'nav_menu_item', 'custom_css', 'customize_changeset', 'wp_block', 'wp_template', 'wp_template_part', 'wp_global_styles', 'wp_navigation'], 
+			['psppnotif_workflow', 'tablepress_table', 'acf-field-group', 'acf-field', 'nav_menu_item', 'custom_css', 'customize_changeset', 'wp_template', 'wp_template_part', 'wp_global_styles', 'wp_navigation'],
 			true
 		)
 	);
 
 	return apply_filters('revisionary_supported_post_types', $types);
+}
+
+function rvy_support_reusable_block_revisions() {
+	if (function_exists('add_post_type_support')) {
+		add_post_type_support('wp_block', 'revisions');
+	}
+}
+
+function rvy_support_attachment_revisions() {
+	if (function_exists('add_post_type_support')) {
+		add_post_type_support('attachment', 'revisions');
+	}
 }
 
 function rvy_is_network_activated($plugin_file = '')

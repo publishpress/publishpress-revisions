@@ -560,8 +560,19 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$locked_types = [];
 		$no_revision_types = [];
 
-		$types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');
-		$type_names = get_post_types(['public' => true, 'show_ui' => true], 'name', 'or');
+		$types = array_merge(
+			get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'),
+			array_intersect_key(
+				$revisionary->getAvailablePrivatePostTypes(),
+				['wp_block' => true]
+			)
+		);
+
+		$type_names = [];
+
+		foreach ($types as $key => $obj) {
+			$type_names[$key] = $obj->label;
+		}
 
 		$_ordered_types = rvy_order_types($type_names);
 
@@ -663,6 +674,10 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			get_post_types(['public' => true, 'show_ui' => true], 'object', 'or'),
 			$revisionary->getAvailablePrivatePostTypes()
 		);
+
+		if ($attachment_type = get_post_type_object('attachment')) {
+			$types['attachment'] = $attachment_type;
+		}
 
 		$type_names = [];
 

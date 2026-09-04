@@ -127,6 +127,9 @@ class Revisionary
 			}
 		}
 
+		rvy_support_reusable_block_revisions();
+		rvy_support_attachment_revisions();
+
 		$this->setPostTypes();
 		$this->setFields();
 		$this->setPostTypesArchive();
@@ -593,7 +596,6 @@ class Revisionary
 
 		$this->enabled_post_types = array_merge($this->enabled_post_types, $enabled_post_types);
 
-		unset($this->enabled_post_types['attachment']);
 		$this->enabled_post_types = array_filter($this->enabled_post_types);
 	}
 	
@@ -610,6 +612,11 @@ class Revisionary
 
 			// by default, enable non-public post types that have type-specific capabilities defined
 			foreach($private_types as $post_type => $type_obj) {
+				if ('wp_block' == $post_type && !isset($hidden_types[$post_type])) {
+					$available_private_types[$post_type] = $type_obj;
+					continue;
+				}
+
 				if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']) && !isset($hidden_types[$post_type]))
 				|| defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
 				) {
@@ -629,7 +636,7 @@ class Revisionary
 	}
 
 	function getHiddenPostTypes() {
- 		return ['attachment' => false, 'psppnotif_workflow' => false, 'tablepress_table' => false, 'acf-field-group' => false, 'acf-field' => false, 'acf-post-type' => false, 'acf-taxonomy' => false, 'nav_menu_item' => false, 'custom_css' => false, 'customize_changeset' => false, 'wp_block' => false, 'wp_template' => false, 'wp_template_part' => false, 'wp_global_styles' => false, 'wp_navigation' => false, 'wp_font_family' => false, 'wp_font_face' => false, 'ppma_boxes' => false, 'ppmacf_field' => false, 'product_variation' => false, 'shop_order_refund' => false, 'wpcf7_contact_form' => false];
+		return ['psppnotif_workflow' => false, 'tablepress_table' => false, 'acf-field-group' => false, 'acf-field' => false, 'acf-post-type' => false, 'acf-taxonomy' => false, 'nav_menu_item' => false, 'custom_css' => false, 'customize_changeset' => false, 'wp_template' => false, 'wp_template_part' => false, 'wp_global_styles' => false, 'wp_navigation' => false, 'wp_font_family' => false, 'wp_font_face' => false, 'ppma_boxes' => false, 'ppmacf_field' => false, 'product_variation' => false, 'shop_order_refund' => false, 'wpcf7_contact_form' => false];
 	}
 
 	function getHiddenPostTypesArchive() {
@@ -637,7 +644,7 @@ class Revisionary
 	}
 
 	private function setHiddenPostTypesArchive() {
-		$this->hidden_post_types_archive = ['attachment' => true, 'tablepress_table' => true, 'acf-field-group' => true, 'acf-field' => true, 'acf-post-type' => true, 'acf-taxonomy' => true, 'nav_menu_item' => true, 'custom_css' => true, 'customize_changeset' => true, 'wp_block' => true, 'wp_template' => true, 'wp_template_part' => true, 'wp_global_styles' => true, 'wp_navigation' => true, 'ppma_boxes' => true, 'ppmacf_field' => true, 'psppnotif_workflow' => true];
+		$this->hidden_post_types_archive = ['attachment' => true, 'tablepress_table' => true, 'acf-field-group' => true, 'acf-field' => true, 'acf-post-type' => true, 'acf-taxonomy' => true, 'nav_menu_item' => true, 'custom_css' => true, 'customize_changeset' => true, 'wp_template' => true, 'wp_template_part' => true, 'wp_global_styles' => true, 'wp_navigation' => true, 'ppma_boxes' => true, 'ppmacf_field' => true, 'psppnotif_workflow' => true];
 	}
 
 	public function setPostTypesArchive() {
@@ -662,6 +669,11 @@ class Revisionary
 
 	            // by default, enable non-public post types that have type-specific capabilities defined
 	            foreach($private_types as $post_type => $type_obj) {
+					if ('wp_block' == $post_type) {
+						$enabled_post_types_archive[$post_type] = true;
+						continue;
+					}
+
 	                if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']))
 	                || defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
 	                ) {
@@ -696,7 +708,6 @@ class Revisionary
 				'nav_menu_item' => true,
 				'custom_css' => true,
 				'customize_changeset' => true,
-				'wp_block' => true,
 				'wp_template' => true,
 				'wp_template_part' => true,
 				'wp_global_styles' => true,
@@ -722,7 +733,7 @@ class Revisionary
 	}
 
 	private function setHiddenPostTypesCopy() {
-		$this->hidden_post_types_copy = ['attachment' => true, 'tablepress_table' => true, 'acf-field-group' => true, 'acf-field' => true, 'acf-post-type' => true, 'acf-taxonomy' => true, 'nav_menu_item' => true, 'custom_css' => true, 'customize_changeset' => true, 'wp_block' => true, 'wp_template' => true, 'wp_template_part' => true, 'wp_global_styles' => true, 'wp_navigation' => true, 'ppma_boxes' => true, 'ppmacf_field' => true, 'psppnotif_workflow' => true];
+		$this->hidden_post_types_copy = ['attachment' => true, 'tablepress_table' => true, 'acf-field-group' => true, 'acf-field' => true, 'acf-post-type' => true, 'acf-taxonomy' => true, 'nav_menu_item' => true, 'custom_css' => true, 'customize_changeset' => true, 'wp_template' => true, 'wp_template_part' => true, 'wp_global_styles' => true, 'wp_navigation' => true, 'ppma_boxes' => true, 'ppmacf_field' => true, 'psppnotif_workflow' => true];
 	}
 
 	public function setPostTypesCopy() {
@@ -747,6 +758,11 @@ class Revisionary
 
 	            // by default, enable non-public post types that have type-specific capabilities defined
 	            foreach($private_types as $post_type => $type_obj) {
+					if ('wp_block' == $post_type) {
+						$enabled_post_types_copy[$post_type] = true;
+						continue;
+					}
+
 	                if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages']))
 	                || defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
 	                ) {
@@ -775,7 +791,6 @@ class Revisionary
 				'nav_menu_item' => true,
 				'custom_css' => true,
 				'customize_changeset' => true,
-				'wp_block' => true,
 				'wp_template' => true,
 				'wp_template_part' => true,
 				'wp_global_styles' => true,

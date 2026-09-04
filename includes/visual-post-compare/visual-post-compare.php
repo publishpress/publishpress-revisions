@@ -321,7 +321,7 @@ final class Visual_Post_Compare {
 		wp_enqueue_script(
 			'rvy-visual-compare',
 			plugins_url( 'visual-post-compare.js', __FILE__ ),
-			array( 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
+			array( 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
 			file_exists( $script_path ) ? filemtime( $script_path ) : '0.11.0',
 			true
 		);
@@ -332,10 +332,68 @@ final class Visual_Post_Compare {
 				array(
 					'currentPostId'      => $post_id,
 					'comparisonSidebars' => $comparison_sidebars,
+					'lastUpdated'        => self::editor_last_updated_data( $post ),
 					'debugMode'			 => defined('SCRIPT_DEBUG') && SCRIPT_DEBUG
 				)
 			) . ';',
 			'before'
+		);
+	}
+
+	/**
+	 * Returns the editor toolbar metadata for the current post update.
+	 *
+	 * @param \WP_Post $post Current editor post.
+	 * @return array
+	 */
+	private static function editor_last_updated_data( \WP_Post $post ) {
+		$modified_gmt = strtotime( $post->post_modified_gmt );
+		$now_gmt      = current_time( 'timestamp', true );
+
+		return array(
+			'label'        => $modified_gmt
+				? sprintf(
+					/* translators: %s: Human-readable time difference, such as "2 minutes". */
+					__( 'Last updated %s ago', 'revisionary' ),
+					human_time_diff( $modified_gmt, $now_gmt )
+				)
+				: __( 'Last updated', 'revisionary' ),
+			'title'        => sprintf(
+				/* translators: %s: Formatted post modified date and time. */
+				__( 'Last updated on %s', 'revisionary' ),
+				mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $post->post_modified, true )
+			),
+			'revisionsUrl' => self::editor_revisions_url( (int) $post->ID ),
+		);
+	}
+
+	/**
+	 * Returns the native editor revisions URL for the latest post revision.
+	 *
+	 * @param int $post_id Current post ID.
+	 * @return string
+	 */
+	private static function editor_revisions_url( $post_id ) {
+		$revisions = wp_get_post_revisions(
+			$post_id,
+			array(
+				'numberposts'    => 1,
+				'orderby'        => 'ID',
+				'order'          => 'DESC',
+				'check_enabled'  => false,
+			)
+		);
+		$revision  = $revisions ? reset( $revisions ) : null;
+
+		return add_query_arg(
+			array_filter(
+				array(
+					'post'     => $post_id,
+					'action'   => 'edit',
+					'revision' => $revision ? (int) $revision->ID : 0,
+				)
+			),
+			admin_url( 'post.php' )
 		);
 	}
 
