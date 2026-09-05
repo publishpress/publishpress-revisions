@@ -71,19 +71,40 @@ class Revisionary
 							return;
 						}
 
-						$revision_status_csv = implode("','", array_map('sanitize_key', array_diff(rvy_revision_statuses(), ['draft-revision'])));
-                        $status_field = (rvy_get_option('permissions_compat_mode')) ? 'post_status' : 'post_mime_type';
+						$revision_statuses = array_values(array_map('sanitize_key', array_diff(rvy_revision_statuses(), ['draft-revision'])));
+						$revision_count = 0;
 
-						if ($revision_count = (int) $wpdb->get_var(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.NotPrepared
-							// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-							apply_filters(						
-								'revisionary_front_count',
-								$wpdb->prepare(
-									"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %d AND r.$status_field IN ('$revision_status_csv')", 	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-									$post_id
-								)
-							)
-						)) {
+						if ($revision_statuses) {
+							$revision_count_args = array_merge([$post_id], $revision_statuses);
+
+							if (rvy_get_option('permissions_compat_mode')) {
+								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+								$revision_count = (int) $wpdb->get_var(
+									$wpdb->prepare(
+										sprintf(
+											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_status IN (%s)",
+											implode(',', array_fill(0, count($revision_statuses), '%s'))
+										),
+										$revision_count_args
+									)
+								);
+							} else {
+								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+								$revision_count = (int) $wpdb->get_var(
+									$wpdb->prepare(
+										sprintf(
+											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_mime_type IN (%s)",
+											implode(',', array_fill(0, count($revision_statuses), '%s'))
+										),
+										$revision_count_args
+									)
+								);
+							}
+						}
+
+						$revision_count = (int) apply_filters('revisionary_front_count', $revision_count, $post_id);
+
+						if ($revision_count) {
 							require_once(dirname(__FILE__).'/front-notice.php' );
 
 							$front_notice = new \PublishPress\Revisions\FrontNotice(['post_id' => $post_id]);
