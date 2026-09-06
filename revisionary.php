@@ -272,6 +272,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 		require_once( dirname(__FILE__).'/classes/PublishPress/Revisionary.php');
 		require_once( dirname(__FILE__).'/rvy_init.php');	// Contains activate, deactivate, init functions. Adds mod_rewrite_rules.
 		require_once( dirname(__FILE__).'/functions.php');
+		require_once( dirname(__FILE__).'/includes/recent-revisions-block/recent-revisions-block.php');
 
 		// avoid lockout in case of editing plugin via wp-admin
 		if ( defined('RS_DEBUG') && is_admin() && isset($_SERVER['REQUEST_URI']) && ( strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'p-admin/plugin-editor.php' ) || strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))), 'p-admin/plugins.php' ) ) && false === strpos( esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), 'activate' ) )
@@ -295,6 +296,8 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 		}
 
 		add_action('init', 'rvy_configuration_late_init', PHP_INT_MAX - 1);
+
+		\PublishPress\Revisions\Recent_Revisions_Block::register_hooks();
 
 		revisionary();
 	}
