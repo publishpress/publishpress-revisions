@@ -633,7 +633,7 @@ class RevisionaryAdmin
 		<div class="pp-pressshack-logo">
 		<a href="https://publishpress.com" target="_blank" rel="noopener noreferrer">
 
-		<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/publishpress-logo.png');?>" />
+		<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/publishpress-logo.png');?>" alt="PublishPress" />
 		</a>
 		</div>
 

@@ -18,7 +18,7 @@ class FrontNotice {
         }
         ?>
         <style>
-        #rvyRevisionIndicator button {
+        #rvyRevisionIndicator a {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,10 +54,10 @@ class FrontNotice {
                 $url = admin_url("admin.php?page=revisionary-q&published_post=$post_id");
                 ?>
                 <span id="rvyRevisionIndicator">
-                <a href="<?php echo esc_url($url);?>" class="button button-secondary"><button>
-                <img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>">
-                <div><?php _e('Revisions', 'revisionary');?></div>
-                </button></a></span>
+                <a href="<?php echo esc_url($url);?>" class="button button-secondary">
+                <img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>" alt="" aria-hidden="true">
+                <span><?php _e('Revisions', 'revisionary');?></span>
+                </a></span>
                 <?php
             }
         );
