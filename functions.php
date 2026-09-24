@@ -636,8 +636,14 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
 
     if (version_compare($last_ver, '3.0.1', '<')) {
         // convert pending / scheduled revisions to v3.0 format
-		$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
-		$wpdb->query("UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ('$revision_status_csv')");                             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$revision_statuses     = array_map('sanitize_key', rvy_revision_statuses());
+		$status_placeholders   = implode(', ', array_fill(0, count($revision_statuses), '%s'));
+		$wpdb->query(                                                                                                                                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare(
+				"UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ($status_placeholders)",                                // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$revision_statuses
+			)
+		);
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'draft', post_mime_type = 'draft-revision' WHERE post_status IN ('draft-revision')");       // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'pending', post_mime_type = 'pending-revision' WHERE post_status IN ('pending-revision')"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'pending', post_mime_type = 'future-revision' WHERE post_status IN ('future-revision')");   // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -711,11 +717,22 @@ function pp_revisions_get_revision_statuses() {
 function rvy_bulk_remove_revision_statuses() {
     global $wpdb;
 
-    $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));
+    $revision_statuses   = array_map('sanitize_key', pp_revisions_get_revision_statuses());
+    $status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
-    $wpdb->query("UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ('$revision_status_csv')");                             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+    $wpdb->query(                                                                                                                                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->prepare(
+            "UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ($status_placeholders)",                                // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+            $revision_statuses
+        )
+    );
     
-    $wpdb->query("UPDATE $wpdb->posts SET post_status = 'pending' WHERE post_status IN ('$revision_status_csv') AND post_status != 'draft-revision'");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+    $wpdb->query(                                                                                                                                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->prepare(
+            "UPDATE $wpdb->posts SET post_status = 'pending' WHERE post_status IN ($status_placeholders) AND post_status != 'draft-revision'",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+            $revision_statuses
+        )
+    );
     
     $wpdb->query("UPDATE $wpdb->posts SET post_status = 'draft' WHERE post_status IN ('draft-revision')");       // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 }
@@ -747,9 +764,15 @@ function rvy_bulk_apply_revision_statuses() {
         }
     }
 
-    $revision_status_csv = implode("','", array_map('sanitize_key', $revision_statuses));
+    $revision_statuses   = array_map('sanitize_key', $revision_statuses);
+    $status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
-    $wpdb->query("UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ('$revision_status_csv')");                          // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared   
+    $wpdb->query(                                                                                                                                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->prepare(
+            "UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ($status_placeholders)",                              // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+            $revision_statuses
+        )
+    );
 }
 
 function pp_revisions_plugin_activation() {
@@ -761,10 +784,16 @@ function pp_revisions_plugin_activation() {
     require_once(dirname(__FILE__).'/functions.php');
 
     if (!defined('REVISIONARY_DISABLE_ACTIVATION_TRASH_QUERY')) {
-        $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));
+        $revision_statuses   = array_map('sanitize_key', pp_revisions_get_revision_statuses());
+        $status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-        $results = $wpdb->get_results("SELECT ID, comment_count FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') AND post_status = 'trash'");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $results = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT ID, comment_count FROM $wpdb->posts WHERE post_mime_type IN ($status_placeholders) AND post_status = 'trash'",           // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                $revision_statuses
+            )
+        );
 
         $trashed_ids = [];
 
@@ -772,13 +801,30 @@ function pp_revisions_plugin_activation() {
             $trashed_ids[$row->comment_count] = $row->ID;
         }
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-        $revision_post_ids = $wpdb->get_col("SELECT comment_count FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv')");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $revision_post_ids = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT comment_count FROM $wpdb->posts WHERE post_mime_type IN ($status_placeholders)",                                      // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                $revision_statuses
+            )
+        );
 
-        $id_csv = implode("','", $revision_post_ids);
+        $revision_post_ids = array_map('intval', $revision_post_ids);
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared
-        $deleted_ids = $wpdb->get_col("SELECT post_id FROM $wpdb->postmeta WHERE post_id NOT IN ('" . $id_csv . "') AND meta_key = '_rvy_base_post_id'");
+        if ($revision_post_ids) {
+            $id_placeholders = implode(', ', array_fill(0, count($revision_post_ids), '%d'));
+
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $deleted_ids = $wpdb->get_col(
+                $wpdb->prepare(
+                    "SELECT post_id FROM $wpdb->postmeta WHERE post_id NOT IN ($id_placeholders) AND meta_key = '_rvy_base_post_id'",            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                    $revision_post_ids
+                )
+            );
+        } else {
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $deleted_ids = $wpdb->get_col("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_rvy_base_post_id'");
+        }
 
         foreach (array_merge($trashed_ids, $deleted_ids) as $revision_id) {
             delete_post_meta($revision_id, '_rvy_base_post_id', true);
