@@ -408,7 +408,7 @@ class RevisionaryFront {
 				return;
 			}
 
-			$datef = esc_html__( 'M j, Y @ g:i a' );
+				$datef = esc_html__( 'M j, Y @ g:i a', 'revisionary' );
 			$date = agp_date_i18n( $datef, strtotime( $post->post_date ) );
 
 			$color = '#ccc';

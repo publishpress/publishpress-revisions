@@ -19,7 +19,7 @@ class RevisionaryEditRevisionBlockUI {
 				/* <![CDATA[ */
 				jQuery(document).ready( function($) {
 					setInterval(function() {
-						$("div.edit-post-post-status label:not(:contains('<?php esc_html_e('Enable public preview');?>')):not('[for=public-post-preview-url]')").closest('div').closest('div.components-panel__row').hide();
+						$("div.edit-post-post-status label:not(:contains('<?php esc_html_e('Enable public preview', 'revisionary');?>')):not('[for=public-post-preview-url]')").closest('div').closest('div.components-panel__row').hide();
 					}, 100);
 				});
 				/* ]]> */

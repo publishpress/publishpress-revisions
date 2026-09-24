@@ -77,7 +77,6 @@ function rvy_admin_init() {
 			$customize_defaults = isset($_POST['rvy_options_customize_defaults']);
 			$handler->handle_submission( 'default', $sitewide, $customize_defaults );
 		}
-		
 	} elseif (isset($_REQUEST['action2']) && !empty($_REQUEST['page']) && ('revisionary-archive' == $_REQUEST['page']) && !empty($_REQUEST['post']) && rvy_get_option('revision_archive_deletion')) {
 		$doaction = (!empty($_REQUEST['action']) && !is_numeric($_REQUEST['action'])) ? sanitize_key($_REQUEST['action']) : sanitize_key($_REQUEST['action2']);
 
@@ -115,8 +114,8 @@ function rvy_admin_init() {
 						wp_die( esc_html__('Sorry, you are not allowed to delete this revision.', 'revisionary') );
 					} 
 	
-					if ( !wp_delete_post_revision($post_id, true) )
-						wp_die( esc_html__('Error in deleting.') );
+						if ( !wp_delete_post_revision($post_id, true) )
+							wp_die( esc_html__('Error in deleting.', 'revisionary') );
 	
 					$deleted++;
 				}
@@ -362,8 +361,8 @@ function rvy_admin_init() {
 						}
 					}
 
-					if ( !wp_delete_post($post_id, true) )
-						wp_die( esc_html__('Error in deleting.') );
+						if ( !wp_delete_post($post_id, true) )
+							wp_die( esc_html__('Error in deleting.', 'revisionary') );
 	
 					$deleted++;
 				}
@@ -677,4 +676,3 @@ function rvy_get_admin_notice( $message, $args = array() ) {
 
 	return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
 }
-	
