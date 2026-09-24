@@ -1,6 +1,7 @@
 <?php
-if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 require_once( dirname(__FILE__).'/rvy_init-functions.php');
 
@@ -65,8 +66,6 @@ add_action('publish_revision_rvy', '_revisionary_publish_scheduled_cron');
 
 // Action Scheduler hook
 add_action('publish_revision_rvy_action_scheduler', '_revisionary_action_scheduler_publish_scheduled');
-
-//add_action("update_option_rvy_scheduled_publish_cron", '_rvy_existing_schedules_to_cron', 10, 2);
 
 add_action('before_delete_post', 
 	function($delete_post_id) {
@@ -202,4 +201,3 @@ if (defined('WPSEO_VERSION')) {
 foreach(['revisions_per_page', 'revision_archive_per_page'] as $option_val) {
 	add_filter("set_screen_option_{$option_val}", function($screen_option, $option, $value ) {return $value;}, 99, 3);
 }
-

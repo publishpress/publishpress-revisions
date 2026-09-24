@@ -1,7 +1,8 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
- 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 define ('CURRENT_ITEMS_RVY', 'current');
 define ('ELIGIBLE_ITEMS_RVY', 'eligible');
  
