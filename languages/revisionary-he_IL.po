@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-08-27 22:25+0000\n"
+"PO-Revision-Date: 2026-09-02 17:17+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "% 10 == 0) ? 2 : 3)));\n"
@@ -94,7 +94,8 @@ msgstr "לפוסט כבר יש שינוי בתהליך."
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:777
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:804
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:805
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Revision"
 msgstr "שינוי"
@@ -158,7 +159,7 @@ msgstr "שינויים"
 #: admin/options.php:550
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
-#: visual-compare_rvy.php:164
+#: visual-compare_rvy.php:156
 msgid "Past Revisions"
 msgstr "שינויים קודמים"
 
@@ -176,10 +177,10 @@ msgstr "הגדרות"
 #: admin/admin_rvy.php:494
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:535
-#: admin/options.php:2141
-#: admin/options.php:2168
-#: admin/options.php:2384
-#: admin/options.php:2730
+#: admin/options.php:2154
+#: admin/options.php:2181
+#: admin/options.php:2397
+#: admin/options.php:2743
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr "שדרג לגרסה פרו"
@@ -268,10 +269,12 @@ msgid "unselect"
 msgstr "בטל בחירה"
 
 #: admin/class-list-table-archive.php:22
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:53
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr "זוהי עדכון לגרסה שעודנה בתהליך העבודה."
 
 #: admin/class-list-table-archive.php:24
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:54
 msgid "This was an update to a revision which was published after further editing."
 msgstr "זוהי עדכון לגרסה שפורסמה לאחר עריכה נוספת."
 
@@ -306,8 +309,8 @@ msgid "Search results for \"%s\""
 msgstr "תוצאות חיפוש עבור \"%s\""
 
 #: admin/class-list-table-archive.php:540
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -315,7 +318,7 @@ msgid "Delete Revision"
 msgstr "מחק גרסה"
 
 #: admin/class-list-table-archive.php:581
-#: admin/class-list-table_rvy.php:761
+#: admin/class-list-table_rvy.php:762
 msgid "Post Type"
 msgstr "post type"
 
@@ -346,73 +349,83 @@ msgid "Published Author"
 msgstr "מחבר שפורסם"
 
 #: admin/class-list-table-archive.php:616
-#: admin/class-list-table_rvy.php:927
+#: admin/class-list-table_rvy.php:928
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:265
 msgid "just now"
 msgstr "עכשיו"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s דקות לפני"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minute ago"
 msgstr "%s דקה לפני"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hours ago"
 msgstr "%s שעות לפני"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hour ago"
 msgstr "%s שעה לפני"
 
 #: admin/class-list-table-archive.php:756
 #: functions.php:478
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
 msgid "Scheduled Revision Publication"
 msgstr "פרסום תיקון מתוכנן"
 
 #: admin/class-list-table-archive.php:760
 #: functions.php:482
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
 msgid "Revision Publication"
 msgstr "פרסום תיקון"
 
 #: admin/class-list-table-archive.php:770
 #: functions.php:492
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:225
 #, php-format
 msgid "Edit of %s"
 msgstr "עריכה של %s"
 
 #: admin/class-list-table-archive.php:777
 #: functions.php:499
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:228
 msgid "Edit of published Revision"
 msgstr "עריכה של תיקון שפורסם"
 
 #: admin/class-list-table-archive.php:780
 #: functions.php:502
 #: functions.php:565
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:231
 msgid "Direct Edit"
 msgstr "עריכה ישירה"
 
 #: admin/class-list-table-archive.php:839
-#: admin/class-list-table_rvy.php:1467
+#: admin/class-list-table_rvy.php:1468
 msgid "All Post Types"
 msgstr "כל סוגי הפוסטים"
 
 #: admin/class-list-table-archive.php:872
-#: admin/class-list-table_rvy.php:1502
+#: admin/class-list-table_rvy.php:1503
 msgid "All Revision Authors"
 msgstr "כל מחברי התיקונים"
 
 #: admin/class-list-table-archive.php:906
-#: admin/class-list-table_rvy.php:1537
+#: admin/class-list-table_rvy.php:1538
 msgid "All Revision Dates"
 msgstr "כל תאריכי התיקונים"
 
@@ -425,17 +438,17 @@ msgid "All Approvers"
 msgstr "כל המאשרים"
 
 #: admin/class-list-table-archive.php:1036
-#: admin/class-list-table_rvy.php:1608
+#: admin/class-list-table_rvy.php:1609
 msgid "All Authors"
 msgstr "כל המחברים"
 
 #: admin/class-list-table-archive.php:1058
-#: admin/class-list-table_rvy.php:1644
+#: admin/class-list-table_rvy.php:1645
 msgid "Reset Filters"
 msgstr "איפוס מסננים"
 
 #: admin/class-list-table-archive.php:1089
-#: admin/options.php:2395
+#: admin/options.php:2408
 msgid "All"
 msgstr "הכל"
 
@@ -449,7 +462,7 @@ msgid "Compare Changes in %s"
 msgstr "השוואת שינויים ב%s"
 
 #: admin/class-list-table-archive.php:1176
-#: admin/class-list-table_rvy.php:1909
+#: admin/class-list-table_rvy.php:1910
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
@@ -483,85 +496,85 @@ msgstr "מחק גרסה קודמת"
 msgid "No revisions found."
 msgstr "לא נמצאו שינויים."
 
-#: admin/class-list-table_rvy.php:760
+#: admin/class-list-table_rvy.php:761
 #: admin/options.php:767
 #: admin/options.php:930
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "סטטוס"
 
-#: admin/class-list-table_rvy.php:806
+#: admin/class-list-table_rvy.php:807
 msgid "View preview"
 msgstr "צפה בתצוגה מקדימה"
 
-#: admin/class-list-table_rvy.php:823
+#: admin/class-list-table_rvy.php:824
 msgid "Y/m/d, g:i:s a"
 msgstr "ש/ח/ש, g:i:s a"
 
-#: admin/class-list-table_rvy.php:833
+#: admin/class-list-table_rvy.php:834
 msgid "Y/m/d g:i a"
 msgstr "ש/ח/ש g:i a"
 
-#: admin/class-list-table_rvy.php:840
+#: admin/class-list-table_rvy.php:841
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "פרסום מתוכנן: %s"
 
-#: admin/class-list-table_rvy.php:843
+#: admin/class-list-table_rvy.php:844
 #, php-format
 msgid "Requested publication: %s"
 msgstr "פרסום מבוקש: %s"
 
-#: admin/class-list-table_rvy.php:845
+#: admin/class-list-table_rvy.php:846
 msgid "This revision is not scheduled yet. It must be approved."
 msgstr "גרסה זו עדיין לא מתוכננת. היא חייבת להיות מאושרת."
 
-#: admin/class-list-table_rvy.php:895
-#: admin/history_rvy.php:930
+#: admin/class-list-table_rvy.php:896
+#: admin/history_rvy.php:966
 msgid "No author"
 msgstr "אין מחבר"
 
-#: admin/class-list-table_rvy.php:969
+#: admin/class-list-table_rvy.php:970
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "ערוך פוסט שפורסם"
 
-#: admin/class-list-table_rvy.php:982
+#: admin/class-list-table_rvy.php:983
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "הצג רק גרסאות של %s"
 
-#: admin/class-list-table_rvy.php:993
-#: admin/class-list-table_rvy.php:1000
+#: admin/class-list-table_rvy.php:994
+#: admin/class-list-table_rvy.php:1001
 msgid "View published post"
 msgstr "הצג פוסט שפורסם"
 
-#: admin/class-list-table_rvy.php:1025
-#: visual-compare_rvy.php:105
+#: admin/class-list-table_rvy.php:1026
+#: visual-compare_rvy.php:103
 msgid "Compare Past Revisions"
 msgstr "השווה גרסאות קודמות"
 
-#: admin/class-list-table_rvy.php:1026
+#: admin/class-list-table_rvy.php:1027
 msgid "History"
 msgstr "היסטוריה"
 
-#: admin/class-list-table_rvy.php:1307
+#: admin/class-list-table_rvy.php:1308
 msgid "My Activity"
 msgstr "הפעילות שלי"
 
-#: admin/class-list-table_rvy.php:1316
+#: admin/class-list-table_rvy.php:1317
 #, php-format
 msgid "All %s"
 msgstr "כל %s"
 
-#: admin/class-list-table_rvy.php:1406
+#: admin/class-list-table_rvy.php:1407
 msgid "Unschedule"
 msgstr "בטל תכנון"
 
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1881
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -569,21 +582,21 @@ msgstr "בטל תכנון"
 msgid "Discard Revision"
 msgstr "זנח גרסה"
 
-#: admin/class-list-table_rvy.php:1448
+#: admin/class-list-table_rvy.php:1449
 msgid "All Revision Statuses"
 msgstr "כל מצב גרסה"
 
-#: admin/class-list-table_rvy.php:1573
+#: admin/class-list-table_rvy.php:1574
 msgid "All Posts"
 msgstr "כל הפוסטים"
 
-#: admin/class-list-table_rvy.php:1858
+#: admin/class-list-table_rvy.php:1859
 #: admin/post-editor-workflow-ui_rvy.php:237
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "ערוך גרסה"
 
-#: admin/class-list-table_rvy.php:1923
+#: admin/class-list-table_rvy.php:1924
 msgid "Compare Changes"
 msgstr "השווה שינויים"
 
@@ -611,75 +624,75 @@ msgstr "העתק את התוכן שלמעלה ללוח הגזירים."
 msgid "Compare %s of \"%s\""
 msgstr "השווה %s של \"%s\""
 
-#: admin/history_rvy.php:674
+#: admin/history_rvy.php:710
 #: admin/options.php:1174
 msgid "Post Date"
 msgstr "תאריך פוסט"
 
-#: admin/history_rvy.php:675
+#: admin/history_rvy.php:711
 msgid "Post Parent"
 msgstr "פוסט הורה"
 
-#: admin/history_rvy.php:676
+#: admin/history_rvy.php:712
 msgid "Menu Order"
 msgstr "סדר תפריט"
 
-#: admin/history_rvy.php:677
+#: admin/history_rvy.php:713
 msgid "Comment Status"
 msgstr "סטטוס תגובה"
 
-#: admin/history_rvy.php:678
+#: admin/history_rvy.php:714
 msgid "Ping Status"
 msgstr "סטטוס פינג"
 
-#: admin/history_rvy.php:818
+#: admin/history_rvy.php:854
 msgid "Page Template"
 msgstr "תבנית עמוד"
 
-#: admin/history_rvy.php:821
+#: admin/history_rvy.php:857
 msgid "Featured Image"
 msgstr "תמונה מוצגת"
 
-#: admin/history_rvy.php:825
+#: admin/history_rvy.php:861
 msgid "Beaver Builder Data"
 msgstr "נתוני בונה ביבר"
 
-#: admin/history_rvy.php:826
+#: admin/history_rvy.php:862
 msgid "Beaver Builder Settings"
 msgstr "הגדרות בונה ביבר"
 
-#: admin/history_rvy.php:1077
+#: admin/history_rvy.php:1113
 msgid "Scheduled for "
 msgstr "מתוכנן ל"
 
-#: admin/history_rvy.php:1082
+#: admin/history_rvy.php:1118
 msgid "Requested for "
 msgstr "ביקש עבור"
 
-#: admin/history_rvy.php:1087
+#: admin/history_rvy.php:1123
 msgid "Modified "
 msgstr "עודכן"
 
-#: admin/history_rvy.php:1092
+#: admin/history_rvy.php:1128
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s מעכשיו"
 
-#: admin/history_rvy.php:1103, fuzzy
+#: admin/history_rvy.php:1139, fuzzy
 msgid "M j, Y @ g:i a"
 msgstr "M j, Y @ g:i a"
 
-#: admin/history_rvy.php:1148, fuzzy
+#: admin/history_rvy.php:1184, fuzzy
 msgid "M j, Y @ H:i"
 msgstr "M j, Y @ H:i"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 #: front_rvy.php:546
 #: front_rvy.php:556
 #: front_rvy.php:575
 #: front_rvy.php:606
-#: includes/visual-post-compare/visual-post-compare.php:231
-#: includes/visual-post-compare/visual-post-compare.php:287
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:248
+#: includes/visual-post-compare/visual-post-compare.php:226
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:311
 #: rvy_init-functions.php:349
@@ -688,16 +701,14 @@ msgstr "M j, Y @ H:i"
 #: rvy_init-functions.php:367
 #: rvy_init-functions.php:383
 #: rvy_init-functions.php:384
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Approve"
 msgstr "אשר"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 msgid "Preview / Approve"
 msgstr "תצוגה מקדימה / אשר"
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1273
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 #: admin/post-editor-workflow-ui_rvy.php:236
@@ -705,15 +716,15 @@ msgstr "תצוגה מקדימה / אשר"
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
-#: admin/history_rvy.php:1331
+#: admin/history_rvy.php:1367
 msgid "Preview / Restore"
 msgstr "תצוגה מקדימה / שחזר"
 
-#: admin/history_rvy.php:1338
+#: admin/history_rvy.php:1374
 msgid "Manage"
 msgstr "נהל"
 
-#: admin/history_rvy.php:1339
+#: admin/history_rvy.php:1375
 msgid "List"
 msgstr "רשימה"
 
@@ -1283,12 +1294,12 @@ msgstr "קבל את PublishPress Statuses Pro"
 
 #: admin/options.php:1047
 #: admin/options.php:1065
-#: admin/options.php:2146
-#: admin/options.php:2164
-#: admin/options.php:2726
-#: admin/options.php:2740
-#: admin/options.php:2750
-#: admin/options.php:2760
+#: admin/options.php:2159
+#: admin/options.php:2177
+#: admin/options.php:2739
+#: admin/options.php:2753
+#: admin/options.php:2763
+#: admin/options.php:2773
 msgid "Learn More"
 msgstr "למד עוד"
 
@@ -1323,22 +1334,22 @@ msgstr "שימו לב שניתן גם להשבית ארכiving על ידי %1$sP
 
 #: admin/options.php:1143
 #: admin/options.php:1314
-#: admin/options.php:1652
-#: admin/options.php:1678
-#: admin/options.php:1704
-#: admin/options.php:1732
-#: admin/options.php:2270
+#: admin/options.php:1670
+#: admin/options.php:1696
+#: admin/options.php:1722
+#: admin/options.php:1750
+#: admin/options.php:2283
 #, fuzzy, php-format
 msgid "%s capability"
 msgstr "%s capability"
 
 #: admin/options.php:1148
 #: admin/options.php:1319
-#: admin/options.php:1657
-#: admin/options.php:1683
-#: admin/options.php:1709
-#: admin/options.php:1737
-#: admin/options.php:2275
+#: admin/options.php:1675
+#: admin/options.php:1701
+#: admin/options.php:1727
+#: admin/options.php:1755
+#: admin/options.php:2288
 msgid "Assign capability to roles"
 msgstr "שייך יכולות לתפקידים"
 
@@ -1611,21 +1622,34 @@ msgstr "כנה את הכפתור כ \"אשר ופרסם\" או \"אשר ותקצ
 msgid "This may improve compatibility with some plugins."
 msgstr "זה עשוי לשפר את ההתאמה עם כמה תוספים."
 
-#: admin/options.php:1664
+#: admin/options.php:1645
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"כבה את ההגדרה הזו אם השוואת הוויזואלית מראה שהשינויים שלך לא נכונים. כמה "
+"בוני עמודים וערכות נושא לא תומכים בסגנון החדש של שינויים בוורדפרס."
+
+#: admin/options.php:1651
+msgid "This feature is incompatible with page builder plugins."
+msgstr "תכונה זו אינה תואמת לתוספי בונה העמודים."
+
+#: admin/options.php:1682
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr "שלוט בגישה לגרסאות חדשות עם ה %s."
 
-#: admin/options.php:1670
+#: admin/options.php:1688
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr "שלוט בגישה לגרסאות חדשות עם יכולת manage_revision_queue."
 
-#: admin/options.php:1690
+#: admin/options.php:1708
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr "משתמשים יזדקקו ל %s כדי לערוך גרסאות לא מוגשות של אחרים."
 
-#: admin/options.php:1696
+#: admin/options.php:1714
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
@@ -1633,13 +1657,13 @@ msgstr ""
 "משתמשים יזדקקו ליכולת manage_unsubmitted_revisions כדי לערוך גרסאות לא "
 "מוגשות של אחרים."
 
-#: admin/options.php:1716
-#: admin/options.php:1744
+#: admin/options.php:1734
+#: admin/options.php:1762
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr "אם למשתמש אין אפשרות לערוך את הפוסט שפורסם, דרוש את ה %s."
 
-#: admin/options.php:1722
+#: admin/options.php:1740
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
@@ -1647,7 +1671,7 @@ msgstr ""
 "אם למשתמש אין אפשרות לערוך את הפוסט שפורסם, דרוש את יכולת "
 "edit_others_revisions."
 
-#: admin/options.php:1750
+#: admin/options.php:1768
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
@@ -1655,23 +1679,23 @@ msgstr ""
 "אם למשתמש אין אפשרות לערוך את הפוסט שפורסם, דרוש את יכולת "
 "list_others_revisions."
 
-#: admin/options.php:1755
+#: admin/options.php:1773
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
 msgstr "עקוף את ההגבלות הנ\"ל עבור גרסאות של אחרים לפוסטים של המשתמש המחובר."
 
-#: admin/options.php:1771
+#: admin/options.php:1784
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
 msgstr "אם נוצרו גרסאות לדף ניתן לעריכה, כלול כפתור גרסאות צף בתצוגות בחזית."
 
-#: admin/options.php:1779
+#: admin/options.php:1792
 msgid "Regenerate \"post has revision\" flags"
 msgstr "שחזר את דגלי \"פוסט יש גרסה\""
 
-#: admin/options.php:1782
+#: admin/options.php:1795
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1679,17 +1703,17 @@ msgstr ""
 "החל את פעולת התחזוקה הזו אם תוויות Has Revision על מסכי פוסטים / דפים לא "
 "תואמות את רשימת הגרסאות החדשות."
 
-#: admin/options.php:1806
+#: admin/options.php:1819
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "להודעות משופרות, התקן %sPublishPress Planner%s."
 
-#: admin/options.php:1819
+#: admin/options.php:1832
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "כדי לשפר את ההודעות, עדכן %sPublishPress Planner%s."
 
-#: admin/options.php:1841
+#: admin/options.php:1854
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -1698,7 +1722,7 @@ msgstr ""
 "שלח הודעות על פעולה של תיקונים באמצעות מערכת %1$sPublishPress Planner "
 "Notifications%2$s הניתנת להתאמה אישית."
 
-#: admin/options.php:1842
+#: admin/options.php:1855
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -1707,7 +1731,7 @@ msgstr ""
 "שדרג ל-Revisions Pro כדי לשלוח הודעות על פעולה של תיקונים באמצעות מערכת "
 "%1$sPublishPress Planner Notifications%2$s הניתנת להתאמה אישית."
 
-#: admin/options.php:1854
+#: admin/options.php:1867
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -1715,27 +1739,27 @@ msgstr ""
 "משתמשים התואמים את הגדרת Planner > Notifications מקבלים הודעות תיקון רק אם "
 "הם יכולים לערוך את הפוסט שפורסם."
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Never"
 msgstr "לעולם לא"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "By default"
 msgstr "ברירת מחדל"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Always"
 msgstr "תמיד"
 
-#: admin/options.php:1907
-#: admin/options.php:1954
+#: admin/options.php:1920
+#: admin/options.php:1967
 msgid "select recipients"
 msgstr "בחר נמען"
 
-#: admin/options.php:1968
+#: admin/options.php:1981
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -1743,106 +1767,106 @@ msgstr ""
 "כדי למנוע כישלונות בהודעות, אחסן מיילים לשליחה מאוחרת כאשר מגבלות של דקה, "
 "שעה או יום חורגות"
 
-#: admin/options.php:1991
+#: admin/options.php:2004
 msgid "Notification Buffer"
 msgstr "מאגר הודעות"
 
-#: admin/options.php:2019
+#: admin/options.php:2032
 msgid "Notification Log"
 msgstr "יומן הודעות"
 
-#: admin/options.php:2053
+#: admin/options.php:2066
 msgid "Purge Notification Buffer"
 msgstr "נקה את מאגר ההודעות"
 
-#: admin/options.php:2064
+#: admin/options.php:2077
 msgid "Truncate Notification Log"
 msgstr "קצר את יומן ההודעות"
 
-#: admin/options.php:2070
+#: admin/options.php:2083
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "נשלח בדקה האחרונה: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2084
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "נשלח בשעה האחרונה: %d / %d"
 
-#: admin/options.php:2072
+#: admin/options.php:2085
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "נשלח ביום האחרון: %d / %d"
 
-#: admin/options.php:2079
+#: admin/options.php:2092
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "שניות עד לזמן עיבוד הבא של המאגר: %d"
 
-#: admin/options.php:2090
+#: admin/options.php:2103
 msgid "Show Notification Log / Buffer"
 msgstr "הצג את יומן ההודעות / המאגר"
 
-#: admin/options.php:2092
+#: admin/options.php:2105
 msgid "Show with message content"
 msgstr "הצג עם תוכן ההודעה"
 
-#: admin/options.php:2114
+#: admin/options.php:2127
 msgid "Ready to enhance your revision notifications?"
 msgstr "מוכן לשפר את הודעות התיקון שלך?"
 
-#: admin/options.php:2117
+#: admin/options.php:2130
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
 msgstr "שדרגו ל-Revisions Pro כדי לשלב עם מסגרת ההודעות של PublishPress Planner."
 
-#: admin/options.php:2123
+#: admin/options.php:2136
 msgid "Customize notification message and subject"
 msgstr "התאימו אישית את הודעת ההודעה ואת הנושא"
 
-#: admin/options.php:2126
+#: admin/options.php:2139
 msgid "Notify for a specific post type, category or term"
 msgstr "הודיעו על סוג פוסט, קטגוריה או מונח ספציפיים"
 
-#: admin/options.php:2129
+#: admin/options.php:2142
 msgid "Target specific roles, users, or user groups"
 msgstr "מקדו תפקידים, משתמשים או קבוצות משתמשים ספציפיות"
 
-#: admin/options.php:2132
+#: admin/options.php:2145
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "עם PublishPress Planner Pro, שלחו הודעות לערוץ Slack"
 
-#: admin/options.php:2159
-#: admin/options.php:2720
+#: admin/options.php:2172
+#: admin/options.php:2733
 msgid "Pro Feature"
 msgstr "תכונה פרו"
 
-#: admin/options.php:2160
+#: admin/options.php:2173
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr "שדרגו ל-Revisions Pro כדי לפתוח את האינטגרציה של הודעות Planner."
 
-#: admin/options.php:2161
+#: admin/options.php:2174
 msgid "Customize notification content and recipients for each notification type."
 msgstr "התאימו אישית את תוכן ההודעה ואת הנמענים עבור כל סוג הודעה."
 
-#: admin/options.php:2185
+#: admin/options.php:2198
 msgid "Some themes may block revision preview."
 msgstr "חלק מהנושאים עשויים לחסום תצוגה מקדימה של גרסאות."
 
-#: admin/options.php:2202
+#: admin/options.php:2215
 msgid "Published Post Slug"
 msgstr "סלאג פוסט שפורסם"
 
-#: admin/options.php:2203
+#: admin/options.php:2216
 msgid "Revision Slug"
 msgstr "סלאג גרסה"
 
-#: admin/options.php:2204
+#: admin/options.php:2217
 msgid "Revision ID only"
 msgstr "רק מזהה גרסה"
 
-#: admin/options.php:2219
+#: admin/options.php:2232
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -1850,12 +1874,12 @@ msgstr ""
 "חלק מהנושאים או התוספים עשויים לדרוש סוג קישור סלאג גרסה או מזהה גרסה כדי "
 "לטעון תבניות כראוי ולהציג שדות."
 
-#: admin/options.php:2228
+#: admin/options.php:2241
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "הארגומנט של תצוגה מקדימה של גרסה מוגדר על ידי הגדרת קבוע: %s"
 
-#: admin/options.php:2235
+#: admin/options.php:2248
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -1863,13 +1887,13 @@ msgstr ""
 "התאימו את קישורי התצוגה המקדימה להשתמש בארגומנט \"rv_preview\" במקום "
 "\"preview\". נסו לראות מה עובד הכי טוב עם הנושא שלכם."
 
-#: admin/options.php:2239
+#: admin/options.php:2252
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "חלק מהנושאים עשויים לדרוש את ההגדרה הזו כדי להציג תצוגה מקדימה של גרסה "
 "כראוי."
 
-#: admin/options.php:2258
+#: admin/options.php:2271
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -1877,12 +1901,12 @@ msgstr ""
 "זה בדרך כלל צריך להיות מופעל, למעט כדי לעקוף קונפליקטים עם נתוני postmeta "
 "של תוסף אחר."
 
-#: admin/options.php:2282
+#: admin/options.php:2295
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr "אם המשתמש לא יכול לפרסם, דרשו את %s כדי לערוך פוסטים לא מפורסמים של אחרים."
 
-#: admin/options.php:2288
+#: admin/options.php:2301
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -1890,7 +1914,7 @@ msgstr ""
 "אם המשתמש לא יכול לפרסם, דרשו את היכולת edit_others_drafts כדי לערוך פוסטים "
 "לא מפורסמים של אחרים."
 
-#: admin/options.php:2294
+#: admin/options.php:2307
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -1898,20 +1922,20 @@ msgstr ""
 "אם הרשאות ספציפיות לפוסט מגבילות או מרחיבות גישה לפוסט, החל את ההרשאות הללו "
 "גם על הגרסאות שלו."
 
-#: admin/options.php:2306
+#: admin/options.php:2319
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO עשוי למנוע עדכון גרסה באתרי אינטרנט מסוימים."
 
-#: admin/options.php:2313
+#: admin/options.php:2326
 #: includes/CoreAdmin.php:205, fuzzy
 msgid "WPML Translation Management"
 msgstr "WPML Translation Management"
 
-#: admin/options.php:2318
+#: admin/options.php:2331
 msgid "Sync \"Needs Update\" flags"
 msgstr "סנכרן דגלים \"דורש עדכון\""
 
-#: admin/options.php:2322
+#: admin/options.php:2335
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -1919,11 +1943,11 @@ msgstr ""
 "קבע \"דורש עדכון\" עבור כל פוסט עם תרגומים שהועלו (אולי על ידי אישור גרסה) "
 "לאחרונה יותר מהתרגומים שלו."
 
-#: admin/options.php:2340
+#: admin/options.php:2353
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "הצג כותרות תיאוריות עבור הגדרות הגרסאות של PublishPress."
 
-#: admin/options.php:2358
+#: admin/options.php:2371
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -1931,55 +1955,55 @@ msgstr ""
 "הגדרות התוסף, תוכן גרסאות חדשות ונתונים קשורים יימחקו, אך רק לאחר שהעותק "
 "האחרון של גרסאות / גרסאות פרו יימחק."
 
-#: admin/options.php:2379
+#: admin/options.php:2392
 msgid "Unlock Pro Integrations"
 msgstr "שחרר אינטגרציות פרו"
 
-#: admin/options.php:2380
+#: admin/options.php:2393
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
 msgstr "שדרג לגרסה פרו עבור תאימות אופטימלית ותמיכה מקצועית מהירה."
 
-#: admin/options.php:2398
-#: admin/options.php:2651
+#: admin/options.php:2411
+#: admin/options.php:2664
 msgid "Admin"
 msgstr "admin"
 
-#: admin/options.php:2401
-#: admin/options.php:2649, fuzzy
+#: admin/options.php:2414
+#: admin/options.php:2662, fuzzy
 msgid "Builder"
 msgstr "Builder"
 
-#: admin/options.php:2404
-#: admin/options.php:2653, fuzzy
+#: admin/options.php:2417
+#: admin/options.php:2666, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2407, fuzzy
+#: admin/options.php:2420, fuzzy
 msgid "E-Commerce"
 msgstr "E-Commerce"
 
-#: admin/options.php:2410
-#: admin/options.php:2659, fuzzy
+#: admin/options.php:2423
+#: admin/options.php:2672, fuzzy
 msgid "Fields"
 msgstr "Fields"
 
-#: admin/options.php:2414, fuzzy
+#: admin/options.php:2427, fuzzy
 msgid "Multilingual"
 msgstr "Multilingual"
 
-#: admin/options.php:2418
-#: admin/options.php:2655, fuzzy
+#: admin/options.php:2431
+#: admin/options.php:2668, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2421
-#: admin/options.php:2665, fuzzy
+#: admin/options.php:2434
+#: admin/options.php:2678, fuzzy
 msgid "Workflow"
 msgstr "Workflow"
 
-#: admin/options.php:2503
+#: admin/options.php:2516
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -1987,20 +2011,20 @@ msgstr ""
 "ציין אילו הגדרות של PublishPress Revisions יש לשלוט ברשת. הגדרות שלא נבחרו "
 "נשלטות בנפרד בכל אתר."
 
-#: admin/options.php:2549
+#: admin/options.php:2562
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "שליטה ברשת על \"%s\""
 
-#: admin/options.php:2576
+#: admin/options.php:2589
 msgid "Save Changes"
 msgstr "שמור שינויים"
 
-#: admin/options.php:2577
+#: admin/options.php:2590
 msgid "Revert to Defaults"
 msgstr "חזור לברירות מחדל"
 
-#: admin/options.php:2579
+#: admin/options.php:2592
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2008,61 +2032,61 @@ msgstr ""
 "כל ההגדרות בטופס זה (כולל אלו בלשוניות שאינן נבחרות) יוחזרו לברירות המחדל. "
 "האם אתה בטוח? "
 
-#: admin/options.php:2657, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2661, fuzzy
+#: admin/options.php:2674, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2663, fuzzy
+#: admin/options.php:2676, fuzzy
 msgid "Community"
 msgstr "Community"
 
-#: admin/options.php:2675, fuzzy
+#: admin/options.php:2688, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2680, fuzzy
+#: admin/options.php:2693, fuzzy
 msgid "Supported"
 msgstr "Supported"
 
-#: admin/options.php:2683
-#: admin/options.php:2737
+#: admin/options.php:2696
+#: admin/options.php:2750
 msgid "Active Plugin"
 msgstr "תוסף פעיל"
 
-#: admin/options.php:2695
+#: admin/options.php:2708
 msgid "Supported by PublishPress Revisions"
 msgstr "נתמך על ידי PublishPress Revisions"
 
-#: admin/options.php:2697
+#: admin/options.php:2710
 msgid "Supported by Revisions Pro"
 msgstr "נתמך על ידי Revisions Pro"
 
-#: admin/options.php:2710
+#: admin/options.php:2723
 msgid "Integration Active"
 msgstr "אינטגרציה פעילה"
 
-#: admin/options.php:2712
+#: admin/options.php:2725
 msgid "Upgrade to Pro to enable this integration"
 msgstr "שדרג ל-Pro כדי להפעיל אינטגרציה זו"
 
-#: admin/options.php:2721
+#: admin/options.php:2734
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "פתח אינטגרציה של %s כדי לשפר את פתרון השינויים שלך."
 
-#: admin/options.php:2737
+#: admin/options.php:2750
 msgid "Active Plugin Integration"
 msgstr "אינטגרציה של תוסף פעיל"
 
-#: admin/options.php:2747
+#: admin/options.php:2760
 msgid "Supported Plugin Integration"
 msgstr "אינטגרציה של תוסף נתמך"
 
-#: admin/options.php:2757
+#: admin/options.php:2770
 msgid "Supported Plugin"
 msgstr "תוסף נתמך"
 
@@ -2725,7 +2749,8 @@ msgid "This is the Current Revision. %s"
 msgstr "זו הגרסה הנוכחית. %s"
 
 #: front_rvy.php:673
-#: visual-compare_rvy.php:119
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:179
+#: visual-compare_rvy.php:114
 msgid "Restore"
 msgstr "שחזר"
 
@@ -2795,95 +2820,135 @@ msgstr "תיעוד מפורט זמין גם באתר התוסף."
 msgid "View Knowledge Base"
 msgstr "צפה במאגר הידע"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:88
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:766
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:108
 msgid "Modified: "
 msgstr "שונה: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:89
-#: includes/visual-post-compare/visual-post-compare.php:62
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:767
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:110
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Post Date: "
 msgstr "תאריך פרסום: "
 
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:112
+#, php-format
+msgid "Author: %s"
+msgstr "מחבר: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:113
+#, php-format
+msgid "Status: %s"
+msgstr "סטטוס: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:114
+#, php-format
+msgid "Action: %s"
+msgstr "פעולה: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:115
+msgid "Current"
+msgstr "נוכחי"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:116
+#, php-format
+msgid "by: %s"
+msgstr "על ידי: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:117
+msgid "Comparison legend"
+msgstr "אגדת השוואה"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:118
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Added"
+msgstr "נוסף"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:119
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Removed"
+msgstr "הוסר"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:120
+msgid "Modified"
+msgstr "שונה"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:121
+msgid "Loading comparison..."
+msgstr "טוען השוואה..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:122
+msgid "The target post content has been replaced with the approved content."
+msgstr "תוכן הפוסט המיועד הוחלף בתוכן המאושר."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:123
+msgid "Classic compare screen"
+msgstr "מסך השוואה קלאסי"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:125
+msgid "Visual comparison settings"
+msgstr "הגדרות השוואה חזותית"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:152
 msgid "Past Revision"
 msgstr "גרסה קודמת"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:52
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:92
-msgid "Invalid comparison post IDs."
-msgstr "זיהוי פוסטים להשוואה לא תקינים."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:180
+msgid "Restoring"
+msgstr "שחזור"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:56
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:71
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:96
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:129
-msgid "One of the comparison posts could not be found."
-msgstr "אחד מפוסטי ההשוואה לא נמצא."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:245
+msgid "Publish"
+msgstr "פרסם"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:60
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
-msgid "You are not allowed to read both comparison posts."
-msgstr "אינך מורשה לקרוא את שני פוסטי ההשוואה."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:246
+msgid "Publishing"
+msgstr "מפרסם"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:100
-msgid "You are not allowed to read the approved post."
-msgstr "אינך מורשה לקרוא את הפוסט המאושר."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:249
+msgid "Approving"
+msgstr "מאשר"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:104
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:133
-msgid "You are not allowed to update the target post."
-msgstr "אינך מורשה לעדכן את הפוסט המיועד."
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:58
+#: includes/visual-post-compare/visual-post-compare.php:180
+msgid "You are not allowed to view the revision."
+msgstr "אינך מורשה לראות את הגרסה."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:110
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:139
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:76
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:120
+#: includes/visual-post-compare/visual-post-compare.php:163
+msgid "Invalid revision ID."
+msgstr "מזהה גרסה לא חוקי."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:93
 msgid "You are not allowed to approve the revision."
 msgstr "אינך מורשה לאשר את הגרסה."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
-msgid "Revision does not match target post."
-msgstr "הגרסה אינה תואמת את הפוסט המיועד."
-
-#: includes/visual-post-compare/visual-post-compare.php:156
-msgid ""
-"The comparison URL must contain two different valid post IDs in the from "
-"and to parameters."
-msgstr ""
-"כתובת ה-URL להשוואה חייבת להכיל שני זיהויי פוסטים שונים ותקפים בפרמטרים "
-"from ו-to."
-
-#: includes/visual-post-compare/visual-post-compare.php:163
-msgid "One of the posts in the comparison URL could not be found."
-msgstr "אחד מהפוסטים בכתובת ה-URL להשוואה לא נמצא."
-
-#: includes/visual-post-compare/visual-post-compare.php:178
-#: includes/visual-post-compare/visual-post-compare.php:182
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:189
-#: includes/visual-post-compare/visual-post-compare.php:224
-#: includes/visual-post-compare/visual-post-compare.php:286
+#: includes/visual-post-compare/visual-post-compare.php:176
+#: includes/visual-post-compare/visual-post-compare.php:180
+#: includes/visual-post-compare/visual-post-compare.php:184
+#: includes/visual-post-compare/visual-post-compare.php:192
+#: includes/visual-post-compare/visual-post-compare.php:219
+#: includes/visual-post-compare/visual-post-compare.php:281
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:944
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:998
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Compare Revisions"
 msgstr "השוואת גרסאות"
 
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:200
-msgid "You are not allowed to read both posts in this comparison."
-msgstr "אינך מורשה לקרוא את שני הפוסטים בהשוואה זו."
+#: includes/visual-post-compare/visual-post-compare.php:184
+msgid "You are not allowed to view this comparison."
+msgstr "אינך מורשה לראות את ההשוואה הזו."
 
-#: includes/visual-post-compare/visual-post-compare.php:189
-msgid "You are not allowed to open this comparison in the editor."
-msgstr "אינך מורשה לפתוח את ההשוואה הזו בעורך."
-
-#: lib/debug.php:117
+#: lib/debug.php:114
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s שאילתות ב-%2$s שניות. %3$s MB שאוחסן."
@@ -3122,7 +3187,7 @@ msgid "Revision Submitted"
 msgstr "גרסה הוגשה"
 
 #: rvy_init-functions.php:371
-#: visual-compare_rvy.php:181
+#: visual-compare_rvy.php:173
 msgid "Submitted Revisions"
 msgstr "גרסאות שהוגשו"
 
@@ -3160,7 +3225,7 @@ msgid "Revision Scheduled"
 msgstr "גרסה מתוכננת"
 
 #: rvy_init-functions.php:388
-#: visual-compare_rvy.php:196
+#: visual-compare_rvy.php:188
 msgid "Scheduled Revisions"
 msgstr "גרסאות מתוכננות"
 
@@ -3226,28 +3291,32 @@ msgid ""
 "post."
 msgstr "היכולת unfiltered_html נדרשת כדי ליצור גרסה של פוסט זה."
 
-#: rvy_init-functions.php:1276
+#: rvy_init-functions.php:1278
 msgid "Revision Workflow"
 msgstr "תהליך גרסה"
 
-#: visual-compare_rvy.php:93
+#: visual-compare_rvy.php:87
 #, php-format
 msgid "Compare Revisions %s"
 msgstr "השוואת גרסאות %s"
 
-#: visual-compare_rvy.php:97
+#: visual-compare_rvy.php:91
 msgid "Compare Scheduled Revisions"
 msgstr "השוואת גרסאות מתוזמנות"
 
-#: visual-compare_rvy.php:100
+#: visual-compare_rvy.php:94
 msgid "Compare Submitted Revisions"
 msgstr "השווה גרסאות שהוגשו"
 
-#: visual-compare_rvy.php:102
-msgid "Compare New Revisions"
-msgstr "השוואת גרסאות חדשות"
+#: visual-compare_rvy.php:97
+msgid "Compare Unsubmitted Revisions"
+msgstr "השווה גרסאות לא מוגשות"
 
-#: visual-compare_rvy.php:201
+#: visual-compare_rvy.php:100
+msgid "Compare New Revision"
+msgstr "השווה גרסה חדשה"
+
+#: visual-compare_rvy.php:193
 msgid "Scheduled:"
 msgstr "מתוזמן:"
 
@@ -3260,20 +3329,6 @@ msgstr "הגדרות בלוקים של WordPress אינן זמינות במסך 
 #: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr "לא ניתן לרשום בלוקים של WordPress להשוואה."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Removed"
-msgstr "הוסר"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Added"
-msgstr "נוסף"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:159
 #: includes/visual-post-compare/visual-post-compare-standalone.js:105
@@ -3307,45 +3362,24 @@ msgstr "ההשוואה נוצרה, אך WordPress לא הצליח לפענח ש�
 msgid "Select comparison post"
 msgstr "בחר פוסט להשוואה"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:763
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-#, js-format
-msgid "by %s"
-msgstr "מאת %s"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:772
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Current"
-msgstr "נוכחי"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:773
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:795
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 #, js-format
 msgid "Post %d"
 msgstr "פוסט %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:806
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Approving…"
-msgstr "מאשר…"
+#, js-format
+msgid "Revision %d"
+msgstr "גרסה %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:908
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:959
 #: includes/visual-post-compare/visual-post-compare-standalone.js:156
 msgid "Unable to load this comparison."
 msgstr "לא ניתן לטעון השוואה זו."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:157
-msgid "Loading comparison…"
-msgstr "טוען השוואה…"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:929
-#: includes/visual-post-compare/visual-post-compare-standalone.js:159
-msgid "The target post content has been replaced with the approved content."
-msgstr "תוכן הפוסט המיועד הוחלף בתוכן המאושר."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:933
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:987
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Unable to approve this comparison."
 msgstr "לא ניתן לאשר השוואה זו."
@@ -3356,7 +3390,7 @@ msgid "Revisions"
 msgstr "גרסאות"
 
 #: admin/class-list-table-archive.php:1161
-#: admin/class-list-table_rvy.php:1924
+#: admin/class-list-table_rvy.php:1925
 #: admin/post-edit_rvy.php:192
 #: admin/post-edit_rvy.php:256
 #: admin/post-edit_rvy.php:270
@@ -3364,27 +3398,27 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "השווה"
 
-#: admin/class-list-table_rvy.php:1935
+#: admin/class-list-table_rvy.php:1936
 msgctxt "revisions"
 msgid "Approve"
 msgstr "אשר"
 
-#: admin/class-list-table_rvy.php:1942
+#: admin/class-list-table_rvy.php:1943
 msgctxt "revisions"
 msgid "Publish"
 msgstr "פרסם"
 
-#: admin/class-list-table_rvy.php:1951
+#: admin/class-list-table_rvy.php:1952
 msgctxt "revisions"
 msgid "Decline"
 msgstr "דחה"
 
-#: admin/history_rvy.php:1149, fuzzy
+#: admin/history_rvy.php:1185, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2513
+#: admin/options.php:2526
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"

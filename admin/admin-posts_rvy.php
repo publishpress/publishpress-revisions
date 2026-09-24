@@ -29,21 +29,21 @@ class RevisionaryAdminPosts {
 		
 			$post_type = sanitize_key($_REQUEST['post_type']);							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			if (in_array($post_type, rvy_get_manageable_types())) {
+			if (in_array($post_type, rvy_get_manageable_types(), true)) {
 				$deleted_id = (int) $_REQUEST['ids'];									//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				if (!empty($_SERVER['HTTP_REFERER']) && (
-					(false !== strpos(esc_url_raw($_SERVER['HTTP_REFERER']), admin_url("post.php?post={$deleted_id}&action=edit")))
-					|| (false !== strpos(esc_url_raw($_SERVER['HTTP_REFERER']), admin_url("post-new.php")))
+					(false !== strpos(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])), admin_url("post.php?post={$deleted_id}&action=edit")))
+					|| (false !== strpos(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])), admin_url("post-new.php")))
 				)) {
 					$_post = get_post($deleted_id);
 
-					if (!$_post || (('trash' == $_post->post_status) && in_array($_post->post_mime_type, rvy_revision_statuses()))) {
+					if (!$_post || (('trash' == $_post->post_status) && in_array($_post->post_mime_type, rvy_revision_statuses(), true))) {
 						if (apply_filters('revisionary_deletion_redirect_to_queue', true, $deleted_id, $post_type)) {
 							$url = wp_nonce_url(admin_url("admin.php?page=revisionary-q&pp_revisions_deleted={$deleted_id}"), 'revisions-deleted');
 							
-							if (!empty($_SERVER['REQUEST_URI']) && false === strpos(esc_url_raw($_SERVER['REQUEST_URI']), $url)) {
-								wp_redirect($url);
+							if (!empty($_SERVER['REQUEST_URI']) && false === strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $url)) {
+								wp_safe_redirect($url);
 								exit;
 							}
 						}
@@ -56,7 +56,7 @@ class RevisionaryAdminPosts {
 
 		add_filter('posts_where', [$this, 'fltFilterRevisions'], 10, 2);
 
-		if (empty($_REQUEST['page']) || (0 !== strpos($_REQUEST['page'], 'cms-tpv'))) {		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
+		if (empty($_REQUEST['page']) || (0 !== strpos(wp_unslash($_REQUEST['page']), 'cms-tpv'))) {		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
 			add_filter('posts_results', [$this, 'fltPostsResults'], 10, 1);
 			add_action('manage_product_posts_custom_column', [$this, 'actProductsCol'], 10, 1);
 			add_filter('get_edit_post_link', [$this, 'fltGetEditPostLink'], 50, 3);
@@ -144,7 +144,7 @@ class RevisionaryAdminPosts {
 		global $revisionary;
 
 		if (!defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND') && empty($revisionary->skip_revisor_post_caps_workaround) && !$this->skip_has_cap_filtering && !empty($args[2]) && array_diff($reqd_caps, array_keys(array_filter($wp_blogcaps)))) {
-			if (!empty($args[0]) && in_array($args[0], ['edit_post', 'edit_page'])) {
+			if (!empty($args[0]) && in_array($args[0], ['edit_post', 'edit_page'], true)) {
 				$this->filtering_edit_link[$args[2]] = true;
 				$wp_blogcaps = array_merge($wp_blogcaps, array_fill_keys($reqd_caps, true));
 			}
@@ -285,7 +285,7 @@ class RevisionaryAdminPosts {
 			$this->logTrashedRevisions();
 		}
 
-		if (in_array($post->ID, $this->trashed_revisions)) {		
+		if (in_array($post->ID, $this->trashed_revisions, true)) {		
 			if ($status_obj = get_post_status_object($post->post_mime_type)) {
 				$post_states['rvy_revision'] = $status_obj->label;
 			}
@@ -299,7 +299,7 @@ class RevisionaryAdminPosts {
 	}
 
 	function fltCommentsNumber($comment_count, $post_id) {
-		if (isset($this->trashed_revisions) && in_array($post_id, $this->trashed_revisions)) {
+		if (isset($this->trashed_revisions) && in_array($post_id, $this->trashed_revisions, true)) {
 			$comment_count = 0;
 		}
 
@@ -333,11 +333,11 @@ class RevisionaryAdminPosts {
 				}
 			}
 
-			$uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw($_SERVER['REQUEST_URI']) : '';
+			$uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '';
 			$referer_arg = '&referer=' . $uri;
 
 			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';
+			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 
 			if (!empty($revisionary->enabled_post_types_copy[$post->post_type]) && current_user_can('duplicate_post', $post->ID)) {
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy{$referer_arg}$redirect_arg");
@@ -444,11 +444,11 @@ class RevisionaryAdminPosts {
 			static $stored_statuses;
 
 			if (!isset($stored_statuses)) {
-				$stored_statuses = get_terms('pp_revision_status', ['hide_empty' => false, 'return' => 'name']);
+				$stored_statuses = get_terms(['taxonomy' => 'pp_revision_status', 'hide_empty' => false]);
 			}
 
 			foreach ($stored_statuses as $status) {
-				if (!in_array($status->slug, $revision_statuses)) {
+				if (!in_array($status->slug, $revision_statuses, true)) {
 					$revision_statuses[] = $status->slug;
 				}
 			}

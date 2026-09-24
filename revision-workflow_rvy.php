@@ -34,7 +34,7 @@ class Rvy_Revision_Workflow_UI {
                         foreach ( $post_publishers as $key => $user ) {
                             $can_publish_post []= $user->ID;
                             
-                            if ( ! in_array( $user->ID, $publisher_ids ) )
+                            if ( ! in_array( $user->ID, $publisher_ids, true ) )
                                 unset(  $post_publishers[$key] );
                         }
                         
@@ -244,9 +244,9 @@ class Rvy_Revision_Workflow_UI {
             $message = str_replace('&quot;', '"', $message);
 
             foreach ( $to_addresses as $user_id => $address ) {
-                if (!empty($author_ids) && in_array($user_id, $author_ids)) {
+                if (!empty($author_ids) && in_array($user_id, $author_ids, true)) {
                     $notification_class = 'rev_submission_notify_author';
-                } elseif (!empty($monitor_ids) && in_array($user_id, $monitor_ids)) {
+                } elseif (!empty($monitor_ids) && in_array($user_id, $monitor_ids, true)) {
                     $notification_class = 'rev_submission_notify_monitor';
                 } else {
                     $notification_class = 'rev_submission_notify_admin';
@@ -326,7 +326,7 @@ class Rvy_Revision_Workflow_UI {
 
                             if (
                                 array_diff( $reqd_caps, array_keys( array_intersect( $_user->allcaps, array( true, 1, '1' ) ) ) ) 
-                                && !in_array('administrator', $_user->allcaps) 
+                                && !in_array('administrator', $_user->allcaps, true) 
                             ) {
                                 unset( $recipient_ids[$key] );
                             }

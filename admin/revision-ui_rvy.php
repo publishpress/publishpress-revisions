@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /*
  * Legacy functions for listing Past Revisions, with bulk deletion
  */
@@ -71,12 +75,12 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 	$public_types = array_keys($revisionary->enabled_post_types);
 	$public_types []= 'revision';
 	
-	if ( ! in_array( $revision->post_type, $public_types ) )
+	if ( ! in_array( $revision->post_type, $public_types, true ) )
 		return false;
 
 	/* translators: revision date format, see http://php.net/date */
 	if (!$datef) {
-		$datef = _x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
+		$datef = esc_html_x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
 	}
 
 	$date = agp_date_i18n( $datef, strtotime( $revision->$date_field ) );
@@ -104,9 +108,9 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 		$date = sprintf( $autosavef, $date );
 	}
 
-	if ( in_array( $revision->post_status, array( 'inherit', 'pending-revision' ) ) && $post && ( 'list' == $format ) && ( 'post_modified' == $date_field ) ) {
+	if ( in_array( $revision->post_status, array( 'inherit', 'pending-revision' ), true ) && $post && ( 'list' == $format ) && ( 'post_modified' == $date_field ) ) {
 		if ( $post->post_date != $revision->post_date ) {
-			$datef = _x( 'j F, Y, g:i a', 'revision schedule date format', 'revisionary' );
+			$datef = esc_html_x( 'j F, Y, g:i a', 'revision schedule date format', 'revisionary' );
 			$revision_date = agp_date_i18n( $datef, strtotime( $revision->post_date ) );
 			
 			if (strtotime($revision->post_date) > agp_time_gmt()) {
@@ -344,7 +348,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			
 		} else {
 			/* translators: post revision: 1: when, 2: author name */
-			$rows .= "<li>" . sprintf( _x( '%1$s by %2$s', 'post revision' ), $date, esc_html($name) ) . "</li>";
+			$rows .= "<li>" . sprintf( esc_html_x( '%1$s by %2$s', 'post revision' ), $date, esc_html($name) ) . "</li>";
 		}
 		
 		$count++;

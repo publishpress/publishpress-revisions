@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-08-27 22:28+0000\n"
+"PO-Revision-Date: 2026-09-02 17:18+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: th\n"
@@ -94,7 +94,8 @@ msgstr "โพสต์นี้มีการแก้ไขที่กำล
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:777
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:804
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:805
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Revision"
 msgstr "การแก้ไข"
@@ -159,7 +160,7 @@ msgstr "การแก้ไข"
 #: admin/options.php:550
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
-#: visual-compare_rvy.php:164
+#: visual-compare_rvy.php:156
 msgid "Past Revisions"
 msgstr "การแก้ไขที่ผ่านมา"
 
@@ -177,10 +178,10 @@ msgstr "การตั้งค่า"
 #: admin/admin_rvy.php:494
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:535
-#: admin/options.php:2141
-#: admin/options.php:2168
-#: admin/options.php:2384
-#: admin/options.php:2730
+#: admin/options.php:2154
+#: admin/options.php:2181
+#: admin/options.php:2397
+#: admin/options.php:2743
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr "อัปเกรดเป็น Pro"
@@ -269,10 +270,12 @@ msgid "unselect"
 msgstr "ยกเลิกการเลือก"
 
 #: admin/class-list-table-archive.php:22
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:53
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr "นี่คือการอัปเดตสำหรับการแก้ไขที่ยังอยู่ในกระบวนการทำงาน"
 
 #: admin/class-list-table-archive.php:24
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:54
 msgid "This was an update to a revision which was published after further editing."
 msgstr "นี่คือการอัปเดตสำหรับการแก้ไขที่ถูกเผยแพร่หลังจากการแก้ไขเพิ่มเติม"
 
@@ -307,8 +310,8 @@ msgid "Search results for \"%s\""
 msgstr "ผลการค้นหาสำหรับ \"%s\""
 
 #: admin/class-list-table-archive.php:540
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -316,7 +319,7 @@ msgid "Delete Revision"
 msgstr "ลบการแก้ไข"
 
 #: admin/class-list-table-archive.php:581
-#: admin/class-list-table_rvy.php:761
+#: admin/class-list-table_rvy.php:762
 msgid "Post Type"
 msgstr "ประเภทโพสต์"
 
@@ -347,73 +350,83 @@ msgid "Published Author"
 msgstr "ผู้เขียนที่เผยแพร่"
 
 #: admin/class-list-table-archive.php:616
-#: admin/class-list-table_rvy.php:927
+#: admin/class-list-table_rvy.php:928
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:265
 msgid "just now"
 msgstr "เมื่อสักครู่นี้"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s นาทีที่แล้ว"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minute ago"
 msgstr "%s นาทีที่แล้ว"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hours ago"
 msgstr "%s ชั่วโมงที่แล้ว"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hour ago"
 msgstr "%s ชั่วโมงที่แล้ว"
 
 #: admin/class-list-table-archive.php:756
 #: functions.php:478
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
 msgid "Scheduled Revision Publication"
 msgstr "การเผยแพร่วารสารที่กำหนดเวลา"
 
 #: admin/class-list-table-archive.php:760
 #: functions.php:482
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
 msgid "Revision Publication"
 msgstr "การเผยแพร่วารสาร"
 
 #: admin/class-list-table-archive.php:770
 #: functions.php:492
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:225
 #, php-format
 msgid "Edit of %s"
 msgstr "แก้ไขของ %s"
 
 #: admin/class-list-table-archive.php:777
 #: functions.php:499
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:228
 msgid "Edit of published Revision"
 msgstr "แก้ไขของการเผยแพร่วารสาร"
 
 #: admin/class-list-table-archive.php:780
 #: functions.php:502
 #: functions.php:565
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:231
 msgid "Direct Edit"
 msgstr "แก้ไขโดยตรง"
 
 #: admin/class-list-table-archive.php:839
-#: admin/class-list-table_rvy.php:1467
+#: admin/class-list-table_rvy.php:1468
 msgid "All Post Types"
 msgstr "ประเภทโพสต์ทั้งหมด"
 
 #: admin/class-list-table-archive.php:872
-#: admin/class-list-table_rvy.php:1502
+#: admin/class-list-table_rvy.php:1503
 msgid "All Revision Authors"
 msgstr "ผู้เขียนการแก้ไขทั้งหมด"
 
 #: admin/class-list-table-archive.php:906
-#: admin/class-list-table_rvy.php:1537
+#: admin/class-list-table_rvy.php:1538
 msgid "All Revision Dates"
 msgstr "วันที่การแก้ไขทั้งหมด"
 
@@ -426,17 +439,17 @@ msgid "All Approvers"
 msgstr "ผู้อนุมัติทั้งหมด"
 
 #: admin/class-list-table-archive.php:1036
-#: admin/class-list-table_rvy.php:1608
+#: admin/class-list-table_rvy.php:1609
 msgid "All Authors"
 msgstr "ผู้เขียนทั้งหมด"
 
 #: admin/class-list-table-archive.php:1058
-#: admin/class-list-table_rvy.php:1644
+#: admin/class-list-table_rvy.php:1645
 msgid "Reset Filters"
 msgstr "รีเซ็ตตัวกรอง"
 
 #: admin/class-list-table-archive.php:1089
-#: admin/options.php:2395
+#: admin/options.php:2408
 msgid "All"
 msgstr "ทั้งหมด"
 
@@ -450,7 +463,7 @@ msgid "Compare Changes in %s"
 msgstr "เปรียบเทียบการเปลี่ยนแปลงใน %s"
 
 #: admin/class-list-table-archive.php:1176
-#: admin/class-list-table_rvy.php:1909
+#: admin/class-list-table_rvy.php:1910
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
@@ -484,85 +497,85 @@ msgstr "ลบการแก้ไขที่ผ่านมา"
 msgid "No revisions found."
 msgstr "ไม่พบการแก้ไข"
 
-#: admin/class-list-table_rvy.php:760
+#: admin/class-list-table_rvy.php:761
 #: admin/options.php:767
 #: admin/options.php:930
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "สถานะ"
 
-#: admin/class-list-table_rvy.php:806
+#: admin/class-list-table_rvy.php:807
 msgid "View preview"
 msgstr "ดูตัวอย่าง"
 
-#: admin/class-list-table_rvy.php:823, fuzzy
+#: admin/class-list-table_rvy.php:824, fuzzy
 msgid "Y/m/d, g:i:s a"
 msgstr "Y/m/d, g:i:s a"
 
-#: admin/class-list-table_rvy.php:833, fuzzy
+#: admin/class-list-table_rvy.php:834, fuzzy
 msgid "Y/m/d g:i a"
 msgstr "Y/m/d g:i a"
 
-#: admin/class-list-table_rvy.php:840
+#: admin/class-list-table_rvy.php:841
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "กำหนดการเผยแพร่: %s"
 
-#: admin/class-list-table_rvy.php:843
+#: admin/class-list-table_rvy.php:844
 #, php-format
 msgid "Requested publication: %s"
 msgstr "การเผยแพร่ที่ร้องขอ: %s"
 
-#: admin/class-list-table_rvy.php:845
+#: admin/class-list-table_rvy.php:846
 msgid "This revision is not scheduled yet. It must be approved."
 msgstr "การแก้ไขนี้ยังไม่ได้กำหนดเวลา ต้องได้รับการอนุมัติ"
 
-#: admin/class-list-table_rvy.php:895
-#: admin/history_rvy.php:930
+#: admin/class-list-table_rvy.php:896
+#: admin/history_rvy.php:966
 msgid "No author"
 msgstr "ไม่มีผู้เขียน"
 
-#: admin/class-list-table_rvy.php:969
+#: admin/class-list-table_rvy.php:970
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "แก้ไขโพสต์ที่เผยแพร่แล้ว"
 
-#: admin/class-list-table_rvy.php:982
+#: admin/class-list-table_rvy.php:983
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "ดูเฉพาะการแก้ไขของ %s"
 
-#: admin/class-list-table_rvy.php:993
-#: admin/class-list-table_rvy.php:1000
+#: admin/class-list-table_rvy.php:994
+#: admin/class-list-table_rvy.php:1001
 msgid "View published post"
 msgstr "ดูโพสต์ที่เผยแพร่"
 
-#: admin/class-list-table_rvy.php:1025
-#: visual-compare_rvy.php:105
+#: admin/class-list-table_rvy.php:1026
+#: visual-compare_rvy.php:103
 msgid "Compare Past Revisions"
 msgstr "เปรียบเทียบการแก้ไขที่ผ่านมา"
 
-#: admin/class-list-table_rvy.php:1026
+#: admin/class-list-table_rvy.php:1027
 msgid "History"
 msgstr "ประวัติ"
 
-#: admin/class-list-table_rvy.php:1307
+#: admin/class-list-table_rvy.php:1308
 msgid "My Activity"
 msgstr "กิจกรรมของฉัน"
 
-#: admin/class-list-table_rvy.php:1316
+#: admin/class-list-table_rvy.php:1317
 #, php-format
 msgid "All %s"
 msgstr "ทั้งหมด %s"
 
-#: admin/class-list-table_rvy.php:1406
+#: admin/class-list-table_rvy.php:1407
 msgid "Unschedule"
 msgstr "ยกเลิกกำหนดการ"
 
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1881
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -570,21 +583,21 @@ msgstr "ยกเลิกกำหนดการ"
 msgid "Discard Revision"
 msgstr "ละทิ้งการแก้ไข"
 
-#: admin/class-list-table_rvy.php:1448
+#: admin/class-list-table_rvy.php:1449
 msgid "All Revision Statuses"
 msgstr "สถานะการแก้ไขทั้งหมด"
 
-#: admin/class-list-table_rvy.php:1573
+#: admin/class-list-table_rvy.php:1574
 msgid "All Posts"
 msgstr "โพสต์ทั้งหมด"
 
-#: admin/class-list-table_rvy.php:1858
+#: admin/class-list-table_rvy.php:1859
 #: admin/post-editor-workflow-ui_rvy.php:237
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "แก้ไขการแก้ไข"
 
-#: admin/class-list-table_rvy.php:1923
+#: admin/class-list-table_rvy.php:1924
 msgid "Compare Changes"
 msgstr "เปรียบเทียบการเปลี่ยนแปลง"
 
@@ -612,75 +625,75 @@ msgstr "คัดลอกเนื้อหาข้างต้นไปยั
 msgid "Compare %s of \"%s\""
 msgstr "เปรียบเทียบ %s ของ \"%s\""
 
-#: admin/history_rvy.php:674
+#: admin/history_rvy.php:710
 #: admin/options.php:1174
 msgid "Post Date"
 msgstr "วันที่โพสต์"
 
-#: admin/history_rvy.php:675
+#: admin/history_rvy.php:711
 msgid "Post Parent"
 msgstr "โพสต์ผู้ปกครอง"
 
-#: admin/history_rvy.php:676
+#: admin/history_rvy.php:712
 msgid "Menu Order"
 msgstr "ลำดับเมนู"
 
-#: admin/history_rvy.php:677
+#: admin/history_rvy.php:713
 msgid "Comment Status"
 msgstr "สถานะความคิดเห็น"
 
-#: admin/history_rvy.php:678
+#: admin/history_rvy.php:714
 msgid "Ping Status"
 msgstr "สถานะพิงค์"
 
-#: admin/history_rvy.php:818
+#: admin/history_rvy.php:854
 msgid "Page Template"
 msgstr "แม่แบบหน้า"
 
-#: admin/history_rvy.php:821
+#: admin/history_rvy.php:857
 msgid "Featured Image"
 msgstr "ภาพที่โดดเด่น"
 
-#: admin/history_rvy.php:825
+#: admin/history_rvy.php:861
 msgid "Beaver Builder Data"
 msgstr "ข้อมูล Beaver Builder"
 
-#: admin/history_rvy.php:826
+#: admin/history_rvy.php:862
 msgid "Beaver Builder Settings"
 msgstr "การตั้งค่า Beaver Builder"
 
-#: admin/history_rvy.php:1077
+#: admin/history_rvy.php:1113
 msgid "Scheduled for "
 msgstr "กำหนดเวลาไว้สำหรับ "
 
-#: admin/history_rvy.php:1082
+#: admin/history_rvy.php:1118
 msgid "Requested for "
 msgstr "ร้องขอสำหรับ "
 
-#: admin/history_rvy.php:1087
+#: admin/history_rvy.php:1123
 msgid "Modified "
 msgstr "แก้ไขเมื่อ "
 
-#: admin/history_rvy.php:1092
+#: admin/history_rvy.php:1128
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s จากตอนนี้"
 
-#: admin/history_rvy.php:1103, fuzzy
+#: admin/history_rvy.php:1139, fuzzy
 msgid "M j, Y @ g:i a"
 msgstr "M j, Y @ g:i a"
 
-#: admin/history_rvy.php:1148, fuzzy
+#: admin/history_rvy.php:1184, fuzzy
 msgid "M j, Y @ H:i"
 msgstr "M j, Y @ H:i"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 #: front_rvy.php:546
 #: front_rvy.php:556
 #: front_rvy.php:575
 #: front_rvy.php:606
-#: includes/visual-post-compare/visual-post-compare.php:231
-#: includes/visual-post-compare/visual-post-compare.php:287
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:248
+#: includes/visual-post-compare/visual-post-compare.php:226
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:311
 #: rvy_init-functions.php:349
@@ -689,16 +702,14 @@ msgstr "M j, Y @ H:i"
 #: rvy_init-functions.php:367
 #: rvy_init-functions.php:383
 #: rvy_init-functions.php:384
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Approve"
 msgstr "อนุมัติ"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 msgid "Preview / Approve"
 msgstr "ดูตัวอย่าง / อนุมัติ"
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1273
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 #: admin/post-editor-workflow-ui_rvy.php:236
@@ -706,15 +717,15 @@ msgstr "ดูตัวอย่าง / อนุมัติ"
 msgid "Preview"
 msgstr "ดูตัวอย่าง"
 
-#: admin/history_rvy.php:1331
+#: admin/history_rvy.php:1367
 msgid "Preview / Restore"
 msgstr "ดูตัวอย่าง / กู้คืน"
 
-#: admin/history_rvy.php:1338
+#: admin/history_rvy.php:1374
 msgid "Manage"
 msgstr "จัดการ"
 
-#: admin/history_rvy.php:1339
+#: admin/history_rvy.php:1375
 msgid "List"
 msgstr "รายการ"
 
@@ -1288,12 +1299,12 @@ msgstr "รับ PublishPress Statuses Pro"
 
 #: admin/options.php:1047
 #: admin/options.php:1065
-#: admin/options.php:2146
-#: admin/options.php:2164
-#: admin/options.php:2726
-#: admin/options.php:2740
-#: admin/options.php:2750
-#: admin/options.php:2760
+#: admin/options.php:2159
+#: admin/options.php:2177
+#: admin/options.php:2739
+#: admin/options.php:2753
+#: admin/options.php:2763
+#: admin/options.php:2773
 msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
 
@@ -1328,22 +1339,22 @@ msgstr "โปรดทราบว่าการเก็บถาวรสา
 
 #: admin/options.php:1143
 #: admin/options.php:1314
-#: admin/options.php:1652
-#: admin/options.php:1678
-#: admin/options.php:1704
-#: admin/options.php:1732
-#: admin/options.php:2270
+#: admin/options.php:1670
+#: admin/options.php:1696
+#: admin/options.php:1722
+#: admin/options.php:1750
+#: admin/options.php:2283
 #, php-format
 msgid "%s capability"
 msgstr "%s ความสามารถ"
 
 #: admin/options.php:1148
 #: admin/options.php:1319
-#: admin/options.php:1657
-#: admin/options.php:1683
-#: admin/options.php:1709
-#: admin/options.php:1737
-#: admin/options.php:2275
+#: admin/options.php:1675
+#: admin/options.php:1701
+#: admin/options.php:1727
+#: admin/options.php:1755
+#: admin/options.php:2288
 msgid "Assign capability to roles"
 msgstr "กำหนดความสามารถให้กับบทบาท"
 
@@ -1621,21 +1632,34 @@ msgstr "ตั้งชื่อปุ่มว่า \"อนุมัติแ
 msgid "This may improve compatibility with some plugins."
 msgstr "สิ่งนี้อาจช่วยปรับปรุงความเข้ากันได้กับปลั๊กอินบางตัว."
 
-#: admin/options.php:1664
+#: admin/options.php:1645
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"ปิดการตั้งค่านี้หากการเปรียบเทียบแบบภาพแสดงให้เห็นว่าการเปลี่ยนแปลงของคุณไม่"
+"ถูกต้อง ผู้สร้างหน้าและธีมบางรายการไม่รองรับสไตล์ใหม่ของการแก้ไข WordPress."
+
+#: admin/options.php:1651
+msgid "This feature is incompatible with page builder plugins."
+msgstr "ฟีเจอร์นี้ไม่เข้ากันกับปลั๊กอินสร้างหน้า"
+
+#: admin/options.php:1682
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr "ควบคุมการเข้าถึงการแก้ไขใหม่ด้วย %s."
 
-#: admin/options.php:1670
+#: admin/options.php:1688
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr "ควบคุมการเข้าถึงการแก้ไขใหม่ด้วยความสามารถในการจัดการคิวการแก้ไข."
 
-#: admin/options.php:1690
+#: admin/options.php:1708
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr "ผู้ใช้จะต้องมี %s เพื่อแก้ไขการแก้ไขที่ยังไม่ได้ส่งของผู้อื่น."
 
-#: admin/options.php:1696
+#: admin/options.php:1714
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
@@ -1643,13 +1667,13 @@ msgstr ""
 "ผู้ใช้จะต้องมีความสามารถในการจัดการการแก้ไขที่ยังไม่ได้ส่งเพื่อแก้ไขการแก้ไข"
 "ที่ยังไม่ได้ส่งของผู้อื่น."
 
-#: admin/options.php:1716
-#: admin/options.php:1744
+#: admin/options.php:1734
+#: admin/options.php:1762
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ ให้กำหนด %s."
 
-#: admin/options.php:1722
+#: admin/options.php:1740
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
@@ -1657,7 +1681,7 @@ msgstr ""
 "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ "
 "ให้กำหนดความสามารถในการแก้ไขการแก้ไขของผู้อื่น."
 
-#: admin/options.php:1750
+#: admin/options.php:1768
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
@@ -1665,7 +1689,7 @@ msgstr ""
 "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ "
 "ให้กำหนดความสามารถในการแสดงรายการการแก้ไขของผู้อื่น."
 
-#: admin/options.php:1755
+#: admin/options.php:1773
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -1673,7 +1697,7 @@ msgstr ""
 "ข้ามข้อจำกัดข้างต้นสำหรับการแก้ไขของผู้อื่นไปยังโพสต์ของผู้ใช้ที่ล็อกอินอยู่"
 "."
 
-#: admin/options.php:1771
+#: admin/options.php:1784
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -1681,11 +1705,11 @@ msgstr ""
 "หากมีการสร้างการแก้ไขสำหรับหน้าเว็บที่แก้ไขได้ "
 "ให้รวมปุ่มการแก้ไขลอยอยู่ในมุมมองด้านหน้า"
 
-#: admin/options.php:1779
+#: admin/options.php:1792
 msgid "Regenerate \"post has revision\" flags"
 msgstr "สร้างใหม่ \"โพสต์มีการแก้ไข\" ธง."
 
-#: admin/options.php:1782
+#: admin/options.php:1795
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1693,17 +1717,17 @@ msgstr ""
 "ใช้การบำรุงรักษานี้หากป้าย Has Revision บนหน้าจอโพสต์ / "
 "หน้าไม่ตรงกับรายการการแก้ไขใหม่."
 
-#: admin/options.php:1806
+#: admin/options.php:1819
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "สำหรับการแจ้งเตือนที่ได้รับการปรับปรุง ติดตั้ง %sPublishPress Planner%s."
 
-#: admin/options.php:1819
+#: admin/options.php:1832
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "เพื่อการแจ้งเตือนที่ดีขึ้น ให้ปรับปรุง %sPublishPress Planner%s."
 
-#: admin/options.php:1841
+#: admin/options.php:1854
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -1712,7 +1736,7 @@ msgstr ""
 "ส่งการแจ้งเตือนการแก้ไขโดยใช้ระบบ %1$sPublishPress Planner "
 "Notifications%2$s ที่ปรับแต่งได้."
 
-#: admin/options.php:1842
+#: admin/options.php:1855
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -1721,7 +1745,7 @@ msgstr ""
 "อัปเกรดเป็น Revisions Pro เพื่อส่งการแจ้งเตือนการแก้ไขโดยใช้ระบบ "
 "%1$sPublishPress Planner Notifications%2$s ที่ปรับแต่งได้."
 
-#: admin/options.php:1854
+#: admin/options.php:1867
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -1729,27 +1753,27 @@ msgstr ""
 "ผู้ใช้ที่ตรงกับการตั้งค่า Planner > Notifications "
 "จะได้รับการแจ้งเตือนการแก้ไขก็ต่อเมื่อพวกเขาสามารถแก้ไขโพสต์ที่เผยแพร่ได้."
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Never"
 msgstr "ไม่เคย"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "By default"
 msgstr "ตามค่าเริ่มต้น"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Always"
 msgstr "เสมอ"
 
-#: admin/options.php:1907
-#: admin/options.php:1954
+#: admin/options.php:1920
+#: admin/options.php:1967
 msgid "select recipients"
 msgstr "เลือกผู้รับ"
 
-#: admin/options.php:1968
+#: admin/options.php:1981
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -1758,55 +1782,55 @@ msgstr ""
 "ให้บัฟเฟอร์อีเมลสำหรับการส่งที่ล่าช้าเมื่อเวลาหนึ่งนาที ชั่วโมง "
 "หรือวันถูกเกินขีดจำกัด"
 
-#: admin/options.php:1991
+#: admin/options.php:2004
 msgid "Notification Buffer"
 msgstr "บัฟเฟอร์การแจ้งเตือน"
 
-#: admin/options.php:2019
+#: admin/options.php:2032
 msgid "Notification Log"
 msgstr "บันทึกการแจ้งเตือน"
 
-#: admin/options.php:2053
+#: admin/options.php:2066
 msgid "Purge Notification Buffer"
 msgstr "ล้างบัฟเฟอร์การแจ้งเตือน"
 
-#: admin/options.php:2064
+#: admin/options.php:2077
 msgid "Truncate Notification Log"
 msgstr "ตัดทอนบันทึกการแจ้งเตือน"
 
-#: admin/options.php:2070
+#: admin/options.php:2083
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "ส่งในนาทีที่แล้ว: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2084
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "ส่งในชั่วโมงที่แล้ว: %d / %d"
 
-#: admin/options.php:2072
+#: admin/options.php:2085
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "ส่งในวันที่แล้ว: %d / %d"
 
-#: admin/options.php:2079
+#: admin/options.php:2092
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "วินาทีจนถึงเวลาประมวลผลบัฟเฟอร์ถัดไป: %d"
 
-#: admin/options.php:2090
+#: admin/options.php:2103
 msgid "Show Notification Log / Buffer"
 msgstr "แสดงบันทึกการแจ้งเตือน / บัฟเฟอร์"
 
-#: admin/options.php:2092
+#: admin/options.php:2105
 msgid "Show with message content"
 msgstr "แสดงพร้อมเนื้อหาข้อความ"
 
-#: admin/options.php:2114
+#: admin/options.php:2127
 msgid "Ready to enhance your revision notifications?"
 msgstr "พร้อมที่จะปรับปรุงการแจ้งเตือนการแก้ไขของคุณหรือยัง?"
 
-#: admin/options.php:2117
+#: admin/options.php:2130
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -1814,52 +1838,52 @@ msgstr ""
 "อัปเกรดเป็น Revisions Pro เพื่อรวมเข้ากับกรอบการแจ้งเตือน PublishPress "
 "Planner ของเรา."
 
-#: admin/options.php:2123
+#: admin/options.php:2136
 msgid "Customize notification message and subject"
 msgstr "ปรับแต่งข้อความและหัวข้อแจ้งเตือน"
 
-#: admin/options.php:2126
+#: admin/options.php:2139
 msgid "Notify for a specific post type, category or term"
 msgstr "แจ้งเตือนสำหรับ post type, หมวดหมู่ หรือคำศัพท์เฉพาะ"
 
-#: admin/options.php:2129
+#: admin/options.php:2142
 msgid "Target specific roles, users, or user groups"
 msgstr "กำหนดเป้าหมายบทบาท, ผู้ใช้ หรือกลุ่มผู้ใช้เฉพาะ"
 
-#: admin/options.php:2132
+#: admin/options.php:2145
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "ด้วย PublishPress Planner Pro ส่งการแจ้งเตือนไปยังช่อง Slack"
 
-#: admin/options.php:2159
-#: admin/options.php:2720
+#: admin/options.php:2172
+#: admin/options.php:2733
 msgid "Pro Feature"
 msgstr "ฟีเจอร์ Pro"
 
-#: admin/options.php:2160
+#: admin/options.php:2173
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr "อัปเกรดเป็น Revisions Pro เพื่อปลดล็อกการรวมการแจ้งเตือน Planner."
 
-#: admin/options.php:2161
+#: admin/options.php:2174
 msgid "Customize notification content and recipients for each notification type."
 msgstr "ปรับแต่งเนื้อหาและผู้รับการแจ้งเตือนสำหรับแต่ละประเภทการแจ้งเตือน."
 
-#: admin/options.php:2185
+#: admin/options.php:2198
 msgid "Some themes may block revision preview."
 msgstr "ธีมบางตัวอาจบล็อกการแสดงตัวอย่างการแก้ไข."
 
-#: admin/options.php:2202, fuzzy
+#: admin/options.php:2215, fuzzy
 msgid "Published Post Slug"
 msgstr "Published Post Slug"
 
-#: admin/options.php:2203, fuzzy
+#: admin/options.php:2216, fuzzy
 msgid "Revision Slug"
 msgstr "Revision Slug"
 
-#: admin/options.php:2204
+#: admin/options.php:2217
 msgid "Revision ID only"
 msgstr "Revision ID เท่านั้น"
 
-#: admin/options.php:2219
+#: admin/options.php:2232
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -1867,12 +1891,12 @@ msgstr ""
 "ธีมบางตัวหรือปลั๊กอินอาจต้องการ Revision Slug หรือ Revision ID "
 "ประเภทลิงก์เพื่อการโหลดแม่แบบและการแสดงฟิลด์อย่างถูกต้อง."
 
-#: admin/options.php:2228
+#: admin/options.php:2241
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "พารามิเตอร์การแสดงตัวอย่างการแก้ไขถูกกำหนดโดยการนิยามค่าคงที่: %s"
 
-#: admin/options.php:2235
+#: admin/options.php:2248
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -1880,11 +1904,11 @@ msgstr ""
 "ปรับลิงก์การแสดงตัวอย่างให้ใช้พารามิเตอร์ \"rv_preview\" แทน \"preview\". "
 "ทดลองเพื่อดูว่าอันไหนทำงานได้ดีที่สุดกับธีมของคุณ."
 
-#: admin/options.php:2239
+#: admin/options.php:2252
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr "ธีมบางตัวอาจต้องการการตั้งค่านี้สำหรับการแสดงตัวอย่างการแก้ไขอย่างถูกต้อง."
 
-#: admin/options.php:2258
+#: admin/options.php:2271
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -1892,14 +1916,14 @@ msgstr ""
 "โดยปกติควรเปิดใช้งาน ยกเว้นเพื่อหลีกเลี่ยงความขัดแย้งกับข้อมูล postmeta "
 "ของปลั๊กอินอื่น."
 
-#: admin/options.php:2282
+#: admin/options.php:2295
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "หากผู้ใช้ไม่สามารถเผยแพร่ได้ จำเป็นต้องมี %s "
 "เพื่อแก้ไขโพสต์ที่ยังไม่เผยแพร่ของคนอื่น."
 
-#: admin/options.php:2288
+#: admin/options.php:2301
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -1907,7 +1931,7 @@ msgstr ""
 "หากผู้ใช้ไม่สามารถเผยแพร่ได้ จำเป็นต้องมีความสามารถ edit_others_drafts "
 "เพื่อแก้ไขโพสต์ที่ยังไม่เผยแพร่ของคนอื่น."
 
-#: admin/options.php:2294
+#: admin/options.php:2307
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -1915,20 +1939,20 @@ msgstr ""
 "หากสิทธิ์ที่เฉพาะเจาะจงต่อโพสต์จำกัดหรือขยายการเข้าถึงโพสต์ "
 "ให้ใช้สิทธิ์เหล่านั้นกับการแก้ไขของโพสต์ด้วย."
 
-#: admin/options.php:2306
+#: admin/options.php:2319
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO อาจป้องกันการอัปเดต Revision บนบางเว็บไซต์."
 
-#: admin/options.php:2313
+#: admin/options.php:2326
 #: includes/CoreAdmin.php:205, fuzzy
 msgid "WPML Translation Management"
 msgstr "WPML Translation Management"
 
-#: admin/options.php:2318
+#: admin/options.php:2331
 msgid "Sync \"Needs Update\" flags"
 msgstr "ซิงค์ \"ต้องการอัปเดต\" ธง"
 
-#: admin/options.php:2322
+#: admin/options.php:2335
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -1936,11 +1960,11 @@ msgstr ""
 "ตั้งค่า \"ต้องการอัปเดต\" สำหรับโพสต์ใด ๆ ที่มีการแปลซึ่งได้รับการอัปเดต "
 "(อาจจะโดยการอนุมัติ Revision) เมื่อเร็ว ๆ นี้มากกว่าการแปลของมัน."
 
-#: admin/options.php:2340
+#: admin/options.php:2353
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "แสดงคำบรรยายที่เป็นลักษณะสำหรับการตั้งค่า PublishPress Revisions."
 
-#: admin/options.php:2358
+#: admin/options.php:2371
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -1948,11 +1972,11 @@ msgstr ""
 "การตั้งค่า Plugin, เนื้อหา Revision ใหม่และข้อมูลที่เกี่ยวข้องจะถูกลบ "
 "แต่จะถูกลบเฉพาะหลังจากสำเนาสุดท้ายของ Revisions / Revisions Pro ถูกลบ."
 
-#: admin/options.php:2379
+#: admin/options.php:2392
 msgid "Unlock Pro Integrations"
 msgstr "ปลดล็อก Pro Integrations"
 
-#: admin/options.php:2380
+#: admin/options.php:2393
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -1960,45 +1984,45 @@ msgstr ""
 "อัปเกรดเป็นเวอร์ชัน Pro "
 "เพื่อความเข้ากันได้ที่ดีที่สุดและการสนับสนุนที่รวดเร็วและเป็นมืออาชีพ."
 
-#: admin/options.php:2398
-#: admin/options.php:2651
+#: admin/options.php:2411
+#: admin/options.php:2664
 msgid "Admin"
 msgstr "admin"
 
-#: admin/options.php:2401
-#: admin/options.php:2649, fuzzy
+#: admin/options.php:2414
+#: admin/options.php:2662, fuzzy
 msgid "Builder"
 msgstr "Builder"
 
-#: admin/options.php:2404
-#: admin/options.php:2653, fuzzy
+#: admin/options.php:2417
+#: admin/options.php:2666, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2407, fuzzy
+#: admin/options.php:2420, fuzzy
 msgid "E-Commerce"
 msgstr "E-Commerce"
 
-#: admin/options.php:2410
-#: admin/options.php:2659, fuzzy
+#: admin/options.php:2423
+#: admin/options.php:2672, fuzzy
 msgid "Fields"
 msgstr "Fields"
 
-#: admin/options.php:2414, fuzzy
+#: admin/options.php:2427, fuzzy
 msgid "Multilingual"
 msgstr "Multilingual"
 
-#: admin/options.php:2418
-#: admin/options.php:2655, fuzzy
+#: admin/options.php:2431
+#: admin/options.php:2668, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2421
-#: admin/options.php:2665, fuzzy
+#: admin/options.php:2434
+#: admin/options.php:2678, fuzzy
 msgid "Workflow"
 msgstr "Workflow"
 
-#: admin/options.php:2503
+#: admin/options.php:2516
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2006,20 +2030,20 @@ msgstr ""
 "ระบุการตั้งค่า PublishPress Revisions ที่จะควบคุมทั่วทั้งเครือข่าย "
 "การตั้งค่าที่ไม่ได้เลือกจะถูกควบคุมแยกต่างหากในแต่ละเว็บไซต์."
 
-#: admin/options.php:2549
+#: admin/options.php:2562
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "การควบคุมทั่วทั้งเครือข่ายของ \"%s\""
 
-#: admin/options.php:2576
+#: admin/options.php:2589
 msgid "Save Changes"
 msgstr "บันทึกการเปลี่ยนแปลง"
 
-#: admin/options.php:2577
+#: admin/options.php:2590
 msgid "Revert to Defaults"
 msgstr "ย้อนกลับไปที่ค่าเริ่มต้น"
 
-#: admin/options.php:2579
+#: admin/options.php:2592
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2027,61 +2051,61 @@ msgstr ""
 "การตั้งค่าทั้งหมดในฟอร์มนี้ (รวมถึงที่อยู่ในแท็บที่ไม่ได้เลือก) "
 "จะถูกรีเซ็ตเป็นค่าเริ่มต้น คุณแน่ใจหรือไม่?"
 
-#: admin/options.php:2657, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2661, fuzzy
+#: admin/options.php:2674, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2663, fuzzy
+#: admin/options.php:2676, fuzzy
 msgid "Community"
 msgstr "Community"
 
-#: admin/options.php:2675, fuzzy
+#: admin/options.php:2688, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2680, fuzzy
+#: admin/options.php:2693, fuzzy
 msgid "Supported"
 msgstr "Supported"
 
-#: admin/options.php:2683
-#: admin/options.php:2737, fuzzy
+#: admin/options.php:2696
+#: admin/options.php:2750, fuzzy
 msgid "Active Plugin"
 msgstr "Active Plugin"
 
-#: admin/options.php:2695, fuzzy
+#: admin/options.php:2708, fuzzy
 msgid "Supported by PublishPress Revisions"
 msgstr "Supported by PublishPress Revisions"
 
-#: admin/options.php:2697, fuzzy
+#: admin/options.php:2710, fuzzy
 msgid "Supported by Revisions Pro"
 msgstr "Supported by Revisions Pro"
 
-#: admin/options.php:2710, fuzzy
+#: admin/options.php:2723, fuzzy
 msgid "Integration Active"
 msgstr "Integration Active"
 
-#: admin/options.php:2712
+#: admin/options.php:2725
 msgid "Upgrade to Pro to enable this integration"
 msgstr "อัปเกรดเป็น Pro เพื่อเปิดใช้งานการรวมนี้"
 
-#: admin/options.php:2721
+#: admin/options.php:2734
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "ปลดล็อกการรวม %s เพื่อพัฒนาวิธีแก้ไขการแก้ไขของคุณ"
 
-#: admin/options.php:2737, fuzzy
+#: admin/options.php:2750, fuzzy
 msgid "Active Plugin Integration"
 msgstr "Active Plugin Integration"
 
-#: admin/options.php:2747, fuzzy
+#: admin/options.php:2760, fuzzy
 msgid "Supported Plugin Integration"
 msgstr "Supported Plugin Integration"
 
-#: admin/options.php:2757, fuzzy
+#: admin/options.php:2770, fuzzy
 msgid "Supported Plugin"
 msgstr "Supported Plugin"
 
@@ -2726,7 +2750,8 @@ msgid "This is the Current Revision. %s"
 msgstr "นี่คือการแก้ไขปัจจุบัน. %s"
 
 #: front_rvy.php:673
-#: visual-compare_rvy.php:119
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:179
+#: visual-compare_rvy.php:114
 msgid "Restore"
 msgstr "กู้คืน"
 
@@ -2798,96 +2823,135 @@ msgstr "เอกสารรายละเอียดยังมีให้
 msgid "View Knowledge Base"
 msgstr "ดูฐานความรู้"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:88
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:766
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:108
 msgid "Modified: "
 msgstr "แก้ไข: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:89
-#: includes/visual-post-compare/visual-post-compare.php:62
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:767
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:110
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Post Date: "
 msgstr "วันที่โพสต์: "
 
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:112
+#, php-format
+msgid "Author: %s"
+msgstr "ผู้เขียน: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:113
+#, php-format
+msgid "Status: %s"
+msgstr "สถานะ: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:114
+#, php-format
+msgid "Action: %s"
+msgstr "การดำเนินการ: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:115
+msgid "Current"
+msgstr "ปัจจุบัน"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:116
+#, php-format
+msgid "by: %s"
+msgstr "โดย: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:117
+msgid "Comparison legend"
+msgstr "ตำนานการเปรียบเทียบ"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:118
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Added"
+msgstr "ถูกเพิ่ม"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:119
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Removed"
+msgstr "ถูกลบ"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:120
+msgid "Modified"
+msgstr "ที่แก้ไขแล้ว"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:121
+msgid "Loading comparison..."
+msgstr "กำลังโหลดการเปรียบเทียบ..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:122
+msgid "The target post content has been replaced with the approved content."
+msgstr "เนื้อหาของโพสต์เป้าหมายถูกแทนที่ด้วยเนื้อหาที่ได้รับการอนุมัติแล้ว."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:123
+msgid "Classic compare screen"
+msgstr "หน้าจอการเปรียบเทียบแบบคลาสสิก"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:125
+msgid "Visual comparison settings"
+msgstr "การตั้งค่าการเปรียบเทียบภาพ"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:152
 msgid "Past Revision"
 msgstr "รุ่นที่ผ่านมา"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:52
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:92
-msgid "Invalid comparison post IDs."
-msgstr "รหัสโพสต์เปรียบเทียบไม่ถูกต้อง"
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:180
+msgid "Restoring"
+msgstr "กำลังกู้คืน"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:56
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:71
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:96
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:129
-msgid "One of the comparison posts could not be found."
-msgstr "ไม่พบโพสต์เปรียบเทียบหนึ่งรายการ"
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:245
+msgid "Publish"
+msgstr "เผยแพร่"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:60
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
-msgid "You are not allowed to read both comparison posts."
-msgstr "คุณไม่ได้รับอนุญาตให้อ่านโพสต์เปรียบเทียบทั้งสอง"
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:246
+msgid "Publishing"
+msgstr "กำลังเผยแพร่"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:100
-msgid "You are not allowed to read the approved post."
-msgstr "คุณไม่ได้รับอนุญาตให้อ่านโพสต์ที่ได้รับการอนุมัติ"
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:249
+msgid "Approving"
+msgstr "กำลังอนุมัติ"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:104
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:133
-msgid "You are not allowed to update the target post."
-msgstr "คุณไม่ได้รับอนุญาตให้ปรับปรุงโพสต์เป้าหมาย"
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:58
+#: includes/visual-post-compare/visual-post-compare.php:180
+msgid "You are not allowed to view the revision."
+msgstr "คุณไม่อนุญาตให้ดูการแก้ไขนี้."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:110
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:139
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:76
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:120
+#: includes/visual-post-compare/visual-post-compare.php:163
+msgid "Invalid revision ID."
+msgstr "รหัสการแก้ไขไม่ถูกต้อง."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:93
 msgid "You are not allowed to approve the revision."
 msgstr "คุณไม่ได้รับอนุญาตให้อนุมัติการแก้ไข."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
-msgid "Revision does not match target post."
-msgstr "การแก้ไขไม่ตรงกับโพสต์เป้าหมาย."
-
-#: includes/visual-post-compare/visual-post-compare.php:156
-msgid ""
-"The comparison URL must contain two different valid post IDs in the from "
-"and to parameters."
-msgstr ""
-" URL "
-"การเปรียบเทียบจะต้องมีรหัสโพสต์ที่ถูกต้องสองรหัสที่แตกต่างกันในพารามิเตอร์จา"
-"กและถึง"
-
-#: includes/visual-post-compare/visual-post-compare.php:163
-msgid "One of the posts in the comparison URL could not be found."
-msgstr "ไม่พบโพสต์หนึ่งใน URL การเปรียบเทียบ"
-
-#: includes/visual-post-compare/visual-post-compare.php:178
-#: includes/visual-post-compare/visual-post-compare.php:182
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:189
-#: includes/visual-post-compare/visual-post-compare.php:224
-#: includes/visual-post-compare/visual-post-compare.php:286
+#: includes/visual-post-compare/visual-post-compare.php:176
+#: includes/visual-post-compare/visual-post-compare.php:180
+#: includes/visual-post-compare/visual-post-compare.php:184
+#: includes/visual-post-compare/visual-post-compare.php:192
+#: includes/visual-post-compare/visual-post-compare.php:219
+#: includes/visual-post-compare/visual-post-compare.php:281
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:944
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:998
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Compare Revisions"
 msgstr "เปรียบเทียบการปรับปรุง"
 
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:200
-msgid "You are not allowed to read both posts in this comparison."
-msgstr "คุณไม่ได้รับอนุญาตให้อ่านโพสต์ทั้งสองในเปรียบเทียบนี้"
+#: includes/visual-post-compare/visual-post-compare.php:184
+msgid "You are not allowed to view this comparison."
+msgstr "คุณไม่อนุญาตให้ดูการเปรียบเทียบนี้."
 
-#: includes/visual-post-compare/visual-post-compare.php:189
-msgid "You are not allowed to open this comparison in the editor."
-msgstr "คุณไม่ได้รับอนุญาตให้เปิดการเปรียบเทียบนี้ในโปรแกรมแก้ไข"
-
-#: lib/debug.php:117
+#: lib/debug.php:114
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s คำถามใน %2$s วินาที. ใช้ไป %3$s MB."
@@ -3116,7 +3180,7 @@ msgid "Revision Submitted"
 msgstr "การแก้ไขที่ส่งแล้ว"
 
 #: rvy_init-functions.php:371
-#: visual-compare_rvy.php:181
+#: visual-compare_rvy.php:173
 msgid "Submitted Revisions"
 msgstr "การแก้ไขที่ส่งแล้ว"
 
@@ -3151,7 +3215,7 @@ msgid "Revision Scheduled"
 msgstr "การแก้ไขที่กำหนดเวลาแล้ว"
 
 #: rvy_init-functions.php:388
-#: visual-compare_rvy.php:196
+#: visual-compare_rvy.php:188
 msgid "Scheduled Revisions"
 msgstr "การแก้ไขที่กำหนดเวลาแล้ว"
 
@@ -3205,28 +3269,32 @@ msgid ""
 "post."
 msgstr "ต้องการความสามารถ unfiltered_html เพื่อสร้างการแก้ไขของโพสต์นี้."
 
-#: rvy_init-functions.php:1276
+#: rvy_init-functions.php:1278
 msgid "Revision Workflow"
 msgstr "กระบวนการแก้ไข"
 
-#: visual-compare_rvy.php:93
+#: visual-compare_rvy.php:87
 #, php-format
 msgid "Compare Revisions %s"
 msgstr "เปรียบเทียบรุ่น %s"
 
-#: visual-compare_rvy.php:97
+#: visual-compare_rvy.php:91
 msgid "Compare Scheduled Revisions"
 msgstr "เปรียบเทียบรุ่นที่กำหนดเวลา"
 
-#: visual-compare_rvy.php:100
+#: visual-compare_rvy.php:94
 msgid "Compare Submitted Revisions"
 msgstr "เปรียบเทียบการแก้ไขที่ส่งมา"
 
-#: visual-compare_rvy.php:102
-msgid "Compare New Revisions"
-msgstr "เปรียบเทียบรุ่นใหม่"
+#: visual-compare_rvy.php:97
+msgid "Compare Unsubmitted Revisions"
+msgstr "เปรียบเทียบการแก้ไขที่ยังไม่ได้ส่ง"
 
-#: visual-compare_rvy.php:201
+#: visual-compare_rvy.php:100
+msgid "Compare New Revision"
+msgstr "เปรียบเทียบการแก้ไขใหม่"
+
+#: visual-compare_rvy.php:193
 msgid "Scheduled:"
 msgstr "ที่กำหนดเวลา:"
 
@@ -3239,20 +3307,6 @@ msgstr "การกำหนดบล็อกหลักของ WordPress �
 #: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr "ไม่สามารถลงทะเบียนบล็อกหลักของ WordPress สำหรับการเปรียบเทียบได้."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Removed"
-msgstr "ถูกลบ"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Added"
-msgstr "ถูกเพิ่ม"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:159
 #: includes/visual-post-compare/visual-post-compare-standalone.js:105
@@ -3288,45 +3342,24 @@ msgstr ""
 msgid "Select comparison post"
 msgstr "เลือกโพสต์เปรียบเทียบ"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:763
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-#, js-format
-msgid "by %s"
-msgstr "โดย %s"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:772
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Current"
-msgstr "ปัจจุบัน"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:773
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:795
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 #, js-format
 msgid "Post %d"
 msgstr "โพสต์ %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:806
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Approving…"
-msgstr "กำลังอนุมัติ…"
+#, js-format
+msgid "Revision %d"
+msgstr "การแก้ไข %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:908
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:959
 #: includes/visual-post-compare/visual-post-compare-standalone.js:156
 msgid "Unable to load this comparison."
 msgstr "ไม่สามารถโหลดการเปรียบเทียบนี้ได้."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:157
-msgid "Loading comparison…"
-msgstr "กำลังโหลดการเปรียบเทียบ…"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:929
-#: includes/visual-post-compare/visual-post-compare-standalone.js:159
-msgid "The target post content has been replaced with the approved content."
-msgstr "เนื้อหาของโพสต์เป้าหมายถูกแทนที่ด้วยเนื้อหาที่ได้รับการอนุมัติแล้ว."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:933
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:987
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Unable to approve this comparison."
 msgstr "ไม่สามารถอนุมัติการเปรียบเทียบนี้ได้."
@@ -3337,7 +3370,7 @@ msgid "Revisions"
 msgstr "การแก้ไข"
 
 #: admin/class-list-table-archive.php:1161
-#: admin/class-list-table_rvy.php:1924
+#: admin/class-list-table_rvy.php:1925
 #: admin/post-edit_rvy.php:192
 #: admin/post-edit_rvy.php:256
 #: admin/post-edit_rvy.php:270
@@ -3345,27 +3378,27 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "เปรียบเทียบ"
 
-#: admin/class-list-table_rvy.php:1935
+#: admin/class-list-table_rvy.php:1936
 msgctxt "revisions"
 msgid "Approve"
 msgstr "อนุมัติ"
 
-#: admin/class-list-table_rvy.php:1942
+#: admin/class-list-table_rvy.php:1943
 msgctxt "revisions"
 msgid "Publish"
 msgstr "เผยแพร่"
 
-#: admin/class-list-table_rvy.php:1951
+#: admin/class-list-table_rvy.php:1952
 msgctxt "revisions"
 msgid "Decline"
 msgstr "ปฏิเสธ"
 
-#: admin/history_rvy.php:1149, fuzzy
+#: admin/history_rvy.php:1185, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2513
+#: admin/options.php:2526
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"

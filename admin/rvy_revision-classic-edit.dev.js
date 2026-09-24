@@ -3,7 +3,7 @@
 *
 * By Kevin Behrens
 *
-* Copyright 2025, PublishPress
+* Copyright 2026, PublishPress
 */
 jQuery(document).ready( function($) {
     var rvySaveClicked = false;

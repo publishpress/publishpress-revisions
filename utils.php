@@ -16,11 +16,11 @@ class Utils {
 				return false;
 			}
 
-			if (0 === strpos(esc_url_raw($_SERVER['REQUEST_URI']), $path . '/wp-json/oembed/')) {
+			if (0 === strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $path . '/wp-json/oembed/')) {
 				return false;	
 			}
 	
-			if (0 === strpos(esc_url_raw($_SERVER['REQUEST_URI']), $path . '/wp-json/')) {
+			if (0 === strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $path . '/wp-json/')) {
 				return true;
 			}
 		}
@@ -117,7 +117,7 @@ class Utils {
 					}
 				
 				} else {
-                    $use_block = ('block' == get_user_meta($current_user->ID, 'wp_classic-editor-settings'));
+                    $use_block = ('block' == get_user_meta($current_user->ID, 'wp_classic-editor-settings', true));
 
                     if (version_compare($wp_version, '5.9-beta', '>=')) {
                     	if ($has_nav_action = has_action('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type')) {
@@ -315,11 +315,12 @@ class Utils {
 				WHERE post_parent = %d
 				AND post_type = 'revision'
 				AND post_status = 'inherit'
-				AND post_name LIKE '%" . intval($post_id) . "-autosave%'
+				AND post_name LIKE %s
 				AND post_author = %d
 				ORDER BY post_date DESC
 				LIMIT 1",
 				$post_id,
+				intval($post_id) . '-autosave' . '%',
 				$user_id
 			)
 		);

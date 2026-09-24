@@ -57,7 +57,7 @@ class RvyPostEdit {
                     var revisionID = urlParams.get('revision');
 
                     if (typeof rvyDeleteURL[revisionID] != 'undefined') {
-                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete"><?php _e('Delete', 'revisionary');?></a>');
+                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete"><?php esc_html_e('Delete', 'revisionary');?></a>');
                     }
                 });
             <?php endif;?>
@@ -189,7 +189,7 @@ class RvyPostEdit {
 
         <?php
         $compare_link = rvy_compare_url($post->ID);
-        $compare_button = _x('Compare', 'revisions', 'revisionary');
+        $compare_button = esc_html_x('Compare', 'revisions', 'revisionary');
         $compare_title = esc_html__('Compare this revision to published copy, or to other revisions', 'revisionary');
         ?>
 
@@ -253,7 +253,7 @@ class RvyPostEdit {
 	            printf('%s' . esc_html(pp_revisions_status_label('future-revision', 'plural')) . ': %s', '<span class="dashicons dashicons-clock"></span>&nbsp;', '<b>' . esc_html(count($_revisions)) . '</b>');
 	            ?>
 	            <a class="hide-if-no-js"
-                    href="<?php echo esc_url(rvy_compare_url('future-revision', ['post_id' => $post->ID]));?>" target="_revision_diff"><?php _ex('Compare', 'revisions', 'revisionary'); ?></a>
+                    href="<?php echo esc_url(rvy_compare_url('future-revision', ['post_id' => $post->ID]));?>" target="_revision_diff"><?php echo esc_html_x('Compare', 'revisions', 'revisionary'); ?></a>
 	            </div>
 	            <?php
 	        }
@@ -267,7 +267,7 @@ class RvyPostEdit {
 	            printf('%s' . esc_html(pp_revisions_status_label('pending-revision', 'plural')) . ': %s', '<span class="dashicons dashicons-edit"></span>&nbsp;', '<b>' . esc_html(count($_revisions)) . '</b>');
 	            ?>
 	            <a class="hide-if-no-js"
-                    href="<?php echo esc_url(rvy_compare_url('pending-revision', ['post_id' => $post->ID]));?>" target="_revision_diff"><?php _ex('Compare', 'revisions', 'revisionary'); ?></a>
+                    href="<?php echo esc_url(rvy_compare_url('pending-revision', ['post_id' => $post->ID]));?>" target="_revision_diff"><?php echo esc_html_x('Compare', 'revisions', 'revisionary'); ?></a>
 	            </div>
 	            <?php
 	        }
@@ -342,7 +342,7 @@ class RvyPostEdit {
             //$(document).on('loaded-ui', 'div.rvy-submission-div', function() {
                 $('div.misc-pub-section:first').after(
                     "<div class='misc-pub-section'><div class='rvy-author-selection'>"
-                    + '<label>' + '<?php _e("Author", 'revisionary');?>&nbsp;</label>'
+                    + '<label>' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
                     + '</div>'
                     + "<div class='rvy-author-selection'>"
                     + "<?php echo $select_html;     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"

@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-08-27 22:21+0000\n"
+"PO-Revision-Date: 2026-09-02 17:17+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: fa_IR\n"
@@ -94,7 +94,8 @@ msgstr "این پست قبلاً یک ویرایش در حال انجام دار
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:777
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:804
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:805
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Revision"
 msgstr "ویرایش"
@@ -159,7 +160,7 @@ msgstr "بازبینی‌ها"
 #: admin/options.php:550
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
-#: visual-compare_rvy.php:164
+#: visual-compare_rvy.php:156
 msgid "Past Revisions"
 msgstr "بازبینی‌های گذشته"
 
@@ -177,10 +178,10 @@ msgstr "تنظیمات"
 #: admin/admin_rvy.php:494
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:535
-#: admin/options.php:2141
-#: admin/options.php:2168
-#: admin/options.php:2384
-#: admin/options.php:2730
+#: admin/options.php:2154
+#: admin/options.php:2181
+#: admin/options.php:2397
+#: admin/options.php:2743
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr "ارتقاء به نسخه پرو"
@@ -269,10 +270,12 @@ msgid "unselect"
 msgstr "عدم انتخاب"
 
 #: admin/class-list-table-archive.php:22
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:53
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr "این یک به‌روزرسانی برای یک بازنگری است که هنوز در فرآیند کار است."
 
 #: admin/class-list-table-archive.php:24
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:54
 msgid "This was an update to a revision which was published after further editing."
 msgstr "این یک به‌روزرسانی برای یک بازنگری است که پس از ویرایش بیشتر منتشر شد."
 
@@ -307,8 +310,8 @@ msgid "Search results for \"%s\""
 msgstr "نتایج جستجو برای \"%s\""
 
 #: admin/class-list-table-archive.php:540
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -316,7 +319,7 @@ msgid "Delete Revision"
 msgstr "حذف بازنگری"
 
 #: admin/class-list-table-archive.php:581
-#: admin/class-list-table_rvy.php:761
+#: admin/class-list-table_rvy.php:762
 msgid "Post Type"
 msgstr "نوع پست"
 
@@ -347,73 +350,83 @@ msgid "Published Author"
 msgstr "نویسنده منتشر شده"
 
 #: admin/class-list-table-archive.php:616
-#: admin/class-list-table_rvy.php:927
+#: admin/class-list-table_rvy.php:928
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:265
 msgid "just now"
 msgstr "همین حالا"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s دقیقه پیش"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minute ago"
 msgstr "%s دقیقه پیش"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hours ago"
 msgstr "%s ساعت پیش"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hour ago"
 msgstr "%s ساعت پیش"
 
 #: admin/class-list-table-archive.php:756
 #: functions.php:478
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
 msgid "Scheduled Revision Publication"
 msgstr "انتشار بازبینی برنامه‌ریزی‌شده"
 
 #: admin/class-list-table-archive.php:760
 #: functions.php:482
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
 msgid "Revision Publication"
 msgstr "انتشار بازبینی"
 
 #: admin/class-list-table-archive.php:770
 #: functions.php:492
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:225
 #, php-format
 msgid "Edit of %s"
 msgstr "ویرایش %s"
 
 #: admin/class-list-table-archive.php:777
 #: functions.php:499
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:228
 msgid "Edit of published Revision"
 msgstr "ویرایش بازبینی منتشر شده"
 
 #: admin/class-list-table-archive.php:780
 #: functions.php:502
 #: functions.php:565
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:231
 msgid "Direct Edit"
 msgstr "ویرایش مستقیم"
 
 #: admin/class-list-table-archive.php:839
-#: admin/class-list-table_rvy.php:1467
+#: admin/class-list-table_rvy.php:1468
 msgid "All Post Types"
 msgstr "همه انواع پست‌ها"
 
 #: admin/class-list-table-archive.php:872
-#: admin/class-list-table_rvy.php:1502
+#: admin/class-list-table_rvy.php:1503
 msgid "All Revision Authors"
 msgstr "همه نویسندگان بازبینی"
 
 #: admin/class-list-table-archive.php:906
-#: admin/class-list-table_rvy.php:1537
+#: admin/class-list-table_rvy.php:1538
 msgid "All Revision Dates"
 msgstr "همه تاریخ‌های بازبینی"
 
@@ -426,17 +439,17 @@ msgid "All Approvers"
 msgstr "همه تأییدکنندگان"
 
 #: admin/class-list-table-archive.php:1036
-#: admin/class-list-table_rvy.php:1608
+#: admin/class-list-table_rvy.php:1609
 msgid "All Authors"
 msgstr "همه نویسندگان"
 
 #: admin/class-list-table-archive.php:1058
-#: admin/class-list-table_rvy.php:1644
+#: admin/class-list-table_rvy.php:1645
 msgid "Reset Filters"
 msgstr "تنظیم مجدد فیلترها"
 
 #: admin/class-list-table-archive.php:1089
-#: admin/options.php:2395
+#: admin/options.php:2408
 msgid "All"
 msgstr "همه"
 
@@ -450,7 +463,7 @@ msgid "Compare Changes in %s"
 msgstr "مقایسه تغییرات در %s"
 
 #: admin/class-list-table-archive.php:1176
-#: admin/class-list-table_rvy.php:1909
+#: admin/class-list-table_rvy.php:1910
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
@@ -484,85 +497,85 @@ msgstr "حذف ویرایش گذشته"
 msgid "No revisions found."
 msgstr "هیچ ویرایشی پیدا نشد."
 
-#: admin/class-list-table_rvy.php:760
+#: admin/class-list-table_rvy.php:761
 #: admin/options.php:767
 #: admin/options.php:930
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "وضعیت"
 
-#: admin/class-list-table_rvy.php:806
+#: admin/class-list-table_rvy.php:807
 msgid "View preview"
 msgstr "مشاهده پیش‌نمایش"
 
-#: admin/class-list-table_rvy.php:823
+#: admin/class-list-table_rvy.php:824
 msgid "Y/m/d, g:i:s a"
 msgstr "Y/m/d, g:i:s ب.ظ"
 
-#: admin/class-list-table_rvy.php:833
+#: admin/class-list-table_rvy.php:834
 msgid "Y/m/d g:i a"
 msgstr "Y/m/d g:i ب.ظ"
 
-#: admin/class-list-table_rvy.php:840
+#: admin/class-list-table_rvy.php:841
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "انتشار برنامه‌ریزی شده: %s"
 
-#: admin/class-list-table_rvy.php:843
+#: admin/class-list-table_rvy.php:844
 #, php-format
 msgid "Requested publication: %s"
 msgstr "انتشار درخواست شده: %s"
 
-#: admin/class-list-table_rvy.php:845
+#: admin/class-list-table_rvy.php:846
 msgid "This revision is not scheduled yet. It must be approved."
 msgstr "این ویرایش هنوز برنامه‌ریزی نشده است. باید تأیید شود."
 
-#: admin/class-list-table_rvy.php:895
-#: admin/history_rvy.php:930
+#: admin/class-list-table_rvy.php:896
+#: admin/history_rvy.php:966
 msgid "No author"
 msgstr "بدون نویسنده"
 
-#: admin/class-list-table_rvy.php:969
+#: admin/class-list-table_rvy.php:970
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "ویرایش پست منتشر شده"
 
-#: admin/class-list-table_rvy.php:982
+#: admin/class-list-table_rvy.php:983
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "فقط نسخه‌های اصلاح‌شده %s را مشاهده کنید"
 
-#: admin/class-list-table_rvy.php:993
-#: admin/class-list-table_rvy.php:1000
+#: admin/class-list-table_rvy.php:994
+#: admin/class-list-table_rvy.php:1001
 msgid "View published post"
 msgstr "مشاهده پست منتشر شده"
 
-#: admin/class-list-table_rvy.php:1025
-#: visual-compare_rvy.php:105
+#: admin/class-list-table_rvy.php:1026
+#: visual-compare_rvy.php:103
 msgid "Compare Past Revisions"
 msgstr "مقایسه نسخه‌های گذشته"
 
-#: admin/class-list-table_rvy.php:1026
+#: admin/class-list-table_rvy.php:1027
 msgid "History"
 msgstr "تاریخچه"
 
-#: admin/class-list-table_rvy.php:1307
+#: admin/class-list-table_rvy.php:1308
 msgid "My Activity"
 msgstr "فعالیت من"
 
-#: admin/class-list-table_rvy.php:1316
+#: admin/class-list-table_rvy.php:1317
 #, php-format
 msgid "All %s"
 msgstr "همه %s"
 
-#: admin/class-list-table_rvy.php:1406
+#: admin/class-list-table_rvy.php:1407
 msgid "Unschedule"
 msgstr "لغو زمان‌بندی"
 
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1881
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -570,21 +583,21 @@ msgstr "لغو زمان‌بندی"
 msgid "Discard Revision"
 msgstr "رد کردن نسخه"
 
-#: admin/class-list-table_rvy.php:1448
+#: admin/class-list-table_rvy.php:1449
 msgid "All Revision Statuses"
 msgstr "همه وضعیت‌های نسخه"
 
-#: admin/class-list-table_rvy.php:1573
+#: admin/class-list-table_rvy.php:1574
 msgid "All Posts"
 msgstr "همه پست‌ها"
 
-#: admin/class-list-table_rvy.php:1858
+#: admin/class-list-table_rvy.php:1859
 #: admin/post-editor-workflow-ui_rvy.php:237
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "ویرایش نسخه"
 
-#: admin/class-list-table_rvy.php:1923
+#: admin/class-list-table_rvy.php:1924
 msgid "Compare Changes"
 msgstr "مقایسه تغییرات"
 
@@ -612,75 +625,75 @@ msgstr "محتوای بالا را به کلیپ‌بورد کپی کنید."
 msgid "Compare %s of \"%s\""
 msgstr "مقایسه %s از \"%s\""
 
-#: admin/history_rvy.php:674
+#: admin/history_rvy.php:710
 #: admin/options.php:1174
 msgid "Post Date"
 msgstr "تاریخ پست"
 
-#: admin/history_rvy.php:675
+#: admin/history_rvy.php:711
 msgid "Post Parent"
 msgstr "والد پست"
 
-#: admin/history_rvy.php:676
+#: admin/history_rvy.php:712
 msgid "Menu Order"
 msgstr "ترتیب منو"
 
-#: admin/history_rvy.php:677
+#: admin/history_rvy.php:713
 msgid "Comment Status"
 msgstr "وضعیت نظر"
 
-#: admin/history_rvy.php:678
+#: admin/history_rvy.php:714
 msgid "Ping Status"
 msgstr "وضعیت پینگ"
 
-#: admin/history_rvy.php:818
+#: admin/history_rvy.php:854
 msgid "Page Template"
 msgstr "قالب صفحه"
 
-#: admin/history_rvy.php:821
+#: admin/history_rvy.php:857
 msgid "Featured Image"
 msgstr "تصویر برجسته"
 
-#: admin/history_rvy.php:825
+#: admin/history_rvy.php:861
 msgid "Beaver Builder Data"
 msgstr "داده‌های بیور بیلدر"
 
-#: admin/history_rvy.php:826
+#: admin/history_rvy.php:862
 msgid "Beaver Builder Settings"
 msgstr "تنظیمات بیور بیلدر"
 
-#: admin/history_rvy.php:1077
+#: admin/history_rvy.php:1113
 msgid "Scheduled for "
 msgstr "برنامه‌ریزی شده برای "
 
-#: admin/history_rvy.php:1082
+#: admin/history_rvy.php:1118
 msgid "Requested for "
 msgstr "درخواست شده برای "
 
-#: admin/history_rvy.php:1087
+#: admin/history_rvy.php:1123
 msgid "Modified "
 msgstr "تغییر یافته "
 
-#: admin/history_rvy.php:1092
+#: admin/history_rvy.php:1128
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s از حالا"
 
-#: admin/history_rvy.php:1103, fuzzy
+#: admin/history_rvy.php:1139, fuzzy
 msgid "M j, Y @ g:i a"
 msgstr "M j, Y @ g:i a"
 
-#: admin/history_rvy.php:1148, fuzzy
+#: admin/history_rvy.php:1184, fuzzy
 msgid "M j, Y @ H:i"
 msgstr "M j, Y @ H:i"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 #: front_rvy.php:546
 #: front_rvy.php:556
 #: front_rvy.php:575
 #: front_rvy.php:606
-#: includes/visual-post-compare/visual-post-compare.php:231
-#: includes/visual-post-compare/visual-post-compare.php:287
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:248
+#: includes/visual-post-compare/visual-post-compare.php:226
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:311
 #: rvy_init-functions.php:349
@@ -689,16 +702,14 @@ msgstr "M j, Y @ H:i"
 #: rvy_init-functions.php:367
 #: rvy_init-functions.php:383
 #: rvy_init-functions.php:384
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Approve"
 msgstr "تأیید"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 msgid "Preview / Approve"
 msgstr "پیش‌نمایش / تأیید"
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1273
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 #: admin/post-editor-workflow-ui_rvy.php:236
@@ -706,15 +717,15 @@ msgstr "پیش‌نمایش / تأیید"
 msgid "Preview"
 msgstr "پیش‌نمایش"
 
-#: admin/history_rvy.php:1331
+#: admin/history_rvy.php:1367
 msgid "Preview / Restore"
 msgstr "پیش‌نمایش / بازیابی"
 
-#: admin/history_rvy.php:1338
+#: admin/history_rvy.php:1374
 msgid "Manage"
 msgstr "مدیریت"
 
-#: admin/history_rvy.php:1339
+#: admin/history_rvy.php:1375
 msgid "List"
 msgstr "لیست"
 
@@ -1292,12 +1303,12 @@ msgstr "PublishPress Statuses Pro را دریافت کنید"
 
 #: admin/options.php:1047
 #: admin/options.php:1065
-#: admin/options.php:2146
-#: admin/options.php:2164
-#: admin/options.php:2726
-#: admin/options.php:2740
-#: admin/options.php:2750
-#: admin/options.php:2760
+#: admin/options.php:2159
+#: admin/options.php:2177
+#: admin/options.php:2739
+#: admin/options.php:2753
+#: admin/options.php:2763
+#: admin/options.php:2773
 msgid "Learn More"
 msgstr "بیشتر بیاموزید"
 
@@ -1336,22 +1347,22 @@ msgstr ""
 
 #: admin/options.php:1143
 #: admin/options.php:1314
-#: admin/options.php:1652
-#: admin/options.php:1678
-#: admin/options.php:1704
-#: admin/options.php:1732
-#: admin/options.php:2270
+#: admin/options.php:1670
+#: admin/options.php:1696
+#: admin/options.php:1722
+#: admin/options.php:1750
+#: admin/options.php:2283
 #, php-format
 msgid "%s capability"
 msgstr "%s قابلیت"
 
 #: admin/options.php:1148
 #: admin/options.php:1319
-#: admin/options.php:1657
-#: admin/options.php:1683
-#: admin/options.php:1709
-#: admin/options.php:1737
-#: admin/options.php:2275
+#: admin/options.php:1675
+#: admin/options.php:1701
+#: admin/options.php:1727
+#: admin/options.php:1755
+#: admin/options.php:2288
 msgid "Assign capability to roles"
 msgstr "تخصیص قابلیت به نقش‌ها"
 
@@ -1638,21 +1649,35 @@ msgstr "دکمه را به عنوان «تأیید و انتشار» یا «تأ
 msgid "This may improve compatibility with some plugins."
 msgstr "این ممکن است سازگاری با برخی افزونه‌ها را بهبود بخشد."
 
-#: admin/options.php:1664
+#: admin/options.php:1645
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"اگر مقایسه بصری تغییرات شما را به‌درستی نشان نمی‌دهد، این تنظیم را غیرفعال "
+"کنید. برخی از سازندگان صفحه و تم‌ها از سبک جدید ویرایش‌های WordPress "
+"پشتیبانی نمی‌کنند."
+
+#: admin/options.php:1651
+msgid "This feature is incompatible with page builder plugins."
+msgstr "این ویژگی با افزونه‌های سازنده صفحه سازگار نیست."
+
+#: admin/options.php:1682
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr "دسترسی به نسخه‌های جدید را با %s کنترل کنید."
 
-#: admin/options.php:1670
+#: admin/options.php:1688
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr "دسترسی به نسخه‌های جدید را با قابلیت manage_revision_queue کنترل کنید."
 
-#: admin/options.php:1690
+#: admin/options.php:1708
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr "کاربران برای ویرایش نسخه‌های غیرمنتشر شده دیگران به %s نیاز خواهند داشت."
 
-#: admin/options.php:1696
+#: admin/options.php:1714
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
@@ -1660,13 +1685,13 @@ msgstr ""
 "کاربران برای ویرایش نسخه‌های غیرمنتشر شده دیگران به قابلیت "
 "manage_unsubmitted_revisions نیاز خواهند داشت."
 
-#: admin/options.php:1716
-#: admin/options.php:1744
+#: admin/options.php:1734
+#: admin/options.php:1762
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr "اگر کاربر نتواند پست منتشر شده را ویرایش کند، به %s نیاز دارید."
 
-#: admin/options.php:1722
+#: admin/options.php:1740
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
@@ -1674,7 +1699,7 @@ msgstr ""
 "اگر کاربر نتواند پست منتشر شده را ویرایش کند، به قابلیت "
 "edit_others_revisions نیاز دارید."
 
-#: admin/options.php:1750
+#: admin/options.php:1768
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
@@ -1682,7 +1707,7 @@ msgstr ""
 "اگر کاربر نتواند پست منتشر شده را ویرایش کند، به قابلیت "
 "list_others_revisions نیاز دارید."
 
-#: admin/options.php:1755
+#: admin/options.php:1773
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -1690,7 +1715,7 @@ msgstr ""
 "محدودیت‌های فوق را برای نسخه‌های دیگران در پست‌های کاربر وارد شده نادیده "
 "بگیرید."
 
-#: admin/options.php:1771
+#: admin/options.php:1784
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -1698,11 +1723,11 @@ msgstr ""
 "اگر تغییراتی برای یک صفحه قابل ویرایش ایجاد شده باشد، یک دکمه شناور تغییرات "
 "را در نمای جلویی شامل کنید."
 
-#: admin/options.php:1779
+#: admin/options.php:1792
 msgid "Regenerate \"post has revision\" flags"
 msgstr "پرچم‌های «پست دارای نسخه» را دوباره‌سازی کنید"
 
-#: admin/options.php:1782
+#: admin/options.php:1795
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1710,19 +1735,19 @@ msgstr ""
 "این عملیات نگهداری را در صورتی که برچسب‌های Has Revision در صفحه‌های "
 "پست/صفحه با لیست نسخه‌های جدید مطابقت نداشته باشند، اعمال کنید."
 
-#: admin/options.php:1806
+#: admin/options.php:1819
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "برای اطلاع‌رسانی‌های پیشرفته، %sPublishPress Planner%s را نصب کنید."
 
-#: admin/options.php:1819
+#: admin/options.php:1832
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr ""
 "برای دریافت اعلان‌های بهبود یافته، %sPublishPress Planner%s را به‌روزرسانی "
 "کنید."
 
-#: admin/options.php:1841
+#: admin/options.php:1854
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -1731,7 +1756,7 @@ msgstr ""
 "اعلان‌های اقدام بازبینی را با استفاده از سیستم اعلان‌های قابل تنظیم "
 "%1$sPublishPress Planner Notifications%2$s ارسال کنید."
 
-#: admin/options.php:1842
+#: admin/options.php:1855
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -1740,7 +1765,7 @@ msgstr ""
 "برای ارسال اعلان‌های اقدام بازبینی با استفاده از سیستم اعلان‌های قابل تنظیم "
 "%1$sPublishPress Planner Notifications%2$s، به نسخه Pro ارتقا دهید."
 
-#: admin/options.php:1854
+#: admin/options.php:1867
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -1748,27 +1773,27 @@ msgstr ""
 "کاربرانی که با تنظیمات Planner > Notifications مطابقت دارند، فقط در صورتی "
 "اعلان‌های بازبینی دریافت می‌کنند که بتوانند پست منتشر شده را ویرایش کنند."
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Never"
 msgstr "هرگز"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "By default"
 msgstr "به‌طور پیش‌فرض"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Always"
 msgstr "همیشه"
 
-#: admin/options.php:1907
-#: admin/options.php:1954
+#: admin/options.php:1920
+#: admin/options.php:1967
 msgid "select recipients"
 msgstr "گیرندگان را انتخاب کنید"
 
-#: admin/options.php:1968
+#: admin/options.php:1981
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -1776,55 +1801,55 @@ msgstr ""
 "برای جلوگیری از شکست‌های اعلان، ایمیل‌ها را برای ارسال تأخیری در صورتی که "
 "محدودیت‌های دقیقه، ساعت یا روز تجاوز شود، بافر کنید"
 
-#: admin/options.php:1991
+#: admin/options.php:2004
 msgid "Notification Buffer"
 msgstr "بافر اعلان"
 
-#: admin/options.php:2019
+#: admin/options.php:2032
 msgid "Notification Log"
 msgstr "گزارش اعلان"
 
-#: admin/options.php:2053
+#: admin/options.php:2066
 msgid "Purge Notification Buffer"
 msgstr "بافر اعلان را پاک کنید"
 
-#: admin/options.php:2064
+#: admin/options.php:2077
 msgid "Truncate Notification Log"
 msgstr "گزارش اعلان را کوتاه کنید"
 
-#: admin/options.php:2070
+#: admin/options.php:2083
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "در دقیقه گذشته ارسال شده: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2084
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "در ساعت گذشته ارسال شده: %d / %d"
 
-#: admin/options.php:2072
+#: admin/options.php:2085
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "در روز گذشته ارسال شده: %d / %d"
 
-#: admin/options.php:2079
+#: admin/options.php:2092
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "ثانیه‌ها تا زمان پردازش بافر بعدی: %d"
 
-#: admin/options.php:2090
+#: admin/options.php:2103
 msgid "Show Notification Log / Buffer"
 msgstr "گزارش / بافر اعلان را نمایش دهید"
 
-#: admin/options.php:2092
+#: admin/options.php:2105
 msgid "Show with message content"
 msgstr "با محتوای پیام نمایش دهید"
 
-#: admin/options.php:2114
+#: admin/options.php:2127
 msgid "Ready to enhance your revision notifications?"
 msgstr "آماده‌اید تا اعلان‌های بازبینی خود را بهبود ببخشید؟"
 
-#: admin/options.php:2117
+#: admin/options.php:2130
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -1832,52 +1857,52 @@ msgstr ""
 "برای ادغام با فریمورک اعلان‌های Planner PublishPress خود، به Revisions Pro "
 "ارتقا دهید."
 
-#: admin/options.php:2123
+#: admin/options.php:2136
 msgid "Customize notification message and subject"
 msgstr "پیام و موضوع اعلان را سفارشی کنید"
 
-#: admin/options.php:2126
+#: admin/options.php:2139
 msgid "Notify for a specific post type, category or term"
 msgstr "برای یک نوع پست خاص، دسته یا اصطلاح اطلاع‌رسانی کنید"
 
-#: admin/options.php:2129
+#: admin/options.php:2142
 msgid "Target specific roles, users, or user groups"
 msgstr "نقش‌ها، کاربران یا گروه‌های کاربری خاص را هدف قرار دهید"
 
-#: admin/options.php:2132
+#: admin/options.php:2145
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "با PublishPress Planner Pro، اعلان‌ها را به یک کانال Slack ارسال کنید"
 
-#: admin/options.php:2159
-#: admin/options.php:2720
+#: admin/options.php:2172
+#: admin/options.php:2733
 msgid "Pro Feature"
 msgstr "ویژگی پرو"
 
-#: admin/options.php:2160
+#: admin/options.php:2173
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr "برای باز کردن ادغام اعلان‌های Planner به Revisions Pro ارتقا دهید."
 
-#: admin/options.php:2161
+#: admin/options.php:2174
 msgid "Customize notification content and recipients for each notification type."
 msgstr "محتوا و گیرندگان اعلان را برای هر نوع اعلان سفارشی کنید."
 
-#: admin/options.php:2185
+#: admin/options.php:2198
 msgid "Some themes may block revision preview."
 msgstr "برخی از تم‌ها ممکن است پیش‌نمایش بازنگری را مسدود کنند."
 
-#: admin/options.php:2202
+#: admin/options.php:2215
 msgid "Published Post Slug"
 msgstr "اسلاگ پست منتشر شده"
 
-#: admin/options.php:2203
+#: admin/options.php:2216
 msgid "Revision Slug"
 msgstr "اسلاگ بازنگری"
 
-#: admin/options.php:2204
+#: admin/options.php:2217
 msgid "Revision ID only"
 msgstr "فقط شناسه بازنگری"
 
-#: admin/options.php:2219
+#: admin/options.php:2232
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -1885,12 +1910,12 @@ msgstr ""
 "برخی از تم‌ها یا افزونه‌ها ممکن است برای بارگذاری صحیح الگو و نمایش فیلد "
 "نیاز به نوع لینک اسلاگ بازنگری یا شناسه بازنگری داشته باشند."
 
-#: admin/options.php:2228
+#: admin/options.php:2241
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "آرگومان پیش‌نمایش بازنگری با تعریف ثابت پیکربندی شده است: %s"
 
-#: admin/options.php:2235
+#: admin/options.php:2248
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -1899,13 +1924,13 @@ msgstr ""
 "\"preview\" استفاده کنند. آزمایش کنید تا ببینید کدام یک با تم شما بهتر کار "
 "می‌کند."
 
-#: admin/options.php:2239
+#: admin/options.php:2252
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "برخی از تم‌ها ممکن است برای نمایش صحیح پیش‌نمایش بازنگری به این تنظیم نیاز "
 "داشته باشند."
 
-#: admin/options.php:2258
+#: admin/options.php:2271
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -1913,14 +1938,14 @@ msgstr ""
 "این معمولاً باید فعال باشد، مگر اینکه برای جلوگیری از تداخل با داده‌های "
 "postmeta افزونه دیگری باشد."
 
-#: admin/options.php:2282
+#: admin/options.php:2295
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "اگر کاربر نتواند منتشر کند، نیاز به %s برای ویرایش پست‌های منتشر نشده "
 "دیگران داشته باشد."
 
-#: admin/options.php:2288
+#: admin/options.php:2301
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -1928,7 +1953,7 @@ msgstr ""
 "اگر کاربر نتواند منتشر کند، نیاز به قابلیت edit_others_drafts برای ویرایش "
 "پست‌های منتشر نشده دیگران داشته باشد."
 
-#: admin/options.php:2294
+#: admin/options.php:2307
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -1936,20 +1961,20 @@ msgstr ""
 "اگر مجوزهای خاص پست دسترسی به یک پست را محدود یا گسترش دهند، همان مجوزها را "
 "به بازنگری‌های آن نیز اعمال کنید."
 
-#: admin/options.php:2306
+#: admin/options.php:2319
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO ممکن است به‌روزرسانی بازنگری را در برخی سایت‌ها متوقف کند."
 
-#: admin/options.php:2313
+#: admin/options.php:2326
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
 msgstr "WPML مدیریت ترجمه"
 
-#: admin/options.php:2318
+#: admin/options.php:2331
 msgid "Sync \"Needs Update\" flags"
 msgstr "همگام‌سازی پرچم‌های \"نیاز به به‌روزرسانی\""
 
-#: admin/options.php:2322
+#: admin/options.php:2335
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -1958,11 +1983,11 @@ msgstr ""
 "به‌تازگی از ترجمه‌های آن به‌روزتر هستند، \"نیاز به به‌روزرسانی\" را تنظیم "
 "کنید."
 
-#: admin/options.php:2340
+#: admin/options.php:2353
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "نمایش توضیحات توصیفی برای تنظیمات بازنگری‌های PublishPress."
 
-#: admin/options.php:2358
+#: admin/options.php:2371
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -1970,11 +1995,11 @@ msgstr ""
 "تنظیمات افزونه، محتوای بازنگری‌های جدید و داده‌های مربوطه حذف خواهند شد، "
 "اما فقط پس از حذف آخرین نسخه بازنگری‌ها / بازنگری پرو."
 
-#: admin/options.php:2379
+#: admin/options.php:2392
 msgid "Unlock Pro Integrations"
 msgstr "فعال‌سازی ادغام‌های پرو"
 
-#: admin/options.php:2380
+#: admin/options.php:2393
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -1982,45 +2007,45 @@ msgstr ""
 "به نسخه پرو ارتقا دهید تا بهترین سازگاری و پشتیبانی سریع و حرفه‌ای را داشته "
 "باشید."
 
-#: admin/options.php:2398
-#: admin/options.php:2651
+#: admin/options.php:2411
+#: admin/options.php:2664
 msgid "Admin"
 msgstr "admin"
 
-#: admin/options.php:2401
-#: admin/options.php:2649
+#: admin/options.php:2414
+#: admin/options.php:2662
 msgid "Builder"
 msgstr "سازنده"
 
-#: admin/options.php:2404
-#: admin/options.php:2653
+#: admin/options.php:2417
+#: admin/options.php:2666
 msgid "Cache"
 msgstr "کش"
 
-#: admin/options.php:2407
+#: admin/options.php:2420
 msgid "E-Commerce"
 msgstr "تجارت الکترونیک"
 
-#: admin/options.php:2410
-#: admin/options.php:2659
+#: admin/options.php:2423
+#: admin/options.php:2672
 msgid "Fields"
 msgstr "فیلدها"
 
-#: admin/options.php:2414
+#: admin/options.php:2427
 msgid "Multilingual"
 msgstr "چندزبانه"
 
-#: admin/options.php:2418
-#: admin/options.php:2655, fuzzy
+#: admin/options.php:2431
+#: admin/options.php:2668, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2421
-#: admin/options.php:2665
+#: admin/options.php:2434
+#: admin/options.php:2678
 msgid "Workflow"
 msgstr "جریان کار"
 
-#: admin/options.php:2503
+#: admin/options.php:2516
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2028,20 +2053,20 @@ msgstr ""
 "مشخص کنید که کدام تنظیمات بازنگری‌های PublishPress باید در سطح شبکه کنترل "
 "شوند. تنظیمات انتخاب نشده به‌طور جداگانه در هر سایت کنترل می‌شوند."
 
-#: admin/options.php:2549
+#: admin/options.php:2562
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "کنترل در سطح شبکه بر روی \"%s\""
 
-#: admin/options.php:2576
+#: admin/options.php:2589
 msgid "Save Changes"
 msgstr "ذخیره تغییرات"
 
-#: admin/options.php:2577
+#: admin/options.php:2590
 msgid "Revert to Defaults"
 msgstr "بازگشت به تنظیمات پیش‌فرض"
 
-#: admin/options.php:2579
+#: admin/options.php:2592
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2049,61 +2074,61 @@ msgstr ""
 "تمام تنظیمات در این فرم (شامل تنظیمات روی تب‌های انتخاب‌نشده) به پیش‌فرض‌ها "
 "بازنشانی خواهد شد. آیا مطمئن هستید؟"
 
-#: admin/options.php:2657, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2661, fuzzy
+#: admin/options.php:2674, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2663, fuzzy
+#: admin/options.php:2676, fuzzy
 msgid "Community"
 msgstr "Community"
 
-#: admin/options.php:2675, fuzzy
+#: admin/options.php:2688, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2680, fuzzy
+#: admin/options.php:2693, fuzzy
 msgid "Supported"
 msgstr "Supported"
 
-#: admin/options.php:2683
-#: admin/options.php:2737, fuzzy
+#: admin/options.php:2696
+#: admin/options.php:2750, fuzzy
 msgid "Active Plugin"
 msgstr "Active Plugin"
 
-#: admin/options.php:2695, fuzzy
+#: admin/options.php:2708, fuzzy
 msgid "Supported by PublishPress Revisions"
 msgstr "Supported by PublishPress Revisions"
 
-#: admin/options.php:2697, fuzzy
+#: admin/options.php:2710, fuzzy
 msgid "Supported by Revisions Pro"
 msgstr "Supported by Revisions Pro"
 
-#: admin/options.php:2710
+#: admin/options.php:2723
 msgid "Integration Active"
 msgstr "یکپارچگی فعال"
 
-#: admin/options.php:2712
+#: admin/options.php:2725
 msgid "Upgrade to Pro to enable this integration"
 msgstr "به Pro ارتقا دهید تا این یکپارچگی فعال شود"
 
-#: admin/options.php:2721
+#: admin/options.php:2734
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "ادغام %s را برای بهبود راه‌حل بازبینی‌های خود باز کنید."
 
-#: admin/options.php:2737
+#: admin/options.php:2750
 msgid "Active Plugin Integration"
 msgstr "یکپارچگی افزونه فعال"
 
-#: admin/options.php:2747
+#: admin/options.php:2760
 msgid "Supported Plugin Integration"
 msgstr "یکپارچگی افزونه پشتیبانی‌شده"
 
-#: admin/options.php:2757
+#: admin/options.php:2770
 msgid "Supported Plugin"
 msgstr "افزونه پشتیبانی‌شده"
 
@@ -2756,7 +2781,8 @@ msgid "This is the Current Revision. %s"
 msgstr "این نسخه فعلی است. %s"
 
 #: front_rvy.php:673
-#: visual-compare_rvy.php:119
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:179
+#: visual-compare_rvy.php:114
 msgid "Restore"
 msgstr "بازگردانی"
 
@@ -2828,95 +2854,135 @@ msgstr "مستندات دقیق نیز در وب‌سایت پلاگین موج�
 msgid "View Knowledge Base"
 msgstr "مشاهده پایگاه دانش"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:88
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:766
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:108
 msgid "Modified: "
 msgstr "ویرایش شده: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:89
-#: includes/visual-post-compare/visual-post-compare.php:62
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:767
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:110
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Post Date: "
 msgstr "تاریخ ارسال: "
 
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:112
+#, php-format
+msgid "Author: %s"
+msgstr "نویسنده: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:113
+#, php-format
+msgid "Status: %s"
+msgstr "وضعیت: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:114
+#, php-format
+msgid "Action: %s"
+msgstr "عملیات: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:115
+msgid "Current"
+msgstr "فعلی"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:116
+#, php-format
+msgid "by: %s"
+msgstr "توسط: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:117
+msgid "Comparison legend"
+msgstr "افسانه مقایسه"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:118
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Added"
+msgstr "اضافه‌شده"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:119
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Removed"
+msgstr "حذف‌شده"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:120
+msgid "Modified"
+msgstr "تغییر یافته"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:121
+msgid "Loading comparison..."
+msgstr "در حال بارگذاری مقایسه..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:122
+msgid "The target post content has been replaced with the approved content."
+msgstr "محتوای پست هدف با محتوای تأیید شده جایگزین شده است."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:123
+msgid "Classic compare screen"
+msgstr "صفحه مقایسه کلاسیک"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:125
+msgid "Visual comparison settings"
+msgstr "تنظیمات مقایسه بصری"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:152
 msgid "Past Revision"
 msgstr "نسخه گذشته"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:52
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:92
-msgid "Invalid comparison post IDs."
-msgstr "شناسه‌های پست مقایسه غیر معتبر هستند."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:180
+msgid "Restoring"
+msgstr "در حال بازیابی"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:56
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:71
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:96
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:129
-msgid "One of the comparison posts could not be found."
-msgstr "یکی از پست‌های مقایسه پیدا نشد."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:245
+msgid "Publish"
+msgstr "انتشار"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:60
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
-msgid "You are not allowed to read both comparison posts."
-msgstr "شما اجازه خواندن هر دو پست مقایسه را ندارید."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:246
+msgid "Publishing"
+msgstr "در حال انتشار"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:100
-msgid "You are not allowed to read the approved post."
-msgstr "شما اجازه خواندن پست تایید شده را ندارید."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:249
+msgid "Approving"
+msgstr "در حال تأیید"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:104
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:133
-msgid "You are not allowed to update the target post."
-msgstr "شما اجازه به‌روزرسانی پست هدف را ندارید."
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:58
+#: includes/visual-post-compare/visual-post-compare.php:180
+msgid "You are not allowed to view the revision."
+msgstr "شما اجازه مشاهده این بازنگری را ندارید."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:110
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:139
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:76
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:120
+#: includes/visual-post-compare/visual-post-compare.php:163
+msgid "Invalid revision ID."
+msgstr "شناسه بازنگری نامعتبر است."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:93
 msgid "You are not allowed to approve the revision."
 msgstr "شما مجاز به تأیید بازنگری نیستید."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
-msgid "Revision does not match target post."
-msgstr "بازنگری با پست هدف مطابقت ندارد."
-
-#: includes/visual-post-compare/visual-post-compare.php:156
-msgid ""
-"The comparison URL must contain two different valid post IDs in the from "
-"and to parameters."
-msgstr ""
-"آدرس URL مقایسه باید شامل دو شناسه پست معتبر و متفاوت در پارامترهای from و "
-"to باشد."
-
-#: includes/visual-post-compare/visual-post-compare.php:163
-msgid "One of the posts in the comparison URL could not be found."
-msgstr "یکی از پست‌ها در آدرس URL مقایسه پیدا نشد."
-
-#: includes/visual-post-compare/visual-post-compare.php:178
-#: includes/visual-post-compare/visual-post-compare.php:182
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:189
-#: includes/visual-post-compare/visual-post-compare.php:224
-#: includes/visual-post-compare/visual-post-compare.php:286
+#: includes/visual-post-compare/visual-post-compare.php:176
+#: includes/visual-post-compare/visual-post-compare.php:180
+#: includes/visual-post-compare/visual-post-compare.php:184
+#: includes/visual-post-compare/visual-post-compare.php:192
+#: includes/visual-post-compare/visual-post-compare.php:219
+#: includes/visual-post-compare/visual-post-compare.php:281
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:944
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:998
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Compare Revisions"
 msgstr "مقایسه نسخه‌ها"
 
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:200
-msgid "You are not allowed to read both posts in this comparison."
-msgstr "شما اجازه خواندن هر دو پست در این مقایسه را ندارید."
+#: includes/visual-post-compare/visual-post-compare.php:184
+msgid "You are not allowed to view this comparison."
+msgstr "شما اجازه مشاهده این مقایسه را ندارید."
 
-#: includes/visual-post-compare/visual-post-compare.php:189
-msgid "You are not allowed to open this comparison in the editor."
-msgstr "شما اجازه باز کردن این مقایسه در ویرایشگر را ندارید."
-
-#: lib/debug.php:117
+#: lib/debug.php:114
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s پرسش در %2$s ثانیه. %3$s مگابایت استفاده شده."
@@ -3149,7 +3215,7 @@ msgid "Revision Submitted"
 msgstr "بازبینی ارسال‌شده"
 
 #: rvy_init-functions.php:371
-#: visual-compare_rvy.php:181
+#: visual-compare_rvy.php:173
 msgid "Submitted Revisions"
 msgstr "بازبینی‌های ارسال‌شده"
 
@@ -3185,7 +3251,7 @@ msgid "Revision Scheduled"
 msgstr "بازبینی برنامه‌ریزی‌شده"
 
 #: rvy_init-functions.php:388
-#: visual-compare_rvy.php:196
+#: visual-compare_rvy.php:188
 msgid "Scheduled Revisions"
 msgstr "بازبینی‌های برنامه‌ریزی‌شده"
 
@@ -3243,28 +3309,32 @@ msgid ""
 "post."
 msgstr "برای ایجاد یک بازنگری از این پست، قابلیت unfiltered_html لازم است."
 
-#: rvy_init-functions.php:1276
+#: rvy_init-functions.php:1278
 msgid "Revision Workflow"
 msgstr "فرآیند بازنگری"
 
-#: visual-compare_rvy.php:93
+#: visual-compare_rvy.php:87
 #, php-format
 msgid "Compare Revisions %s"
 msgstr "مقایسه نسخه‌ها %s"
 
-#: visual-compare_rvy.php:97
+#: visual-compare_rvy.php:91
 msgid "Compare Scheduled Revisions"
 msgstr "مقایسه نسخه‌های برنامه‌ریزی‌شده"
 
-#: visual-compare_rvy.php:100
+#: visual-compare_rvy.php:94
 msgid "Compare Submitted Revisions"
 msgstr "مقایسه نسخه‌های ارسال شده"
 
-#: visual-compare_rvy.php:102
-msgid "Compare New Revisions"
-msgstr "مقایسه نسخه‌های جدید"
+#: visual-compare_rvy.php:97
+msgid "Compare Unsubmitted Revisions"
+msgstr "مقایسه بازنگری‌های ارسال‌نشده"
 
-#: visual-compare_rvy.php:201
+#: visual-compare_rvy.php:100
+msgid "Compare New Revision"
+msgstr "مقایسه نسخه جدید"
+
+#: visual-compare_rvy.php:193
 msgid "Scheduled:"
 msgstr "برنامه‌ریزی‌شده:"
 
@@ -3277,20 +3347,6 @@ msgstr "تعاریف بلوک‌های هسته WordPress در این صفحه �
 #: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr "بلوک‌های هسته WordPress نتوانستند برای مقایسه ثبت شوند."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Removed"
-msgstr "حذف‌شده"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Added"
-msgstr "اضافه‌شده"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:159
 #: includes/visual-post-compare/visual-post-compare-standalone.js:105
@@ -3324,45 +3380,24 @@ msgstr "مقایسه تولید شد، اما WordPress نتوانست هیچ ب
 msgid "Select comparison post"
 msgstr "انتخاب پست مقایسه"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:763
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-#, js-format
-msgid "by %s"
-msgstr "توسط %s"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:772
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Current"
-msgstr "فعلی"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:773
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:795
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 #, js-format
 msgid "Post %d"
 msgstr "پست %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:806
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Approving…"
-msgstr "در حال تأیید…"
+#, js-format
+msgid "Revision %d"
+msgstr "نسخه %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:908
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:959
 #: includes/visual-post-compare/visual-post-compare-standalone.js:156
 msgid "Unable to load this comparison."
 msgstr "نمی‌توان این مقایسه را بارگذاری کرد."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:157
-msgid "Loading comparison…"
-msgstr "در حال بارگذاری مقایسه…"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:929
-#: includes/visual-post-compare/visual-post-compare-standalone.js:159
-msgid "The target post content has been replaced with the approved content."
-msgstr "محتوای پست هدف با محتوای تأیید شده جایگزین شده است."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:933
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:987
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Unable to approve this comparison."
 msgstr "نمی‌توان این مقایسه را تأیید کرد."
@@ -3373,7 +3408,7 @@ msgid "Revisions"
 msgstr "بازنگری‌ها"
 
 #: admin/class-list-table-archive.php:1161
-#: admin/class-list-table_rvy.php:1924
+#: admin/class-list-table_rvy.php:1925
 #: admin/post-edit_rvy.php:192
 #: admin/post-edit_rvy.php:256
 #: admin/post-edit_rvy.php:270
@@ -3381,27 +3416,27 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "مقایسه"
 
-#: admin/class-list-table_rvy.php:1935
+#: admin/class-list-table_rvy.php:1936
 msgctxt "revisions"
 msgid "Approve"
 msgstr "تایید"
 
-#: admin/class-list-table_rvy.php:1942
+#: admin/class-list-table_rvy.php:1943
 msgctxt "revisions"
 msgid "Publish"
 msgstr "انتشار"
 
-#: admin/class-list-table_rvy.php:1951
+#: admin/class-list-table_rvy.php:1952
 msgctxt "revisions"
 msgid "Decline"
 msgstr "رد کردن"
 
-#: admin/history_rvy.php:1149, fuzzy
+#: admin/history_rvy.php:1185, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2513
+#: admin/options.php:2526
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"

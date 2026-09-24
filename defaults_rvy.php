@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * @package     PublishPress\Revisions\RevisionaryOptions
@@ -23,6 +24,9 @@ function rvy_default_options_sitewide() {
 		'revise_posts_capability' => true,
 		'scheduled_revisions' => true,
 		'scheduled_publish_cron' => true,
+		'legacy_cron_publication' => true,
+		'legacy_cron_rescheduling' => true,
+		'legacy_scheduled_publication' => true,
 		'async_scheduled_publish' => true,
 		'wp_cron_usage_detected' => false,
 		'pending_rev_notify_admin' => true,
@@ -106,7 +110,10 @@ function rvy_default_options() {
 		'auto_submit_revisions' => 0,
 		'revise_posts_capability' => 0,
 		'scheduled_revisions' => 1,
-		'scheduled_publish_cron' => 1,
+		'scheduled_publish_cron' => 0,
+		'legacy_cron_publication' => 1,
+		'legacy_cron_rescheduling' => 0,
+		'legacy_scheduled_publication' => 0,
 		'async_scheduled_publish' => 1,
 		'wp_cron_usage_detected' => 0,
 		'pending_rev_notify_admin' => 1,

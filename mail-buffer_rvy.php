@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 function _rvy_mail_send_limits() {
 	$default_minute_limit = (defined('REVISIONARY_EMAIL_LIMIT_MINUTE')) ? REVISIONARY_EMAIL_LIMIT_MINUTE : 20;
 	$default_hour_limit = (defined('REVISIONARY_EMAIL_LIMIT_HOUR')) ? REVISIONARY_EMAIL_LIMIT_HOUR : 100;
@@ -27,10 +31,8 @@ function _rvy_mail_check_buffer($new_msg = [], $args = []) {
 		
 		// @todo: re-enable buffer after troubleshooting for working copy redirect error
 
-		if (true) {
-			$buffer = [];
-			$first_buffer = true;
-		}
+		$buffer = [];
+		$first_buffer = true;
 	}
 
 	$new_msg_buffered = false;

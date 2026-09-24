@@ -55,8 +55,8 @@ class FrontNotice {
                 ?>
                 <span id="rvyRevisionIndicator">
                 <a href="<?php echo esc_url($url);?>" class="button button-secondary"><button>
-                <img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>">
-                <div><?php _e('Revisions', 'revisionary');?></div>
+                <img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>" alt="">
+                <div><?php esc_html_e('Revisions', 'revisionary');?></div>
                 </button></a></span>
                 <?php
             }
@@ -176,7 +176,7 @@ class FrontNotice {
         }
 
         $notice_msg = sprintf(
-            __('This %s has new revisions. Click the button below to review them.', 'revisionary'),
+            esc_html__('This %s has new revisions. Click the button below to review them.', 'revisionary'),
             strtolower($type_obj->labels->singular_name)
         );
         ?>

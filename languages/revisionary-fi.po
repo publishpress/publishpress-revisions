@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-08-27 22:21+0000\n"
+"PO-Revision-Date: 2026-09-02 17:17+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -95,7 +95,8 @@ msgstr "Postauksella on jo käynnissä oleva versio."
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:103
 #: rvy_init-functions.php:495
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:777
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:804
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:805
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Revision"
 msgstr "Versio"
@@ -160,7 +161,7 @@ msgstr "Muokkaukset"
 #: admin/options.php:550
 #: admin/revision-archive_rvy.php:81
 #: admin/revisions.php:237
-#: visual-compare_rvy.php:164
+#: visual-compare_rvy.php:156
 msgid "Past Revisions"
 msgstr "Aikaisemmat muokkaukset"
 
@@ -178,10 +179,10 @@ msgstr "Asetukset"
 #: admin/admin_rvy.php:494
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:535
-#: admin/options.php:2141
-#: admin/options.php:2168
-#: admin/options.php:2384
-#: admin/options.php:2730
+#: admin/options.php:2154
+#: admin/options.php:2181
+#: admin/options.php:2397
+#: admin/options.php:2743
 #: includes/CoreAdmin.php:212
 msgid "Upgrade to Pro"
 msgstr "Päivitä Pro-versioon"
@@ -270,10 +271,12 @@ msgid "unselect"
 msgstr "poista valinta"
 
 #: admin/class-list-table-archive.php:22
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:53
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr "Tämä oli päivitys versioon, joka on edelleen työnkulkuprosessissa."
 
 #: admin/class-list-table-archive.php:24
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:54
 msgid "This was an update to a revision which was published after further editing."
 msgstr "Tämä oli päivitys versioon, joka julkaistiin lisämuokkauksen jälkeen."
 
@@ -308,8 +311,8 @@ msgid "Search results for \"%s\""
 msgstr "Hakutulokset hakusanalle \"%s\""
 
 #: admin/class-list-table-archive.php:540
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -317,7 +320,7 @@ msgid "Delete Revision"
 msgstr "Poista versio"
 
 #: admin/class-list-table-archive.php:581
-#: admin/class-list-table_rvy.php:761
+#: admin/class-list-table_rvy.php:762
 msgid "Post Type"
 msgstr "Postityyppi"
 
@@ -348,73 +351,83 @@ msgid "Published Author"
 msgstr "Julkaisija"
 
 #: admin/class-list-table-archive.php:616
-#: admin/class-list-table_rvy.php:927
+#: admin/class-list-table_rvy.php:928
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:265
 msgid "just now"
 msgstr "juuri nyt"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s minuuttia sitten"
 
 #: admin/class-list-table-archive.php:621
-#: admin/class-list-table_rvy.php:932
+#: admin/class-list-table_rvy.php:933
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:270
 #, php-format
 msgid "%s minute ago"
 msgstr "%s minuutti sitten"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hours ago"
 msgstr "%s tuntia sitten"
 
 #: admin/class-list-table-archive.php:628
-#: admin/class-list-table_rvy.php:939
+#: admin/class-list-table_rvy.php:940
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:277
 #, php-format
 msgid "%s hour ago"
 msgstr "%s tunti sitten"
 
 #: admin/class-list-table-archive.php:756
 #: functions.php:478
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
 msgid "Scheduled Revision Publication"
 msgstr "Aikataulutettu tarkistuksen julkaisu"
 
 #: admin/class-list-table-archive.php:760
 #: functions.php:482
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
 msgid "Revision Publication"
 msgstr "Tarkistuksen julkaisu"
 
 #: admin/class-list-table-archive.php:770
 #: functions.php:492
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:225
 #, php-format
 msgid "Edit of %s"
 msgstr "Muokkaus %s"
 
 #: admin/class-list-table-archive.php:777
 #: functions.php:499
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:228
 msgid "Edit of published Revision"
 msgstr "Julkaistun tarkistuksen muokkaus"
 
 #: admin/class-list-table-archive.php:780
 #: functions.php:502
 #: functions.php:565
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:231
 msgid "Direct Edit"
 msgstr "Suora muokkaus"
 
 #: admin/class-list-table-archive.php:839
-#: admin/class-list-table_rvy.php:1467
+#: admin/class-list-table_rvy.php:1468
 msgid "All Post Types"
 msgstr "Kaikki julkaisutyypit"
 
 #: admin/class-list-table-archive.php:872
-#: admin/class-list-table_rvy.php:1502
+#: admin/class-list-table_rvy.php:1503
 msgid "All Revision Authors"
 msgstr "Kaikki tarkistuksen kirjoittajat"
 
 #: admin/class-list-table-archive.php:906
-#: admin/class-list-table_rvy.php:1537
+#: admin/class-list-table_rvy.php:1538
 msgid "All Revision Dates"
 msgstr "Kaikki tarkistuspäivämäärät"
 
@@ -427,17 +440,17 @@ msgid "All Approvers"
 msgstr "Kaikki hyväksyjät"
 
 #: admin/class-list-table-archive.php:1036
-#: admin/class-list-table_rvy.php:1608
+#: admin/class-list-table_rvy.php:1609
 msgid "All Authors"
 msgstr "Kaikki kirjoittajat"
 
 #: admin/class-list-table-archive.php:1058
-#: admin/class-list-table_rvy.php:1644
+#: admin/class-list-table_rvy.php:1645
 msgid "Reset Filters"
 msgstr "Nollaa suodattimet"
 
 #: admin/class-list-table-archive.php:1089
-#: admin/options.php:2395
+#: admin/options.php:2408
 msgid "All"
 msgstr "Kaikki"
 
@@ -451,7 +464,7 @@ msgid "Compare Changes in %s"
 msgstr "Vertaile muutoksia %s"
 
 #: admin/class-list-table-archive.php:1176
-#: admin/class-list-table_rvy.php:1909
+#: admin/class-list-table_rvy.php:1910
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
@@ -485,85 +498,85 @@ msgstr "Poista vanha muokkaus"
 msgid "No revisions found."
 msgstr "Ei muokkauksia löytynyt."
 
-#: admin/class-list-table_rvy.php:760
+#: admin/class-list-table_rvy.php:761
 #: admin/options.php:767
 #: admin/options.php:930
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "Tila"
 
-#: admin/class-list-table_rvy.php:806
+#: admin/class-list-table_rvy.php:807
 msgid "View preview"
 msgstr "Näytä esikatselu"
 
-#: admin/class-list-table_rvy.php:823, fuzzy
+#: admin/class-list-table_rvy.php:824, fuzzy
 msgid "Y/m/d, g:i:s a"
 msgstr "Y/m/d, g:i:s a"
 
-#: admin/class-list-table_rvy.php:833, fuzzy
+#: admin/class-list-table_rvy.php:834, fuzzy
 msgid "Y/m/d g:i a"
 msgstr "Y/m/d g:i a"
 
-#: admin/class-list-table_rvy.php:840
+#: admin/class-list-table_rvy.php:841
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "Aikataulutettu julkaisu: %s"
 
-#: admin/class-list-table_rvy.php:843
+#: admin/class-list-table_rvy.php:844
 #, php-format
 msgid "Requested publication: %s"
 msgstr "Pyydetty julkaisu: %s"
 
-#: admin/class-list-table_rvy.php:845
+#: admin/class-list-table_rvy.php:846
 msgid "This revision is not scheduled yet. It must be approved."
 msgstr "Tätä muokkausta ei ole vielä aikataulutettu. Se on hyväksyttävä."
 
-#: admin/class-list-table_rvy.php:895
-#: admin/history_rvy.php:930
+#: admin/class-list-table_rvy.php:896
+#: admin/history_rvy.php:966
 msgid "No author"
 msgstr "Ei kirjoittajaa"
 
-#: admin/class-list-table_rvy.php:969
+#: admin/class-list-table_rvy.php:970
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "Muokkaa julkaistua viestiä"
 
-#: admin/class-list-table_rvy.php:982
+#: admin/class-list-table_rvy.php:983
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "Näytä vain %s:n versiot"
 
-#: admin/class-list-table_rvy.php:993
-#: admin/class-list-table_rvy.php:1000
+#: admin/class-list-table_rvy.php:994
+#: admin/class-list-table_rvy.php:1001
 msgid "View published post"
 msgstr "Näytä julkaistu kirjoitus"
 
-#: admin/class-list-table_rvy.php:1025
-#: visual-compare_rvy.php:105
+#: admin/class-list-table_rvy.php:1026
+#: visual-compare_rvy.php:103
 msgid "Compare Past Revisions"
 msgstr "Vertaa aikaisempia versioita"
 
-#: admin/class-list-table_rvy.php:1026
+#: admin/class-list-table_rvy.php:1027
 msgid "History"
 msgstr "Historia"
 
-#: admin/class-list-table_rvy.php:1307
+#: admin/class-list-table_rvy.php:1308
 msgid "My Activity"
 msgstr "Oma aktiviteetti"
 
-#: admin/class-list-table_rvy.php:1316
+#: admin/class-list-table_rvy.php:1317
 #, php-format
 msgid "All %s"
 msgstr "Kaikki %s"
 
-#: admin/class-list-table_rvy.php:1406
+#: admin/class-list-table_rvy.php:1407
 msgid "Unschedule"
 msgstr "Poista aikataulusta"
 
-#: admin/class-list-table_rvy.php:1410
-#: admin/class-list-table_rvy.php:1881
-#: admin/class-list-table_rvy.php:1885
+#: admin/class-list-table_rvy.php:1411
+#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table_rvy.php:1886
 #: admin/post-edit-block-ui_rvy.php:124
 #: admin/post-edit_rvy.php:95
 #: admin/RevisionEditSubmitMetabox.php:62
@@ -571,21 +584,21 @@ msgstr "Poista aikataulusta"
 msgid "Discard Revision"
 msgstr "Hylkää versio"
 
-#: admin/class-list-table_rvy.php:1448
+#: admin/class-list-table_rvy.php:1449
 msgid "All Revision Statuses"
 msgstr "Kaikki version tilat"
 
-#: admin/class-list-table_rvy.php:1573
+#: admin/class-list-table_rvy.php:1574
 msgid "All Posts"
 msgstr "Kaikki kirjoitukset"
 
-#: admin/class-list-table_rvy.php:1858
+#: admin/class-list-table_rvy.php:1859
 #: admin/post-editor-workflow-ui_rvy.php:237
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "Muokkaa versiota"
 
-#: admin/class-list-table_rvy.php:1923
+#: admin/class-list-table_rvy.php:1924
 msgid "Compare Changes"
 msgstr "Vertaa muutoksia"
 
@@ -613,75 +626,75 @@ msgstr "Kopioi yllä oleva sisältö leikepöydälle."
 msgid "Compare %s of \"%s\""
 msgstr "Vertaa %s \"%s\":n"
 
-#: admin/history_rvy.php:674
+#: admin/history_rvy.php:710
 #: admin/options.php:1174
 msgid "Post Date"
 msgstr "Julkaisupäivämäärä"
 
-#: admin/history_rvy.php:675
+#: admin/history_rvy.php:711
 msgid "Post Parent"
 msgstr "Julkaise vanhempi"
 
-#: admin/history_rvy.php:676
+#: admin/history_rvy.php:712
 msgid "Menu Order"
 msgstr "Valikkojärjestys"
 
-#: admin/history_rvy.php:677
+#: admin/history_rvy.php:713
 msgid "Comment Status"
 msgstr "Kommentin tila"
 
-#: admin/history_rvy.php:678
+#: admin/history_rvy.php:714
 msgid "Ping Status"
 msgstr "Ping-tila"
 
-#: admin/history_rvy.php:818
+#: admin/history_rvy.php:854
 msgid "Page Template"
 msgstr "Sivupohja"
 
-#: admin/history_rvy.php:821
+#: admin/history_rvy.php:857
 msgid "Featured Image"
 msgstr "Esittelykuva"
 
-#: admin/history_rvy.php:825
+#: admin/history_rvy.php:861
 msgid "Beaver Builder Data"
 msgstr "Beaver Builder -data"
 
-#: admin/history_rvy.php:826
+#: admin/history_rvy.php:862
 msgid "Beaver Builder Settings"
 msgstr "Beaver Builder -asetukset"
 
-#: admin/history_rvy.php:1077
+#: admin/history_rvy.php:1113
 msgid "Scheduled for "
 msgstr "Aikataulutettu "
 
-#: admin/history_rvy.php:1082
+#: admin/history_rvy.php:1118
 msgid "Requested for "
 msgstr "Pyydetty "
 
-#: admin/history_rvy.php:1087
+#: admin/history_rvy.php:1123
 msgid "Modified "
 msgstr "Muokattu "
 
-#: admin/history_rvy.php:1092
+#: admin/history_rvy.php:1128
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s nyt"
 
-#: admin/history_rvy.php:1103, fuzzy
+#: admin/history_rvy.php:1139, fuzzy
 msgid "M j, Y @ g:i a"
 msgstr "M j, Y @ g:i a"
 
-#: admin/history_rvy.php:1148, fuzzy
+#: admin/history_rvy.php:1184, fuzzy
 msgid "M j, Y @ H:i"
 msgstr "M j, Y @ H:i"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 #: front_rvy.php:546
 #: front_rvy.php:556
 #: front_rvy.php:575
 #: front_rvy.php:606
-#: includes/visual-post-compare/visual-post-compare.php:231
-#: includes/visual-post-compare/visual-post-compare.php:287
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:248
+#: includes/visual-post-compare/visual-post-compare.php:226
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:311
 #: rvy_init-functions.php:349
@@ -690,16 +703,14 @@ msgstr "M j, Y @ H:i"
 #: rvy_init-functions.php:367
 #: rvy_init-functions.php:383
 #: rvy_init-functions.php:384
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Approve"
 msgstr "Hyväksy"
 
-#: admin/history_rvy.php:1235
+#: admin/history_rvy.php:1271
 msgid "Preview / Approve"
 msgstr "Esikatselu / Hyväksy"
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1273
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:118
 #: admin/post-editor-workflow-ui_rvy.php:236
@@ -707,15 +718,15 @@ msgstr "Esikatselu / Hyväksy"
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: admin/history_rvy.php:1331
+#: admin/history_rvy.php:1367
 msgid "Preview / Restore"
 msgstr "Esikatselu / Palauta"
 
-#: admin/history_rvy.php:1338
+#: admin/history_rvy.php:1374
 msgid "Manage"
 msgstr "Hallitse"
 
-#: admin/history_rvy.php:1339
+#: admin/history_rvy.php:1375
 msgid "List"
 msgstr "Lista"
 
@@ -1299,12 +1310,12 @@ msgstr "Hanki PublishPress Statuses Pro"
 
 #: admin/options.php:1047
 #: admin/options.php:1065
-#: admin/options.php:2146
-#: admin/options.php:2164
-#: admin/options.php:2726
-#: admin/options.php:2740
-#: admin/options.php:2750
-#: admin/options.php:2760
+#: admin/options.php:2159
+#: admin/options.php:2177
+#: admin/options.php:2739
+#: admin/options.php:2753
+#: admin/options.php:2763
+#: admin/options.php:2773
 msgid "Learn More"
 msgstr "Lue lisää"
 
@@ -1343,22 +1354,22 @@ msgstr ""
 
 #: admin/options.php:1143
 #: admin/options.php:1314
-#: admin/options.php:1652
-#: admin/options.php:1678
-#: admin/options.php:1704
-#: admin/options.php:1732
-#: admin/options.php:2270
+#: admin/options.php:1670
+#: admin/options.php:1696
+#: admin/options.php:1722
+#: admin/options.php:1750
+#: admin/options.php:2283
 #, php-format
 msgid "%s capability"
 msgstr "%s kyky"
 
 #: admin/options.php:1148
 #: admin/options.php:1319
-#: admin/options.php:1657
-#: admin/options.php:1683
-#: admin/options.php:1709
-#: admin/options.php:1737
-#: admin/options.php:2275
+#: admin/options.php:1675
+#: admin/options.php:1701
+#: admin/options.php:1727
+#: admin/options.php:1755
+#: admin/options.php:2288
 msgid "Assign capability to roles"
 msgstr "Määritä kyky rooleille"
 
@@ -1639,21 +1650,35 @@ msgstr "Otsikoi painike joko \"Hyväksy ja julkaise\" tai \"Hyväksy ja aikataul
 msgid "This may improve compatibility with some plugins."
 msgstr "Tämä voi parantaa yhteensopivuutta joidenkin lisäosien kanssa."
 
-#: admin/options.php:1664
+#: admin/options.php:1645
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"Poista tämä asetuksen käytöstä, jos visuaalinen vertailu näyttää muutoksesi "
+"väärin. Jotkut sivurakentajat ja teemat eivät tue WordPressin uusinta "
+"versiointityyliä."
+
+#: admin/options.php:1651
+msgid "This feature is incompatible with page builder plugins."
+msgstr "Tämä ominaisuus ei ole yhteensopiva sivunrakentajalisäosien kanssa."
+
+#: admin/options.php:1682
 #, php-format
 msgid "Control New Revisions access with the %s."
 msgstr "Säätele Uudet versiot -pääsyä %s:n avulla."
 
-#: admin/options.php:1670
+#: admin/options.php:1688
 msgid "Control New Revisions access with the manage_revision_queue capability."
 msgstr "Säätele Uudet versiot -pääsyä manage_revision_queue-kyvykkyyden avulla."
 
-#: admin/options.php:1690
+#: admin/options.php:1708
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr "Käyttäjät tarvitsevat %s muokatakseen muiden lähettämättömiä versioita."
 
-#: admin/options.php:1696
+#: admin/options.php:1714
 msgid ""
 "Users will need the manage_unsubmitted_revisions capability to edit others' "
 "Unsubmitted Revisions."
@@ -1661,13 +1686,13 @@ msgstr ""
 "Käyttäjät tarvitsevat manage_unsubmitted_revisions -kyvykkyyden "
 "muokatakseen muiden lähettämättömiä versioita."
 
-#: admin/options.php:1716
-#: admin/options.php:1744
+#: admin/options.php:1734
+#: admin/options.php:1762
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr "Jos käyttäjä ei voi muokata julkaistua viestiä, vaadi %s."
 
-#: admin/options.php:1722
+#: admin/options.php:1740
 msgid ""
 "If the user can't edit the published post, require the "
 "edit_others_revisions capability."
@@ -1675,7 +1700,7 @@ msgstr ""
 "Jos käyttäjä ei voi muokata julkaistua viestiä, vaadi edit_others_revisions "
 "-kyvykkyys."
 
-#: admin/options.php:1750
+#: admin/options.php:1768
 msgid ""
 "If the user can't edit the published post, require the "
 "list_others_revisions capability."
@@ -1683,7 +1708,7 @@ msgstr ""
 "Jos käyttäjä ei voi muokata julkaistua viestiä, vaadi list_others_revisions "
 "-kyvykkyys."
 
-#: admin/options.php:1755
+#: admin/options.php:1773
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -1691,7 +1716,7 @@ msgstr ""
 "Ohita yllä olevat rajoitukset muiden versioiden osalta kirjautuneen "
 "käyttäjän omille viesteille."
 
-#: admin/options.php:1771
+#: admin/options.php:1784
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -1699,11 +1724,11 @@ msgstr ""
 "Jos muokkauksia on luotu muokattavalle sivulle, lisää kelluva "
 "Muokkaukset-painike käyttöliittymän näkymiin."
 
-#: admin/options.php:1779
+#: admin/options.php:1792
 msgid "Regenerate \"post has revision\" flags"
 msgstr "Uudelleenluo \"viestillä on versio\" -liput"
 
-#: admin/options.php:1782
+#: admin/options.php:1795
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1711,17 +1736,17 @@ msgstr ""
 "Sovella tätä ylläpitotoimintoa, jos Has Revision -tunnisteet Viestit / "
 "Sivut -näytöissä eivät vastaa Uudet versiot -luetteloa."
 
-#: admin/options.php:1806
+#: admin/options.php:1819
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "Parannettujen ilmoitusten saamiseksi asenna %sPublishPress Planner%s."
 
-#: admin/options.php:1819
+#: admin/options.php:1832
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "Parannettuja ilmoituksia varten, päivitä %sPublishPress Planner%s."
 
-#: admin/options.php:1841
+#: admin/options.php:1854
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -1730,7 +1755,7 @@ msgstr ""
 "Lähetä tarkistus-toimintoilmoituksia käyttäen muokattavaa %1$sPublishPress "
 "Planner Notifications -järjestelmää%2$s."
 
-#: admin/options.php:1842
+#: admin/options.php:1855
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -1740,7 +1765,7 @@ msgstr ""
 "käyttäen muokattavaa %1$sPublishPress Planner Notifications "
 "-järjestelmää%2$s."
 
-#: admin/options.php:1854
+#: admin/options.php:1867
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -1748,27 +1773,27 @@ msgstr ""
 "Käyttäjät, jotka vastaavat Planner > Ilmoitukset -asetusta, saavat "
 "tarkistusilmoituksia vain, jos he voivat muokata julkaistua viestiä."
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Never"
 msgstr "Ei koskaan"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "By default"
 msgstr "Oletusarvoisesti"
 
-#: admin/options.php:1896
-#: admin/options.php:1918
+#: admin/options.php:1909
+#: admin/options.php:1931
 msgid "Always"
 msgstr "Aina"
 
-#: admin/options.php:1907
-#: admin/options.php:1954
+#: admin/options.php:1920
+#: admin/options.php:1967
 msgid "select recipients"
 msgstr "valitse vastaanottajat"
 
-#: admin/options.php:1968
+#: admin/options.php:1981
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -1776,55 +1801,55 @@ msgstr ""
 "Ilmoitusvirheiden välttämiseksi, puskuoi sähköpostit viivästettyä "
 "lähettämistä varten, kun minuutin, tunnin tai päivän rajat ylitetään"
 
-#: admin/options.php:1991
+#: admin/options.php:2004
 msgid "Notification Buffer"
 msgstr "Ilmoituspuskuri"
 
-#: admin/options.php:2019
+#: admin/options.php:2032
 msgid "Notification Log"
 msgstr "Ilmoituslokki"
 
-#: admin/options.php:2053
+#: admin/options.php:2066
 msgid "Purge Notification Buffer"
 msgstr "Tyhjennä ilmoituspuskuri"
 
-#: admin/options.php:2064
+#: admin/options.php:2077
 msgid "Truncate Notification Log"
 msgstr "Lyhennä ilmoituslokki"
 
-#: admin/options.php:2070
+#: admin/options.php:2083
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "Lähetetty viime minuutissa: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2084
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "Lähetetty viime tunnissa: %d / %d"
 
-#: admin/options.php:2072
+#: admin/options.php:2085
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "Lähetetty viime päivänä: %d / %d"
 
-#: admin/options.php:2079
+#: admin/options.php:2092
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "Sekunteja seuraavaan puskurin käsittelyaikaan: %d"
 
-#: admin/options.php:2090
+#: admin/options.php:2103
 msgid "Show Notification Log / Buffer"
 msgstr "Näytä ilmoituslokki / puskuri"
 
-#: admin/options.php:2092
+#: admin/options.php:2105
 msgid "Show with message content"
 msgstr "Näytä viestin sisällön kanssa"
 
-#: admin/options.php:2114
+#: admin/options.php:2127
 msgid "Ready to enhance your revision notifications?"
 msgstr "Valmiina parantamaan tarkistusilmoituksiasi?"
 
-#: admin/options.php:2117
+#: admin/options.php:2130
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -1832,52 +1857,52 @@ msgstr ""
 "Päivitä Revisions Prohon integroidaksesi sen PublishPress Planner "
 "Notifications -kehykseen."
 
-#: admin/options.php:2123
+#: admin/options.php:2136
 msgid "Customize notification message and subject"
 msgstr "Mukauta ilmoitusviesti ja aihe"
 
-#: admin/options.php:2126
+#: admin/options.php:2139
 msgid "Notify for a specific post type, category or term"
 msgstr "Ilmoita tietystä post typestä, kategoriasta tai termistä"
 
-#: admin/options.php:2129
+#: admin/options.php:2142
 msgid "Target specific roles, users, or user groups"
 msgstr "Kohdista tietyt roolit, käyttäjät tai käyttäjäryhmät"
 
-#: admin/options.php:2132
+#: admin/options.php:2145
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "PublishPress Planner Pro:n avulla, lähetä ilmoituksia Slack-kanavalle"
 
-#: admin/options.php:2159
-#: admin/options.php:2720
+#: admin/options.php:2172
+#: admin/options.php:2733
 msgid "Pro Feature"
 msgstr "Pro-ominaisuus"
 
-#: admin/options.php:2160
+#: admin/options.php:2173
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr "Päivitä Revisions Prohon avataksesi Planner Notifications -integraation."
 
-#: admin/options.php:2161
+#: admin/options.php:2174
 msgid "Customize notification content and recipients for each notification type."
 msgstr "Mukauta ilmoitus sisältöä ja vastaanottajia jokaiselle ilmoitustyypille."
 
-#: admin/options.php:2185
+#: admin/options.php:2198
 msgid "Some themes may block revision preview."
 msgstr "Jotkin teemat saattavat estää revision esikatselun."
 
-#: admin/options.php:2202
+#: admin/options.php:2215
 msgid "Published Post Slug"
 msgstr "Julkaistun postin slug"
 
-#: admin/options.php:2203
+#: admin/options.php:2216
 msgid "Revision Slug"
 msgstr "Revision slug"
 
-#: admin/options.php:2204
+#: admin/options.php:2217
 msgid "Revision ID only"
 msgstr "Vain revision ID"
 
-#: admin/options.php:2219
+#: admin/options.php:2232
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -1885,12 +1910,12 @@ msgstr ""
 "Jotkin teemat tai lisäosat saattavat vaatia Revision slug tai Revision ID "
 "linkkityyppiä oikean mallin lataamisen ja kenttäesittelyn vuoksi."
 
-#: admin/options.php:2228
+#: admin/options.php:2241
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "Revision esikatselun argumentti on määritelty konstantin määrittelyllä: %s"
 
-#: admin/options.php:2235
+#: admin/options.php:2248
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -1898,13 +1923,13 @@ msgstr ""
 "Säädä esikatselulinkkejä käyttämään \"rv_preview\" argumenttia \"preview\" "
 "sijaan. Kokeile nähdäksesi, mikä toimii parhaiten teemasi kanssa."
 
-#: admin/options.php:2239
+#: admin/options.php:2252
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "Jotkin teemat saattavat vaatia tämän asetuksen oikean revision esikatselun "
 "näyttämiseksi."
 
-#: admin/options.php:2258
+#: admin/options.php:2271
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -1912,14 +1937,14 @@ msgstr ""
 "Tämä tulisi yleensä olla käytössä, paitsi jos on tarpeen kiertää "
 "ristiriitoja muiden lisäosien postmeta-tietojen kanssa."
 
-#: admin/options.php:2282
+#: admin/options.php:2295
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "Jos käyttäjä ei voi julkaista, vaadi %s muokatakseen muiden "
 "julkaisemattomia postauksia."
 
-#: admin/options.php:2288
+#: admin/options.php:2301
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -1927,7 +1952,7 @@ msgstr ""
 "Jos käyttäjä ei voi julkaista, vaadi edit_others_drafts-kyky muokatakseen "
 "muiden julkaisemattomia postauksia."
 
-#: admin/options.php:2294
+#: admin/options.php:2307
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -1935,20 +1960,20 @@ msgstr ""
 "Jos postikohtaiset käyttöoikeudet rajoittavat tai laajentavat pääsyä "
 "postiin, sovella näitä käyttöoikeuksia myös sen revisions."
 
-#: admin/options.php:2306
+#: admin/options.php:2319
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO saattaa estää Revision päivityksen joillakin sivustoilla."
 
-#: admin/options.php:2313
+#: admin/options.php:2326
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
 msgstr "WPML Käännöshallinta"
 
-#: admin/options.php:2318
+#: admin/options.php:2331
 msgid "Sync \"Needs Update\" flags"
 msgstr "Synkronoi \"Tarvitsee päivityksen\" liput"
 
-#: admin/options.php:2322
+#: admin/options.php:2335
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -1957,11 +1982,11 @@ msgstr ""
 "(mahdollisesti revision hyväksymisen kautta) äskettäin kuin niiden "
 "käännökset."
 
-#: admin/options.php:2340
+#: admin/options.php:2353
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "Näytä kuvailevat otsikot PublishPress Revisioiden asetuksille."
 
-#: admin/options.php:2358
+#: admin/options.php:2371
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -1970,11 +1995,11 @@ msgstr ""
 "tiedot poistetaan, mutta vain sen jälkeen, kun viimeinen kopio Revisioista "
 "/ Revisio Pro:sta on poistettu."
 
-#: admin/options.php:2379
+#: admin/options.php:2392
 msgid "Unlock Pro Integrations"
 msgstr "Avaa Pro-integraatiot"
 
-#: admin/options.php:2380
+#: admin/options.php:2393
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -1982,45 +2007,45 @@ msgstr ""
 "Päivitä Pro-versioon optimaalista yhteensopivuutta ja nopeaa, ammattimaista "
 "tukea varten."
 
-#: admin/options.php:2398
-#: admin/options.php:2651
+#: admin/options.php:2411
+#: admin/options.php:2664
 msgid "Admin"
 msgstr "admin"
 
-#: admin/options.php:2401
-#: admin/options.php:2649
+#: admin/options.php:2414
+#: admin/options.php:2662
 msgid "Builder"
 msgstr "Rakentaja"
 
-#: admin/options.php:2404
-#: admin/options.php:2653
+#: admin/options.php:2417
+#: admin/options.php:2666
 msgid "Cache"
 msgstr "Välimuisti"
 
-#: admin/options.php:2407
+#: admin/options.php:2420
 msgid "E-Commerce"
 msgstr "Verkkokauppa"
 
-#: admin/options.php:2410
-#: admin/options.php:2659
+#: admin/options.php:2423
+#: admin/options.php:2672
 msgid "Fields"
 msgstr "Kentät"
 
-#: admin/options.php:2414
+#: admin/options.php:2427
 msgid "Multilingual"
 msgstr "Monikielinen"
 
-#: admin/options.php:2418
-#: admin/options.php:2655, fuzzy
+#: admin/options.php:2431
+#: admin/options.php:2668, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2421
-#: admin/options.php:2665
+#: admin/options.php:2434
+#: admin/options.php:2678
 msgid "Workflow"
 msgstr "Työnkulku"
 
-#: admin/options.php:2503
+#: admin/options.php:2516
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2028,20 +2053,20 @@ msgstr ""
 "Määritä, mitkä PublishPress Revisioiden asetukset hallitaan koko verkossa. "
 "Valitsemattomia asetuksia hallitaan erikseen jokaisella sivustolla."
 
-#: admin/options.php:2549
+#: admin/options.php:2562
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "verkko- laajuinen hallinta \"%s\""
 
-#: admin/options.php:2576
+#: admin/options.php:2589
 msgid "Save Changes"
 msgstr "Tallenna muutokset"
 
-#: admin/options.php:2577
+#: admin/options.php:2590
 msgid "Revert to Defaults"
 msgstr "Palauta oletuksiin"
 
-#: admin/options.php:2579
+#: admin/options.php:2592
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2049,61 +2074,61 @@ msgstr ""
 "Kaikki tämän lomakkeen asetukset (mukaan lukien valitsemattomilla "
 "välilehdillä olevat) palautetaan OLETUSARVOIHIN. Oletko varma?"
 
-#: admin/options.php:2657, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2661, fuzzy
+#: admin/options.php:2674, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2663, fuzzy
+#: admin/options.php:2676, fuzzy
 msgid "Community"
 msgstr "Community"
 
-#: admin/options.php:2675, fuzzy
+#: admin/options.php:2688, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2680, fuzzy
+#: admin/options.php:2693, fuzzy
 msgid "Supported"
 msgstr "Supported"
 
-#: admin/options.php:2683
-#: admin/options.php:2737
+#: admin/options.php:2696
+#: admin/options.php:2750
 msgid "Active Plugin"
 msgstr "Aktiivinen laajennus"
 
-#: admin/options.php:2695
+#: admin/options.php:2708
 msgid "Supported by PublishPress Revisions"
 msgstr "PublishPress Revisionsin tukema"
 
-#: admin/options.php:2697
+#: admin/options.php:2710
 msgid "Supported by Revisions Pro"
 msgstr "Revisions Pro:n tukema"
 
-#: admin/options.php:2710
+#: admin/options.php:2723
 msgid "Integration Active"
 msgstr "Integraatio aktiivinen"
 
-#: admin/options.php:2712
+#: admin/options.php:2725
 msgid "Upgrade to Pro to enable this integration"
 msgstr "Päivitä Pro:hon ottaaksesi tämän integraation käyttöön"
 
-#: admin/options.php:2721
+#: admin/options.php:2734
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "Avaa %s-integraatio parantaaksesi tarkistuksesi ratkaisua."
 
-#: admin/options.php:2737
+#: admin/options.php:2750
 msgid "Active Plugin Integration"
 msgstr "Aktiivinen laajennusintegraatio"
 
-#: admin/options.php:2747
+#: admin/options.php:2760
 msgid "Supported Plugin Integration"
 msgstr "Tuettu laajennusintegraatio"
 
-#: admin/options.php:2757
+#: admin/options.php:2770
 msgid "Supported Plugin"
 msgstr "Tuettu laajennus"
 
@@ -2756,7 +2781,8 @@ msgid "This is the Current Revision. %s"
 msgstr "Tämä on nykyinen tarkistus. %s"
 
 #: front_rvy.php:673
-#: visual-compare_rvy.php:119
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:179
+#: visual-compare_rvy.php:114
 msgid "Restore"
 msgstr "Palauta"
 
@@ -2830,95 +2856,135 @@ msgstr ""
 msgid "View Knowledge Base"
 msgstr "Näytä tietopankki"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:88
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:766
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:108
 msgid "Modified: "
 msgstr "Muokattu: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:89
-#: includes/visual-post-compare/visual-post-compare.php:62
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:767
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:110
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 msgid "Post Date: "
 msgstr "Julkaisupäivämäärä: "
 
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:112
+#, php-format
+msgid "Author: %s"
+msgstr "Tekijä: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:113
+#, php-format
+msgid "Status: %s"
+msgstr "Tila: %s"
+
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:114
+#, php-format
+msgid "Action: %s"
+msgstr "Toimenpide: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:115
+msgid "Current"
+msgstr "Nykyinen"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:116
+#, php-format
+msgid "by: %s"
+msgstr "tekijä: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:117
+msgid "Comparison legend"
+msgstr "Vertailulegendat"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:118
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Added"
+msgstr "Lisätty"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:119
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.js:105
+#: includes/visual-post-compare/visual-post-compare-standalone.js:111
+msgid "Removed"
+msgstr "Poistettu"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:120
+msgid "Modified"
+msgstr "Muutettu"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:121
+msgid "Loading comparison..."
+msgstr "Ladataan vertailua..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:122
+msgid "The target post content has been replaced with the approved content."
+msgstr "Kohdeviestin sisältö on korvattu hyväksytyllä sisällöllä."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:123
+msgid "Classic compare screen"
+msgstr "Klassinen vertailunäkymä"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:125
+msgid "Visual comparison settings"
+msgstr "Visuaalisen vertailun asetukset"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:151
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:152
 msgid "Past Revision"
 msgstr "Aikaisempi versio"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:52
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:92
-msgid "Invalid comparison post IDs."
-msgstr "Virheelliset vertailupostien ID:t."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:180
+msgid "Restoring"
+msgstr "Palautetaan"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:56
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:71
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:96
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:129
-msgid "One of the comparison posts could not be found."
-msgstr "Yhtä vertailupostia ei löytynyt."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:245
+msgid "Publish"
+msgstr "Julkaise"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:60
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
-msgid "You are not allowed to read both comparison posts."
-msgstr "Sinulla ei ole oikeutta lukea molempia vertailuposteja."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:246
+msgid "Publishing"
+msgstr "Julkaistaan"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:100
-msgid "You are not allowed to read the approved post."
-msgstr "Sinulla ei ole oikeutta lukea hyväksyttyä postausta."
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:249
+msgid "Approving"
+msgstr "Hyväksytään"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:104
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:133
-msgid "You are not allowed to update the target post."
-msgstr "Sinulla ei ole oikeutta päivittää kohdepostausta."
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:58
+#: includes/visual-post-compare/visual-post-compare.php:180
+msgid "You are not allowed to view the revision."
+msgstr "Sinulla ei ole lupaa tarkastella muutosta."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:110
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:139
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:76
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:120
+#: includes/visual-post-compare/visual-post-compare.php:163
+msgid "Invalid revision ID."
+msgstr "Virheellinen muutostunnus."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:93
 msgid "You are not allowed to approve the revision."
 msgstr "Sinulla ei ole oikeutta hyväksyä tarkistusta."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
-msgid "Revision does not match target post."
-msgstr "Tarkistus ei vastaa kohdeviestiä."
-
-#: includes/visual-post-compare/visual-post-compare.php:156
-msgid ""
-"The comparison URL must contain two different valid post IDs in the from "
-"and to parameters."
-msgstr ""
-"Vertailu-URL-osoitteen on sisältävä kaksi erilaista voimassa olevaa postin "
-"ID:tä from- ja to-parametreissa."
-
-#: includes/visual-post-compare/visual-post-compare.php:163
-msgid "One of the posts in the comparison URL could not be found."
-msgstr "Yhtä postausta vertailu-URL-osoitteessa ei löytynyt."
-
-#: includes/visual-post-compare/visual-post-compare.php:178
-#: includes/visual-post-compare/visual-post-compare.php:182
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:189
-#: includes/visual-post-compare/visual-post-compare.php:224
-#: includes/visual-post-compare/visual-post-compare.php:286
+#: includes/visual-post-compare/visual-post-compare.php:176
+#: includes/visual-post-compare/visual-post-compare.php:180
+#: includes/visual-post-compare/visual-post-compare.php:184
+#: includes/visual-post-compare/visual-post-compare.php:192
+#: includes/visual-post-compare/visual-post-compare.php:219
+#: includes/visual-post-compare/visual-post-compare.php:281
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:944
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:998
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Compare Revisions"
 msgstr "Vertaile versioita"
 
-#: includes/visual-post-compare/visual-post-compare.php:185
-#: includes/visual-post-compare/visual-post-compare.php:200
-msgid "You are not allowed to read both posts in this comparison."
-msgstr "Sinulla ei ole oikeutta lukea molempia postauksia tässä vertailussa."
+#: includes/visual-post-compare/visual-post-compare.php:184
+msgid "You are not allowed to view this comparison."
+msgstr "Sinulla ei ole lupaa tarkastella tätä vertailua."
 
-#: includes/visual-post-compare/visual-post-compare.php:189
-msgid "You are not allowed to open this comparison in the editor."
-msgstr "Sinulla ei ole oikeutta avata tätä vertailua muokkaimessa."
-
-#: lib/debug.php:117
+#: lib/debug.php:114
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s kyselyä %2$s sekunnissa. %3$s MB käytetty."
@@ -3151,7 +3217,7 @@ msgid "Revision Submitted"
 msgstr "Tarkistus lähetetty"
 
 #: rvy_init-functions.php:371
-#: visual-compare_rvy.php:181
+#: visual-compare_rvy.php:173
 msgid "Submitted Revisions"
 msgstr "Lähetetyt tarkistukset"
 
@@ -3187,7 +3253,7 @@ msgid "Revision Scheduled"
 msgstr "Tarkistus aikataulutettu"
 
 #: rvy_init-functions.php:388
-#: visual-compare_rvy.php:196
+#: visual-compare_rvy.php:188
 msgid "Scheduled Revisions"
 msgstr "Aikataulutetut tarkistukset"
 
@@ -3245,28 +3311,32 @@ msgid ""
 "post."
 msgstr "Unfiltered_html-oikeus on tarpeen tämän viestin version luomiseen."
 
-#: rvy_init-functions.php:1276
+#: rvy_init-functions.php:1278
 msgid "Revision Workflow"
 msgstr "Version työnkulku"
 
-#: visual-compare_rvy.php:93
+#: visual-compare_rvy.php:87
 #, php-format
 msgid "Compare Revisions %s"
 msgstr "Vertaa versioita %s"
 
-#: visual-compare_rvy.php:97
+#: visual-compare_rvy.php:91
 msgid "Compare Scheduled Revisions"
 msgstr "Vertaa aikataulutettuja versioita"
 
-#: visual-compare_rvy.php:100
+#: visual-compare_rvy.php:94
 msgid "Compare Submitted Revisions"
 msgstr "Vertaa lähetettyjä versioita"
 
-#: visual-compare_rvy.php:102
-msgid "Compare New Revisions"
-msgstr "Vertaa uusia versioita"
+#: visual-compare_rvy.php:97
+msgid "Compare Unsubmitted Revisions"
+msgstr "Vertaile lähettämättömiä muutoksia"
 
-#: visual-compare_rvy.php:201
+#: visual-compare_rvy.php:100
+msgid "Compare New Revision"
+msgstr "Vertaa uutta tarkistusta"
+
+#: visual-compare_rvy.php:193
 msgid "Scheduled:"
 msgstr "Aikataulutettu:"
 
@@ -3279,20 +3349,6 @@ msgstr "WordPressin ydinlohkodefinitioita ei ole saatavilla tällä näytöllä.
 #: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr "WordPressin ydinlohkoja ei voitu rekisteröidä vertailua varten."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:157
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:242
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Removed"
-msgstr "Poistettu"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:158
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-standalone.js:105
-#: includes/visual-post-compare/visual-post-compare-standalone.js:111
-msgid "Added"
-msgstr "Lisätty"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:159
 #: includes/visual-post-compare/visual-post-compare-standalone.js:105
@@ -3328,45 +3384,24 @@ msgstr ""
 msgid "Select comparison post"
 msgstr "Valitse vertailupostaus"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:763
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-#, js-format
-msgid "by %s"
-msgstr "kirjoittanut %s"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:772
-#: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Current"
-msgstr "Nykyinen"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:773
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:778
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:795
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
 #, js-format
 msgid "Post %d"
 msgstr "Viesti %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:787
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:806
 #: includes/visual-post-compare/visual-post-compare-standalone.js:151
-msgid "Approving…"
-msgstr "Hyväksytään…"
+#, js-format
+msgid "Revision %d"
+msgstr "Tarkistus %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:908
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:959
 #: includes/visual-post-compare/visual-post-compare-standalone.js:156
 msgid "Unable to load this comparison."
 msgstr "Tätä vertailua ei voi ladata."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:157
-msgid "Loading comparison…"
-msgstr "Ladataan vertailua…"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:929
-#: includes/visual-post-compare/visual-post-compare-standalone.js:159
-msgid "The target post content has been replaced with the approved content."
-msgstr "Kohdeviestin sisältö on korvattu hyväksytyllä sisällöllä."
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:933
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:987
 #: includes/visual-post-compare/visual-post-compare-standalone.js:159
 msgid "Unable to approve this comparison."
 msgstr "Tätä vertailua ei voi hyväksyä."
@@ -3377,7 +3412,7 @@ msgid "Revisions"
 msgstr "Versiot"
 
 #: admin/class-list-table-archive.php:1161
-#: admin/class-list-table_rvy.php:1924
+#: admin/class-list-table_rvy.php:1925
 #: admin/post-edit_rvy.php:192
 #: admin/post-edit_rvy.php:256
 #: admin/post-edit_rvy.php:270
@@ -3385,27 +3420,27 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "Vertaile"
 
-#: admin/class-list-table_rvy.php:1935
+#: admin/class-list-table_rvy.php:1936
 msgctxt "revisions"
 msgid "Approve"
 msgstr "Hyväksy"
 
-#: admin/class-list-table_rvy.php:1942
+#: admin/class-list-table_rvy.php:1943
 msgctxt "revisions"
 msgid "Publish"
 msgstr "Julkaise"
 
-#: admin/class-list-table_rvy.php:1951
+#: admin/class-list-table_rvy.php:1952
 msgctxt "revisions"
 msgid "Decline"
 msgstr "Hylkää"
 
-#: admin/history_rvy.php:1149, fuzzy
+#: admin/history_rvy.php:1185, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2513
+#: admin/options.php:2526
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
