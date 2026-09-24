@@ -878,7 +878,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1006,7 +1006,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1042,7 +1042,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
