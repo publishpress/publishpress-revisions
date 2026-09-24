@@ -10,6 +10,8 @@
  * Domain Path: /languages/
  * Min WP Version: 5.5
  * Requires PHP: 7.2.5
+ * License: GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * 
  * Copyright (c) 2026 PublishPress
  *
