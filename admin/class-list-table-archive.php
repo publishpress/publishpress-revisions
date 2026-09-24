@@ -579,15 +579,15 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 	 */
     public function get_columns() {
         $arr = array(
-            'cb'			=> '<input type="checkbox" />',
-			'post_title' 	=> esc_html__( 'Revision', 'revisionary' ),
-			'origin_post_type' 		=> esc_html__( 'Post Type', 'revisionary' ),
-			'post_author'	=> esc_html__( 'Revised By', 'revisionary' ),
-			'post_modified' 	=> esc_html__( 'Revision Date', 'revisionary' ),
-			'publication_method' => esc_html__('Action', 'revisionary'),
-			'approved_by'	=> esc_html__('Approved By', 'revisionary'),
-			'origin_post_date'		=> esc_html__( 'Published Date', 'revisionary' ),
-			'origin_post_author'	=> esc_html__( 'Published Author', 'revisionary' ),
+            'cb'			=> '<label class="screen-reader-text" for="rvy-archive-select-all">' . esc_html__( 'Select all revisions', 'revisionary' ) . '</label><input id="rvy-archive-select-all" type="checkbox" />',
+			'post_title' 	=> __( 'Revision', 'revisionary' ),
+			'origin_post_type' 		=> __( 'Post Type', 'revisionary' ),
+			'post_author'	=> __( 'Revised By', 'revisionary' ),
+			'post_modified' 	=> __( 'Revision Date', 'revisionary' ),
+			'publication_method' => __('Action', 'revisionary'),
+			'approved_by'	=> __('Approved By', 'revisionary'),
+			'origin_post_date'		=> __( 'Published Date', 'revisionary' ),
+			'origin_post_author'	=> __( 'Published Author', 'revisionary' ),
         );
 
 		if (!rvy_get_option('revision_archive_deletion')) {
@@ -818,7 +818,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 	 */
     public function column_cb( $item ) {
         return sprintf(
-            '<input type="checkbox" name="post[]" value="%s" />', $item->ID
+            '<input type="checkbox" name="post[]" value="%s" aria-label="%s" />', $item->ID, esc_attr__( 'Select revision', 'revisionary' )
         );
     }
 
@@ -836,8 +836,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? sanitize_key( $_REQUEST['origin_post_type'] )															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 			?>
-			<select name="origin_post_type" class="postform">
-				<option <?php echo '' === $current_option ? 'selected' : '' ?>
+			<label class="screen-reader-text" for="rvy-archive-origin-post-type"><?php esc_html_e( 'Filter by original post type', 'revisionary' ); ?></label>
+			<select name="origin_post_type" id="rvy-archive-origin-post-type" class="postform">
+				<option <?php echo $current_option === '' ? 'selected' : '' ?>
 					value="">
 					<?php esc_html_e( 'All Post Types', 'revisionary' ) ?>
 				</option>
@@ -869,8 +870,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			asort($authors, SORT_STRING | SORT_FLAG_CASE);
 			?>
-			<select name="post_author" class="postform">
-				<option <?php echo '' === $current_option ? 'selected' : '' ?>
+			<label class="screen-reader-text" for="rvy-archive-post-author"><?php esc_html_e( 'Filter by revision author', 'revisionary' ); ?></label>
+			<select name="post_author" id="rvy-archive-post-author" class="postform">
+				<option <?php echo $current_option === '' ? 'selected' : '' ?>
 					value="">
 					<?php esc_html_e( 'All Revision Authors', 'revisionary' ) ?>
 				</option>
@@ -903,8 +905,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			arsort($post_dates);
 			?>
-			<select name="revision_date" class="postform">
-				<option <?php echo '' === $current_option ? 'selected' : '' ?>
+			<label class="screen-reader-text" for="rvy-archive-revision-date"><?php esc_html_e( 'Filter by revision date', 'revisionary' ); ?></label>
+			<select name="revision_date" id="rvy-archive-revision-date" class="postform">
+				<option <?php echo $current_option === '' ? 'selected' : '' ?>
 					value="">
 					<?php esc_html_e( 'All Revision Dates', 'revisionary' ) ?>
 				</option>
@@ -961,8 +964,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			$post_dates = array_slice($post_dates, 0, 30, true);
 			?>
-			<select name="origin_post_date" class="postform">
-				<option <?php echo '' === $current_option ? 'selected' : '' ?>
+			<label class="screen-reader-text" for="rvy-archive-origin-post-date"><?php esc_html_e( 'Filter by published date', 'revisionary' ); ?></label>
+			<select name="origin_post_date" id="rvy-archive-origin-post-date" class="postform">
+				<option <?php echo $current_option === '' ? 'selected' : '' ?>
 					value="">
 					<?php esc_html_e( 'All Publish Dates', 'revisionary' ) ?>
 				</option>
@@ -997,8 +1001,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			asort($approvers, SORT_STRING | SORT_FLAG_CASE);
 			?>
-			<select name="approved_by" class="postform">
-				<option <?php echo '' === $current_option ? 'selected' : '' ?>
+			<label class="screen-reader-text" for="rvy-archive-approved-by"><?php esc_html_e( 'Filter by approver', 'revisionary' ); ?></label>
+			<select name="approved_by" id="rvy-archive-approved-by" class="postform">
+				<option <?php echo $current_option === '' ? 'selected' : '' ?>
 					value="">
 					<?php esc_html_e( 'All Approvers', 'revisionary' ) ?>
 				</option>
@@ -1033,8 +1038,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			asort($authors, SORT_STRING | SORT_FLAG_CASE);
 			?>
-			<select name="origin_post_author" class="postform">
-				<option <?php echo '' === $current_option ? 'selected' : '' ?>
+			<label class="screen-reader-text" for="rvy-archive-origin-post-author"><?php esc_html_e( 'Filter by published author', 'revisionary' ); ?></label>
+			<select name="origin_post_author" id="rvy-archive-origin-post-author" class="postform">
+				<option <?php echo $current_option === '' ? 'selected' : '' ?>
 					value="">
 					<?php esc_html_e( 'All Authors', 'revisionary' ) ?>
 				</option>
