@@ -264,14 +264,14 @@ class RevisionaryVisualCompare {
 			$posts = wp_get_post_revisions($main_post_id);
 
 		} elseif (is_array($status) && !empty($args['is_new_revision'])) {
-            $status_csv = implode("','", array_map('sanitize_key', $status));
+            $statuses = array_map('sanitize_key', $status);
+            $status_placeholders = implode(', ', array_fill(0, count($statuses), '%s'));
 
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$posts = $wpdb->get_col(
 				$wpdb->prepare(
-					"SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ('" . $status_csv . "') AND comment_count = %d ORDER BY ID DESC LIMIT %d",  // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-					$main_post_id,
-					$limit
+					"SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ($status_placeholders) AND comment_count = %d ORDER BY ID DESC LIMIT %d",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					array_merge($statuses, [$main_post_id, $limit])
 				)
 			);
 		} elseif (rvy_is_revision_status($status)) {

@@ -231,17 +231,19 @@ class RevisionaryAdminPosts {
 		}
 
 		if ($listed_ids) {
-			$id_csv = implode("','", array_map('intval', $listed_ids));
-			$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
+			$listed_ids = array_map('intval', $listed_ids);
+			$id_placeholders = implode(', ', array_fill(0, count($listed_ids), '%d'));
+			$revision_statuses = array_map('sanitize_key', rvy_revision_statuses());
+			$revision_status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
-			$revision_base_statuses = array_map('sanitize_key', rvy_revision_base_statuses());
-			$revision_base_status_csv = implode("','", $revision_base_statuses);
-
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$results = $wpdb->get_results(
-				"SELECT comment_count AS published_post, COUNT(comment_count) AS num_revisions FROM $wpdb->posts"
-				. " WHERE $wpdb->posts.comment_count IN ('$id_csv')"			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				. " AND $wpdb->posts.post_mime_type IN ('$revision_status_csv') AND $wpdb->posts.post_type != '' GROUP BY comment_count"		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$wpdb->prepare(
+					"SELECT comment_count AS published_post, COUNT(comment_count) AS num_revisions FROM $wpdb->posts"
+					. " WHERE $wpdb->posts.comment_count IN ($id_placeholders)"			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					. " AND $wpdb->posts.post_mime_type IN ($revision_status_placeholders) AND $wpdb->posts.post_type != '' GROUP BY comment_count",		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					array_merge($listed_ids, $revision_statuses)
+				)
 			);
 			
 			foreach($results as $row) {

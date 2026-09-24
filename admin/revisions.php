@@ -191,19 +191,20 @@ if ( 'diff' != $_action ) {
 if ( $is_administrator = is_content_administrator_rvy() ) {
 	global $wpdb;
 
-	$base_status_csv = implode("','", array_merge(rvy_revision_base_statuses(), ['inherit']));
-	$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
+	$base_statuses = array_map('sanitize_key', array_merge(rvy_revision_base_statuses(), ['inherit']));
+	$base_status_placeholders = implode(', ', array_fill(0, count($base_statuses), '%s'));
+	$revision_statuses = array_map('sanitize_key', rvy_revision_statuses());
+	$revision_status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$results = $wpdb->get_results( 
 		$wpdb->prepare(
 			"SELECT post_mime_type, COUNT( * ) AS num_posts FROM {$wpdb->posts}"
-			. " WHERE post_status IN ('$base_status_csv')"																// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				. " WHERE post_status IN ($base_status_placeholders)"														// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			. " AND ((post_type = 'revision' AND post_status = 'inherit' AND post_parent = %d)"
-			. " OR (post_type != 'revision' AND post_mime_type IN ('$revision_status_csv') AND comment_count = %d))"	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				. " OR (post_type != 'revision' AND post_mime_type IN ($revision_status_placeholders) AND comment_count = %d))"	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			. " GROUP BY post_mime_type",
-			$rvy_post->ID,
-			$rvy_post->ID
+				array_merge($base_statuses, [$rvy_post->ID], $revision_statuses, [$rvy_post->ID])
 		)
 	);
 	
