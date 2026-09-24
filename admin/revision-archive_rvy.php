@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 set_current_screen( 'revisionary-archive' );
 
 // Modal popup to view changes from a specific revision

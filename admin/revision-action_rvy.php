@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die( 'This page cannot be called directly.' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 add_action( '_wp_put_post_revision', 'rvy_review_revision' );
 

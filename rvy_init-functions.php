@@ -1,7 +1,8 @@
 <?php
 
-if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 require_once( dirname(__FILE__).'/lib/agapetry_wp_core_lib.php');
 
@@ -98,35 +99,6 @@ function _revisionary_action_scheduler_publish_scheduled($revision_id = 0) {
 }
 
 /*=================== End WP-Cron implementation ====================*/
-
-/*
-function _rvy_existing_schedules_to_cron($prev_use_cron, $use_cron) {
-	if ($use_cron && !$prev_use_cron) {
-		global $wpdb;
-
-		$time_gmt = current_time('mysql', 1);
-	
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$results = $wpdb->get_results( 
-			$wpdb->prepare(
-				"SELECT * FROM $wpdb->posts WHERE post_type != 'revision' AND post_status != 'inherit' AND post_mime_type = 'future-revision' AND post_date_gmt > %s ORDER BY post_date_gmt DESC",
-				$time_gmt
-			)
-		);
-
-		foreach($results as $revision) {
-			if (!wp_get_scheduled_event('publish_revision_rvy', ['revision_id' => $revision->ID])) {
-				wp_schedule_single_event(strtotime($revision->post_date_gmt), 'publish_revision_rvy', ['revision_id' => $revision->ID]);
-			}
-		}
-	}
-
-	if (!$use_cron && $prev_use_cron) {
-		require_once( dirname(__FILE__).'/admin/revision-action_rvy.php');
-		rvy_update_next_publish_date();
-	}
-}
-*/
 
 /*
  * Revision previews: prevent redirect for non-standard post url

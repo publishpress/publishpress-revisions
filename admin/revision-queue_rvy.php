@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * @global string       $post_type
  * @global WP_Post_Type $post_type_object

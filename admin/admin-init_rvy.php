@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die( 'This page cannot be called directly.' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 global $pagenow, $revisionary;
 
@@ -77,7 +78,6 @@ function rvy_admin_init() {
 			$customize_defaults = isset($_POST['rvy_options_customize_defaults']);
 			$handler->handle_submission( 'default', $sitewide, $customize_defaults );
 		}
-		
 	} elseif (isset($_REQUEST['action2']) && !empty($_REQUEST['page']) && ('revisionary-archive' == $_REQUEST['page']) && !empty($_REQUEST['post']) && rvy_get_option('revision_archive_deletion')) {
 		$doaction = (!empty($_REQUEST['action']) && !is_numeric($_REQUEST['action'])) ? sanitize_key($_REQUEST['action']) : sanitize_key($_REQUEST['action2']);
 
@@ -675,6 +675,5 @@ function rvy_get_admin_notice( $message, $args = array() ) {
 		$classes .= ' ' . implode( ' ', $args['additional_classes'] );
 	}
 
-	return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
-}
-	
+		return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
+	}
