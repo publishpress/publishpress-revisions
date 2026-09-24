@@ -320,7 +320,7 @@ class Utils {
 				ORDER BY post_date DESC
 				LIMIT 1",
 				$post_id,
-				intval($post_id) . '-autosave' . '%',
+				$wpdb->esc_like(intval($post_id) . '-autosave') . '%',
 				$user_id
 			)
 		);
