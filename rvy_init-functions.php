@@ -100,35 +100,6 @@ function _revisionary_action_scheduler_publish_scheduled($revision_id = 0) {
 /*=================== End WP-Cron implementation ====================*/
 
 /*
-function _rvy_existing_schedules_to_cron($prev_use_cron, $use_cron) {
-	if ($use_cron && !$prev_use_cron) {
-		global $wpdb;
-
-		$time_gmt = current_time('mysql', 1);
-	
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$results = $wpdb->get_results( 
-			$wpdb->prepare(
-				"SELECT * FROM $wpdb->posts WHERE post_type != 'revision' AND post_status != 'inherit' AND post_mime_type = 'future-revision' AND post_date_gmt > %s ORDER BY post_date_gmt DESC",
-				$time_gmt
-			)
-		);
-
-		foreach($results as $revision) {
-			if (!wp_get_scheduled_event('publish_revision_rvy', ['revision_id' => $revision->ID])) {
-				wp_schedule_single_event(strtotime($revision->post_date_gmt), 'publish_revision_rvy', ['revision_id' => $revision->ID]);
-			}
-		}
-	}
-
-	if (!$use_cron && $prev_use_cron) {
-		require_once( dirname(__FILE__).'/admin/revision-action_rvy.php');
-		rvy_update_next_publish_date();
-	}
-}
-*/
-
-/*
  * Revision previews: prevent redirect for non-standard post url
  */
 function _rvy_no_redirect_filter($redirect, $orig) {
@@ -303,7 +274,7 @@ function rvy_status_registrations() {
 				'count' => _n_noop('Working Copies <span class="count">(%d)</span>', 'Working Copies <span class="count">(%d)</span>', 'revisionary'),  // @todo: confirm API will support a fixed string
 				'basic' => 'Copy',
 			],
-		
+
 			'pending-revision' => [
 				'name' => esc_html__('Change Request', 'revisionary'),
 				'submit' => esc_html__('Submit Change Request', 'revisionary'),
@@ -359,7 +330,7 @@ function rvy_status_registrations() {
 				'count' => _n_noop('Not Submitted <span class="count">(%s)</span>', 'Not Submitted <span class="count">(%s)</span>', 'revisionary'),   // @todo: confirm API will support a fixed string
 				'basic' => 'Revision',
 			],
-		
+
 			'pending-revision' => [
 				'name' => esc_html__('Submitted Revision', 'revisionary'),
 				'submit' => esc_html__('Submit Revision', 'revisionary'),
@@ -734,20 +705,23 @@ function revisionary_count_revisions($post_id, $args = []) {
 	global $wpdb;
 
 	$ignore_revisions = (!empty($args['ignore_revisions'])) ? $args['ignore_revisions'] : [];
-	$ignore_clause = ($ignore_revisions) ? " AND ID NOT IN (" . implode(",", array_map('intval', $ignore_revisions)) . ")" : '';
+	$ignore_revisions = array_map('intval', $ignore_revisions);
+	$ignore_clause = ($ignore_revisions) ? ' AND ID NOT IN (' . implode(', ', array_fill(0, count($ignore_revisions), '%d')) . ')' : '';
 
 	if (defined('REVISIONARY_LIMIT_IGNORE_UNSUBMITTED')) {
 		$ignore_clause .= " AND post_mime_type != 'draft-revision'";
 	}
 
-	$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
+	$revision_statuses = array_map('sanitize_key', rvy_revision_statuses());
+	$status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
+	$query_args = array_merge($revision_statuses, $ignore_revisions, [$post_id]);
 
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$has_revisions = $wpdb->get_var(
 		// account for post deletion
 		$wpdb->prepare(
-			"SELECT COUNT(ID) FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') $ignore_clause AND post_status != 'trash' AND comment_count = %d",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-			$post_id
+			"SELECT COUNT(ID) FROM $wpdb->posts WHERE post_mime_type IN ($status_placeholders) $ignore_clause AND post_status != 'trash' AND comment_count = %d",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$query_args
 		)
 	);
 
@@ -842,37 +816,56 @@ function revisionary_refresh_revision_flags($published_post_id = 0, $args = []) 
 
 	$ignore_revision_ids = (!empty($args['ignore_revision_ids'])) ? (array) $args['ignore_revision_ids'] : [];
 
-	$status_csv = implode("','", array_map('sanitize_key', rvy_filtered_statuses()));
-	$revision_base_status_csv = implode("','", array_map('sanitize_key', rvy_revision_base_statuses()));
-	
+	$statuses = array_map('sanitize_key', rvy_filtered_statuses());
+	$status_placeholders = implode(', ', array_fill(0, count($statuses), '%s'));
+	$revision_base_statuses = array_map('sanitize_key', rvy_revision_base_statuses());
+	$revision_base_status_placeholders = implode(', ', array_fill(0, count($revision_base_statuses), '%s'));
+
 	$revision_statuses = rvy_revision_statuses();
-	
+
 	if (defined('REVISIONARY_LIMIT_IGNORE_UNSUBMITTED')) {
 		$revision_statuses = array_diff($revision_statuses, ['draft-revision']);
 	}
 	
-	$revision_status_csv = implode("','", array_map('sanitize_key', $revision_statuses));
+	$revision_statuses = array_map('sanitize_key', $revision_statuses);
+	$revision_status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
 	$query = "SELECT r.comment_count FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID"
-	. " WHERE p.post_status IN ('$status_csv') AND r.post_status IN ('$revision_base_status_csv')"
-	. " AND r.post_mime_type IN ('$revision_status_csv') AND p.post_mime_type NOT IN ('$revision_status_csv')";
+	. " WHERE p.post_status IN ($status_placeholders) AND r.post_status IN ($revision_base_status_placeholders)"
+	. " AND r.post_mime_type IN ($revision_status_placeholders) AND p.post_mime_type NOT IN ($revision_status_placeholders)";
+	$query_args = array_merge($statuses, $revision_base_statuses, $revision_statuses, $revision_statuses);
 
 	if ($published_post_id) {
-		$query = $wpdb->prepare("$query AND p.ID = %d", $published_post_id);		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$query .= ' AND p.ID = %d';
+		$query_args[] = $published_post_id;
 	}
 
 	if ($ignore_revision_ids) {
-		$ignore_revisions_csv = implode("','", array_map('sanitize_key', $ignore_revision_ids));
-		$query .= " AND r.ID NOT IN ('$ignore_revisions_csv')";
+		$ignore_revision_ids = array_map('intval', $ignore_revision_ids);
+		$query .= ' AND r.ID NOT IN (' . implode(', ', array_fill(0, count($ignore_revision_ids), '%d')) . ')';
+		$query_args = array_merge($query_args, $ignore_revision_ids);
 	}
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-	$arr_have_revisions = $wpdb->get_col($query);
-	
-	$have_revisions = implode("','", array_map('intval', array_unique($arr_have_revisions)));
+	$arr_have_revisions = $wpdb->get_col($wpdb->prepare($query, $query_args));
 
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-	if ($ids = $wpdb->get_col("SELECT meta_id FROM $wpdb->postmeta WHERE meta_key = '_rvy_has_revisions' AND post_id NOT IN ('$have_revisions')")) {
+	$have_revisions = array_map('intval', array_unique($arr_have_revisions));
+
+	if ($have_revisions) {
+		$have_revision_placeholders = implode(', ', array_fill(0, count($have_revisions), '%d'));
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$ids = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT meta_id FROM $wpdb->postmeta WHERE meta_key = '_rvy_has_revisions' AND post_id NOT IN ($have_revision_placeholders)",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$have_revisions
+			)
+		);
+	} else {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$ids = $wpdb->get_col("SELECT meta_id FROM $wpdb->postmeta WHERE meta_key = '_rvy_has_revisions'");
+	}
+
+	if ($ids) {
 		foreach ($ids as $post_id) {
 			rvy_delete_post_meta($post_id, '_rvy_has_revisions');
 		}
