@@ -61,7 +61,7 @@ class Editor_Features {
             $ppc_dummy_css_handle = [];
         }
 
-        if (in_array($handle, $ppc_dummy_css_handle)) {
+        if (in_array($handle, $ppc_dummy_css_handle, true)) {
             // duplicate usage of this function with same handle won't work
             $handle .= '-' . time(); 
         }
@@ -81,7 +81,7 @@ class Editor_Features {
         $elements = [];
 
         foreach($arr as $_feature_name => $feature_info) {
-            if (in_array($_feature_name, $feature_names)) {
+            if (in_array($_feature_name, $feature_names, true)) {
                 if (!empty($feature_info['elements'])) {
                     $elements = array_merge($elements, explode(',', $feature_info['elements']));
                 } else {
@@ -179,7 +179,7 @@ class Editor_Features {
         // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
         /*
         foreach (get_taxonomies(['show_ui' => true], 'object') as $taxonomy => $tx_obj) {
-            if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'])) {
+            if (!in_array($taxonomy, ['category', 'post_tag', 'link_category'], true)) {
                 $elements[$tx_obj->name] = [
                     'label'        => $tx_obj->label, 
                     'elements'     => "taxonomy-panel-$taxonomy",

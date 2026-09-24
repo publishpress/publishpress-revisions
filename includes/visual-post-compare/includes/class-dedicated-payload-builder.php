@@ -50,8 +50,8 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			return [];
 		}
 
-		$active_revision_title = __('This was an update to a revision which is still in the workflow process.', 'revisionary');
-		$from_revision_title = __('This was an update to a revision which was published after further editing.', 'revisionary');
+		$active_revision_title = esc_html__('This was an update to a revision which is still in the workflow process.', 'revisionary');
+		$from_revision_title = esc_html__('This was an update to a revision which was published after further editing.', 'revisionary');
 
 		$comparison_posts = [];
 		$seen             = array( $current_post->ID => true );
@@ -107,13 +107,13 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'sliderPostDate'     => isset( $definition['sliderPostDate'] ) ? (bool) $definition['sliderPostDate'] : true,
 			'modifiedPrefix'   => esc_html__( 'Modified: ', 'revisionary' ),
 			'approvedDatePrefix'   => '',
-			'postDatePrefix'   => isset( $definition['postDatePrefix'] ) ? (string) $definition['postDatePrefix'] : __( 'Post Date: ', 'revisionary' ),
+			'postDatePrefix'   => isset( $definition['postDatePrefix'] ) ? (string) $definition['postDatePrefix'] : esc_html__( 'Post Date: ', 'revisionary' ),
 			'showAuthor'       => isset( $definition['showAuthor'] ) ? (bool) $definition['showAuthor'] : true,
-			'authorName'	   => __('Author: %s', 'revisionary'),
-			'currentStatusCaption' => __('Status: %s', 'revisionary'),
-			'actionCaption'	   => __('Action: %s', 'revisionary'),
+			'authorName'	   => esc_html__('Author: %s', 'revisionary'),
+			'currentStatusCaption' => esc_html__('Status: %s', 'revisionary'),
+			'actionCaption'	   => esc_html__('Action: %s', 'revisionary'),
 			'currentCaption'   => esc_html__('Current', 'revisionary'),
-			'approvedByCaption' => __('by: %s', 'revisionary'),
+			'approvedByCaption' => esc_html__('by: %s', 'revisionary'),
 			'legendCaption' => esc_html__('Comparison legend', 'revisionary'),
 			'addedCaption' => esc_html__('Added', 'revisionary'),
 			'removedCaption' => esc_html__('Removed', 'revisionary'),

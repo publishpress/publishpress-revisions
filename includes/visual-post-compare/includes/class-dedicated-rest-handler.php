@@ -55,7 +55,7 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 			}
 		}
 
-		return new \WP_Error( 'vpc_forbidden', __( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
+		return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
 	}
 
 	public static function comparison_response( \WP_REST_Request $request ) {
@@ -73,7 +73,7 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 				)
 			);
 		} else {
-			return new \WP_Error( 'vpc_invalid_revision', __( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
+			return new \WP_Error( 'vpc_invalid_revision', esc_html__( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
 		}
 	}
 
@@ -90,7 +90,7 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 			}
 		}
 			
-		return new \WP_Error( 'vpc_forbidden', __('You are not allowed to approve the revision.', 'revisionary'), array( 'status' => 403 ) );
+		return new \WP_Error( 'vpc_forbidden', esc_html__('You are not allowed to approve the revision.', 'revisionary'), array( 'status' => 403 ) );
 	}
 
 	public static function approve_response( \WP_REST_Request $request ) {
@@ -117,7 +117,7 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 
 			return rest_ensure_response( $response );
 		} else {
-			return new \WP_Error( 'vpc_invalid_revision', __( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
+			return new \WP_Error( 'vpc_invalid_revision', esc_html__( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
 		}
 	}
 }

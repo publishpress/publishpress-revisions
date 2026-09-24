@@ -1,7 +1,7 @@
 /**
 * Block Editor Modifications
 *
-* Copyright 2021, PublishPress
+* Copyright 2026, PublishPress
 */
 
 jQuery(document).ready( function($) {
@@ -150,12 +150,20 @@ jQuery(document).ready( function($) {
 			return;
 		}
 
-		$('button.revision-create').hide().parent().hide();
-		$('div.revision-creating').show();
-		$('div.revision-creating span.ppr-submission-spinner').css('visibility', 'visible');
+		rvyCreateOrScheduleRevision(false)
+	});
 
+	$(document).on('click', 'button.revision-schedule', function() {
+		if ($('a.revision-schedule').attr('disabled')) {
+			return;
+		}
+		
+		rvyCreateOrScheduleRevision(true)
+	});
+
+	function rvyCreateOrScheduleRevision(doSchedule) {
 		if (!wp.data.select('core/editor').isEditedPostDirty()) {
-			rvyCreateCopy();
+			doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
 			return;
 		}
 
@@ -167,7 +175,7 @@ jQuery(document).ready( function($) {
 		var tmrNoAutosave = setTimeout(() => {
 			if (!rvyIsAutosaveStarted) {
 				clearInterval(intAutosaveWatch);
-				rvyCreateCopy();
+				doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
 			}
 		}, 10000);
 
@@ -182,7 +190,7 @@ jQuery(document).ready( function($) {
 				var tmrAutosaveTimeout = setTimeout(() => {
 					if (!rvyIsAutosaveDone) {
 						clearInterval(intAutosaveWatch);
-						rvyCreateCopy();
+						doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
 					}
 				}, 10000);
 
@@ -191,14 +199,18 @@ jQuery(document).ready( function($) {
 						rvyIsAutosaveDone = true;
 						clearInterval(intAutosaveDoneWatch);
 						clearTimeout(tmrAutosaveTimeout);
-						rvyCreateCopy();
+						doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
 					}
 				}, 100);
 			}
 		}, 100);
-	});
+	}
 
 	function rvyCreateCopy() {
+		$('button.revision-create').hide().parent().hide();
+		$('div.revision-creating').show();
+		$('div.revision-creating span.ppr-submission-spinner').css('visibility', 'visible');
+
 		var revisionaryCreateDone = function () {
 			$('.revision-create').hide();
 			$('.revision-creating').hide();
@@ -230,11 +242,7 @@ jQuery(document).ready( function($) {
 		});
 	}
 
-	$(document).on('click', 'button.revision-schedule', function() {
-		if ($('a.revision-schedule').attr('disabled')) {
-			return;
-		}
-
+	function rvyScheduleRevision() {
 		$('button.revision-schedule').hide();
 
 		$('div.revision-creating').show();
@@ -244,8 +252,8 @@ jQuery(document).ready( function($) {
 			$('div.revision-creating').hide();
 			$('div.revision-scheduled').show();
 
-			$('button.revision-scheduled a.revision-preview').attr('href', rvyObjEdit.scheduledURL);
-			$('button.revision-scheduled a.revision-edit').attr('href', rvyObjEdit.scheduledEditURL);
+			$('div.revision-scheduled a.revision-preview').attr('href', rvyObjEdit.scheduledURL);
+			$('div.revision-scheduled a.revision-edit').attr('href', rvyObjEdit.scheduledEditURL);
 
 			wp.data.dispatch('core/editor').editPost({date: wp.data.select('core/editor').getCurrentPostAttribute('date')});
 		}
@@ -263,7 +271,7 @@ jQuery(document).ready( function($) {
 			success: revisionaryScheduleDone,
 			error: revisionaryScheduleError
 		});
-	});
+	}
 
 	/**
 	 *  If date is set to future, change Publish button caption to "Schedule Revision",

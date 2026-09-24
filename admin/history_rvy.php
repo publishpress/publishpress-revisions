@@ -275,7 +275,7 @@ class RevisionaryHistory
         if (!isset($title)) {
             $title = sprintf(                                                         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
                 esc_html__( 'Compare %s of "%s"', 'revisionary' ), 
-                __('Revisions'),
+                esc_html__('Revisions'),
                 esc_html(_draft_or_post_title($published_post))
             );
         }
@@ -287,7 +287,7 @@ class RevisionaryHistory
         <div class="wrap">
             <h1 class="long-header"><?php 
             if (!empty($do_h1)) {
-                $status_plural = (!empty($status_obj->labels->plural)) ? $status_obj->labels->plural : __('Revisions');
+                $status_plural = (!empty($status_obj->labels->plural)) ? $status_obj->labels->plural : esc_html__('Revisions');
 
                 if (!$url = get_edit_post_link($published_post)) {
                     $url = '';
@@ -552,9 +552,9 @@ class RevisionaryHistory
         if ( is_null( $fields ) ) {
             // Allow these to be versioned.
             $fields = array(
-                'post_title'   => __( 'Title' ),
-                'post_content' => __( 'Content' ),
-                'post_excerpt' => __( 'Excerpt' ),
+                'post_title'   => esc_html__( 'Title' ),
+                'post_content' => esc_html__( 'Content' ),
+                'post_excerpt' => esc_html__( 'Excerpt' ),
             );
         }
     
@@ -721,7 +721,7 @@ class RevisionaryHistory
 
         if (
         (((!empty($compare_from) && ('future-revision' == $compare_from->post_mime_type)) || ('future-revision' == $compare_to->post_mime_type)) && !rvy_get_option('scheduled_revision_update_post_date'))
-        || (((!empty($compare_from) && in_array($compare_from->post_mime_type, $revision_statuses)) || in_array($compare_to->post_mime_type, $revision_statuses)) && !rvy_get_option('pending_revision_update_post_date'))
+        || (((!empty($compare_from) && in_array($compare_from->post_mime_type, $revision_statuses, true)) || in_array($compare_to->post_mime_type, $revision_statuses, true)) && !rvy_get_option('pending_revision_update_post_date'))
         ) {
             unset($compare_fields['post_date']);
         }
@@ -779,7 +779,7 @@ class RevisionaryHistory
         $_taxonomies = get_taxonomies(['public' => true], 'objects');
 
         foreach($_taxonomies as $taxonomy => $tx_obj) {
-            if (in_array($compare_to->post_type, (array)$tx_obj->object_type)) {
+            if (in_array($compare_to->post_type, (array)$tx_obj->object_type, true)) {
                 $taxonomies[$taxonomy] = $tx_obj->labels->name;
             }
         }
@@ -820,8 +820,7 @@ class RevisionaryHistory
             );
 
             if ($is_beaver
-            && (!$other_term_names && !rvy_in_revision_workflow($compare_from))
-            || (!$term_names && !rvy_in_revision_workflow($compare_to))
+            && ((!$other_term_names && !rvy_in_revision_workflow($compare_from)) || (!$term_names && !rvy_in_revision_workflow($compare_to)))
             ) {
                 continue;
             }
@@ -1088,10 +1087,10 @@ class RevisionaryHistory
                             ['future-revision']
                         );
 
-                        if (in_array($revision->post_mime_type, $revision_statuses)) {
+                        if (in_array($revision->post_mime_type, $revision_statuses, true)) {
                             $restore_link = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision={$revision->ID}&action=approve$redirect_arg"), "approve-post_$published_post_id|{$revision->ID}" );
 
-                        } elseif (in_array($revision->post_mime_type, ['future-revision'])) {
+                        } elseif (in_array($revision->post_mime_type, ['future-revision'], true)) {
                             $restore_link = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision={$revision->ID}&action=publish$redirect_arg"), "publish-post_$published_post_id|{$revision->ID}" );
                         }
 
@@ -1114,7 +1113,7 @@ class RevisionaryHistory
                 $modified     = strtotime( $revision->post_date );
 		        $modified_gmt = strtotime( $revision->post_date_gmt . ' +0000' );
 
-            } elseif (in_array($revision->post_mime_type, $revision_statuses) && (strtotime($revision->post_date_gmt) > $now_gmt ) ) {
+            } elseif (in_array($revision->post_mime_type, $revision_statuses, true) && (strtotime($revision->post_date_gmt) > $now_gmt ) ) {
                 $date_prefix = esc_html__('Requested for ', 'revisionary');
                 $modified     = strtotime( $revision->post_date );
 		        $modified_gmt = strtotime( $revision->post_date_gmt . ' +0000' );
@@ -1137,7 +1136,7 @@ class RevisionaryHistory
                 'title'      => get_the_title( $revision->ID ),
                 'author'     => $this->authors[ $author_key ],
                 'date'       => sprintf('%s%s', $date_prefix, date_i18n( esc_html__( 'M j, Y @ g:i a', 'revisionary' ), $modified )),
-                'dateShort'  => date_i18n( _x( 'j M @ g:i a', 'revision date short format' ), $modified ),
+                'dateShort'  => date_i18n( esc_html_x( 'j M @ g:i a', 'revision date short format' ), $modified ),
                 'timeAgo'    => sprintf( $time_diff_label, $date_prefix, human_time_diff( $modified_gmt, $now_gmt ) ),
                 'autosave'   => false,
                 'current'    => $current,
@@ -1182,7 +1181,7 @@ class RevisionaryHistory
                 'title'      => get_the_title( $post->ID ),
                 'author'     => $this->authors[ $author_key ],
                 'date'       => date_i18n( esc_html__( 'M j, Y @ H:i', 'revisionary' ), strtotime( $post->post_modified ) ),
-                'dateShort'  => date_i18n( _x( 'j M @ H:i', 'revision date short format', 'revisionary' ), strtotime( $post->post_modified ) ),
+                'dateShort'  => date_i18n( esc_html_x( 'j M @ H:i', 'revision date short format', 'revisionary' ), strtotime( $post->post_modified ) ),
                 'timeAgo'    => sprintf( esc_html__( '%s ago' ), human_time_diff( strtotime( $post->post_modified_gmt ), $now_gmt ) ),
                 'autosave'   => false,
                 'current'    => true,

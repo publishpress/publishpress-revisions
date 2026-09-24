@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 set_current_screen( 'revisionary-archive' );
 
 // Modal popup to view changes from a specific revision
@@ -37,7 +41,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	$messages = [];
 
 	foreach ( $bulk_counts as $message => $count ) {
-		if ( $message == 'trashed' && isset( $_REQUEST['ids'] ) ) {								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( 'trashed' == $message && isset( $_REQUEST['ids'] ) ) {								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$any_messages = true;
 			break;
 		} elseif (!empty($bulk_messages['post'][$message])) {
@@ -51,7 +55,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	}
 
 	foreach ( $bulk_counts as $message => $count ) {
-		if ( $message == 'trashed' && isset( $_REQUEST['ids'] ) 								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( 'trashed' == $message && isset( $_REQUEST['ids'] ) 								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		) {
 			$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			
@@ -87,7 +91,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	<?php $wp_list_table->views(); ?>
 	<form method="get">
 		<?php
-		$wp_list_table->search_box( __( 'Search Revisions', 'revisionary' ), 'revision' );
+		$wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' );
 		$wp_list_table->hidden_input();
 		$wp_list_table->display();
 		?>

@@ -60,7 +60,7 @@ final class Visual_Post_Compare {
 				'show_modified'               => true,
 				'show_post_date'              => true,
 				'slider_post_date'            => false,  // use post_date for slider position label instead of post_modifed
-				'post_date_prefix'            => __('Post Date: ', 'revisionary'),
+				'post_date_prefix'            => esc_html__('Post Date: ', 'revisionary'),
 				'show_author'                 => true,
 			)
 		);
@@ -189,7 +189,7 @@ final class Visual_Post_Compare {
 		self::validate_compare_screen();
 
 		global $title;
-		$title = __('Compare Revisions', 'revisionary');	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		$title = esc_html__('Compare Revisions', 'revisionary');	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	}
 
 	public static function render_compare_screen() {

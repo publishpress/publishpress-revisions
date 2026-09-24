@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * @global string       $post_type
  * @global WP_Post_Type $post_type_object
@@ -184,7 +188,7 @@ if ( isset( $_REQUEST['s'] ) && strlen( sanitize_text_field(wp_unslash($_REQUEST
 $messages = array();
 
 foreach ( $bulk_counts as $message => $count ) {
-	if ( $message == 'trashed' && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( 'trashed' == $message && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$any_messages = true;
 		break;
 	} elseif (!empty($bulk_messages['post'][$message])) {
@@ -198,7 +202,7 @@ if (!empty($any_messages)) {
 }
 
 foreach ( $bulk_counts as $message => $count ) {
-	if ( $message == 'trashed' && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( 'trashed' == $message && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo') . '</a> ';

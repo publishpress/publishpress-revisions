@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die( 'This page cannot be called directly.' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 do_action('revisionary_load_options_ui');
 
@@ -65,7 +66,7 @@ class RvyOptionUI {
 		if ( ! is_array($args) )
 			$args = array();
 
-		if (!empty($this->form_options[$tab_name][$section_name]) && in_array($option_name, $this->form_options[$tab_name][$section_name])) {
+		if (!empty($this->form_options[$tab_name][$section_name]) && in_array($option_name, $this->form_options[$tab_name][$section_name], true)) {
 			$this->all_options []= $option_name;
 
 
@@ -126,7 +127,7 @@ class RvyOptionUI {
 	}
 
 	function register_option($option_name) {
-		if (!in_array($option_name, $this->all_options)) {
+		if (!in_array($option_name, $this->all_options, true)) {
 			$this->all_options []= $option_name;
 		}
 	}
@@ -470,7 +471,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			</a>
 
 			<?php
-			if (in_array($section_name, ['statuses', 'notifications'])) {
+			if (in_array($section_name, ['statuses', 'notifications'], true)) {
 				$badge =
 				[
 					'text' => 'PRO',
@@ -504,7 +505,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 	if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty($this->form_options['features']['license'])) {
 		?>
-		<li class="nav-tab nav-tab-license <?php if ($setActiveTab == 'license') echo 'nav-tab-active';?>">
+		<li class="nav-tab nav-tab-license <?php if ('license' == $setActiveTab) echo 'nav-tab-active';?>">
 			<a href="#ppr-tab-license">
 				<?php esc_html_e('License', 'revisionary') ?>
 			</a>
@@ -523,7 +524,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		require_once(REVISIONARY_PRO_ABSPATH . '/includes-pro/SettingsLicense.php');
 		$license_ui = new RevisionaryLicenseSettings();
 		?>
-		<table class="form-table rs-form-table" id="ppr-tab-license"<?php echo ($setActiveTab != 'license') ? ' style="display:none;"' : '' ?>>
+		<table class="form-table rs-form-table" id="ppr-tab-license"<?php echo ('license' != $setActiveTab) ? ' style="display:none;"' : '' ?>>
 			<?php $license_ui->display($sitewide, $customize_defaults); ?>
 		</table>
 		<?php
@@ -587,7 +588,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 			$obj = $types[$key];
 
-			if (!post_type_supports($key, 'revisions') && (($key != 'product') || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION'))) {
+			if (!post_type_supports($key, 'revisions') && (('product' != $key) || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION'))) {
 			    unset($revisionary->enabled_post_types_archive[$key]);
 			    $locked_types[$key] = true;
 			    $no_revision_types[$key] = true;
@@ -727,7 +728,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				</label>
 					
 				<?php
-				if (!empty($revisionary->enabled_post_types[$key]) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'])) {
+				if (!empty($revisionary->enabled_post_types[$key]) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'], true)) {
 					if ($cap_type_obj = get_post_type_object($obj->capability_type)) {
 						echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
 					}
@@ -1018,19 +1019,19 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 		<div class="pp-revisions-pro-features">
 			<ul>
 				<li>
-					&nbsp;<?php _e('Define your own statuses before or after Revision Submitted', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Define your own statuses before or after Revision Submitted', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('New predefined statuses: Deferred, Needs Work, Rejected', 'revisionary');?>
+					&nbsp;<?php esc_html_e('New predefined statuses: Deferred, Needs Work, Rejected', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Statuses can be specific to a post type', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Statuses can be specific to a post type', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Control access to statuses per-role', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Control access to statuses per-role', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Status workflow can be nested with sub-statuses', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Status workflow can be nested with sub-statuses', 'revisionary');?>
 				</li>
 			</ul>
 		</div>
@@ -1053,7 +1054,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 	<br>
 	<div class="pp-integration-card">
 	<div style="border: 1px solid #ccc; border-radius: 8px">
-	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-statuses.png');?>" style="width: 100%" />
+	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-statuses.png');?>" alt="<?php esc_attr_e('Revision statuses settings preview', 'revisionary'); ?>" style="width: 100%" />
 	</div>
 
 	<div class="pp-upgrade-overlay">
@@ -1164,12 +1165,13 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		echo '<br><br>';
 
 		$id = 'past_revisions_order_by';
-		if ( in_array( $id, $this->form_options[$tab][$section] ) ) {
+		if ( in_array( $id, $this->form_options[$tab][$section], true ) ) {
 			echo esc_html($this->option_captions[$id]);
 	
 			$this->all_options []= $id;
 			$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 	
+			echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 			echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='vertical-align: baseline'>";
 			$captions = ['' => esc_html__('Post Date', 'revisionary'), 'modified' => esc_html__('Modification Date', 'revisionary')];
 			foreach ( $captions as $key => $value) {
@@ -1261,7 +1263,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	if (defined('PUBLISHPRESS_CAPS_VERSION')) {
 		$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=copy');
 
-		$cap_caption = __('Create Revision capabilities', 'revisionary');
+		$cap_caption = esc_html__('Create Revision capabilities', 'revisionary');
 
 		if (rvy_get_option('copy_posts_capability')) {
 			$link = $revisionary->admin->tooltipText(
@@ -1290,7 +1292,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				__('To expand the Pages list, assign %s.', 'revisionary'),
 				
 				$revisionary->admin->tooltipText(
-					"<a href='$url'>" . __('Listing capabilities', 'revisionary') . '</a>',
+					"<a href='$url'>" . esc_html__('Listing capabilities', 'revisionary') . '</a>',
 					__('Assign capabilities to roles', 'revisionary')
 				)
 			);
@@ -1334,7 +1336,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 	$this->option_checkbox( 'revision_unfiltered_html_check', $tab, $section, $hint, '', $checkbox_args );
 
-	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'])) {
+	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'], true)) {
 		$this->subsection_options = true;
 		
 		$id = 'permissions_compat_mode';
@@ -1342,6 +1344,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->register_option($id);
 		$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
+		echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
 		$captions = [
 			'' => esc_html__('Standard storage schema for broadest 3rd party compat', 'revisionary'), 
@@ -1356,12 +1359,12 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		if (revisionary()->getOption('display_hints')) :?>
 			<div class="rvy-subtext">
-			<?php _e('In enhanced mode, a Revision\'s status is stored by standard WordPress schema. Some plugins are incompatible.', 'revisionary');?>
+			<?php esc_html_e('In enhanced mode, a Revision\'s status is stored by standard WordPress schema. Some plugins are incompatible.', 'revisionary');?>
 			</div>
 		<?php endif;
 	}
 
-	if (!empty($this->form_options[$tab]['working_copy']) && in_array('revision_limit_per_post', $this->form_options[$tab]['working_copy'])) {
+	if (!empty($this->form_options[$tab]['working_copy']) && in_array('revision_limit_per_post', $this->form_options[$tab]['working_copy'], true)) {
 		$this->subsection_options = true;
 		
 		$id = 'revision_limit_per_post';
@@ -1369,6 +1372,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$this->register_option($id);
 		$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
+		echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
 		$captions = [
 			0 => esc_html__('Allow any number of Revisions per post.', 'revisionary'),
@@ -1383,7 +1387,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		echo '</select>&nbsp;';
 	}
 
-	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'])) {
+	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'], true)) {
 		echo '<br><br>';
 	}
 
@@ -1442,7 +1446,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			if (defined('PUBLISHPRESS_CAPS_VERSION')) {
 				$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=revise');
 		
-				$cap_caption = __('Submit Revision capabilities', 'revisionary');
+				$cap_caption = esc_html__('Submit Revision capabilities', 'revisionary');
 
 				if (rvy_get_option('revise_posts_capability')) {
 					$link = $revisionary->admin->tooltipText(
@@ -1481,7 +1485,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$this->colorPicker(esc_attr($color), 'revision_editor_bg_color_', compact('default'));
 			?>
 			<div class='rvy-subtext'>
-			<?php _e('Select a custom background color to show that a Revision is being edited.', 'revisionary');?>
+			<?php esc_html_e('Select a custom background color to show that a Revision is being edited.', 'revisionary');?>
 			</div>
 
 			<script>
@@ -1563,8 +1567,8 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$hint = esc_html__( 'Publish scheduled revisions using the WP-Cron mechanism. On some sites, publication will fail if this setting is disabled.', 'revisionary' );
 			$this->option_checkbox( 'scheduled_publish_cron', $tab, $section, $hint, '' );
 
-			if (!rvy_get_option('scheduled_publish_cron')) {
-				$hint = esc_html__( 'Publish scheduled revisions asynchronously, via a secondary http request from the server.  This is usually best since it eliminates delay, but some servers may not support it.', 'revisionary' );
+			if (rvy_get_option('legacy_scheduled_publication')) {
+				$hint = esc_html__( 'Support publication of existing scheduled revisions asynchronously, via a secondary http request from the server.  This is usually best since it eliminates delay, but some servers may not support it.', 'revisionary' );
 				$this->option_checkbox( 'async_scheduled_publish', $tab, $section, $hint, '' );
 			}
 
@@ -1587,13 +1591,13 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$hint = '';
 
 		if (!$option_val = rvy_get_option('approve_capability')) {
-			$hint = __('Currently, users who can edit the published post can also approve Revisions to it.', 'revisionary');
+			$hint = esc_html__('Currently, users who can edit the published post can also approve Revisions to it.', 'revisionary');
 		}
 
 		if (defined('PUBLISHPRESS_CAPS_VERSION')) {
 			$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=approve');
 	
-			$cap_caption = __('Approve Revision capabilities', 'revisionary');
+			$cap_caption = esc_html__('Approve Revision capabilities', 'revisionary');
 	
 			if ($option_val) {
 				$link = $revisionary->admin->tooltipText(
@@ -1615,7 +1619,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		$this->option_checkbox('approve_capability', $tab, $section, $hint, '', $checkbox_args);
 
-		$hint = __('Caption the button as either "Approve and Publish" or "Approve and Schedule."', 'revisionary');
+		$hint = esc_html__('Caption the button as either "Approve and Publish" or "Approve and Schedule."', 'revisionary');
 		$this->option_checkbox( 'approve_button_verbose', $tab, $section, $hint, '' );
 
 		$this->option_checkbox('show_current_revision_bar', $tab, $section, '', '');
@@ -1851,8 +1855,8 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			}
 
 			$hint_text = (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION'))
-			? __('Send revision action notifications using the customizable %1$sPublishPress Planner Notifications system%2$s.', 'revisionary')
-			: __('Upgrade to Revisions Pro to send revision action notifications using the customizable %1$sPublishPress Planner Notifications system%2$s.', 'revisionary');
+			? esc_html__('Send revision action notifications using the customizable %1$sPublishPress Planner Notifications system%2$s.', 'revisionary')
+			: esc_html__('Upgrade to Revisions Pro to send revision action notifications using the customizable %1$sPublishPress Planner Notifications system%2$s.', 'revisionary');
 
 			$hint = sprintf(
 				$hint_text,
@@ -1864,17 +1868,17 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES') && defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 				echo '<br />';
-				$hint = __('Users matching Planner > Notifications configuration get revision notifications only if they can edit the published post.', 'revisionary');
+				$hint = esc_html__('Users matching Planner > Notifications configuration get revision notifications only if they can edit the published post.', 'revisionary');
 				$this->option_checkbox( 'planner_notifications_access_limited', $tab, $section, $hint, '', ['no_escape' => true] );
 			}
 
-			if (!empty($this->form_options[$tab]['notfications']) && in_array('legacy_notifications', $this->form_options[$tab]['notifications'])) {
+			if (!empty($this->form_options[$tab]['notfications']) && in_array('legacy_notifications', $this->form_options[$tab]['notifications'], true)) {
 				echo '<h3 style="margin-top:30px;';
 				
 				if ($pp_notifications) echo 'display:none;';
 
 				echo '">';
-				_e('Legacy Email Notifications:');
+				esc_html_e('Legacy Email Notifications:');
 				echo '</h3>';
 			}
 
@@ -1901,10 +1905,11 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		<?php
 		if( $pending_revisions_available ) {
 			$id = 'pending_rev_notify_admin';
-			if ( in_array( $id, $this->form_options[$tab][$section] ) ) {
+			if ( in_array( $id, $this->form_options[$tab][$section], true ) ) {
 				$this->all_options []= $id;
 				$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
+				echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 				echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
 				$captions = array( 0 => esc_html__('Never', 'revisionary'), 1 => esc_html__('By default', 'revisionary'), 'always' => esc_html__('Always', 'revisionary') );
 				foreach ( $captions as $key => $value) {
@@ -1923,11 +1928,12 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			}
 
 			$id = 'pending_rev_notify_author';
-			if ( in_array( $id, $this->form_options[$tab][$section] ) ) {
+			if ( in_array( $id, $this->form_options[$tab][$section], true ) ) {
 				$this->all_options []= $id;
 				$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 
-				echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
+					echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
+					echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
 				$captions = array( 0 => esc_html__('Never', 'revisionary'), 1 => esc_html__('By default', 'revisionary'), 'always' => esc_html__('Always', 'revisionary') );
 				foreach ( $captions as $key => $value) {
 					$selected = ( $current_setting == $key ) ? 'selected' : '';
@@ -2015,7 +2021,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 					}
 
 					foreach($row as $k => $val) {
-						if ($k != 'message') {
+						if ('message' != $k) {
 							echo "<b>" . esc_html($k) . "</b> : " . esc_html($val) . "<br />";
 						}
 					}
@@ -2043,7 +2049,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 					}
 
 					foreach($row as $k => $val) {
-						if ($k != 'message') {
+						if ('message' != $k) {
 							echo "<b>" . esc_html($k) . "</b> : " . esc_html($val) . "<br />";
 						}
 					}
@@ -2133,16 +2139,16 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		<div class="pp-revisions-pro-features">
 			<ul>
 				<li>
-					&nbsp;<?php _e('Customize notification message and subject', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Customize notification message and subject', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Notify for a specific post type, category or term', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Notify for a specific post type, category or term', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Target specific roles, users, or user groups', 'revisionary');?>
+					&nbsp;<?php esc_html_e('Target specific roles, users, or user groups', 'revisionary');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('With PublishPress Planner Pro, send notifications to a Slack channel', 'revisionary');?>
+					&nbsp;<?php esc_html_e('With PublishPress Planner Pro, send notifications to a Slack channel', 'revisionary');?>
 				</li>
 			</ul>
 		</div>
@@ -2165,7 +2171,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 	<br>
 	<div class="pp-integration-card">
 	<div style="border: 1px solid #ccc; border-radius: 8px">
-	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-notifications.png');?>" style="width: 100%" />
+	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-notifications.png');?>" alt="<?php esc_attr_e('Revision notifications settings preview', 'revisionary'); ?>" style="width: 100%" />
 	</div>
 
 	<div class="pp-upgrade-overlay">
@@ -2201,7 +2207,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		$preview_links = rvy_get_option('revision_preview_links');
 
 		$id = 'preview_link_type';
-		if ( in_array( $id, $this->form_options[$tab][$section] ) ) {
+		if ( in_array( $id, $this->form_options[$tab][$section], true ) ) {
 			$this->all_options []= $id;
 			$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 			?>
@@ -2268,7 +2274,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		?>
 
 		<?php
-		$hint = __('This should usually be enabled, except to work around conflicts with other another plugin\'s postmeta data.', 'revisionary');
+		$hint = esc_html__('This should usually be enabled, except to work around conflicts with other another plugin\'s postmeta data.', 'revisionary');
 		$this->option_checkbox('enable_postmeta_revision', $tab, $section, $hint, '');
 		?>
 
@@ -2304,7 +2310,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		$this->option_checkbox( 'require_edit_others_drafts', $tab, $section, $hint, '', $checkbox_args );
 		
 		if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')) {
-			$hint = __('If post-specific permissions restrict or expand access to a post, apply those permissions to its revisions also.', 'revisionary');
+			$hint = esc_html__('If post-specific permissions restrict or expand access to a post, apply those permissions to its revisions also.', 'revisionary');
 			$this->option_checkbox('apply_post_exceptions', $tab, $section, $hint, '');
 		}
 
@@ -2358,7 +2364,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		$have_pp_revisions_index = false;
 
 		foreach ($results as $row) {
-			if ($row->Key_name == 'pp_revisions') {
+			if ('pp_revisions' == $row->Key_name) {
 				$have_pp_revisions_index = true;
 				break;
 			}
@@ -2513,7 +2519,7 @@ unset($available_form_options['features']['license']);
 foreach ( $available_form_options as $tab_name => $sections ) {
 	echo '<li>';
 
-	$explanatory_caption = __( 'Specify which PublishPress Revisions Settings to control network-wide. Unselected settings are controlled separately on each site.', 'revisionary' );
+	$explanatory_caption = esc_html__( 'Specify which PublishPress Revisions Settings to control network-wide. Unselected settings are controlled separately on each site.', 'revisionary' );
 
 	if ( isset( $this->tab_captions[$tab_name] ) )
 		$tab_caption = $this->tab_captions[$tab_name];
@@ -2552,7 +2558,7 @@ foreach ( $available_form_options as $tab_name => $sections ) {
 				$all_movable_options []= $option_name;
 				echo '<li>';
 
-				$disabled = ( in_array( $option_name, array( 'file_filtering', 'mu_sitewide_groups' ) ) ) ? "disabled" : '';
+				$disabled = ( in_array( $option_name, array( 'file_filtering', 'mu_sitewide_groups' ), true ) ) ? "disabled" : '';
 
 				$id = "{$option_name}_sitewide";
 				$val = isset( $rvy_options_sitewide[$option_name] );
@@ -2658,23 +2664,23 @@ private function renderCompatibilityPack($integration)
 			</div>
 
 			<?php
-			if (in_array('builder', $integration['categories'])) {
+			if (in_array('builder', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-builder">' . esc_html__('Builder', 'revisionary') . '</div>';
-			}  elseif (in_array('admin', $integration['categories'])) {
+			}  elseif (in_array('admin', $integration['categories'], true)) {
 				echo '<span class="pp-category-tag pp-tag-admin">' . esc_html__('Admin', 'revisionary') . '</span>';
-			} elseif (in_array('cache', $integration['categories'])) {
+			} elseif (in_array('cache', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-cache">' . esc_html__('Cache', 'revisionary') . '</div>';
-			} elseif (in_array('seo', $integration['categories'])) {
+			} elseif (in_array('seo', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-seo">' . esc_html__('SEO', 'revisionary') . '</div>';
-			} elseif (in_array('ecommerce', $integration['categories'])) {
+			} elseif (in_array('ecommerce', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-ecommerce">' . esc_html__('Commerce', 'revisionary') . '</div>';
-			} elseif (in_array('fields', $integration['categories'])) {
+			} elseif (in_array('fields', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-fields">' . esc_html__('Fields', 'revisionary') . '</div>';
-			} elseif (in_array('multilingual', $integration['categories'])) {
+			} elseif (in_array('multilingual', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-multilingual">' . esc_html__('Multilang', 'revisionary') . '</div>';
-			} elseif (in_array('community', $integration['categories'])) {
+			} elseif (in_array('community', $integration['categories'], true)) {
 				echo '<div class="pp-category-tag pp-tag-community">' . esc_html__('Community', 'revisionary') . '</div>';
-			} elseif (in_array('workflow', $integration['categories'])) {
+			} elseif (in_array('workflow', $integration['categories'], true)) {
 				echo '<span class="pp-category-tag pp-tag-workflow">' . esc_html__('Workflow', 'revisionary') . '</span>';
 			}
 			?>

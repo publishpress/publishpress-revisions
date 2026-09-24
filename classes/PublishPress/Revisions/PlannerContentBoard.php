@@ -113,7 +113,7 @@ class PlannerContentBoard {
 							$revision_status_csv = implode("','", array_map('sanitize_key', $revision_statuses));
 
 							if ($revision_status) {
-								if (!in_array($revision_status, $revision_statuses())) {
+								if (!in_array($revision_status, $revision_statuses(), true)) {
 									$revision_status_clause = '1=2';
 								} else {
 									$revision_status_clause = $wpdb->prepare("$wpdb->posts.post_mime_type = %s", $revision_status);
@@ -182,7 +182,7 @@ class PlannerContentBoard {
 			}
 
 			foreach ($stored_statuses as $status) {
-				if (!in_array($status->slug, $revision_statuses)) {
+				if (!in_array($status->slug, $revision_statuses, true)) {
 					$revision_statuses[] = $status->slug;
 				}
 			}

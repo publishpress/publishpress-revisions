@@ -51,7 +51,7 @@ class PluginCompat {
 			}
 			
 			if (!empty($plugin_page) 
-			&& in_array($plugin_page, ['pp-calendar', 'pp-content-board', 'pp-content-overview'])
+			&& in_array($plugin_page, ['pp-calendar', 'pp-content-board', 'pp-content-overview'], true)
 			&& (apply_filters('revisionary_planner_filters', true, $plugin_page))
 			) {
 				global $revisionary_planner_compat;
@@ -87,7 +87,7 @@ class PluginCompat {
 			return $clause;
 		}
 
-		if (('edit' == $required_operation) && in_array($post_type, rvy_get_manageable_types()) && rvy_get_option('apply_post_exceptions') 
+		if (('edit' == $required_operation) && in_array($post_type, rvy_get_manageable_types(), true) && rvy_get_option('apply_post_exceptions') 
 		) {
 			foreach(['mod', 'src_table', 'logic', 'ids'] as $var) {
 				if (!empty($args[$var])) {
@@ -151,7 +151,7 @@ class PluginCompat {
 
 		$post_author = get_post_field('post_author', rvy_post_id($revision->ID));
 		
-		if (!in_array($post_author, [$current_user->ID, $revision->post_author])) {
+		if (!in_array($post_author, [$current_user->ID, $revision->post_author], true)) {
 			$recipient_ids []= $post_author;
 		}
 

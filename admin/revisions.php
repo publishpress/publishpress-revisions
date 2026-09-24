@@ -1,8 +1,9 @@
 <?php
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die( 'This page cannot be called directly.' );
-	
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * @package     PublishPress\Revisions\RevisionManager
  * @author      PublishPress <help@publishpress.com>
@@ -99,7 +100,7 @@ default :
 		if ( ! $rvy_post = get_post( $revision_id) )
 			break;
 
-		if ( ! in_array( $rvy_post->post_type, array_keys($revisionary->enabled_post_types) ) ) {
+		if ( ! in_array( $rvy_post->post_type, array_keys($revisionary->enabled_post_types), true ) ) {
 			$rvy_post = '';  // todo: is this necessary?
 			break;
 		}

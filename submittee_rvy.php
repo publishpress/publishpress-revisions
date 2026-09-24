@@ -1,7 +1,8 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
-	
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 class Revisionary_Submittee {
 
@@ -104,26 +105,29 @@ class Revisionary_Submittee {
 									}
 
 									$revision_statuses = rvy_revision_statuses();
-									
-									foreach ($revision_statuses as $revision_status) {
-										$base_status = ('draft-revision' == $revision_status) ? 'draft' : 'pending';
 
+									if ($revision_statuses) {
 										if ($value) {
-											// switching to Enhanced Revision access control (store revision status to post_status column)
 											$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 												$wpdb->prepare(
-													"UPDATE $wpdb->posts SET post_status = %s WHERE (comment_count != 0 AND post_mime_type = %s)",
-													$revision_status,
-													$revision_status
+													"UPDATE $wpdb->posts
+													SET post_status = post_mime_type
+													WHERE comment_count != 0
+													AND post_mime_type IN (" . implode(', ', array_fill(0, count($revision_statuses), '%s')) . ")",
+													...$revision_statuses
 												)
 											);
 										} else {
-											// switching to Broadest Compat mode (store base status to post_status column)
-											$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+											$wpdb->query(
 												$wpdb->prepare(
-													"UPDATE $wpdb->posts SET post_status = %s WHERE (comment_count != 0 AND post_mime_type = %s)",
-													$base_status,
-													$revision_status
+													"UPDATE $wpdb->posts
+													SET post_status = CASE
+														WHEN post_mime_type = 'draft-revision' THEN 'draft' 
+														ELSE 'pending' 
+														END 
+													WHERE comment_count != 0
+													AND post_mime_type IN (" . implode(', ', array_fill(0, count($revision_statuses), '%s')) . ")",
+													...$revision_statuses
 												)
 											);
 										}

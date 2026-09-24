@@ -167,7 +167,9 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
         && file_exists(REVISIONS_INTERNAL_VENDORPATH . '/autoload.php')
     ) {
         require_once REVISIONS_INTERNAL_VENDORPATH . '/autoload.php';
-    }
+	}
+	
+	include_once REVISIONS_INTERNAL_VENDORPATH . '/woocommerce/action-scheduler/action-scheduler.php';
 
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
     

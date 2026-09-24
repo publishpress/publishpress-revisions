@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /*
  * Legacy functions for listing Past Revisions, with bulk deletion
  */
@@ -71,12 +75,12 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 	$public_types = array_keys($revisionary->enabled_post_types);
 	$public_types []= 'revision';
 	
-	if ( ! in_array( $revision->post_type, $public_types ) )
+	if ( ! in_array( $revision->post_type, $public_types, true ) )
 		return false;
 
 	/* translators: revision date format, see http://php.net/date */
 	if (!$datef) {
-		$datef = _x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
+		$datef = esc_html_x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
 	}
 
 	$date = agp_date_i18n( $datef, strtotime( $revision->$date_field ) );
@@ -104,9 +108,9 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 		$date = sprintf( $autosavef, $date );
 	}
 
-	if ( in_array( $revision->post_status, array( 'inherit', 'pending-revision' ) ) && $post && ( 'list' == $format ) && ( 'post_modified' == $date_field ) ) {
+	if ( in_array( $revision->post_status, array( 'inherit', 'pending-revision' ), true ) && $post && ( 'list' == $format ) && ( 'post_modified' == $date_field ) ) {
 		if ( $post->post_date != $revision->post_date ) {
-			$datef = _x( 'j F, Y, g:i a', 'revision schedule date format', 'revisionary' );
+			$datef = esc_html_x( 'j F, Y, g:i a', 'revision schedule date format', 'revisionary' );
 			$revision_date = agp_date_i18n( $datef, strtotime( $revision->post_date ) );
 			
 			if (strtotime($revision->post_date) > agp_time_gmt()) {
@@ -325,7 +329,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			if ( $post->ID != $revision->ID 
 			&& ( $can_edit_post || ( ('pending-revision' == $status) && rvy_is_post_author($revision) ) )	// allow submitters to delete their own still-pending revisions
 			) {
-				$rows .= "<td style='text-align:right'><input class='rvy-rev-chk' type='checkbox' name='delete_revisions[]' value='" . esc_attr($revision->ID) . "' /></td>";
+				$rows .= "<td style='text-align:right'><input class='rvy-rev-chk' type='checkbox' name='delete_revisions[]' value='" . esc_attr($revision->ID) . "' aria-label='" . esc_attr__('Select revision for deletion', 'revisionary') . "' /></td>";
 				$can_delete_any = true;
 			} else
 				$rows .= "<td></td>";
@@ -344,7 +348,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			
 		} else {
 			/* translators: post revision: 1: when, 2: author name */
-			$rows .= "<li>" . sprintf( _x( '%1$s by %2$s', 'post revision' ), $date, esc_html($name) ) . "</li>";
+			$rows .= "<li>" . sprintf( esc_html_x( '%1$s by %2$s', 'post revision' ), $date, esc_html($name) ) . "</li>";
 		}
 		
 		$count++;
@@ -383,10 +387,10 @@ jQuery(document).ready( function($) {
 
 esc_html_e( 'Modified Date', 'revisionary' ); 
 ?></th>
-	<th scope="col"></th>
+	<th scope="col"><?php esc_html_e( 'Preview', 'revisionary' ); ?></th>
 	<th scope="col"><?php echo esc_html__( 'Author' ); ?></th>
 	<th scope="col" class="action-links"><?php esc_html_e( 'Actions' ); ?></th>
-	<th scope="col"  style='text-align:right'><input id='rvy-rev-checkall' type='checkbox' name='rvy-rev-checkall' value='' /></th>
+	<th scope="col"  style='text-align:right'><label class="screen-reader-text" for="rvy-rev-checkall"><?php esc_html_e('Select all revisions', 'revisionary'); ?></label><input id='rvy-rev-checkall' type='checkbox' name='rvy-rev-checkall' value='' /></th>
 </tr>
 </thead>
 <tbody>
@@ -402,7 +406,8 @@ echo $rows; 														// phpcs:ignore WordPress.Security.EscapeOutput.Output
 <?php if( $can_delete_any ):?>
 <br />
 <div class="alignright actions">
-<select name="action">
+<label class="screen-reader-text" for="rvy-revision-action"><?php esc_html_e('Select bulk action', 'revisionary'); ?></label>
+<select name="action" id="rvy-revision-action">
 <option value="" selected="selected"><?php esc_html_e('Bulk Actions'); ?></option>
 <option value="bulk-delete"><?php esc_html_e('Delete'); ?></option>
 </select>

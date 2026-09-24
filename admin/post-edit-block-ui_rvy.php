@@ -31,7 +31,7 @@ if ($_post_id = rvy_detect_post_id()) {
                 if (!empty($_SERVER['REQUEST_URI'])) {
                     if (!get_transient("revisionary-post-edit-redirect-{$_post_id}")) {
                         set_transient("revisionary-post-edit-redirect-{$_post_id}", true, 30);
-                        wp_redirect(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])));
+                        wp_safe_redirect(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])));
                         exit;
                     }
                 }
@@ -164,7 +164,7 @@ class RVY_PostBlockEditUI {
         $args['nowCaption'] = esc_html__('Now', 'revisionary');
         $args['revisionCaption'] = esc_html__('Revision', 'revisionary');
 
-        $args['approveButtonReplacesSubmit'] = defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && class_exists('PublishPress_Statuses') && method_exists('PublishPress_Statuses', 'getEnabledPostTypes') && in_array($post->post_type, \PublishPress_Statuses::getEnabledPostTypes());   // @todo: possible setting
+        $args['approveButtonReplacesSubmit'] = defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && class_exists('PublishPress_Statuses') && method_exists('PublishPress_Statuses', 'getEnabledPostTypes') && in_array($post->post_type, \PublishPress_Statuses::getEnabledPostTypes(), true);   // @todo: possible setting
 
         wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
     }
@@ -209,7 +209,7 @@ class RVY_PostBlockEditUI {
                 if (!$('div.rvy-author-selection').length) {
                     $('div.rvy-submission-div').append(
                         "<br /><div class='rvy-author-selection'>"
-                        + '<label>' + '<?php _e("Author", 'revisionary');?>&nbsp;</label>'
+                        + '<label>' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
                         + '</div>'
                         + "<div class='rvy-author-selection'>"
                         + "<?php echo $select_html;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"

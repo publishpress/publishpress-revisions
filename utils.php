@@ -117,7 +117,7 @@ class Utils {
 					}
 				
 				} else {
-                    $use_block = ('block' == get_user_meta($current_user->ID, 'wp_classic-editor-settings'));
+                    $use_block = ('block' == get_user_meta($current_user->ID, 'wp_classic-editor-settings', true));
 
                     if (version_compare($wp_version, '5.9-beta', '>=')) {
                     	if ($has_nav_action = has_action('use_block_editor_for_post_type', '_disable_block_editor_for_navigation_post_type')) {

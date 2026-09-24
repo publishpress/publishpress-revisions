@@ -84,23 +84,23 @@ class RevisionaryVisualCompare {
                             $status_caption = (is_object($status_obj) && !empty($status_obj->label)) ? '(' . $status_obj->label . ')' : '';
 
                             $headline = sprintf(
-                                __('Compare Revisions %s', 'revisionary'),
+                                esc_html__('Compare Revisions %s', 'revisionary'),
                                 $status_caption
                             );
                         } elseif ('future-revision' == $revision_status) {
-                            $headline = __('Compare Scheduled Revisions', 'revisionary');
+                            $headline = esc_html__('Compare Scheduled Revisions', 'revisionary');
 
                         } elseif ('pending-revision' == $revision_status) {
-                            $headline = __('Compare Submitted Revisions', 'revisionary');
+                            $headline = esc_html__('Compare Submitted Revisions', 'revisionary');
 
                         } elseif ('draft-revision' == $revision_status) {
-                            $headline = __('Compare Unsubmitted Revisions', 'revisionary');
+                            $headline = esc_html__('Compare Unsubmitted Revisions', 'revisionary');
 
                         } else {
-                            $headline = __('Compare New Revision', 'revisionary');
+                            $headline = esc_html__('Compare New Revision', 'revisionary');
                         }
                     } elseif (wp_is_post_revision($revision_id)) {
-                        $headline = __('Compare Past Revisions', 'revisionary');
+                        $headline = esc_html__('Compare Past Revisions', 'revisionary');
                     }
 
                     return $headline;
@@ -111,7 +111,7 @@ class RevisionaryVisualCompare {
                 'visual_post_compare_compare_screen_approve_caption',
                 function ( $caption, $revision_id, $comparison_key ) {
                     if (!rvy_in_revision_workflow($revision_id) && (wp_is_post_revision($revision_id))) {
-                        $caption = __('Restore', 'revisionary');
+                        $caption = esc_html__('Restore', 'revisionary');
                     }
 
                     return $caption;
@@ -153,7 +153,7 @@ class RevisionaryVisualCompare {
                     if ($past_revisions || ('compare-past-revision' == $args['key'])) {
                         $sidebars []= $compare_class::comparison_sidebar_definition(
                             'compare-past-revision',
-                            __( 'Past Revisions', 'revisionary' ),
+                            esc_html__( 'Past Revisions', 'revisionary' ),
                             $past_revisions,
                             [
                                 'currentPostFirst' => false,
@@ -170,7 +170,7 @@ class RevisionaryVisualCompare {
                     if ($pending_revisions || ('compare-pending-revision' == $args['key'])) {
                         $sidebars []= $compare_class::comparison_sidebar_definition(
                             'compare-pending-revision',
-                            __( 'Submitted Revisions', 'revisionary' ),
+                            esc_html__( 'Submitted Revisions', 'revisionary' ),
                             $pending_revisions,
                             [
                                 'mime_type_status' => !rvy_get_option('permissions_compat_mode')
@@ -185,12 +185,12 @@ class RevisionaryVisualCompare {
                     if ($scheduled_revisions || ('compare-future-revision' == $args['key'])) {
                         $sidebars []= $compare_class::comparison_sidebar_definition(
                             'compare-future-revision',
-                            __( 'Scheduled Revisions', 'revisionary' ),
+                            esc_html__( 'Scheduled Revisions', 'revisionary' ),
                             $scheduled_revisions,
                             [   
                                 'sort_by' => 'post_date',
                                 'slider_post_date' => true,
-                                'post_date_prefix' => __( 'Scheduled:', 'revisionary' ),
+                                'post_date_prefix' => esc_html__( 'Scheduled:', 'revisionary' ),
                                 'mime_type_status' => !rvy_get_option('permissions_compat_mode'),
                             ]
                         );

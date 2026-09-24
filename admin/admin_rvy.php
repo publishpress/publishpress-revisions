@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * @package     PublishPress\Revisions\RevisionaryAdmin
  * @author      PublishPress <help@publishpress.com>
@@ -62,7 +66,7 @@ class RevisionaryAdmin
 			return; // no further filtering on WP plugin maintenance scripts
 		}
 
-		if (in_array($pagenow, array('post.php', 'post-new.php'))) {
+		if (in_array($pagenow, array('post.php', 'post-new.php'), true)) {
 			if (empty($post)) {
 				$post = get_post(rvy_detect_post_id());		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 			}
@@ -76,7 +80,7 @@ class RevisionaryAdmin
 
 				if ($post && rvy_is_supported_post_type($post->post_type)) {
 					// only apply revisionary UI for currently published or scheduled posts
-					if (!rvy_in_revision_workflow($post) && (in_array($post->post_status, rvy_filtered_statuses()) || ('future' == $post->post_status))) {
+					if (!rvy_in_revision_workflow($post) && (in_array($post->post_status, rvy_filtered_statuses(), true) || ('future' == $post->post_status))) {
 						require_once( dirname(__FILE__).'/filters-admin-ui-item_rvy.php' );
 						new RevisionaryPostEditorMetaboxes();
 
@@ -159,35 +163,16 @@ class RevisionaryAdmin
 
 		add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
 			global $pagenow;
-		
-			if (
-			($pagenow == 'admin.php') && isset($_GET['page']) 												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			&& in_array($_GET['page'], ['revisionary-q', 'revisionary-deletion', 'revisionary-settings'])	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			) {
-				global $wp_version;
-
-				if (defined('DISABLE_WP_CRON') && DISABLE_WP_CRON && rvy_get_option('scheduled_revisions') 
-				&& rvy_get_option('scheduled_publish_cron') && !rvy_get_option('wp_cron_usage_detected') && apply_filters('revisionary_wp_cron_disabled', true)
-				) {
-					rvy_notice(
-						sprintf(
-							__('Scheduled Revisions are unavailable because WP-Cron is disabled. If you are triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > Scheduling%s.', 'revisionary'),
-							'<a href="' . admin_url("admin.php?page=revisionary-settings&ppr_tab=working_copy&ppr_subtab=revision-scheduling") . '">',
-							'</a>'
-						)
-					);
-				}
-			}
 
 			if ((
-			($pagenow == 'admin.php') 
+			('admin.php' == $pagenow)
 			&& isset($_GET['page']) 																		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			&& in_array($_GET['page'], ['revisionary-q', 'revisionary-settings'])							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& (in_array($_GET['page'], ['revisionary-q', 'revisionary-settings'], true)							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			|| (
 				defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action']) 							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				&& (false !== strpos(sanitize_key($_REQUEST['action']), 'revisionary'))						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				)
-			) 
+			) )
 			&& !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')
 			) {
 				if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
@@ -256,24 +241,24 @@ class RevisionaryAdmin
 		global $pagenow;
 
 		if (
-			in_array($pagenow, ['post.php', 'post-new.php', 'revision.php'])
-			|| (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive']))  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			in_array($pagenow, ['post.php', 'post-new.php', 'revision.php'], true)
+			|| (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive'], true))  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		) {
 			wp_enqueue_style('revisionary', RVY_URLPATH . '/admin/revisionary.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 			wp_enqueue_style('revisionary-tooltip', RVY_URLPATH . '/common/css/_tooltip.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
 
-		if (in_array($pagenow, ['post.php', 'post-new.php']) 						
-		|| (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive']))) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (in_array($pagenow, ['post.php', 'post-new.php'], true) 						
+		|| (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive'], true))) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			wp_enqueue_style('revisionary-admin-common', RVY_URLPATH . '/common/css/pressshack-admin.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
 		
-		if ((!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options']))) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ((!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options'], true))) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			wp_enqueue_script('revisionary-settings', RVY_URLPATH . '/admin/settings.js', [], PUBLISHPRESS_REVISIONS_VERSION);
 			wp_enqueue_style('revisionary-settings', RVY_URLPATH . '/admin/revisionary-settings.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
 		
-		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && ('admin.php' == $pagenow) && !empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options']) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && ('admin.php' == $pagenow) && !empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options'], true) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			wp_enqueue_style('revisionary-pro-settings', plugins_url('', REVISIONARY_PRO_FILE) . '/includes-pro/settings-pro.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
  	}
@@ -281,7 +266,7 @@ class RevisionaryAdmin
 	 function fltAdminBodyClass($classes) {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		if (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive'])) {
+		if (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive'], true)) {
 			$classes .= ' revisionary';
 			
 			switch ($_REQUEST['page']) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -322,11 +307,11 @@ class RevisionaryAdmin
 		}
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if (($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['revisionary-q', 'revisionary-archive'])) {
+		if (('admin.php' == $pagenow) && isset($_GET['page']) && in_array($_GET['page'], ['revisionary-q', 'revisionary-archive'], true)) {
 			add_screen_option(
 				'per_page',
 				
-				['label' => _x('Revisions', 'groups per page (screen options)', 'revisionary'), 
+				['label' => esc_html_x('Revisions', 'groups per page (screen options)', 'revisionary'), 
 				'default' => 20, 
 				'option' => ('revisionary-archive' == $_GET['page']) ? 'revision_archive_per_page' : 'revisions_per_page'	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				]
@@ -338,7 +323,7 @@ class RevisionaryAdmin
 		global $pagenow;
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		return ($pagenow == 'admin.php') && isset($_GET['page']) && in_array($_GET['page'], ['revisionary-q', 'revisionary-deletion', 'revisionary-settings']);
+		return ('admin.php' == $pagenow) && isset($_GET['page']) && in_array($_GET['page'], ['revisionary-q', 'revisionary-deletion', 'revisionary-settings'], true);
 	}
 
 	function fltDashboardGlanceItems($items) {
@@ -527,8 +512,8 @@ class RevisionaryAdmin
 
 	// adds a Settings link next to Deactivate, Edit in Plugins listing
 	function flt_plugin_action_links($links, $file) {
-		if (defined('REVISIONARY_FILE') && ($file == plugin_basename(REVISIONARY_FILE))
-		|| defined('REVISIONARY_PRO_FILE') && ($file == plugin_basename(REVISIONARY_PRO_FILE))
+		if ((defined('REVISIONARY_FILE') && (plugin_basename(REVISIONARY_FILE) == $file))
+		|| (defined('REVISIONARY_PRO_FILE') && (plugin_basename(REVISIONARY_PRO_FILE) == $file))
 		) {
 			$links[] = '<a href="'. esc_url(admin_url('admin.php?page=revisionary-q')) .'">' . esc_html__('New Revisions', 'revisionary') . '</a>';
 			$links[] = '<a href="'. esc_url(admin_url('admin.php?page=revisionary-archive')) .'">' . esc_html__('Past Revisions', 'revisionary') . '</a>';
@@ -638,7 +623,7 @@ class RevisionaryAdmin
 		<div class="pp-pressshack-logo">
 		<a href="https://publishpress.com" target="_blank" rel="noopener noreferrer">
 
-		<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/publishpress-logo.png');?>" />
+		<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/publishpress-logo.png');?>" alt="PublishPress" />
 		</a>
 		</div>
 
@@ -648,7 +633,7 @@ class RevisionaryAdmin
 
 	function hideAdminMenuToolbar() {
         $current_screen = get_current_screen();
-        if ( $current_screen->id === 'revision' && isset( $_GET['rvy-popup'] ) && $_GET['rvy-popup'] === 'true' ) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if ( 'revision' === $current_screen->id && isset( $_GET['rvy-popup'] ) && 'true' === $_GET['rvy-popup'] ) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
             ?>
             <style type="text/css">
             #wpadminbar,

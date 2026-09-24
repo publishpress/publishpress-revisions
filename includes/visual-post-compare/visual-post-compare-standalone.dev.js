@@ -273,9 +273,8 @@
 	}
 
 	function plainTextFromRaw(rawBlock) {
-		const html = rawBlock && rawBlock.innerHTML ? rawBlock.innerHTML : '';
 		const node = document.createElement('div');
-		node.innerHTML = html;
+		node.innerHTML = rawBlock && rawBlock.innerHTML ? rawBlock.innerHTML : '';
 		return node.textContent || '';
 	}
 
@@ -417,6 +416,25 @@
 		}
 	}
 
+	function containsSerializedBlocks(content) {
+		return /<!--\s+\/?wp:[a-z0-9_-]+(?:\/[a-z0-9_-]+)?(?:\s|-->)/i.test(content || '');
+	}
+
+	function prepareContentForDiff(content) {
+		const value = String(content || '');
+		if (!value.trim() || containsSerializedBlocks(value)) {
+			return value;
+		}
+
+		if (typeof blocks.rawHandler !== 'function' || typeof blocks.serialize !== 'function') {
+			throw new Error(
+				__('WordPress Classic Editor content conversion APIs are unavailable.', 'revisionary')
+			);
+		}
+
+		return blocks.serialize(blocks.rawHandler({ HTML: value }));
+	}
+
 	function diffRevisionContent(currentContent, previousContent) {
 		if (typeof grammarParse !== 'function' || typeof parseRawBlock !== 'function') {
 			throw new Error(__('WordPress 7.0 block revision parser APIs are unavailable.', 'revisionary'));
@@ -427,8 +445,8 @@
 		// core/paragraph, core/heading, core/list, etc.
 		ensureCoreBlocksRegistered();
 
-		const currentRaw = grammarParse(currentContent || '');
-		const previousRaw = grammarParse(previousContent || '');
+		const currentRaw = grammarParse(prepareContentForDiff(currentContent));
+		const previousRaw = grammarParse(prepareContentForDiff(previousContent));
 		const mergedRaw = diffRawBlocks(currentRaw, previousRaw);
 
 		const parsedBlocks = mergedRaw.map((rawBlock) => {
