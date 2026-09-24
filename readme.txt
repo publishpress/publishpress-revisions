@@ -3,7 +3,7 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins
 Author: PublishPress
 Author URI: https://publishpress.com
-Tags: revision, submit changes, duplicate post, approve changes, scheduled changes
+Tags: revisions, post revisions, duplicate post, content approval, scheduled changes
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 7.1
@@ -11,7 +11,7 @@ Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Control how published content is updated. Users can duplicate posts and submit changes. Then editors can approve, reject or schedule those changes.
+Control how published content is updated. Users submit revisions and duplicate posts. Editors can approve, reject or schedule those revisions.
 
 == Description ==
 
