@@ -78,7 +78,7 @@ class RevisionaryFront {
 		if (wp_is_post_revision($object_id)) {
 			$unfiltered_meta_val = get_post_meta($object_id, $meta_key, $single);
 
-			if (in_array($unfiltered_meta_val, [null, []])) {
+			if (in_array($unfiltered_meta_val, [null, []], true)) {
 				if ($published_post_id = get_post_field('post_parent', $object_id)) {
 					$published_meta_val = get_post_meta($published_post_id, $meta_key, $single);
 
@@ -163,7 +163,7 @@ class RevisionaryFront {
 			if ($published_post_id = rvy_post_id($post_id)) {
 				if ($published_post_id != $post_id) {
 					if ( ('page' === get_option( 'show_on_front' )) 
-					&& in_array( get_option( 'page_on_front' ), [$published_post_id, $post_id] )
+					&& in_array( (int) get_option( 'page_on_front' ), [$published_post_id, $post_id], true )
 					) {
 						return true;
 					}
@@ -182,7 +182,7 @@ class RevisionaryFront {
 		if ($_post = get_post(rvy_detect_post_id())) {
 			if (('revision' == $_post->post_type) && ('inherit' == $_post->post_status)) {
 				if ($url = get_permalink(rvy_post_id($_post->ID))) {
-					wp_redirect($url);
+					wp_safe_redirect($url);
 					exit;
 				}
 			}
@@ -203,7 +203,7 @@ class RevisionaryFront {
 						$author_displays []= $author->display_name;
 					}
 
-					if (in_array($display_name,$author_displays)) {
+					if (in_array($display_name, $author_displays, true)) {
 						return $display_name;
 					}
 
@@ -296,7 +296,7 @@ class RevisionaryFront {
 			if (!empty($_REQUEST['base_post'])) {											//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				if ($post = get_post(intval($_REQUEST['base_post']))) {						//phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, WordPress.Security.NonceVerification.Recommended
 					$url = get_permalink((int) $_REQUEST['base_post']);						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					wp_redirect($url);
+					wp_safe_redirect($url);
 					exit;
 				}
 			}
@@ -316,13 +316,13 @@ class RevisionaryFront {
 			}
 		}
 
-		if ($wp_query->is_404 && !empty($revision_id) && (in_array(get_post_field('post_status', $revision_id), ['future', 'publish']) || defined('REVISIONARY_FORCE_PUBLICATION_REDIRECT'))) {
+		if ($wp_query->is_404 && !empty($revision_id) && (in_array(get_post_field('post_status', $revision_id), ['future', 'publish'], true) || defined('REVISIONARY_FORCE_PUBLICATION_REDIRECT'))) {
 			// Work around timing issue when scheduled revision publication is underway
 			if ($published_id = get_post_meta($revision_id, '_rvy_base_post_id', true)) {
 				if ($post = get_post($published_id)) {										// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited)
 					if ($type_obj = get_post_type_object($post->post_type)) {
 						$redirect = ($type_obj && empty($type_obj->public)) ? rvy_admin_url("post.php?action=edit&post=$post->ID") : add_query_arg('mark_current_revision', 1, get_permalink($post->ID)); // published URL
-						wp_redirect($redirect);
+						wp_safe_redirect($redirect);
 						exit;	
 					}
 				}
@@ -420,9 +420,9 @@ class RevisionaryFront {
 
 			$can_publish = current_user_can('edit_post', $published_post_id);
 
-			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw($_REQUEST['rvy_redirect']) : '';  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');
+			load_plugin_textdomain('revisionary', false, dirname(plugin_basename(REVISIONARY_FILE)) . '/languages');	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 
 			$published_url = ($published_post_id) ? get_permalink($published_post_id) : '';
 			$diff_url = rvy_compare_url($revision_id);
@@ -491,19 +491,19 @@ class RevisionaryFront {
 				$edit_button = '';
 			}
 
-			if ( !in_array( $post->post_mime_type, array( 'pending-revision', 'revision-approved', 'future-revision', 'inherit' ) ) ) {
+			if ( !in_array( $post->post_mime_type, array( 'pending-revision', 'revision-approved', 'future-revision', 'inherit' ), true ) ) {
 				if ($can_edit = current_user_can('edit_post', $revision_id)) {
 					$submit_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=submit$redirect_arg"), "submit-post_$published_post_id|$revision_id" );
 					$publish_url =  wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 				}
 			} elseif ($can_approve = current_user_can('approve_revision', $revision_id)) {
-				if ( !in_array( $post->post_mime_type, array( 'future-revision', 'inherit' ) ) ) {
+				if ( !in_array( $post->post_mime_type, array( 'future-revision', 'inherit' ), true ) ) {
 					$publish_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
 
-				} elseif ( in_array( $post->post_mime_type, array( 'future-revision' ) ) ) {
+				} elseif ( in_array( $post->post_mime_type, array( 'future-revision' ), true ) ) {
 					$publish_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=publish$redirect_arg"), "publish-post_$published_post_id|$revision_id" );
 
-				} elseif ( in_array( $post->post_status, array( 'inherit' ) ) ) {
+				} elseif ( in_array( $post->post_status, array( 'inherit' ), true ) ) {
 					$publish_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=restore$redirect_arg"), "restore-post_$published_post_id|$revision_id" );
 
 				} else {
@@ -532,7 +532,7 @@ class RevisionaryFront {
 				if ($post = get_post($post->post_parent)) {				// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 					if ('revision' != $post->post_type && !rvy_in_revision_workflow($post)) {
 						$url = add_query_arg('mark_current_revision', 1, get_permalink($post->ID));
-						wp_redirect($url);
+						wp_safe_redirect($url);
 						exit;
 					}
 				}
@@ -652,8 +652,8 @@ class RevisionaryFront {
 						}
 
 						$message = (!empty($_REQUEST['rvy_approval']))												// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						? __('The revision was approved and is now live on the site. %s', 'revisionary')
-						: __('This is the Current Revision. %s', 'revisionary');
+						? esc_html__('The revision was approved and is now live on the site. %s', 'revisionary')
+						: esc_html__('This is the Current Revision. %s', 'revisionary');
 
 						if (!empty($_REQUEST['elementor-preview'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 							$message = sprintf( $message, '' );
@@ -682,11 +682,7 @@ class RevisionaryFront {
 					}
 				}
 
-				if (defined('REVISIONARY_LEGACY_PREVIEW_OUTPUT')) {
-					add_action('wp_head', [$this, 'rvyFrontCSS']);
-				} else {
-					add_action('wp_enqueue_scripts', [$this, 'rvyEnqueueStyle'], 50);
-				}
+				add_action('wp_enqueue_scripts', [$this, 'rvyEnqueueStyle'], 50);
 
 				add_action('wp_enqueue_scripts', [$this, 'rvyEnqueuePreviewJS']);
 
@@ -706,10 +702,6 @@ class RevisionaryFront {
 				}
 			}
 		}
-	}
-
-	function rvyFrontCSS() {
-		echo '<link rel="stylesheet" href="' . esc_url(plugins_url('', REVISIONARY_FILE)) . '/revisionary-front.css" type="text/css" />'."\n";
 	}
 
 	function rvyEnqueueStyle() {
@@ -745,6 +737,7 @@ class RevisionaryFront {
 
 			var rvyTotalHeight = $('div.rvy_view_revision').height() + rvyAdminBarHeight;
 			var rvyTopBarZindex = $('div.rvy_view_revision').css('z-index');
+			var rvyAdminBarZindex = $('#wpadminbar').css('z-index');
 			var rvyOtherElemZindex = 0;
 
 			$('div.rvy_view_revision').css('top', rvyAdminBarHeight);
@@ -762,6 +755,11 @@ class RevisionaryFront {
 
 						if (rvyOtherElemZindex >= rvyTopBarZindex) {
 							rvyTopBarZindex = rvyOtherElemZindex + 1;
+
+							if (rvyTopBarZindex > rvyAdminBarZindex) {
+								rvyTopBarZindex = rvyAdminBarZindex - 1;
+							}
+
 							$('div.rvy_view_revision').css('z-index', rvyTopBarZindex);
 						}
 

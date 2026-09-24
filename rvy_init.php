@@ -1,6 +1,7 @@
 <?php
-if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 require_once( dirname(__FILE__).'/rvy_init-functions.php');
 
@@ -40,12 +41,12 @@ if (!defined('RVY_PREVIEW_ARG')) {
 }
 
 if (('preview' != RVY_PREVIEW_ARG) && !empty($_REQUEST['preview']) && !empty($_REQUEST['nc'])) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-	$url = (isset($_SERVER['REQUEST_URI'])) ? esc_url_raw($_SERVER['REQUEST_URI']) : '';
+	$url = (isset($_SERVER['REQUEST_URI'])) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '';
 	$arr = wp_parse_url(site_url());
 	$url = $arr['scheme'] . '://' . $arr['host'] . $url;
 
 	$url = str_replace('preview=', RVY_PREVIEW_ARG . '=', $url);
-	wp_redirect($url);
+	wp_safe_redirect($url);
 	exit;
 }
 
@@ -63,7 +64,8 @@ add_filter('cron_schedules', 'rvy_mail_buffer_cron_interval');			// phpcs:ignore
 // wp-cron hook
 add_action('publish_revision_rvy', '_revisionary_publish_scheduled_cron');
 
-add_action("update_option_rvy_scheduled_publish_cron", '_rvy_existing_schedules_to_cron', 10, 2);
+// Action Scheduler hook
+add_action('publish_revision_rvy_action_scheduler', '_revisionary_action_scheduler_publish_scheduled');
 
 add_action('before_delete_post', 
 	function($delete_post_id) {
@@ -199,4 +201,3 @@ if (defined('WPSEO_VERSION')) {
 foreach(['revisions_per_page', 'revision_archive_per_page'] as $option_val) {
 	add_filter("set_screen_option_{$option_val}", function($screen_option, $option, $value ) {return $value;}, 99, 3);
 }
-

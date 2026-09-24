@@ -194,7 +194,7 @@ class RvyRevisionEditSubmitMetabox
         ?>
 
         <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html__('Edit') ?></a>
-        <div id="timestampdiv" class="hide-if-js"><?php touch_time(($action == 'edit'), 1, 4); ?></div>
+        <div id="timestampdiv" class="hide-if-js"><?php touch_time(('edit' == $action), 1, 4); ?></div>
         <?php
     }
 }

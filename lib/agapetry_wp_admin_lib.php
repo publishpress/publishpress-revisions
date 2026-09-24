@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // Decipher the ever-changing meta/advanced action names into a version-insensitive question:
 // "Has metabox drawing been initiated?"

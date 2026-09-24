@@ -176,7 +176,7 @@ class FrontNotice {
         }
 
         $notice_msg = sprintf(
-            __('This %s has new revisions. Click the button below to review them.', 'revisionary'),
+            esc_html__('This %s has new revisions. Click the button below to review them.', 'revisionary'),
             strtolower($type_obj->labels->singular_name)
         );
         ?>

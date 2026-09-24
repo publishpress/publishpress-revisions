@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * @phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_error_log, WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
  * @phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_var_dump, PublishPressStandards.Debug.DisallowDebugFunctions.FoundVarDumpFunction
@@ -6,7 +10,7 @@
  * @phpcs:disable WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_is_writable
  */
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw($_SERVER['SCRIPT_FILENAME'])) )
+if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
 	die();
 	
 	
@@ -25,9 +29,6 @@ if ( ! function_exists('rvy_errlog') ) {
 		
 		if ( defined('RVY_DEBUG_LOGFILE') )
 			error_log($message . $append, 3, RVY_DEBUG_LOGFILE);
-		
-		elseif ( defined('RVY_ABSPATH') && is_writable(RS_ABSPATH) )
-			error_log($message . $append, 3, RVY_ABSPATH . '/php_debug.txt');
 	}
 }
 
@@ -36,13 +37,6 @@ if ( ! function_exists('rvy_bt_die') ) {
 function rvy_bt_die( $die = true ) {
 	if ( ! defined('RS_DEBUG') )
 		return;
-
-    if (defined('REVISIONARY_NO_DUMP_FUNCTION')) {
-        $bt = debug_backtrace();
-        var_dump($bt);
-    } else {
-	    dump(debug_backtrace(),false,false);
-    }
 	
 	if ( $die )
 		die;
@@ -81,22 +75,10 @@ function rvy_log_mem_usage( $label, $display_total = true ) {
 }
 }
 
-
-////////////////////////////////////////////////////////
-// Function:         dump
-// Inspired from:     PHP.net Contributions
-// Description: Helps with php debugging
-//
-// Revision by PublishPress
-//		* display_objects optional arg 
-//		* htmlspecialchars filtering if variable is a string containing '<'
-//
-// highstrike at gmail dot com
-// http://us2.php.net/manual/en/function.print-r.php#80289
 if ( ! function_exists('dump') && !defined('REVISIONARY_NO_DUMP_FUNCTION') ) {
 function dump(&$var, $info = FALSE, $display_objects = true)
 {	
-	return var_dump($var);
+
 }
 }
 

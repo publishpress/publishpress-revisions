@@ -43,7 +43,7 @@ class Planner {
 				'publishpress_item_action_links', 
 				function ($item_actions, $post, $can_edit_post) {
 					if (!empty($item_actions['trash']) && rvy_in_revision_workflow($post)) {
-						$item_actions['trash'] = get_delete_post_link($post->ID, false, true);
+						$item_actions['trash'] = get_delete_post_link($post->ID, '', true);
 					}
 
 					return $item_actions;
@@ -82,7 +82,7 @@ class Planner {
 			add_action('init', [$this, 'maybeFilterContentOverviewItemActions']);
 		}
 
-		if (in_array($plugin_page, ['pp-calendar', 'pp-content-overview'])) {
+		if (in_array($plugin_page, ['pp-calendar', 'pp-content-overview'], true)) {
 			add_filter('publishpress_user_post_status_options', [$this, 'fltUserPostStatusOptions'], 20, 3);
 		}
 
@@ -172,12 +172,12 @@ class Planner {
 
 			if ($this->showingRevisions()) {
 				if ($permissions_compat_mode) {
-					if (!in_array($status_name, $revision_statuses)) {
+					if (!in_array($status_name, $revision_statuses, true)) {
 						unset($post_statuses[$k]);
 					}
 				}
 			} else {
-				if (in_array($status_name, $revision_statuses)) {
+				if (in_array($status_name, $revision_statuses, true)) {
 					unset($post_statuses[$k]);
 				}
 			}
@@ -192,16 +192,16 @@ class Planner {
 
 			foreach ($statuses as $k => $status_obj) {
 				if (!class_exists('PP_Revision_Integration')) {
-					if (!empty($status_obj->slug) && in_array($status_obj->slug, $revision_statuses)) {
+					if (!empty($status_obj->slug) && in_array($status_obj->slug, $revision_statuses, true)) {
 						unset($statuses[$k]);
 					}
 
 				} elseif ($this->showingRevisions()) {
-					if (!empty($status_obj->slug) && !in_array($status_obj->slug, $revision_statuses)) {
+					if (!empty($status_obj->slug) && !in_array($status_obj->slug, $revision_statuses, true)) {
 						unset($statuses[$k]);
 					}
 				} else {
-					if (!empty($status_obj->slug) && in_array($status_obj->slug, $revision_statuses)) {
+					if (!empty($status_obj->slug) && in_array($status_obj->slug, $revision_statuses, true)) {
 						unset($statuses[$k]);
 					}
 				}
@@ -210,7 +210,7 @@ class Planner {
 			$revision_statuses = rvy_revision_statuses();
 
 			foreach ($statuses as $k => $status_obj) {
-				if (!empty($status_obj->slug) && in_array($status_obj->slug, $revision_statuses)) {
+				if (!empty($status_obj->slug) && in_array($status_obj->slug, $revision_statuses, true)) {
 					unset($statuses[$k]);
 				}
 			}
@@ -237,7 +237,7 @@ class Planner {
 		$revision_statuses = rvy_revision_statuses();
 
 		foreach ($statuses as $k => $status) {
-			if (is_array($status) && in_array($status['value'], $revision_statuses)) {
+			if (is_array($status) && in_array($status['value'], $revision_statuses, true)) {
 				unset($statuses[$k]);
 				$did_unset = true;
 			}
@@ -257,7 +257,7 @@ class Planner {
 	public function fltContentOverviewItemActions($actions, $post_id) {
 		// @todo: support revision trashing
 		if (rvy_in_revision_workflow($post_id)) {
-			$actions['trash'] = '<a class="submitdelete" href="' . esc_url(get_delete_post_link($post_id, false, true)) . '">' . esc_html__('Delete') . '</a>';
+			$actions['trash'] = '<a class="submitdelete" href="' . esc_url(get_delete_post_link($post_id, '', true)) . '">' . esc_html__('Delete') . '</a>';
 		}
 
 		return $actions;
@@ -329,7 +329,7 @@ class Planner {
 				}
 
 				if ($revision_status) {
-					if (!in_array($revision_status, $revision_statuses)) {
+					if (!in_array($revision_status, $revision_statuses, true)) {
 						$revision_status_clause = '1=2';
 					} else {
 						$revision_status_clause = $wpdb->prepare("$wpdb->posts.post_mime_type = %s", $revision_status);
@@ -386,7 +386,7 @@ class Planner {
 					$_revision_statuses = array_column($revision_statuses[$post_type], 'name');
 
 					foreach ($status_options as $k => $status) {
-						if (is_array($status) && in_array($status['value'], $_revision_statuses)) {
+						if (is_array($status) && in_array($status['value'], $_revision_statuses, true)) {
 							unset($status_options[$k]);
 							$did_unset = true;
 						}

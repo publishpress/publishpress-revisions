@@ -111,7 +111,7 @@ class RevisionCreation {
 			return $copy_id;
 		}
 
-		wp_redirect($url);
+		wp_safe_redirect($url);
 		exit;
 	}
 
@@ -340,7 +340,7 @@ class RevisionCreation {
 			return $revision_id;
 		}
 
-		wp_redirect($url);
+		wp_safe_redirect($url);
 		exit;
 	}
 
@@ -383,7 +383,7 @@ class RevisionCreation {
 		$data['post_modified'] = current_time( 'mysql' );
 		$data['post_modified_gmt'] = current_time( 'mysql', 1 );
 
-		if ( $future_date = ! empty($data['post_date']) && ( strtotime($data['post_date_gmt'] ) > agp_time_gmt() ) ) {  // in past versions, $future_date was also passed to get_revision_msg()
+		if ( $future_date = ! empty($data['post_date']) && ( strtotime($data['post_date_gmt'] ) > agp_time_gmt() + 30 ) ) {  // in past versions, $future_date was also passed to get_revision_msg()
 			// round down to zero seconds
 			$data['post_date_gmt'] = gmdate( 'Y-m-d H:i:00', strtotime( $data['post_date_gmt'] ) );
 			$data['post_date'] = gmdate( 'Y-m-d H:i:00', strtotime( $data['post_date'] ) );
