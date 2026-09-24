@@ -376,7 +376,7 @@ class RevisionaryAdmin
 		$menu_slug = 'revisionary-q';
 
 		if ($revision_archive || $can_edit_any || current_user_can('manage_options')) {
-			$_menu_caption = ( defined( 'RVY_MODERATION_MENU_CAPTION' ) ) ? RVY_MODERATION_MENU_CAPTION : esc_html__('Revisions');
+			$_menu_caption = ( defined( 'RVY_MODERATION_MENU_CAPTION' ) ) ? RVY_MODERATION_MENU_CAPTION : esc_html__('Revisions', 'revisionary');
 
 			$active_post_types_archive = array_diff_key(
 				$enabled_post_types_archive = array_filter($revisionary->enabled_post_types_archive),

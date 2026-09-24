@@ -84,7 +84,7 @@ $bulk_messages['post'] = array(
 	'approved_count'   => sprintf(esc_html(_n( '%s revision approved.', '%s revisions approved.', $bulk_counts['approved_count'], 'revisionary' )), $bulk_counts['approved_count']),
 	'unscheduled_count' => sprintf(esc_html(_n( '%s revision unscheduled.', '%s revisions unscheduled.', $bulk_counts['unscheduled_count'], 'revisionary' )), $bulk_counts['unscheduled_count']),
 	'published_count'   => sprintf(esc_html(_n( '%s revision published.', '%s revisions published.', $bulk_counts['published_count'], 'revisionary' )), $bulk_counts['published_count']),
-	'deleted'   => sprintf(esc_html(_n( '%s revision permanently deleted.', '%s revisions permanently deleted.', $bulk_counts['deleted'] )), $bulk_counts['deleted']),
+	'deleted'   => sprintf(esc_html(_n( '%s revision permanently deleted.', '%s revisions permanently deleted.', $bulk_counts['deleted'], 'revisionary' )), $bulk_counts['deleted']),
 );
 
 $bulk_messages['page'] = $bulk_messages['post'];
@@ -169,7 +169,7 @@ if (!empty($filters['post_status'])) {
 if ( isset( $_REQUEST['s'] ) && strlen( sanitize_text_field(wp_unslash($_REQUEST['s'])) ) ) {					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	/* translators: %s: search keywords */															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	printf( 
-		' <span class="subtitle">' . esc_html__( 'Search results for "%s"' ) . '</span>', 
+		' <span class="subtitle">' . esc_html__( 'Search results for "%s"', 'revisionary' ) . '</span>',
 		esc_html(wp_strip_all_tags(sanitize_text_field(wp_unslash($_REQUEST['s'])))) 							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	);
 }
@@ -201,7 +201,7 @@ foreach ( $bulk_counts as $message => $count ) {
 	if ( 'trashed' == $message && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo') . '</a> ';
+		echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo', 'revisionary') . '</a> ';
 	
 	} elseif (!empty($bulk_messages['post'][$message])) {
 		echo esc_html($bulk_messages['post'][$message]) . ' ';

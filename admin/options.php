@@ -729,7 +729,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				<?php
 				if (!empty($revisionary->enabled_post_types[$key]) && isset($obj->capability_type) && !in_array($obj->capability_type, [$obj->name, 'post', 'page'], true)) {
 					if ($cap_type_obj = get_post_type_object($obj->capability_type)) {
-						echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities'), $cap_type_obj->labels->singular_name)) . ')';
+							echo '&nbsp;(' . esc_html(sprintf(__('%s capabilities', 'revisionary'), $cap_type_obj->labels->singular_name)) . ')';
 					}
 				}
 				?>
@@ -1874,7 +1874,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				if ($pp_notifications) echo 'display:none;';
 
 				echo '">';
-				esc_html_e('Legacy Email Notifications:');
+					esc_html_e('Legacy Email Notifications:', 'revisionary');
 				echo '</h3>';
 			}
 

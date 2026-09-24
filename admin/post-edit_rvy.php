@@ -155,7 +155,7 @@ class RvyPostEdit {
             return $preview_caption;
         }
 
-        $preview_caption = esc_html__('Preview');
+        $preview_caption = esc_html__('Preview', 'revisionary');
 
         return $preview_caption;
     }

@@ -68,10 +68,10 @@ if ( empty($revision_id) && ! $left && ! $right ) {
 	return;
 }
 
-$revision_status_captions = array( 
-	'inherit' => esc_html__( 'Past', 'revisionary' ), 
-	'pending-revision' => esc_html__('Pending'), 
-	'future-revision' => esc_html__( 'Scheduled' ) 
+$revision_status_captions = array(
+	'inherit' => esc_html__( 'Past', 'revisionary' ),
+	'pending-revision' => esc_html__('Pending', 'revisionary'),
+	'future-revision' => esc_html__( 'Scheduled', 'revisionary' )
 );
 
 if( 'edit' == $_action )

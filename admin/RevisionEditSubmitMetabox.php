@@ -61,7 +61,7 @@ class RvyRevisionEditSubmitMetabox
                         if (!EMPTY_TRASH_DAYS)
                             $delete_text = (defined('RVY_DISCARD_CAPTION')) ? esc_html__('Discard Revision', 'revisionary') : esc_html__('Delete Revision', 'revisionary');
                         else
-                            $delete_text = esc_html__('Move to Trash');
+                            $delete_text = esc_html__('Move to Trash', 'revisionary');
                         ?>
                         <a class="submitdelete deletion"
                            href="<?php echo esc_url(get_delete_post_link($post->ID)); ?>"><?php echo esc_html($delete_text); ?></a><?php
@@ -144,7 +144,7 @@ class RvyRevisionEditSubmitMetabox
         }
 
         ?>
-        <label for="post_status"><?php echo esc_html__('Status:'); ?></label>
+        <label for="post_status"><?php echo esc_html__('Status:', 'revisionary'); ?></label>
         <?php
         $status_label = (!empty($post_status_obj->labels->caption)) ? $post_status_obj->labels->caption : $post_status_obj->label;
         ?>
@@ -182,10 +182,10 @@ class RvyRevisionEditSubmitMetabox
         $published_stati = get_post_stati(['public' => true, 'private' => true], 'names', 'or');
 
         if ('future-revision' == $post_status_obj->name) { // scheduled for publishing at a future date
-            printf(esc_html__('Scheduled for: %s'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
+            printf(esc_html__('Scheduled for: %s', 'revisionary'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
             <?php
         } elseif (strtotime($post->post_date_gmt) > agp_time_gmt()) {
-            printf(esc_html__('Publish on: %s'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
+            printf(esc_html__('Publish on: %s', 'revisionary'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
             <?php
         } else {
             printf(esc_html__('Publish %son approval%s', 'revisionary'), '<b>', '</b>'); ?></span>
@@ -193,7 +193,7 @@ class RvyRevisionEditSubmitMetabox
         }
         ?>
 
-        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html__('Edit') ?></a>
+        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html__('Edit', 'revisionary') ?></a>
         <div id="timestampdiv" class="hide-if-js"><?php touch_time(('edit' == $action), 1, 4); ?></div>
         <?php
     }
