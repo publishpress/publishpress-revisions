@@ -76,14 +76,14 @@ class Revisionary
 						$revision_count = 0;
 
 						if ($revision_statuses) {
-							$revision_count_args = array_merge([$post_id], $revision_statuses);
+							$revision_count_args = array_merge([$post_id, $post_type], $revision_statuses);
 
 							if (rvy_get_option('permissions_compat_mode')) {
 								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 								$revision_count = (int) $wpdb->get_var(
 									$wpdb->prepare(
 										sprintf(
-											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_status IN (%s)",
+											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_type = %%s AND r.post_status IN (%s)",
 											implode(',', array_fill(0, count($revision_statuses), '%s'))
 										),
 										$revision_count_args
@@ -94,7 +94,7 @@ class Revisionary
 								$revision_count = (int) $wpdb->get_var(
 									$wpdb->prepare(
 										sprintf(
-											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_mime_type IN (%s)",
+											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_type = %%s AND r.post_mime_type IN (%s)",
 											implode(',', array_fill(0, count($revision_statuses), '%s'))
 										),
 										$revision_count_args
