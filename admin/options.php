@@ -615,7 +615,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				
 				else: ?>
 					<input name="<?php echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
-						value="1" <?php checked('1', !empty($revisionary->enabled_post_types_archive[$key])); ?> />
+						value="1" title="<?php echo esc_attr($key); ?>" <?php checked('1', !empty($revisionary->enabled_post_types_archive[$key])); ?> />
 					<?php endif;?>
 
 					<?php
