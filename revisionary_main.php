@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+	
 /**
  * @package     PublishPress\Revisions
  * @author      PublishPress <help@publishpress.com>
@@ -81,13 +81,13 @@ class Revisionary
 							if (rvy_get_option('permissions_compat_mode')) {
 								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 								$revision_count = (int) $wpdb->get_var(
-									$wpdb->prepare(
+								$wpdb->prepare(
 										sprintf(
 											"SELECT COUNT(r.ID) FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON r.comment_count = p.ID WHERE p.ID = %%d AND r.post_type = %%s AND r.post_status IN (%s)",
 											implode(',', array_fill(0, count($revision_statuses), '%s'))
 										),
 										$revision_count_args
-									)
+								)
 								);
 							} else {
 								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -98,7 +98,7 @@ class Revisionary
 											implode(',', array_fill(0, count($revision_statuses), '%s'))
 										),
 										$revision_count_args
-									)
+							)
 								);
 							}
 						}
@@ -1089,10 +1089,14 @@ class Revisionary
 		return $count;
 	}
 
-	function get_last_revision($post_id, $user_id) {
+	function get_last_revision($post_id, $user_id = false, $args = []) {
 		require_once(dirname(__FILE__).'/admin/admin-init_rvy.php');
 
-		if ( $revisions = rvy_get_post_revisions( $post_id, '', array( 'order' => 'DESC', 'orderby' => 'ID' ) ) ) {  // @todo: retrieve revision_id in block editor js, pass as redirect arg
+		$revision_status = (!empty($args['revision_status'])) ? $args['revision_status'] : '';
+		$order = (!empty($args['order'])) ? $args['order'] : 'DESC';
+		$orderby = (!empty($args['orderby'])) ? $args['orderby'] : 'ID';
+
+		if ( $revisions = rvy_get_post_revisions( $post_id, $revision_status, array( 'order' => 'DESC', 'orderby' => 'ID' ) ) ) {  // @todo: retrieve revision_id in block editor js, pass as redirect arg
 			foreach( $revisions as $revision ) {
 				if ((false === $user_id) || rvy_is_post_author($revision, $user_id)) {
 					return $revision;

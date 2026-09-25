@@ -19,14 +19,14 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	 * @param string  $comparison_key Optional sidebar definition key.
 	 * @return array
 	 */
-	public static function build( \WP_Post $revision, $comparison_key = '' ) {
+	public static function build( \WP_Post $revision, $comparison_key = '', $args = [] ) {
 		/**
 		 * Filters additional posts available on the compare_only selection slider.
 		 *
 		 * @param array<int|WP_Post> $posts Additional post IDs and/or WP_Post objects.
 		 * @param WP_Post            $revision URL-selected comparison post.
 		 */
-		$arr = (array) apply_filters( 'visual_post_compare_listed_revisions', array(), $revision );
+		$arr = (array) apply_filters( 'visual_post_compare_listed_revisions', array(), $revision, $args );
 
 		if (!empty($arr['listed'])) {
 			$listed = $arr['listed'];
@@ -39,6 +39,8 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		if (!$current_post_id = wp_is_post_revision($revision)) {
 			if (rvy_in_revision_workflow($revision)) {
 				$current_post_id = rvy_post_id($revision);
+			} elseif (!empty($args['post']) && rvy_is_revision_status($revision)) {
+				$current_post_id = (int) $args['post'];
 			}
 		}
 
@@ -70,20 +72,20 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			$comparison_posts []= $revision;
 		}
 
-
-
 		// Core's revisions selector reverses the REST collection visually. Mirror
 		// that behavior here: fixed current post first, then reversed comparison order.
 		$slider_posts = array_merge( array( $current_post ), array_reverse( $comparison_posts ) );
 		$slider_data  = array_map( array( __CLASS__, 'post_data' ), $slider_posts );
 
-		return array(
+		$payload = array(
 			'presentation' => self::presentation_options( $comparison_key, $comparison_posts ),
 			'current'      => self::post_data( $current_post ),
 			'revision'     => self::post_data( $revision ),
 			'posts'        => $slider_data,
 			'selectedId'   => (int) $revision->ID,
 		);
+
+		return apply_filters( 'visual_post_compare_comparison_payload', $payload, $current_post, $slider_posts );
 	}
 
 	/**
@@ -99,7 +101,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			$definition  = ! empty( $definitions ) ? reset( $definitions ) : array();
 		}
 
-		return array(
+		$presentation = array(
 			'showRightStatus'  => isset( $definition['showRightStatus'] ) ? (bool) $definition['showRightStatus'] : true,
 			'mimeTypeStatus' => isset( $definition['mimeTypeStatus'] ) ? (bool) $definition['mimeTypeStatus'] : false,
 			'showModified'     => isset( $definition['showModified'] ) ? (bool) $definition['showModified'] : true,
@@ -124,6 +126,65 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'settingsURL'	  => current_user_can('manage_options') ? admin_url('admin.php?page=revisionary-settings&ppr_tab=working_copy&ppr_subtab=revision-queue') : '',
 			'settingsCaption' => current_user_can('manage_options') ? esc_html__('Visual comparison settings', 'revisionary') : '',
 		);
+
+		if ( ! defined( 'PUBLISHPRESS_REVISIONS_PRO_VERSION' ) ) {
+			$presentation['fieldsPromo'] = array(
+				'url' => 'https://publishpress.com/links/revisions-compare',
+			);
+		}
+
+		return $presentation;
+	}
+
+	/**
+	 * Processes registered shortcodes in Classic Editor content for comparison.
+	 *
+	 * Block Editor content is returned verbatim so its comparison path remains
+	 * unchanged. If a shortcode callback fails, the stored content is used.
+	 *
+	 * @param WP_Post $source_post Post being serialized.
+	 * @return string
+	 */
+	private static function comparison_content( \WP_Post $source_post ) {
+		$content = (string) $source_post->post_content;
+
+		if ( has_blocks( $content ) || false === strpos( $content, '[' ) || ! function_exists( 'do_shortcode' ) ) {
+			return $content;
+		}
+
+		$had_global_post = isset( $GLOBALS['post'] );
+		$global_post     = $had_global_post ? $GLOBALS['post'] : null;
+		$context_filter  = static function ( $output, $tag, $attr, $match ) {
+			if ( ! is_string( $output ) || false === strpos( $output, '<' ) ) {
+				return $output;
+			}
+
+			$source = isset( $match[0] ) ? preg_replace( '/\s+/', ' ', trim( (string) $match[0] ) ) : '';
+			$key    = sanitize_key( $tag ) . ':' . substr( md5( $source ), 0, 12 );
+
+			return sprintf(
+				'<!-- visual-post-compare-shortcode:%1$s --><span hidden aria-hidden="true" data-visual-post-compare-shortcode-start="%1$s"></span>%2$s<span hidden aria-hidden="true" data-visual-post-compare-shortcode-end="%1$s"></span><!-- /visual-post-compare-shortcode:%1$s -->',
+				$key,
+				$output
+			);
+		};
+
+		try {
+			$GLOBALS['post'] = $source_post;
+			add_filter( 'do_shortcode_tag', $context_filter, PHP_INT_MAX, 4 );
+			$processed       = do_shortcode( $content );
+
+			return is_string( $processed ) ? $processed : $content;
+		} catch ( \Throwable $throwable ) {
+			return $content;
+		} finally {
+			remove_filter( 'do_shortcode_tag', $context_filter, PHP_INT_MAX );
+			if ( $had_global_post ) {
+				$GLOBALS['post'] = $global_post;
+			} else {
+				unset( $GLOBALS['post'] );
+			}
+		}
 	}
 
 	/**
@@ -146,7 +207,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'id'                  => (int) $post->ID,
 			'type'                => $post->post_type,
 			'title'               => (string) $post->post_title,
-			'content'             => $post->post_content,
+			'content'             => self::comparison_content( $post ),
 			'status'			  => $post->post_status,
 			'statusLabel'		  => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($status_obj) && !empty($status_obj->label)) ? (!rvy_get_option('permissions_compat') && rvy_in_revision_workflow($post->ID) ? $mime_type_status_obj->label : $status_obj->label) : $post->post_status),
 			'mimeTypeStatusLabel' => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($mime_type_status_obj) && !empty($mime_type_status_obj->label)) ? $mime_type_status_obj->label : $post->post_mime_type),
@@ -162,9 +223,11 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'sliderPostDateLabel' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
 			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
 			'canEdit'             => (bool) $can_edit,
+			'isPastRevision'      => (bool) $revision_parent_id,
 			'canApprove'		  => ($revision_parent_id) ?  (bool) current_user_can( 'edit_post', $revision_parent_id ) : (bool) current_user_can( 'approve_revision', $post->ID ),
 			'url'                 => $url ? esc_url_raw( $url ) : '',
 			'viewURL'			  => rvy_in_revision_workflow($post->ID) ? rvy_preview_url($post->ID) : get_permalink($post),
+			'previewURL'          => $revision_parent_id ? esc_url_raw( rvy_preview_url( $post ) ) : '',
 			'classicCompareURL'	  => rvy_compare_url($post->ID, ['use_visual' => false]),
 
 			'direct_edit' => false,
@@ -222,13 +285,25 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 					$status_label = $status_name;
 				}
 
-				$_post['revision_action'] = sprintf(esc_html__('Edit of %s', 'revisionary'), $status_label);
+				if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+					$_post['revision_action'] = sprintf(esc_html__('Autosave of %s', 'revisionary'), $status_label);
+				} else {
+					$_post['revision_action'] = sprintf(esc_html__('Edit of %s', 'revisionary'), $status_label);
+				}
 
 			} elseif ($_post['parent_from_revision_workflow']) {
-				$_post['revision_action'] = esc_html__('Edit of published Revision', 'revisionary');
+				if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+					$_post['revision_action'] = esc_html__('Autosave of published Revision', 'revisionary');
+				} else {
+					$_post['revision_action'] = esc_html__('Edit of published Revision', 'revisionary');
+				}
 
 			} elseif ($_post['direct_edit']) {
-				$_post['revision_action'] = esc_html__('Direct Edit', 'revisionary');
+				if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+					$_post['revision_action'] = esc_html__('Autosave', 'revisionary');
+				} else {
+					$_post['revision_action'] = esc_html__('Direct Edit', 'revisionary');
+				}
 			}
 
 			if ($_post['direct_edit']) {

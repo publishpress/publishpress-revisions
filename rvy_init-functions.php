@@ -1476,7 +1476,8 @@ function rvy_compare_url($revision, $args = []) {
 	}
 
 	if (is_string($revision) && rvy_is_revision_status($revision)) {
-		$revision_id = $revision;
+		$revision_id = 0;
+		$revision_status = $revision;
 	} else {
 		$revision_id = (is_object($revision) && isset($revision->ID)) ? $revision->ID : $revision;
 	}
@@ -1488,7 +1489,11 @@ function rvy_compare_url($revision, $args = []) {
 			$post_id = rvy_post_id($revision_id);
 		}
 
-		$url = admin_url("admin.php?page=rvy-visual-compare&revision=$revision_id");
+		if (empty($revision_id) && !empty($revision_status)) {
+			$url = admin_url("admin.php?page=rvy-visual-compare&post=$post_id&revision_status=$revision_status");
+		} else {
+			$url = admin_url("admin.php?page=rvy-visual-compare&revision=$revision_id");
+		}
 	} else {
 		$url = admin_url('revision.php');
 		
@@ -1499,7 +1504,7 @@ function rvy_compare_url($revision, $args = []) {
 		$url = add_query_arg('revision', $revision_id, $url);
 	}
 
-		return $url;
+	return $url;
 }
 
 function rvy_preview_url($revision, $args = []) {

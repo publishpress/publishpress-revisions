@@ -151,13 +151,17 @@ final class Visual_Post_Compare {
 	private static function get_comparison_ids() {
 		$revision = isset( $_GET['revision'] ) ? absint( $_GET['revision'] ) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		if (!$post = wp_is_post_revision($revision)) {
-			if (rvy_in_revision_workflow($revision)) {
-				$post = rvy_post_id($revision);
+		$post = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;
+
+		if (!$post) {
+			if (!$post = wp_is_post_revision($revision)) {
+				if (rvy_in_revision_workflow($revision)) {
+					$post = rvy_post_id($revision);
+				}
 			}
 		}
 
-		if ( !$post || ! get_post( $revision ) ) {
+		if ( !$post || ($revision && ! get_post( $revision ) ) ) {
 			return new \WP_Error(
 				'vpc_missing_post',
 				__( 'Invalid revision ID.', 'revisionary' )
@@ -176,7 +180,7 @@ final class Visual_Post_Compare {
 			wp_die( esc_html( $compare_ids->get_error_message() ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 400 ) );
 		}
 
-		if ( ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
+		if ( $compare_ids['revision'] && ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
 			wp_die( esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
 		}
 
@@ -203,9 +207,27 @@ final class Visual_Post_Compare {
 	}
 
 	public static function enqueue_compare_screen_assets( $hook_suffix ) {
+		global $revisionary;
+		
 		$compare_ids = self::get_comparison_ids();
 		if ( is_wp_error( $compare_ids ) ) {
 			return;
+		}
+
+		if (empty($compare_ids['revision']) && !empty($compare_ids['post']) && !empty($_REQUEST['revision_status'])) {
+			$revision_status = sanitize_key($_REQUEST['revision_status']);
+
+			if (rvy_is_revision_status($revision_status)) {
+				$args = compact('revision_status');
+
+				if ('future-revision' == $revision_status) {
+					$args['orderby'] = 'post_date_gmt';
+				}
+
+				if ($revision = $revisionary->get_last_revision($compare_ids['post'], false, $args)) {
+					$compare_ids['revision'] = $revision->ID;
+				}
+			}
 		}
 
 		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) || ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
@@ -235,6 +257,7 @@ final class Visual_Post_Compare {
 			$comparison_key
 		);
 
+		$current_post   = get_post( $compare_ids['post'] );
 		$revision_post  = get_post( $compare_ids['revision'] );
 		$styles         = array();
 
@@ -250,16 +273,46 @@ final class Visual_Post_Compare {
 		wp_enqueue_style( 'wp-block-editor' );
 		wp_enqueue_style( 'wp-block-library' );
 		wp_enqueue_style( 'wp-format-library' );
+		wp_enqueue_style( 'dashicons' );
+		$tooltips_enabled = '0' !== (string) get_option( 'rvy_visual_compare_tooltips', '1' );
+		$extra_markers_enabled = '1' === (string) get_option( 'rvy_visual_compare_extra_markers', '0' )
+			|| ( defined( 'REVISIONARY_VC_EXTRA_MARKERS' ) && REVISIONARY_VC_EXTRA_MARKERS && empty($_REQUEST['markerstyle']) );
+		$html_attribute_changes_enabled = '1' === (string) get_option( 'rvy_visual_compare_attrib_changes', '0' )
+			|| defined( 'REVISIONARY_VC_HTML_ATTRIBS' );
+		$tooltip_template = '';
+		if ( $tooltips_enabled && isset( $revisionary->admin ) && method_exists( $revisionary->admin, 'tooltipText' ) ) {
+			$tooltip_template = $revisionary->admin->tooltipText( '', '__VPC_TOOLTIP__', false );
+			wp_enqueue_style(
+				'revisionary-tooltip',
+				RVY_URLPATH . '/common/css/_tooltip.css',
+				array(),
+				PUBLISHPRESS_REVISIONS_VERSION
+			);
+		}
 
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 
 		$script_path = plugin_dir_path( __FILE__ ) . "visual-post-compare-standalone{$suffix}.js";
+		$classic_path      = plugin_dir_path( __FILE__ ) . "visual-post-compare-classic{$suffix}.js";
 		$style_path  = plugin_dir_path( __FILE__ ) . 'visual-post-compare.css';
+		$script_dependencies = array( 'wp-api-fetch', 'wp-block-editor', 'wp-block-library', 'wp-block-serialization-default-parser', 'wp-blocks', 'wp-components', 'wp-element', 'wp-hooks', 'wp-i18n', 'wp-private-apis', 'wp-rich-text' );
+		$script_dependencies = apply_filters( 'visual_post_compare_script_dependencies', $script_dependencies );
+
+		if ( $current_post && ! has_blocks( $current_post->post_content ) ) {
+			wp_enqueue_script(
+				'visual-post-compare-classic',
+				plugins_url( "visual-post-compare-classic{$suffix}.js", __FILE__ ),
+				array( 'wp-blocks', 'wp-i18n', 'wp-rich-text' ),
+				file_exists( $classic_path ) ? filemtime( $classic_path ) : '0.11.0',
+				true
+			);
+			$script_dependencies[] = 'visual-post-compare-classic';
+		}
 
 		wp_enqueue_script(
 			'visual-post-compare-standalone',
 			plugins_url( "visual-post-compare-standalone{$suffix}.js", __FILE__ ),
-			array( 'wp-api-fetch', 'wp-block-editor', 'wp-block-library', 'wp-block-serialization-default-parser', 'wp-blocks', 'wp-components', 'wp-element', 'wp-hooks', 'wp-i18n', 'wp-private-apis', 'wp-rich-text' ),
+			$script_dependencies,
 			file_exists( $script_path ) ? filemtime( $script_path ) : '0.11.0',
 			true
 		);
@@ -267,9 +320,15 @@ final class Visual_Post_Compare {
 		wp_enqueue_style(
 			'rvy-visual-compare',
 			plugins_url( 'visual-post-compare.css', __FILE__ ),
-			array( 'wp-components', 'wp-block-editor' ),
+			array( 'wp-components', 'wp-block-editor', 'dashicons' ),
 			file_exists( $style_path ) ? filemtime( $style_path ) : '0.11.0'
 		);
+
+		wp_set_script_translations(
+            'visual-post-compare-standalone',
+            'revisionary',
+            plugin_basename(REVISIONARY_FILE) . '/languages'
+        );
 
 		wp_add_inline_script(
 			'visual-post-compare-standalone',
@@ -283,6 +342,10 @@ final class Visual_Post_Compare {
 					'restPath'         => '/' . self::REST_NS . '/comparison',
 					'approveRestPath'  => '/' . self::REST_NS . '/approve',
 					'styles'           => $styles,
+					'tooltipsEnabled'  => $tooltips_enabled && ! empty( $tooltip_template ),
+					'tooltipTemplate'  => $tooltip_template,
+					'extraMarkers'     => (bool) $extra_markers_enabled,
+					'htmlAttributeChanges' => (bool) $html_attribute_changes_enabled,
 				)
 			) . ';',
 			'before'
