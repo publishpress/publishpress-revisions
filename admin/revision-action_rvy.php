@@ -1873,22 +1873,45 @@ function rvy_publish_scheduled_revisions($args = []) {
 	}
 }
 
+function rvy_reschedule_revision_publication( $revision_id, $post_date_gmt = '' ) {
+	$revision_id = (int) $revision_id;
+	if ( ! $revision_id ) return false;
+
+	if ( ! $post_date_gmt ) {
+		$post_date_gmt = get_post_field( 'post_date_gmt', $revision_id );
+	}
+	$timestamp = strtotime( $post_date_gmt . ' UTC' );
+	if ( ! $timestamp ) return false;
+
+	// Clear both trigger types so an option change or previous migration cannot leave a duplicate publication event.
+	wp_clear_scheduled_hook( 'publish_revision_rvy', [$revision_id] );
+	wp_clear_scheduled_hook( 'publish_revision_rvy', ['revision_id' => $revision_id] );
+	if ( function_exists( 'as_unschedule_all_actions' ) ) {
+		as_unschedule_all_actions( 'publish_revision_rvy_action_scheduler', [$revision_id], 'revisionary' );
+		as_unschedule_all_actions( 'publish_revision_rvy_action_scheduler', ['revision_id' => $revision_id], 'revisionary' );
+	}
+
+	if ( rvy_get_option( 'scheduled_publish_cron' ) ) {
+		return wp_schedule_single_event( $timestamp, 'publish_revision_rvy', [$revision_id] );
+	}
+
+	if ( ! function_exists( 'as_schedule_single_action' ) ) return false;
+
+	return as_schedule_single_action(
+		$timestamp,
+		'publish_revision_rvy_action_scheduler',
+		[$revision_id],
+		'revisionary',
+		true
+	);
+}
+
 function rvy_update_next_publish_date($args = []) {
 	global $wpdb, $wp_version;
 	
 	if ($args && !empty($args['revision_id'])) {
 		if ($revision = get_post($args['revision_id'])) {
-			if (rvy_get_option('scheduled_publish_cron')) {
-				wp_schedule_single_event(strtotime( $revision->post_date_gmt ), 'publish_revision_rvy', [$revision->ID]);
-			} else {
-				// Action Scheduler: schedule event for time specified by $revision->post_date_gmt, passing $revision->ID
-				as_schedule_single_action(
-					strtotime($revision->post_date_gmt . ' UTC'),
-					'publish_revision_rvy_action_scheduler',
-					[$revision->ID],
-					'revisionary'
-				);
-			}
+			rvy_reschedule_revision_publication( $revision->ID, $revision->post_date_gmt );
 		}
 	}
 

@@ -198,7 +198,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'trigger_post_update_actions' => 			esc_html__('Apply API actions to mimic Post Update', 'revisionary'),
 	'diff_display_strip_tags' => 				esc_html__('Hide html tags on Compare screen', 'revisionary'),
 	'compare_revisions_hide_copy_buttons' => 	esc_html__('Hide copy buttons on Compare screen', 'revisionary'),
-	'scheduled_publish_cron' =>					esc_html__('Use WP-Cron scheduling', 'revisionary'),
+	'scheduled_publish_cron' =>					esc_html__('Legacy: Schedule Revisions with WP-Cron', 'revisionary'),
 	'wp_cron_usage_detected' =>					esc_html__('Site uses a custom trigger for WP-Cron tasks', 'revisionary'),
 	'async_scheduled_publish' => 				esc_html__('Asynchronous Publishing', 'revisionary'),
 	'revision_editor_bg_color' =>				esc_html__('Editor background color', 'revisionary'),
@@ -1564,8 +1564,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$hint = sprintf(esc_html__( 'When a %s is published, update post modified date to current time.', 'revisionary' ), pp_revisions_status_label('future-revision', 'name'));
 			$this->option_checkbox( 'scheduled_revision_update_modified_date', $tab, $section, $hint, '' );
 
-			$hint = esc_html__( 'Publish scheduled revisions using the WP-Cron mechanism. On some sites, publication will fail if this setting is disabled.', 'revisionary' );
+			$hint = esc_html__( 'Leave this setting disabled to use Action Scheduler (recommended).', 'revisionary' );
 			$this->option_checkbox( 'scheduled_publish_cron', $tab, $section, $hint, '' );
+			rvy_scheduled_revision_migration_ui();
 
 			if (rvy_get_option('legacy_scheduled_publication')) {
 				$hint = esc_html__( 'Support publication of existing scheduled revisions asynchronously, via a secondary http request from the server.  This is usually best since it eliminates delay, but some servers may not support it.', 'revisionary' );
