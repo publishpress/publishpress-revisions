@@ -30,7 +30,7 @@ class RevisionaryVisualCompare {
 
             add_filter( 
                 'visual_post_compare_listed_revisions', 
-                function ( $listed, $revision ) {
+                function ( $listed, $revision, $args = [] ) {
                     global $wpdb;
     
                     $comparison_key = '';
@@ -40,9 +40,9 @@ class RevisionaryVisualCompare {
                         $comparison_key = 'compare-past-revision';
 
                     } else {
-                        if (is_string($revision) && rvy_is_revision_status($revision)) {
-                            $main_post_id = rvy_post_id($revision);
-                            $is_new_revision = $revision;
+                        if (!empty($args['post']) && !empty($args['revision_status']) && rvy_is_revision_status($args['revision_status'])) {
+                            $main_post_id = (int) $args['post'];
+                            $is_new_revision = $args['revision_status'];
 
                         } elseif ($is_new_revision = rvy_in_revision_workflow($revision)) {
                             $main_post_id = rvy_post_id($revision);
@@ -55,11 +55,13 @@ class RevisionaryVisualCompare {
                                 $comparison_key = 'compare-future-revision';
                             
                             } elseif ('pending-revision' == $is_new_revision) {
-                                $listed = self::get_associated_posts($main_post_id, 'pending-revision', 30);
+                                $revision_status = (rvy_get_option('revision_limit_per_post')) ? array_diff(rvy_revision_statuses(), ['future-revision']) : 'pending-revision';
+                                $listed = self::get_associated_posts($main_post_id, $revision_status, 30, ['is_new_revision' => true]);
                                 $comparison_key = 'compare-pending-revision';
 
                             } elseif ('draft-revision' == $is_new_revision) {
-                                $listed = self::get_associated_posts($main_post_id, 'draft-revision', 30);
+                                $revision_status = (rvy_get_option('revision_limit_per_post')) ? array_diff(rvy_revision_statuses(), ['future-revision']) : 'draft-revision';
+                                $listed = self::get_associated_posts($main_post_id, $revision_status, 30, ['is_new_revision' => true]);
                                 $comparison_key = 'compare-pending-revision';
 
                             } else {
@@ -79,25 +81,10 @@ class RevisionaryVisualCompare {
                 'visual_post_compare_compare_screen_headline',
                 function ( $headline, $revision_id, $comparison_key ) {
                     if ($revision_status = rvy_in_revision_workflow($revision_id)) {
-                        if (!empty($_REQUEST['revision']) && rvy_is_revision_status(sanitize_key($_REQUEST['revision']))) {                 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                            $status_obj = get_post_status_object(sanitize_key($_REQUEST['revision']));                                      // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                            $status_caption = (is_object($status_obj) && !empty($status_obj->label)) ? '(' . $status_obj->label . ')' : '';
-
-                            $headline = sprintf(
-                                esc_html__('Compare Revisions %s', 'revisionary'),
-                                $status_caption
-                            );
-                        } elseif ('future-revision' == $revision_status) {
+                        if ('future-revision' == $revision_status) {
                             $headline = esc_html__('Compare Scheduled Revisions', 'revisionary');
-
-                        } elseif ('pending-revision' == $revision_status) {
-                            $headline = esc_html__('Compare Submitted Revisions', 'revisionary');
-
-                        } elseif ('draft-revision' == $revision_status) {
-                            $headline = esc_html__('Compare Unsubmitted Revisions', 'revisionary');
-
                         } else {
-                            $headline = esc_html__('Compare New Revision', 'revisionary');
+                            $headline = esc_html__('Compare New Revisions', 'revisionary');
                         }
                     } elseif (wp_is_post_revision($revision_id)) {
                         $headline = esc_html__('Compare Past Revisions', 'revisionary');
