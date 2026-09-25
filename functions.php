@@ -492,18 +492,36 @@ function publishpress_get_revision_info($post) {
             $status_label = $status_name;
         }
 
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = sprintf(
+                esc_html__('Autosave of %s', 'revisionary'),
+                "<span title='$this->active_revision_title'>" . $status_label . '</span>'
+            );
+        } else {
         $arr['publish_method'] = sprintf(
             esc_html__('Edit of %s', 'revisionary'),
             "<span title='$this->active_revision_title'>" . $status_label . '</span>'
         );
+        }
 
     } elseif (!empty($parent_from_revision_workflow)) {
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = sprintf("<span title='%s'>%s</span>",
+                $from_revision_title,
+                esc_html__('Autosave of published Revision', 'revisionary')
+            );
+        } else {
         $arr['publish_method'] = sprintf("<span title='%s'>%s</span>",
             $from_revision_title,
             esc_html__('Edit of published Revision', 'revisionary')
         );
+        }
     } elseif (!empty($direct_edit)) {
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = esc_html__('Autosave', 'revisionary');
+        } else {
         $arr['publish_method'] = esc_html__('Direct Edit', 'revisionary');
+        }
     }
 
     if (!empty($direct_edit)) {
