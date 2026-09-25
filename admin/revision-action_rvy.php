@@ -84,7 +84,7 @@ function rvy_revision_create($post_id = 0, $args = []) {
 
 // Submits a revision (moving it to pending-revision status)
 function rvy_revision_submit($revision_id = 0) {
-	global $wpdb, $revisionary;
+	global $wpdb, $revisionary, $current_user;
 
 	// PublishPress Authors: Don't alter revision author
 	remove_action(
@@ -143,6 +143,39 @@ function rvy_revision_submit($revision_id = 0) {
 
 		// safeguard: make sure this hasn't already been published
 		if ( empty($status_obj->public) && empty($status_obj->private) ) {
+		if ((!empty($_REQUEST['editor']) || !empty($_REQUEST['rvy_ajax_value'])) && !defined('REVISIONARY_IGNORE_AUTOSAVE')) {
+			if (!\PublishPress\Revisions\Utils::isBlockEditorActive()) {
+				if ($autosave_post = \PublishPress\Revisions\Utils::get_post_autosave($revision_id, $current_user->ID)) {
+					if (strtotime($autosave_post->post_modified_gmt) > strtotime($revision->post_modified_gmt)) {
+						$set_post_properties = [       
+							'post_content',
+							'post_content_filtered',
+							'post_title',
+							'post_excerpt',
+						];
+						
+						$update_data = [];
+	
+						foreach($set_post_properties as $prop) {
+							if (!empty($autosave_post) && !empty($autosave_post->$prop)) {
+								$update_data[$prop] = $autosave_post->$prop;
+							}
+						}
+	
+						if ($update_data) {
+							// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+							$wpdb->update($wpdb->posts, $update_data, ['ID' => $revision_id]);
+						}
+	
+						// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+						$wpdb->delete($wpdb->posts, ['ID' => (int) $autosave_post->ID]);
+					}
+				}
+			}
+		}
+	
+		clean_post_cache($post->ID);
+
 			$post_mime_type = 'pending-revision';
 			$status = (rvy_get_option('permissions_compat_mode')) ? $post_mime_type : 'pending';
 
@@ -364,7 +397,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 			check_admin_referer( "approve-post_$post->ID|$revision->ID" );
 		}
 
-		if (!empty($_REQUEST['editor']) && !defined('REVISIONARY_IGNORE_AUTOSAVE')) {
+	if ((!empty($_REQUEST['editor']) || !empty($_REQUEST['rvy_ajax_value'])) && !defined('REVISIONARY_IGNORE_AUTOSAVE')) {
 			if (!\PublishPress\Revisions\Utils::isBlockEditorActive()) {
 				if ($autosave_post = \PublishPress\Revisions\Utils::get_post_autosave($revision_id, $current_user->ID)) {
 					if (strtotime($autosave_post->post_modified_gmt) > strtotime($revision->post_modified_gmt)) {
