@@ -27,7 +27,16 @@ jQuery(document).ready( function($) {
 
 	var rvyIsPublished = false;
 
+	var RvyIsNativeRevisionComparison = function() {
+		return !!document.querySelector('.editor-revisions-header');
+	};
+
 	var RvySubmissionUI = function() {
+		if (RvyIsNativeRevisionComparison()) {
+			$('div.rvy-creation-ui').remove();
+			return;
+		}
+
 		if (rvyObjEdit.ajaxurl && !$('button.revision-approve').length) {
 			var style = (rvyObjEdit.actionCaption == '') ? ' style="display:none"' : '';
 
