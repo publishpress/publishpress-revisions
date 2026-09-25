@@ -1024,7 +1024,42 @@ table th#revision_post_count {
 }
 
 .revision-q .tablenav-pages {
-margin-top: 10px;
+margin-top: 0;
+margin-bottom: 0;
+}
+
+.revisionary-q .tablenav.top,
+.revisionary-archive .tablenav.top {
+height: auto;
+min-height: 30px;
+padding-bottom: 3px;
+padding-top: 3px;
+}
+
+.revisionary-q .tablenav.top .actions,
+.revisionary-archive .tablenav.top .actions,
+.revisionary-q p.search-box,
+.revisionary-archive p.search-box {
+margin-bottom: 3px;
+margin-top: 0;
+}
+
+.revisionary-q .tablenav.top .actions select,
+.revisionary-q .tablenav.top .actions .button,
+.revisionary-archive .tablenav.top .actions select,
+.revisionary-archive .tablenav.top .actions .button {
+margin-bottom: 3px !important;
+margin-top: 3px !important;
+vertical-align: middle;
+}
+
+.revisionary-archive #post-query-submit {
+margin-top: 3px;
+}
+
+.revisionary-q #doaction {
+margin-top: 3px;
+}
 @media screen and (max-width: 782px) {
   .revisionary-q .wp-list-table .toggle-row,
   .revisionary-archive .wp-list-table .toggle-row {
