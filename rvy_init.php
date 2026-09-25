@@ -12,6 +12,23 @@ if ( is_admin() ) {
 add_action('init', 'rvy_status_registrations', 40);
 
 add_filter(
+	'ppcart_post_types',
+	function ($post_types_args) {
+		foreach (array_keys($post_types_args) as $k) {
+			if (isset($post_types_args[$k]['cpt_name']) && ('ppcart_product' == $post_types_args[$k]['cpt_name'])) {
+				if (isset($post_types_args[$k]['supports']) 
+				&& is_array($post_types_args[$k]['supports']) && !in_array('revisions', $post_types_args[$k]['supports'])
+				) {
+					$post_types_args[$k]['supports'][] = 'revisions';
+				}
+			}
+		}
+
+		return $post_types_args;
+	}
+);
+
+add_filter(
 	'rank_math/excluded_post_types',
 	function ($types) {
 		if (function_exists('rvy_detect_post_id')) {
