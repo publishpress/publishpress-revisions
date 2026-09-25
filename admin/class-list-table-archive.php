@@ -677,8 +677,8 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				
 				// Show title with link
 				printf(
-					'<strong><a class="row-title rvy-open-popup" href="%s" data-label="%s">%s</a></strong>',
-					esc_url_raw( get_edit_post_link( $item->ID ) . '&width=900&height=600&rvy-popup=true&TB_iframe=1' ),
+					'<strong><a class="row-title" href="%s" data-label="%s">%s</a></strong>',
+					esc_url_raw( rvy_compare_url( $item->ID ) ),
 					esc_attr( $item->$column_name ),
 					esc_html($item->$column_name)
 				);
@@ -1177,16 +1177,39 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		}
 
 		if ( ( $can_read_post || $can_edit_post ) && $revisions_enabled ) {
-			$actions['diff'] = sprintf(
+			if (rvy_use_visual_compare()) {
+				$actions['compare'] = sprintf(
 				'<a href="%1$s" class="" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
 				rvy_compare_url($item->ID),
 				esc_attr(
 					sprintf(
-						esc_html__( 'Compare Changes in %s', 'revisionary' ),
+							esc_html__( 'Visually compare changes in %s', 'revisionary' ),
 						$item->post_title
 					)
 				),
 				_x( 'Compare', 'revisions', 'revisionary' )
+				);
+			}
+
+			if (defined('REVISIONARY_TEXT_DIFF_POPUP')) {
+				$diff_url = get_edit_post_link( $item->ID ) . '&width=900&height=600&rvy-popup=true&TB_iframe=1';
+				$diff_class = 'rvy-open-popup';
+			} else {
+				$diff_url = get_edit_post_link( $item->ID );
+				$diff_class = '';
+			}
+
+			$actions['diff'] = sprintf(
+				'<a href="%s" class="' . esc_attr($diff_class) . '" title="%2$s" aria-label="%2$s" data-label="%3$s">%4$s</a>',
+				!empty($diff_url) ? esc_url_raw( $diff_url ) : '',
+				esc_attr(
+					sprintf(
+						esc_html__( 'Classic text diff for %s', 'revisionary' ),
+						$item->post_title
+					)
+				),
+				esc_html__($item->post_title),
+				_x( 'Diff', 'revisions', 'revisionary' )
 			);
 		}
 
