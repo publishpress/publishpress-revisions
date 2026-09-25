@@ -333,7 +333,7 @@ class RevisionaryFront {
 
 		global $wpdb;
 
-		if (empty($_REQUEST['mark_current_revision'])) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval'])) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			
 			if (!$post = $wpdb->get_row(								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.WP.GlobalVariablesOverride.Prohibited
 				$wpdb->prepare(
@@ -347,15 +347,15 @@ class RevisionaryFront {
 			}
 		}
 	
-		if (empty($post) || !empty($_REQUEST['mark_current_revision'])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if (empty($post) || !empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval'])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			global $post;													//phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.VariableRedeclaration
 		}
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ((!empty($_REQUEST['mark_current_revision']) || rvy_in_revision_workflow($post) || ('revision' == $post->post_type)) && !isset($_REQUEST['fl_builder'])) {
+		if ((!empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval']) || rvy_in_revision_workflow($post) || ('revision' == $post->post_type)) && !isset($_REQUEST['fl_builder'])) {
 			add_filter('redirect_canonical', array($this, 'flt_revision_preview_url'), 10, 2);
 
-			if (!empty($_REQUEST['mark_current_revision'])) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if (!empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval'])) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$published_post_id = (!empty($post)) ? $post->ID : 0;
 				$revision_id = $published_post_id;
 			} else {
@@ -484,7 +484,7 @@ class RevisionaryFront {
 				$edit_url = apply_filters('revisionary_preview_edit_url', rvy_admin_url("post.php?action=edit&amp;post=$revision_id"), $revision_id);
 				$edit_button = "<a href='$edit_url' class='rvy-preview-link rvy_has_empty_spacing'>" . esc_html__('Edit', 'revisionary') . '</a>';
 
-				if (empty($_REQUEST['mark_current_revision'])) {											// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if (empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval'])) {											// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					$edit_button .= ' <span class="rvy-preview-link">&bull;</span> ';
 				}
 			} else {
@@ -526,7 +526,7 @@ class RevisionaryFront {
 			if (('revision' == $post->post_type) 
 			&& (
 				get_post_field('post_modified_gmt', $post->post_parent) == get_post_meta($revision_id, '_rvy_published_gmt', true) 
-				&& empty($_REQUEST['mark_current_revision'])														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				&& empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval'])														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			)
 			) {
 				if ($post = get_post($post->post_parent)) {				// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
@@ -570,7 +570,7 @@ class RevisionaryFront {
 				// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 				//case 'pending-revision' :
 				default :
-				if (empty($_REQUEST['mark_current_revision']) && ('inherit' != $post->post_status)) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if (empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval']) && ('inherit' != $post->post_status)) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ('future-revision' != $post->post_mime_type) {
 						$approve_caption = esc_html__( 'Approve', 'revisionary' );
 
@@ -644,7 +644,7 @@ class RevisionaryFront {
 				// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 				//case '' :
 				//default:
-					if (!empty($_REQUEST['mark_current_revision'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					if (!empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						$class = 'published';
 
 						if (empty($can_edit)) {
