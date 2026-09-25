@@ -283,11 +283,7 @@ function rvy_revision_decline($revision_id = 0) {
 
 		$post_mime_type = apply_filters('revisionary_revision_decline_status', 'draft-revision', $revision_id);
 
-	if (('draft-revision' != $post_mime_type) && rvy_get_option('use_publishpress_notifications')) {
-			$status = $post_mime_type;
-		} else {
-			$status = apply_filters('revisionary_post_revision_status', 'draft', $post_mime_type, $revision_id);
-		}
+		$status = apply_filters('revisionary_post_revision_status', 'draft', $post_mime_type, $revision_id);
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->update(
