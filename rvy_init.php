@@ -185,6 +185,17 @@ if (-1 === get_option('rvy_use_publishpress_notifications', -1)) {
 	}
 }
 
+if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
+	// Previously, enabling WooCommerce Product past revisions caused postmeta to be archived for all post types
+	if (!$last_ver || version_compare($last_ver, '4.0.3-rc.0.27', '<')) {
+		$arr = get_option('rvy_enabled_post_types_archive');
+
+		if (is_array($arr) && !empty($arr['product'])) {
+			update_option('rvy_archive_postmeta_on_edit', 1);
+		}
+	}
+}
+
 // Revision Edit in Gutenberg: Enable non-Editors to set requested publish date
 add_action('init', function() {
 	global $revisionary;
