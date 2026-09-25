@@ -130,11 +130,6 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
  * @return void
  */
 function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
-
-    if (!rvy_get_option('enable_postmeta_revision')) {
-        return;
-    }
-
     $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
