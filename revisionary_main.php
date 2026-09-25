@@ -190,6 +190,21 @@ class Revisionary
 			new RevisionaryVisualCompare();
 
 		} elseif (is_admin() && !empty($_REQUEST['page']) && ('rvy-visual-compare' == $_REQUEST['page'])) {		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if (!is_user_logged_in()) {
+				$request_uri = isset($_SERVER['REQUEST_URI'])
+					? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))
+					: '/wp-admin/admin.php?page=rvy-visual-compare';
+				$admin_parts = wp_parse_url(admin_url());
+				$redirect_to = sprintf(
+					'%s://%s%s%s',
+					isset($admin_parts['scheme']) ? $admin_parts['scheme'] : (is_ssl() ? 'https' : 'http'),
+					isset($admin_parts['host']) ? $admin_parts['host'] : '',
+					isset($admin_parts['port']) ? ':' . absint($admin_parts['port']) : '',
+					'/' . ltrim($request_uri, '/')
+				);
+				wp_safe_redirect(wp_login_url($redirect_to));
+				exit;
+			}
 			wp_die(esc_html__('Visual compare is not enabled.', 'revisionary'));
 		}
 
