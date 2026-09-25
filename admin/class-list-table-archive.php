@@ -320,6 +320,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			r.post_modified_gmt as post_modified_gmt,
 			r.post_author AS post_author,
 			r.post_parent AS post_parent,
+			r.post_name AS post_name,
 			r3.post_author AS origin_post_author,
 			r3.post_date AS origin_post_date,
 			r3.post_date_gmt AS origin_post_date_gmt,
@@ -769,18 +770,36 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 						$status_label = $status_name;
 					}
 
+					if (0 === strpos($item->post_name, $item->post_parent . '-autosave')) {
+						printf(
+							esc_html__('Autosave of %s', 'revisionary'),
+							"<span title='" . esc_attr($this->active_revision_title) . "'>" . esc_html($status_label) . '</span>'
+						);
+					} else {
 					printf(
 						esc_html__('Edit of %s', 'revisionary'),
 						"<span title='" . esc_attr($this->active_revision_title) . "'>" . esc_html($status_label) . '</span>'
 					);
+					}
 
 				} elseif ($this->parent_from_revision_workflow) {
+					if (0 === strpos($item->post_name, $post->post_parent . '-autosave')) {
+						printf("<span title='%s'>%s</span>",
+							esc_html($this->from_revision_title),
+							esc_html__('Autosave of published Revision', 'revisionary')
+						);
+					} else {
 					printf("<span title='%s'>%s</span>",
 						esc_html($this->from_revision_title),
 						esc_html__('Edit of published Revision', 'revisionary')
 					);
+					}
 				} elseif ($this->direct_edit) {
+					if (0 === strpos($item->post_name, $item->post_parent . '-autosave')) {
+						esc_html_e('Autosave', 'revisionary');
+					} else {
 					esc_html_e('Direct Edit', 'revisionary');
+				}
 				}
 
 				break;
