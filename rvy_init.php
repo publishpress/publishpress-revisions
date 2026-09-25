@@ -5,6 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once( dirname(__FILE__).'/rvy_init-functions.php');
 
+if ( is_admin() ) {
+	require_once( dirname(__FILE__).'/admin/action-scheduler_rvy.php');
+}
+
 add_action('init', 'rvy_status_registrations', 40);
 
 add_filter(

@@ -1803,15 +1803,16 @@ class Revisionary
 			}
 		}
 
-		// If this is already a scheduled revision and the date is being modified, update the WP-Cron entry
-		if (rvy_in_revision_workflow($postarr['ID']) && ('future-revision' == $postarr['post_mime_type'])) {
+		// If this is already a scheduled revision and the date is being modified, replace its publication trigger.
+		$stored_revision_status = get_post_field( 'post_mime_type', $postarr['ID'] );
+		$submitted_revision_status = ! empty( $postarr['post_mime_type'] ) ? $postarr['post_mime_type'] : $stored_revision_status;
+		if (rvy_in_revision_workflow($postarr['ID']) && ('future-revision' == $submitted_revision_status)) {
 
 			$current_post_date_gmt = get_post_field('post_date_gmt', $postarr['ID']);
 
 			if ($data['post_date_gmt'] != $current_post_date_gmt) {
-				wp_unschedule_event(strtotime($current_post_date_gmt), 'publish_revision_rvy', [$postarr['ID']]);
-
-				wp_schedule_single_event(strtotime($data['post_date_gmt']), 'publish_revision_rvy', [$postarr['ID']]);
+				require_once( dirname(__FILE__) . '/admin/revision-action_rvy.php' );
+				rvy_reschedule_revision_publication( $postarr['ID'], $data['post_date_gmt'] );
 			}
 		}
 		
