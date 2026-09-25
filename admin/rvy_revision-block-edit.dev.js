@@ -6,6 +6,10 @@
 * Copyright 2026, PublishPress
 */
 jQuery(document).ready(function ($) {
+	var RvyIsNativeRevisionComparison = function() {
+		return !!document.querySelector('.editor-revisions-header');
+	};
+
 	// Initialization operations to perform once React loads the relevant elements
     var RvyInitializeBlockEditorModifications = function () {
         if (($('button.editor-post-publish-button').length || $('button.editor-post-publish-panel__toggle').length) && ($('button.editor-post-switch-to-draft').length || $('button.editor-post-save-draft').length)) {
@@ -59,6 +63,11 @@ jQuery(document).ready(function ($) {
 	var RvyHideInterval = setInterval(RvyHideElements, 50);
 	
     var RvySubmissionUI = function () {
+		if (RvyIsNativeRevisionComparison()) {
+			$('div.rvy-creation-ui').remove();
+			return;
+		}
+
         selectedDateHTML = wp.data.select('core/editor').getEditedPostAttribute('date');
         var selectedDate = new Date( selectedDateHTML );
         var currentDate = new Date();
