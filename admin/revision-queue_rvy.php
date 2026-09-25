@@ -116,7 +116,7 @@ $bulk_counts = array_filter( $bulk_counts );
 
 require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
-<div class="wrap pressshack-admin-wrapper revision-q">
+<div class="wrap pressshack-admin-wrapper revision-q<?php echo $scheduled_only ? ' rvy-scheduled-queue' : ''; ?>">
 <header>
 <h1 class="wp-heading-inline"><?php
 
@@ -271,13 +271,16 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 
 <?php if ( $scheduled_empty_unfiltered ) : ?>
 	<div class="revisionary-scheduled-empty">
-		<h3><?php esc_html_e( 'How to schedule a revision to go live:', 'revisionary' ); ?></h3>
-		<ul>
+		<div class="revisionary-scheduled-empty-header">
+			<span class="revisionary-scheduled-empty-icon dashicons dashicons-calendar-alt" aria-hidden="true"></span>
+			<h3><?php esc_html_e( 'How to schedule a revision to go live:', 'revisionary' ); ?></h3>
+		</div>
+		<ol>
 			<li><?php esc_html_e( 'Create a new revision of a page', 'revisionary' ); ?></li>
 			<li><?php esc_html_e( 'Update the revision with desired changes', 'revisionary' ); ?></li>
 			<li><?php esc_html_e( 'Select a publishing date in the future', 'revisionary' ); ?></li>
 			<li><?php esc_html_e( 'Click the Schedule Revision button', 'revisionary' ); ?></li>
-		</ul>
+		</ol>
 	</div>
 <?php else : ?>
 	<?php $wp_list_table->display(); ?>

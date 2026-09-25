@@ -1079,14 +1079,145 @@ margin-top: 3px;
 margin-top: 3px;
 }
 
-.revisionary-scheduled-empty {
-  clear: both;
-  padding-top: 5px;
+/* Scheduled Revisions: table cells */
+.rvy-scheduled-queue .wp-list-table td {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
-.revisionary-scheduled-empty ul {
-  list-style: disc;
-  margin-left: 2em;
+.rvy-scheduled-queue .column-date_sched strong.error-message {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #fcf0f1;
+  color: #b32d2e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rvy-sched-relative {
+  display: block;
+  margin-top: 3px;
+  color: #646970;
+  font-size: 12px;
+}
+
+.rvy-sched-relative--soon {
+  color: #135e96;
+  font-weight: 600;
+}
+
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #f0f0f1;
+  color: #50575e;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.rvy-action-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status:hover,
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status:focus {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--pending { background: #f0f6fc; color: #135e96; }
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--in-progress { background: #fcf9e8; color: #8a6116; }
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--complete { background: #edfaef; color: #007017; }
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--failed { background: #fcf0f1; color: #b32d2e; }
+
+/* Scheduled Revisions: empty state */
+.revisionary-scheduled-empty {
+  clear: both;
+  max-width: 560px;
+  margin: 24px 0;
+  padding: 32px;
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.revisionary-scheduled-empty-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.revisionary-scheduled-empty-icon.dashicons {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f1eff8;
+  color: #655997;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+}
+
+.revisionary-scheduled-empty h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.revisionary-scheduled-empty ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rvy-step;
+}
+
+.revisionary-scheduled-empty ol li {
+  position: relative;
+  margin: 0;
+  padding: 3px 0 14px 40px;
+  counter-increment: rvy-step;
+}
+
+.revisionary-scheduled-empty ol li:last-child {
+  padding-bottom: 0;
+}
+
+.revisionary-scheduled-empty ol li::before {
+  content: counter(rvy-step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #655997;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+}
+
+.revisionary-scheduled-empty ol li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 4px;
+  left: 12px;
+  width: 2px;
+  background: #e5e1f1;
 }
 
 @media screen and (max-width: 782px) {
