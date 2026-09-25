@@ -1025,4 +1025,30 @@ table th#revision_post_count {
 
 .revision-q .tablenav-pages {
 margin-top: 10px;
+@media screen and (max-width: 782px) {
+  .revisionary-archive .wp-list-table th.column-post_title {
+    box-sizing: border-box;
+    display: block;
+    float: none;
+    padding-right: 50px;
+    position: relative;
+    width: 100% !important;
+  }
+
+  .revisionary-archive .wp-list-table .toggle-row {
+    left: auto;
+    margin: 0;
+    right: 8px;
+  }
+
+  .revisionary-archive .wp-list-table tr.is-expanded td {
+    clear: both;
+    float: none;
+    width: 100% !important;
+  }
+
+  .revisionary-archive .wp-list-table tr.is-expanded td.column-origin_post_type {
+    clear: both;
+    display: block !important;
+  }
 }
