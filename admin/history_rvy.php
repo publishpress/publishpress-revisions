@@ -444,7 +444,7 @@ class RevisionaryHistory
         if (!$revision_id && !$to && !empty($_REQUEST['compare'])) {                            //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $compare = sanitize_text_field(
                 is_array($_REQUEST['compare'])                                                  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                ? reset(wp_unslash($_REQUEST['compare']))    //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+                ? reset($_REQUEST['compare'])    //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
                 : wp_unslash($_REQUEST['compare'])                                                          //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             );
             
