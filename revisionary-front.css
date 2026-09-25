@@ -4,6 +4,7 @@
 
 .rvy_view_revision,
 .preview_approval_rvy {
+    box-sizing: border-box;
     height: 50px;
     width: 100%;
     text-align: center;
@@ -16,8 +17,99 @@
 }
 
 .rvy_preview_msgspan {
+    align-items: center;
+    display: flex;
     font-weight: bold;
-    line-height: 50px;
+    gap: 8px;
+    height: 50px;
+    justify-content: center;
+    line-height: normal;
+    min-width: 0;
+    padding: 0 12px;
+    white-space: nowrap;
+}
+
+.rvy-preview-caption {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rvy-preview-caption-compact {
+    display: none;
+}
+
+.rvy-preview-primary-slot {
+    display: none;
+}
+
+.rvy-preview-actions {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.rvy-preview-actions-toggle {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 3px;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    box-sizing: border-box;
+    font-size: 20px;
+    height: 30px;
+    justify-content: center;
+    line-height: 1;
+    padding: 4px 7px;
+}
+
+.rvy-preview-actions-toggle > span {
+    display: block;
+    line-height: 20px;
+}
+
+.rvy-preview-actions-toggle:hover,
+.rvy-preview-actions-toggle:focus,
+.rvy-preview-actions-toggle[aria-expanded="true"] {
+    background: rgba(0, 0, 0, 0.18);
+    color: inherit;
+}
+
+.rvy-preview-actions-menu {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    min-width: 190px;
+    padding: 4px 0;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: calc(100% + 4px);
+    z-index: 100002;
+}
+
+.rvy-preview-actions-menu[hidden] {
+    display: none;
+}
+
+#pp_revisions_top_bar .rvy-preview-actions-menu a.rvy-preview-menu-item {
+    color: #1d2327;
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin: 0;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+#pp_revisions_top_bar .rvy-preview-actions-menu a.rvy-preview-menu-item:hover,
+#pp_revisions_top_bar .rvy-preview-actions-menu a.rvy-preview-menu-item:focus {
+    background: #f0f0f1;
+    color: #135e96;
 }
 
 .rvy_preview_msgspan > a, .rvy_preview_msgspan > a:visited{
@@ -216,4 +308,25 @@ span.rvy_preview_linkspan a, span.rvy_preview_linkspan a:visited, span.rvy_previ
 
 #pp_revisions_top_bar .button.rvy_has_empty_spacing {
   margin-right: 3px;
+}
+
+@media screen and (max-width: 900px) {
+    .rvy-preview-caption-wide {
+        display: none;
+    }
+
+    .rvy-preview-caption-compact {
+        display: inline;
+    }
+
+    .rvy-preview-compare {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .rvy_preview_msgspan {
+        gap: 5px;
+        padding: 0 6px;
+    }
 }
