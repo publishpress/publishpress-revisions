@@ -160,7 +160,7 @@ function rvy_default_options() {
 		'revision_limit_compat_mode' => 0,
 		'permissions_compat_mode' => 0,
 		'planner_notifications_access_limited' => 0,
-		'archive_postmeta' => 0,
+		'archive_postmeta' => 1,
         'archive_postmeta_on_edit' => 1,
 		'extended_archive' => 0,
 		'delete_settings_on_uninstall' => 0,
