@@ -27,6 +27,11 @@ if (rvy_get_option('revision_queue_capability') && !is_content_administrator_rvy
 
 set_current_screen( 'revisionary-q' );
 
+$scheduled_only = ! empty( $_REQUEST['post_status'] ) && 'future-revision' === sanitize_key( $_REQUEST['post_status'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+if ( $scheduled_only && ! rvy_get_option( 'scheduled_publish_cron' ) && function_exists( 'rvy_load_scheduled_revisions' ) ) {
+	rvy_load_scheduled_revisions();
+}
+
 if (!empty($_REQUEST['post_type2'])) {										// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$_REQUEST['post_type'] = sanitize_key($_REQUEST['post_type2']);			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 }
@@ -60,11 +65,13 @@ require_once( dirname(__FILE__).'/class-list-table_rvy.php');
 
 $list_table_class = apply_filters('revisionary_list_table_class', 'Revisionary_List_Table');
 
-$wp_list_table = new $list_table_class(['screen' => 'revisionary-q', 'post_types' => $post_types]);					// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+$wp_list_table = new $list_table_class(['screen' => 'revisionary-q', 'post_types' => $post_types, 'scheduled_only' => $scheduled_only]); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $pagenum = $wp_list_table->get_pagenum();
 
 $parent_file = 'admin.php?page=revisionary-q';																		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-$submenu_file = 'admin.php?page=revisionary-q';																		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+$submenu_file = $scheduled_only
+	? 'admin.php?page=revisionary-q&post_status=future-revision'
+	: 'admin.php?page=revisionary-q'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 $wp_list_table->prepare_items();
 
@@ -163,7 +170,9 @@ if (!empty($_REQUEST['post_author'])) {									//phpcs:ignore WordPress.Securit
 
 $filter_csv = ($filters) ? ' ' . implode(" ", $filters) : '';
 
-if (!empty($filters['post_status'])) {
+if ( $scheduled_only ) {
+	esc_html_e( 'Scheduled Revisions', 'revisionary' );
+} elseif (!empty($filters['post_status'])) {
 	echo esc_html($filter_csv);
 } else
 	printf( esc_html__('New Revisions %s', 'revisionary' ), esc_html($filter_csv));
@@ -228,6 +237,20 @@ if (!empty($_SERVER['REQUEST_URI'])) {
 
 <?php $wp_list_table->views(); ?>
 
+<?php
+$scheduled_empty_unfiltered = false;
+if ( $scheduled_only && ! $wp_list_table->has_items() ) {
+	$scheduled_filter_keys = ['action_status', 's', 'post_type2', 'post_type', 'cat', 'author', 'published_post', 'modified', 'post_author', 'm'];
+	$scheduled_empty_unfiltered = true;
+	foreach ( $scheduled_filter_keys as $filter_key ) {
+		if ( isset( $_REQUEST[$filter_key] ) && '' !== sanitize_text_field( wp_unslash( $_REQUEST[$filter_key] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$scheduled_empty_unfiltered = false;
+			break;
+		}
+	}
+}
+?>
+
 <form name="bulk-revisions" id="bulk-revisions" method="post" action="">
 
 <?php $wp_list_table->search_box( 'Search', 'post' ); ?>
@@ -237,12 +260,28 @@ if (!empty($_SERVER['REQUEST_URI'])) {
 																								<?php //phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 <input type="hidden" name="post_status" class="post_status_page" value="<?php echo !empty($_REQUEST['post_status']) ? esc_attr(sanitize_key($_REQUEST['post_status'])) : 'all'; ?>" />
 
+<?php if ( $scheduled_only && ! empty( $_REQUEST['action_status'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
+<input type="hidden" name="action_status" value="<?php echo esc_attr( sanitize_key( $_REQUEST['action_status'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>" />
+<?php endif; ?>
+
 <?php if ( ! empty( $_REQUEST['show_sticky'] ) ) { 													  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 ?>
 <input type="hidden" name="show_sticky" value="1" />
 <?php } ?>
 
-<?php $wp_list_table->display(); ?>
+<?php if ( $scheduled_empty_unfiltered ) : ?>
+	<div class="revisionary-scheduled-empty">
+		<h3><?php esc_html_e( 'How to schedule a revision to go live:', 'revisionary' ); ?></h3>
+		<ul>
+			<li><?php esc_html_e( 'Create a new revision of a page', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Update the revision with desired changes', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Select a publishing date in the future', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Click the Schedule Revision button', 'revisionary' ); ?></li>
+		</ul>
+	</div>
+<?php else : ?>
+	<?php $wp_list_table->display(); ?>
+<?php endif; ?>
 
 </form>
 
@@ -251,6 +290,10 @@ if (!empty($_SERVER['REQUEST_URI'])) {
 
 <?php
 do_action('revisionary_admin_footer');
+
+if ( $scheduled_only && ! rvy_get_option( 'scheduled_publish_cron' ) && function_exists( 'rvy_scheduled_revisions_modal_ui' ) ) {
+	rvy_scheduled_revisions_modal_ui();
+}
 ?>
 
 </div>
