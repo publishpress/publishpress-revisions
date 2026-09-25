@@ -580,14 +580,14 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
     public function get_columns() {
         $arr = array(
             'cb'			=> '<label class="screen-reader-text" for="rvy-archive-select-all">' . esc_html__( 'Select all revisions', 'revisionary' ) . '</label><input id="rvy-archive-select-all" type="checkbox" />',
-			'post_title' 	=> __( 'Revision', 'revisionary' ),
-			'origin_post_type' 		=> __( 'Post Type', 'revisionary' ),
-			'post_author'	=> __( 'Revised By', 'revisionary' ),
-			'post_modified' 	=> __( 'Revision Date', 'revisionary' ),
-			'publication_method' => __('Action', 'revisionary'),
-			'approved_by'	=> __('Approved By', 'revisionary'),
-			'origin_post_date'		=> __( 'Published Date', 'revisionary' ),
-			'origin_post_author'	=> __( 'Published Author', 'revisionary' ),
+			'post_title' 	=> esc_html__( 'Revision', 'revisionary' ),
+			'origin_post_type' 		=> esc_html__( 'Post Type', 'revisionary' ),
+			'post_author'	=> esc_html__( 'Revised By', 'revisionary' ),
+			'post_modified' 	=> esc_html__( 'Revision Date', 'revisionary' ),
+			'publication_method' => esc_html__('Action', 'revisionary'),
+			'approved_by'	=> esc_html__('Approved By', 'revisionary'),
+			'origin_post_date'		=> esc_html__( 'Published Date', 'revisionary' ),
+			'origin_post_author'	=> esc_html__( 'Published Author', 'revisionary' ),
         );
 
 		if (!rvy_get_option('revision_archive_deletion')) {
