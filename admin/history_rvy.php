@@ -584,6 +584,90 @@ class RevisionaryHistory
         return $fields;
     }
 
+    /**
+     * Normalize serialization-only differences before comparing Classic Editor HTML.
+     *
+     * WordPress' text diff renderer tries to pair every changed line. A Classic
+     * document containing many equivalent style or entity rewrites can therefore
+     * make the revision AJAX request too expensive to render. Block Editor content
+     * must remain byte-oriented, so it bypasses this normalization.
+     *
+     * @param string $content Classic Editor post content.
+     * @return string Normalized content used only as input to wp_text_diff().
+     */
+    private function normalizeLegacyDiffContent( $content ) {
+        $content = str_replace( array( "\r\n", "\r" ), "\n", $content );
+        $content = wp_kses_normalize_entities( $content );
+
+        return preg_replace_callback(
+            '/\bstyle\s*=\s*(["\'])(.*?)\1/is',
+            function ( $matches ) {
+                return 'style=' . $matches[1] . $this->normalizeLegacyStyleDeclarations( $matches[2] ) . $matches[1];
+            },
+            $content
+        );
+    }
+
+    /**
+     * Normalize insignificant spacing between top-level CSS declarations.
+     *
+     * Semicolons inside quoted strings and functions (such as data URLs) are
+     * preserved. Declaration order and values are not changed.
+     *
+     * @param string $style Inline style value.
+     * @return string Normalized inline style value.
+     */
+    private function normalizeLegacyStyleDeclarations( $style ) {
+        $declarations = array();
+        $declaration  = '';
+        $quote        = '';
+        $depth        = 0;
+        $length       = strlen( $style );
+
+        for ( $index = 0; $index < $length; $index++ ) {
+            $character = $style[ $index ];
+
+            if ( $quote ) {
+                $declaration .= $character;
+
+                if ( $character === $quote && ( 0 === $index || '\\' !== $style[ $index - 1 ] ) ) {
+                    $quote = '';
+                }
+
+                continue;
+            }
+
+            if ( '"' === $character || "'" === $character ) {
+                $quote        = $character;
+                $declaration .= $character;
+                continue;
+            }
+
+            if ( '(' === $character ) {
+                $depth++;
+            } elseif ( ')' === $character && $depth ) {
+                $depth--;
+            }
+
+            if ( ';' === $character && 0 === $depth ) {
+                if ( '' !== trim( $declaration ) ) {
+                    $declarations[] = trim( $declaration );
+                }
+
+                $declaration = '';
+                continue;
+            }
+
+            $declaration .= $character;
+        }
+
+        if ( '' !== trim( $declaration ) ) {
+            $declarations[] = trim( $declaration );
+        }
+
+        return implode( '; ', $declarations );
+    }
+
     // port of core wp_get_revision_ui_diff() to allow comparison of pending, future revisions (published post ID stored in comment_count instead of post_parent)
     public function getRevisionUIDiff($post, $compare_from, $compare_to) {
         if ( ! $post ) {
@@ -614,6 +698,7 @@ class RevisionaryHistory
         }
 
         $return = array();
+		$visual_compare_has_changes = false;
 
         $acf_active = function_exists('acf_get_setting');
 
@@ -636,6 +721,17 @@ class RevisionaryHistory
 
             /** This filter is documented in wp-admin/includes/revision.php */
             $content_to = apply_filters( "_wp_post_revision_field_{$field}", $compare_to->$field, $field, $compare_to, 'to' );
+
+            if (
+                'post_content' === $field
+                && is_string( $content_from )
+                && is_string( $content_to )
+                && false === strpos( $content_from, '<!-- wp:' )
+                && false === strpos( $content_to, '<!-- wp:' )
+            ) {
+                $content_from = $this->normalizeLegacyDiffContent( $content_from );
+                $content_to   = $this->normalizeLegacyDiffContent( $content_to );
+            }
 
             if ($acf_active && is_scalar($content_to) && (0 === strpos($content_to, 'field_'))) {
                 continue;
@@ -675,6 +771,10 @@ class RevisionaryHistory
             }
 
             $diff = wp_text_diff( $content_from, $content_to, $args );
+
+			if ( $diff && in_array( $field, array( 'post_title', 'post_content' ), true ) ) {
+				$visual_compare_has_changes = true;
+			}
 
             if ( ! $diff && 'post_title' === $field ) {
                 // It's a better user experience to still show the Title, even if it didn't change.
@@ -927,6 +1027,26 @@ class RevisionaryHistory
 
         $args = compact('to_meta', 'native_fields', 'meta_fields', 'strip_tags');
         $return = apply_filters('revisionary_diff_ui', $return, $compare_from, $compare_to, $args);
+
+		$non_title_diffs = array_filter(
+			$return,
+			function ( $item ) {
+				return empty( $item['id'] ) || 'post_title' !== $item['id'];
+			}
+		);
+
+		if ( ! $visual_compare_has_changes && ! $non_title_diffs ) {
+			$notice_diff = '<table class="diff"><colgroup><col class="content diffsplit left"><col class="content diffsplit middle"><col class="content diffsplit right"></colgroup><tbody><tr>';
+			$notice_diff .= '<td colspan="3"><div class="notice notice-info inline"><p>' . esc_html__( 'No changes detected.', 'revisionary' ) . '</p></div></td>';
+			$notice_diff .= '</tr></tbody></table>';
+			$content_notice = array(
+				'id'   => 'post_content',
+				'name' => esc_html__( 'Content' ),
+				'diff' => $notice_diff,
+			);
+			$title_index = array_search( 'post_title', wp_list_pluck( $return, 'id' ), true );
+			array_splice( $return, false === $title_index ? 0 : $title_index + 1, 0, array( $content_notice ) );
+		}
 
         return $return;
     }
