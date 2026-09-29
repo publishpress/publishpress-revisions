@@ -907,6 +907,15 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						apply_filters( 'rvy_post_schedule_date_column_time', $h_time, $post, 'date', $mode ),	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						$t_time   // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					);
+
+					if ( $this->scheduled_only && $time_diff < 0 ) {
+						printf(
+							'<span class="rvy-sched-relative%1$s">%2$s</span>',
+							( -$time_diff < DAY_IN_SECONDS ) ? ' rvy-sched-relative--soon' : '',
+							/* translators: %s: human-readable time difference, e.g. "3 days" */
+							esc_html( sprintf( __( 'in %s', 'revisionary' ), human_time_diff( $time ) ) )
+						);
+					}
 				}
 
 				break;
