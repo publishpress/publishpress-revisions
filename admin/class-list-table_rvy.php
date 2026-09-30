@@ -1629,9 +1629,31 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$approval_potential = false;
 
-		foreach(rvy_get_manageable_types() as $post_type) {
+		foreach (rvy_get_manageable_types() as $post_type) {
 			$type_obj = get_post_type_object($post_type);
-			if (isset($type_obj->cap->edit_published_posts) && !empty($current_user->allcaps[$type_obj->cap->edit_published_posts])) {
+
+			if (empty($type_obj->cap)) {
+				continue;
+			}
+
+			if (rvy_get_option('approve_capability')) {
+				$approval_caps = [];
+
+				if (!empty($type_obj->cap->edit_posts)) {
+					$approval_caps[] = str_replace('edit_', 'approve_', $type_obj->cap->edit_posts);
+				}
+
+				if (!empty($type_obj->cap->edit_others_posts)) {
+					$approval_caps[] = str_replace('edit_', 'approve_', $type_obj->cap->edit_others_posts);
+				}
+
+				foreach ($approval_caps as $approval_cap) {
+					if (current_user_can($approval_cap)) {
+						$approval_potential = true;
+						break 2;
+					}
+				}
+			} elseif (isset($type_obj->cap->edit_published_posts) && !empty($current_user->allcaps[$type_obj->cap->edit_published_posts])) {
 				$approval_potential = true;
 				break;
 			}
