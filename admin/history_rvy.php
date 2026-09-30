@@ -1484,7 +1484,7 @@ class RevisionaryHistory
         if ($show_preview_link) {
             $preview_label = (empty($type_obj) || $can_edit)
             ?  esc_html__('Preview / Restore', 'revisionary')
-            : esc_html__('Preview');
+            : esc_html__('Preview', 'revisionary');
 
             $preview_url = rvy_preview_url($post);
         }
