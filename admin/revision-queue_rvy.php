@@ -235,8 +235,6 @@ if (!empty($_SERVER['REQUEST_URI'])) {
 }
 ?>
 
-<?php $wp_list_table->views(); ?>
-
 <?php
 $scheduled_empty_unfiltered = false;
 if ( $scheduled_only && ! $wp_list_table->has_items() ) {
