@@ -640,6 +640,36 @@ min-height: calc(100vh - 97px);
 width: 99%;
 }
 
+/* Match the native WordPress list-screen heading position. */
+body.revisionary-q #wpbody-content > .pressshack-admin-wrapper,
+body.revisionary-archive #wpbody-content > .pressshack-admin-wrapper {
+margin-top: 10px;
+min-height: calc(100vh - 97px - var(--revisionary-pre-wrapper-height, 0px));
+--revisionary-screen-meta-height: 15px;
+}
+
+body.revisionary-q .pressshack-admin-wrapper > header,
+body.revisionary-archive .pressshack-admin-wrapper > header {
+margin: calc(-1 * var(--revisionary-screen-meta-height, 0px)) 0 0;
+padding: 0;
+}
+
+body.revisionary-q .pressshack-admin-wrapper > header h1,
+body.revisionary-archive .pressshack-admin-wrapper > header h1 {
+margin-top: 0;
+}
+
+/* Preserve the normal heading position, but leave a full gap after admin notices. */
+body.revisionary-q #wpbody-content > div.notice ~ .pressshack-admin-wrapper,
+body.revisionary-archive #wpbody-content > div.notice ~ .pressshack-admin-wrapper {
+margin-top: 20px;
+}
+
+body.revisionary-q #wpbody-content > div.notice ~ .pressshack-admin-wrapper > header,
+body.revisionary-archive #wpbody-content > div.notice ~ .pressshack-admin-wrapper > header {
+margin-top: 0;
+}
+
 body.revisionary .pressshack-admin-wrapper > footer {
 margin-top: auto;
 padding-top: 25px;
@@ -1046,12 +1076,106 @@ margin-top: 0;
 margin-bottom: 0;
 }
 
+.revisionary-list-header-controls {
+align-items: flex-start;
+display: flex;
+flex-wrap: wrap;
+gap: 8px 16px;
+justify-content: space-between;
+}
+
+.revisionary-list-header-controls .subsubsub {
+float: none;
+flex: 1 1 auto;
+margin: 8px 0 0;
+}
+
+.revisionary-list-header-controls p.search-box {
+float: none;
+flex: 0 0 auto;
+margin: 4px 0 0 auto;
+position: static;
+}
+
+.revisionary-q .tablenav.top p.revisionary-list-responsive-search,
+.revisionary-archive .tablenav.top p.revisionary-list-responsive-search {
+position: static;
+}
+
+.revisionary-q .tablenav-pages,
+.revisionary-archive .tablenav-pages,
+.revision-q .tablenav-pages,
+.revision-archive .tablenav-pages {
+align-items: center;
+display: flex;
+min-height: 30px;
+}
+
+.revisionary-q .tablenav-pages .displaying-num,
+.revisionary-q .tablenav-pages .tablenav-paging-text,
+.revisionary-archive .tablenav-pages .displaying-num,
+.revisionary-archive .tablenav-pages .tablenav-paging-text,
+.revision-q .tablenav-pages .displaying-num,
+.revision-q .tablenav-pages .tablenav-paging-text,
+.revision-archive .tablenav-pages .displaying-num,
+.revision-archive .tablenav-pages .tablenav-paging-text {
+align-items: center;
+column-gap: 4px;
+display: inline-flex;
+line-height: 30px;
+min-height: 30px;
+vertical-align: middle;
+white-space: nowrap;
+}
+
+.revisionary-q #current-page-selector,
+.revisionary-archive #current-page-selector,
+.revision-q #current-page-selector,
+.revision-archive #current-page-selector {
+margin-bottom: 0;
+margin-top: 0;
+vertical-align: middle;
+}
+
+.revisionary-q .tablenav.top p.search-box,
+.revisionary-archive .tablenav.top p.search-box,
+.revision-q .tablenav.top p.search-box,
+.revision-archive .tablenav.top p.search-box {
+float: right;
+margin: 3px 0;
+}
+
 .revisionary-q .tablenav.top,
 .revisionary-archive .tablenav.top {
+align-items: flex-start;
+display: flex;
+flex-wrap: wrap;
+gap: 0;
 height: auto;
 min-height: 30px;
 padding-bottom: 3px;
 padding-top: 3px;
+}
+
+.revisionary-q .tablenav.top > .actions:not(.bulkactions),
+.revisionary-archive .tablenav.top > .actions:not(.bulkactions) {
+display: contents;
+}
+
+.revisionary-q .tablenav.top > .bulkactions,
+.revisionary-archive .tablenav.top > .bulkactions {
+flex: 0 0 auto;
+}
+
+.revisionary-q .tablenav.top > .tablenav-pages,
+.revisionary-archive .tablenav.top > .tablenav-pages {
+flex: 0 0 auto;
+margin-left: auto;
+}
+
+.revisionary-q .tablenav.top > br.clear,
+.revisionary-archive .tablenav.top > br.clear {
+display: none;
 }
 
 .revisionary-q .tablenav.top .actions,
