@@ -143,7 +143,7 @@ function rvy_has_scheduling_log_actions() {
 }
 
 function rvy_register_scheduling_log_menu() {
-	if (! rvy_get_manageable_types()) return;
+	if (! rvy_get_option('scheduled_revisions') || ! rvy_get_manageable_types()) return;
 
 	add_submenu_page(
 		'revisionary-q',
