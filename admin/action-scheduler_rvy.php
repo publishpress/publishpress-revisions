@@ -49,7 +49,7 @@ function rvy_scheduled_revision_migration_ui() {
 	?>
 	<div class="publish_revision_rvy_action_scheduler" data-nonce="<?php echo esc_attr( wp_create_nonce( 'rvy-migrate-scheduled-revisions' ) ); ?>">
 		<button type="button" class="button rvy-migrate-scheduled-revisions">
-			<?php printf( translate_nooped_plural( _n_noop('Migrate %d Scheduled Revision', 'Migrate %d Scheduled Revisions', 'revisionary' ), (int) $count, 'revisionary' ), number_format_i18n((int) $count)); ?>
+			<?php echo esc_html(sprintf( translate_nooped_plural( _n_noop('Migrate %d Scheduled Revision', 'Migrate %d Scheduled Revisions', 'revisionary' ), (int) $count, 'revisionary' ), number_format_i18n((int) $count))); ?>
 		</button>
 		<span class="spinner"></span>
 		<span class="rvy-scheduled-revision-migration-progress" aria-live="polite"></span>

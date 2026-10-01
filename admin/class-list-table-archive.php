@@ -914,7 +914,21 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval($_REQUEST['revision_date'])															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type = 'revision' ORDER BY ID DESC LIMIT 60");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+			$enabled_post_type_csv = implode("','", array_map('sanitize_key', $this->post_types));
+
+			$_dates = $enabled_post_type_csv
+				? $wpdb->get_col(																			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					"SELECT DISTINCT DATE(r.post_modified)
+					FROM $wpdb->posts r
+					INNER JOIN $wpdb->posts p ON r.post_parent = p.ID
+					LEFT JOIN $wpdb->posts p2 ON p.post_type = 'revision' AND p.post_parent = p2.ID
+					WHERE r.post_type = 'revision'
+					AND r.post_status NOT IN ('trash', 'auto-draft')
+					AND r.post_name NOT LIKE '%-autosave-v%'"
+					. " AND (p.post_type IN ('$enabled_post_type_csv') OR (p.post_type = 'revision' AND p2.post_type IN ('$enabled_post_type_csv')))"	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					. " ORDER BY r.ID DESC LIMIT 60"																									
+				)
+				: []; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			
 			$post_dates = [];
 

@@ -24,9 +24,9 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		]);
 
 		$this->scheduled_only = ! empty( $args['scheduled_only'] ) || (
-			! empty( $_REQUEST['page'] ) && 'revisionary-q' === sanitize_key( $_REQUEST['page'] )
-			&& ! empty( $_REQUEST['post_status'] ) && 'future-revision' === sanitize_key( $_REQUEST['post_status'] )
-		); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			! empty( $_REQUEST['page'] ) && 'revisionary-q' === sanitize_key( $_REQUEST['page'] )						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& ! empty( $_REQUEST['post_status'] ) && 'future-revision' === sanitize_key( $_REQUEST['post_status'] )	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		);
 
 		if ( isset( $args['post_types'] ) )
 			$this->post_types = $args['post_types'];
@@ -331,8 +331,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		if ( $this->scheduled_only ) {
 			$qr[$status_col] = ['future-revision'];
-			$qr['posts_per_page'] = -1;
-			$qr['nopaging'] = true;
+			$qr['posts_per_page'] = -1;		// phpcs:ignore WordPressVIPMinimum.Performance.NoPaging.posts_per_page_posts_per_page
+			$qr['nopaging'] = true;			// phpcs:ignore WordPressVIPMinimum.Performance.NoPaging.nopaging_nopaging
 		} else {
 			$qr[$status_col] = array_diff( (array) $qr[$status_col], ['future-revision']);
 		}
