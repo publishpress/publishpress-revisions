@@ -59,16 +59,20 @@
     cursor: pointer;
     display: inline-flex;
     box-sizing: border-box;
-    font-size: 20px;
-    height: 30px;
+    height: 32px;
     justify-content: center;
     line-height: 1;
-    padding: 4px 7px;
+    margin: 0;
+    padding: 4px 6px;
+    vertical-align: middle;
+    width: 32px;
 }
 
-.rvy-preview-actions-toggle > span {
+.rvy-preview-actions-toggle > svg {
     display: block;
-    line-height: 20px;
+    fill: currentColor;
+    height: 20px;
+    width: 20px;
 }
 
 .rvy-preview-actions-toggle:hover,
@@ -121,6 +125,35 @@
 
 .rvy_preview_msgspan > a:first-of-type {
     margin-left: 20px;
+}
+
+#pp_revisions_top_bar a.rvy-preview-compare.components-button.is-secondary.ppr-purple-button {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 0 1px #fff;
+    color: #fff;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: inherit;
+    height: 30px;
+    justify-content: center;
+    line-height: 2.15384615;
+    margin: 0 7px 0 8px;
+    padding: 0 10px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+#pp_revisions_top_bar a.rvy-preview-compare.components-button.is-secondary.ppr-purple-button:hover,
+#pp_revisions_top_bar a.rvy-preview-compare.components-button.is-secondary.ppr-purple-button:focus,
+#pp_revisions_top_bar a.rvy-preview-compare.components-button.is-secondary.ppr-purple-button:active {
+    box-shadow: inset 0 0 0 1px #fff;
+    color: #fff;
+    text-decoration: none;
 }
 
 .rvy_preview_msgspan a:hover {
@@ -256,6 +289,7 @@ span.rvy_preview_linkspan a, span.rvy_preview_linkspan a:visited, span.rvy_previ
   text-decoration: none;
   font-size: 13px;
   line-height: 2.15384615;
+  height: 30px;
   min-height: 30px;
   margin: 0;
   padding: 0 10px;
@@ -266,6 +300,7 @@ span.rvy_preview_linkspan a, span.rvy_preview_linkspan a:visited, span.rvy_previ
   border-radius: 3px;
   white-space: nowrap;
   box-sizing: border-box;
+  vertical-align: middle;
 }
 
 #pp_revisions_top_bar .button-secondary {
@@ -285,9 +320,9 @@ span.rvy_preview_linkspan a, span.rvy_preview_linkspan a:visited, span.rvy_previ
 }
 
 #pp_revisions_top_bar .button-primary {
-  background: #FFB300;
-  border-color: #C58C07;
-  color: #754D26;
+  background: #655997;
+  border-color: #655997;
+  color: #fff;
   text-decoration: none;
   text-shadow: none;
 }
@@ -295,11 +330,15 @@ span.rvy_preview_linkspan a, span.rvy_preview_linkspan a:visited, span.rvy_previ
 #pp_revisions_top_bar .button-primary:hover,
 #pp_revisions_top_bar .button-primary:focus,
 #pp_revisions_top_bar .button-primary:active {
-  background-color: #F3AC04;
-  border-color: #C58C07;
-  color: #333;
+  background-color: #483f6b;
+  border-color: #483f6b;
+  color: #fff;
   text-decoration: none !important;
   text-shadow: none;
+}
+
+#pp_revisions_top_bar .button-primary:focus {
+  box-shadow: inset 0 0 0 1px #fff, 0 0 0 2px #483f6b;
 }
 
 #pp_revisions_top_bar .button {
