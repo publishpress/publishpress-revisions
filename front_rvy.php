@@ -750,12 +750,12 @@ class RevisionaryFront {
 					$('<span class="rvy-preview-caption rvy-preview-caption-compact"></span>').text(compactCaption || fullCaption)
 				);
 
-				var $compare = $previewMessage.find('a[target="_revision_diff"]').addClass('rvy-preview-compare');
+				var $compare = $previewMessage.find('a[target="_revision_diff"]').addClass('rvy-preview-compare components-button is-secondary ppr-purple-button');
 				var $primaryActions = $previewMessage.find('a.rvy-submit-revision, a.rvy-approve-revision, a.button-primary');
 				var $menuActions = $previewMessage.find('a').not($compare).not($primaryActions);
-				var $menuCompare = $compare.clone().removeClass('rvy-preview-compare rvy-preview-link rvy_has_empty_spacing').addClass('rvy-preview-menu-item').attr('role', 'menuitem');
+				var $menuCompare = $compare.clone().removeClass('rvy-preview-compare rvy-preview-link rvy_has_empty_spacing components-button is-secondary ppr-purple-button').addClass('rvy-preview-menu-item').attr('role', 'menuitem');
 				var $menu = $('<span class="rvy-preview-actions"></span>');
-				var $menuButton = $('<button type="button" class="rvy-preview-actions-toggle" aria-expanded="false" aria-label="<?php echo esc_attr__( 'More revision actions', 'revisionary' ); ?>"><span aria-hidden="true">&#9776;</span></button>');
+				var $menuButton = $('<button type="button" class="rvy-preview-actions-toggle" aria-expanded="false" aria-label="<?php echo esc_attr__( 'More revision actions', 'revisionary' ); ?>"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M4 6.5h16v2H4zM4 11h16v2H4zM4 15.5h16v2H4z"></path></svg></button>');
 				var $menuPanel = $('<span class="rvy-preview-actions-menu" role="menu" hidden></span>');
 				var primarySlots = [];
 				var primaryClasses = [];
