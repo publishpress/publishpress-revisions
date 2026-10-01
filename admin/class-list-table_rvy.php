@@ -13,6 +13,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	private $scheduled_only = false;
 	private $scheduled_action_rows = [];
 	private $scheduled_status_counts = [];
+	private $filter_dates = [];
 
 	public function __construct($args = []) {
 		global $wpdb, $revisionary;
@@ -1038,11 +1039,13 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		$request_url = add_query_arg($_REQUEST, rvy_admin_url('admin.php?page=revisionary-q'));		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$request_url = remove_query_arg( 's', $request_url );
+		$filter_url = add_query_arg( 'published_post', $post->ID, $request_url );
 
 		$actions['list_filter'] = sprintf(
 			'<a href="%1$s" title="%2$s" aria-label="%2$s">%3$s</a>',
 
-			add_query_arg('published_post', $post->ID, esc_url($request_url)),
+			esc_url( $filter_url ),
 			/* translators: %s: post title */
 			esc_attr( sprintf( esc_html__( 'View only revisions of %s', 'revisionary' ), '&#8220;' . $post->post_title . '&#8221;' ) ),
 			esc_html__( 'Filter' )
@@ -1142,6 +1145,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		if ( $this->scheduled_only ) {
 			$this->prepare_scheduled_items();
+		} else {
+			$this->filter_dates = $this->filter_dates_from_request( $wp_query->request );
 		}
 		
 		$per_page = $this->get_items_per_page( 'revisions_per_page' );		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
@@ -1211,6 +1216,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		$filtered = [];
+		$this->filter_dates = [];
 		$all_count = 0;
 		$status_sets = ['canceled' => [], 'complete' => [], 'failed' => [], 'pending' => []];
 		foreach ( $candidates as $revision_id => $post ) {
@@ -1227,7 +1233,15 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				$status_sets['pending'][$revision_id] = true;
 			}
 
-			if ( ! $this->scheduled_post_matches_filters( $post, $rows, $search ) ) continue;
+			$matches_without_date = $this->scheduled_post_matches_filters( $post, $rows, $search, true );
+			if ( $matches_without_date && ( ! $requested_status || ! empty( $status_sets[$requested_status][$revision_id] ) ) ) {
+				$date = substr( $post->post_modified, 0, 10 );
+				if ( $date ) {
+					$this->filter_dates[$date] = $date;
+				}
+			}
+
+			if ( ! $matches_without_date || ! $this->scheduled_post_matches_date_filter( $post ) ) continue;
 			$all_count++;
 			if ( $requested_status && empty( $status_sets[$requested_status][$revision_id] ) ) continue;
 
@@ -1271,12 +1285,12 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		return $parent ? $parent->post_type : $post->post_type;
 	}
 
-	private function scheduled_post_matches_filters( $post, $rows, $search ) {
+	private function scheduled_post_matches_filters( $post, $rows, $search, $ignore_date = false ) {
 		if ( ! empty( $_REQUEST['post_type'] ) && sanitize_key( $_REQUEST['post_type'] ) !== $this->scheduled_post_type( $post ) ) return false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['cat'] ) && ! has_category( (int) $_REQUEST['cat'], $post ) ) return false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['author'] ) && (int) $_REQUEST['author'] !== (int) $post->post_author ) return false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['published_post'] ) && (int) $_REQUEST['published_post'] !== $this->scheduled_parent_id( $post ) ) return false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( ! empty( $_REQUEST['modified'] ) && gmdate( 'Y-m-d', (int) $_REQUEST['modified'] ) !== gmdate( 'Y-m-d', strtotime( $post->post_modified_gmt ) ) ) return false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! $ignore_date && ! $this->scheduled_post_matches_date_filter( $post ) ) return false;
 		if ( ! empty( $_REQUEST['post_author'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$parent = get_post( $this->scheduled_parent_id( $post ) );
 			if ( ! $parent || (int) $_REQUEST['post_author'] !== (int) $parent->post_author ) return false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -1287,6 +1301,77 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$haystack .= ' ' . strtolower( $row['ID'] . ' ' . $row['hook'] . ' ' . wp_json_encode( $row['args'] ) );
 		}
 		return false !== strpos( $haystack, $search );
+	}
+
+	private function scheduled_post_matches_date_filter( $post ) {
+		if ( empty( $_REQUEST['modified'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return true;
+		}
+
+		return date( 'Y-m-d', (int) $_REQUEST['modified'] ) === substr( $post->post_modified, 0, 10 ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.NonceVerification.Recommended
+	}
+
+	private function request_without_modified_filter( $request ) {
+		global $wpdb;
+
+		if ( empty( $_REQUEST['modified'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return $request;
+		}
+
+		$date_clause = $wpdb->prepare(
+			" AND DATE($wpdb->posts.post_modified) = %s", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			date( 'Y-m-d', (int) $_REQUEST['modified'] ) // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date, WordPress.Security.NonceVerification.Recommended
+		);
+
+		return str_replace( $date_clause, '', $request );
+	}
+
+	private function revision_ids_from_request( $request, $remove_modified_filter = false ) {
+		global $wpdb;
+
+		if ( $remove_modified_filter ) {
+			$request = $this->request_without_modified_filter( $request );
+		}
+
+		$from_position = stripos( $request, " FROM $wpdb->posts" );
+		if ( false === $from_position ) {
+			return [];
+		}
+
+		$request = "SELECT DISTINCT $wpdb->posts.ID" . substr( $request, $from_position );
+		$request = $this->strip_outer_order_and_limit( $request );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+		return array_map( 'intval', (array) $wpdb->get_col( $request ) );
+	}
+
+	private function filter_dates_from_request( $request ) {
+		global $wpdb;
+
+		$request = $this->request_without_modified_filter( $request );
+		$from_position = stripos( $request, " FROM $wpdb->posts" );
+		if ( false === $from_position ) {
+			return [];
+		}
+
+		$request = "SELECT DISTINCT DATE($wpdb->posts.post_modified)" . substr( $request, $from_position );
+		$request = $this->strip_outer_order_and_limit( $request );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+		$dates = array_filter( (array) $wpdb->get_col( $request ) );
+		$dates = array_values( array_unique( $dates ) );
+		rsort( $dates, SORT_STRING );
+
+		return array_combine( $dates, $dates ) ?: [];
+	}
+
+	private function strip_outer_order_and_limit( $request ) {
+		$order_position = strripos( $request, ' ORDER BY ' );
+		if ( false !== $order_position ) {
+			return substr( $request, 0, $order_position );
+		}
+
+		return preg_replace( '/\s+LIMIT\s+\d+(?:\s*,\s*\d+)?\s*$/i', '', $request );
 	}
 
 	private function sort_scheduled_posts( &$posts ) {
@@ -1767,9 +1852,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		? intval($_REQUEST['modified'])															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		: '';
 
-		$revision_status_csv = implode("','", array_map('sanitize_key', $filter_revision_statuses));
-
-		$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') ORDER BY ID DESC LIMIT 60");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$_dates = array_values( $this->filter_dates );
 		
 		$post_dates = [];
 
