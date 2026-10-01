@@ -1181,6 +1181,18 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 		}
 
+		// The main query includes the selected date. Restore the otherwise eligible
+		// future revisions here so the date menu is based on the same result set,
+		// without being limited to the currently selected date.
+		if ( ! empty( $_REQUEST['modified'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			foreach ( $this->revision_ids_from_request( $wp_query->request, true ) as $revision_id ) {
+				$post = get_post( $revision_id );
+				if ( $post instanceof WP_Post && 'future-revision' === $post->post_mime_type ) {
+					$future_posts[$post->ID] = $post;
+				}
+			}
+		}
+
 		$action_rows = function_exists( 'rvy_scheduled_revision_action_rows' ) ? rvy_scheduled_revision_action_rows() : [];
 		$permitted_parent_ids = [];
 		if ( ! is_content_administrator_rvy() && $this->published_post_ids_query ) {
