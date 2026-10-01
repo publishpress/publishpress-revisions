@@ -427,7 +427,16 @@ class RevisionaryFront {
 
 			$published_url = ($published_post_id) ? get_permalink($published_post_id) : '';
 			$diff_url = rvy_compare_url($revision_id);
-			$queue_url = rvy_admin_url("admin.php?page=revisionary-q&published_post={$published_post_id}&all=1");
+			$queue_page = ( 'future-revision' === $post->post_mime_type )
+				? 'admin.php?page=revisionary-q&post_status=future-revision'
+				: 'admin.php?page=revisionary-q';
+			$queue_url = add_query_arg(
+				[
+					'published_post' => $published_post_id,
+					'all' => 1,
+				],
+				rvy_admin_url( $queue_page )
+			);
 
 			if (((!rvy_get_option('revisor_hide_others_revisions') || current_user_can('list_others_revisions')) && !empty($type_obj) && current_user_can($type_obj->cap->edit_posts)) || current_user_can('read_post', $revision_id)) {
 				if ($published_url) {
