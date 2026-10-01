@@ -1067,7 +1067,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_preview_post_link( $post->ID ),
 					esc_attr__( 'View published post', 'revisionary' ),
-					esc_html__( 'Preview' )
+					esc_html_x( 'Preview', 'verb' )
 				);
 			}
 		}
