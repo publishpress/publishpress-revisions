@@ -1246,9 +1246,16 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 		$uri = (isset($_SERVER['REQUEST_URI'])) ? add_query_arg($_REQUEST, esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) : '';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
+		$post_filter_url = add_query_arg(
+			'origin_post',
+			$item->post_parent,
+			untrailingslashit( site_url( '' ) ) . $uri
+		);
+		$post_filter_url = remove_query_arg( 's', $post_filter_url );
+
 		$actions['post_filter'] = sprintf(
 			'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
-			add_query_arg('origin_post', $item->post_parent, esc_url(untrailingslashit(site_url('')) . $uri )),
+			esc_url( $post_filter_url ),
 			esc_attr__( 'List Revisions of this Post', 'revisionary' ),
 			esc_html__( 'Filter', 'revisionary' )
 		);
