@@ -339,9 +339,24 @@ function rvy_scheduled_revision_action_rows() {
 }
 
 function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
-	if ( empty( $row ) ) return '<span aria-hidden="true">—</span>';
+	if ( empty( $row ) ) {
+		$revision = get_post( $revision_id );
+
+		if ( $revision && ( 'future-revision' === $revision->post_mime_type ) ) {
+			$publication_time = strtotime( $revision->post_date_gmt . ' UTC' );
+
+			if ( $publication_time && ( $publication_time > current_time( 'timestamp', true ) ) ) {
+				return esc_html__( 'Scheduled', 'revisionary' );
+			}
+
+			return esc_html__( 'Missed Schedule', 'revisionary' );
+		}
+
+		return '<span aria-hidden="true">—</span>';
+	}
+	$status_label = ( 'pending' === $row['status_name'] ) ? esc_html__( 'Scheduled', 'revisionary' ) : $row['status'];
 	$table = rvy_get_scheduling_log_table();
-	if ( ! $table ) return esc_html( $row['status'] );
+	if ( ! $table ) return esc_html( $status_label );
 	$modal_id = 'rvy-scheduled-action-' . (int) $row['ID'] . '-' . (int) $revision_id;
 	$log_html = $table->column_log_entries( $row );
 	$log_html = preg_replace( '#^\s*<ol>|</ol>\s*$#', '', $log_html );
@@ -355,7 +370,7 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
 		. '<dt>' . esc_html__( 'Log', 'revisionary' ) . '</dt><dd><div class="rvy-scheduled-action-log">' . $log_html . '</div></dd></dl>';
 	return '<a href="#' . esc_attr( $modal_id ) . '" class="rvy-publication-modal-open rvy-action-status rvy-action-status--' . esc_attr( sanitize_html_class( $row['status_name'] ) ) . '" data-modal="' . esc_attr( $modal_id )
 		. '" title="' . esc_attr__( 'Click to view scheduling log.', 'revisionary' ) . '">'
-		. esc_html( $row['status'] ) . '</a><div id="' . esc_attr( $modal_id ) . '" class="rvy-scheduled-action-modal" title="'
+		. esc_html( $status_label ) . '</a><div id="' . esc_attr( $modal_id ) . '" class="rvy-scheduled-action-modal" title="'
 		. esc_attr__( 'Scheduled Revision Publication', 'revisionary' ) . '" hidden>' . $details . '</div>';
 }
 
