@@ -165,17 +165,19 @@ class RevisionaryAdmin
 		add_action('init', function() { // late execution avoids clash with autoloaders in other plugins
 			global $pagenow;
 
-			if ((
+			$is_review_screen = (
 			('admin.php' == $pagenow)
 			&& isset($_GET['page']) 																		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			&& (in_array($_GET['page'], ['revisionary-q', 'revisionary-settings'], true)							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			|| (
-				defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action']) 							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				&& (false !== strpos(sanitize_key($_REQUEST['action']), 'revisionary'))						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				)
-			) )
-			&& !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')
-			) {
+				&& in_array($_GET['page'], ['revisionary-q', 'revisionary-settings'], true) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			);
+
+			$is_review_ajax = (
+				wp_doing_ajax()
+				&& !empty($_REQUEST['action']) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				&& ('revisionary_action' === sanitize_key($_REQUEST['action'])) //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			);
+
+			if (($is_review_screen || $is_review_ajax) && !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 				if (!class_exists('\PublishPress\WordPressReviews\ReviewsController')) {
 					include_once RVY_ABSPATH . '/lib/vendor/publishpress/wordpress-reviews/ReviewsController.php';
 				}
@@ -262,7 +264,7 @@ class RevisionaryAdmin
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && ('admin.php' == $pagenow) && !empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options'], true) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			wp_enqueue_style('revisionary-pro-settings', plugins_url('', REVISIONARY_PRO_FILE) . '/includes-pro/settings-pro.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
- 	}
+	}
 
 	function fltAdminTitle($admin_title, $title) {
 		$is_scheduled_revisions = !empty($_REQUEST['page'])					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
