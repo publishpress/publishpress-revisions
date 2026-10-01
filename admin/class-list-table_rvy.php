@@ -1794,7 +1794,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					$status_obj = get_post_status_object($k);
 				}
 
-				if (!is_object($status_obj)) {
+				if (!is_object($status_obj) || 'future-revision' === $status_obj->name) {
 					continue;
 				}
 
