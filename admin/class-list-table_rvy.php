@@ -808,10 +808,11 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$arr['categories'] = get_taxonomy('category')->labels->name;
 		}
 
-		if (! empty( $have_scheduled ) 
+		if ( ( ! $this->scheduled_only || ! rvy_get_option( 'scheduled_publish_cron' ) )
+		&& ( ! empty( $have_scheduled )
 		|| $this->scheduled_only
 		|| (!empty($_REQUEST['orderby']) && 'date_sched' == $_REQUEST['orderby']) 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		) {
+		) ) {
 			$arr['date_sched'] = esc_html__('Schedule');
 		}
 
