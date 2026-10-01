@@ -155,7 +155,7 @@ class RvyPostEdit {
             return $preview_caption;
         }
 
-        $preview_caption = esc_html__('Preview');
+        $preview_caption = esc_html_x( 'Preview', 'verb' );
 
         return $preview_caption;
     }
