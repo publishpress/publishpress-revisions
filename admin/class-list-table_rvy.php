@@ -808,10 +808,11 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$arr['categories'] = get_taxonomy('category')->labels->name;
 		}
 
-		if (! empty( $have_scheduled ) 
+		if ( ( ! $this->scheduled_only || ! rvy_get_option( 'scheduled_publish_cron' ) )
+		&& ( ! empty( $have_scheduled )
 		|| $this->scheduled_only
 		|| (!empty($_REQUEST['orderby']) && 'date_sched' == $_REQUEST['orderby']) 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		) {
+		) ) {
 			$arr['date_sched'] = esc_html__('Schedule');
 		}
 
@@ -1177,6 +1178,18 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		foreach ( (array) $wp_query->posts as $post ) {
 			if ( $post instanceof WP_Post && 'future-revision' === $post->post_mime_type ) {
 				$future_posts[$post->ID] = $post;
+			}
+		}
+
+		// The main query includes the selected date. Restore the otherwise eligible
+		// future revisions here so the date menu is based on the same result set,
+		// without being limited to the currently selected date.
+		if ( ! empty( $_REQUEST['modified'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			foreach ( $this->revision_ids_from_request( $wp_query->request, true ) as $revision_id ) {
+				$post = get_post( $revision_id );
+				if ( $post instanceof WP_Post && 'future-revision' === $post->post_mime_type ) {
+					$future_posts[$post->ID] = $post;
+				}
 			}
 		}
 
@@ -1781,7 +1794,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					$status_obj = get_post_status_object($k);
 				}
 
-				if (!is_object($status_obj)) {
+				if (!is_object($status_obj) || 'future-revision' === $status_obj->name) {
 					continue;
 				}
 
