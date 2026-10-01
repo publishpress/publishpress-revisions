@@ -249,6 +249,22 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 		}
 	}
 }
+
+$new_empty_unfiltered = false;
+if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
+	$new_filter_keys = ['s', 'post_type2', 'post_type', 'cat', 'author', 'published_post', 'modified', 'post_author', 'm', 'all'];
+	$new_empty_unfiltered = true;
+	foreach ( $new_filter_keys as $filter_key ) {
+		if ( isset( $_REQUEST[$filter_key] ) && '' !== sanitize_text_field( wp_unslash( $_REQUEST[$filter_key] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$new_empty_unfiltered = false;
+			break;
+		}
+	}
+
+	if ( ! empty( $_REQUEST['post_status'] ) && 'all' !== sanitize_key( $_REQUEST['post_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$new_empty_unfiltered = false;
+	}
+}
 ?>
 
 <form name="bulk-revisions" id="bulk-revisions" method="post" action="">
@@ -273,13 +289,28 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 	<div class="revisionary-scheduled-empty">
 		<div class="revisionary-scheduled-empty-header">
 			<span class="revisionary-scheduled-empty-icon dashicons dashicons-calendar-alt" aria-hidden="true"></span>
-			<h3><?php esc_html_e( 'How to schedule a revision to go live:', 'revisionary' ); ?></h3>
+		<h3><?php esc_html_e( 'About Scheduled Revisions', 'revisionary' ); ?></h3>
 		</div>
+		<p><?php esc_html_e( 'The Scheduled Revisions feature allows you to choose a date and time to publish content updates.', 'revisionary' ); ?></p>
 		<ol>
-			<li><?php esc_html_e( 'Create a new revision of a page', 'revisionary' ); ?></li>
-			<li><?php esc_html_e( 'Update the revision with desired changes', 'revisionary' ); ?></li>
-			<li><?php esc_html_e( 'Select a publishing date in the future', 'revisionary' ); ?></li>
-			<li><?php esc_html_e( 'Click the Schedule Revision button', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Click "Create Revision".', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Make your changes to the post.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Select a publishing date in the future.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Click the "Schedule Revision" button.', 'revisionary' ); ?></li>
+		</ol>
+	</div>
+<?php elseif ( $new_empty_unfiltered ) : ?>
+	<div class="revisionary-scheduled-empty revisionary-new-empty">
+		<div class="revisionary-scheduled-empty-header">
+			<span class="revisionary-scheduled-empty-icon dashicons dashicons-edit-page" aria-hidden="true"></span>
+			<h3><?php esc_html_e( 'About New Revisions', 'revisionary' ); ?></h3>
+		</div>
+		<p><?php esc_html_e( 'The New Revisions feature gives you a safe space to work on content updates.', 'revisionary' ); ?></p>
+		<ol>
+			<li><?php esc_html_e( 'Click "Create Revision".', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Make your changes to the post.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Save your revision.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'When you\'re happy with it, click "Submit Revision". You can then share the revision with other users, or publish the update.', 'revisionary' ); ?></li>
 		</ol>
 	</div>
 <?php else : ?>

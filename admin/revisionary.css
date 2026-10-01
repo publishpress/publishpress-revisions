@@ -1146,7 +1146,7 @@ body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--failed { backg
   clear: both;
   max-width: 560px;
   margin: 24px 0;
-  padding: 32px;
+  padding: 16px 24px 24px 24px;
   border: 1px solid #dcdcde;
   border-radius: 8px;
   background: #fff;
@@ -1176,11 +1176,69 @@ body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--failed { backg
   font-size: 16px;
 }
 
+.revisionary-scheduled-empty a {
+  text-decoration: underline;
+}
+
+.revisionary-scheduled-empty > p {
+  margin: 0 0 16px;
+}
+
 .revisionary-scheduled-empty ol {
   margin: 0;
   padding: 0;
   list-style: none;
   counter-reset: rvy-step;
+}
+
+.revisionary-scheduled-empty ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.revisionary-scheduled-empty ul li {
+  margin-bottom: 10px;
+}
+
+.revisionary-scheduled-empty ul li:last-child {
+  margin-bottom: 0;
+}
+
+.revisionary-past-empty ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.revisionary-past-empty ul li {
+  position: relative;
+  margin: 0;
+  padding: 3px 0 14px 40px;
+}
+
+.revisionary-past-empty ul li:last-child {
+  padding-bottom: 0;
+}
+
+.revisionary-past-empty ul li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #655997;
+}
+
+.revisionary-past-empty ul li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 4px;
+  left: 12px;
+  width: 2px;
+  background: #e5e1f1;
 }
 
 .revisionary-scheduled-empty ol li {
