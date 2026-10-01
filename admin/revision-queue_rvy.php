@@ -269,7 +269,10 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 
 <form name="bulk-revisions" id="bulk-revisions" method="post" action="">
 
-<?php $wp_list_table->search_box( 'Search', 'post' ); ?>
+<div class="revisionary-list-header-controls">
+	<?php $wp_list_table->views(); ?>
+	<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
+</div>
 
 <input type="hidden" name="page" class="post_status_page" value="revisionary-q" />
 
