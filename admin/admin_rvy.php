@@ -28,6 +28,7 @@ class RevisionaryAdmin
 		$script_name = (isset($_SERVER['SCRIPT_NAME'])) ? esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])) : '';
 
 		add_action('admin_head', [$this, 'admin_head']);
+		add_filter('admin_title', [$this, 'fltAdminTitle'], 10, 2);
 		add_filter('admin_body_class', [$this, 'fltAdminBodyClass'], 20);
 		add_action('admin_enqueue_scripts', [$this, 'admin_scripts']);
 		add_action('revisionary_admin_footer', [$this, 'publishpressFooter']);
@@ -262,6 +263,20 @@ class RevisionaryAdmin
 			wp_enqueue_style('revisionary-pro-settings', plugins_url('', REVISIONARY_PRO_FILE) . '/includes-pro/settings-pro.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 		}
  	}
+
+	function fltAdminTitle($admin_title, $title) {
+		$is_scheduled_revisions = !empty($_REQUEST['page'])					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& 'revisionary-q' === sanitize_key($_REQUEST['page'])			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& !empty($_REQUEST['post_status'])								// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& 'future-revision' === sanitize_key($_REQUEST['post_status']); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		if (!$is_scheduled_revisions) {
+			return $admin_title;
+		}
+
+		$scheduled_title = esc_html__('Scheduled Revisions', 'revisionary');
+		return $title ? preg_replace('/^' . preg_quote($title, '/') . '/', $scheduled_title, $admin_title, 1) : $scheduled_title;
+	}
 
 	 function fltAdminBodyClass($classes) {
 
