@@ -151,9 +151,6 @@ jQuery(document).ready( function($) {
 		}, 2000);
 	});
 
-	var rvyIsAutosaveStarted = false;
-	var rvyIsAutosaveDone = false;
-
 	$(document).on('click', 'button.revision-create', function() {
 		if ($('a.revision-create').attr('disabled') || ($('button.revision-create').closest('a').attr('href') != 'javascript:void(0)')) {
 			return;
@@ -171,48 +168,33 @@ jQuery(document).ready( function($) {
 	});
 
 	function rvyCreateOrScheduleRevision(doSchedule) {
-		if (!wp.data.select('core/editor').isEditedPostDirty()) {
+		var continueAfterSave = function() {
 			doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
+		};
+
+		if (!wp.data.select('core/editor').isEditedPostDirty()) {
+			continueAfterSave();
 			return;
 		}
 
-		rvyIsAutosaveStarted = false;
-		rvyIsAutosaveDone = false;
+		var autosaveRequest = wp.data.dispatch('core/editor').autosave();
+		if (autosaveRequest && typeof autosaveRequest.then === 'function') {
+			autosaveRequest.then(continueAfterSave).catch(function() {
+				$('div.rvy-creation-ui').html(rvyObjEdit.errorCaption);
+			});
+			return;
+		}
 
-		wp.data.dispatch('core/editor').autosave();
-
-		var tmrNoAutosave = setTimeout(() => {
-			if (!rvyIsAutosaveStarted) {
-				clearInterval(intAutosaveWatch);
-				doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
+		var autosaveStarted = false;
+		var unsubscribe = wp.data.subscribe(function() {
+			var isAutosaving = wp.data.select('core/editor').isAutosavingPost();
+			if (isAutosaving) {
+				autosaveStarted = true;
+			} else if (autosaveStarted) {
+				unsubscribe();
+				continueAfterSave();
 			}
-		}, 10000);
-
-		var intAutosaveDoneWatch;
-
-		var intAutosaveWatch = setInterval(() => {
-			if (wp.data.select('core/editor').isAutosavingPost()) {
-				rvyIsAutosaveStarted = true; 
-				clearInterval(intAutosaveWatch);
-				clearTimeout(tmrNoAutosave);
-
-				var tmrAutosaveTimeout = setTimeout(() => {
-					if (!rvyIsAutosaveDone) {
-						clearInterval(intAutosaveWatch);
-						doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
-					}
-				}, 10000);
-
-				intAutosaveDoneWatch = setInterval(() => {
-					if (!wp.data.select('core/editor').isAutosavingPost()) {
-						rvyIsAutosaveDone = true;
-						clearInterval(intAutosaveDoneWatch);
-						clearTimeout(tmrAutosaveTimeout);
-						doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
-					}
-				}, 100);
-			}
-		}, 100);
+		});
 	}
 
 	function rvyCreateCopy() {

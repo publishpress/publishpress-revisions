@@ -311,31 +311,43 @@ jQuery(document).ready(function ($) {
         }
     }, 100);
 
-    var redirectCheckSaveDoneInterval = false;
-
 	function rvyDoSubmission() {
        rvySubmitCopy();
     }
 
-	function rvyDoApproval() {
-        setTimeout(
-            function() {
-                var redirectCheckSaveDoneInterval = setInterval(function () {
-                    if (!wp.data.select('core/editor').isSavingPost() || $('div.edit-post-header button.is-saved').length) {
-                        clearInterval(redirectCheckSaveDoneInterval);
+	function rvyWaitForEditorSave(saveRequest) {
+        var waitForIdle = function() {
+            return new Promise(function(resolve) {
+                var editor = wp.data.select('core/editor');
+                if (!editor.isSavingPost() && !editor.isAutosavingPost()) {
+                    resolve();
+                    return;
+                }
 
-                        if (rvyRedirectURL != '') {
-                            setTimeout(
-                                function() {
-                                    window.location.href = rvyRedirectURL;
-                                },
-                                5000
-                            );
-                        }
+                var unsubscribe = wp.data.subscribe(function() {
+                    var currentEditor = wp.data.select('core/editor');
+                    if (!currentEditor.isSavingPost() && !currentEditor.isAutosavingPost()) {
+                        unsubscribe();
+                        resolve();
                     }
-                }, 100);
-            }, 500
-        );
+                });
+            });
+        };
+
+        return saveRequest && typeof saveRequest.then === 'function'
+            ? saveRequest.then(waitForIdle)
+            : waitForIdle();
+	}
+
+	function rvyDoApproval(saveRequest) {
+        rvyWaitForEditorSave(saveRequest).then(function() {
+            if (rvyRedirectURL != '') {
+                window.location.href = rvyRedirectURL;
+            }
+        }).catch(function() {
+            $('button.revision-approve').show();
+            $('div.revision-approving').hide();
+        });
 	}
 
     rvyObjEdit.creationDisabled = false;
@@ -402,6 +414,7 @@ jQuery(document).ready(function ($) {
 		var isSubmission = (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'] == "") && !isApproval && !isDecline;
 		
 		$('button.revision-approve').hide();
+		var saveRequest = null;
 		
 		if (!isSubmission && (isApproval || isDecline || ('future' == rvyObjEdit.currentStatus) || ('future-revision' == rvyObjEdit.currentStatus))) {
             $('div.revision-approving').show().css('display', 'block');
@@ -410,7 +423,7 @@ jQuery(document).ready(function ($) {
 
         if (isApproval) {
             if (wp.data.select('core/editor').isEditedPostDirty()) {
-                wp.data.dispatch('core/editor').savePost();
+                saveRequest = wp.data.dispatch('core/editor').savePost();
             }
 			rvyRedirectURL = $('div.rvy-creation-ui button.rvy-direct-approve').closest('a').attr('href');
 
@@ -434,7 +447,7 @@ jQuery(document).ready(function ($) {
             $('div.revision-submitting .spinner').css('visibility', 'visible');
             rvyDoSubmission();
         } else {
-            rvyDoApproval();
+            rvyDoApproval(saveRequest);
         }
 
         isApproval = null;

@@ -186,8 +186,6 @@ jQuery(document).ready( function($) {
 
             rvyAwaitingSubmission = false;
 
-            clearInterval(tmoSubmit);
-
             if (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL']) {
                 window.location.href = rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'];
                 return false;
@@ -219,18 +217,18 @@ jQuery(document).ready( function($) {
             $('div.rvy-creation-ui').html(rvyObjEdit[rvyObjEdit.currentStatus + 'ErrorCaption']);
         }
 
-        // fallback trigger
-        var tmoSubmit = setInterval(function() {
-            revisionarySubmit();
-        }, 12000);
-
-        $( document ).one( 'after-autosave', function( event, data ) {
-            if ( data.success ) {
-                setInterval(function() {revisionarySubmit();}, 100);
-            }
-        } );
-    
-        wp.autosave.server.triggerSave();
+		if (wp.autosave && wp.autosave.server.postChanged()) {
+			$(document).one('after-autosave', function(event, data) {
+				if (!data || data.success !== false) {
+					revisionarySubmit();
+				} else {
+					$('a.revision-approve').removeAttr('disabled');
+				}
+			});
+			wp.autosave.server.triggerSave();
+		} else {
+			revisionarySubmit();
+		}
 		return false;
     });
     
@@ -244,19 +242,17 @@ jQuery(document).ready( function($) {
         $('a.rvy-direct-approve').attr('disabled', 'disabled');
 
         if (wp.autosave.server.postChanged()) {
+            $(document).one('after-autosave', function(event, data) {
+                if (!data || data.success !== false) {
+                    window.location.href = rvyObjEdit['pendingActionURL'];
+                } else {
+                    $('a.rvy-direct-approve').removeAttr('disabled');
+                }
+            });
             wp.autosave.server.triggerSave();
-            var approvalDelay = 250;
         } else {
-            var approvalDelay = 1;
+            window.location.href = rvyObjEdit['pendingActionURL'];
         }
-        
-        var tmoDirectApproval = setInterval(function() {
-            if (!wp.autosave.server.postChanged()) {
-                window.location.href = rvyObjEdit['pendingActionURL'];
-
-                clearInterval(tmoDirectApproval);
-            }
-        }, approvalDelay);
 
         return false;
     });
