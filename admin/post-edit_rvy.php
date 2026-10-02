@@ -200,8 +200,9 @@ class RvyPostEdit {
 
         if (
         !empty($_REQUEST['rvy_new'])                                                        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        || (!rvy_in_revision_workflow($post) && !wp_is_post_revision($post))
         || (rvy_in_revision_workflow($post) && empty($revisionary->enabled_post_types[$post->post_type]))
-        || (!rvy_in_revision_workflow($post) && empty($revisionary->enabled_post_types_archive[$post->post_type]))
+        || (wp_is_post_revision($post) && empty($revisionary->enabled_post_types_archive[$post->post_type]))
         ) {
             return;
         }
