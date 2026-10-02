@@ -65,6 +65,18 @@ jQuery(document).ready( function($) {
 		return Math.floor(Math.random() * max);
 	}
 
+	function rvyRunAfterAutosave(callback) {
+		$(document).one('after-autosave', function(event, data) {
+			if (!data || data.success !== false) {
+				callback();
+			} else {
+				$('a.revision-create, a.revision-schedule').removeAttr('disabled');
+			}
+		});
+
+		wp.autosave.server.triggerSave();
+	}
+
     $(document).on('click', 'a.revision-create', function() {
 		if ($('a.revision-create').attr('disabled')) {
 			return;
@@ -73,17 +85,7 @@ jQuery(document).ready( function($) {
         $('a.revision-create').attr('disabled', 'disabled');
 
         if (wp.autosave && wp.autosave.server.postChanged()) {
-			var tmoRevisionSubmit = setTimeout(rvyCopyPost, 5000);  // @todo: review
-
-			var intRevisionSubmit = setInterval(function() {
-				if (!wp.autosave.server.postChanged()) {
-					clearTimeout(tmoRevisionSubmit);
-					clearInterval(intRevisionSubmit);
-					rvyCopyPost();
-				}
-			}, 250);
-
-            wp.autosave.server.triggerSave();
+			rvyRunAfterAutosave(rvyCopyPost);
         } else {
 			rvyCopyPost();
         }
@@ -162,17 +164,7 @@ jQuery(document).ready( function($) {
         $('a.revision-schedule').attr('disabled', 'disabled');
 
 		if (wp.autosave && wp.autosave.server.postChanged()) {
-			var tmoRevisionSchedule = setTimeout(rvySchedulePost, 5000);  // @todo: review
-
-			var intRevisionSchedule = setInterval(function() {
-				if (!wp.autosave.server.postChanged()) {
-					clearTimeout(tmoRevisionSchedule);
-					clearInterval(intRevisionSchedule);
-					rvySchedulePost();
-				}
-			}, 250);
-
-            wp.autosave.server.triggerSave();
+			rvyRunAfterAutosave(rvySchedulePost);
         } else {
 			rvySchedulePost();
         }
