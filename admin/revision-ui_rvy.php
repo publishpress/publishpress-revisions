@@ -276,7 +276,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 				$rows .= "<td>$date</td>";
 
 				$rows .= "<td>"
-				. '<a href="' . esc_url($preview_url) . '" title="' . esc_attr( sprintf( esc_html__( 'Preview &#8220;%s&#8221;' ), $revision->post_title ) ) . '" rel="permalink">' . esc_html__( 'Preview' ) . '</a>'
+				. '<a href="' . esc_url($preview_url) . '" title="' . esc_attr( sprintf( esc_html__( 'Preview &#8220;%s&#8221;' ), $revision->post_title ) ) . '" rel="permalink">' . esc_html_x( 'Preview', 'verb' ) . '</a>'
 				. "</td>";
 
 				$rows .= "<td>" . esc_html($name) . "</td>";
