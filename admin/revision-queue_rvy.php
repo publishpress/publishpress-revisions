@@ -69,9 +69,9 @@ $wp_list_table = new $list_table_class(['screen' => 'revisionary-q', 'post_types
 $pagenum = $wp_list_table->get_pagenum();
 
 $parent_file = 'admin.php?page=revisionary-q';																		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-$submenu_file = $scheduled_only
+$submenu_file = $scheduled_only		 // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	? 'admin.php?page=revisionary-q&post_status=future-revision'
-	: 'admin.php?page=revisionary-q'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	: 'admin.php?page=revisionary-q'; 
 
 $wp_list_table->prepare_items();
 
