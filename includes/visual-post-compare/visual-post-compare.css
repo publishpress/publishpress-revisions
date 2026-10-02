@@ -2,6 +2,10 @@
 	margin-right: 20px;
 }
 
+.update-nag {
+	display: none !important;
+}
+
 /* This stylesheet is loaded only on the dedicated Visual Compare screen. The
  * admin footer and its reserved space otherwise make a viewport-fitted canvas
  * force a page-level vertical scrollbar. */
@@ -24,14 +28,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: flex-start;
-	gap: 0;
+	justify-content: space-between;
+	column-gap: 20px;
+	row-gap: 4px;
 	margin: 0 0 0;
 }
 
 .visual-post-compare-screen__header h1 {
 	margin-bottom: 4px;
 	padding-top: 0;
+	white-space: nowrap;
 }
 
 .visual-post-compare-screen__header p {
@@ -249,9 +255,9 @@
 }
 
 .visual-post-compare-revision__attribute-row {
-	display: grid;
-	grid-template-columns: minmax(80px, 0.8fr) minmax(0, 1.2fr);
-	gap: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
 	padding: 12px 16px;
 	border-top: 1px solid #f0f0f0;
 }
@@ -736,6 +742,23 @@ div.visual-post-compare-classic {
 	margin-bottom: 24px;
 }
 
+.visual-post-compare-revision__comparison-mode {
+	display: flex;
+	justify-content: flex-end;
+	margin: 0 0 4px auto;
+	white-space: nowrap;
+}
+
+.visual-post-compare-revision__comparison-mode label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.visual-post-compare-revision__comparison-mode input {
+	margin: 0;
+}
+
 .visual-post-compare-revision__range-wrap {
 	position: relative;
 	height: 20px;
@@ -1079,16 +1102,19 @@ div.visual-post-compare-classic {
 
 .visual-post-compare-revision__title-row {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 16px;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 }
 
 .visual-post-compare-revision__title-row .visual-post-compare-revision__post-title {
+	flex: 1 1 auto;
+	min-width: 0;
 	margin-right: 0;
 }
 
 .visual-post-compare-revision__no-changes {
+	flex: 0 0 auto;
 	margin: 0 !important;
 	padding-top: 4px;
 	padding-bottom: 4px;
@@ -1175,6 +1201,11 @@ div.visual-post-compare-classic {
 	-webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z'/></svg>") left center / 16px no-repeat;
 	mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z'/></svg>") left center / 16px no-repeat;
 }
+.visual-post-compare-fields__integration-link,
+.visual-post-compare-fields__integration-link:hover,
+.visual-post-compare-fields__integration-link:focus {
+	text-decoration: underline;
+}
 .visual-post-compare-fields__promo .pp-pro-badge-banner {
 	display: block;
 	width: max-content;
@@ -1211,7 +1242,6 @@ div.visual-post-compare-classic {
 
 .visual-post-compare-fields__field {
 	padding: 6px 0;
-	border-top: 1px solid #f0f0f1;
 }
 
 .visual-post-compare-fields__label { margin-bottom: 3px; font-weight: 600; }

@@ -17,6 +17,53 @@ final class Visual_Post_Compare {
 	const REST_NS         = 'rvy-visual-compare/v1';
 
 	/**
+	 * Resolve and authorize a Visual Compare object pair.
+	 *
+	 * @param int|WP_Post $revision Revision object or ID.
+	 * @return array|WP_Error
+	 */
+	public static function authorized_comparison( $revision ) {
+		$revision = $revision instanceof \WP_Post ? $revision : get_post( absint( $revision ) );
+		if ( ! $revision ) {
+			return new \WP_Error( 'vpc_invalid_revision', esc_html__( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
+		}
+
+		$current_post_id = wp_is_post_revision( $revision );
+		if ( ! $current_post_id && rvy_in_revision_workflow( $revision ) ) {
+			$current_post_id = rvy_post_id( $revision );
+		}
+		$current_post = $current_post_id ? get_post( $current_post_id ) : null;
+
+		if ( ! $current_post || ! current_user_can( 'read_post', $revision->ID ) || ! current_user_can( 'read_post', $current_post->ID ) ) {
+			return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
+		}
+
+		return array( 'revision' => $revision, 'current_post' => $current_post );
+	}
+
+	/**
+	 * Apply the same mutation gate to REST permissions, button payloads and execution.
+	 */
+	public static function can_apply_revision( $revision ) {
+		$context = self::authorized_comparison( $revision );
+		if ( is_wp_error( $context ) ) {
+			return false;
+		}
+
+		if ( wp_is_post_revision( $context['revision'] ) ) {
+			if ( ! current_user_can( 'edit_post', $context['current_post']->ID ) ) {
+				return false;
+			}
+
+			return ! rvy_get_option( 'revision_restore_require_cap' )
+				|| is_content_administrator_rvy()
+				|| current_user_can( 'restore_revisions' );
+		}
+
+		return (bool) current_user_can( 'approve_revision', $context['revision']->ID );
+	}
+
+	/**
 	 * Defines the reusable comparison sidebar instances.
 	 *
 	 * Each instance accepts post IDs and/or WP_Post objects. Optional sorting and
@@ -151,7 +198,7 @@ final class Visual_Post_Compare {
 	private static function get_comparison_ids() {
 		$revision = isset( $_GET['revision'] ) ? absint( $_GET['revision'] ) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		$post = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;
+		$post = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if (!$post) {
 			if (!$post = wp_is_post_revision($revision)) {
@@ -180,8 +227,11 @@ final class Visual_Post_Compare {
 			wp_die( esc_html( $compare_ids->get_error_message() ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 400 ) );
 		}
 
-		if ( $compare_ids['revision'] && ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
-			wp_die( esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
+		if ( $compare_ids['revision'] ) {
+			$authorized = self::authorized_comparison( $compare_ids['revision'] );
+			if ( is_wp_error( $authorized ) || (int) $authorized['current_post']->ID !== (int) $compare_ids['post'] ) {
+				wp_die( esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
+			}
 		}
 
 		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) ) {
@@ -214,8 +264,8 @@ final class Visual_Post_Compare {
 			return;
 		}
 
-		if (empty($compare_ids['revision']) && !empty($compare_ids['post']) && !empty($_REQUEST['revision_status'])) {
-			$revision_status = sanitize_key($_REQUEST['revision_status']);
+		if (empty($compare_ids['revision']) && !empty($compare_ids['post']) && !empty($_REQUEST['revision_status'])) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$revision_status = sanitize_key($_REQUEST['revision_status']);												// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if (rvy_is_revision_status($revision_status)) {
 				$args = compact('revision_status');
@@ -276,7 +326,7 @@ final class Visual_Post_Compare {
 		wp_enqueue_style( 'dashicons' );
 		$tooltips_enabled = '0' !== (string) get_option( 'rvy_visual_compare_tooltips', '1' );
 		$extra_markers_enabled = '1' === (string) get_option( 'rvy_visual_compare_extra_markers', '0' )
-			|| ( defined( 'REVISIONARY_VC_EXTRA_MARKERS' ) && REVISIONARY_VC_EXTRA_MARKERS && empty($_REQUEST['markerstyle']) );
+			|| ( defined( 'REVISIONARY_VC_EXTRA_MARKERS' ) && REVISIONARY_VC_EXTRA_MARKERS && empty($_REQUEST['markerstyle']) );		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$html_attribute_changes_enabled = '1' === (string) get_option( 'rvy_visual_compare_attrib_changes', '0' )
 			|| defined( 'REVISIONARY_VC_HTML_ATTRIBS' );
 		$tooltip_template = '';
@@ -341,6 +391,7 @@ final class Visual_Post_Compare {
 					'currentPostFirst' => (bool) $current_post_first,
 					'restPath'         => '/' . self::REST_NS . '/comparison',
 					'approveRestPath'  => '/' . self::REST_NS . '/approve',
+					'comparisonModeRestPath' => '/' . self::REST_NS . '/comparison-mode',
 					'styles'           => $styles,
 					'tooltipsEnabled'  => $tooltips_enabled && ! empty( $tooltip_template ),
 					'tooltipTemplate'  => $tooltip_template,
