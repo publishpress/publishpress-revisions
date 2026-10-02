@@ -123,7 +123,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'loadingComparison' => esc_html__('Loading comparison...', 'revisionary'),
 			'revisionApplied' => esc_html__('The target post content has been replaced with the approved content.', 'revisionary'),
 			'classicCompareCaption' => esc_html__('Classic compare screen', 'revisionary'),
-			'settingsURL'	  => current_user_can('manage_options') ? admin_url('admin.php?page=revisionary-settings&ppr_tab=working_copy&ppr_subtab=revision-queue') : '',
+			'settingsURL'	  => current_user_can('manage_options') ? admin_url('admin.php?page=revisionary-settings&ppr_tab=revisions') : '',
 			'settingsCaption' => current_user_can('manage_options') ? esc_html__('Visual comparison settings', 'revisionary') : '',
 		);
 
