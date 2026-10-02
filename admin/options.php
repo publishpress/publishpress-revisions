@@ -1628,8 +1628,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$hint = esc_html__('Caption the button as either "Approve and Publish" or "Approve and Schedule."', 'revisionary');
 		$this->option_checkbox( 'approve_button_verbose', $tab, $section, $hint, '' );
 
-		$this->option_checkbox('show_current_revision_bar', $tab, $section, '', '');
-
 		if (defined('PUBLISHPRESS_VERSION')) {
 			$this->option_checkbox( 'rev_publication_delete_ed_comments', $tab, $section, '', '' );
 		}

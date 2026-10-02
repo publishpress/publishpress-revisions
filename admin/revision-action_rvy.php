@@ -685,11 +685,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		);
 
 		if ( empty( $_REQUEST['rvy_redirect'] ) && ! $scheduled && is_post_type_viewable($type_obj) ) {
-			$redirect = (rvy_get_option('show_current_revision_bar'))
-			? add_query_arg('mark_current_revision', 1, $published_url)
-			: $published_url;
-			
-			$redirect = add_query_arg('rvy_approval', 1, $redirect);
+			$redirect = add_query_arg('rvy_approval', 1, $published_url);
 
 		} elseif ($edit_redirect) {
 			$redirect = add_query_arg( $last_arg, "post.php?post=$revision_id&action=edit" );
