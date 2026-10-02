@@ -2271,7 +2271,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
 						esc_attr__( 'Preview Revision', 'revisionary' ),
-						esc_html__( 'Preview' )
+						esc_html_x( 'Preview', 'verb' )
 					);
 
 					do_action('pp_revisions_post_link_done', $post->ID);
