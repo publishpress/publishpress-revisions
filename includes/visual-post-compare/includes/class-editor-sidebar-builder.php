@@ -21,6 +21,9 @@ final class Visual_Post_Compare_Editor_Sidebar_Builder {
 	 */
 	public static function comparison_sidebars_for_editor( $current_post_id ) {
 		$sidebars = array();
+		if ( ! current_user_can( 'edit_post', $current_post_id ) ) {
+			return $sidebars;
+		}
 
 		foreach ( Visual_Post_Compare::comparison_sidebar_definitions() as $definition ) {
 			$visible_posts = self::readable_comparison_posts( $definition, $current_post_id );
@@ -70,6 +73,10 @@ final class Visual_Post_Compare_Editor_Sidebar_Builder {
 
 		foreach ( $definition['posts'] as $post ) {
 			if ( (int) $post->ID === (int) $current_post_id || ! current_user_can( 'read_post', $post->ID ) ) {
+				continue;
+			}
+			$parent_id = wp_is_post_revision( $post ) ?: ( rvy_in_revision_workflow( $post ) ? rvy_post_id( $post ) : 0 );
+			if ( (int) $parent_id !== (int) $current_post_id ) {
 				continue;
 			}
 			$posts[] = $post;

@@ -4,7 +4,7 @@
 	if (!window.wp) return;
 
 	const { blocks, i18n, richText } = window.wp;
-	const { __ } = i18n;
+	const { __, sprintf } = i18n;
 	const { getFormatType, registerFormatType } = richText;
 	const CLASSIC_DIFF_STYLES = `
 		.visual-post-compare-image-diff--removed {
@@ -243,8 +243,20 @@
 		const previousFormat = classicSemanticFormatName(previous);
 		if (currentFormat && currentFormat === previousFormat) return [];
 		const changes = [];
-		if (previousFormat) changes.push(__('Remove', 'revisionary') + ' ' + previousFormat);
-		if (currentFormat) changes.push(__('Add', 'revisionary') + ' ' + currentFormat);
+		const caption = (action, format) => {
+			if ('remove' === action) {
+				if (format === __('bolding', 'revisionary')) return __('Remove bolding', 'revisionary');
+				if (format === __('italics', 'revisionary')) return __('Remove italics', 'revisionary');
+				if (format === __('underscore', 'revisionary')) return __('Remove underscore', 'revisionary');
+				return __('Remove strikethrough', 'revisionary');
+			}
+			if (format === __('bolding', 'revisionary')) return __('Add bolding', 'revisionary');
+			if (format === __('italics', 'revisionary')) return __('Add italics', 'revisionary');
+			if (format === __('underscore', 'revisionary')) return __('Add underscore', 'revisionary');
+			return __('Add strikethrough', 'revisionary');
+		};
+		if (previousFormat) changes.push(caption('remove', previousFormat));
+		if (currentFormat) changes.push(caption('add', currentFormat));
 		return changes;
 	}
 
@@ -261,7 +273,7 @@
 			return semanticChanges.length
 				? semanticChanges.join('\n')
 				: (classicHtmlAttributeChangesEnabled()
-					? __('Modified html tag:', 'revisionary') + ' ' + current.tagName.toLowerCase()
+					? sprintf(__('Modified HTML tag: %s', 'revisionary'), current.tagName.toLowerCase())
 					: '');
 		}
 		if (current.tagName !== previous.tagName) {
@@ -270,8 +282,11 @@
 			return semanticChanges.length
 				? semanticChanges.join('\n')
 				: (classicHtmlAttributeChangesEnabled()
-					? __('Modified html tag:', 'revisionary') + ' '
-						+ previous.tagName.toLowerCase() + ', ' + current.tagName.toLowerCase()
+					? sprintf(
+						__('Modified HTML tag: %1$s, %2$s', 'revisionary'),
+						previous.tagName.toLowerCase(),
+						current.tagName.toLowerCase()
+					)
 					: '');
 		}
 		const currentAttributes = new Map(Array.from(current.attributes).map((attribute) => [attribute.name, attribute.value]));
@@ -282,7 +297,7 @@
 		if (currentFontSize !== previousFontSize) changes.push(__('Change font size', 'revisionary'));
 		const attributeChangesEnabled = classicHtmlAttributeChangesEnabled();
 		if (!attributeChangesEnabled) {
-			return changes.length ? __('Modify format:', 'revisionary') + '\n ' + changes.join('\n ') : '';
+			return changes.length ? sprintf(__('Modify format:\n %s', 'revisionary'), changes.join('\n ')) : '';
 		}
 		if ((currentAttributes.get('id') || '') !== (previousAttributes.get('id') || '')) {
 			changes.push(__('Change ID', 'revisionary'));
@@ -291,8 +306,8 @@
 		const previousClasses = new Set((previousAttributes.get('class') || '').split(/\s+/).filter(Boolean));
 		const addedClasses = Array.from(currentClasses).filter((className) => !previousClasses.has(className));
 		const removedClasses = Array.from(previousClasses).filter((className) => !currentClasses.has(className));
-		if (addedClasses.length) changes.push(__('Add classes: ', 'revisionary') + addedClasses.join(', '));
-		if (removedClasses.length) changes.push(__('Remove classes: ', 'revisionary') + removedClasses.join(', '));
+		if (addedClasses.length) changes.push(sprintf(__('Add classes: %s', 'revisionary'), addedClasses.join(', ')));
+		if (removedClasses.length) changes.push(sprintf(__('Remove classes: %s', 'revisionary'), removedClasses.join(', ')));
 		if ((current.getAttribute('style') || '').replace(/font-size\s*:[^;]+;?/gi, '')
 			!== (previous.getAttribute('style') || '').replace(/font-size\s*:[^;]+;?/gi, '')) {
 			changes.push(__('Modify style', 'revisionary'));
@@ -304,11 +319,15 @@
 			const previousValue = previousAttributes.get(name);
 			if (currentValue === previousValue) return;
 			const label = name.replace(/[-_:]+/g, ' ').replace(/^./, (character) => character.toUpperCase());
-			changes.push((currentValue === undefined
-				? __('Remove ', 'revisionary')
-				: (previousValue === undefined ? __('Add ', 'revisionary') : __('Change ', 'revisionary'))) + label.toLowerCase());
+			if (currentValue === undefined) {
+				changes.push(sprintf(__('Remove %s', 'revisionary'), label.toLowerCase()));
+			} else if (previousValue === undefined) {
+				changes.push(sprintf(__('Add %s', 'revisionary'), label.toLowerCase()));
+			} else {
+				changes.push(sprintf(__('Change %s', 'revisionary'), label.toLowerCase()));
+			}
 		});
-		return changes.length ? __('Modify format:', 'revisionary') + '\n ' + changes.join('\n ') : '';
+		return changes.length ? sprintf(__('Modify format:\n %s', 'revisionary'), changes.join('\n ')) : '';
 	}
 
 	function structuralElements(template) {
@@ -607,7 +626,15 @@
 					.map((row) => rowMatch.matches.get(row)).find(Boolean);
 				const sectionName = previousRow.parentElement && previousRow.parentElement.tagName.toLowerCase();
 				const section = (sectionName && currentTable.querySelector(sectionName)) || currentTable.tBodies[0] || currentTable;
-				section.insertBefore(removedRow, nextMatchedRow && nextMatchedRow.parentElement === section ? nextMatchedRow : null);
+				const nextAddedRow = currentRows.find((row) =>
+					!rowMatch.usedCurrent.has(row)
+					&& row.parentElement === section
+					&& (!nextMatchedRow || currentRows.indexOf(row) < currentRows.indexOf(nextMatchedRow))
+				);
+				section.insertBefore(
+					removedRow,
+					nextAddedRow || (nextMatchedRow && nextMatchedRow.parentElement === section ? nextMatchedRow : null)
+				);
 				result.marked = true;
 				return;
 			}
@@ -627,7 +654,11 @@
 				);
 				const nextMatchedCell = previousCells.slice(previousCells.indexOf(previousCell) + 1)
 					.map((cell) => cellMatch.matches.get(cell)).find(Boolean);
-				currentRow.insertBefore(removedCell, nextMatchedCell || null);
+				const nextAddedCell = currentCells.find((cell) =>
+					!cellMatch.usedCurrent.has(cell)
+					&& (!nextMatchedCell || currentCells.indexOf(cell) < currentCells.indexOf(nextMatchedCell))
+				);
+				currentRow.insertBefore(removedCell, nextAddedCell || nextMatchedCell || null);
 				result.marked = true;
 			});
 			currentCells.filter((cell) => !cellMatch.usedCurrent.has(cell)).forEach((cell) => {
@@ -684,12 +715,14 @@
 			const previousCell = previousImage.closest('td, th');
 			const matchedCell = previousCell && tableBlend.cellMatches.get(previousCell);
 			if (matchedCell && removedItem.matches('td, th')) {
+				const removedContent = document.createDocumentFragment();
 				Array.from(removedItem.childNodes).forEach((child) => {
 					if (child.nodeType === Node.ELEMENT_NODE) {
 						child.dataset.visualPostCompareSynthesized = 'removed';
 					}
-					matchedCell.appendChild(child);
+					removedContent.appendChild(child);
 				});
+				matchedCell.insertBefore(removedContent, matchedCell.firstChild);
 				marked = true;
 				return;
 			}
@@ -871,7 +904,7 @@
 				const summary = semanticChanges.length
 					? semanticChanges.join('\n')
 					: (classicHtmlAttributeChangesEnabled()
-						? __('Modified html tag:', 'revisionary') + ' ' + element.tagName.toLowerCase()
+						? sprintf(__('Modified HTML tag: %s', 'revisionary'), element.tagName.toLowerCase())
 						: '');
 				if (!summary) return;
 				marked = wrapTextRange(
@@ -1201,7 +1234,7 @@
 				&& previousImages[i].signature === currentImages[j].signature
 			) {
 				result.push({ status: 'unchanged', current: currentImages[j++], previous: previousImages[i++] });
-			} else if (j < currentImages.length && (i >= previousImages.length || table[i][j + 1] >= table[i + 1][j])) {
+			} else if (j < currentImages.length && (i >= previousImages.length || table[i][j + 1] > table[i + 1][j])) {
 				result.push({ status: 'added', current: currentImages[j++] });
 			} else {
 				result.push({ status: 'removed', previous: previousImages[i++] });

@@ -12,6 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Visual_Post_Compare_Dedicated_Payload_Builder {
+	const PAST_COMPARE_USER_OPTION = 'rvy_visual_compare_to_current';
+
+	public static function compare_past_to_current() {
+		$value = get_user_meta( get_current_user_id(), self::PAST_COMPARE_USER_OPTION, true );
+
+		return '' !== $value && '0' !== (string) $value;
+	}
+
 	/**
 	 * Builds the dedicated compare_only comparison set.
 	 *
@@ -20,13 +28,19 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	 * @return array
 	 */
 	public static function build( \WP_Post $revision, $comparison_key = '', $args = [] ) {
+		$authorized = Visual_Post_Compare::authorized_comparison( $revision );
+		if ( is_wp_error( $authorized ) ) {
+			return array();
+		}
+
 		/**
 		 * Filters additional posts available on the compare_only selection slider.
 		 *
 		 * @param array<int|WP_Post> $posts Additional post IDs and/or WP_Post objects.
 		 * @param WP_Post            $revision URL-selected comparison post.
 		 */
-		$arr = (array) apply_filters( 'visual_post_compare_listed_revisions', array(), $revision, $args );
+		$arr    = (array) apply_filters( 'visual_post_compare_listed_revisions', array(), $revision, $args );
+		$listed = array();
 
 		if (!empty($arr['listed'])) {
 			$listed = $arr['listed'];
@@ -51,6 +65,9 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		if (!$current_post = get_post($current_post_id)) {
 			return [];
 		}
+		if ( (int) $authorized['current_post']->ID !== (int) $current_post->ID ) {
+			return array();
+		}
 
 		$active_revision_title = esc_html__('This was an update to a revision which is still in the workflow process.', 'revisionary');
 		$from_revision_title = esc_html__('This was an update to a revision which was published after further editing.', 'revisionary');
@@ -63,29 +80,108 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			if ( ! $post || isset( $seen[ $post->ID ] ) || ! current_user_can( 'read_post', $post->ID ) ) {
 				continue;
 			}
+			$post_parent = wp_is_post_revision( $post ) ?: ( rvy_in_revision_workflow( $post ) ? rvy_post_id( $post ) : 0 );
+			if ( (int) $post_parent !== (int) $current_post->ID ) {
+				continue;
+			}
 
 			$seen[ $post->ID ]  = true;
 			$comparison_posts[] = $post;
 		}
 
-		if (empty($seen[ $post->ID ])) {
+		if (empty($seen[ $revision->ID ])) {
 			$comparison_posts []= $revision;
 		}
 
-		// Core's revisions selector reverses the REST collection visually. Mirror
-		// that behavior here: fixed current post first, then reversed comparison order.
+		$is_past_comparison = (bool) wp_is_post_revision( $revision );
+		$compare_to_current = ! $is_past_comparison || self::compare_past_to_current();
+		$previous_revision  = null;
+		$select_current = ! empty( $args['select_current'] ) && $is_past_comparison && ! $compare_to_current;
+
+		if ( $select_current ) {
+			$previous_revision = self::latest_revision( $current_post_id );
+		} elseif ( $is_past_comparison && ! $compare_to_current ) {
+			$previous_revision = self::previous_revision( $revision, $current_post_id );
+		}
+
+		$comparison_base = $previous_revision ?: $current_post;
 		$slider_posts = array_merge( array( $current_post ), array_reverse( $comparison_posts ) );
-		$slider_data  = array_map( array( __CLASS__, 'post_data' ), $slider_posts );
+		$historical_mode = $is_past_comparison && ! $compare_to_current;
+		$slider_data = $historical_mode
+			? array_map( array( __CLASS__, 'slider_post_data' ), $slider_posts )
+			: array_map( array( __CLASS__, 'post_data' ), $slider_posts );
+		$current_data = self::post_data( $current_post );
 
 		$payload = array(
 			'presentation' => self::presentation_options( $comparison_key, $comparison_posts ),
-			'current'      => self::post_data( $current_post ),
-			'revision'     => self::post_data( $revision ),
+			'current'      => $current_data,
+			'revision'     => $select_current ? $current_data : self::post_data( $revision ),
 			'posts'        => $slider_data,
-			'selectedId'   => (int) $revision->ID,
+			'selectedId'   => $select_current ? (int) $current_post->ID : (int) $revision->ID,
+			'isPastComparison' => $is_past_comparison,
+			'compareToCurrent' => $compare_to_current,
+			'hasPreviousRevision' => (bool) $previous_revision,
+			'isCurrentSelectionComparison' => $select_current,
+			'authorizationRevisionId' => (int) $revision->ID,
 		);
+		if ( $is_past_comparison && ! $compare_to_current && $previous_revision ) {
+			$payload['comparisonBase'] = self::post_data( $comparison_base );
+		}
 
 		return apply_filters( 'visual_post_compare_comparison_payload', $payload, $current_post, $slider_posts );
+	}
+
+	private static function latest_revision( $parent_id ) {
+		global $wpdb;
+		$autosave_pattern = $wpdb->esc_like( $parent_id . '-autosave-' ) . '%';
+
+		$revision_id = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts}
+				WHERE post_type = 'revision'
+				AND post_status = 'inherit'
+				AND post_parent = %d
+				AND post_name NOT LIKE %s
+				ORDER BY post_modified_gmt DESC, ID DESC
+				LIMIT 1",
+				$parent_id,
+				$autosave_pattern
+			)
+		);
+
+		if ( ! $revision_id || ! current_user_can( 'read_post', (int) $revision_id ) ) {
+			return null;
+		}
+
+		return get_post( (int) $revision_id );
+	}
+
+	private static function previous_revision( \WP_Post $revision, $parent_id ) {
+		global $wpdb;
+
+		// Revisions can share a modified timestamp, so the ID is used as a stable
+		// chronological tie-breaker instead of relying on the limited slider set.
+		$previous_id = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts}
+				WHERE post_type = 'revision'
+				AND post_status = 'inherit'
+				AND post_parent = %d
+				AND (post_modified_gmt < %s OR (post_modified_gmt = %s AND ID < %d))
+				ORDER BY post_modified_gmt DESC, ID DESC
+				LIMIT 1",
+				$parent_id,
+				$revision->post_modified_gmt,
+				$revision->post_modified_gmt,
+				$revision->ID
+			)
+		);
+
+		if ( ! $previous_id || ! current_user_can( 'read_post', (int) $previous_id ) ) {
+			return null;
+		}
+
+		return get_post( (int) $previous_id );
 	}
 
 	/**
@@ -130,6 +226,9 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		if ( ! defined( 'PUBLISHPRESS_REVISIONS_PRO_VERSION' ) ) {
 			$presentation['fieldsPromo'] = array(
 				'url' => 'https://publishpress.com/links/revisions-compare',
+				'integrationUrl' => current_user_can( 'manage_options' )
+					? admin_url( 'admin.php?page=revisionary-settings&ppr_tab=ppr-tab-integrations#ppr-tab-integrations' )
+					: '',
 			);
 		}
 
@@ -170,7 +269,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		};
 
 		try {
-			$GLOBALS['post'] = $source_post;
+			$GLOBALS['post'] = $source_post;		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 			add_filter( 'do_shortcode_tag', $context_filter, PHP_INT_MAX, 4 );
 			$processed       = do_shortcode( $content );
 
@@ -180,7 +279,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		} finally {
 			remove_filter( 'do_shortcode_tag', $context_filter, PHP_INT_MAX );
 			if ( $had_global_post ) {
-				$GLOBALS['post'] = $global_post;
+				$GLOBALS['post'] = $global_post;	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 			} else {
 				unset( $GLOBALS['post'] );
 			}
@@ -190,10 +289,11 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	/**
 	 * Serializes one post for the standalone JavaScript application.
 	 *
-	 * @param WP_Post $post Post object.
+	 * @param WP_Post $post            Post object.
+	 * @param bool    $include_content Whether to process and include comparison content.
 	 * @return array
 	 */
-	public static function post_data( \WP_Post $post ) {
+	public static function post_data( \WP_Post $post, $include_content = true ) {
 		$revision_parent_id = wp_is_post_revision($post);
 
 		$author   = get_userdata( $post->post_author );
@@ -207,7 +307,6 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'id'                  => (int) $post->ID,
 			'type'                => $post->post_type,
 			'title'               => (string) $post->post_title,
-			'content'             => self::comparison_content( $post ),
 			'status'			  => $post->post_status,
 			'statusLabel'		  => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($status_obj) && !empty($status_obj->label)) ? (!rvy_get_option('permissions_compat') && rvy_in_revision_workflow($post->ID) ? $mime_type_status_obj->label : $status_obj->label) : $post->post_status),
 			'mimeTypeStatusLabel' => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($mime_type_status_obj) && !empty($mime_type_status_obj->label)) ? $mime_type_status_obj->label : $post->post_mime_type),
@@ -224,7 +323,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
 			'canEdit'             => (bool) $can_edit,
 			'isPastRevision'      => (bool) $revision_parent_id,
-			'canApprove'		  => ($revision_parent_id) ?  (bool) current_user_can( 'edit_post', $revision_parent_id ) : (bool) current_user_can( 'approve_revision', $post->ID ),
+			'canApprove'		  => Visual_Post_Compare::can_apply_revision( $post ),
 			'url'                 => $url ? esc_url_raw( $url ) : '',
 			'viewURL'			  => rvy_in_revision_workflow($post->ID) ? rvy_preview_url($post->ID) : get_permalink($post),
 			'previewURL'          => $revision_parent_id ? esc_url_raw( rvy_preview_url( $post ) ) : '',
@@ -237,6 +336,10 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'revision_action' => '',
 			'approver' => 0,
 		);
+
+		if ( $include_content ) {
+			$_post['content'] = self::comparison_content( $post );
+		}
 
 		if ('inherit' == $post->post_status) {
 			$_post['approveCaption'] = esc_html__('Restore', 'revisionary');
@@ -325,6 +428,25 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		}
 		
 		return $_post;
+	}
+
+	/**
+	 * Serializes only the values needed to render and select a slider item.
+	 * Historical comparisons load the selected revision through REST, so
+	 * processing content, permissions and revision metadata for every slider
+	 * item only delays the response and produces data the browser discards.
+	 *
+	 * @param WP_Post $post Post object.
+	 * @return array
+	 */
+	public static function slider_post_data( \WP_Post $post ) {
+		return array(
+			'id'                  => (int) $post->ID,
+			'sliderModifiedLabel' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
+			'sliderModifiedTitle' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
+			'sliderPostDateLabel' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
+			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
+		);
 	}
 
 	private static function friendly_date( $time, $time_gmt ) {
