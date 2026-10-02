@@ -110,7 +110,6 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 			<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
 		</div>
 		<?php
-		$wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' );
 		$wp_list_table->hidden_input();
 		if ( $past_empty_unfiltered ) :
 			$features_url = add_query_arg(
