@@ -318,7 +318,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 				$rows .= "<td>$date</td>";
 
 				$rows .= "<td>"
-				. '<a href="' . esc_url(site_url("?p={$revision->ID}&amp;mark_current_revision=1")) . '" target="_blank">' . esc_html__( 'Preview' ) . '</a>'
+				. '<a href="' . esc_url(site_url("?p={$revision->ID}&amp;mark_current_revision=1")) . '" target="_blank">' . esc_html_x( 'Preview', 'verb' ) . '</a>'
 				. "</td>";
 
 				$rows .= "<td>" . esc_html($name) . "</td>";
