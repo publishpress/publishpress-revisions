@@ -28,6 +28,27 @@ class RvyPostEdit {
             var rvyNowCaption = "<?php esc_html_e( 'Current Time', 'revisionary' );?>";
             $('#publishing-action #publish').show();
 
+            <?php
+            if (rvy_use_visual_compare() && !empty($post->ID)) {
+                $browse_revisions = wp_get_post_revisions(
+                    $post->ID,
+                    [
+                        'posts_per_page' => 1,
+                        'orderby' => 'date ID',
+                        'order' => 'DESC',
+                    ]
+                );
+                $browse_revision = $browse_revisions ? reset($browse_revisions) : null;
+                if ($browse_revision) {
+                    ?>
+                    $('#revisions .misc-pub-revisions a, .misc-pub-revisions a').filter(function() {
+                        return /(?:^|\/)revision\.php(?:\?|$)/.test(this.href) && String(<?php echo (int) $browse_revision->ID; ?>) === (new URL(this.href, window.location.href)).searchParams.get('revision');
+                    }).attr('href', <?php echo wp_json_encode(rvy_preview_url($browse_revision->ID)); ?>);
+                    <?php
+                }
+            }
+            ?>
+
             <?php if (rvy_get_option('revision_archive_deletion') && (is_content_administrator_rvy() || (current_user_can('delete_post', $post->ID) && current_user_can('restore_revisions')))):
                 $revisions = wp_get_post_revisions( $post->ID );
                 ?>
