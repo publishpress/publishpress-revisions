@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Save a custom field with the post authors' name. Add compatibility to
  * Yoast for using in the custom title, and other 3rd party plugins.
@@ -20,6 +24,7 @@ function _rvy_set_ma_post_authors_custom_field($post_id, $authors)
 	if (empty($authors)) {
 		delete_post_meta($post_id, $metadata);
 	} else {
+		$author_term_ids = [];
 		$names = [];
 
 		foreach ($authors as $author) {
@@ -32,28 +37,31 @@ function _rvy_set_ma_post_authors_custom_field($post_id, $authors)
 				$author = $author->term_id;
 			}
 
-			$taxonomy = (!empty($multiple_authors_addon) && !empty($multiple_authors_addon->coauthor_taxonomy)) 
-			? $multiple_authors_addon->coauthor_taxonomy 
-			: 'author';
-
 			// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 			//$author = Author::get_by_term_id($author);  // this returns an object with term_id property and no name
 
 			// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 			//$author = get_term($author, 'author');	  // 'author' is actually an invalid taxonomy name per WP API
 			
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$author = $wpdb->get_row(
-				$wpdb->prepare(
-					"SELECT * FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id"
-					. " WHERE tt.taxonomy = %s AND t.term_id = %d"
-					, $taxonomy, $author
-				)
-			);
+			$author_term_ids []= $author;
+		}
 
-			if (!empty($author->name)) {
-				$names[] = $author->name;
-			}
+		if ($author_term_ids) {
+			$taxonomy = (!empty($multiple_authors_addon) && !empty($multiple_authors_addon->coauthor_taxonomy)) 
+			? $multiple_authors_addon->coauthor_taxonomy 
+			: 'author';
+
+				$term_id_placeholders = implode( ', ', array_fill( 0, count( $author_term_ids ), '%d' ) );
+
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$names = $wpdb->get_col(
+					$wpdb->prepare(
+						"SELECT name FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id"
+						// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Placeholder list is generated from %d entries for integer term IDs.
+						. " WHERE tt.taxonomy = %s AND t.term_id IN ($term_id_placeholders)",
+						array_merge( [ $taxonomy ], array_map( 'intval', $author_term_ids ) )
+					)
+				);
 		}
 
 		if (!empty($names)) {

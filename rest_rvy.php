@@ -47,13 +47,13 @@ class Revisionary_REST {
 						['WP_REST_Posts_Controller', 'LD_REST_Posts_Gutenberg_Controller']
 					);
 
-					if (!in_array($this->endpoint_class, $compatible_endpoints)) {
+					if (!in_array($this->endpoint_class, $compatible_endpoints, true)) {
 						continue;
 					}
 
 					$this->request = $request;
 
-					$this->is_view_method = in_array( $this->method, array( WP_REST_Server::READABLE, 'GET' ) );
+					$this->is_view_method = in_array( $this->method, array( WP_REST_Server::READABLE, 'GET' ), true );
 
 					$post_id = self::get_id_element( $path );
 								

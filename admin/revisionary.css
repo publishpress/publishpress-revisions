@@ -632,6 +632,49 @@ text-shadow: none;
 margin-top:5px;
 }
 
+body.revisionary #wpbody-content > .pressshack-admin-wrapper {
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+min-height: calc(100vh - 97px);
+width: 99%;
+}
+
+/* Match the native WordPress list-screen heading position. */
+body.revisionary-q #wpbody-content > .pressshack-admin-wrapper,
+body.revisionary-archive #wpbody-content > .pressshack-admin-wrapper {
+margin-top: 10px;
+min-height: calc(100vh - 97px - var(--revisionary-pre-wrapper-height, 0px));
+--revisionary-screen-meta-height: 15px;
+}
+
+body.revisionary-q .pressshack-admin-wrapper > header,
+body.revisionary-archive .pressshack-admin-wrapper > header {
+margin: calc(-1 * var(--revisionary-screen-meta-height, 0px)) 0 0;
+padding: 0;
+}
+
+body.revisionary-q .pressshack-admin-wrapper > header h1,
+body.revisionary-archive .pressshack-admin-wrapper > header h1 {
+margin-top: 0;
+}
+
+/* Preserve the normal heading position, but leave a full gap after admin notices. */
+body.revisionary-q #wpbody-content > div.notice ~ .pressshack-admin-wrapper,
+body.revisionary-archive #wpbody-content > div.notice ~ .pressshack-admin-wrapper {
+margin-top: 20px;
+}
+
+body.revisionary-q #wpbody-content > div.notice ~ .pressshack-admin-wrapper > header,
+body.revisionary-archive #wpbody-content > div.notice ~ .pressshack-admin-wrapper > header {
+margin-top: 0;
+}
+
+body.revisionary .pressshack-admin-wrapper > footer {
+margin-top: auto;
+padding-top: 25px;
+}
+
 div.revision-q .column-author, div.revision-q .column-date, div.revision-q .column-parent, div.revision-q .column-posts {
 width:auto;
 }
@@ -852,6 +895,11 @@ text-decoration: none !important;
 color: black !important;
 }
 
+/* Classic Compare */
+body.revision-php div.revisions-diff table.diff .notice-info {
+background-color: beige;
+}
+
 @media only screen and (max-width: 600px) {
   .pp-version-notice-bold-purple-message {
   width: auto !important;
@@ -1024,5 +1072,365 @@ table th#revision_post_count {
 }
 
 .revision-q .tablenav-pages {
-margin-top: 10px;
+margin-top: 0;
+margin-bottom: 0;
+}
+
+.revisionary-list-header-controls {
+align-items: flex-start;
+display: flex;
+flex-wrap: wrap;
+gap: 8px 16px;
+justify-content: space-between;
+}
+
+.revisionary-list-header-controls .subsubsub {
+float: none;
+flex: 1 1 auto;
+margin: 8px 0 0;
+}
+
+.revisionary-list-header-controls p.search-box {
+float: none;
+flex: 0 0 auto;
+margin: 4px 0 0 auto;
+position: static;
+}
+
+.revisionary-q .tablenav.top p.revisionary-list-responsive-search,
+.revisionary-archive .tablenav.top p.revisionary-list-responsive-search {
+position: static;
+}
+
+.revisionary-q .tablenav-pages,
+.revisionary-archive .tablenav-pages,
+.revision-q .tablenav-pages,
+.revision-archive .tablenav-pages {
+align-items: center;
+display: flex;
+min-height: 30px;
+}
+
+.revisionary-q .tablenav-pages .displaying-num,
+.revisionary-q .tablenav-pages .tablenav-paging-text,
+.revisionary-archive .tablenav-pages .displaying-num,
+.revisionary-archive .tablenav-pages .tablenav-paging-text,
+.revision-q .tablenav-pages .displaying-num,
+.revision-q .tablenav-pages .tablenav-paging-text,
+.revision-archive .tablenav-pages .displaying-num,
+.revision-archive .tablenav-pages .tablenav-paging-text {
+align-items: center;
+column-gap: 4px;
+display: inline-flex;
+line-height: 30px;
+min-height: 30px;
+vertical-align: middle;
+white-space: nowrap;
+}
+
+.revisionary-q #current-page-selector,
+.revisionary-archive #current-page-selector,
+.revision-q #current-page-selector,
+.revision-archive #current-page-selector {
+margin-bottom: 0;
+margin-top: 0;
+vertical-align: middle;
+}
+
+.revisionary-q .tablenav.top p.search-box,
+.revisionary-archive .tablenav.top p.search-box,
+.revision-q .tablenav.top p.search-box,
+.revision-archive .tablenav.top p.search-box {
+float: right;
+margin: 3px 0;
+}
+
+.revisionary-q .tablenav.top,
+.revisionary-archive .tablenav.top {
+align-items: flex-start;
+display: flex;
+flex-wrap: wrap;
+gap: 0;
+height: auto;
+min-height: 30px;
+padding-bottom: 3px;
+padding-top: 3px;
+}
+
+.revisionary-q .tablenav.top > .actions:not(.bulkactions),
+.revisionary-archive .tablenav.top > .actions:not(.bulkactions) {
+display: contents;
+}
+
+.revisionary-q .tablenav.top > .bulkactions,
+.revisionary-archive .tablenav.top > .bulkactions {
+flex: 0 0 auto;
+}
+
+.revisionary-q .tablenav.top > .tablenav-pages,
+.revisionary-archive .tablenav.top > .tablenav-pages {
+flex: 0 0 auto;
+margin-left: auto;
+}
+
+.revisionary-q .tablenav.top > br.clear,
+.revisionary-archive .tablenav.top > br.clear {
+display: none;
+}
+
+.revisionary-q .tablenav.top .actions,
+.revisionary-archive .tablenav.top .actions,
+.revisionary-q p.search-box,
+.revisionary-archive p.search-box {
+margin-bottom: 3px;
+margin-top: 0;
+}
+
+.revisionary-q .tablenav.top .actions select,
+.revisionary-q .tablenav.top .actions .button,
+.revisionary-archive .tablenav.top .actions select,
+.revisionary-archive .tablenav.top .actions .button {
+margin-bottom: 3px !important;
+margin-top: 3px !important;
+vertical-align: middle;
+}
+
+.revisionary-archive #post-query-submit {
+margin-top: 3px;
+}
+
+.revisionary-q #doaction {
+margin-top: 3px;
+}
+
+/* Scheduled Revisions: table cells */
+.rvy-scheduled-queue .wp-list-table td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.rvy-scheduled-queue .column-date_sched strong.error-message {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #fcf0f1;
+  color: #b32d2e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rvy-sched-relative {
+  display: block;
+  margin-top: 3px;
+  color: #646970;
+  font-size: 12px;
+}
+
+.rvy-sched-relative--soon {
+  color: #135e96;
+  font-weight: 600;
+}
+
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #f0f0f1;
+  color: #50575e;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.rvy-action-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status:hover,
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status:focus {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--pending { background: #f0f6fc; color: #135e96; }
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--in-progress { background: #fcf9e8; color: #8a6116; }
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--complete { background: #edfaef; color: #007017; }
+body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--failed { background: #fcf0f1; color: #b32d2e; }
+
+/* Scheduled Revisions: empty state */
+.revisionary-scheduled-empty {
+  clear: both;
+  max-width: 560px;
+  margin: 24px 0;
+  padding: 16px 24px 24px 24px;
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.revisionary-scheduled-empty-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.revisionary-scheduled-empty-icon.dashicons {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f1eff8;
+  color: #655997;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+}
+
+.revisionary-scheduled-empty h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.revisionary-scheduled-empty a {
+  text-decoration: underline;
+}
+
+.revisionary-scheduled-empty > p {
+  margin: 0 0 16px;
+}
+
+.revisionary-scheduled-empty ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rvy-step;
+}
+
+.revisionary-scheduled-empty ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.revisionary-scheduled-empty ul li {
+  margin-bottom: 10px;
+}
+
+.revisionary-scheduled-empty ul li:last-child {
+  margin-bottom: 0;
+}
+
+.revisionary-past-empty ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.revisionary-past-empty ul li {
+  position: relative;
+  margin: 0;
+  padding: 3px 0 14px 40px;
+}
+
+.revisionary-past-empty ul li:last-child {
+  padding-bottom: 0;
+}
+
+.revisionary-past-empty ul li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #655997;
+}
+
+.revisionary-past-empty ul li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 4px;
+  left: 12px;
+  width: 2px;
+  background: #e5e1f1;
+}
+
+.revisionary-scheduled-empty ol li {
+  position: relative;
+  margin: 0;
+  padding: 3px 0 14px 40px;
+  counter-increment: rvy-step;
+}
+
+.revisionary-scheduled-empty ol li:last-child {
+  padding-bottom: 0;
+}
+
+.revisionary-scheduled-empty ol li::before {
+  content: counter(rvy-step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #655997;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+}
+
+.revisionary-scheduled-empty ol li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 4px;
+  left: 12px;
+  width: 2px;
+  background: #e5e1f1;
+}
+
+@media screen and (max-width: 782px) {
+  .revisionary-q .wp-list-table .toggle-row,
+  .revisionary-archive .wp-list-table .toggle-row {
+    border: none;
+  }
+
+  .revisionary-archive .wp-list-table th.column-post_title {
+    box-sizing: border-box;
+    display: block;
+    float: none;
+    padding-right: 50px;
+    position: relative;
+    width: 100% !important;
+  }
+
+  .revisionary-archive .wp-list-table .toggle-row {
+    left: auto;
+    margin: 0;
+    right: 8px;
+  }
+
+  .revisionary-archive .wp-list-table tr.is-expanded td {
+    clear: both;
+    float: none;
+    width: 100% !important;
+  }
+
+  .revisionary-archive .wp-list-table tr.is-expanded td.column-origin_post_type {
+    clear: both;
+    display: block !important;
+  }
 }

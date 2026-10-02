@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 require_once(__DIR__ . '/rvy_init-functions.php');
 
 function revisionary() {
@@ -126,11 +130,6 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
  * @return void
  */
 function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
-
-    if (!rvy_get_option('enable_postmeta_revision')) {
-        return;
-    }
-
     $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
@@ -154,7 +153,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
         $meta_keys = [];
         foreach ( $source_meta_keys as $meta_key ) {
-            if (!in_array($meta_key, $meta_excludelist)
+            if (!in_array($meta_key, $meta_excludelist, true)
             && !preg_match( '#^' . $meta_excludelist_string . '$#', $meta_key ) 
             ) {
                 $meta_keys[] = $meta_key;
@@ -194,7 +193,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
     foreach ( $meta_keys as $meta_key ) {
         if ($empty_target_only && !empty($target_meta_keys) && is_array($target_meta_keys)) {
-            if (in_array($meta_key, $target_meta_keys)) {
+            if (in_array($meta_key, $target_meta_keys, true)) {
                 continue;
             }
         }
@@ -224,7 +223,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         }
         
         foreach($delete_meta_keys as $meta_key) {
-            if (in_array($meta_key, $deletable_keys) || !empty($args['apply_deletions']) || defined('PP_REVISIONS_APPLY_POSTMETA_DELETION')) {
+            if (in_array($meta_key, $deletable_keys, true) || !empty($args['apply_deletions']) || defined('PP_REVISIONS_APPLY_POSTMETA_DELETION')) {
                 delete_post_meta($to_post_id, $meta_key);
             }
         }
@@ -296,7 +295,7 @@ function rvy_revision_statuses($args = []) {
 }
 
 function rvy_is_revision_status($post_status) {
-	return in_array($post_status, rvy_revision_statuses());
+	return in_array($post_status, rvy_revision_statuses(), true);
 }
 
 function rvy_in_revision_workflow($post, $args = []) {
@@ -333,7 +332,7 @@ function rvy_from_revision_workflow($post, $args=[]) {
 function rvy_status_revisions_active($post_type = '') {
     if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && class_exists('PublishPress_Statuses')) {
         if ($post_type) {
-            $status_revisions_active = in_array($post_type, \PublishPress_Statuses::getEnabledPostTypes());
+            $status_revisions_active = in_array($post_type, \PublishPress_Statuses::getEnabledPostTypes(), true);
         } else {
             $status_revisions_active = true;
         }
@@ -488,18 +487,36 @@ function publishpress_get_revision_info($post) {
             $status_label = $status_name;
         }
 
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = sprintf(
+                esc_html__('Autosave of %s', 'revisionary'),
+                "<span title='$this->active_revision_title'>" . $status_label . '</span>'
+            );
+        } else {
         $arr['publish_method'] = sprintf(
             esc_html__('Edit of %s', 'revisionary'),
             "<span title='$this->active_revision_title'>" . $status_label . '</span>'
         );
+        }
 
     } elseif (!empty($parent_from_revision_workflow)) {
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = sprintf("<span title='%s'>%s</span>",
+                $from_revision_title,
+                esc_html__('Autosave of published Revision', 'revisionary')
+            );
+        } else {
         $arr['publish_method'] = sprintf("<span title='%s'>%s</span>",
             $from_revision_title,
             esc_html__('Edit of published Revision', 'revisionary')
         );
+        }
     } elseif (!empty($direct_edit)) {
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = esc_html__('Autosave', 'revisionary');
+        } else {
         $arr['publish_method'] = esc_html__('Direct Edit', 'revisionary');
+        }
     }
 
     if (!empty($direct_edit)) {
@@ -603,14 +620,6 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
         update_option('revisionary_pro_restore_notifications', true);
     }
 
-    if (version_compare($last_ver, '3.0.12-rc4', '<')) {
-        global $wp_version;
-
-        if (class_exists('WpeCommon') || version_compare($wp_version, '5.9', '>=')) {
-            update_option('rvy_scheduled_publish_cron', 1);  // trigger generation of cron schedules for existing scheduled revisions
-        }
-    }
-
     if (version_compare($last_ver, '3.8.2', '<')) {
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $wpdb->query( 
@@ -707,7 +716,7 @@ function pp_revisions_get_revision_statuses() {
         $stored_statuses = get_terms(['taxonomy' => 'pp_revision_status', 'hide_empty' => false]);
 
         foreach ($stored_statuses as $status) {
-            if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
+            if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses, true)) {
                 $revision_statuses[] = $status->slug;
             }
         }
@@ -750,7 +759,7 @@ function rvy_bulk_apply_revision_statuses() {
     $stored_statuses = get_terms(['taxonomy' => 'pp_revision_status', 'hide_empty' => false]);
 
     foreach ($stored_statuses as $status) {
-        if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses)) {
+        if (is_object($status) && property_exists($status, 'slug') && !in_array($status->slug, $revision_statuses, true)) {
             $revision_statuses[] = $status->slug;
         }
     }
@@ -766,14 +775,7 @@ function pp_revisions_plugin_activation() {
     // force this timestamp to be regenerated, in case something went wrong before
     delete_option( 'rvy_next_rev_publish_gmt' );
 
-    if (!class_exists('RevisionaryActivation')) {
-        require_once(dirname(__FILE__).'/activation_rvy.php');
-    }
-
     require_once(dirname(__FILE__).'/functions.php');
-
-    // import from Revisionary 1.x
-    new RevisionaryActivation(['import_legacy' => true]);
 
     if (!defined('REVISIONARY_DISABLE_ACTIVATION_TRASH_QUERY')) {
         $revision_status_csv = implode("','", array_map('sanitize_key', pp_revisions_get_revision_statuses()));

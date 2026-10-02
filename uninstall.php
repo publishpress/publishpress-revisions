@@ -1,4 +1,8 @@
 <?php
+if (!defined('WP_UNINSTALL_PLUGIN')) {
+    exit;
+}
+
 if (get_option('rvy_delete_settings_on_uninstall')) {
     global $wpdb;
 
@@ -13,12 +17,12 @@ if (get_option('rvy_delete_settings_on_uninstall')) {
     $_plugins = get_plugins();
     
     foreach($_plugins as $_plugin) {
-        if (!empty($_plugin['Title']) && in_array($_plugin['Title'], ['PublishPress Revisions', 'PublishPress Revisions Pro'])) {
+        if (!empty($_plugin['Title']) && in_array($_plugin['Title'], ['PublishPress Revisions', 'PublishPress Revisions Pro'], true)) {
             $revisions_plugin_count++;
         }
     }
     
-    if ($revisions_plugin_count === 1) {
+    if (1 === $revisions_plugin_count) {
         $orig_site_id = get_current_blog_id();
         
         $site_ids = (function_exists('get_sites')) ? get_sites(['fields' => 'ids']) : (array) $orig_site_id;
@@ -31,10 +35,7 @@ if (get_option('rvy_delete_settings_on_uninstall')) {
             }
 
             if (!empty($wpdb->options)) {
-                @$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE 'rvy_%'");
-                @$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_rvy_%'");
-                @$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '%_rvy'");
-                @$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '%revisionary_%'");
+                @$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE 'rvy_%' OR option_name LIKE '_rvy_%' OR option_name LIKE '%_rvy' OR option_name LIKE '%revisionary_%'");
             }
 
             delete_option('revisionary_last_version');

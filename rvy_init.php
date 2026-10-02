@@ -1,10 +1,32 @@
 <?php
-if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 require_once( dirname(__FILE__).'/rvy_init-functions.php');
 
+if ( is_admin() ) {
+	require_once( dirname(__FILE__).'/admin/action-scheduler_rvy.php');
+}
+
 add_action('init', 'rvy_status_registrations', 40);
+
+add_filter(
+	'ppcart_post_types',
+	function ($post_types_args) {
+		foreach (array_keys($post_types_args) as $k) {
+			if (isset($post_types_args[$k]['cpt_name']) && ('ppcart_product' == $post_types_args[$k]['cpt_name'])) {
+				if (isset($post_types_args[$k]['supports']) 
+				&& is_array($post_types_args[$k]['supports']) && !in_array('revisions', $post_types_args[$k]['supports'])
+				) {
+					$post_types_args[$k]['supports'][] = 'revisions';
+				}
+			}
+		}
+
+		return $post_types_args;
+	}
+);
 
 add_filter(
 	'rank_math/excluded_post_types',
@@ -45,7 +67,7 @@ if (('preview' != RVY_PREVIEW_ARG) && !empty($_REQUEST['preview']) && !empty($_R
 	$url = $arr['scheme'] . '://' . $arr['host'] . $url;
 
 	$url = str_replace('preview=', RVY_PREVIEW_ARG . '=', $url);
-	wp_redirect($url);
+	wp_safe_redirect($url);
 	exit;
 }
 
@@ -63,7 +85,8 @@ add_filter('cron_schedules', 'rvy_mail_buffer_cron_interval');			// phpcs:ignore
 // wp-cron hook
 add_action('publish_revision_rvy', '_revisionary_publish_scheduled_cron');
 
-add_action("update_option_rvy_scheduled_publish_cron", '_rvy_existing_schedules_to_cron', 10, 2);
+// Action Scheduler hook
+add_action('publish_revision_rvy_action_scheduler', '_revisionary_action_scheduler_publish_scheduled');
 
 add_action('before_delete_post', 
 	function($delete_post_id) {
@@ -162,6 +185,17 @@ if (-1 === get_option('rvy_use_publishpress_notifications', -1)) {
 	}
 }
 
+if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
+	// Previously, enabling WooCommerce Product past revisions caused postmeta to be archived for all post types
+	if (!$last_ver || version_compare($last_ver, '4.0.3-rc.0.27', '<')) {
+		$arr = get_option('rvy_enabled_post_types_archive');
+
+		if (is_array($arr) && !empty($arr['product'])) {
+			update_option('rvy_archive_postmeta_on_edit', 1);
+		}
+	}
+}
+
 // Revision Edit in Gutenberg: Enable non-Editors to set requested publish date
 add_action('init', function() {
 	global $revisionary;
@@ -199,4 +233,3 @@ if (defined('WPSEO_VERSION')) {
 foreach(['revisions_per_page', 'revision_archive_per_page'] as $option_val) {
 	add_filter("set_screen_option_{$option_val}", function($screen_option, $option, $value ) {return $value;}, 99, 3);
 }
-

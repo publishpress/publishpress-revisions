@@ -35,8 +35,8 @@ class PostEditorWorkflowUI {
             'saveRevisionTooltip' =>  htmlEntities(
                 rvy_get_admin_notice(
                     $revisionary->admin->tooltipText(
-                        __('Save changes to continue.', 'revisionary'),
-                        __('Please save changes to the revision before submitting it.', 'revisionary'),
+                        esc_html__('Save changes to continue.', 'revisionary'),
+                        esc_html__('Please save changes to the revision before submitting it.', 'revisionary'),
                         false
                     ),
                     ['type' => 'info', 'additional_classes' => ['rvy-save-revision-tip']]
@@ -129,16 +129,16 @@ class PostEditorWorkflowUI {
         $vars['revisionActionNonce'] = wp_create_nonce($vars['draftAjaxField']);
 
         if ($can_publish) {
-            $vars['approveCaption'] = rvy_get_option('approve_button_verbose') ? __('Approve and Publish', 'revisionary') : pp_revisions_status_label('pending-revision', 'approve');
+            $vars['approveCaption'] = rvy_get_option('approve_button_verbose') ? esc_html__('Approve and Publish', 'revisionary') : pp_revisions_status_label('pending-revision', 'approve');
         } else {
             $vars['approveCaption'] = '';
         }
 
-        $vars['approvingCaption'] = __('Update in progress...', 'revisionary');
+        $vars['approvingCaption'] = esc_html__('Update in progress...', 'revisionary');
 
         if ($block_editor) {
             if ($can_publish) {
-                $vars['scheduleCaption'] = rvy_get_option('approve_button_verbose') ? __('Approve and Schedule', 'revisionary') : pp_revisions_status_label('future-revision', 'submit');
+                $vars['scheduleCaption'] = rvy_get_option('approve_button_verbose') ? esc_html__('Approve and Schedule', 'revisionary') : pp_revisions_status_label('future-revision', 'submit');
             } else {
                 $vars['scheduleCaption'] = '';
             }

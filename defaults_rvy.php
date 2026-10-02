@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * @package     PublishPress\Revisions\RevisionaryOptions
@@ -23,6 +24,9 @@ function rvy_default_options_sitewide() {
 		'revise_posts_capability' => true,
 		'scheduled_revisions' => true,
 		'scheduled_publish_cron' => true,
+		'legacy_cron_publication' => true,
+		'legacy_cron_rescheduling' => true,
+		'legacy_scheduled_publication' => true,
 		'async_scheduled_publish' => true,
 		'wp_cron_usage_detected' => false,
 		'pending_rev_notify_admin' => true,
@@ -58,7 +62,6 @@ function rvy_default_options_sitewide() {
 		'copy_revision_comments_to_post' => true,
 		'past_revisions_order_by' => true,
 		'view_filters_include_unsubmitted_revisions' => true,
-		'show_current_revision_bar' => true,
 		'rev_publication_delete_ed_comments' => true,
 		'deletion_queue' => true,
 		'revision_archive_deletion' => true,
@@ -69,6 +72,7 @@ function rvy_default_options_sitewide() {
 		'permissions_compat_mode' => true,
 		'planner_notifications_access_limited' => false,
 		'archive_postmeta' => true,
+		'archive_postmeta_on_edit' => true,
 		'extended_archive' => true,
 		'delete_settings_on_uninstall' => true,
 		'apply_post_exceptions' => true,
@@ -85,6 +89,7 @@ function rvy_default_options_sitewide() {
 		'admin_menu_pending_count_icon' => true,
 		'approve_capability' => true,
 		'visual_compare' => true,
+		'rvy_compare_other_internal_fields' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -106,7 +111,10 @@ function rvy_default_options() {
 		'auto_submit_revisions' => 0,
 		'revise_posts_capability' => 0,
 		'scheduled_revisions' => 1,
-		'scheduled_publish_cron' => 1,
+		'scheduled_publish_cron' => 0,
+		'legacy_cron_publication' => 1,
+		'legacy_cron_rescheduling' => 0,
+		'legacy_scheduled_publication' => 0,
 		'async_scheduled_publish' => 1,
 		'wp_cron_usage_detected' => 0,
 		'pending_rev_notify_admin' => 1,
@@ -142,7 +150,6 @@ function rvy_default_options() {
 		'copy_revision_comments_to_post' => 0,
 		'past_revisions_order_by' => '',
 		'view_filters_include_unsubmitted_revisions' => 1,
-		'show_current_revision_bar' => 0,
 		'rev_publication_delete_ed_comments' => 0,
 		'deletion_queue' => 0,
 		'revision_archive_deletion' => 0,
@@ -152,7 +159,8 @@ function rvy_default_options() {
 		'revision_limit_compat_mode' => 0,
 		'permissions_compat_mode' => 0,
 		'planner_notifications_access_limited' => 0,
-		'archive_postmeta' => 0,
+		'archive_postmeta' => 1,
+        'archive_postmeta_on_edit' => 1,
 		'extended_archive' => 0,
 		'delete_settings_on_uninstall' => 0,
 		'apply_post_exceptions' => 0,
@@ -169,6 +177,7 @@ function rvy_default_options() {
 		'admin_menu_pending_count_icon' => 0,
 		'approve_capability' => defined('REVISIONARY_REQUIRE_APPROVE_CAP') && REVISIONARY_REQUIRE_APPROVE_CAP,
 		'visual_compare' => 1,
+		'rvy_compare_other_internal_fields' => 1,
 	);
 
 	return $def;

@@ -38,7 +38,7 @@ class PP_Revisions_Compat {
             function($caps, $cap, $user_id, $args) {
                 global $current_user;
 
-                if (in_array($cap, ['edit_post', 'edit_page'])) {
+                if (in_array($cap, ['edit_post', 'edit_page'], true)) {
                     $args = (array)$args;
                     $post_id = (isset($args[0]) && !is_object($args[0])) ? intval($args[0]) : 0;
 

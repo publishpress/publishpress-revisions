@@ -1,6 +1,7 @@
 <?php
-if (isset($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /*
  * Post Edit UI: main post (not revision) editor filters which apply for both Gutenberg and Classic Editor

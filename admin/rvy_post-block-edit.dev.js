@@ -1,7 +1,7 @@
 /**
 * Block Editor Modifications
 *
-* Copyright 2021, PublishPress
+* Copyright 2026, PublishPress
 */
 
 jQuery(document).ready( function($) {
@@ -27,7 +27,16 @@ jQuery(document).ready( function($) {
 
 	var rvyIsPublished = false;
 
+	var RvyIsNativeRevisionComparison = function() {
+		return !!document.querySelector('.editor-revisions-header');
+	};
+
 	var RvySubmissionUI = function() {
+		if (RvyIsNativeRevisionComparison()) {
+			$('div.rvy-creation-ui').remove();
+			return;
+		}
+
 		if (rvyObjEdit.ajaxurl && !$('button.revision-approve').length) {
 			var style = (rvyObjEdit.actionCaption == '') ? ' style="display:none"' : '';
 
@@ -142,63 +151,57 @@ jQuery(document).ready( function($) {
 		}, 2000);
 	});
 
-	var rvyIsAutosaveStarted = false;
-	var rvyIsAutosaveDone = false;
-
 	$(document).on('click', 'button.revision-create', function() {
 		if ($('a.revision-create').attr('disabled') || ($('button.revision-create').closest('a').attr('href') != 'javascript:void(0)')) {
 			return;
 		}
 
+		rvyCreateOrScheduleRevision(false)
+	});
+
+	$(document).on('click', 'button.revision-schedule', function() {
+		if ($('a.revision-schedule').attr('disabled')) {
+			return;
+		}
+		
+		rvyCreateOrScheduleRevision(true)
+	});
+
+	function rvyCreateOrScheduleRevision(doSchedule) {
+		var continueAfterSave = function() {
+			doSchedule ? rvyScheduleRevision() : rvyCreateCopy();
+		};
+
+		if (!wp.data.select('core/editor').isEditedPostDirty()) {
+			continueAfterSave();
+			return;
+		}
+
+		var autosaveRequest = wp.data.dispatch('core/editor').autosave();
+		if (autosaveRequest && typeof autosaveRequest.then === 'function') {
+			autosaveRequest.then(continueAfterSave).catch(function() {
+				$('div.rvy-creation-ui').html(rvyObjEdit.errorCaption);
+			});
+			return;
+		}
+
+		var autosaveStarted = false;
+		var unsubscribe = wp.data.subscribe(function() {
+			var isAutosaving = wp.data.select('core/editor').isAutosavingPost();
+			if (isAutosaving) {
+				autosaveStarted = true;
+			} else if (autosaveStarted) {
+				unsubscribe();
+				continueAfterSave();
+			}
+		});
+	}
+
+	function rvyCreateCopy() {
 		$('button.revision-create').hide().parent().hide();
 		$('div.revision-creating').show();
 		$('div.revision-creating span.ppr-submission-spinner').css('visibility', 'visible');
 
-		if (!wp.data.select('core/editor').isEditedPostDirty()) {
-			rvyCreateCopy();
-			return;
-		}
-
-		rvyIsAutosaveStarted = false;
-		rvyIsAutosaveDone = false;
-
-		wp.data.dispatch('core/editor').autosave();
-
-		var tmrNoAutosave = setTimeout(() => {
-			if (!rvyIsAutosaveStarted) {
-				clearInterval(intAutosaveWatch);
-				rvyCreateCopy();
-			}
-		}, 10000);
-
-		var intAutosaveDoneWatch;
-
-		var intAutosaveWatch = setInterval(() => {
-			if (wp.data.select('core/editor').isAutosavingPost()) {
-				rvyIsAutosaveStarted = true; 
-				clearInterval(intAutosaveWatch);
-				clearTimeout(tmrNoAutosave);
-
-				var tmrAutosaveTimeout = setTimeout(() => {
-					if (!rvyIsAutosaveDone) {
-						clearInterval(intAutosaveWatch);
-						rvyCreateCopy();
-					}
-				}, 10000);
-
-				intAutosaveDoneWatch = setInterval(() => {
-					if (!wp.data.select('core/editor').isAutosavingPost()) {
-						rvyIsAutosaveDone = true;
-						clearInterval(intAutosaveDoneWatch);
-						clearTimeout(tmrAutosaveTimeout);
-						rvyCreateCopy();
-					}
-				}, 100);
-			}
-		}, 100);
-	});
-
-	function rvyCreateCopy() {
 		var revisionaryCreateDone = function () {
 			$('.revision-create').hide();
 			$('.revision-creating').hide();
@@ -230,11 +233,7 @@ jQuery(document).ready( function($) {
 		});
 	}
 
-	$(document).on('click', 'button.revision-schedule', function() {
-		if ($('a.revision-schedule').attr('disabled')) {
-			return;
-		}
-
+	function rvyScheduleRevision() {
 		$('button.revision-schedule').hide();
 
 		$('div.revision-creating').show();
@@ -244,8 +243,8 @@ jQuery(document).ready( function($) {
 			$('div.revision-creating').hide();
 			$('div.revision-scheduled').show();
 
-			$('button.revision-scheduled a.revision-preview').attr('href', rvyObjEdit.scheduledURL);
-			$('button.revision-scheduled a.revision-edit').attr('href', rvyObjEdit.scheduledEditURL);
+			$('div.revision-scheduled a.revision-preview').attr('href', rvyObjEdit.scheduledURL);
+			$('div.revision-scheduled a.revision-edit').attr('href', rvyObjEdit.scheduledEditURL);
 
 			wp.data.dispatch('core/editor').editPost({date: wp.data.select('core/editor').getCurrentPostAttribute('date')});
 		}
@@ -263,7 +262,7 @@ jQuery(document).ready( function($) {
 			success: revisionaryScheduleDone,
 			error: revisionaryScheduleError
 		});
-	});
+	}
 
 	/**
 	 *  If date is set to future, change Publish button caption to "Schedule Revision",
