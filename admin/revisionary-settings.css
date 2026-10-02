@@ -235,7 +235,7 @@ body.revisionary-settings #side-info-column {
   cursor: pointer;
   transition: all 0.2s;
   border: 1px solid transparent;
-  user-select: nne;
+  user-select: none;
 }
 .pp-category-label:hover {
   background-color: #e1bee7;
@@ -364,6 +364,29 @@ body.revisionary-settings #side-info-column {
 .pp-integration-icon::before {
   font-size: 24px;
   color: #68589b;
+}
+.pp-integration-icon img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+.pp-integration-icon.theme img {
+  object-fit: cover;
+}
+.pp-integration-icon.remote,
+.pp-integration-icon.publishpress-cart {
+  background-color: #fff;
+}
+.pp-integration-icon.publishpress-cart::before {
+  content: "";
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  background-image: url("../common/img/publishpress-logo-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
 }
 .pp-integration-icon.acf::before {
   content: "";
@@ -609,6 +632,10 @@ body.revisionary-settings #side-info-column {
 .pp-integration-icon-wrap {
   min-width: 100px;
 }
+.pp-integration-icon-wrap .pp-category-tag {
+  display: block;
+  width: max-content;
+}
 .pp-integration-content {
   flex: 1;
 }
@@ -653,6 +680,18 @@ body.revisionary-settings #side-info-column {
 }
 .pp-tag-fields {
   background-color: #858a8a;
+  color: white;
+}
+.pp-tag-form {
+  background-color: #a14f79;
+  color: white;
+}
+.pp-tag-slider {
+  background-color: #7653c1;
+  color: white;
+}
+.pp-tag-themes {
+  background-color: #2271b1;
   color: white;
 }
 .pp-tag-community {

@@ -2426,9 +2426,6 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 				<div class="pp-category-label active" data-category="all">
 					<?php esc_html_e('All', 'revisionary'); ?>
 				</div>
-				<div class="pp-category-label" data-category="admin">
-					<?php esc_html_e('Admin', 'revisionary'); ?>
-				</div>
 				<div class="pp-category-label" data-category="builder">
 					<?php esc_html_e('Builder', 'revisionary'); ?>
 				</div>
@@ -2440,6 +2437,9 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 				</div>
 				<div class="pp-category-label" data-category="fields">
 					<?php esc_html_e('Fields', 'revisionary'); ?>
+				</div>
+				<div class="pp-category-label" data-category="themes">
+					<?php esc_html_e('Themes', 'revisionary'); ?>
 				</div>
 				<!--
 				<div class="pp-category-label" data-category="multilingual">
@@ -2654,6 +2654,9 @@ private function renderCompatibilityPack($integration)
 {
 	$is_pro = defined('PUBLISHPRESS_REVISIONS_PRO_VERSION');
 	$is_enabled = $is_pro;
+	$is_statuses = !empty($integration['statuses_pro_card'])
+		|| ('statuses_compatibility' === $integration['id']);
+	$is_statuses_installed = $is_statuses && !empty($integration['installed']);
 
 	$is_disabled = !$is_pro || !$integration['available'];
 	$is_checked = true;
@@ -2674,27 +2677,28 @@ private function renderCompatibilityPack($integration)
 	<div class="<?php echo esc_attr($card_class); ?>" data-categories="<?php echo esc_attr($categories_string); ?>">
 		<div class="pp-integration-icon-wrap">
 			<div class="pp-integration-icon <?php echo esc_attr($integration['icon_class']); ?>">
+				<?php if (!empty($integration['icon_url'])) : ?>
+					<img src="<?php echo esc_url($integration['icon_url']); ?>" alt="" loading="lazy" decoding="async" fetchpriority="low" />
+				<?php endif; ?>
 			</div>
 
 			<?php
-			if (in_array('builder', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-builder">' . esc_html__('Builder', 'revisionary') . '</div>';
-			}  elseif (in_array('admin', $integration['categories'], true)) {
-				echo '<span class="pp-category-tag pp-tag-admin">' . esc_html__('Admin', 'revisionary') . '</span>';
-			} elseif (in_array('cache', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-cache">' . esc_html__('Cache', 'revisionary') . '</div>';
-			} elseif (in_array('seo', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-seo">' . esc_html__('SEO', 'revisionary') . '</div>';
-			} elseif (in_array('ecommerce', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-ecommerce">' . esc_html__('Commerce', 'revisionary') . '</div>';
-			} elseif (in_array('fields', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-fields">' . esc_html__('Fields', 'revisionary') . '</div>';
-			} elseif (in_array('multilingual', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-multilingual">' . esc_html__('Multilang', 'revisionary') . '</div>';
-			} elseif (in_array('community', $integration['categories'], true)) {
-				echo '<div class="pp-category-tag pp-tag-community">' . esc_html__('Community', 'revisionary') . '</div>';
-			} elseif (in_array('workflow', $integration['categories'], true)) {
-				echo '<span class="pp-category-tag pp-tag-workflow">' . esc_html__('Workflow', 'revisionary') . '</span>';
+			$category_tags = [
+				'builder' => __('Builder', 'revisionary'),
+				'cache' => __('Cache', 'revisionary'),
+				'ecommerce' => __('Commerce', 'revisionary'),
+				'fields' => __('Fields', 'revisionary'),
+				'form' => __('Form', 'revisionary'),
+				'multilingual' => __('Multilang', 'revisionary'),
+				'seo' => __('SEO', 'revisionary'),
+				'slider' => __('Slider', 'revisionary'),
+				'themes' => __('Themes', 'revisionary'),
+				'workflow' => __('Workflow', 'revisionary'),
+			];
+			foreach ($category_tags as $category => $caption) {
+				if (in_array($category, $integration['categories'], true)) {
+					echo '<span class="pp-category-tag pp-tag-' . esc_attr($category) . '">' . esc_html($caption) . '</span>';
+				}
 			}
 			?>
 		</div>
@@ -2740,14 +2744,40 @@ private function renderCompatibilityPack($integration)
 				<div class="pp-settings-toggle">
 					<?php if ($is_pro && $is_enabled): ?>
 						<div class="pp-integration-status active"><?php esc_html_e('Integration Active', 'revisionary'); ?></div>
-					<?php else: ?>
-						<div class="pp-integration-status disabled"><?php esc_html_e('Upgrade to Pro to enable this integration', 'revisionary'); ?></div>
 					<?php endif; ?>
 				</div>
 			<?php endif;?>
 		</div>
 
-		<?php if (!$is_pro && !$integration['free']): ?>
+		<?php if ($is_statuses_installed): ?>
+			<div class="pp-upgrade-overlay">
+				<h4><?php esc_html_e('Supported plugin integration', 'revisionary'); ?></h4>
+				<div class="pp-upgrade-buttons">
+					<?php if (!empty($integration['learn_more_url'])): ?>
+						<a href="<?php echo esc_url($integration['learn_more_url']); ?>" target="_blank" class="pp-upgrade-btn-secondary">
+							<?php esc_html_e('Learn More', 'revisionary'); ?>
+						</a>
+					<?php endif; ?>
+				</div>
+			</div>
+
+		<?php elseif ($is_statuses): ?>
+			<div class="pp-upgrade-overlay">
+				<h4><?php esc_html_e('Pro Feature', 'revisionary'); ?></h4>
+				<p><?php esc_html_e('Unlock PublishPress Statuses Pro integration to enhance your revisions solution.', 'revisionary'); ?></p>
+				<div class="pp-upgrade-buttons">
+					<?php if (!empty($integration['learn_more_url'])): ?>
+						<a href="<?php echo esc_url($integration['learn_more_url']); ?>" target="_blank" class="pp-upgrade-btn-secondary">
+							<?php esc_html_e('Learn More', 'revisionary'); ?>
+						</a>
+					<?php endif; ?>
+					<a href="<?php echo esc_url($integration['upgrade_url']); ?>" target="_blank" class="pp-upgrade-btn-primary">
+						<?php esc_html_e('Upgrade to Statuses Pro', 'revisionary'); ?>
+					</a>
+				</div>
+			</div>
+
+		<?php elseif (!$is_pro && !$integration['free']): ?>
 			<div class="pp-upgrade-overlay">
 				<h4><?php esc_html_e('Pro Feature', 'revisionary'); ?></h4>
 				<p><?php echo esc_html(sprintf(__('Unlock %s integration to enhance your revisions solution.', 'revisionary'), $integration['title'])); ?>
@@ -2776,7 +2806,7 @@ private function renderCompatibilityPack($integration)
 
 		<?php elseif (!$integration['free'] && !empty($integration['learn_more_url'])): ?>
 			<div class="pp-upgrade-overlay">
-				<h4><?php esc_html_e('Supported Plugin Integration', 'revisionary'); ?></h4>
+				<h4><?php esc_html_e('Supported plugin integration', 'revisionary'); ?></h4>
 				<div class="pp-upgrade-buttons">
 						<a href="<?php echo esc_url($integration['learn_more_url']); ?>" target="_blank" class="pp-upgrade-btn-secondary">
 							<?php esc_html_e('Learn More', 'revisionary'); ?>
