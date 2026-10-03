@@ -80,7 +80,11 @@ function rvy_scheduled_revision_migration_ui() {
 
 function rvy_ajax_migrate_scheduled_revisions() {
 	check_ajax_referer( 'rvy-migrate-scheduled-revisions' );
-	if ( ! is_content_administrator_rvy() ) wp_send_json_error( [ 'message' => __( 'Permission denied.', 'revisionary' ) ], 403 );
+	$cap_name = defined( 'SCOPER_CONTENT_ADMIN_CAP' ) ? SCOPER_CONTENT_ADMIN_CAP : 'activate_plugins';
+	if ( ( ! is_multisite() || ! is_super_admin() ) && ! current_user_can( $cap_name ) ) {
+		wp_send_json_error( [ 'message' => __( 'Permission denied.', 'revisionary' ) ], 403 );
+	}
+
 	if ( ! function_exists( 'as_schedule_single_action' ) ) wp_send_json_error( [ 'message' => __( 'Action Scheduler is unavailable.', 'revisionary' ) ], 500 );
 
 	update_option( 'rvy_scheduled_publish_cron', '0' );
