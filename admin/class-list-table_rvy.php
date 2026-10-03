@@ -788,7 +788,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 		
 		$arr = [
-			'cb' => '<input type="checkbox" />', 
+			'cb' => '<input type="checkbox" aria-label="' . esc_attr__( 'Select revision', 'revisionary' ) . '" />',
 			'title' => pp_revisions_label('queue_col_revision'), 
 			'preview' => '',
 			'post_status' => esc_html__('Status', 'revisionary'), 
@@ -850,7 +850,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 			case 'preview':
 				$url = rvy_preview_url($post->ID);
-				echo "<a href='" . esc_url($url) . "'><span class='dashicons dashicons-cover-image' title='" . esc_attr__('View preview', 'revisionary') . "'></span></a>";
+				echo "<a href='" . esc_url($url) . "' aria-label='" . esc_attr__('View preview', 'revisionary') . "'><span class='dashicons dashicons-cover-image' title='" . esc_attr__('View preview', 'revisionary') . "' aria-hidden='true'></span></a>";
 				break;
 
 			case 'post_status':

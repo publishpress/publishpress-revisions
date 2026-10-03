@@ -615,7 +615,7 @@ class RevisionaryAdmin
 		<footer>
 
 		<div class="pp-rating">
-		<a href="https://wordpress.org/support/plugin/revisionary/reviews/#new-post" target="_blank" rel="noopener noreferrer">
+			<a href="https://wordpress.org/support/plugin/revisionary/reviews/#new-post" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr__( 'Review PublishPress Revisions on WordPress.org', 'revisionary' ); ?>">
 		<?php printf(
 			esc_html__('If you like %1$s, please leave us a %2$s rating. Thank you!', 'revisionary'),
 			'<strong>PublishPress Revisions</strong>',
@@ -638,7 +638,7 @@ class RevisionaryAdmin
 		</nav>
 
 		<div class="pp-pressshack-logo">
-		<a href="https://publishpress.com" target="_blank" rel="noopener noreferrer">
+			<a href="https://publishpress.com" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr__( 'Visit PublishPress', 'revisionary' ); ?>">
 
 		<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/publishpress-logo.png');?>" alt="PublishPress" />
 		</a>

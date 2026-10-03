@@ -130,7 +130,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 			<div class="revisionary-scheduled-empty revisionary-past-empty">
 				<div class="revisionary-scheduled-empty-header">
 					<span class="revisionary-scheduled-empty-icon dashicons dashicons-backup" aria-hidden="true"></span>
-					<h3><?php esc_html_e( 'About Past Revisions', 'revisionary' ); ?></h3>
+					<h2><?php esc_html_e( 'About Past Revisions', 'revisionary' ); ?></h2>
 				</div>
 				<p><?php esc_html_e( 'Every time you edit a post or page, WordPress can save a backup copy for you, so you\'ll always have a history of your changes.', 'revisionary' ); ?></p>
 				<ul>
