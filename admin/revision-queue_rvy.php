@@ -290,7 +290,7 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 	<div class="revisionary-scheduled-empty">
 		<div class="revisionary-scheduled-empty-header">
 			<span class="revisionary-scheduled-empty-icon dashicons dashicons-calendar-alt" aria-hidden="true"></span>
-		<h3><?php esc_html_e( 'About Scheduled Revisions', 'revisionary' ); ?></h3>
+			<h2><?php esc_html_e( 'About Scheduled Revisions', 'revisionary' ); ?></h2>
 		</div>
 		<p><?php esc_html_e( 'The Scheduled Revisions feature allows you to choose a date and time to publish content updates.', 'revisionary' ); ?></p>
 		<ol>
