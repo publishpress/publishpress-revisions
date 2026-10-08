@@ -17,6 +17,31 @@ final class Visual_Post_Compare {
 	const REST_NS         = 'rvy-visual-compare/v1';
 
 	/**
+	 * Classic Editor content can pick up stray empty paragraph block delimiters
+	 * such as <!-- wp:paragraph /-->. They make has_blocks() true, so the Classic
+	 * HTML was compared as one opaque freeform block and edits went unmarked.
+	 * Remove them when the content contains no other blocks.
+	 *
+	 * @param string $content Post content.
+	 * @return string
+	 */
+	public static function strip_stray_empty_blocks( $content ) {
+		$content = (string) $content;
+
+		if ( ! has_blocks( $content ) ) {
+			return $content;
+		}
+
+		$stripped = preg_replace(
+			'/<!--\s+wp:paragraph\s+\/-->|<!--\s+wp:paragraph\s+-->\s*(?:<p>\s*<\/p>)?\s*<!--\s+\/wp:paragraph\s+-->/',
+			'',
+			$content
+		);
+
+		return ( is_string( $stripped ) && trim( $stripped ) && ! has_blocks( $stripped ) ) ? $stripped : $content;
+	}
+
+	/**
 	 * Resolve and authorize a Visual Compare object pair.
 	 *
 	 * @param int|WP_Post $revision Revision object or ID.
@@ -348,7 +373,7 @@ final class Visual_Post_Compare {
 		$script_dependencies = array( 'wp-api-fetch', 'wp-block-editor', 'wp-block-library', 'wp-block-serialization-default-parser', 'wp-blocks', 'wp-components', 'wp-element', 'wp-hooks', 'wp-i18n', 'wp-private-apis', 'wp-rich-text' );
 		$script_dependencies = apply_filters( 'visual_post_compare_script_dependencies', $script_dependencies );
 
-		if ( $current_post && ! has_blocks( $current_post->post_content ) ) {
+		if ( $current_post && ! has_blocks( self::strip_stray_empty_blocks( $current_post->post_content ) ) ) {
 			wp_enqueue_script(
 				'visual-post-compare-classic',
 				plugins_url( "visual-post-compare-classic{$suffix}.js", __FILE__ ),
