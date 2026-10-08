@@ -842,8 +842,11 @@ class Revisionary
 	}
 
 	function fltNumRevisions ($num, $post) {
-        if (isset($this->enabled_post_types_archive[$post->post_type]) && empty($this->enabled_post_types_archive[$post->post_type])) {
-            $num = 0;
+        if (empty($this->enabled_post_types_archive[$post->post_type])) {
+            // Past Revisions disabled for this post type, or not configured by Revisions (leave WordPress setting in place)
+            if (isset($this->enabled_post_types_archive[$post->post_type])) {
+                $num = 0;
+            }
         } else {
             $num = rvy_get_option('num_revisions');
 
