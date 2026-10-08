@@ -43,7 +43,7 @@ class RvyPostEdit {
                     ?>
                     $('#revisions .misc-pub-revisions a, .misc-pub-revisions a').filter(function() {
                         return /(?:^|\/)revision\.php(?:\?|$)/.test(this.href) && String(<?php echo (int) $browse_revision->ID; ?>) === (new URL(this.href, window.location.href)).searchParams.get('revision');
-                    }).attr('href', <?php echo wp_json_encode(rvy_preview_url($browse_revision->ID)); ?>);
+                    }).attr('href', <?php echo wp_json_encode(rvy_compare_url($browse_revision->ID)); ?>);
                     <?php
                 }
             }
