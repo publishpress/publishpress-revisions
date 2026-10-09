@@ -245,7 +245,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	 * @return string
 	 */
 	private static function comparison_content( \WP_Post $source_post ) {
-		$content = (string) $source_post->post_content;
+		$content = Visual_Post_Compare::strip_stray_empty_blocks( $source_post->post_content );
 
 		if ( has_blocks( $content ) || false === strpos( $content, '[' ) || ! function_exists( 'do_shortcode' ) ) {
 			return $content;
