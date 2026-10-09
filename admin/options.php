@@ -336,7 +336,7 @@ if ( $customize_defaults )
 <input type='hidden' name='ppr_tab' value='<?php !empty($_REQUEST['ppr_tab']) ? esc_attr(sanitize_key(str_replace('#', '', wp_unslash($_REQUEST['ppr_tab'])))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
 <input type='hidden' name='ppr_subtab' value='<?php !empty($_REQUEST['ppr_subtab']) ? esc_attr(sanitize_key(wp_unslash($_REQUEST['ppr_subtab']))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
 
-<table><tr>
+<table role="presentation"><tr>
 <td>
 <h1 class="wp-heading-inline"><?php
 if ( $sitewide )
@@ -467,7 +467,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		if (!empty($this->form_options[$tab][$section_name])) {
 		?>
 		<li class="nav-tab<?php echo (empty($setActiveTab) || ($setActiveTab == $section_name)) ? ' nav-tab-active' : '' ?>">
-			<a href="#ppr-tab-<?php echo esc_attr($section_name) ?>">
+			<a href="#ppr-tab-<?php echo esc_attr($section_name) ?>"<?php if ($setActiveTab == $section_name) echo ' aria-current="true"';?>>
 				<?php echo esc_html($label) ?>
 			</a>
 
@@ -535,11 +535,11 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 	$section = 'post_types';				// --- POST TYPES SECTION ---
 
 	if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
-		<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>>
+		<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>>
 		<tr><td>
 		<div class="rvy-opt-wrap">
 
-		<table id="rvy_post_types_frame">
+		<table id="rvy_post_types_frame" role="presentation">
 		<tr>
 
 		<?php
@@ -631,7 +631,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				endif;
 				
 				if (('product' == $key) && !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) :
-				    echo '<a href="https://publishpress.com/links/revisions-tooltip" target="_blank">'
+				    echo '<a href="https://publishpress.com/links/revisions-tooltip" target="_blank" aria-label="' . esc_attr__('PRO: Revisions Pro is required for this post type (opens in a new tab)', 'revisionary') . '">'
 				    . '<span class="pp-tab-badge pp-pro-badge" style="background: #8B5CF6; color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; margin-left: 5px; vertical-align:text-bottom; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">' . esc_html__('PRO', 'revisionary') . '</span>'
 				    . '</a>';
 				endif;
@@ -648,7 +648,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<td style="padding-right: 70px">
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('New Revisions', 'revisionary');?>
+		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('New Revisions', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -656,7 +656,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			true
 		);
 		?>
-		</h3>
+		</h2>
 		<?php
 		$hidden_types = $revisionary->getHiddenPostTypes();
 		$locked_types = [];
@@ -751,7 +751,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<br />
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Revision Fields', 'revisionary');?>
+		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Revision Fields', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -759,7 +759,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			true
 		);
 		?>
-		</h3>
+		</h2>
 
 		<?php
 		$available_fields = [
@@ -819,7 +819,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<td>
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Posts', 'revisionary');?>
+		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Posts', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -827,7 +827,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			true
 		);
 		?>
-		</h3>
+		</h2>
 		<?php
 		$hidden_types = $revisionary->getHiddenPostTypesCopy();
 		$locked_types = [];
@@ -914,7 +914,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<br />
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Fields', 'revisionary');?>
+		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Copy Fields', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -922,7 +922,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			true
 		);
 		?>
-		</h3>
+		</h2>
 
 		<?php
 		$available_fields = [
@@ -1006,7 +1006,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 $section = 'statuses';				// --- STATUSES SECTION ---
 
 if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_options[$tab][$section] ) ) :?>
-	<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+	<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 	<!-- CTA Section -->
 	<div class="pp-cta-section">
@@ -1082,7 +1082,7 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 $section = 'archive';				// --- ARCHIVE SECTION ---
 
 if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
-	<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+	<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 	<?php
 	$option_name = 'num_revisions';
@@ -1198,7 +1198,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 $section = 'working_copy';			// --- NEW REVISIONS SECTION ---
 
 if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
-	<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+	<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 	<?php
 	$pending_revisions_available = rvy_get_option( 'pending_revisions' );
@@ -1228,9 +1228,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	<ul class="rvy-option-section-tabs">
 	<?php foreach ($_sections as $_section => $caption) :?>
 	<?php if (!empty($first_done)) :?>
-		<li><?php echo "&nbsp;|&nbsp";?></li>
+		<li aria-hidden="true"><?php echo "&nbsp;|&nbsp";?></li>
 	<?php endif;?>
-	<li class="<?php if ($_section == $subtab) echo 'active';?>"><a href="javascript:void(0);" class="<?php echo esc_attr($_section);?>"><?php echo esc_html($caption);?></a></li>
+	<li class="<?php if ($_section == $subtab) echo 'active';?>"><a href="#" role="button" class="<?php echo esc_attr($_section);?>"<?php if ($_section == $subtab) echo ' aria-current="true"';?>><?php echo esc_html($caption);?></a></li>
 	<?php 
 		$first_done = true;
 	endforeach;?>
@@ -1243,9 +1243,16 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$('#publishpress-revisions-settings-tabs li:first').click();
 		<?php endif;?>
 
-		$('#ppr-tab-working_copy div.rvy-opt-wrap ul.rvy-option-section-tabs li a').on('click', function(e) {
+		$('#ppr-tab-working_copy div.rvy-opt-wrap ul.rvy-option-section-tabs li a').on('click keydown', function(e) {
+			if ('keydown' == e.type && ' ' != e.key) {
+				return;
+			}
+
+			e.preventDefault();
 			$('#ppr-tab-working_copy div.rvy-opt-wrap ul.rvy-option-section-tabs li').removeClass('active');
+			$('#ppr-tab-working_copy div.rvy-opt-wrap ul.rvy-option-section-tabs li a').removeAttr('aria-current');
 			$(this).parent().addClass('active');
+			$(this).attr('aria-current', 'true');
 			$('#ppr-tab-working_copy div.rvy-opt-wrap > div').hide();
 			$('#ppr-tab-working_copy div.rvy-opt-wrap > div.' + $(this).attr('class')).show();
 
@@ -1993,7 +2000,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$verbose = !empty($_REQUEST['verbose']);										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ($q = get_option('revisionary_mail_buffer')) {
-				echo '<h3>' . esc_html__('Notification Buffer', 'revisionary') . '</h3>';
+				echo '<h2>' . esc_html__('Notification Buffer', 'revisionary') . '</h2>';
 				foreach($q as $row) {
 					if (!$verbose) {
 						unset($row['message']);
@@ -2021,7 +2028,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			}
 
 			if ($log = get_option('revisionary_sent_mail')) {
-				echo '<h3>' . esc_html__('Notification Log', 'revisionary') . '</h3>';
+				echo '<h2>' . esc_html__('Notification Log', 'revisionary') . '</h2>';
 				foreach($log as $row) {
 					if (!$verbose) {
 						unset($row['message']);
@@ -2111,7 +2118,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 $section = 'notifications';				// --- NOTIFICATIONS SECTION ---
 
 if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_options[$tab][$section] ) ) :?>
-	<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+	<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 	
 	<!-- CTA Section -->
 	<div class="pp-cta-section">
@@ -2184,7 +2191,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 	$section = 'revisions';			// --- REVISIONS SECTION ---
 
 	if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
-		<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+		<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 		<?php
 		if (version_compare($wp_version, '7.0', '>=')) {
@@ -2224,7 +2231,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			$this->all_options []= $id;
 			$current_setting = rvy_get_option($id, $sitewide, $customize_defaults);
 			?>
-			<div id="rvy_preview_options" <?php if (!$preview_links) echo 'display: none;';?>">
+			<div id="rvy_preview_options" <?php if (!$preview_links) echo 'style="display: none;"';?>>
 			<label for="<?php echo esc_attr($id);?>"><?php echo esc_html($this->option_captions[$id]);?>: </label>
 
 			<select name="<?php echo esc_attr($id);?>" id="<?php echo esc_attr($id);?>" autocomplete="off">
@@ -2342,7 +2349,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		if ((defined('REVISIONARY_PRO_VERSION') || defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) && defined('ICL_SITEPRESS_VERSION') && defined('WPML_TM_VERSION')) :?>
 
 		<div>
-			<h3><?php esc_html_e('WPML Translation Management', 'revisionary') ?></h3>
+			<h2><?php esc_html_e('WPML Translation Management', 'revisionary') ?></h2>
 			<p>
 			<?php
 			$url = admin_url('admin.php?page=revisionary-settings&rvy_wpml_sync_needs_update=1');
@@ -2398,7 +2405,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 	$section = 'integrations';			// --- INTEGRATIONS SECTION ---
 
 	?>
-		<table class="form-table rs-form-table" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
+		<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 		<?php
 			do_action('revisionary_integrations_ui', $this);
@@ -2422,36 +2429,36 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 
 		<div class="pp-integrations-container">
 			<!-- Category Filters -->
-			<div class="pp-category-labels">
-				<div class="pp-category-label active" data-category="all">
+			<div class="pp-category-labels" role="group" aria-label="<?php esc_attr_e('Filter integrations by category', 'revisionary'); ?>">
+				<button type="button" class="pp-category-label active" data-category="all" aria-pressed="true">
 					<?php esc_html_e('All', 'revisionary'); ?>
-				</div>
-				<div class="pp-category-label" data-category="builder">
+				</button>
+				<button type="button" class="pp-category-label" data-category="builder" aria-pressed="false">
 					<?php esc_html_e('Builder', 'revisionary'); ?>
-				</div>
-				<div class="pp-category-label" data-category="cache">
+				</button>
+				<button type="button" class="pp-category-label" data-category="cache" aria-pressed="false">
 					<?php esc_html_e('Cache', 'revisionary'); ?>
-				</div>
-				<div class="pp-category-label" data-category="ecommerce">
+				</button>
+				<button type="button" class="pp-category-label" data-category="ecommerce" aria-pressed="false">
 					<?php esc_html_e('E-Commerce', 'revisionary'); ?>
-				</div>
-				<div class="pp-category-label" data-category="fields">
+				</button>
+				<button type="button" class="pp-category-label" data-category="fields" aria-pressed="false">
 					<?php esc_html_e('Fields', 'revisionary'); ?>
-				</div>
-				<div class="pp-category-label" data-category="themes">
+				</button>
+				<button type="button" class="pp-category-label" data-category="themes" aria-pressed="false">
 					<?php esc_html_e('Themes', 'revisionary'); ?>
-				</div>
+				</button>
 				<!--
-				<div class="pp-category-label" data-category="multilingual">
+				<button type="button" class="pp-category-label" data-category="multilingual" aria-pressed="false">
 					<?php esc_html_e('Multilingual', 'revisionary'); ?>
-				</div>
+				</button>
 				-->
-				<div class="pp-category-label" data-category="seo">
+				<button type="button" class="pp-category-label" data-category="seo" aria-pressed="false">
 					<?php esc_html_e('SEO', 'revisionary'); ?>
-				</div>
-				<div class="pp-category-label" data-category="workflow">
+				</button>
+				<button type="button" class="pp-category-label" data-category="workflow" aria-pressed="false">
 					<?php esc_html_e('Workflow', 'revisionary'); ?>
-				</div>
+				</button>
 			</div>
 
 			<div class="pp-integrations-grid">
@@ -2466,8 +2473,8 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			jQuery(function ($) {
 				// Category filtering
 				$(".pp-category-label").on("click", function () {
-					$(".pp-category-label").removeClass("active");
-					$(this).addClass("active");
+					$(".pp-category-label").removeClass("active").attr("aria-pressed", "false");
+					$(this).addClass("active").attr("aria-pressed", "true");
 					const category = $(this).data("category");
 					$(".pp-integration-card").each(function () {
 						const categories = ($(this).data("categories") || "all")

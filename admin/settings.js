@@ -6,6 +6,8 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         $tabsWrapper.children('li').filter('.nav-tab-active').removeClass('nav-tab-active');
         $(this).addClass('nav-tab-active');
+        $tabsWrapper.find('a').removeAttr('aria-current');
+        $(this).find('a').first().attr('aria-current', 'true');
 
         var panel = $(this).find('a').first().attr('href');
 
