@@ -87,7 +87,7 @@ class RvyPostEdit {
         </script>
 
         <style>
-        ul.post-revisions a.rvy-delete {text-decoration: none; color:#f44336}
+        ul.post-revisions a.rvy-delete {text-decoration: none; color:#b32d2e}
         </style>
 
         <?php
