@@ -54,9 +54,64 @@
   transform: translate(-50%, -50%) rotate(45deg);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
-[data-toggle="tooltip"]:not(.click):hover .tooltip-text,
-[data-toggle="tooltip"]:not(.click):focus-within .tooltip-text {
+/* Keep tip text available to assistive technology while visually hidden */
+[data-toggle="tooltip"]:not(.click) .tooltip-text {
   display: block;
+  width: 1px;
+  height: 1px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  transition: none;
+}
+[data-toggle="tooltip"]:not(.click):hover .tooltip-text,
+[data-toggle="tooltip"]:not(.click):focus-within .tooltip-text,
+[data-toggle="tooltip"]:not(.click):focus .tooltip-text {
+  width: auto;
+  height: auto;
+  min-width: 200px;
+  padding: 16px;
+  border: 1px solid #d5d5d5;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+}
+[data-toggle="tooltip"].rvy-tip-dismissed .tooltip-text {
+  display: none !important;
+}
+/* Bridge the gap so the pointer can move onto the tip without dismissing it */
+[data-toggle="tooltip"]:not([data-placement]) .tooltip-text::before,
+[data-toggle="tooltip"][data-placement="top"] .tooltip-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 12px;
+}
+[data-toggle="tooltip"]:focus-visible {
+  outline: 2px solid #2271b1;
+  outline-offset: 2px;
+}
+.rvy-tooltip-trigger {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+  vertical-align: baseline;
+}
+.rvy-tooltip-trigger:focus-visible {
+  outline: 2px solid #2271b1;
+  outline-offset: 1px;
+  border-radius: 50%;
 }
 [data-toggle="tooltip"].click.is-active .tooltip-text {
   display: block;
