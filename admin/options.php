@@ -476,12 +476,12 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				$badge =
 				[
 					'text' => 'PRO',
-					'bg_color' => '#8B5CF6',
+					'bg_color' => '#6950bd',
 					'class' => 'pp-pro-badge'
 				];
 				$badge_text = isset($badge['text']) ? esc_html($badge['text']) : 'PRO';
-				$badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#8B5CF6';
-				$badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#8B5CF6';
+				$badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#6950bd';
+				$badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#6950bd';
 				$badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
 				
 				printf(
@@ -632,7 +632,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				
 				if (('product' == $key) && !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) :
 				    echo '<a href="https://publishpress.com/links/revisions-tooltip" target="_blank">'
-				    . '<span class="pp-tab-badge pp-pro-badge" style="background: #8B5CF6; color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; margin-left: 5px; vertical-align:text-bottom; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">' . esc_html__('PRO', 'revisionary') . '</span>'
+				    . '<span class="pp-tab-badge pp-pro-badge" style="background: #6950bd; color: white; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; margin-left: 5px; vertical-align:text-bottom; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">' . esc_html__('PRO', 'revisionary') . '</span>'
 				    . '</a>';
 				endif;
 				?>
@@ -2494,7 +2494,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 							.animate({ opacity: "0" }, 500);
 						if (!card.find(".pp-temp-message").length) {
 							$(
-								'<div class="pp-temp-message" style="position:absolute;top:10px;right:10px;background:#ff5722;color:white;padding:5px 10px;border-radius:3px;font-size:12px;z-index:999;">Pro Feature</div>'
+								'<div class="pp-temp-message" style="position:absolute;top:10px;right:10px;background:#c43c0c;color:white;padding:5px 10px;border-radius:3px;font-size:12px;z-index:999;">Pro Feature</div>'
 							)
 								.appendTo(card)
 								.delay(2000)
@@ -2716,7 +2716,7 @@ private function renderCompatibilityPack($integration)
 						style="background: #9e9e9e;"><?php esc_html_e('Supported', 'revisionary'); ?></span>-->
 				<?php else: ?>
 					<span class="pp-badge"
-						style="background: #5e92c4;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
+						style="background: #2271b1;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
 				<?php endif; ?>
 			</h3>
 
