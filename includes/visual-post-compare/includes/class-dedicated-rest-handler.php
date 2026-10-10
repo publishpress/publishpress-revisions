@@ -57,11 +57,13 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 	}
 
 	public static function comparison_permissions( \WP_REST_Request $request ) {
-		if ( $request['revision'] && ! is_wp_error( Visual_Post_Compare::authorized_comparison( $request['revision'] ) ) ) {
+		$context = self::authorize_revision_request( $request );
+
+		if ( ! is_wp_error( $context ) ) {
 			return true;
 		}
 
-		return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
+		return $context;
 	}
 
 	public static function comparison_response( \WP_REST_Request $request ) {
@@ -100,11 +102,40 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 	}
 
 	public static function approve_permissions( \WP_REST_Request $request ) {
-		if ( $request['revision'] && Visual_Post_Compare::can_apply_revision( $request['revision'] ) ) {
+		$context = self::authorize_revision_request( $request );
+
+		if (
+			! is_wp_error( $context )
+			&& (
+				current_user_can( 'approve_revision', $context['revision']->ID )
+				|| current_user_can( 'edit_post', $context['current_post']->ID )
+			)
+			&& Visual_Post_Compare::can_apply_revision( $context['revision'] )
+		) {
 			return true;
 		}
-			
+
 		return new \WP_Error( 'vpc_forbidden', esc_html__('You are not allowed to approve the revision.', 'revisionary'), array( 'status' => 403 ) );
+	}
+
+	private static function authorize_revision_request( \WP_REST_Request $request ) {
+		if ( empty( $request['revision'] ) ) {
+			return new \WP_Error( 'vpc_invalid_revision', esc_html__( 'Invalid revision ID.', 'revisionary' ), array( 'status' => 400 ) );
+		}
+
+		$context = Visual_Post_Compare::authorized_comparison( $request['revision'] );
+		if ( is_wp_error( $context ) ) {
+			return $context;
+		}
+
+		if (
+			! current_user_can( 'read_post', $context['revision']->ID )
+			|| ! current_user_can( 'read_post', $context['current_post']->ID )
+		) {
+			return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
+		}
+
+		return $context;
 	}
 
 	public static function approve_response( \WP_REST_Request $request ) {
