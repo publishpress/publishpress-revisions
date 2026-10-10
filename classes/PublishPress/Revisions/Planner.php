@@ -113,7 +113,7 @@ class Planner {
 					<?php if ($this->showingRevisions()) :?>
 					setInterval(() => {
 						if ($('#pp-content-calendar-general-modal-container:visible, #pp-content-overview-general-modal-container:visible').length) {
-							$('div.pp-popup-modal-header div.post-delete a').html('<?php esc_html_e('Delete');?>');
+								$('div.pp-popup-modal-header div.post-delete a').html('<?php esc_html_e('Delete', 'revisionary');?>');
 						}
 					}, 100);
 					<?php endif;?>
@@ -257,7 +257,7 @@ class Planner {
 	public function fltContentOverviewItemActions($actions, $post_id) {
 		// @todo: support revision trashing
 		if (rvy_in_revision_workflow($post_id)) {
-			$actions['trash'] = '<a class="submitdelete" href="' . esc_url(get_delete_post_link($post_id, '', true)) . '">' . esc_html__('Delete') . '</a>';
+			$actions['trash'] = '<a class="submitdelete" href="' . esc_url(get_delete_post_link($post_id, '', true)) . '">' . esc_html__('Delete', 'revisionary') . '</a>';
 		}
 
 		return $actions;
