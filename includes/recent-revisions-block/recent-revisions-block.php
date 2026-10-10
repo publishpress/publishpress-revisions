@@ -1,0 +1,741 @@
+<?php
+namespace PublishPress\Revisions;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+class Recent_Revisions_Block {
+	const BLOCK_NAME = 'revisionary/recent-revisions';
+
+	public static function register_hooks() {
+		add_action( 'init', [__CLASS__, 'register_block'] );
+		add_action( 'enqueue_block_editor_assets', [__CLASS__, 'enqueue_editor_assets'] );
+	}
+
+	public static function register_block() {
+		if ( ! function_exists( 'register_block_type' ) ) {
+			return;
+		}
+
+		$base_url = plugins_url( '', REVISIONARY_FILE ) . '/includes/recent-revisions-block';
+
+		wp_register_script(
+			'revisionary-recent-revisions-block-editor',
+			$base_url . '/editor.js',
+			['wp-blocks', 'wp-block-editor', 'wp-components', 'wp-element', 'wp-i18n', 'wp-server-side-render'],
+			PUBLISHPRESS_REVISIONS_VERSION,
+			true
+		);
+
+		wp_register_style(
+			'revisionary-recent-revisions-block',
+			$base_url . '/style.css',
+			[],
+			PUBLISHPRESS_REVISIONS_VERSION
+		);
+
+		register_block_type(
+			self::BLOCK_NAME,
+			[
+				'api_version'     => 2,
+				'title'           => __( 'Recent Content Changes', 'revisionary' ),
+				'description'     => __( 'Display recent revisions and a summary of the fields changed in each revision.', 'revisionary' ),
+				'category'        => 'widgets',
+				'icon'            => 'backup',
+				'keywords'        => [
+					__( 'revisions', 'revisionary' ),
+					__( 'history', 'revisionary' ),
+					__( 'changes', 'revisionary' ),
+				],
+				'editor_script'   => 'revisionary-recent-revisions-block-editor',
+				'editor_style'    => 'revisionary-recent-revisions-block',
+				'style'           => 'revisionary-recent-revisions-block',
+				'render_callback' => [__CLASS__, 'render'],
+				'uses_context'    => ['postId'],
+				'attributes'      => [
+					'heading'         => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'postId'          => [
+						'type'    => 'number',
+						'default' => 0,
+					],
+					'count'           => [
+						'type'    => 'number',
+						'default' => 5,
+					],
+					'showAuthor'      => [
+						'type'    => 'boolean',
+						'default' => true,
+					],
+					'showDiff'        => [
+						'type'    => 'boolean',
+						'default' => false,
+					],
+					'hideUnchanged'   => [
+						'type'    => 'boolean',
+						'default' => true,
+					],
+					'changesLayout'   => [
+						'type'    => 'string',
+						'default' => 'wrap',
+					],
+					'includeWorkflow' => [
+						'type'    => 'boolean',
+						'default' => false,
+					],
+				],
+			]
+		);
+	}
+
+	public static function enqueue_editor_assets() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( ! $screen || ! method_exists( $screen, 'is_block_editor' ) || ! $screen->is_block_editor() ) {
+			return;
+		}
+
+		if ( wp_script_is( 'revisionary-recent-revisions-block-editor', 'registered' ) ) {
+			wp_enqueue_script( 'revisionary-recent-revisions-block-editor' );
+		}
+
+		if ( wp_style_is( 'revisionary-recent-revisions-block', 'registered' ) ) {
+			wp_enqueue_style( 'revisionary-recent-revisions-block' );
+		}
+	}
+
+	public static function render( $attributes, $content = '', $block = null ) {
+		$attributes = wp_parse_args(
+			(array) $attributes,
+			[
+				'heading'         => '',
+				'postId'          => 0,
+				'count'           => 5,
+				'showAuthor'      => true,
+				'showDiff'        => false,
+				'hideUnchanged'   => true,
+				'changesLayout'   => 'wrap',
+				'includeWorkflow' => false,
+			]
+		);
+
+		$post_id = self::resolve_post_id( $attributes, $block );
+		if ( ! $post_id ) {
+			return self::render_empty_notice( __( 'No post selected for revision history.', 'revisionary' ) );
+		}
+
+		$post = get_post( $post_id );
+		if ( ! $post ) {
+			return self::render_empty_notice( __( 'The selected post could not be found.', 'revisionary' ) );
+		}
+
+		if ( ! self::is_post_publicly_viewable( $post ) && ! current_user_can( 'read_post', $post_id ) ) {
+			return '';
+		}
+
+		$count          = max( 1, min( 20, (int) $attributes['count'] ) );
+		$hide_unchanged = ! array_key_exists( 'hideUnchanged', $attributes ) || ! empty( $attributes['hideUnchanged'] );
+		$revisions      = self::get_recent_revisions( $post_id, $count, ! empty( $attributes['includeWorkflow'] ), $hide_unchanged );
+
+		if ( ! $revisions ) {
+			return self::render_empty_notice(
+				$hide_unchanged
+					? __( 'No revisions with tracked field changes are available yet.', 'revisionary' )
+					: __( 'No revisions are available yet.', 'revisionary' )
+			);
+		}
+
+		$heading = ! empty( $attributes['heading'] )
+			? $attributes['heading']
+			: __( 'Recent Content Changes', 'revisionary' );
+
+		$items         = '';
+		$display_count = 0;
+
+		foreach ( $revisions as $index => $revision ) {
+			$previous = isset( $revisions[ $index + 1 ] ) ? $revisions[ $index + 1 ] : null;
+			$changes  = self::get_revision_changes( $revision, $previous );
+
+			if ( $hide_unchanged && ! $changes ) {
+				continue;
+			}
+
+			$items .= self::render_revision_item( $revision, $previous, $post, $attributes, $changes );
+			$display_count++;
+
+			if ( $display_count >= $count ) {
+				break;
+			}
+		}
+
+		if ( '' === $items ) {
+			return self::render_empty_notice( __( 'No revisions with tracked field changes are available yet.', 'revisionary' ) );
+		}
+
+		$wrapper_attributes = self::get_wrapper_attributes( ['class' => 'rvy-recent-revisions'] );
+
+		return sprintf(
+			'<section %1$s><h2 class="rvy-recent-revisions__heading">%2$s</h2><ol class="rvy-recent-revisions__list">%3$s</ol></section>',
+			$wrapper_attributes,
+			esc_html( $heading ),
+			$items
+		);
+	}
+
+	private static function resolve_post_id( $attributes, $block ) {
+		if ( ! empty( $attributes['postId'] ) ) {
+			return absint( $attributes['postId'] );
+		}
+
+		if ( is_object( $block ) && ! empty( $block->context['postId'] ) ) {
+			return absint( $block->context['postId'] );
+		}
+
+		return absint( get_the_ID() );
+	}
+
+	private static function get_recent_revisions( $post_id, $count, $include_workflow, $hide_unchanged = true ) {
+		$revision_limit = $hide_unchanged ? min( 80, max( $count + 1, ( $count * 4 ) + 1 ) ) : $count + 1;
+		$revisions = wp_get_post_revisions(
+			$post_id,
+			[
+				'numberposts' => $revision_limit,
+				'orderby'     => 'post_modified_gmt',
+				'order'       => 'DESC',
+			]
+		);
+
+		if ( $include_workflow && current_user_can( 'edit_post', $post_id ) ) {
+			$workflow_revisions = self::get_workflow_revisions( $post_id, $revision_limit );
+			$revisions          = array_merge( $workflow_revisions, $revisions );
+			$revisions          = self::sort_revisions( $revisions );
+		}
+
+		$revisions = array_filter(
+			$revisions,
+			function ( $revision ) use ( $post_id ) {
+				return self::can_show_revision( $revision, $post_id );
+			}
+		);
+
+		return array_values( $revisions );
+	}
+
+	private static function get_workflow_revisions( $post_id, $count ) {
+		global $wpdb;
+
+		$revision_statuses = array_map( 'sanitize_key', rvy_revision_statuses() );
+		if ( ! $revision_statuses ) {
+			return [];
+		}
+
+		$placeholders = implode( ', ', array_fill( 0, count( $revision_statuses ), '%s' ) );
+		$query_args   = array_merge( $revision_statuses, [$post_id, $count] );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		return $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT * FROM $wpdb->posts WHERE post_mime_type IN ($placeholders) AND comment_count = %d ORDER BY post_modified_gmt DESC LIMIT %d",
+				$query_args
+			)
+		);
+	}
+
+	private static function sort_revisions( $revisions ) {
+		usort(
+			$revisions,
+			function ( $a, $b ) {
+				$modified_a = strtotime( $a->post_modified_gmt );
+				$modified_b = strtotime( $b->post_modified_gmt );
+
+				if ( $modified_a === $modified_b ) {
+					return $b->ID <=> $a->ID;
+				}
+
+				return $modified_b <=> $modified_a;
+			}
+		);
+
+		return $revisions;
+	}
+
+	private static function can_show_revision( $revision, $post_id ) {
+		if ( ! $revision instanceof \WP_Post ) {
+			return false;
+		}
+
+		if ( wp_is_post_autosave( $revision ) ) {
+			return false;
+		}
+
+		if ( rvy_in_revision_workflow( $revision ) ) {
+			return current_user_can( 'edit_post', $post_id );
+		}
+
+		return 'revision' === $revision->post_type && 'inherit' === $revision->post_status;
+	}
+
+	private static function can_view_revision_diffs( \WP_Post $post ) {
+		if ( self::is_post_publicly_viewable( $post ) ) {
+			return true;
+		}
+
+		return current_user_can( 'read_post', $post->ID );
+	}
+
+	private static function render_revision_item( \WP_Post $revision, $previous, \WP_Post $post, $attributes, array $changes = [] ) {
+		$author          = get_userdata( $revision->post_author );
+		$can_show_diffs  = ! empty( $attributes['showDiff'] ) && self::can_view_revision_diffs( $post );
+		$revision_title  = mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $revision->post_modified );
+		$title           = '<time datetime="' . esc_attr( mysql_to_rfc3339( $revision->post_modified ) ) . '">' . esc_html( $revision_title ) . '</time>';
+		$meta            = '';
+
+		if ( ! empty( $attributes['showAuthor'] ) && $author ) {
+			$meta .= '<span class="rvy-recent-revisions__author">' . esc_html( sprintf( __( 'by %s', 'revisionary' ), $author->display_name ) ) . '</span>';
+		}
+
+		$change_summary = self::render_change_summary( $changes, $previous, $attributes );
+
+		$diffs = '';
+		if ( $can_show_diffs ) {
+			foreach ( $changes as $change ) {
+				if ( ! empty( $change['diff'] ) ) {
+					$diffs .= sprintf(
+						'<details class="rvy-recent-revisions__diff"><summary>%1$s</summary>%2$s</details>',
+						esc_html__( 'See All Changes', 'revisionary' ),
+						wp_kses_post( $change['diff'] )
+					);
+				}
+			}
+		}
+
+		return sprintf(
+			'<li class="rvy-recent-revisions__item"><div class="rvy-recent-revisions__revision">%1$s</div>%2$s%3$s%4$s</li>',
+			$title,
+			$meta ? '<div class="rvy-recent-revisions__meta">' . $meta . '</div>' : '',
+			$change_summary,
+			$diffs
+		);
+	}
+
+	private static function get_revision_changes( \WP_Post $revision, $previous ) {
+		$fields = [
+			'post_title'   => __( 'Title', 'revisionary' ),
+			'post_content' => __( 'Content', 'revisionary' ),
+			'post_excerpt' => __( 'Excerpt', 'revisionary' ),
+		];
+
+		$changes = [];
+		foreach ( $fields as $field => $label ) {
+			$before = $previous instanceof \WP_Post && isset( $previous->$field ) ? (string) $previous->$field : '';
+			$after  = isset( $revision->$field ) ? (string) $revision->$field : '';
+
+			if ( self::normalize_comparison_text( $before ) === self::normalize_comparison_text( $after ) ) {
+				continue;
+			}
+
+			$diff      = self::get_text_diff( $before, $after );
+			$fragments = self::get_change_fragments( $before, $after, $diff );
+
+			$changes[] = [
+				'field'   => $field,
+				'label'   => $label,
+				'added'   => $fragments['added'],
+				'removed' => $fragments['removed'],
+				'diff'    => $diff,
+			];
+		}
+
+		return $changes;
+	}
+
+	private static function render_change_summary( array $changes, $previous, array $attributes = [] ) {
+		$layout = ! empty( $attributes['changesLayout'] ) && 'list' === $attributes['changesLayout'] ? 'list' : 'wrap';
+		$class  = 'rvy-recent-revisions__changes rvy-recent-revisions__changes--' . $layout;
+
+		if ( ! $changes ) {
+			return sprintf(
+				'<div class="%1$s rvy-recent-revisions__changes--empty"><span>%2$s</span></div>',
+				esc_attr( $class ),
+				esc_html( self::get_empty_changes_label( $previous ) )
+			);
+		}
+
+		$added_items   = self::render_change_fragment_items( $changes, 'added' );
+		$removed_items = self::render_change_fragment_items( $changes, 'removed' );
+		$output        = '';
+
+		if ( $added_items ) {
+			$output .= sprintf(
+				'<div class="%1$s rvy-recent-revisions__changes--added"><ul>%2$s</ul></div>',
+				esc_attr( $class ),
+				$added_items
+			);
+		}
+
+		if ( $removed_items ) {
+			$output .= sprintf(
+				'<div class="%1$s rvy-recent-revisions__changes--removed"><ul>%2$s</ul></div>',
+				esc_attr( $class ),
+				$removed_items
+			);
+		}
+
+		if ( ! $output ) {
+			return sprintf(
+				'<div class="%1$s rvy-recent-revisions__changes--empty"><span>%2$s</span></div>',
+				esc_attr( $class ),
+				esc_html__( 'Only formatting or block markup changed.', 'revisionary' )
+			);
+		}
+
+		return $output;
+	}
+
+	private static function render_change_fragment_items( array $changes, $type ) {
+		$items = '';
+
+		foreach ( $changes as $change ) {
+			if ( empty( $change[ $type ] ) || ! is_array( $change[ $type ] ) ) {
+				continue;
+			}
+
+			foreach ( $change[ $type ] as $fragment ) {
+				$items .= sprintf(
+					'<li><span class="rvy-recent-revisions__field">%1$s</span> <span class="rvy-recent-revisions__fragment">%2$s</span></li>',
+					esc_html( self::get_contextual_change_label( $change, $type ) ),
+					esc_html( $fragment )
+				);
+			}
+		}
+
+		return $items;
+	}
+
+	private static function get_contextual_change_label( array $change, $type ) {
+		if ( empty( $change['field'] ) || 'post_content' !== $change['field'] ) {
+			return isset( $change['label'] ) ? $change['label'] : '';
+		}
+
+		switch ( $type ) {
+			case 'added':
+				return __( 'Added Content', 'revisionary' );
+
+			case 'removed':
+				return __( 'Removed Content', 'revisionary' );
+		}
+
+		return isset( $change['label'] ) ? $change['label'] : __( 'Content', 'revisionary' );
+	}
+
+	private static function get_empty_changes_label( $previous ) {
+		if ( $previous instanceof \WP_Post ) {
+			return __( 'No tracked field changes', 'revisionary' );
+		}
+
+		return __( 'Initial revision', 'revisionary' );
+	}
+
+	private static function get_change_fragments( $before, $after, $diff = '' ) {
+		$diff_fragments = self::get_change_fragments_from_diff( $diff );
+		if ( $diff_fragments['added'] || $diff_fragments['removed'] ) {
+			return $diff_fragments;
+		}
+
+		$before_words = self::get_comparison_words( $before );
+		$after_words  = self::get_comparison_words( $after );
+
+		if ( ! $before_words && ! $after_words ) {
+			return [
+				'added'   => [],
+				'removed' => [],
+			];
+		}
+
+		if ( count( $before_words ) > 180 || count( $after_words ) > 180 ) {
+			return self::get_bounded_change_fragments( $before_words, $after_words );
+		}
+
+		return self::get_word_diff_fragments( $before_words, $after_words );
+	}
+
+	private static function get_change_fragments_from_diff( $diff ) {
+		return [
+			'added'   => self::extract_diff_tag_fragments( $diff, 'ins' ),
+			'removed' => self::extract_diff_tag_fragments( $diff, 'del' ),
+		];
+	}
+
+	private static function extract_diff_tag_fragments( $diff, $tag ) {
+		$fragments = [];
+
+		if ( ! preg_match_all( '#<' . preg_quote( $tag, '#' ) . '\b[^>]*>(.*?)</' . preg_quote( $tag, '#' ) . '>#is', (string) $diff, $matches ) ) {
+			return $fragments;
+		}
+
+		foreach ( $matches[1] as $fragment ) {
+			$fragment = self::normalize_diff_fragment( $fragment );
+			if ( '' !== $fragment && ! in_array( $fragment, $fragments, true ) ) {
+				$fragments[] = $fragment;
+			}
+		}
+
+		return $fragments;
+	}
+
+	private static function normalize_diff_fragment( $fragment ) {
+		$charset = get_bloginfo( 'charset' );
+		$charset = $charset ? $charset : 'UTF-8';
+		$fragment = wp_strip_all_tags( (string) $fragment );
+		$fragment = str_ireplace( [ '&nbsp;', '&#160;', '&#xa0;' ], ' ', $fragment );
+		$fragment = html_entity_decode( $fragment, ENT_QUOTES | ENT_HTML5, $charset );
+		$fragment = str_replace( "\xc2\xa0", ' ', $fragment );
+
+		return self::trim_change_fragment( $fragment );
+	}
+
+	private static function get_comparison_words( $text ) {
+		$text = self::normalize_comparison_text( $text );
+		if ( '' === $text ) {
+			return [];
+		}
+
+		return preg_split( '/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY );
+	}
+
+	private static function get_bounded_change_fragments( array $before_words, array $after_words ) {
+		$prefix_length = 0;
+		$before_count  = count( $before_words );
+		$after_count   = count( $after_words );
+
+		while (
+			$prefix_length < $before_count
+			&& $prefix_length < $after_count
+			&& $before_words[ $prefix_length ] === $after_words[ $prefix_length ]
+		) {
+			$prefix_length++;
+		}
+
+		$suffix_length = 0;
+		while (
+			$suffix_length < ( $before_count - $prefix_length )
+			&& $suffix_length < ( $after_count - $prefix_length )
+			&& $before_words[ $before_count - 1 - $suffix_length ] === $after_words[ $after_count - 1 - $suffix_length ]
+		) {
+			$suffix_length++;
+		}
+
+		$removed = array_slice( $before_words, $prefix_length, $before_count - $prefix_length - $suffix_length );
+		$added   = array_slice( $after_words, $prefix_length, $after_count - $prefix_length - $suffix_length );
+
+		return [
+			'added'   => self::prepare_change_fragments( [$added] ),
+			'removed' => self::prepare_change_fragments( [$removed] ),
+		];
+	}
+
+	private static function get_word_diff_fragments( array $before_words, array $after_words ) {
+		$matrix       = self::get_lcs_matrix( $before_words, $after_words );
+		$before_index = 0;
+		$after_index  = 0;
+		$added        = [];
+		$removed      = [];
+		$current_add  = [];
+		$current_del  = [];
+
+		while ( $before_index < count( $before_words ) && $after_index < count( $after_words ) ) {
+			if ( $before_words[ $before_index ] === $after_words[ $after_index ] ) {
+				self::store_change_run( $added, $current_add );
+				self::store_change_run( $removed, $current_del );
+				$before_index++;
+				$after_index++;
+				continue;
+			}
+
+			if ( $matrix[ $before_index + 1 ][ $after_index ] >= $matrix[ $before_index ][ $after_index + 1 ] ) {
+				$current_del[] = $before_words[ $before_index ];
+				$before_index++;
+			} else {
+				$current_add[] = $after_words[ $after_index ];
+				$after_index++;
+			}
+		}
+
+		while ( $before_index < count( $before_words ) ) {
+			$current_del[] = $before_words[ $before_index ];
+			$before_index++;
+		}
+
+		while ( $after_index < count( $after_words ) ) {
+			$current_add[] = $after_words[ $after_index ];
+			$after_index++;
+		}
+
+		self::store_change_run( $added, $current_add );
+		self::store_change_run( $removed, $current_del );
+
+		return [
+			'added'   => self::prepare_change_fragments( $added ),
+			'removed' => self::prepare_change_fragments( $removed ),
+		];
+	}
+
+	private static function get_lcs_matrix( array $before_words, array $after_words ) {
+		$before_count = count( $before_words );
+		$after_count  = count( $after_words );
+		$matrix       = array_fill( 0, $before_count + 1, array_fill( 0, $after_count + 1, 0 ) );
+
+		for ( $before_index = $before_count - 1; $before_index >= 0; $before_index-- ) {
+			for ( $after_index = $after_count - 1; $after_index >= 0; $after_index-- ) {
+				$matrix[ $before_index ][ $after_index ] = $before_words[ $before_index ] === $after_words[ $after_index ]
+					? $matrix[ $before_index + 1 ][ $after_index + 1 ] + 1
+					: max( $matrix[ $before_index + 1 ][ $after_index ], $matrix[ $before_index ][ $after_index + 1 ] );
+			}
+		}
+
+		return $matrix;
+	}
+
+	private static function store_change_run( array &$runs, array &$current_run ) {
+		if ( $current_run ) {
+			$runs[]      = $current_run;
+			$current_run = [];
+		}
+	}
+
+	private static function prepare_change_fragments( array $runs ) {
+		$fragments = [];
+
+		foreach ( $runs as $run ) {
+			if ( ! $run ) {
+				continue;
+			}
+
+			foreach ( self::split_change_run( $run ) as $fragment ) {
+				if ( '' !== $fragment ) {
+					$fragments[] = $fragment;
+				}
+			}
+		}
+
+		return $fragments;
+	}
+
+	private static function split_change_run( array $run ) {
+		$fragments     = [];
+		$current_words = [];
+
+		foreach ( $run as $word ) {
+			$current_words[] = $word;
+
+			if ( self::is_sentence_end( $word ) || count( $current_words ) >= 24 ) {
+				$fragments[]   = self::trim_change_fragment( implode( ' ', $current_words ) );
+				$current_words = [];
+			}
+		}
+
+		if ( $current_words ) {
+			$fragments[] = self::trim_change_fragment( implode( ' ', $current_words ) );
+		}
+
+		return $fragments;
+	}
+
+	private static function is_sentence_end( $word ) {
+		return (bool) preg_match( '/[.!?][\'")\]]*$/', (string) $word );
+	}
+
+	private static function trim_change_fragment( $fragment ) {
+		return trim( preg_replace( '/\s+/', ' ', (string) $fragment ) );
+	}
+
+	private static function normalize_comparison_text( $text ) {
+		$text = wp_strip_all_tags( (string) $text );
+		$text = preg_replace( '/\s+/', ' ', $text );
+
+		return trim( $text );
+	}
+
+	private static function get_text_diff( $before, $after ) {
+		if ( ! function_exists( 'wp_text_diff' ) && file_exists( ABSPATH . WPINC . '/wp-diff.php' ) ) {
+			require_once ABSPATH . WPINC . '/wp-diff.php';
+		}
+
+		if ( ! function_exists( 'wp_text_diff' ) ) {
+			return '';
+		}
+
+		$diff = wp_text_diff(
+			self::prepare_diff_text( $before ),
+			self::prepare_diff_text( $after ),
+			[
+				'show_split_view' => false,
+				'title'           => '',
+			]
+		);
+
+		return self::clean_text_diff( $diff );
+	}
+
+	private static function prepare_diff_text( $text ) {
+		$charset = get_bloginfo( 'charset' );
+		$charset = $charset ? $charset : 'UTF-8';
+		$text = (string) $text;
+		$text = preg_replace( '/<!--\s*\/?wp:[\s\S]*?-->/', "\n\n", $text );
+		$text = preg_replace( '/<\s*br\s*\/?>/i', "\n", $text );
+		$text = preg_replace( '/<\/\s*(p|div|h[1-6]|li|blockquote|pre|figure|figcaption|td|th|tr|ul|ol)\s*>/i', "\n\n", $text );
+		$text = wp_strip_all_tags( $text );
+		$text = wp_specialchars_decode( $text, ENT_QUOTES );
+		$text = str_ireplace( [ '&nbsp;', '&#160;', '&#xa0;' ], ' ', $text );
+		$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, $charset );
+		$text = str_replace( "\xc2\xa0", ' ', $text );
+		$text = preg_replace( '/[ \t]+/', ' ', $text );
+		$text = preg_replace( '/[ \t]*\n[ \t]*/', "\n", $text );
+		$text = preg_replace( '/\n{3,}/', "\n\n", $text );
+
+		return trim( $text );
+	}
+
+	private static function clean_text_diff( $diff ) {
+		$diff = preg_replace( '#<td>\s*(?:\+|-|&nbsp;)?\s*</td>#i', '', (string) $diff );
+		$diff = preg_replace( '#<td\s+class=(["\'])diff-marker\1[^>]*>\s*(?:\+|-|&nbsp;)?\s*</td>#i', '', $diff );
+		$diff = preg_replace( '#<span\b[^>]*class=(["\'])[^"\']*\bdashicons(?:\s+dashicons-(?:plus|minus))?\b[^"\']*\1[^>]*></span>#i', '', $diff );
+		$diff = preg_replace( '#<span\b[^>]*class=(["\'])[^"\']*\bscreen-reader-text\b[^"\']*\1[^>]*>.*?</span>#is', '', $diff );
+		$diff = str_ireplace( [ '&nbsp;', '&#160;', '&#xa0;' ], ' ', $diff );
+
+		return $diff;
+	}
+
+	private static function render_empty_notice( $message ) {
+		if ( is_admin() || current_user_can( 'edit_posts' ) ) {
+			$wrapper_attributes = self::get_wrapper_attributes( ['class' => 'rvy-recent-revisions is-empty'] );
+
+			return '<div ' . $wrapper_attributes . '>' . esc_html( $message ) . '</div>';
+		}
+
+		return '';
+	}
+
+	private static function get_wrapper_attributes( $extra_attributes ) {
+		if ( function_exists( 'get_block_wrapper_attributes' ) ) {
+			return get_block_wrapper_attributes( $extra_attributes );
+		}
+
+		$classes = isset( $extra_attributes['class'] ) ? $extra_attributes['class'] : '';
+
+		return 'class="' . esc_attr( $classes ) . '"';
+	}
+
+	private static function is_post_publicly_viewable( \WP_Post $post ) {
+		$post_type = get_post_type_object( $post->post_type );
+		$status    = get_post_status_object( $post->post_status );
+
+		return $post_type && is_post_type_viewable( $post_type ) && $status && ! empty( $status->public );
+	}
+}
