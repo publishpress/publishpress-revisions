@@ -232,9 +232,9 @@ function rvy_get_scheduling_log_table() {
 			public function column_preview( $row ) {
 				$revision_id = rvy_scheduling_log_revision_id( $row );
 				if ( ! $revision_id ) return '';
-				return sprintf( '<a href="%s"><span class="dashicons dashicons-cover-image" title="%s"></span></a>', esc_url( rvy_preview_url( $revision_id ) ), esc_attr__( 'View preview', 'revisionary' ) );
+				return sprintf( '<a href="%s" aria-label="%s"><span class="dashicons dashicons-cover-image" title="%s" aria-hidden="true"></span></a>', esc_url( rvy_preview_url( $revision_id ) ), esc_attr__( 'View preview', 'revisionary' ), esc_attr__( 'View preview', 'revisionary' ) );
+				}
 			}
-		}
 	}
 	$table = new Revisionary_Scheduling_Log_Table( ActionScheduler::store(), ActionScheduler::logger(), ActionScheduler::runner() );
 	return $table;
