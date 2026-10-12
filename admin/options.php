@@ -2830,10 +2830,12 @@ private function renderCompatibilityPack($integration)
 
 private function renderIntegrations()
 {
-	$int = array_merge(
-		wp_filter_object_list($this->defined_integrations, ['available' => true, 'free' => false]),
-		wp_filter_object_list($this->defined_integrations, ['available' => false, 'free' => false])
-	);
+	$int = wp_filter_object_list($this->defined_integrations, ['free' => false]);
+	usort($int, function($a, $b) {
+		$group_a = !empty($a['available']) ? 0 : (!empty($a['installed']) ? 1 : 2);
+		$group_b = !empty($b['available']) ? 0 : (!empty($b['installed']) ? 1 : 2);
+		return ($group_a <=> $group_b) ?: strnatcasecmp(wp_strip_all_tags($a['title']), wp_strip_all_tags($b['title']));
+	});
 
 	// Render each fallback integration
 	foreach ($int as $integration) {
