@@ -218,6 +218,27 @@
 		return String(value || '').match(/(?:[a-z][a-z\d+.-]*:|\/\/)[^\s<>"']+|www\.[^\s<>"']+|\s+|[\p{L}\p{N}_]+|[^\s\p{L}\p{N}_]+/giu) || [];
 	}
 
+
+    function groupTextChanges(parts, unchanged) {
+        const result = [];
+        let removed = '', added = '';
+        const flush = () => {
+            if (removed) result.push({ type: 'removed', value: removed });
+            if (added) result.push({ type: 'added', value: added });
+            removed = ''; added = '';
+        };
+        parts.forEach((part, index) => {
+            if (part.type !== unchanged) {
+                if (part.type === 'removed') removed += part.value;
+                else added += part.value;
+            } else if (!part.value.trim() && (removed || added) && parts[index + 1] && parts[index + 1].type !== unchanged) {
+                removed += part.value; added += part.value;
+            } else { flush(); result.push(part); }
+        });
+        flush();
+        return result;
+    }
+
 	function diffTokens(previousTokens, currentTokens) {
 		const rows = previousTokens.length + 1;
 		const cols = currentTokens.length + 1;
@@ -258,7 +279,7 @@
 			}
 		}
 
-		return parts;
+		return groupTextChanges(parts, 'unchanged');
 	}
 
 	function diffValues(previousValue, currentValue, compareWholeValue = false) {
@@ -709,7 +730,49 @@
 		}
 	}
 
+
+    function attributeEmpty(value) {
+        return value === undefined || value === null || value === '' ||
+            (typeof value === 'object' && Object.values(value).every(attributeEmpty));
+    }
+    function attributeVisible(current, previous) { return !attributeEmpty(current) || !attributeEmpty(previous); }
+    function attributePartsValues(parts) {
+        const decode = (value) => {
+            try { const parsed = JSON.parse(value); return parsed && typeof parsed === 'object' ? parsed : value; } catch (error) { return value; }
+        };
+        return {
+            previous: decode(parts.filter((part) => part.type !== 'added').map((part) => part.value).join('')),
+            current: decode(parts.filter((part) => part.type !== 'removed').map((part) => part.value).join('')),
+        };
+    }
+    function renderAttributeValues(current, previous, unchanged = false, depth = 0) {
+        if (depth < 3 && ((current && typeof current === 'object') || (previous && typeof previous === 'object'))) {
+            const a = current && typeof current === 'object' ? current : {};
+            const b = previous && typeof previous === 'object' ? previous : {};
+            return el('dl', { className: 'visual-post-compare-revision__attribute-array' },
+                ...Array.from(new Set([...Object.keys(b), ...Object.keys(a)])).filter((key) => attributeVisible(a[key], b[key])).flatMap((key) => [
+                    el('dt', { key: 'key-' + key }, el(attributeEmpty(a[key]) && !attributeEmpty(b[key]) ? 'del' : 'span', { className: attributeEmpty(a[key]) && !attributeEmpty(b[key]) ? 'editor-revision-fields-diff__removed' : '' }, Array.isArray(current) || Array.isArray(previous) ? '[' + key + ']' : key)),
+                    el('dd', { key: 'value-' + key }, renderAttributeValues(a[key], b[key], unchanged, depth + 1)),
+                ]));
+        }
+        const show = (value) => typeof value === 'object' ? JSON.stringify(value) : String(value);
+        const same = unchanged || stringifyAttributeValue(current) === stringifyAttributeValue(previous);
+        return el('span', null,
+            !same && !attributeEmpty(previous) ? el('del', { className: 'editor-revision-fields-diff__removed' }, show(previous)) : null,
+            !attributeEmpty(current) ? el(same ? 'span' : 'ins', { className: same ? '' : 'editor-revision-fields-diff__added' }, show(current)) : null);
+    }
+    function renderAttributeRow(label, current, previous, unchanged = false, key = label) {
+        if (!attributeVisible(current, previous)) return null;
+        const removed = attributeEmpty(current) && !attributeEmpty(previous);
+        return el('div', { key, className: 'visual-post-compare-revision__attribute-row' },
+            el(removed ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' + (removed ? ' editor-revision-fields-diff__removed' : '') }, label),
+            el('div', { className: 'editor-revision-fields-diff__value' }, renderAttributeValues(current, previous, unchanged)));
+    }
+    window.RevisionaryCompareAttributes = { visible: attributeVisible, renderRow: renderAttributeRow };
+
 	function renderBlockAttributeValue(attributeName, parts) {
+        const structured = attributePartsValues(parts);
+        if ((structured.current && typeof structured.current === 'object') || (structured.previous && typeof structured.previous === 'object')) return [renderAttributeValues(structured.current, structured.previous)];
 		const previousValue = parts.filter((part) => part.type !== 'added').map((part) => part.value).join('');
 		const currentValue = parts.filter((part) => part.type !== 'removed').map((part) => part.value).join('');
 		const isWebUrl = (value) => /^https?:\/\/[^\s]+$/i.test(value);
@@ -2284,7 +2347,7 @@
 		const blockType = blocks.getBlockType(block.name);
 		const diffStatus = block.attributes && block.attributes.__revisionDiffStatus;
 		const changedAttributes = diffStatus && diffStatus.changedAttributes;
-		const changedAttributeEntries = Object.entries(changedAttributes || {});
+		const changedAttributeEntries = Object.entries(changedAttributes || {}).filter(([, parts]) => { const values = attributePartsValues(parts); return attributeVisible(values.current, values.previous); });
 		const hasChanges = Boolean(diffStatus && (
 			diffStatus.status
 			|| diffStatus.hasGranularDiff
@@ -2309,8 +2372,8 @@
 				...changedAttributeEntries.map(([attributeName, parts]) => el(
 					'div',
 					{ className: 'visual-post-compare-revision__attribute-row', key: attributeName },
-					el('span', { className: 'visual-post-compare-revision__attribute-label' }, attributeName),
-					el('span', { className: 'editor-revision-fields-diff__value' },
+					el(attributeEmpty(attributePartsValues(parts).current) ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' + (attributeEmpty(attributePartsValues(parts).current) ? ' editor-revision-fields-diff__removed' : '') }, attributeName),
+					el('div', { className: 'editor-revision-fields-diff__value' },
 						...renderBlockAttributeValue(attributeName, parts)
 					)
 				))
@@ -2502,23 +2565,18 @@
 
 	function ClassicInfoSidebar({ info }) {
 		if (!info) return el('p', { className: 'visual-post-compare-revision__block-empty' }, __('Select content to view its details.', 'revisionary'));
+		const attributes = info.attributes.filter((attribute) => { const values = attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]); return attributeVisible(values.current, values.previous); });
 		return el('div', { className: 'visual-post-compare-revision__block-details' },
 			el('div', { className: 'visual-post-compare-revision__block-identity' }, el('strong', null, info.title)),
 			info.tooltip
 				? el('div', { className: 'visual-post-compare-revision__classic-info-text', dangerouslySetInnerHTML: { __html: info.tooltip } })
 				: null,
-			info.attributes.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
+			attributes.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
 				el('h2', null, info.attributeCaption || __('Changed attributes', 'revisionary')),
-				...info.attributes.map((attribute, index) => el('div', { className: 'visual-post-compare-revision__attribute-row', key: index },
-					el('span', { className: 'visual-post-compare-revision__attribute-label' }, attribute.label),
-					el('span', { className: 'editor-revision-fields-diff__value' },
-						...(attribute.parts || [{ type: 'unchanged', value: attribute.value }]).map((part, partIndex) =>
-							part.type === 'added'
-								? el('ins', { key: partIndex, className: 'editor-revision-fields-diff__added' }, part.value)
-								: part.type === 'removed'
-									? el('del', { key: partIndex, className: 'editor-revision-fields-diff__removed' }, part.value)
-									: el('span', { key: partIndex }, part.value)
-						)
+				...attributes.map((attribute, index) => el('div', { className: 'visual-post-compare-revision__attribute-row', key: index },
+					el(attributeEmpty(attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]).current) ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' }, attribute.label),
+					el('div', { className: 'editor-revision-fields-diff__value' },
+						...renderBlockAttributeValue(attribute.label, attribute.parts || [{ type: 'unchanged', value: attribute.value }])
 					)
 				))
 			) : null
@@ -3301,7 +3359,7 @@
 										? el('ins', { className: 'revision-diff-added' }, displayedTitle)
 										: (!titleChanged ? displayedTitle : null)
 									) : null,
-									noChangesDetected ? el(
+									noChangesDetected && wp.hooks.applyFilters('visual_post_compare.show_no_changes_notice', true, comparison) ? el(
 										'div',
 										{ className: 'notice notice-info inline visual-post-compare-revision__no-changes' },
 										el('p', null, __('No changes detected.', 'revisionary'))

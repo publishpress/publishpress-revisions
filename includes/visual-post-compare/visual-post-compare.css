@@ -1330,3 +1330,13 @@ li.visual-post-compare-fields__array-item > dl:not(.visual-post-compare-fields__
 
 .visual-post-compare-fields__image-tooltip span { display: grid; gap: 4px; }
 .visual-post-compare-fields__image-tooltip img { width: auto; max-width: 190px; height: auto; max-height: 180px; object-fit: contain; }
+
+/* The builder iframe owns scrolling and its change-marker rail. */
+.visual-post-compare-revision__canvas--builder { overflow: hidden; scrollbar-gutter: auto; padding: 0; }
+.visual-post-compare-revision__attribute-array { margin: 2px 0; padding: 2px 0 2px 8px; border-left: 1px solid #ddd; }
+.visual-post-compare-revision__attribute-array dt { font-weight: 600; margin: 2px 0; }
+.visual-post-compare-revision__attribute-array dd { margin: 0 0 3px 8px; padding: 0; }
+
+.visual-post-compare-revision__canvas--builder > .visual-post-compare-revision__live-preview { display: flex; flex-direction: column; height: 100%; padding: 0 !important; }
+.visual-post-compare-revision__canvas--builder .visual-post-compare-revision__title-row { flex: 0 0 auto; padding: 10px; }
+.visual-post-compare-revision__canvas--builder iframe { flex: 1 1 0; min-height: 0; max-width: none !important; width: 100% !important; }
