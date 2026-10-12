@@ -413,6 +413,7 @@ final class Visual_Post_Compare {
 					'revision'         => $compare_ids['revision'],
 					'comparisonKey'    => $comparison_key,
 					'headline'		   => is_scalar($headline) ? (string) $headline : esc_html__('Compare Revisions', 'revisionary'),
+					'loadingComparisonCaption' => esc_html__('Loading comparison…', 'revisionary'),
 					'currentPostFirst' => (bool) $current_post_first,
 					'restPath'         => '/' . self::REST_NS . '/comparison',
 					'approveRestPath'  => '/' . self::REST_NS . '/approve',

@@ -1525,10 +1525,10 @@ class RevisionaryHistory
 
                     if(!$('span.rvy-compare-preview').length) {
                         <?php if($show_preview_link):?>
-                        $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><input class="button" type="button" value="<?php echo esc_attr($preview_label);?>"></a></span>');
+                        $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan button" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><?php echo esc_html($preview_label);?></a></span>');
                         <?php endif;?>
 
-                        $('h1').append('<span class="rvy-compare-list" style="margin-left:10px"><a class="rvy_preview_linkspan" href="<?php echo esc_url($manage_url);?>" target="_revision_list"><input class="button" type="button" value="<?php echo esc_attr($manage_label);?>"></a></span>');
+                        $('h1').append('<span class="rvy-compare-list" style="margin-left:10px"><a class="rvy_preview_linkspan button" href="<?php echo esc_url($manage_url);?>" target="_revision_list"><?php echo esc_html($manage_label);?></a></span>');
                     } else {
                         <?php if($show_preview_link):?>
                         $('span.rvy-compare-preview a').attr('href', rvyPreviewURL);

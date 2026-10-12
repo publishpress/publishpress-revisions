@@ -23,12 +23,12 @@
 			max-width: 100%;
 			line-height: 0;
 			vertical-align: middle;
-			outline: 3px dotted #dba617;
+			outline: 3px dotted #9a7000;
 			outline-offset: 2px;
 		}
 		.visual-post-compare-image-diff--modified.is-showing-previous {
-			outline-color: #f0c54a;
-			box-shadow: 0 0 0 2px color-mix(in srgb, #dba617 55%, transparent);
+			outline-color: #7a5900;
+			box-shadow: 0 0 0 2px color-mix(in srgb, #9a7000 55%, transparent);
 		}
 		.has-diff-tooltips :is(.is-revision-added, .is-revision-removed) .visual-post-compare-image-diff--added:not(.is-diff-tooltip-active),
 		.has-diff-tooltips :is(.is-revision-added, .is-revision-removed) .visual-post-compare-image-diff--modified:not(.is-diff-tooltip-active) {
@@ -1441,8 +1441,23 @@
 						previous: diff.previous.href,
 					}] : [])
 			);
-			wrapper.addEventListener('mouseenter', () => wrapper.classList.add('is-showing-previous'));
-			wrapper.addEventListener('mouseleave', () => wrapper.classList.remove('is-showing-previous'));
+			// Keyboard access to the previous image (WCAG 2.1.1)
+			wrapper.tabIndex = 0;
+			wrapper.setAttribute('role', 'button');
+			wrapper.setAttribute('aria-pressed', 'false');
+			wrapper.setAttribute('aria-label', image.getAttribute('alt')
+				? sprintf(__('Show previous image: %s', 'revisionary'), image.getAttribute('alt'))
+				: __('Show previous image', 'revisionary'));
+			const showPreviousImage = () => { wrapper.classList.add('is-showing-previous'); wrapper.setAttribute('aria-pressed', 'true'); };
+			const showCurrentImage = () => { wrapper.classList.remove('is-showing-previous'); wrapper.setAttribute('aria-pressed', 'false'); };
+			wrapper.addEventListener('mouseenter', showPreviousImage);
+			wrapper.addEventListener('mouseleave', showCurrentImage);
+			wrapper.addEventListener('keydown', (event) => {
+				if (event.key !== 'Enter' && event.key !== ' ') return;
+				event.preventDefault();
+				if (wrapper.classList.contains('is-showing-previous')) showCurrentImage();
+				else showPreviousImage();
+			});
 			image.parentNode.insertBefore(wrapper, image);
 			wrapper.appendChild(image);
 			image.classList.add('visual-post-compare-image-diff__current');
