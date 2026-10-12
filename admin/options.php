@@ -2197,6 +2197,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			}
 			$check_args['val'] = (int) $setting;
 			$this->option_checkbox('visual_compare', $tab, $section, $hint, '', $check_args);
+            do_action('revisionary_option_ui_builder_compare', $this, $tab, $section);
 
 			$hint = esc_html__('If enabled, Editors and Administrators can see unidentified internal fields keys in comparisons. An attempt is still made to suppress sensitive and transient fields.', 'revisionary');
 			echo '<div id="rvy-compare-other-internal-fields"' . (!$setting ? ' style="display:none"' : '') . '>';
