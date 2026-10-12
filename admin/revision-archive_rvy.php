@@ -106,7 +106,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	</header>
 	<form method="get">
 		<div class="revisionary-list-header-controls">
-	<?php $wp_list_table->views(); ?>
+	<?php if ( !$past_empty_unfiltered ) $wp_list_table->views(); ?>
 			<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
 		</div>
 		<?php
