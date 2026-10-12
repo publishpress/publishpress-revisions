@@ -345,7 +345,7 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
 		if ( $revision && ( 'future-revision' === $revision->post_mime_type ) ) {
 			$publication_time = strtotime( $revision->post_date_gmt . ' UTC' );
 
-			if ( $publication_time && ( $publication_time > current_time( 'timestamp', true ) ) ) {
+			if ( $publication_time && ( $publication_time + MINUTE_IN_SECONDS >= current_time( 'timestamp', true ) ) ) {
 				return esc_html__( 'Scheduled', 'revisionary' );
 			}
 

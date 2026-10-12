@@ -896,7 +896,14 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 							$t_time .= '<br><br>' . esc_html__('This revision is not scheduled yet.', 'revisionary');
 						}
 
-						if ( $time_diff > 0 ) {
+						$publication_row = isset( $this->scheduled_action_rows[$post_id] ) ? $this->scheduled_action_rows[$post_id] : [];
+						
+						// Only still-scheduled revisions can miss publication. Allow the
+						// scheduler's minute-level execution interval before flagging one.
+						if ( $time_diff > MINUTE_IN_SECONDS
+							&& 'future-revision' === $post->post_mime_type
+							&& ( empty( $publication_row ) || 'pending' === $publication_row['status_name'] )
+						) {
 							echo '<strong class="error-message">' . esc_html__( 'Missed schedule' ) . '</strong>';
 							echo '<br />';
 						}
