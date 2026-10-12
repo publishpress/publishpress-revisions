@@ -2349,13 +2349,14 @@
 		const changedAttributes = diffStatus && diffStatus.changedAttributes;
 		const changedAttributeEntries = Object.entries(changedAttributes || {}).filter(([, parts]) => { const values = attributePartsValues(parts); return attributeVisible(values.current, values.previous); });
 		const hasChanges = Boolean(diffStatus && (
-			diffStatus.status
+			(diffStatus.status && diffStatus.status !== 'unchanged')
 			|| diffStatus.hasGranularDiff
 			|| diffStatus.hasGranularImageDiff
 			|| diffStatus.hasUnrepresentedAttributeDiff
 			|| diffStatus.forceContainerModified
 			|| diffStatus.currentHtml !== diffStatus.previousHtml
 		));
+        if (!hasChanges) return el('div', { className: 'visual-post-compare-revision__block-details' }, el('strong', null, (blockType && blockType.title) || block.name), el('h2', { className: 'visual-post-compare-revision__no-attribute-changes' }, __('No attribute changes', 'revisionary')));
 		return el(
 			'div',
 			{ className: 'visual-post-compare-revision__block-details' },
@@ -2552,6 +2553,7 @@
 		const isAddedOrRemovedContainer = !image && !link
 			&& target.matches('.is-revision-added, .is-revision-removed');
 		return {
+			unchanged: !isAddedOrRemovedItem && !textChange && !imageDiff && !target.closest('.is-revision-modified') && !target.querySelector('.revision-diff-added,.revision-diff-removed,.is-revision-added,.is-revision-removed,.is-revision-modified,[data-visual-post-compare-tooltip]'),
 			title: title || __('Info', 'revisionary'),
 			tooltip: classicInfoTooltip(target),
 			attributes: isAddedOrRemovedContainer
@@ -2565,6 +2567,7 @@
 
 	function ClassicInfoSidebar({ info }) {
 		if (!info) return el('p', { className: 'visual-post-compare-revision__block-empty' }, __('Select content to view its details.', 'revisionary'));
+        if (info.unchanged) return el('div', { className: 'visual-post-compare-revision__block-details' }, el('strong', null, info.title), el('h2', { className: 'visual-post-compare-revision__no-attribute-changes' }, __('No attribute changes', 'revisionary')));
 		const attributes = info.attributes.filter((attribute) => { const values = attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]); return attributeVisible(values.current, values.previous); });
 		return el('div', { className: 'visual-post-compare-revision__block-details' },
 			el('div', { className: 'visual-post-compare-revision__block-identity' }, el('strong', null, info.title)),
