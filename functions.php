@@ -219,7 +219,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
     }
 
     if (!$empty_target_only && !empty($target_meta_keys) && is_array($target_meta_keys)) {
-        if ($delete_meta_keys = array_diff($target_meta_keys, $meta_keys, revisionary_unrevisioned_postmeta())) {
+        if ($delete_meta_keys = array_diff($target_meta_keys, $meta_keys, $skip_meta_keys, revisionary_unrevisioned_postmeta())) {
             $deletable_keys = apply_filters('revisionary_deletable_postmeta_keys', ['_links_to', '_links_to_target']);
         }
         
