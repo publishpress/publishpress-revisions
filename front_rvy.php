@@ -22,7 +22,6 @@ class RevisionaryFront {
 
 		add_filter('acf/load_value', [$this, 'fltACFLoadValue'], 10, 3);
 		add_filter('get_post_metadata', [$this, 'fltGetPostMeta'], 10, 5);
-		add_action('revisionary_preview_load', [$this, 'setPreviewTemplateContext'], 10, 2);
 
 		if ( ! defined('RVY_CONTENT_ROLES') || !$revisionary->content_roles->is_direct_file_access() ) {
 			add_filter('posts_request', [$this, 'flt_view_revision'] );
