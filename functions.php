@@ -202,7 +202,8 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
         if (!empty($meta_values)) {
             if (count($meta_values) > 1) {
-                delete_post_meta($to_post_id, $meta_key);
+                // delete_post_meta() redirects native revisions to the live post.
+                delete_metadata('post', $to_post_id, $meta_key);
 
                 foreach ( $meta_values as $meta_value ) {
                     $meta_value = maybe_unserialize( $meta_value );
@@ -224,7 +225,8 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         
         foreach($delete_meta_keys as $meta_key) {
             if (in_array($meta_key, $deletable_keys, true) || !empty($args['apply_deletions']) || defined('PP_REVISIONS_APPLY_POSTMETA_DELETION')) {
-                delete_post_meta($to_post_id, $meta_key);
+                // delete_post_meta() redirects native revisions to the live post.
+                delete_metadata('post', $to_post_id, $meta_key);
             }
         }
     }
