@@ -2550,7 +2550,7 @@
 										{ label: __('Many popular themes', 'revisionary'), integrationLink: true },
 									].map((item) => el('li', { key: item.label },
 										item.integrationLink && promo.integrationUrl
-											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl }, item.label)
+											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl, target: '_blank', rel: 'noopener noreferrer' }, item.label)
 											: item.label
 									))
 								),
