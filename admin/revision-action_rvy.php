@@ -1058,7 +1058,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		$skip_post_meta = [];
 	}
 
-	revisionary_copy_postmeta($revision, $published->ID, ['skip_post_meta' => $skip_post_meta, 'apply_empty' => !$is_imported]);
+	revisionary_copy_postmeta($revision, $published->ID, ['skip_meta_keys' => $skip_post_meta, 'apply_empty' => !$is_imported]);
 
 	$_args = ['apply_empty' => !$is_imported, 'applying_revision' => true, 'skip_taxonomies' => []];
 

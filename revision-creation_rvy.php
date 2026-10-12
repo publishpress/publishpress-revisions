@@ -201,17 +201,17 @@ class RevisionCreation {
 
 
 		if (is_array($enabled_fields)) {
-			$skip_post_meta = array_filter(
+			$skip_meta_keys = array_filter(
 				$enabled_fields, 
 				function($val) {
 					return is_null($val) || !$val;
 				}
 			);
 		} else {
-			$skip_post_meta = [];
+			$skip_meta_keys = [];
 		}
 
-		revisionary_copy_postmeta($post_id, $copy_id, compact('skip_post_meta'));
+		revisionary_copy_postmeta($post_id, $copy_id, compact('skip_meta_keys'));
 
 		if ($post_id != $copy_id) {
 			rvy_update_post_meta($copy_id, '_rvy_source_post_id', $post_id);
