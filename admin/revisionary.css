@@ -636,7 +636,7 @@ body.revisionary #wpbody-content > .pressshack-admin-wrapper {
 box-sizing: border-box;
 display: flex;
 flex-direction: column;
-min-height: calc(100vh - 97px);
+min-height: calc(100vh - 65px - var(--wp-admin--admin-bar--height, 32px));
 width: 99%;
 }
 
@@ -644,7 +644,7 @@ width: 99%;
 body.revisionary-q #wpbody-content > .pressshack-admin-wrapper,
 body.revisionary-archive #wpbody-content > .pressshack-admin-wrapper {
 margin-top: 10px;
-min-height: calc(100vh - 97px - var(--revisionary-pre-wrapper-height, 0px));
+min-height: calc(100vh - 65px - var(--wp-admin--admin-bar--height, 32px) - var(--revisionary-pre-wrapper-height, 0px));
 --revisionary-screen-meta-height: 15px;
 }
 
