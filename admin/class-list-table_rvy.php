@@ -1048,7 +1048,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 			esc_url( $filter_url ),
 			/* translators: %s: post title */
-			esc_attr( sprintf( esc_html__( 'View only revisions of %s', 'revisionary' ), '&#8220;' . $post->post_title . '&#8221;' ) ),
+			esc_attr( sprintf( esc_html__( 'Filter: view only revisions of %s', 'revisionary' ), '&#8220;' . $post->post_title . '&#8221;' ) ),
 			esc_html__( 'Filter' )
 		);
 
@@ -1066,7 +1066,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				$actions['view'] = sprintf(
 					'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_preview_post_link( $post->ID ),
-					esc_attr__( 'View published post', 'revisionary' ),
+					esc_attr__( 'Preview published post', 'revisionary' ),
 					esc_html_x( 'Preview', 'verb' )
 				);
 			}
@@ -1091,7 +1091,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$actions['history'] = sprintf(
 				'<a href="%1$s" title="%2$s" aria-label="%2$s" target="_revision_diff">%3$s</a>',
 				rvy_compare_url($last_past_revision[$post->ID]),
-				esc_attr__('Compare Past Revisions', 'revisionary'),
+				esc_attr__('History: compare past revisions', 'revisionary'),
 				esc_html__( 'History', 'revisionary' )
 			);
 		}
@@ -1525,7 +1525,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if (!empty($_REQUEST['author']) && ($current_user->ID == $_REQUEST['author']) && empty($_REQUEST['post_type']) && empty($_REQUEST['post_author']) && empty($_REQUEST['published_post']) && empty($_REQUEST['post_status'])) {
 				$current_link_class = 'mine';
-				$link_class = " class='current'";
+				$link_class = " class='current' aria-current='page'";
 			} else {
 				$link_class = '';
 			}
@@ -1563,7 +1563,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if (!empty($_REQUEST['post_author']) && ($current_user->ID == $_REQUEST['post_author']) && empty($_REQUEST['post_type']) && empty($_REQUEST['author']) && empty($_REQUEST['published_post']) && empty($_REQUEST['post_status'])) {
 				$current_link_class = 'my_posts';
-				$link_class = " class='current'";
+				$link_class = " class='current' aria-current='page'";
 			} else {
 				$link_class = '';
 			}
@@ -1602,7 +1602,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				if (!empty($_REQUEST['post_status']) && (sanitize_key($_REQUEST['post_status']) == $status) && empty($_REQUEST['post_type']) && empty($_REQUEST['author']) && empty($_REQUEST['post_author']) && empty($_REQUEST['published_post'])) {
 					$current_link_class = $status;
-					$link_class = " class='current'";
+					$link_class = " class='current' aria-current='page'";
 				} else {
 					$link_class = '';
 				}
@@ -1614,7 +1614,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (empty($current_link_class) && empty($_REQUEST['post_type']) && empty($_REQUEST['author']) && empty($_REQUEST['post_author']) && empty($_REQUEST['published_post']) && empty($_REQUEST['post_status']) && empty($_REQUEST['all'])) {
-			$link_class = " class='current'";
+			$link_class = " class='current' aria-current='page'";
 		} else {
 			$link_class = '';
 		}
@@ -1623,7 +1623,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (empty($current_link_class) && empty($_REQUEST['post_type']) && empty($_REQUEST['author']) && empty($_REQUEST['post_author']) && empty($_REQUEST['published_post']) && empty($_REQUEST['post_status']) && !empty($_REQUEST['all'])) {
-			$link_class = " class='current'";
+			$link_class = " class='current' aria-current='page'";
 		} else {
 			$link_class = '';
 		}
@@ -1785,7 +1785,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$revision_statuses = rvy_revision_statuses(['output' => 'object']);
 
 		if ( ! $this->scheduled_only ) {
-			echo '<label class="screen-reader-text" for="post_status">' . esc_html__( 'Filter by revision status', 'revisionary' ) . '</label>';echo '<label class="screen-reader-text" for="post_status">' . esc_html__( 'Filter by revision status', 'revisionary' ) . '</label>';
+			echo '<label class="screen-reader-text" for="post_status">' . esc_html__( 'Filter by revision status', 'revisionary' ) . '</label>';
 			echo '<select name="post_status' . '" id="post_status" style="float:none">';
 			echo '<option value="">' . esc_html__('All Revision Statuses', 'revisionary') . "</option>\n";
 
@@ -2087,7 +2087,13 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				$class = join( ' ', $class );
 			}
 
-			echo "<" . esc_attr($tag) . " scope='" . esc_attr($scope) . "' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "'>";
+			$aria_sort = '';
+
+			if ( isset( $sortable[ $column_key ] ) && ( $current_orderby === $sortable[ $column_key ][0] ) && empty( $_REQUEST[ $column_key ] ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$aria_sort = " aria-sort='" . ( ( 'asc' === $current_order ) ? 'ascending' : 'descending' ) . "'";
+			}
+
+			echo "<" . esc_attr($tag) . " scope='" . esc_attr($scope) . "' id='" . esc_attr($id) . "' class='" . esc_attr($class) . "'" . $aria_sort . ">";	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			
 			$current_url = str_replace('#038;', '&', $current_url);
 			$current_url = remove_query_arg('orderby', $current_url);
@@ -2102,17 +2108,19 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					// use post status and post type column headers to reset filter, but not for sorting
 					$_url = remove_query_arg($orderby, $current_url);
 					
-					echo '<a href="' . esc_url($_url) . '"><span>' . esc_html($column_display_name) . '</span><span class="sorting-indicator"></span></a>';
+					echo '<a href="' . esc_url($_url) . '"><span>' . esc_html($column_display_name) . '</span><span class="screen-reader-text">' . esc_html__('(clear filter)', 'revisionary') . '</span><span class="sorting-indicator" aria-hidden="true"></span></a>';
 				} else {
 																			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if (!empty($_REQUEST['orderby']) && ($column_key == $_REQUEST['orderby'])) {
-						echo '<a href="' . esc_url( add_query_arg( compact( 'orderby', 'order' ), $current_url ) ) . '"><span>' . esc_html($column_display_name) . '</span><span class="sorting-indicator"></span></a>';
+						echo '<a href="' . esc_url( add_query_arg( compact( 'orderby', 'order' ), $current_url ) ) . '"><span>' . esc_html($column_display_name) . '</span><span class="screen-reader-text">' . esc_html( ( 'asc' === $order ) ? __('Sort ascending.', 'revisionary') : __('Sort descending.', 'revisionary') ) . '</span><span class="sorting-indicator" aria-hidden="true"></span></a>';
 					} else {
 						echo '<a href="' . esc_url( add_query_arg( compact( 'orderby', 'order' ), $current_url ) ) . '"><span>' . esc_html($column_display_name) . '</span></a>';
 					}
 				}
 			} elseif ('cb' == $column_key) {
 				echo $column_display_name;									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			} elseif (('preview' == $column_key) && ('' === $column_display_name)) {
+				echo '<span class="screen-reader-text">' . esc_html__('Preview', 'revisionary') . '</span>';
 			} else {
 				echo esc_html($column_display_name);	
 			}
@@ -2252,7 +2260,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						'<a href="%1$s" class="submitdelete" title="%2$s" aria-label="%2$s">%3$s</a>',
 						$delete_link,
 						/* translators: %s: post title */
-						esc_attr( sprintf( $delete_caption, $title ) ),
+						esc_attr( $delete_caption . ': ' . $title ),
 						esc_html__( 'Delete' )
 					);
 				}

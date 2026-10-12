@@ -96,7 +96,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 <div class="wrap pressshack-admin-wrapper revision-archive">
 	<header>
 		<h1 class="wp-heading-inline">
-			<span class="dashicons dashicons-backup"></span>
+			<span class="dashicons dashicons-backup" aria-hidden="true"></span>
 			<?php
 			esc_html_e( 'Past Revisions', 'revisionary' );
 			$wp_list_table->filters_in_heading();
