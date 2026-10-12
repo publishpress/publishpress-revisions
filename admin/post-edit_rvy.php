@@ -78,7 +78,7 @@ class RvyPostEdit {
                     var revisionID = urlParams.get('revision');
 
                     if (typeof rvyDeleteURL[revisionID] != 'undefined') {
-                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete"><?php esc_html_e('Delete', 'revisionary');?></a>');
+                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete" aria-label="<?php echo esc_attr( esc_html__( 'Delete revision', 'revisionary' ) ); ?>"><?php esc_html_e('Delete', 'revisionary');?></a>');
                     }
                 });
             <?php endif;?>
@@ -218,7 +218,7 @@ class RvyPostEdit {
         <?php self::revision_preview_button($post); ?>
 
         <a id="rvy_compare_button" class="preview button" href="<?php echo esc_url($compare_link); ?>" target="_blank" id="revision-compare"
-        tabindex="4" title="<?php echo esc_attr($compare_title);?>" style="float:right"><?php echo esc_html($compare_button); ?></a>
+        title="<?php echo esc_attr($compare_title);?>" style="float:right"><?php echo esc_html($compare_button); ?></a>
 
         </div>
 
@@ -255,7 +255,7 @@ class RvyPostEdit {
 
         ?>
         <a class="preview button" href="<?php echo esc_url($preview_link); ?>" target="revision-preview" id="revision-preview"
-           tabindex="4" title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
+           title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
         <?php
     }
 

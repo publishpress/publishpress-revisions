@@ -90,7 +90,7 @@ class RvyRevisionEditSubmitMetabox
         }
         ?>
         <input type="submit" name="save" id="save-post" value="<?php echo esc_attr($draft_label) ?>"
-                tabindex="4" class="button button-highlighted"/>
+                class="button button-highlighted"/>
 
         <span class="spinner" style="margin:2px 2px 0"></span>
         <?php
@@ -125,7 +125,7 @@ class RvyRevisionEditSubmitMetabox
             }
             ?>
             <a class="preview button" href="<?php echo esc_url($preview_link); ?>" target="_blank" id="post-preview"
-            tabindex="4" title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
+            title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
 
             <input type="hidden" name="wp-preview" id="wp-preview" value="">
             <?php
@@ -156,7 +156,7 @@ class RvyRevisionEditSubmitMetabox
 
         <?php /* Output status select for js consistency with date select OK / Cancel */?>
         <div id="post-status-select" class="hide-if-js" style="display:none">
-            <select name='post_status' id='post_status' tabindex='4'>
+            <select name='post_status' id='post_status'>
                     <option selected value='<?php echo esc_attr($post_status_obj->name) ?>'><?php echo esc_html($status_label) ?></option>
             </select>
         </div>
@@ -193,7 +193,7 @@ class RvyRevisionEditSubmitMetabox
         }
         ?>
 
-        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html__('Edit') ?></a>
+        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js"><?php echo esc_html__('Edit') ?></a>
         <div id="timestampdiv" class="hide-if-js"><?php touch_time(('edit' == $action), 1, 4); ?></div>
         <?php
     }
