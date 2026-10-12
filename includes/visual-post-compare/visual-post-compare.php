@@ -17,6 +17,31 @@ final class Visual_Post_Compare {
 	const REST_NS         = 'rvy-visual-compare/v1';
 
 	/**
+	 * Classic Editor content can pick up stray empty paragraph block delimiters
+	 * such as <!-- wp:paragraph /-->. They make has_blocks() true, so the Classic
+	 * HTML was compared as one opaque freeform block and edits went unmarked.
+	 * Remove them when the content contains no other blocks.
+	 *
+	 * @param string $content Post content.
+	 * @return string
+	 */
+	public static function strip_stray_empty_blocks( $content ) {
+		$content = (string) $content;
+
+		if ( ! has_blocks( $content ) ) {
+			return $content;
+		}
+
+		$stripped = preg_replace(
+			'/<!--\s+wp:paragraph\s+\/-->|<!--\s+wp:paragraph\s+-->\s*(?:<p>\s*<\/p>)?\s*<!--\s+\/wp:paragraph\s+-->/',
+			'',
+			$content
+		);
+
+		return ( is_string( $stripped ) && trim( $stripped ) && ! has_blocks( $stripped ) ) ? $stripped : $content;
+	}
+
+	/**
 	 * Resolve and authorize a Visual Compare object pair.
 	 *
 	 * @param int|WP_Post $revision Revision object or ID.
@@ -71,7 +96,7 @@ final class Visual_Post_Compare {
 	 *
 	 * @return array[]
 	 */
-	public static function comparison_sidebar_definitions($key = '', $posts = []) {
+	public static function comparison_sidebar_definitions($key = '', $posts = [], $current_post_id = 0) {
 		static $sidebars;
 
 		if (empty($current_post_id)) {
@@ -348,7 +373,7 @@ final class Visual_Post_Compare {
 		$script_dependencies = array( 'wp-api-fetch', 'wp-block-editor', 'wp-block-library', 'wp-block-serialization-default-parser', 'wp-blocks', 'wp-components', 'wp-element', 'wp-hooks', 'wp-i18n', 'wp-private-apis', 'wp-rich-text' );
 		$script_dependencies = apply_filters( 'visual_post_compare_script_dependencies', $script_dependencies );
 
-		if ( $current_post && ! has_blocks( $current_post->post_content ) ) {
+		if ( $current_post && ! has_blocks( self::strip_stray_empty_blocks( $current_post->post_content ) ) ) {
 			wp_enqueue_script(
 				'visual-post-compare-classic',
 				plugins_url( "visual-post-compare-classic{$suffix}.js", __FILE__ ),
@@ -402,6 +427,13 @@ final class Visual_Post_Compare {
 			) . ';',
 			'before'
 		);
+
+		// Keep the comparison canvas wide by default on the dedicated screen.
+		wp_add_inline_script(
+			'visual-post-compare-standalone',
+			"(function(){var fold=function(){var button=document.getElementById('collapse-button');if(button&&!document.body.classList.contains('folded'))button.click();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fold,{once:true});else fold();})();",
+			'after'
+		);
 	}
 
 	public static function enqueue_editor_assets() {
@@ -411,6 +443,9 @@ final class Visual_Post_Compare {
 		}
 
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! $post_id && ! empty( $GLOBALS['post']->ID ) ) {
+			$post_id = (int) $GLOBALS['post']->ID;
+		}
 		if ( ! $post_id || ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
@@ -436,7 +471,7 @@ final class Visual_Post_Compare {
 		wp_enqueue_script(
 			'rvy-visual-compare',
 			plugins_url( 'visual-post-compare.js', __FILE__ ),
-			array( 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
+			array( 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-api-fetch', 'wp-data' ),
 			file_exists( $script_path ) ? filemtime( $script_path ) : '0.11.0',
 			true
 		);
@@ -446,6 +481,7 @@ final class Visual_Post_Compare {
 			'window.VisualPostCompare=' . wp_json_encode(
 				array(
 					'currentPostId'      => $post_id,
+					'sidebarsRestPath'   => '/' . self::REST_NS . '/editor-sidebars',
 					'comparisonSidebars' => $comparison_sidebars,
 					'debugMode'			 => defined('SCRIPT_DEBUG') && SCRIPT_DEBUG
 				)

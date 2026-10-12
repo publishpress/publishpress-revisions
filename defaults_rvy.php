@@ -160,7 +160,7 @@ function rvy_default_options() {
 		'permissions_compat_mode' => 0,
 		'planner_notifications_access_limited' => 0,
 		'archive_postmeta' => 1,
-        'archive_postmeta_on_edit' => 1,
+        'archive_postmeta_on_edit' => 0,
 		'extended_archive' => 0,
 		'delete_settings_on_uninstall' => 0,
 		'apply_post_exceptions' => 0,
@@ -177,6 +177,8 @@ function rvy_default_options() {
 		'admin_menu_pending_count_icon' => 0,
 		'approve_capability' => defined('REVISIONARY_REQUIRE_APPROVE_CAP') && REVISIONARY_REQUIRE_APPROVE_CAP,
 		'visual_compare' => 1,
+        'visual_compare_javascript' => 1,
+        'builder_compare_external_requests' => 1,
 		'rvy_compare_other_internal_fields' => 1,
 	);
 

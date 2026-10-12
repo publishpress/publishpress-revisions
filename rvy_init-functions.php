@@ -608,6 +608,16 @@ function rvy_detect_post_type() {
 		return awp_post_type_from_uri();
 }
 
+/**
+ * Divi's standalone editing preview renders POSTed, unsaved shortcodes.
+ * It is not a Revisions preview, even when its post_id is a workflow revision.
+ * Divi's template retains responsibility for nonce and edit permission checks.
+ */
+function rvy_is_divi_editing_preview() {
+	return !is_admin() && isset($_GET['et_pb_preview'], $_GET['et_pb_preview_nonce'])
+		&& is_string($_GET['et_pb_preview']) && ('true' === $_GET['et_pb_preview']);
+}
+
 function rvy_detect_post_id() {
 	global $revisionary;
 	
@@ -1319,7 +1329,7 @@ function rvy_init() {
 		}
 	} else {		// @todo: fix links instead
 		// fill in the missing args for Pending / Scheduled revision preview link from Edit Posts / Pages
-		if ( isset($_SERVER['HTTP_REFERER']) 																// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+		if ( !rvy_is_divi_editing_preview() && isset($_SERVER['HTTP_REFERER']) 																// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		&& ( false !== strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER']))),'p-admin/edit-pages.php') 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		|| false !== strpos( urldecode(esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER']))),'p-admin/edit.php') ) ) {		// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
