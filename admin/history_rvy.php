@@ -96,10 +96,10 @@ class RevisionaryHistory
             setTimeout(() => {
                 $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after(
                     '<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
+                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false, false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
                     + '</button></div>'
                     + '<div class="rvy-copy"><button id="rvy_copy_new_content" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
+                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false, false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
                     + '</button></div>'
                 );
             }, 500);

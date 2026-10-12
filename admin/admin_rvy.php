@@ -249,6 +249,11 @@ class RevisionaryAdmin
 		) {
 			wp_enqueue_style('revisionary', RVY_URLPATH . '/admin/revisionary.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 			wp_enqueue_style('revisionary-tooltip', RVY_URLPATH . '/common/css/_tooltip.css', [], PUBLISHPRESS_REVISIONS_VERSION);
+
+			// Escape dismisses an open tooltip (WCAG 1.4.13)
+			wp_register_script('revisionary-tooltip', false, [], PUBLISHPRESS_REVISIONS_VERSION, true);
+			wp_enqueue_script('revisionary-tooltip');
+			wp_add_inline_script('revisionary-tooltip', "document.addEventListener('keydown',function(e){if('Escape'!==e.key&&'Esc'!==e.key)return;document.querySelectorAll('[data-toggle=\\'tooltip\\']:not(.click)').forEach(function(t){if(t.matches(':hover')||t.matches(':focus-within')){t.classList.add('rvy-tip-dismissed');}});});['mouseleave','focusout'].forEach(function(n){document.addEventListener(n,function(e){if(e.target&&e.target.classList&&e.target.classList.contains('rvy-tip-dismissed')){e.target.classList.remove('rvy-tip-dismissed');}},true);});");
 		}
 
 		if (in_array($pagenow, ['post.php', 'post-new.php'], true) 						
@@ -677,16 +682,24 @@ class RevisionaryAdmin
         }
     }
 
-	function tooltipText($display_text, $tip_text, $use_icon = false) {
+	function tooltipText($display_text, $tip_text, $use_icon = false, $focusable = true) {
+		static $tip_count = 0;
+		$tip_count++;
+		$tip_id = 'rvy-tip-' . $tip_count;
+
 		$icon = '';
 		
 		if ($use_icon) :
 			ob_start();
-		?><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="margin-left: 3px; vertical-align: baseline;"><path d="M 25 2 C 12.264481 2 2 12.264481 2 25 C 2 37.735519 12.264481 48 25 48 C 37.735519 48 48 37.735519 48 25 C 48 12.264481 37.735519 2 25 2 z M 25 4 C 36.664481 4 46 13.335519 46 25 C 46 36.664481 36.664481 46 25 46 C 13.335519 46 4 36.664481 4 25 C 4 13.335519 13.335519 4 25 4 z M 25 11 A 3 3 0 0 0 25 17 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 23 23 L 23 36 L 21 36 L 21 38 L 29 38 L 29 36 L 27 36 L 27 21 L 21 21 z"></path></svg><?php 
+		?><button type="button" class="rvy-tooltip-trigger" aria-describedby="<?php echo esc_attr($tip_id);?>"><span class="screen-reader-text"><?php esc_html_e('More information', 'revisionary');?></span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="margin-left: 3px; vertical-align: baseline;" aria-hidden="true" focusable="false"><path d="M 25 2 C 12.264481 2 2 12.264481 2 25 C 2 37.735519 12.264481 48 25 48 C 37.735519 48 48 37.735519 48 25 C 48 12.264481 37.735519 2 25 2 z M 25 4 C 36.664481 4 46 13.335519 46 25 C 46 36.664481 36.664481 46 25 46 C 13.335519 46 4 36.664481 4 25 C 4 13.335519 13.335519 4 25 4 z M 25 11 A 3 3 0 0 0 25 17 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 23 23 L 23 36 L 21 36 L 21 38 L 29 38 L 29 36 L 27 36 L 27 21 L 21 21 z"></path></svg></button><?php 
 			$icon = ob_get_clean();
 		endif;
+
+		// Let keyboard users reach a tip whose trigger text contains no focusable element
+		$tabindex = ($focusable && !$use_icon && ('' !== trim(wp_strip_all_tags($display_text))) && !preg_match('/<(a|button|input|select|textarea)\b/i', $display_text))
+		? ' tabindex="0"' : '';
 		
-		return '<span data-toggle="tooltip" data-placement="top"><span class="tooltip-text"><span>' 
+		return '<span data-toggle="tooltip" data-placement="top"' . $tabindex . '><span class="tooltip-text" id="' . esc_attr($tip_id) . '" role="tooltip"><span>' 
 		. $tip_text
 		. '</span><i></i></span>'
 		. $display_text
