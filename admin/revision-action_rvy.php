@@ -272,6 +272,12 @@ function rvy_revision_decline($revision_id = 0) {
 		if (!$post = get_post($published_id)) {
 		return false;
 		}
+	
+		if (!is_content_administrator_rvy() && !current_user_can('approve_revision', $revision_id)
+		&& (!defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS') || !current_user_can('edit_post', rvy_post_id($revision_id)))
+		) {
+			return false;
+		}
 
 		if (!$batch_process) {
 			check_admin_referer( "decline-revision_{$revision_id}" );
@@ -381,7 +387,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		return false;
 		}
 
-		if (!current_user_can('approve_revision', $revision_id) && !current_user_can('edit_post', $post->ID)) {
+		if (!current_user_can('approve_revision', $revision_id)) {
 			if ($batch_process) {
 			return false;
 			} else {
