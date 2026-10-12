@@ -53,7 +53,7 @@
 }
 
 .visual-post-compare-revision__body {
-	--visual-post-compare-sidebar-width: clamp(220px, 22vw, 300px);
+	--visual-post-compare-sidebar-width: clamp(200px, 20vw, 300px);
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) var(--visual-post-compare-sidebar-width);
 	min-height: 0;
@@ -76,7 +76,7 @@
 	align-self: stretch;
 	gap: 28px;
 	padding: 20px;
-	padding-left: 40px;
+	padding-left: 25px;
 	background: #fff;
 	overflow-wrap: anywhere;
 }
@@ -232,6 +232,13 @@
 .visual-post-compare-revision__block-details {
 	gap: 18px !important;
 	margin-left: -10px;
+}
+
+.visual-post-compare-revision__block-details-caption {
+	margin-top: -10px;
+	font-size: 13px;
+	line-height: 1.5;
+	white-space: pre-line;
 }
 
 .visual-post-compare-revision__block-identity {
@@ -518,12 +525,8 @@ div.visual-post-compare-classic {
 }
 
 @media (max-width: 1100px) {
-	.visual-post-compare-revision__body {
-		--visual-post-compare-sidebar-width: 240px;
-	}
-
 	.visual-post-compare-revision__sidebar {
-		padding: 20px 10px 20px 20px;
+		padding: 20px 10px 20px 25px;
 	}
 }
 
@@ -578,7 +581,7 @@ div.visual-post-compare-classic {
 
 	.visual-post-compare-revision__sidebar {
 		gap: 20px;
-		padding: 16px;
+		padding: 16px 16px 16px 25px;
 	}
 
 	.visual-post-compare-revision__canvas {

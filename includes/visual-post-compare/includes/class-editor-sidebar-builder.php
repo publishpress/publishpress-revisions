@@ -25,7 +25,7 @@ final class Visual_Post_Compare_Editor_Sidebar_Builder {
 			return $sidebars;
 		}
 
-		foreach ( Visual_Post_Compare::comparison_sidebar_definitions() as $definition ) {
+		foreach ( Visual_Post_Compare::comparison_sidebar_definitions( '', array(), $current_post_id ) as $definition ) {
 			$visible_posts = self::readable_comparison_posts( $definition, $current_post_id );
 			$items         = array();
 

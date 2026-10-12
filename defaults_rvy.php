@@ -177,6 +177,8 @@ function rvy_default_options() {
 		'admin_menu_pending_count_icon' => 0,
 		'approve_capability' => defined('REVISIONARY_REQUIRE_APPROVE_CAP') && REVISIONARY_REQUIRE_APPROVE_CAP,
 		'visual_compare' => 1,
+        'visual_compare_javascript' => 1,
+        'builder_compare_external_requests' => 1,
 		'rvy_compare_other_internal_fields' => 1,
 	);
 
