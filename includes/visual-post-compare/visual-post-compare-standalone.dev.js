@@ -2550,7 +2550,7 @@
 										{ label: __('Many popular themes', 'revisionary'), integrationLink: true },
 									].map((item) => el('li', { key: item.label },
 										item.integrationLink && promo.integrationUrl
-											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl }, item.label)
+											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl, target: '_blank', rel: 'noopener noreferrer' }, item.label)
 											: item.label
 									))
 								),
@@ -2619,7 +2619,7 @@
 					|| (block.innerBlocks || []).some(changed)
 				)
 			);
-			return diffResult.blocks.some(changed);
+			return wp.hooks.applyFilters('visual_post_compare.has_content_changes', diffResult.blocks.some(changed), comparison);
 		}, [diffResult.blocks]);
 		const proFields = window.RevisionaryVisualCompareFields;
 		const hasCustomFieldChanges = Boolean(
@@ -3308,11 +3308,11 @@
 									) : null
 								)
 								: null,
-							el('div', previewProps)
+							wp.hooks.applyFilters('visual_post_compare.render_content', el('div', previewProps), comparison, { displayedPost, comparisonBase, isCurrentReference, lacksPreviousRevision })
 						),
 							]
 						),
-						activeCanvasTab === 'content' ? diffMarkerNav : null
+						activeCanvasTab === 'content' ? wp.hooks.applyFilters('visual_post_compare.render_markers', diffMarkerNav, comparison) : null
 					),
 				el(
 					'aside',
@@ -3335,9 +3335,9 @@
 					),
 					sidebarTab === 'revision'
 						? revisionSidebarContent
-						: (isBlockEditorComparison
+						: wp.hooks.applyFilters('visual_post_compare.render_content_details', isBlockEditorComparison
 							? el(BlockDiffSidebar, { block: selectedBlock, tooltip: selectedBlockTooltip, historicalComparison })
-							: el(ClassicInfoSidebar, { info: classicInfo })),
+							: el(ClassicInfoSidebar, { info: classicInfo }), comparison),
 					Number(comparison.revision.id) !== Number(comparison.current.id) && comparison.revision.classicCompareURL
 						? el('div', { className: 'visual-post-compare-classic' },
 							el('a', { href: comparison.revision.classicCompareURL, className: 'visual-post-compare-classic-link', target: '_blank', rel: 'noopener noreferrer' },
