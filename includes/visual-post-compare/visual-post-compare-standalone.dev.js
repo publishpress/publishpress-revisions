@@ -105,7 +105,7 @@
 			outline-offset: 6px;
 		}
 		.is-revision-modified {
-			outline: 3px dotted #dba617 !important;
+			outline: 3px dotted #9a7000 !important;
 			outline-offset: 6px;
 		}
 		.is-revision-changed {
@@ -118,7 +118,9 @@
 		}
 		.revision-diff-added {
 			background-color: color-mix(in srgb, currentColor 5%, #00a32a 15%);
-			text-decoration: none;
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 2px;
 		}
 		.revision-diff-format-added,
 		.revision-diff-format-removed,
@@ -136,7 +138,7 @@
 		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,
 		.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-border-active,
 		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-border-active {
-			outline-color: #dba617 !important;
+			outline-color: #9a7000 !important;
 		}
 		.is-revision-added.is-diff-border-active,
 		.is-revision-removed.is-diff-border-active,
@@ -1035,6 +1037,7 @@
 					step: 1,
 					value: selectedIndex,
 					'aria-label': __('Select comparison post', 'revisionary'),
+					'aria-valuetext': selectedPost ? String(sliderDateLabel(selectedPost) || '') : undefined,
 					onFocus: () => setHasFocus(true),
 					onBlur: () => setHasFocus(false),
 					onChange: (event) => {
@@ -1209,11 +1212,40 @@
 		if (!tooltipElement) return null;
 		tooltipElement.classList.add('visual-post-compare-diff-tooltip', 'click');
 		tooltipElement.setAttribute('aria-hidden', 'true');
+		// Keep the tooltip open while the pointer is over it (WCAG 1.4.13)
+		tooltipElement.addEventListener('mouseenter', cancelHideDiffTooltip);
+		tooltipElement.addEventListener('mouseleave', () => scheduleHideDiffTooltip());
 		document.body.appendChild(tooltipElement);
 		return tooltipElement;
 	}
 
+	let tooltipHideTimer = null;
+
+	function cancelHideDiffTooltip() {
+		if (tooltipHideTimer) {
+			window.clearTimeout(tooltipHideTimer);
+			tooltipHideTimer = null;
+		}
+	}
+
+	function scheduleHideDiffTooltip() {
+		cancelHideDiffTooltip();
+		tooltipHideTimer = window.setTimeout(() => {
+			tooltipHideTimer = null;
+			hideDiffTooltip();
+		}, 300);
+	}
+
+	// Escape dismisses the diff tooltip (WCAG 1.4.13)
+	document.addEventListener('keydown', (event) => {
+		if ('Escape' === event.key && tooltipTarget) {
+			cancelHideDiffTooltip();
+			hideDiffTooltip();
+		}
+	});
+
 	function hideDiffTooltip() {
+		cancelHideDiffTooltip();
 		if (tooltipTarget) tooltipTarget.classList.remove('is-diff-tooltip-active');
 		const tooltip = ensureTooltipElement();
 		if (tooltip) {
@@ -1251,6 +1283,7 @@
 	}
 
 	function showDiffTooltip(target, caption) {
+		cancelHideDiffTooltip();
 		const tooltip = ensureTooltipElement();
 		if (!tooltip || !target || !caption) return;
 		if (tooltipTarget && tooltipTarget !== target) {
@@ -1773,7 +1806,11 @@
 		swap.className = 'visual-post-compare-image-diff--modified visual-post-compare-block-image-diff';
 		swap.tabIndex = 0;
 		swap.setAttribute('role', 'button');
-		swap.setAttribute('aria-label', __('Show previous image', 'revisionary'));
+		const imageAlt = currentImage.getAttribute('alt') || '';
+		swap.setAttribute('aria-label', imageAlt
+			? sprintf(__('Show previous image: %s', 'revisionary'), imageAlt)
+			: __('Show previous image', 'revisionary'));
+		swap.setAttribute('aria-pressed', 'false');
 		const previous = previousImage.cloneNode(true);
 		previous.removeAttribute('id');
 		currentImage.classList.add('visual-post-compare-image-diff__current');
@@ -1784,8 +1821,8 @@
 		backup.setAttribute('aria-hidden', 'true');
 		currentImage.parentNode.insertBefore(swap, currentImage);
 		swap.append(currentImage, previous, backup);
-		const showPrevious = () => swap.classList.add('is-showing-previous');
-		const showCurrent = () => swap.classList.remove('is-showing-previous');
+		const showPrevious = () => { swap.classList.add('is-showing-previous'); swap.setAttribute('aria-pressed', 'true'); };
+		const showCurrent = () => { swap.classList.remove('is-showing-previous'); swap.setAttribute('aria-pressed', 'false'); };
 		swap.addEventListener('mouseenter', showPrevious);
 		swap.addEventListener('mouseleave', showCurrent);
 		swap.addEventListener('click', (event) => {
@@ -1796,7 +1833,8 @@
 		swap.addEventListener('keydown', (event) => {
 			if (event.key !== 'Enter' && event.key !== ' ') return;
 			event.preventDefault();
-			swap.classList.toggle('is-showing-previous');
+			if (swap.classList.contains('is-showing-previous')) showCurrent();
+			else showPrevious();
 		});
 		return true;
 	}
@@ -2977,10 +3015,10 @@
 
 		const presentation = comparison.presentation || {};
 		const formattedTooltipProps = (caption) => ({
-			'aria-label': caption,
+			'aria-description': caption,
 			'data-visual-post-compare-tooltip': caption,
 			onMouseEnter: (event) => showDiffTooltip(event.currentTarget, caption),
-			onMouseLeave: () => hideDiffTooltip(),
+			onMouseLeave: () => scheduleHideDiffTooltip(),
 			onFocus: (event) => showDiffTooltip(event.currentTarget, caption),
 			onBlur: () => hideDiffTooltip(),
 		});
@@ -3111,7 +3149,7 @@
 		const viewChangesTooltipProps = {
 			'data-visual-post-compare-tooltip': viewChangesTooltip,
 			onMouseEnter: (event) => showDiffTooltip(event.currentTarget, viewChangesTooltip),
-			onMouseLeave: () => hideDiffTooltip(),
+			onMouseLeave: () => scheduleHideDiffTooltip(),
 			onFocus: (event) => showDiffTooltip(event.currentTarget, viewChangesTooltip),
 			onBlur: () => hideDiffTooltip(),
 		};
@@ -3247,23 +3285,23 @@
 						{ className: 'visual-post-compare-revision__canvas-shell' },
 						hasCustomFieldChanges ? el(
 							'div',
-							{ className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs', role: 'tablist' },
+							{ className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Preview content', 'revisionary') },
 							el('button', {
-								type: 'button', role: 'tab',
+								type: 'button',
 								className: activeCanvasTab === 'content' ? 'is-active' : '',
-								'aria-selected': activeCanvasTab === 'content',
+								'aria-pressed': activeCanvasTab === 'content',
 								onClick: () => setCanvasTab('content'),
 							}, __('Content', 'revisionary')),
 							el('button', {
-								type: 'button', role: 'tab',
+								type: 'button',
 								className: activeCanvasTab === 'fields' ? 'is-active' : '',
-								'aria-selected': activeCanvasTab === 'fields',
+								'aria-pressed': activeCanvasTab === 'fields',
 								onClick: () => setCanvasTab('fields'),
 							}, __('Field Changes', 'revisionary'))
 						) : null,
 						el(
 							'div',
-							{ className: 'visual-post-compare-revision__canvas', ref: canvasRef },
+							{ className: 'visual-post-compare-revision__canvas', ref: canvasRef, tabIndex: 0, role: 'region', 'aria-label': __('Comparison preview', 'revisionary') },
 							activeCanvasTab === 'fields' ? fieldsSection : [
 							...editorStyleElements,
 						el('style', null, REVISION_DIFF_STYLES + (classicDiff ? classicDiff.styles : '')),
@@ -3303,7 +3341,7 @@
 									) : null,
 									noChangesDetected ? el(
 										'div',
-										{ className: 'notice notice-info inline visual-post-compare-revision__no-changes' },
+										{ className: 'notice notice-info inline visual-post-compare-revision__no-changes', role: 'status' },
 										el('p', null, __('No changes detected.', 'revisionary'))
 									) : null
 								)
@@ -3319,17 +3357,17 @@
 					{ className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
 					el(
 						'div',
-						{ className: 'visual-post-compare-revision__sidebar-tabs', role: 'tablist' },
+						{ className: 'visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Sidebar view', 'revisionary') },
 						el('button', {
-							type: 'button', role: 'tab',
+							type: 'button',
 							className: sidebarTab === 'revision' ? 'is-active' : '',
-							'aria-selected': sidebarTab === 'revision',
+							'aria-pressed': sidebarTab === 'revision',
 							onClick: () => setSidebarTab('revision'),
 						}, __('Revision', 'revisionary')),
 						el('button', {
-							type: 'button', role: 'tab',
+							type: 'button',
 							className: sidebarTab === 'block' ? 'is-active' : '',
-							'aria-selected': sidebarTab === 'block',
+							'aria-pressed': sidebarTab === 'block',
 							onClick: () => setSidebarTab('block'),
 						}, isBlockEditorComparison ? __('Block', 'revisionary') : (classicInfo ? classicInfo.title : __('Info', 'revisionary')))
 					),
@@ -3400,7 +3438,7 @@
 		}
 
 		if (!comparison) {
-			return el('div', { className: 'visual-post-compare-loading' }, el(Spinner), config.loadingComparisonCaption);
+			return el('div', { className: 'visual-post-compare-loading', role: 'status' }, el(Spinner), config.loadingComparisonCaption || __('Loading comparison…', 'revisionary'));
 		}
 
 		const reloadComparison = async (revisionId, request = {}, queuedRequestId = 0) => {
