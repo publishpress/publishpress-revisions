@@ -345,11 +345,11 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
 		if ( $revision && ( 'future-revision' === $revision->post_mime_type ) ) {
 			$publication_time = strtotime( $revision->post_date_gmt . ' UTC' );
 
-			if ( $publication_time && ( $publication_time + MINUTE_IN_SECONDS >= current_time( 'timestamp', true ) ) ) {
-				return esc_html__( 'Scheduled', 'revisionary' );
+			if ( $publication_time && ( current_time( 'timestamp', true ) >= $publication_time + MINUTE_IN_SECONDS ) ) {
+				return esc_html__( 'Missed Schedule', 'revisionary' );
 			}
 
-			return esc_html__( 'Missed Schedule', 'revisionary' );
+			return esc_html__( 'Scheduled', 'revisionary' );
 		}
 
 		return '<span aria-hidden="true">—</span>';
