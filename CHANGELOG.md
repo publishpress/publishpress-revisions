@@ -1,6 +1,25 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.1.0] - 1 Oct 2026
+- Fixed : Visual Compare display of Classic Editor content changes
+- Changed : Visual Compare enhancements
+- Added : Action Scheduler integration for more reliable scheduled revision publication
+- Changed : Move Scheduled Revisions to a separate screen
+- Fixed : Schedule / Publish button captioning date threshold inconsistent with scheduling threshold
+- Fixed : Missing Create Revision button in Classic Editor in some cases
+- Fixed : Revision Creation, Submission or Scheduling from within editor failed under some conditions
+- Fixed : Invalid preview, edit links after scheduling a revision in post editor
+- Fixed : Revisions scheduled in post editor do not apply unsaved changes
+- Fixed : Revision preview bar responsive styling
+- Fixed : Revision preview bar may cover WP Admin bar
+- Fixed : Missing confirmation message after revision approval
+- Fixed : Performance issue with front end revision count display
+- Fixed : Responsive styling on Past Revisions, New Revisions, Scheduled Revisions screens
+- Changed : Improvements to Past Revisions, New Revisions, Scheduled Revisions styling
+- Added : Explanatory messages on Past Revisions, New Revisions, Scheduled Revisions screens
+- Fixed : Accessibility attributes for images, plugin UI elements
+
 [4.0.2] - 2 Sep 2026
 - Changed : Changed revision comparison query arguments for better clarity
 - Changed : Simplified and clarified revision comparison permission checks

@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Save a custom field with the post authors' name. Add compatibility to
  * Yoast for using in the custom title, and other 3rd party plugins.
@@ -47,16 +51,17 @@ function _rvy_set_ma_post_authors_custom_field($post_id, $authors)
 			? $multiple_authors_addon->coauthor_taxonomy 
 			: 'author';
 
-			$term_id_csv = implode( ',', array_map('intval', $author_term_ids) );
+				$term_id_placeholders = implode( ', ', array_fill( 0, count( $author_term_ids ), '%d' ) );
 
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$names = $wpdb->get_col(
-				$wpdb->prepare(
-					"SELECT name FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id"
-					. " WHERE tt.taxonomy = %s AND t.term_id IN (" . $term_id_csv . ")"
-					, $taxonomy
-				)
-			);
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$names = $wpdb->get_col(
+					$wpdb->prepare(
+						"SELECT name FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id"
+						// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Placeholder list is generated from %d entries for integer term IDs.
+						. " WHERE tt.taxonomy = %s AND t.term_id IN ($term_id_placeholders)",
+						array_merge( [ $taxonomy ], array_map( 'intval', $author_term_ids ) )
+					)
+				);
 		}
 
 		if (!empty($names)) {

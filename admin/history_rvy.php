@@ -96,13 +96,31 @@ class RevisionaryHistory
             setTimeout(() => {
                 $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after(
                     '<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
+                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false, false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
                     + '</button></div>'
                     + '<div class="rvy-copy"><button id="rvy_copy_new_content" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
+                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false, false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
                     + '</button></div>'
                 );
             }, 500);
+
+            // Confirm the copy to screen reader users (WCAG 4.1.3)
+            var rvyCopyDone = function() {
+                var msg = '<?php echo esc_js(__('Copied to clipboard.', 'revisionary'));?>';
+
+                if (window.wp && wp.a11y && wp.a11y.speak) {
+                    wp.a11y.speak(msg);
+                } else {
+                    var $status = $('#rvy-copy-status');
+
+                    if (!$status.length) {
+                        $status = $('<div id="rvy-copy-status" class="screen-reader-text" role="status" aria-live="polite"></div>').appendTo('body');
+                    }
+
+                    $status.text('');
+                    setTimeout(function() { $status.text(msg); }, 100);
+                }
+            };
 
             $(document).on('click', '#rvy_copy_old_content', function (e) {
                 var content = '';
@@ -113,7 +131,7 @@ class RevisionaryHistory
                     content = content + '\r\n\r\n' + $(e).html();
                 })
                 
-                navigator.clipboard.writeText(content);
+                navigator.clipboard.writeText(content).then(rvyCopyDone);
             });
 
             $(document).on('click', '#rvy_copy_new_content', function (e) {
@@ -125,7 +143,7 @@ class RevisionaryHistory
                     content = content + '\r\n\r\n' + $(e).html();
                 })
                 
-                navigator.clipboard.writeText(content);
+                navigator.clipboard.writeText(content).then(rvyCopyDone);
             });
         });
         /* ]]> */
@@ -444,7 +462,7 @@ class RevisionaryHistory
         if (!$revision_id && !$to && !empty($_REQUEST['compare'])) {                            //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $compare = sanitize_text_field(
                 is_array($_REQUEST['compare'])                                                  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                ? reset(wp_unslash($_REQUEST['compare']))    //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+                ? reset($_REQUEST['compare'])    //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
                 : wp_unslash($_REQUEST['compare'])                                                          //phpcs:ignore WordPress.Security.NonceVerification.Recommended
             );
             
@@ -584,6 +602,90 @@ class RevisionaryHistory
         return $fields;
     }
 
+    /**
+     * Normalize serialization-only differences before comparing Classic Editor HTML.
+     *
+     * WordPress' text diff renderer tries to pair every changed line. A Classic
+     * document containing many equivalent style or entity rewrites can therefore
+     * make the revision AJAX request too expensive to render. Block Editor content
+     * must remain byte-oriented, so it bypasses this normalization.
+     *
+     * @param string $content Classic Editor post content.
+     * @return string Normalized content used only as input to wp_text_diff().
+     */
+    private function normalizeLegacyDiffContent( $content ) {
+        $content = str_replace( array( "\r\n", "\r" ), "\n", $content );
+        $content = wp_kses_normalize_entities( $content );
+
+        return preg_replace_callback(
+            '/\bstyle\s*=\s*(["\'])(.*?)\1/is',
+            function ( $matches ) {
+                return 'style=' . $matches[1] . $this->normalizeLegacyStyleDeclarations( $matches[2] ) . $matches[1];
+            },
+            $content
+        );
+    }
+
+    /**
+     * Normalize insignificant spacing between top-level CSS declarations.
+     *
+     * Semicolons inside quoted strings and functions (such as data URLs) are
+     * preserved. Declaration order and values are not changed.
+     *
+     * @param string $style Inline style value.
+     * @return string Normalized inline style value.
+     */
+    private function normalizeLegacyStyleDeclarations( $style ) {
+        $declarations = array();
+        $declaration  = '';
+        $quote        = '';
+        $depth        = 0;
+        $length       = strlen( $style );
+
+        for ( $index = 0; $index < $length; $index++ ) {
+            $character = $style[ $index ];
+
+            if ( $quote ) {
+                $declaration .= $character;
+
+                if ( $character === $quote && ( 0 === $index || '\\' !== $style[ $index - 1 ] ) ) {
+                    $quote = '';
+                }
+
+                continue;
+            }
+
+            if ( '"' === $character || "'" === $character ) {
+                $quote        = $character;
+                $declaration .= $character;
+                continue;
+            }
+
+            if ( '(' === $character ) {
+                $depth++;
+            } elseif ( ')' === $character && $depth ) {
+                $depth--;
+            }
+
+            if ( ';' === $character && 0 === $depth ) {
+                if ( '' !== trim( $declaration ) ) {
+                    $declarations[] = trim( $declaration );
+                }
+
+                $declaration = '';
+                continue;
+            }
+
+            $declaration .= $character;
+        }
+
+        if ( '' !== trim( $declaration ) ) {
+            $declarations[] = trim( $declaration );
+        }
+
+        return implode( '; ', $declarations );
+    }
+
     // port of core wp_get_revision_ui_diff() to allow comparison of pending, future revisions (published post ID stored in comment_count instead of post_parent)
     public function getRevisionUIDiff($post, $compare_from, $compare_to) {
         if ( ! $post ) {
@@ -614,6 +716,7 @@ class RevisionaryHistory
         }
 
         $return = array();
+		$visual_compare_has_changes = false;
 
         $acf_active = function_exists('acf_get_setting');
 
@@ -636,6 +739,17 @@ class RevisionaryHistory
 
             /** This filter is documented in wp-admin/includes/revision.php */
             $content_to = apply_filters( "_wp_post_revision_field_{$field}", $compare_to->$field, $field, $compare_to, 'to' );
+
+            if (
+                'post_content' === $field
+                && is_string( $content_from )
+                && is_string( $content_to )
+                && false === strpos( $content_from, '<!-- wp:' )
+                && false === strpos( $content_to, '<!-- wp:' )
+            ) {
+                $content_from = $this->normalizeLegacyDiffContent( $content_from );
+                $content_to   = $this->normalizeLegacyDiffContent( $content_to );
+            }
 
             if ($acf_active && is_scalar($content_to) && (0 === strpos($content_to, 'field_'))) {
                 continue;
@@ -675,6 +789,10 @@ class RevisionaryHistory
             }
 
             $diff = wp_text_diff( $content_from, $content_to, $args );
+
+			if ( $diff && in_array( $field, array( 'post_title', 'post_content' ), true ) ) {
+				$visual_compare_has_changes = true;
+			}
 
             if ( ! $diff && 'post_title' === $field ) {
                 // It's a better user experience to still show the Title, even if it didn't change.
@@ -927,6 +1045,26 @@ class RevisionaryHistory
 
         $args = compact('to_meta', 'native_fields', 'meta_fields', 'strip_tags');
         $return = apply_filters('revisionary_diff_ui', $return, $compare_from, $compare_to, $args);
+
+		$non_title_diffs = array_filter(
+			$return,
+			function ( $item ) {
+				return empty( $item['id'] ) || 'post_title' !== $item['id'];
+			}
+		);
+
+		if ( ! $visual_compare_has_changes && ! $non_title_diffs ) {
+			$notice_diff = '<table class="diff"><colgroup><col class="content diffsplit left"><col class="content diffsplit middle"><col class="content diffsplit right"></colgroup><tbody><tr>';
+			$notice_diff .= '<td colspan="3"><div class="notice notice-info inline"><p>' . esc_html__( 'No changes detected.', 'revisionary' ) . '</p></div></td>';
+			$notice_diff .= '</tr></tbody></table>';
+			$content_notice = array(
+				'id'   => 'post_content',
+				'name' => esc_html__( 'Content' ),
+				'diff' => $notice_diff,
+			);
+			$title_index = array_search( 'post_title', wp_list_pluck( $return, 'id' ), true );
+			array_splice( $return, false === $title_index ? 0 : $title_index + 1, 0, array( $content_notice ) );
+		}
 
         return $return;
     }
@@ -1311,7 +1449,7 @@ class RevisionaryHistory
                             for (rkey = 0; rkey < _wpRevisionsSettings.revisionData.length; rkey++) {
                                 if (_wpRevisionsSettings.revisionData[rkey].id == rselected) {
                                     if (_wpRevisionsSettings.revisionData[rkey].editUrl) {
-	                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '"><input type="button" class="edit-revision button button-primary button-compact" style="float:right" value="<?php echo esc_attr__('Edit', 'revisionary');?>"></a>');
+	                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '" aria-label="<?php echo esc_attr( esc_html__( 'Edit revision', 'revisionary' ) ); ?>"><input type="button" class="edit-revision button button-primary button-compact" style="float:right" value="<?php echo esc_attr__('Edit', 'revisionary');?>"></a>');
                                     }
                                 }
                             }
@@ -1359,12 +1497,22 @@ class RevisionaryHistory
             $can_edit = current_user_can($edit_published_cap);
         }
 
-        $show_preview_link = rvy_get_option('revision_preview_links') || is_content_administrator_rvy();
+        $is_autosave = wp_is_post_autosave($post);
+
+        // An autosave preview is displayed as a Past Revision and can't be restored from there, so offer the WordPress restore action instead
+        $show_preview_link = !$is_autosave && (rvy_get_option('revision_preview_links') || is_content_administrator_rvy());
+
+        $restore_url = ($is_autosave && current_user_can('edit_post', $post->post_parent))
+        ? wp_nonce_url(add_query_arg(['revision' => $post->ID, 'action' => 'restore'], admin_url('revision.php')), "restore-post_{$post->ID}")
+        : '';
+
+        // Same access check as the Past Revisions menu item
+        $show_manage_link = is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
 
         if ($show_preview_link) {
             $preview_label = (empty($type_obj) || $can_edit)
             ?  esc_html__('Preview / Restore', 'revisionary')
-	            : esc_html__('Preview', 'revisionary');
+            : esc_html_x( 'Preview', 'verb', 'revisionary' );
 
             $preview_url = rvy_preview_url($post);
         }
@@ -1400,22 +1548,36 @@ class RevisionaryHistory
                     rvyPreviewURL = rvyPreviewURL.replace("p=" + <?php echo esc_attr($post_id);?>, "p=" + rvyRevisionID);
                     <?php endif;?>
 
+                    <?php if($show_manage_link):?>
                     var rvyManageURL = '<?php echo esc_url_raw(wp_unslash($manage_url));?>';
                     rvyManageURL = rvyManageURL.replace("revision=" + <?php echo esc_attr($post_id);?>, "revision=" + rvyRevisionID);
+                    <?php endif;?>
 
-                    if(!$('span.rvy-compare-preview').length) {
+                    if(!$('span.rvy-compare-preview, span.rvy-compare-list, span.rvy-compare-restore').length) {
                         <?php if($show_preview_link):?>
-                        $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><input class="button" type="button" value="<?php echo esc_attr($preview_label);?>"></a></span>');
+                        $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan button" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><?php echo esc_html($preview_label);?></a></span>');
                         <?php endif;?>
 
+                        <?php if($restore_url):?>
+                        $('h1').append('<span class="rvy-compare-restore" style="margin-left:20px"><a href="<?php echo esc_url($restore_url);?>"><input class="button" type="button" value="<?php echo esc_attr__('Restore This Autosave');?>"></a></span>');
+                        <?php endif;?>
+
+                        <?php if($show_manage_link):?>
                         $('h1').append('<span class="rvy-compare-list" style="margin-left:10px"><a class="rvy_preview_linkspan" href="<?php echo esc_url($manage_url);?>" target="_revision_list"><input class="button" type="button" value="<?php echo esc_attr($manage_label);?>"></a></span>');
+                        <?php endif;?>
                     } else {
                         <?php if($show_preview_link):?>
                         $('span.rvy-compare-preview a').attr('href', rvyPreviewURL);
                         <?php endif;?>
 
+                        <?php if($show_manage_link):?>
                         $('span.rvy-compare-list a').attr('href', rvyManageURL);
+                        <?php endif;?>
                     }
+
+                    <?php if($restore_url):?>
+                    $('span.rvy-compare-restore').toggle(rvyRevisionID == <?php echo (int) $post_id;?>);
+                    <?php endif;?>
 
                     rvyLastID = rvyRevisionID;
                 }

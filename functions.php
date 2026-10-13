@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 require_once(__DIR__ . '/rvy_init-functions.php');
 
 function revisionary() {
@@ -126,11 +130,6 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
  * @return void
  */
 function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
-
-    if (!rvy_get_option('enable_postmeta_revision')) {
-        return;
-    }
-
     $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
     $args = array_merge($defaults, $args);
     foreach (array_keys($defaults) as $var) {
@@ -203,7 +202,8 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
         if (!empty($meta_values)) {
             if (count($meta_values) > 1) {
-                delete_post_meta($to_post_id, $meta_key);
+                // delete_post_meta() redirects native revisions to the live post.
+                delete_metadata('post', $to_post_id, $meta_key);
 
                 foreach ( $meta_values as $meta_value ) {
                     $meta_value = maybe_unserialize( $meta_value );
@@ -219,13 +219,14 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
     }
 
     if (!$empty_target_only && !empty($target_meta_keys) && is_array($target_meta_keys)) {
-        if ($delete_meta_keys = array_diff($target_meta_keys, $meta_keys, revisionary_unrevisioned_postmeta())) {
+        if ($delete_meta_keys = array_diff($target_meta_keys, $meta_keys, $skip_meta_keys, revisionary_unrevisioned_postmeta())) {
             $deletable_keys = apply_filters('revisionary_deletable_postmeta_keys', ['_links_to', '_links_to_target']);
         }
         
         foreach($delete_meta_keys as $meta_key) {
             if (in_array($meta_key, $deletable_keys, true) || !empty($args['apply_deletions']) || defined('PP_REVISIONS_APPLY_POSTMETA_DELETION')) {
-                delete_post_meta($to_post_id, $meta_key);
+                // delete_post_meta() redirects native revisions to the live post.
+                delete_metadata('post', $to_post_id, $meta_key);
             }
         }
     }
@@ -488,18 +489,36 @@ function publishpress_get_revision_info($post) {
             $status_label = $status_name;
         }
 
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = sprintf(
+                esc_html__('Autosave of %s', 'revisionary'),
+                "<span title='$this->active_revision_title'>" . $status_label . '</span>'
+            );
+        } else {
         $arr['publish_method'] = sprintf(
             esc_html__('Edit of %s', 'revisionary'),
             "<span title='$this->active_revision_title'>" . $status_label . '</span>'
         );
+        }
 
     } elseif (!empty($parent_from_revision_workflow)) {
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = sprintf("<span title='%s'>%s</span>",
+                $from_revision_title,
+                esc_html__('Autosave of published Revision', 'revisionary')
+            );
+        } else {
         $arr['publish_method'] = sprintf("<span title='%s'>%s</span>",
             $from_revision_title,
             esc_html__('Edit of published Revision', 'revisionary')
         );
+        }
     } elseif (!empty($direct_edit)) {
+        if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
+            $arr['publish_method'] = esc_html__('Autosave', 'revisionary');
+        } else {
         $arr['publish_method'] = esc_html__('Direct Edit', 'revisionary');
+        }
     }
 
     if (!empty($direct_edit)) {
