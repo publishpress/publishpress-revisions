@@ -373,13 +373,11 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			}
 
 			if ($_post['from_revision_workflow']) {
-				switch ($_post['from_revision_workflow']) {
-					case 'future-revision':
-						$_post['revision_action'] = esc_html__('Scheduled Revision Publication', 'revisionary');
-						break;
-
-					default:
-						$_post['revision_action'] = esc_html__('Revision Publication', 'revisionary');
+				// from_revision_workflow may be boolean true, which a loose switch comparison would match to 'future-revision'
+				if ('future-revision' === $_post['from_revision_workflow']) {
+					$_post['revision_action'] = esc_html__('Scheduled Revision Publication', 'revisionary');
+				} else {
+					$_post['revision_action'] = esc_html__('Revision Publication', 'revisionary');
 				}
 			} elseif ($_post['parent_in_revision_workflow']) {
 				if ($status_obj = get_post_status_object($_post['parent_in_revision_workflow'])) {

@@ -755,13 +755,11 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			case 'publication_method':
 				if ($this->from_revision_workflow) {
-					switch ($this->from_revision_workflow) {
-						case 'future-revision':
-							esc_html_e('Scheduled Revision Publication', 'revisionary');
-							break;
-	
-						default:
-							esc_html_e('Revision Publication', 'revisionary');
+					// from_revision_workflow may be boolean true, which a loose switch comparison would match to 'future-revision'
+					if ('future-revision' === $this->from_revision_workflow) {
+						esc_html_e('Scheduled Revision Publication', 'revisionary');
+					} else {
+						esc_html_e('Revision Publication', 'revisionary');
 					}
 				} elseif ($this->parent_in_revision_workflow) {
 					if ($status_obj = get_post_status_object($this->parent_in_revision_workflow)) {

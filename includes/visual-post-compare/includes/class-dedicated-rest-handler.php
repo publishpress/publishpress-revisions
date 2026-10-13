@@ -144,7 +144,7 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 
 		if ( $revision ) {
 			require_once( dirname(REVISIONARY_FILE).'/admin/revision-action_rvy.php' );
-			$result = \rvy_apply_revision($revision->ID);
+			$result = \rvy_apply_revision($revision->ID, $revision->post_mime_type);
 
 			if ( is_wp_error( $result ) ) {
 				return $result;
