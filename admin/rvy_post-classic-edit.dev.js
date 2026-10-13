@@ -6,13 +6,28 @@
 * Copyright 2026, PublishPress
 */
 jQuery(document).ready( function($) {
+
+	// Announce workflow progress and results to screen readers (WCAG 4.1.3)
+	var rvySpeak = function(msg) {
+		if (msg && window.wp && wp.a11y && wp.a11y.speak) {
+			wp.a11y.speak($('<div>').html(msg).text());
+		}
+	};
+
+	// Links styled as buttons also respond to the Space key
+	$(document).on('keydown', 'div.rvy-creation-ui a[role="button"]', function(e) {
+		if (' ' === e.key) {
+			e.preventDefault();
+			$(this).trigger('click');
+		}
+	});
 	var rvyIsPublished = false;
 
 	var RvySubmissionUI = function() {
 		if (rvyObjEdit.ajaxurl && !$('div.rvy-creation-ui').length) {
 			var hideStyle = (rvyObjEdit.actionCaption == '') ? ' style="display:none"' : '';
 
-            var html = '<div class="rvy-creation-ui"' + hideStyle + '><a href="javascript:void(0)" class="button revision-approve revision-create" style="margin-top: 15px; margin-bottom: 15px" title="' 
+            var html = '<div class="rvy-creation-ui"' + hideStyle + '><a href="javascript:void(0)" class="button revision-approve revision-create" role="button" style="margin-top: 15px; margin-bottom: 15px" title="' 
 			+ rvyObjEdit.actionTitle + '">' 
 			+ rvyObjEdit.actionCaption + '</a>'
 			+ '<div class="revision-creating" style="display:none"><span class="spinner"></span></div>'
@@ -29,7 +44,7 @@ jQuery(document).ready( function($) {
 				rvyIsPublished = publishedStatuses.indexOf(rvyObjEdit.currentStatus) >= 0;
 
 				if (rvyIsPublished) {
-					html += '<a href="javascript:void(0)" style="display: none; margin-top: 15px; margin-bottom: 15px" class="button revision-approve revision-schedule" title="' 
+					html += '<a href="javascript:void(0)" style="display: none; margin-top: 15px; margin-bottom: 15px" class="button revision-approve revision-schedule" role="button" title="' 
 					+ rvyObjEdit.scheduleTitle + '">' 
 					+ rvyObjEdit.scheduleCaption + '</a>'
 					
@@ -65,25 +80,27 @@ jQuery(document).ready( function($) {
 		return Math.floor(Math.random() * max);
 	}
 
+	function rvyRunAfterAutosave(callback) {
+		$(document).one('after-autosave', function(event, data) {
+			if (!data || data.success !== false) {
+				callback();
+			} else {
+				$('a.revision-create, a.revision-schedule').removeAttr('disabled aria-disabled');
+			}
+		});
+
+		wp.autosave.server.triggerSave();
+	}
+
     $(document).on('click', 'a.revision-create', function() {
 		if ($('a.revision-create').attr('disabled')) {
 			return;
 		}
 
-        $('a.revision-create').attr('disabled', 'disabled');
+        $('a.revision-create').attr('disabled', 'disabled').attr('aria-disabled', 'true');
 
         if (wp.autosave && wp.autosave.server.postChanged()) {
-			var tmoRevisionSubmit = setTimeout(rvyCopyPost, 5000);  // @todo: review
-
-			var intRevisionSubmit = setInterval(function() {
-				if (!wp.autosave.server.postChanged()) {
-					clearTimeout(tmoRevisionSubmit);
-					clearInterval(intRevisionSubmit);
-					rvyCopyPost();
-				}
-			}, 250);
-
-            wp.autosave.server.triggerSave();
+			rvyRunAfterAutosave(rvyCopyPost);
         } else {
 			rvyCopyPost();
         }
@@ -94,6 +111,7 @@ jQuery(document).ready( function($) {
 			$('.revision-create').hide();
 			$('.revision-creating').hide();
 			$('.revision-created-wrapper').show();
+			rvySpeak(rvyObjEdit.completedCaption);
 
 			if (rvyObjEdit.completedURL) {
 				$('div.revision-created-wrapper a.revision-preview').attr('href', rvyObjEdit.completedURL);
@@ -102,11 +120,12 @@ jQuery(document).ready( function($) {
 			}
 
 			$('div.revision-created-wrapper a.revision-edit').attr('href', rvyObjEdit.completedEditURL);
-            $('a.revision-create').removeAttr('disabled');
+            $('a.revision-create').removeAttr('disabled aria-disabled');
 		}
 
 		var revisionaryCreateError = function (data, txtStatus) {
 			$('div.rvy-creation-ui').html(rvyObjEdit.errorCaption);
+			rvySpeak(rvyObjEdit.errorCaption);
 			$('.revision-creating').hide();
 		}
 
@@ -127,15 +146,17 @@ jQuery(document).ready( function($) {
 		var revisionaryScheduleDone = function () {
 			$('.revision-schedule').hide();
 			$('.revision-scheduled-wrapper').show();
+			rvySpeak(rvyObjEdit.scheduledCaption);
 
 			$('div.revision-scheduled-wrapper a.revision-preview').attr('href', rvyObjEdit.scheduledURL);
 			$('div.revision-scheduled-wrapper a.revision-edit').attr('href', rvyObjEdit.scheduledEditURL);
 
-            $('a.revision-schedule').removeAttr('disabled');
+            $('a.revision-schedule').removeAttr('disabled aria-disabled');
 		}
 
 		var revisionaryScheduleError = function (data, txtStatus) {
 			$('div.rvy-creation-ui').html(rvyObjEdit.errorCaption);
+			rvySpeak(rvyObjEdit.errorCaption);
 		}
 
 		var data = {'rvy_ajax_field': 'create_scheduled_revision', 'rvy_ajax_value': rvyObjEdit.postID, 'rvy_date_selection': RvyTimeSelection, '_rvynonce': rvyObjEdit.createScheduledRevisionNonce};
@@ -150,8 +171,8 @@ jQuery(document).ready( function($) {
 	}
 
 	$(document).on('click', '#normal-sortables input, #normal-sortables select', function() {
-		$('a.revision-create').attr('disabled', 'disabled');
-		$('a.revision-schedule').attr('disabled', 'disabled');
+		$('a.revision-create').attr('disabled', 'disabled').attr('aria-disabled', 'true');
+		$('a.revision-schedule').attr('disabled', 'disabled').attr('aria-disabled', 'true');
 	});
 
 	$(document).on('click', 'a.revision-schedule', function() {
@@ -159,20 +180,10 @@ jQuery(document).ready( function($) {
 			return;
 		}
 
-        $('a.revision-schedule').attr('disabled', 'disabled');
+        $('a.revision-schedule').attr('disabled', 'disabled').attr('aria-disabled', 'true');
 
 		if (wp.autosave && wp.autosave.server.postChanged()) {
-			var tmoRevisionSchedule = setTimeout(rvySchedulePost, 5000);  // @todo: review
-
-			var intRevisionSchedule = setInterval(function() {
-				if (!wp.autosave.server.postChanged()) {
-					clearTimeout(tmoRevisionSchedule);
-					clearInterval(intRevisionSchedule);
-					rvySchedulePost();
-				}
-			}, 250);
-
-            wp.autosave.server.triggerSave();
+			rvyRunAfterAutosave(rvySchedulePost);
         } else {
 			rvySchedulePost();
         }

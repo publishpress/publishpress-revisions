@@ -6,6 +6,21 @@
 * Copyright 2026, PublishPress
 */
 jQuery(document).ready( function($) {
+
+	// Announce workflow progress and results to screen readers (WCAG 4.1.3)
+	var rvySpeak = function(msg) {
+		if (msg && window.wp && wp.a11y && wp.a11y.speak) {
+			wp.a11y.speak($('<div>').html(msg).text());
+		}
+	};
+
+	// Links styled as buttons also respond to the Space key
+	$(document).on('keydown', 'div.rvy-creation-ui a[role="button"]', function(e) {
+		if (' ' === e.key) {
+			e.preventDefault();
+			$(this).trigger('click');
+		}
+	});
     var rvySaveClicked = false;
     
     var RvyInitializeBlockEditorModifications = function () {
@@ -19,7 +34,7 @@ jQuery(document).ready( function($) {
 
     var RvyDisableSubmitButtons = function() {
         if (rvyObjEdit.disableSubmitUntilSave) {
-            $('a.revision-approve, a.rvy-direct-approve').attr('disabled', 'disabled');
+            $('a.revision-approve, a.rvy-direct-approve').attr('disabled', 'disabled').attr('aria-disabled', 'true');
 
             if (!rvySaveClicked) {
                 $('div.rvy-save-revision-tip').show();
@@ -75,7 +90,7 @@ jQuery(document).ready( function($) {
                 }
 
                 if (rvyObjEdit.canPublish && (rvyObjEdit.PendingStatus != rvyObjEdit.currentStatus) && ('future' != rvyObjEdit.currentStatus)) {
-					approveButtonHTML = '&nbsp;<a href="' + rvyObjEdit['pendingActionURL'] + '" class="button rvy-direct-approve">'
+					approveButtonHTML = '&nbsp;<a href="' + rvyObjEdit['pendingActionURL'] + '" class="button rvy-direct-approve" role="button">'
 					+ approveCaption + '</a>'
 				}
 
@@ -99,7 +114,7 @@ jQuery(document).ready( function($) {
                 $(refSelector).after(
                     '<div class="rvy-creation-ui" style="float:left; padding-left:10px; margin-bottom: 10px">'
 
-                    + '<a href="' + url + '" class="button revision-approve">'
+                    + '<a href="' + url + '" class="button revision-approve" role="button">'
                     + actionCaption + '</a>'
                 
                     + approveButtonHTML
@@ -175,57 +190,63 @@ jQuery(document).ready( function($) {
 			return false;
 		}
 
-        $('a.revision-approve').attr('disabled', 'disabled');
+        $('a.revision-approve').attr('disabled', 'disabled').attr('aria-disabled', 'true');
 
-        if (wp.autosave.server.postChanged()) {
-            wp.autosave.server.triggerSave();
-            var approvalDelay = 250;
-        } else {
-            var approvalDelay = 1;
+        var rvyAwaitingSubmission = true;
+
+        var revisionarySubmit = function() {
+            if (!rvyAwaitingSubmission) {
+                return;
+            }
+
+            rvyAwaitingSubmission = false;
+
+            if (rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL']) {
+                window.location.href = rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'];
+                return false;
+            } else {
+                var data = {'rvy_ajax_field': rvyObjEdit[rvyObjEdit.currentStatus + 'AjaxField'], 'rvy_ajax_value': rvyObjEdit.postID, '_rvynonce': rvyObjEdit.revisionActionNonce};
+
+                $.ajax({
+                    url: rvyObjEdit.ajaxurl,
+                    data: data,
+                    dataType: "html",
+                    success: revisionaryCreateDone,
+                    error: revisionaryCreateError
+                });
+            }
         }
         
-        if (!rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL']) {
-			var revisionaryCreateDone = function () {
-                $('a.revision-approve').hide();
-                $('.revision-created-wrapper, .revision-created').show();
+        var revisionaryCreateDone = function () {
+            $('a.revision-approve').hide();
+            $('.revision-created-wrapper, .revision-created').show();
+            rvySpeak(rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedCaption']);
 
-				// @todo: abstract this for other workflows
-				rvyObjEdit.currentStatus = rvyObjEdit.PendingStatus;
+            // @todo: abstract this for other workflows
+            rvyObjEdit.currentStatus = rvyObjEdit.PendingStatus;
 
-				$('#post-status-display').html(rvyObjEdit[rvyObjEdit.currentStatus + 'StatusCaption']);
-                $('a.revision-preview').attr('href', rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL']).show();
-			}
-
-			var revisionaryCreateError = function (data, txtStatus) {
-				$('div.rvy-creation-ui').html(rvyObjEdit[rvyObjEdit.currentStatus + 'ErrorCaption']);
-			}
-
-            var tmoSubmit = setInterval(function() {
-                if (!wp.autosave.server.postChanged()) {
-                    var data = {'rvy_ajax_field': rvyObjEdit[rvyObjEdit.currentStatus + 'AjaxField'], 'rvy_ajax_value': rvyObjEdit.postID, '_rvynonce': rvyObjEdit.revisionActionNonce};
-
-                    $.ajax({
-                        url: rvyObjEdit.ajaxurl,
-                        data: data,
-                        dataType: "html",
-                        success: revisionaryCreateDone,
-                        error: revisionaryCreateError
-                    });
-
-                    clearInterval(tmoSubmit);
-                }
-            }, approvalDelay);
-        } else {
-            var tmoApproval = setInterval(function() {
-                if (!wp.autosave.server.postChanged()) {
-                    window.location.href = rvyObjEdit[rvyObjEdit.currentStatus + 'ActionURL'];
-
-                    clearInterval(tmoApproval);
-                }
-            }, approvalDelay);
-
-            return false;
+            $('#post-status-display').html(rvyObjEdit[rvyObjEdit.currentStatus + 'StatusCaption']);
+            $('a.revision-preview').attr('href', rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL']).show();
         }
+
+        var revisionaryCreateError = function (data, txtStatus) {
+            $('div.rvy-creation-ui').html(rvyObjEdit[rvyObjEdit.currentStatus + 'ErrorCaption']);
+            rvySpeak(rvyObjEdit[rvyObjEdit.currentStatus + 'ErrorCaption']);
+        }
+
+		if (wp.autosave && wp.autosave.server.postChanged()) {
+			$(document).one('after-autosave', function(event, data) {
+				if (!data || data.success !== false) {
+					revisionarySubmit();
+				} else {
+					$('a.revision-approve').removeAttr('disabled aria-disabled');
+				}
+			});
+			wp.autosave.server.triggerSave();
+		} else {
+			revisionarySubmit();
+		}
+		return false;
     });
     
     $(document).on('click', 'a.rvy-direct-approve', function() {
@@ -235,22 +256,20 @@ jQuery(document).ready( function($) {
 
         clearInterval(RvyUIInterval);
 
-        $('a.rvy-direct-approve').attr('disabled', 'disabled');
+        $('a.rvy-direct-approve').attr('disabled', 'disabled').attr('aria-disabled', 'true');
 
         if (wp.autosave.server.postChanged()) {
+            $(document).one('after-autosave', function(event, data) {
+                if (!data || data.success !== false) {
+                    window.location.href = rvyObjEdit['pendingActionURL'];
+                } else {
+                    $('a.rvy-direct-approve').removeAttr('disabled aria-disabled');
+                }
+            });
             wp.autosave.server.triggerSave();
-            var approvalDelay = 250;
         } else {
-            var approvalDelay = 1;
+            window.location.href = rvyObjEdit['pendingActionURL'];
         }
-        
-        var tmoDirectApproval = setInterval(function() {
-            if (!wp.autosave.server.postChanged()) {
-                window.location.href = rvyObjEdit['pendingActionURL'];
-
-                clearInterval(tmoDirectApproval);
-            }
-        }, approvalDelay);
 
         return false;
     });
@@ -259,7 +278,7 @@ jQuery(document).ready( function($) {
         $('.revision-created-wrapper, .revision-created').hide();
 
         if (!$('a.rvy-direct-approve').length) {
-            $('a.revision-approve').show().removeAttr('disabled');
+            $('a.revision-approve').show().removeAttr('disabled aria-disabled');
             $('div.rvy-save-revision-tip').hide();
         }
     });

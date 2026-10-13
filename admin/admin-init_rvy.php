@@ -1,6 +1,7 @@
 <?php
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die( 'This page cannot be called directly.' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 global $pagenow, $revisionary;
 
@@ -202,7 +203,9 @@ function rvy_admin_init() {
 						continue;
 					}
 					
-					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID) && !current_user_can('edit_post', rvy_post_id($revision->ID))) {
+					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID)
+					&& (!defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS') || !current_user_can('edit_post', rvy_post_id($revision->ID)))
+					) {
 						if (count($post_ids) == 1) {
 							wp_die( esc_html__('Sorry, you are not allowed to approve this revision.', 'revisionary') );
 						} else {
@@ -277,7 +280,9 @@ function rvy_admin_init() {
 						}
 					}
 
-					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID) && !current_user_can('edit_post', rvy_post_id($revision->ID))) {
+					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID)
+					&& (!defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS') || !current_user_can('edit_post', rvy_post_id($revision->ID)))
+					) {
 						if (count($post_ids) == 1) {
 							wp_die( esc_html__('Sorry, you are not allowed to decline this revision.', 'revisionary') );
 						} else {
