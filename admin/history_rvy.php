@@ -1497,7 +1497,17 @@ class RevisionaryHistory
             $can_edit = current_user_can($edit_published_cap);
         }
 
-        $show_preview_link = rvy_get_option('revision_preview_links') || is_content_administrator_rvy();
+        $is_autosave = wp_is_post_autosave($post);
+
+        // An autosave preview is displayed as a Past Revision and can't be restored from there, so offer the WordPress restore action instead
+        $show_preview_link = !$is_autosave && (rvy_get_option('revision_preview_links') || is_content_administrator_rvy());
+
+        $restore_url = ($is_autosave && current_user_can('edit_post', $post->post_parent))
+        ? wp_nonce_url(add_query_arg(['revision' => $post->ID, 'action' => 'restore'], admin_url('revision.php')), "restore-post_{$post->ID}")
+        : '';
+
+        // Same access check as the Past Revisions menu item
+        $show_manage_link = is_content_administrator_rvy() || current_user_can('restore_revisions') || current_user_can('view_revision_archive');
 
         if ($show_preview_link) {
             $preview_label = (empty($type_obj) || $can_edit)
@@ -1538,22 +1548,36 @@ class RevisionaryHistory
                     rvyPreviewURL = rvyPreviewURL.replace("p=" + <?php echo esc_attr($post_id);?>, "p=" + rvyRevisionID);
                     <?php endif;?>
 
+                    <?php if($show_manage_link):?>
                     var rvyManageURL = '<?php echo esc_url_raw(wp_unslash($manage_url));?>';
                     rvyManageURL = rvyManageURL.replace("revision=" + <?php echo esc_attr($post_id);?>, "revision=" + rvyRevisionID);
+                    <?php endif;?>
 
-                    if(!$('span.rvy-compare-preview').length) {
+                    if(!$('span.rvy-compare-preview, span.rvy-compare-list, span.rvy-compare-restore').length) {
                         <?php if($show_preview_link):?>
                         $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan button" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><?php echo esc_html($preview_label);?></a></span>');
                         <?php endif;?>
 
-                        $('h1').append('<span class="rvy-compare-list" style="margin-left:10px"><a class="rvy_preview_linkspan button" href="<?php echo esc_url($manage_url);?>" target="_revision_list"><?php echo esc_html($manage_label);?></a></span>');
+                        <?php if($restore_url):?>
+                        $('h1').append('<span class="rvy-compare-restore" style="margin-left:20px"><a href="<?php echo esc_url($restore_url);?>"><input class="button" type="button" value="<?php echo esc_attr__('Restore This Autosave');?>"></a></span>');
+                        <?php endif;?>
+
+                        <?php if($show_manage_link):?>
+                        $('h1').append('<span class="rvy-compare-list" style="margin-left:10px"><a class="rvy_preview_linkspan" href="<?php echo esc_url($manage_url);?>" target="_revision_list"><input class="button" type="button" value="<?php echo esc_attr($manage_label);?>"></a></span>');
+                        <?php endif;?>
                     } else {
                         <?php if($show_preview_link):?>
                         $('span.rvy-compare-preview a').attr('href', rvyPreviewURL);
                         <?php endif;?>
 
+                        <?php if($show_manage_link):?>
                         $('span.rvy-compare-list a').attr('href', rvyManageURL);
+                        <?php endif;?>
                     }
+
+                    <?php if($restore_url):?>
+                    $('span.rvy-compare-restore').toggle(rvyRevisionID == <?php echo (int) $post_id;?>);
+                    <?php endif;?>
 
                     rvyLastID = rvyRevisionID;
                 }
