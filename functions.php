@@ -474,12 +474,10 @@ function publishpress_get_revision_info($post) {
     $main_post_id = rvy_post_id($post->ID);
 
     if (!empty($from_revision_workflow)) {
-        switch ($from_revision_workflow) {
-            case 'future-revision':
-                $arr['publish_method'] = esc_html__('Scheduled Revision Publication', 'revisionary');
-                break;
-
-            default:
+        // $from_revision_workflow may be boolean true, which a loose switch comparison would match to 'future-revision'
+        if ('future-revision' === $from_revision_workflow) {
+            $arr['publish_method'] = esc_html__('Scheduled Revision Publication', 'revisionary');
+        } else {
             $arr['publish_method'] = esc_html__('Revision Publication', 'revisionary');
         }
     } elseif (!empty($parent_in_revision_workflow)) {
