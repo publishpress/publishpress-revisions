@@ -900,7 +900,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -914,7 +914,21 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval($_REQUEST['revision_date'])															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type = 'revision' ORDER BY ID DESC LIMIT 60");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+			$enabled_post_type_csv = implode("','", array_map('sanitize_key', $this->post_types));
+
+			$_dates = $enabled_post_type_csv
+				? $wpdb->get_col(																			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					"SELECT DISTINCT DATE(r.post_modified)
+					FROM $wpdb->posts r
+					INNER JOIN $wpdb->posts p ON r.post_parent = p.ID
+					LEFT JOIN $wpdb->posts p2 ON p.post_type = 'revision' AND p.post_parent = p2.ID
+					WHERE r.post_type = 'revision'
+					AND r.post_status NOT IN ('trash', 'auto-draft')
+					AND r.post_name NOT LIKE '%-autosave-v%'"
+					. " AND (p.post_type IN ('$enabled_post_type_csv') OR (p.post_type = 'revision' AND p2.post_type IN ('$enabled_post_type_csv')))"	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					. " ORDER BY r.ID DESC LIMIT 60"																									
+				)
+				: []; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			
 			$post_dates = [];
 
@@ -1031,7 +1045,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1068,7 +1082,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1077,7 +1091,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			</select>
 			<?php
 
-			submit_button( esc_html__( 'Filter' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+			submit_button( esc_html__( 'Filter', 'revisionary' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
 
 			if( count( $_REQUEST ) > 1 ) :		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				?>
@@ -1225,7 +1239,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
 						esc_attr__( 'Preview Revision', 'revisionary' ),
-						esc_html__( 'Preview', 'revisionary' )
+						esc_html_x( 'Preview', 'verb', 'revisionary' )
 					);
 
 					do_action('pp_revisions_post_link_done', $item->ID);
@@ -1246,10 +1260,17 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 		$uri = (isset($_SERVER['REQUEST_URI'])) ? add_query_arg($_REQUEST, esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) : '';	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
+		$post_filter_url = add_query_arg(
+			'origin_post',
+			$item->post_parent,
+			untrailingslashit( site_url( '' ) ) . $uri
+		);
+		$post_filter_url = remove_query_arg( 's', $post_filter_url );
+
 		$actions['post_filter'] = sprintf(
 			'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
-			add_query_arg('origin_post', $item->post_parent, esc_url(untrailingslashit(site_url('')) . $uri )),
-			esc_attr__( 'List Revisions of this Post', 'revisionary' ),
+			esc_url( $post_filter_url ),
+			esc_attr__( 'Filter: list revisions of this post', 'revisionary' ),
 			esc_html__( 'Filter', 'revisionary' )
 		);
 
@@ -1263,7 +1284,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				'<a href="%1$s" class="submitdelete" title="%2$s" aria-label="%2$s">%3$s</a>',
 				$delete_link,
 				esc_html__( 'Delete Past Revision', 'revisionary' ),
-				esc_html__( 'Delete' )
+				esc_html__( 'Delete', 'revisionary' )
 			);
 		}
 
@@ -1338,7 +1359,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$v = 'current';
 		}
 
-		echo '<a href="' . esc_url(add_query_arg( $args, admin_url( 'admin.php?page=revisionary-archive' ) ) ) . '" class="' . esc_attr($v) . '">'
+		echo '<a href="' . esc_url(add_query_arg( $args, admin_url( 'admin.php?page=revisionary-archive' ) ) ) . '" class="' . esc_attr($v) . '"' . ( $v ? ' aria-current="page"' : '' ) . '>'
 		. $label;																		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if (true == $count) echo ' <span class="count">(' . esc_html($count) . ')</span>';

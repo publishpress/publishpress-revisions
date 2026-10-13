@@ -56,7 +56,7 @@ class FrontNotice {
                 <span id="rvyRevisionIndicator">
                 <a href="<?php echo esc_url($url);?>" class="button button-secondary">
                 <img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/common/img/dashicons-future.png');?>" alt="" aria-hidden="true">
-                <span><?php _e('Revisions', 'revisionary');?></span>
+                <span><?php esc_html_e('Revisions', 'revisionary');?></span>
                 </a></span>
                 <?php
             }

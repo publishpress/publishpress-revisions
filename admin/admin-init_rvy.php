@@ -115,8 +115,8 @@ function rvy_admin_init() {
 						wp_die( esc_html__('Sorry, you are not allowed to delete this revision.', 'revisionary') );
 					} 
 	
-					if ( !wp_delete_post_revision($post_id, true) )
-						wp_die( esc_html__('Error in deleting.') );
+						if ( !wp_delete_post_revision($post_id, true) )
+							wp_die( esc_html__('Error in deleting.', 'revisionary') );
 	
 					$deleted++;
 				}
@@ -203,7 +203,9 @@ function rvy_admin_init() {
 						continue;
 					}
 					
-					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID) && !current_user_can('edit_post', rvy_post_id($revision->ID))) {
+					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID)
+					&& (!defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS') || !current_user_can('edit_post', rvy_post_id($revision->ID)))
+					) {
 						if (count($post_ids) == 1) {
 							wp_die( esc_html__('Sorry, you are not allowed to approve this revision.', 'revisionary') );
 						} else {
@@ -278,7 +280,9 @@ function rvy_admin_init() {
 						}
 					}
 
-					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID) && !current_user_can('edit_post', rvy_post_id($revision->ID))) {
+					if (!$is_administrator && !current_user_can('approve_revision', $revision->ID)
+					&& (!defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS') || !current_user_can('edit_post', rvy_post_id($revision->ID)))
+					) {
 						if (count($post_ids) == 1) {
 							wp_die( esc_html__('Sorry, you are not allowed to decline this revision.', 'revisionary') );
 						} else {
@@ -362,8 +366,8 @@ function rvy_admin_init() {
 						}
 					}
 
-					if ( !wp_delete_post($post_id, true) )
-						wp_die( esc_html__('Error in deleting.') );
+						if ( !wp_delete_post($post_id, true) )
+							wp_die( esc_html__('Error in deleting.', 'revisionary') );
 	
 					$deleted++;
 				}
@@ -675,5 +679,5 @@ function rvy_get_admin_notice( $message, $args = array() ) {
 		$classes .= ' ' . implode( ' ', $args['additional_classes'] );
 	}
 
-		return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
-	}
+	return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
+}

@@ -167,7 +167,7 @@ class Revisionary
 		new PublishPress\Revisions\PluginCompat();
 
 		// NOTE: $_GET['preview'] and $_GET['post_type'] arguments are set by rvy_init() at response to ?p= request when the requested post is a revision.
-		if (!is_admin() && (!defined('REST_REQUEST') || ! REST_REQUEST)) { // preview_id indicates a regular preview via WP core, based on autosave revision
+		if (!is_admin() && !rvy_is_divi_editing_preview() && (!defined('REST_REQUEST') || ! REST_REQUEST)) { // preview_id indicates a regular preview via WP core, based on autosave revision
 			$preview_arg = (defined('RVY_PREVIEW_ARG')) ? sanitize_key(constant('RVY_PREVIEW_ARG')) : 'rv_preview';
 			
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
@@ -842,8 +842,11 @@ class Revisionary
 	}
 
 	function fltNumRevisions ($num, $post) {
-        if (isset($this->enabled_post_types_archive[$post->post_type]) && empty($this->enabled_post_types_archive[$post->post_type])) {
-            $num = 0;
+        if (empty($this->enabled_post_types_archive[$post->post_type])) {
+            // Past Revisions disabled for this post type, or not configured by Revisions (leave WordPress setting in place)
+            if (isset($this->enabled_post_types_archive[$post->post_type])) {
+                $num = 0;
+            }
         } else {
             $num = rvy_get_option('num_revisions');
 
@@ -1428,7 +1431,7 @@ class Revisionary
 				// Normally, it does not make sense to allow direct post editing but not revision approval, so don't comp the settings UI with that option.
 				$can_approve = !rvy_get_option('approve_capability') && current_user_can('edit_post', $main_post_id);
 				
-				if (!$can_approve) { // bypass capability check for those with full editing caps on main post
+				if (!$can_approve) {
 					if ($_post = get_post($post_id)) {
 						if ($type_obj = get_post_type_object($_post->post_type)) {
 							$base_prop = (rvy_is_post_author($main_post_id)) ? 'edit_posts' : 'edit_others_posts';
@@ -1436,7 +1439,7 @@ class Revisionary
 							$can_approve = current_user_can($approve_cap_name);
 							$filter_args = compact('main_post_id', 'type_obj');
 
-							if (!$can_approve && defined('PRESSPERMIT_VERSION')) {
+							if (!$can_approve && defined('PRESSPERMIT_VERSION') && defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS')) {
 								$can_approve = current_user_can('edit_post', $main_post_id);
 							}
 						}

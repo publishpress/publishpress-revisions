@@ -62,7 +62,6 @@ function rvy_default_options_sitewide() {
 		'copy_revision_comments_to_post' => true,
 		'past_revisions_order_by' => true,
 		'view_filters_include_unsubmitted_revisions' => true,
-		'show_current_revision_bar' => true,
 		'rev_publication_delete_ed_comments' => true,
 		'deletion_queue' => true,
 		'revision_archive_deletion' => true,
@@ -90,6 +89,7 @@ function rvy_default_options_sitewide() {
 		'admin_menu_pending_count_icon' => true,
 		'approve_capability' => true,
 		'visual_compare' => true,
+		'rvy_compare_other_internal_fields' => true,
 	);
 
 	if ( $other_options = array_diff_key( rvy_default_options(), $def ) ) {
@@ -150,7 +150,6 @@ function rvy_default_options() {
 		'copy_revision_comments_to_post' => 0,
 		'past_revisions_order_by' => '',
 		'view_filters_include_unsubmitted_revisions' => 1,
-		'show_current_revision_bar' => 0,
 		'rev_publication_delete_ed_comments' => 0,
 		'deletion_queue' => 0,
 		'revision_archive_deletion' => 0,
@@ -161,7 +160,7 @@ function rvy_default_options() {
 		'permissions_compat_mode' => 0,
 		'planner_notifications_access_limited' => 0,
 		'archive_postmeta' => 1,
-        'archive_postmeta_on_edit' => 1,
+        'archive_postmeta_on_edit' => 0,
 		'extended_archive' => 0,
 		'delete_settings_on_uninstall' => 0,
 		'apply_post_exceptions' => 0,
@@ -178,6 +177,9 @@ function rvy_default_options() {
 		'admin_menu_pending_count_icon' => 0,
 		'approve_capability' => defined('REVISIONARY_REQUIRE_APPROVE_CAP') && REVISIONARY_REQUIRE_APPROVE_CAP,
 		'visual_compare' => 1,
+        'visual_compare_javascript' => 1,
+        'builder_compare_external_requests' => 1,
+		'rvy_compare_other_internal_fields' => 1,
 	);
 
 	return $def;

@@ -2,6 +2,10 @@
 	margin-right: 20px;
 }
 
+.update-nag {
+	display: none !important;
+}
+
 /* This stylesheet is loaded only on the dedicated Visual Compare screen. The
  * admin footer and its reserved space otherwise make a viewport-fitted canvas
  * force a page-level vertical scrollbar. */
@@ -24,14 +28,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: flex-start;
-	gap: 0;
+	justify-content: space-between;
+	column-gap: 20px;
+	row-gap: 4px;
 	margin: 0 0 0;
 }
 
 .visual-post-compare-screen__header h1 {
 	margin-bottom: 4px;
 	padding-top: 0;
+	white-space: nowrap;
 }
 
 .visual-post-compare-screen__header p {
@@ -47,7 +53,7 @@
 }
 
 .visual-post-compare-revision__body {
-	--visual-post-compare-sidebar-width: clamp(220px, 22vw, 300px);
+	--visual-post-compare-sidebar-width: clamp(200px, 20vw, 300px);
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) var(--visual-post-compare-sidebar-width);
 	min-height: 0;
@@ -70,7 +76,7 @@
 	align-self: stretch;
 	gap: 28px;
 	padding: 20px;
-	padding-left: 40px;
+	padding-left: 25px;
 	background: #fff;
 	overflow-wrap: anywhere;
 }
@@ -228,6 +234,13 @@
 	margin-left: -10px;
 }
 
+.visual-post-compare-revision__block-details-caption {
+	margin-top: -10px;
+	font-size: 13px;
+	line-height: 1.5;
+	white-space: pre-line;
+}
+
 .visual-post-compare-revision__block-identity {
 	display: flex;
 	align-items: center;
@@ -249,9 +262,9 @@
 }
 
 .visual-post-compare-revision__attribute-row {
-	display: grid;
-	grid-template-columns: minmax(80px, 0.8fr) minmax(0, 1.2fr);
-	gap: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
 	padding: 12px 16px;
 	border-top: 1px solid #f0f0f0;
 }
@@ -267,7 +280,9 @@
 
 .editor-revision-fields-diff__added {
 	background-color: color-mix(in srgb, currentColor 5%, #00a32a 15%);
-	text-decoration: none;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 2px;
 }
 
 .editor-revision-fields-diff__removed {
@@ -410,7 +425,7 @@ div.visual-post-compare-classic {
 }
 
 .visual-post-compare-revision__legend .is-modified::before {
-	background: #dba617;
+	background: #9a7000;
 }
 
 .visual-post-compare-revision__canvas {
@@ -512,12 +527,8 @@ div.visual-post-compare-classic {
 }
 
 @media (max-width: 1100px) {
-	.visual-post-compare-revision__body {
-		--visual-post-compare-sidebar-width: 240px;
-	}
-
 	.visual-post-compare-revision__sidebar {
-		padding: 20px 10px 20px 20px;
+		padding: 20px 10px 20px 25px;
 	}
 }
 
@@ -572,7 +583,7 @@ div.visual-post-compare-classic {
 
 	.visual-post-compare-revision__sidebar {
 		gap: 20px;
-		padding: 16px;
+		padding: 16px 16px 16px 25px;
 	}
 
 	.visual-post-compare-revision__canvas {
@@ -586,7 +597,13 @@ div.visual-post-compare-classic {
 @media (max-width: 600px) {
 
 	.visual-post-compare-screen__header h1 {
-		display: none;
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
 
 	.visual-post-compare-revision__selector {
@@ -611,7 +628,9 @@ div.visual-post-compare-classic {
  * inline styles for the critical diff indicators. */
 .revision-diff-added {
 	background-color: rgba(0, 163, 42, 0.12);
-	text-decoration: none;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 2px;
 }
 
 .revision-diff-removed {
@@ -697,7 +716,7 @@ div.visual-post-compare-classic {
 }
 
 .is-revision-modified {
-	outline: 3px dotted #dba617;
+	outline: 3px dotted #9a7000;
 	outline-offset: 6px;
 }
 
@@ -720,7 +739,7 @@ div.visual-post-compare-classic {
 .visual-post-compare-revision.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,
 .visual-post-compare-revision.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-border-active,
 .visual-post-compare-revision.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-border-active {
-	outline-color: #dba617 !important;
+	outline-color: #9a7000 !important;
 }
 
 .visual-post-compare-revision :is(
@@ -734,6 +753,23 @@ div.visual-post-compare-classic {
 
 .visual-post-compare-revision__selector {
 	margin-bottom: 24px;
+}
+
+.visual-post-compare-revision__comparison-mode {
+	display: flex;
+	justify-content: flex-end;
+	margin: 0 0 4px auto;
+	white-space: nowrap;
+}
+
+.visual-post-compare-revision__comparison-mode label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.visual-post-compare-revision__comparison-mode input {
+	margin: 0;
 }
 
 .visual-post-compare-revision__range-wrap {
@@ -969,13 +1005,13 @@ div.visual-post-compare-classic {
 	max-width: 100%;
 	line-height: 0;
 	vertical-align: middle;
-	outline: 3px dotted #dba617;
+	outline: 3px dotted #9a7000;
 	outline-offset: 2px;
 }
 
 .visual-post-compare-image-diff--modified.is-showing-previous {
-	outline-color: #f0c54a;
-	box-shadow: 0 0 0 2px color-mix(in srgb, #dba617 55%, transparent);
+	outline-color: #7a5900;
+	box-shadow: 0 0 0 2px color-mix(in srgb, #9a7000 55%, transparent);
 }
 
 .visual-post-compare-revision.has-diff-tooltips :is(.is-revision-added, .is-revision-removed) .visual-post-compare-image-diff--added:not(.is-diff-tooltip-active),
@@ -1079,16 +1115,19 @@ div.visual-post-compare-classic {
 
 .visual-post-compare-revision__title-row {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 16px;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 }
 
 .visual-post-compare-revision__title-row .visual-post-compare-revision__post-title {
+	flex: 1 1 auto;
+	min-width: 0;
 	margin-right: 0;
 }
 
 .visual-post-compare-revision__no-changes {
+	flex: 0 0 auto;
 	margin: 0 !important;
 	padding-top: 4px;
 	padding-bottom: 4px;
@@ -1175,6 +1214,11 @@ div.visual-post-compare-classic {
 	-webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z'/></svg>") left center / 16px no-repeat;
 	mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z'/></svg>") left center / 16px no-repeat;
 }
+.visual-post-compare-fields__integration-link,
+.visual-post-compare-fields__integration-link:hover,
+.visual-post-compare-fields__integration-link:focus {
+	text-decoration: underline;
+}
 .visual-post-compare-fields__promo .pp-pro-badge-banner {
 	display: block;
 	width: max-content;
@@ -1211,7 +1255,6 @@ div.visual-post-compare-classic {
 
 .visual-post-compare-fields__field {
 	padding: 6px 0;
-	border-top: 1px solid #f0f0f1;
 }
 
 .visual-post-compare-fields__label { margin-bottom: 3px; font-weight: 600; }
@@ -1300,3 +1343,15 @@ li.visual-post-compare-fields__array-item > dl:not(.visual-post-compare-fields__
 
 .visual-post-compare-fields__image-tooltip span { display: grid; gap: 4px; }
 .visual-post-compare-fields__image-tooltip img { width: auto; max-width: 190px; height: auto; max-height: 180px; object-fit: contain; }
+
+/* The builder iframe owns scrolling and its change-marker rail. */
+.visual-post-compare-revision__canvas--builder { overflow: hidden; scrollbar-gutter: auto; padding: 0; }
+.visual-post-compare-revision__attribute-array { margin: 2px 0; padding: 2px 0 2px 8px; border-left: 1px solid #ddd; }
+.visual-post-compare-revision__attribute-array dt { font-weight: 600; margin: 2px 0; }
+.visual-post-compare-revision__attribute-array dd { margin: 0 0 3px 8px; padding: 0; }
+
+.visual-post-compare-revision__canvas--builder > .visual-post-compare-revision__live-preview { display: flex; flex-direction: column; height: 100%; padding: 0 !important; }
+.visual-post-compare-revision__canvas--builder .visual-post-compare-revision__title-row { flex: 0 0 auto; padding: 10px; }
+.visual-post-compare-revision__canvas--builder iframe { flex: 1 1 0; min-height: 0; max-width: none !important; width: 100% !important; }
+
+.visual-post-compare-revision__no-attribute-changes { font-size: 13px; }

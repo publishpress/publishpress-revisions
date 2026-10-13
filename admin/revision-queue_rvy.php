@@ -69,9 +69,9 @@ $wp_list_table = new $list_table_class(['screen' => 'revisionary-q', 'post_types
 $pagenum = $wp_list_table->get_pagenum();
 
 $parent_file = 'admin.php?page=revisionary-q';																		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-$submenu_file = $scheduled_only
+$submenu_file = $scheduled_only		 // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	? 'admin.php?page=revisionary-q&post_status=future-revision'
-	: 'admin.php?page=revisionary-q'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	: 'admin.php?page=revisionary-q'; 
 
 $wp_list_table->prepare_items();
 
@@ -95,7 +95,7 @@ $bulk_messages['post'] = array(
 	'approved_count'   => sprintf(esc_html(_n( '%s revision approved.', '%s revisions approved.', $bulk_counts['approved_count'], 'revisionary' )), $bulk_counts['approved_count']),
 	'unscheduled_count' => sprintf(esc_html(_n( '%s revision unscheduled.', '%s revisions unscheduled.', $bulk_counts['unscheduled_count'], 'revisionary' )), $bulk_counts['unscheduled_count']),
 	'published_count'   => sprintf(esc_html(_n( '%s revision published.', '%s revisions published.', $bulk_counts['published_count'], 'revisionary' )), $bulk_counts['published_count']),
-	'deleted'   => sprintf(esc_html(_n( '%s revision permanently deleted.', '%s revisions permanently deleted.', $bulk_counts['deleted'] )), $bulk_counts['deleted']),
+	'deleted'   => sprintf(esc_html(_n( '%s revision permanently deleted.', '%s revisions permanently deleted.', $bulk_counts['deleted'], 'revisionary' )), $bulk_counts['deleted']),
 );
 
 $bulk_messages['page'] = $bulk_messages['post'];
@@ -120,7 +120,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 <header>
 <h1 class="wp-heading-inline"><?php
 
-echo '<span class="dashicons dashicons-backup"></span>&nbsp;';
+echo '<span class="dashicons dashicons-backup" aria-hidden="true"></span>&nbsp;';
 
 if ( ! empty( $_REQUEST['post_type'] ) ) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$type_obj = get_post_type_object(sanitize_key($_REQUEST['post_type']));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -182,7 +182,7 @@ if ( $scheduled_only ) {
 if ( isset( $_REQUEST['s'] ) && strlen( sanitize_text_field(wp_unslash($_REQUEST['s'])) ) ) {					//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	/* translators: %s: search keywords */															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	printf( 
-		' <span class="subtitle">' . esc_html__( 'Search results for "%s"' ) . '</span>', 
+		' <span class="subtitle">' . esc_html__( 'Search results for "%s"', 'revisionary' ) . '</span>',
 		esc_html(wp_strip_all_tags(sanitize_text_field(wp_unslash($_REQUEST['s'])))) 							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	);
 }
@@ -214,7 +214,7 @@ foreach ( $bulk_counts as $message => $count ) {
 	if ( 'trashed' == $message && isset( $_REQUEST['ids'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo') . '</a> ';
+		echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo', 'revisionary') . '</a> ';
 	
 	} elseif (!empty($bulk_messages['post'][$message])) {
 		echo esc_html($bulk_messages['post'][$message]) . ' ';
@@ -235,8 +235,6 @@ if (!empty($_SERVER['REQUEST_URI'])) {
 }
 ?>
 
-<?php $wp_list_table->views(); ?>
-
 <?php
 $scheduled_empty_unfiltered = false;
 if ( $scheduled_only && ! $wp_list_table->has_items() ) {
@@ -249,11 +247,86 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 		}
 	}
 }
+
+// Empty onboarding must not conceal scheduling history in another view.
+if ( $scheduled_empty_unfiltered ) {
+	global $wpdb;
+	$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+	$has_actions = false;
+	if ( class_exists( 'ActionScheduler' ) ) {
+		try {
+			$has_actions = (bool) ActionScheduler::store()->query_actions( [
+				'hook' => 'publish_revision_rvy_action_scheduler', 'per_page' => 1,
+			] );
+		} catch ( Exception $e ) {
+			// Keep the table available when history cannot be determined.
+			$has_actions = true;
+		}
+	}
+	$scheduled_empty_unfiltered = !$has_scheduled_posts && !$has_actions;
+}
+
+$new_empty_unfiltered = false;
+if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
+	$new_filter_keys = ['s', 'post_type2', 'post_type', 'cat', 'author', 'published_post', 'modified', 'post_author', 'm', 'all'];
+	$new_empty_unfiltered = true;
+	foreach ( $new_filter_keys as $filter_key ) {
+		if ( isset( $_REQUEST[$filter_key] ) && '' !== sanitize_text_field( wp_unslash( $_REQUEST[$filter_key] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+			// Empty onboarding must not conceal scheduling history in another view.
+			if ( $scheduled_empty_unfiltered ) {
+				global $wpdb;
+				$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+				$has_actions = false;
+				if ( class_exists( 'ActionScheduler' ) ) {
+					try {
+						$has_actions = (bool) ActionScheduler::store()->query_actions( [
+							'hook' => 'publish_revision_rvy_action_scheduler', 'per_page' => 1,
+						] );
+					} catch ( Exception $e ) {
+						// Keep the table available when history cannot be determined.
+						$has_actions = true;
+					}
+				}
+				$scheduled_empty_unfiltered = !$has_scheduled_posts && !$has_actions;
+			}
+			
+			$new_empty_unfiltered = false;
+			
+			break;
+		}
+	}
+
+	if ( ! empty( $_REQUEST['post_status'] ) && 'all' !== sanitize_key( $_REQUEST['post_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// Empty onboarding must not conceal scheduling history in another view.
+		if ( $scheduled_empty_unfiltered ) {
+			global $wpdb;
+			$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+			$has_actions = false;
+			if ( class_exists( 'ActionScheduler' ) ) {
+				try {
+					$has_actions = (bool) ActionScheduler::store()->query_actions( [
+						'hook' => 'publish_revision_rvy_action_scheduler', 'per_page' => 1,
+					] );
+				} catch ( Exception $e ) {
+					// Keep the table available when history cannot be determined.
+					$has_actions = true;
+				}
+			}
+			$scheduled_empty_unfiltered = !$has_scheduled_posts && !$has_actions;
+		}
+		
+		$new_empty_unfiltered = false;
+	}
+}
 ?>
 
 <form name="bulk-revisions" id="bulk-revisions" method="post" action="">
 
-<?php $wp_list_table->search_box( 'Search', 'post' ); ?>
+<div class="revisionary-list-header-controls">
+	<?php if ( !$scheduled_empty_unfiltered && !$new_empty_unfiltered ) $wp_list_table->views(); ?>
+	<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
+</div>
 
 <input type="hidden" name="page" class="post_status_page" value="revisionary-q" />
 
@@ -273,13 +346,28 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 	<div class="revisionary-scheduled-empty">
 		<div class="revisionary-scheduled-empty-header">
 			<span class="revisionary-scheduled-empty-icon dashicons dashicons-calendar-alt" aria-hidden="true"></span>
-			<h3><?php esc_html_e( 'How to schedule a revision to go live:', 'revisionary' ); ?></h3>
+			<h2><?php esc_html_e( 'About Scheduled Revisions', 'revisionary' ); ?></h2>
 		</div>
+		<p><?php esc_html_e( 'The Scheduled Revisions feature allows you to choose a date and time to publish content updates.', 'revisionary' ); ?></p>
 		<ol>
-			<li><?php esc_html_e( 'Create a new revision of a page', 'revisionary' ); ?></li>
-			<li><?php esc_html_e( 'Update the revision with desired changes', 'revisionary' ); ?></li>
-			<li><?php esc_html_e( 'Select a publishing date in the future', 'revisionary' ); ?></li>
-			<li><?php esc_html_e( 'Click the Schedule Revision button', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Click "Create Revision".', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Make your changes to the post.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Select a publishing date in the future.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Click the "Schedule Revision" button.', 'revisionary' ); ?></li>
+		</ol>
+	</div>
+<?php elseif ( $new_empty_unfiltered ) : ?>
+	<div class="revisionary-scheduled-empty revisionary-new-empty">
+		<div class="revisionary-scheduled-empty-header">
+			<span class="revisionary-scheduled-empty-icon dashicons dashicons-edit-page" aria-hidden="true"></span>
+			<h3><?php esc_html_e( 'About New Revisions', 'revisionary' ); ?></h3>
+		</div>
+		<p><?php esc_html_e( 'The New Revisions feature gives you a safe space to work on content updates.', 'revisionary' ); ?></p>
+		<ol>
+			<li><?php esc_html_e( 'Click "Create Revision".', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Make your changes to the post.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'Save your revision.', 'revisionary' ); ?></li>
+			<li><?php esc_html_e( 'When you\'re happy with it, click "Submit Revision". You can then share the revision with other users, or publish the update.', 'revisionary' ); ?></li>
 		</ol>
 	</div>
 <?php else : ?>
