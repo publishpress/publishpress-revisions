@@ -120,7 +120,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 <header>
 <h1 class="wp-heading-inline"><?php
 
-echo '<span class="dashicons dashicons-backup"></span>&nbsp;';
+echo '<span class="dashicons dashicons-backup" aria-hidden="true"></span>&nbsp;';
 
 if ( ! empty( $_REQUEST['post_type'] ) ) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$type_obj = get_post_type_object(sanitize_key($_REQUEST['post_type']));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended

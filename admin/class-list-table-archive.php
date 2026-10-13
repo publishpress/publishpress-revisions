@@ -1270,7 +1270,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		$actions['post_filter'] = sprintf(
 			'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 			esc_url( $post_filter_url ),
-			esc_attr__( 'List Revisions of this Post', 'revisionary' ),
+			esc_attr__( 'Filter: list revisions of this post', 'revisionary' ),
 			esc_html__( 'Filter', 'revisionary' )
 		);
 
@@ -1359,7 +1359,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$v = 'current';
 		}
 
-		echo '<a href="' . esc_url(add_query_arg( $args, admin_url( 'admin.php?page=revisionary-archive' ) ) ) . '" class="' . esc_attr($v) . '">'
+		echo '<a href="' . esc_url(add_query_arg( $args, admin_url( 'admin.php?page=revisionary-archive' ) ) ) . '" class="' . esc_attr($v) . '"' . ( $v ? ' aria-current="page"' : '' ) . '>'
 		. $label;																		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if (true == $count) echo ' <span class="count">(' . esc_html($count) . ')</span>';
