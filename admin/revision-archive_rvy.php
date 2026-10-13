@@ -96,7 +96,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 <div class="wrap pressshack-admin-wrapper revision-archive">
 	<header>
 		<h1 class="wp-heading-inline">
-			<span class="dashicons dashicons-backup"></span>
+			<span class="dashicons dashicons-backup" aria-hidden="true"></span>
 			<?php
 			esc_html_e( 'Past Revisions', 'revisionary' );
 			$wp_list_table->filters_in_heading();
@@ -106,7 +106,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	</header>
 	<form method="get">
 		<div class="revisionary-list-header-controls">
-	<?php $wp_list_table->views(); ?>
+	<?php if ( !$past_empty_unfiltered ) $wp_list_table->views(); ?>
 			<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
 		</div>
 		<?php
@@ -130,7 +130,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 			<div class="revisionary-scheduled-empty revisionary-past-empty">
 				<div class="revisionary-scheduled-empty-header">
 					<span class="revisionary-scheduled-empty-icon dashicons dashicons-backup" aria-hidden="true"></span>
-					<h3><?php esc_html_e( 'About Past Revisions', 'revisionary' ); ?></h3>
+					<h2><?php esc_html_e( 'About Past Revisions', 'revisionary' ); ?></h2>
 				</div>
 				<p><?php esc_html_e( 'Every time you edit a post or page, WordPress can save a backup copy for you, so you\'ll always have a history of your changes.', 'revisionary' ); ?></p>
 				<ul>

@@ -15,6 +15,18 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 	public static function register_routes() {
 		register_rest_route(
 			Visual_Post_Compare::REST_NS,
+			'/editor-sidebars',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'permission_callback' => array( __CLASS__, 'editor_sidebars_permissions' ),
+				'callback'            => array( __CLASS__, 'editor_sidebars_response' ),
+				'args'                => array(
+					'post_id' => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+				),
+			)
+		);
+		register_rest_route(
+			Visual_Post_Compare::REST_NS,
 			'/comparison',
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
@@ -54,6 +66,18 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 				),
 			)
 		);
+	}
+
+	public static function editor_sidebars_permissions( \WP_REST_Request $request ) {
+		if ( get_post( $request['post_id'] ) && current_user_can( 'edit_post', $request['post_id'] ) ) {
+			return true;
+		}
+		return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revisions.', 'revisionary' ), array( 'status' => 403 ) );
+	}
+
+	public static function editor_sidebars_response( \WP_REST_Request $request ) {
+		require_once __DIR__ . '/class-editor-sidebar-builder.php';
+		return rest_ensure_response( Visual_Post_Compare_Editor_Sidebar_Builder::comparison_sidebars_for_editor( $request['post_id'] ) );
 	}
 
 	public static function comparison_permissions( \WP_REST_Request $request ) {

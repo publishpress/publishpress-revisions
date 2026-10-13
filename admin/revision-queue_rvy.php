@@ -120,7 +120,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 <header>
 <h1 class="wp-heading-inline"><?php
 
-echo '<span class="dashicons dashicons-backup"></span>&nbsp;';
+echo '<span class="dashicons dashicons-backup" aria-hidden="true"></span>&nbsp;';
 
 if ( ! empty( $_REQUEST['post_type'] ) ) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$type_obj = get_post_type_object(sanitize_key($_REQUEST['post_type']));				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -248,18 +248,74 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 	}
 }
 
+// Empty onboarding must not conceal scheduling history in another view.
+if ( $scheduled_empty_unfiltered ) {
+	global $wpdb;
+	$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+	$has_actions = false;
+	if ( class_exists( 'ActionScheduler' ) ) {
+		try {
+			$has_actions = (bool) ActionScheduler::store()->query_actions( [
+				'hook' => 'publish_revision_rvy_action_scheduler', 'per_page' => 1,
+			] );
+		} catch ( Exception $e ) {
+			// Keep the table available when history cannot be determined.
+			$has_actions = true;
+		}
+	}
+	$scheduled_empty_unfiltered = !$has_scheduled_posts && !$has_actions;
+}
+
 $new_empty_unfiltered = false;
 if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 	$new_filter_keys = ['s', 'post_type2', 'post_type', 'cat', 'author', 'published_post', 'modified', 'post_author', 'm', 'all'];
 	$new_empty_unfiltered = true;
 	foreach ( $new_filter_keys as $filter_key ) {
 		if ( isset( $_REQUEST[$filter_key] ) && '' !== sanitize_text_field( wp_unslash( $_REQUEST[$filter_key] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+			// Empty onboarding must not conceal scheduling history in another view.
+			if ( $scheduled_empty_unfiltered ) {
+				global $wpdb;
+				$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+				$has_actions = false;
+				if ( class_exists( 'ActionScheduler' ) ) {
+					try {
+						$has_actions = (bool) ActionScheduler::store()->query_actions( [
+							'hook' => 'publish_revision_rvy_action_scheduler', 'per_page' => 1,
+						] );
+					} catch ( Exception $e ) {
+						// Keep the table available when history cannot be determined.
+						$has_actions = true;
+					}
+				}
+				$scheduled_empty_unfiltered = !$has_scheduled_posts && !$has_actions;
+			}
+			
 			$new_empty_unfiltered = false;
+			
 			break;
 		}
 	}
 
 	if ( ! empty( $_REQUEST['post_status'] ) && 'all' !== sanitize_key( $_REQUEST['post_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// Empty onboarding must not conceal scheduling history in another view.
+		if ( $scheduled_empty_unfiltered ) {
+			global $wpdb;
+			$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+			$has_actions = false;
+			if ( class_exists( 'ActionScheduler' ) ) {
+				try {
+					$has_actions = (bool) ActionScheduler::store()->query_actions( [
+						'hook' => 'publish_revision_rvy_action_scheduler', 'per_page' => 1,
+					] );
+				} catch ( Exception $e ) {
+					// Keep the table available when history cannot be determined.
+					$has_actions = true;
+				}
+			}
+			$scheduled_empty_unfiltered = !$has_scheduled_posts && !$has_actions;
+		}
+		
 		$new_empty_unfiltered = false;
 	}
 }
@@ -268,7 +324,7 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 <form name="bulk-revisions" id="bulk-revisions" method="post" action="">
 
 <div class="revisionary-list-header-controls">
-	<?php $wp_list_table->views(); ?>
+	<?php if ( !$scheduled_empty_unfiltered && !$new_empty_unfiltered ) $wp_list_table->views(); ?>
 	<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
 </div>
 
@@ -290,7 +346,7 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 	<div class="revisionary-scheduled-empty">
 		<div class="revisionary-scheduled-empty-header">
 			<span class="revisionary-scheduled-empty-icon dashicons dashicons-calendar-alt" aria-hidden="true"></span>
-		<h3><?php esc_html_e( 'About Scheduled Revisions', 'revisionary' ); ?></h3>
+			<h2><?php esc_html_e( 'About Scheduled Revisions', 'revisionary' ); ?></h2>
 		</div>
 		<p><?php esc_html_e( 'The Scheduled Revisions feature allows you to choose a date and time to publish content updates.', 'revisionary' ); ?></p>
 		<ol>

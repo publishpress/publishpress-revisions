@@ -166,7 +166,7 @@ function rvy_get_scheduling_log_table() {
 				$this->table_header = __( 'Scheduling Log', 'revisionary' );
 				$this->columns = [
 					'revision' => __( 'Revision', 'revisionary' ),
-					'preview' => '',
+					'preview' => '<span class="screen-reader-text">' . __( 'Preview', 'revisionary' ) . '</span>',
 					'hook' => __( 'Hook', 'revisionary' ),
 					'status' => __( 'Publication', 'revisionary' ),
 					'args' => __( 'Arguments', 'revisionary' ),
@@ -232,9 +232,9 @@ function rvy_get_scheduling_log_table() {
 			public function column_preview( $row ) {
 				$revision_id = rvy_scheduling_log_revision_id( $row );
 				if ( ! $revision_id ) return '';
-				return sprintf( '<a href="%s"><span class="dashicons dashicons-cover-image" title="%s"></span></a>', esc_url( rvy_preview_url( $revision_id ) ), esc_attr__( 'View preview', 'revisionary' ) );
+				return sprintf( '<a href="%s" aria-label="%s"><span class="dashicons dashicons-cover-image" title="%s" aria-hidden="true"></span></a>', esc_url( rvy_preview_url( $revision_id ) ), esc_attr__( 'View preview', 'revisionary' ), esc_attr__( 'View preview', 'revisionary' ) );
+				}
 			}
-		}
 	}
 	$table = new Revisionary_Scheduling_Log_Table( ActionScheduler::store(), ActionScheduler::logger(), ActionScheduler::runner() );
 	return $table;
@@ -345,11 +345,11 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
 		if ( $revision && ( 'future-revision' === $revision->post_mime_type ) ) {
 			$publication_time = strtotime( $revision->post_date_gmt . ' UTC' );
 
-			if ( $publication_time && ( $publication_time > current_time( 'timestamp', true ) ) ) {
-				return esc_html__( 'Scheduled', 'revisionary' );
+			if ( $publication_time && ( current_time( 'timestamp', true ) >= $publication_time + MINUTE_IN_SECONDS ) ) {
+				return esc_html__( 'Missed Schedule', 'revisionary' );
 			}
 
-			return esc_html__( 'Missed Schedule', 'revisionary' );
+			return esc_html__( 'Scheduled', 'revisionary' );
 		}
 
 		return '<span aria-hidden="true">—</span>';
@@ -369,18 +369,18 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
 		. '<dt>' . esc_html__( 'Scheduled Date', 'revisionary' ) . '</dt><dd>' . $table->column_schedule( $row ) . '</dd>'
 		. '<dt>' . esc_html__( 'Log', 'revisionary' ) . '</dt><dd><div class="rvy-scheduled-action-log">' . $log_html . '</div></dd></dl>';
 	return '<a href="#' . esc_attr( $modal_id ) . '" class="rvy-publication-modal-open rvy-action-status rvy-action-status--' . esc_attr( sanitize_html_class( $row['status_name'] ) ) . '" data-modal="' . esc_attr( $modal_id )
-		. '" title="' . esc_attr__( 'Click to view scheduling log.', 'revisionary' ) . '">'
-		. esc_html( $status_label ) . '</a><div id="' . esc_attr( $modal_id ) . '" class="rvy-scheduled-action-modal" title="'
+		. '" title="' . esc_attr__( 'Click to view scheduling log.', 'revisionary' ) . '" role="button" aria-haspopup="dialog">'
+		. esc_html( $status_label ) . '<span class="screen-reader-text"> ' . esc_html__( '(view scheduling log)', 'revisionary' ) . '</span></a><div id="' . esc_attr( $modal_id ) . '" class="rvy-scheduled-action-modal" title="'
 		. esc_attr__( 'Scheduled Revision Publication', 'revisionary' ) . '" hidden>' . $details . '</div>';
 }
 
 function rvy_scheduled_revisions_modal_ui() {
 	?>
 	<style>
-	.rvy-scheduled-action-details{display:grid;grid-template-columns:max-content 1fr;gap:8px 14px}.rvy-scheduled-action-details dt{font-weight:600}.rvy-scheduled-action-details dd{margin:0;min-width:0;overflow-wrap:anywhere}.rvy-scheduled-action-details ul{margin-top:0}.rvy-scheduled-action-log-entry{margin:0 0 12px;padding:0;font-weight:400}.rvy-scheduled-action-log-entry:last-child{margin-bottom:0}.rvy-scheduled-action-modal{max-width:760px}.rvy-scheduled-action-dialog,.rvy-scheduled-action-dialog .ui-dialog-titlebar,.rvy-scheduled-action-dialog .ui-dialog-content,.rvy-scheduled-action-dialog .rvy-scheduled-action-details,.rvy-scheduled-action-dialog .rvy-scheduled-action-log-entry{background:transparent}
+	.rvy-scheduled-action-details{display:grid;grid-template-columns:max-content 1fr;gap:8px 14px}.rvy-scheduled-action-details dt{font-weight:600}.rvy-scheduled-action-details dd{margin:0;min-width:0;overflow-wrap:anywhere}.rvy-scheduled-action-details ul{margin-top:0}.rvy-scheduled-action-log-entry{margin:0 0 12px;padding:0;font-weight:400}.rvy-scheduled-action-log-entry:last-child{margin-bottom:0}.rvy-scheduled-action-modal{max-width:760px}.rvy-scheduled-action-dialog,.rvy-scheduled-action-dialog .ui-dialog-content{background:#fff}.rvy-scheduled-action-dialog .ui-dialog-titlebar,.rvy-scheduled-action-dialog .rvy-scheduled-action-details,.rvy-scheduled-action-dialog .rvy-scheduled-action-log-entry{background:transparent}
 	</style>
 	<script>
-	jQuery(function($){$(document).on('click','.rvy-publication-modal-open',function(event){event.preventDefault();var id=$(this).data('modal'),$modal=$('#'+id);$modal.removeAttr('hidden').dialog({dialogClass:'rvy-scheduled-action-dialog',modal:true,width:Math.min(760,$(window).width()-40),maxHeight:$(window).height()-60,close:function(){$modal.attr('hidden','hidden').dialog('destroy');}});});});
+	jQuery(function($){$(document).on('click','.rvy-publication-modal-open',function(event){event.preventDefault();var id=$(this).data('modal'),$modal=$('#'+id);$modal.removeAttr('hidden').dialog({dialogClass:'rvy-scheduled-action-dialog',modal:true,width:Math.min(760,$(window).width()-40),maxHeight:$(window).height()-60,close:function(){$modal.attr('hidden','hidden').dialog('destroy');}});});$(document).on('keydown','.rvy-publication-modal-open',function(event){if(' '===event.key){event.preventDefault();$(this).trigger('click');}});});
 	</script>
 	<?php
 }

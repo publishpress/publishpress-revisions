@@ -78,7 +78,7 @@ class RvyPostEdit {
                     var revisionID = urlParams.get('revision');
 
                     if (typeof rvyDeleteURL[revisionID] != 'undefined') {
-                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete"><?php esc_html_e('Delete', 'revisionary');?></a>');
+                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete" aria-label="<?php echo esc_attr( esc_html__( 'Delete revision', 'revisionary' ) ); ?>"><?php esc_html_e('Delete', 'revisionary');?></a>');
                     }
                 });
             <?php endif;?>
@@ -87,7 +87,7 @@ class RvyPostEdit {
         </script>
 
         <style>
-        ul.post-revisions a.rvy-delete {text-decoration: none; color:#f44336}
+        ul.post-revisions a.rvy-delete {text-decoration: none; color:#b32d2e}
         </style>
 
         <?php
@@ -218,7 +218,7 @@ class RvyPostEdit {
         <?php self::revision_preview_button($post); ?>
 
         <a id="rvy_compare_button" class="preview button" href="<?php echo esc_url($compare_link); ?>" target="_blank" id="revision-compare"
-        tabindex="4" title="<?php echo esc_attr($compare_title);?>" style="float:right"><?php echo esc_html($compare_button); ?></a>
+        title="<?php echo esc_attr($compare_title);?>" style="float:right"><?php echo esc_html($compare_button); ?></a>
 
         </div>
 
@@ -255,7 +255,7 @@ class RvyPostEdit {
 
         ?>
         <a class="preview button" href="<?php echo esc_url($preview_link); ?>" target="revision-preview" id="revision-preview"
-           tabindex="4" title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
+           title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
         <?php
     }
 
@@ -364,7 +364,7 @@ class RvyPostEdit {
             //$(document).on('loaded-ui', 'div.rvy-submission-div', function() {
                 $('div.misc-pub-section:first').after(
                     "<div class='misc-pub-section'><div class='rvy-author-selection'>"
-                    + '<label>' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
+                    + '<label for="rvy_post_author">' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
                     + '</div>'
                     + "<div class='rvy-author-selection'>"
                     + "<?php echo $select_html;     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
@@ -375,7 +375,8 @@ class RvyPostEdit {
             $(document).on('change', 'div.rvy-author-selection select', function(e) {
                 var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select'));?>'};
 
-                $('div.rvy-author-selection select').attr('disabled', 'disabled');
+                // Keep focus on the select while saving (WCAG 2.4.3); announce the result (WCAG 4.1.3)
+                $('div.rvy-author-selection select').attr('aria-busy', 'true');
 
                 $.ajax({
                     url: rvyObjEdit.ajaxurl,
@@ -387,11 +388,19 @@ class RvyPostEdit {
             });
 
             function revisionarySelectAuthorDone() {
-                $('div.rvy-author-selection select').removeAttr('disabled');
+                $('div.rvy-author-selection select').removeAttr('aria-busy');
+                rvyAuthorSpeak('<?php echo esc_js(__('Author saved.', 'revisionary'));?>');
             }
 
             function revisionarySelectAuthorError() {
-                $('div.rvy-author-selection select').removeAttr('disabled');
+                $('div.rvy-author-selection select').removeAttr('aria-busy');
+                rvyAuthorSpeak('<?php echo esc_js(__('The author could not be saved.', 'revisionary'));?>');
+            }
+
+            function rvyAuthorSpeak(msg) {
+                if (window.wp && wp.a11y && wp.a11y.speak) {
+                    wp.a11y.speak(msg);
+                }
             }
         });
 		/* ]]> */

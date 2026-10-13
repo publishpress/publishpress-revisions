@@ -22,6 +22,7 @@ class RevisionaryFront {
 
 		add_filter('acf/load_value', [$this, 'fltACFLoadValue'], 10, 3);
 		add_filter('get_post_metadata', [$this, 'fltGetPostMeta'], 10, 5);
+		add_action('revisionary_preview_load', [$this, 'setPreviewTemplateContext'], 10, 2);
 
 		if ( ! defined('RVY_CONTENT_ROLES') || !$revisionary->content_roles->is_direct_file_access() ) {
 			add_filter('posts_request', [$this, 'flt_view_revision'] );
@@ -66,6 +67,33 @@ class RevisionaryFront {
 		return $clauses;
 	}
 
+	function setPreviewTemplateContext($revision_id, $published_post_id) {
+		global $wp_query;
+		$revision = get_post($revision_id);
+		$published = get_post($published_post_id);
+		if (!$revision || !$published || !$wp_query || ($revision_id == $published_post_id)
+			|| (!current_user_can('read_post', $revision_id) && !current_user_can('edit_post', $published_post_id))) {
+			return;
+		}
+		// Keep the revision ID/content, but select the original post type's
+		// template hierarchy. Do not alter the stored revision or loop object.
+		$queried = clone $revision;
+		$queried->post_type = $published->post_type;
+		$queried->post_name = $published->post_name;
+		if ('page' === $published->post_type) {
+			add_filter('page_template_hierarchy', static function ($templates) use ($revision_id, $published_post_id) {
+				return array_map(static function ($template) use ($revision_id, $published_post_id) {
+					return ('page-' . $revision_id . '.php' === $template) ? 'page-' . $published_post_id . '.php' : $template;
+				}, $templates);
+			});
+		}
+		$wp_query->queried_object = $queried;
+		$wp_query->queried_object_id = $revision_id;
+		$wp_query->is_page = ('page' === $published->post_type);
+		$wp_query->is_single = !$wp_query->is_page;
+		$wp_query->is_singular = true;
+	}
+
 	function fltGetPostMeta($meta_val, $object_id, $meta_key, $single, $meta_type) {
 		static $busy;
 
@@ -74,22 +102,33 @@ class RevisionaryFront {
 		}
 
 		$busy = true;
+		try {
+			// Missing template metadata inherits the original template. An explicitly
+			// stored default/empty template is a deliberate revision setting.
+			if ('_wp_page_template' === $meta_key && !metadata_exists('post', $object_id, $meta_key)
+				&& (rvy_in_revision_workflow($object_id) || wp_is_post_revision($object_id))) {
+				$parent_id = rvy_post_id($object_id);
+				if ($parent_id && ($parent_id != $object_id)) {
+					return get_post_meta($parent_id, $meta_key, $single);
+				}
+			}
 
-		if (wp_is_post_revision($object_id)) {
-			$unfiltered_meta_val = get_post_meta($object_id, $meta_key, $single);
-
-			if (in_array($unfiltered_meta_val, [null, []], true)) {
-				if ($published_post_id = get_post_field('post_parent', $object_id)) {
-					$published_meta_val = get_post_meta($published_post_id, $meta_key, $single);
-
-					if (null !== $published_meta_val) {
-						$meta_val = $published_meta_val;
+			if (wp_is_post_revision($object_id)) {
+				$unfiltered_meta_val = get_post_meta($object_id, $meta_key, $single);
+	
+				if (in_array($unfiltered_meta_val, [null, []], true)) {
+					if ($published_post_id = get_post_field('post_parent', $object_id)) {
+						$published_meta_val = get_post_meta($published_post_id, $meta_key, $single);
+	
+						if (null !== $published_meta_val) {
+							$meta_val = $published_meta_val;
+						}
 					}
 				}
 			}
+		} finally {
+			$busy = false;
 		}
-
-		$busy = false;
 
 		return $meta_val;
 	}
@@ -762,15 +801,15 @@ class RevisionaryFront {
 				var $compare = $previewMessage.find('a[target="_revision_diff"]').addClass('rvy-preview-compare components-button is-secondary ppr-purple-button');
 				var $primaryActions = $previewMessage.find('a.rvy-submit-revision, a.rvy-approve-revision, a.button-primary');
 				var $menuActions = $previewMessage.find('a').not($compare).not($primaryActions);
-				var $menuCompare = $compare.clone().removeClass('rvy-preview-compare rvy-preview-link rvy_has_empty_spacing components-button is-secondary ppr-purple-button').addClass('rvy-preview-menu-item').attr('role', 'menuitem');
+				var $menuCompare = $compare.clone().removeClass('rvy-preview-compare rvy-preview-link rvy_has_empty_spacing components-button is-secondary ppr-purple-button').addClass('rvy-preview-menu-item');
 				var $menu = $('<span class="rvy-preview-actions"></span>');
 				var $menuButton = $('<button type="button" class="rvy-preview-actions-toggle" aria-expanded="false" aria-label="<?php echo esc_attr__( 'More revision actions', 'revisionary' ); ?>"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M4 6.5h16v2H4zM4 11h16v2H4zM4 15.5h16v2H4z"></path></svg></button>');
-				var $menuPanel = $('<span class="rvy-preview-actions-menu" role="menu" hidden></span>');
+				var $menuPanel = $('<span class="rvy-preview-actions-menu" hidden></span>');
 				var primarySlots = [];
 				var primaryClasses = [];
 
 				$menuActions.each(function() {
-					$(this).removeClass('button button-primary button-secondary rvy-preview-link rvy_has_empty_spacing').addClass('rvy-preview-menu-item').attr('role', 'menuitem').appendTo($menuPanel);
+					$(this).removeClass('button button-primary button-secondary rvy-preview-link rvy_has_empty_spacing').addClass('rvy-preview-menu-item').appendTo($menuPanel);
 				});
 				$primaryActions.each(function(index) {
 					var $slot = $('<span class="rvy-preview-primary-slot"></span>');
@@ -803,7 +842,7 @@ class RevisionaryFront {
 					}
 					$primaryActions.each(function(index) {
 						if (narrowest) {
-							$(this).removeClass('button button-primary button-secondary').addClass('rvy-preview-menu-item rvy-preview-menu-primary').attr('role', 'menuitem').appendTo($menuPanel);
+							$(this).removeClass('button button-primary button-secondary').addClass('rvy-preview-menu-item rvy-preview-menu-primary').appendTo($menuPanel);
 						} else {
 							$(this).attr('class', primaryClasses[index]).removeAttr('role').insertAfter(primarySlots[index]);
 						}
@@ -819,7 +858,11 @@ class RevisionaryFront {
 					$menuPanel.attr('hidden', expanded ? 'hidden' : null);
 				});
 				$(document).on('click', closeRevisionActions).on('keydown', function(event) {
-					if ('Escape' === event.key) closeRevisionActions();
+					if ('Escape' === event.key) {
+						var focusInMenu = $menuPanel.has(document.activeElement).length > 0;
+						closeRevisionActions();
+						if (focusInMenu) $menuButton.trigger('focus');
+					}
 				});
 				$(window).on('resize', updateRevisionActionsLayout);
 				updateRevisionActionsLayout();

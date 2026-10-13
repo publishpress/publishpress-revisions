@@ -96,7 +96,7 @@ final class Visual_Post_Compare {
 	 *
 	 * @return array[]
 	 */
-	public static function comparison_sidebar_definitions($key = '', $posts = []) {
+	public static function comparison_sidebar_definitions($key = '', $posts = [], $current_post_id = 0) {
 		static $sidebars;
 
 		if (empty($current_post_id)) {
@@ -413,6 +413,7 @@ final class Visual_Post_Compare {
 					'revision'         => $compare_ids['revision'],
 					'comparisonKey'    => $comparison_key,
 					'headline'		   => is_scalar($headline) ? (string) $headline : esc_html__('Compare Revisions', 'revisionary'),
+					'loadingComparisonCaption' => esc_html__('Loading comparison…', 'revisionary'),
 					'currentPostFirst' => (bool) $current_post_first,
 					'restPath'         => '/' . self::REST_NS . '/comparison',
 					'approveRestPath'  => '/' . self::REST_NS . '/approve',
@@ -426,6 +427,13 @@ final class Visual_Post_Compare {
 			) . ';',
 			'before'
 		);
+
+		// Keep the comparison canvas wide by default on the dedicated screen.
+		wp_add_inline_script(
+			'visual-post-compare-standalone',
+			"(function(){var fold=function(){var button=document.getElementById('collapse-button');if(button&&!document.body.classList.contains('folded'))button.click();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fold,{once:true});else fold();})();",
+			'after'
+		);
 	}
 
 	public static function enqueue_editor_assets() {
@@ -435,6 +443,9 @@ final class Visual_Post_Compare {
 		}
 
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! $post_id && ! empty( $GLOBALS['post']->ID ) ) {
+			$post_id = (int) $GLOBALS['post']->ID;
+		}
 		if ( ! $post_id || ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
@@ -460,7 +471,7 @@ final class Visual_Post_Compare {
 		wp_enqueue_script(
 			'rvy-visual-compare',
 			plugins_url( 'visual-post-compare.js', __FILE__ ),
-			array( 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
+			array( 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-api-fetch', 'wp-data' ),
 			file_exists( $script_path ) ? filemtime( $script_path ) : '0.11.0',
 			true
 		);
@@ -470,6 +481,7 @@ final class Visual_Post_Compare {
 			'window.VisualPostCompare=' . wp_json_encode(
 				array(
 					'currentPostId'      => $post_id,
+					'sidebarsRestPath'   => '/' . self::REST_NS . '/editor-sidebars',
 					'comparisonSidebars' => $comparison_sidebars,
 					'debugMode'			 => defined('SCRIPT_DEBUG') && SCRIPT_DEBUG
 				)

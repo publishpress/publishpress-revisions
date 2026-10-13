@@ -186,9 +186,9 @@ class CoreAdmin {
             <div class="meta-box-sortables">
                 <div class="advertisement-box-content postbox">
                     <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                        <h2 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Upgrade to Revisions Pro', 'revisionary'); ?></span>
-                        </h3>
+                        </h2>
                     </div>
         
                     <div class="inside">
@@ -205,24 +205,24 @@ class CoreAdmin {
                             <li><?php echo esc_html__('WPML Translation Management', 'revisionary'); ?></li>
                             <li><?php echo esc_html__('PublishPress Planner: Custom Notifications', 'revisionary'); ?></li>
 
-                            <li class="no-icon"><a href="https://publishpress.com/knowledge-base/plugins-revisions-support/" target="__blank"><?php echo esc_html__('Plugin integration details', 'revisionary'); ?></a></li>
+	                            <li class="no-icon"><a href="https://publishpress.com/knowledge-base/plugins-revisions-support/" target="__blank" aria-label="<?php echo esc_attr__( 'Plugin integration details', 'revisionary' ); ?>"><?php echo esc_html__('Plugin integration details', 'revisionary'); ?></a></li>
                         </ul>
 
                         <div class="upgrade-btn">
-                            <a href="https://publishpress.com/links/revisions-banner/" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'revisionary'); ?></a>
+	                            <a href="https://publishpress.com/links/revisions-banner/" target="__blank" aria-label="<?php echo esc_attr__( 'Upgrade to Pro', 'revisionary' ); ?>"><?php echo esc_html__('Upgrade to Pro', 'revisionary'); ?></a>
                         </div>
                     </div>
                 </div>
                 <div class="advertisement-box-content postbox">
                     <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                        <h2 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Need Revisions Support?', 'revisionary'); ?></span>
-                        </h3>
+                        </h2>
                     </div>
         
                     <div class="inside">
                         <p><?php echo esc_html__('If you need help or have a new feature request, let us know.', 'revisionary'); ?>
-                            <a class="advert-link" href="https://wordpress.org/support/plugin/revisionary/" target="_blank">
+	                            <a class="advert-link" href="https://wordpress.org/support/plugin/revisionary/" target="_blank" aria-label="<?php echo esc_attr__( 'Request support for PublishPress Revisions', 'revisionary' ); ?>">
                             <?php echo esc_html__('Request Support', 'revisionary'); ?> 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
                                     <path
@@ -233,7 +233,7 @@ class CoreAdmin {
                         </p>
                         <p>
                         <?php echo esc_html__('Detailed documentation is also available on the plugin website.', 'revisionary'); ?> 
-                            <a class="advert-link" href="https://publishpress.com/knowledge-base/start-revisions/" target="_blank">
+	                            <a class="advert-link" href="https://publishpress.com/knowledge-base/start-revisions/" target="_blank" aria-label="<?php echo esc_attr__( 'View PublishPress Revisions knowledge base', 'revisionary' ); ?>">
                             <?php echo esc_html__('View Knowledge Base', 'revisionary'); ?> 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="linkIcon">
                                     <path

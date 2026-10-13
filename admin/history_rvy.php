@@ -96,13 +96,31 @@ class RevisionaryHistory
             setTimeout(() => {
                 $('div.revisions-diff div.diff').find('table.diff').siblings('table.diff:nth(0)').after(
                     '<div class="rvy-copy"><button id="rvy_copy_old_content" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
+                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false, false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
                     + '</button></div>'
                     + '<div class="rvy-copy"><button id="rvy_copy_new_content" class="rvy-copy">'
-                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
+                    + '<?php echo $revisionary->admin->tooltipText(esc_html__('Copy', 'revisionary'), esc_html__('Copy the above content to the clipboard.', 'revisionary'), false, false);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>'
                     + '</button></div>'
                 );
             }, 500);
+
+            // Confirm the copy to screen reader users (WCAG 4.1.3)
+            var rvyCopyDone = function() {
+                var msg = '<?php echo esc_js(__('Copied to clipboard.', 'revisionary'));?>';
+
+                if (window.wp && wp.a11y && wp.a11y.speak) {
+                    wp.a11y.speak(msg);
+                } else {
+                    var $status = $('#rvy-copy-status');
+
+                    if (!$status.length) {
+                        $status = $('<div id="rvy-copy-status" class="screen-reader-text" role="status" aria-live="polite"></div>').appendTo('body');
+                    }
+
+                    $status.text('');
+                    setTimeout(function() { $status.text(msg); }, 100);
+                }
+            };
 
             $(document).on('click', '#rvy_copy_old_content', function (e) {
                 var content = '';
@@ -113,7 +131,7 @@ class RevisionaryHistory
                     content = content + '\r\n\r\n' + $(e).html();
                 })
                 
-                navigator.clipboard.writeText(content);
+                navigator.clipboard.writeText(content).then(rvyCopyDone);
             });
 
             $(document).on('click', '#rvy_copy_new_content', function (e) {
@@ -125,7 +143,7 @@ class RevisionaryHistory
                     content = content + '\r\n\r\n' + $(e).html();
                 })
                 
-                navigator.clipboard.writeText(content);
+                navigator.clipboard.writeText(content).then(rvyCopyDone);
             });
         });
         /* ]]> */
@@ -1431,7 +1449,7 @@ class RevisionaryHistory
                             for (rkey = 0; rkey < _wpRevisionsSettings.revisionData.length; rkey++) {
                                 if (_wpRevisionsSettings.revisionData[rkey].id == rselected) {
                                     if (_wpRevisionsSettings.revisionData[rkey].editUrl) {
-                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '"><input type="button" class="edit-revision button button-primary button-compact" style="float:right" value="<?php echo esc_attr__('Edit');?>"></a>');
+	                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '" aria-label="<?php echo esc_attr( esc_html__( 'Edit revision', 'revisionary' ) ); ?>"><input type="button" class="edit-revision button button-primary button-compact" style="float:right" value="<?php echo esc_attr__('Edit');?>"></a>');
                                     }
                                 }
                             }
@@ -1537,7 +1555,7 @@ class RevisionaryHistory
 
                     if(!$('span.rvy-compare-preview, span.rvy-compare-list, span.rvy-compare-restore').length) {
                         <?php if($show_preview_link):?>
-                        $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><input class="button" type="button" value="<?php echo esc_attr($preview_label);?>"></a></span>');
+                        $('h1').append('<span class="rvy-compare-preview" style="margin-left:20px"><a class="rvy_preview_linkspan button" href="<?php echo esc_url($preview_url);?>" target="_revision_preview"><?php echo esc_html($preview_label);?></a></span>');
                         <?php endif;?>
 
                         <?php if($restore_url):?>

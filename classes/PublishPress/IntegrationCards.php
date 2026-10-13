@@ -67,6 +67,42 @@ class IntegrationCards
             $integrations[] = self::fieldCard($card, true);
         }
 
+        // Resolve installation separately from runtime availability.
+        $plugins = self::installedPlugins();
+        $known = [
+            'acf_compatibility' => ['advanced-custom-fields', 'advanced-custom-fields-pro'],
+            'acfe_compatibility' => ['acf-extended', 'acf-extended-pro'],
+            'beaver_compatibility' => ['bb-plugin', 'beaver-builder-lite-version'],
+            'divi_compatibility' => ['divi-builder'],
+            'elementor_compatibility' => ['elementor'],
+            'nitropack_compatibility' => ['nitropack'],
+            'pods_compatibility' => ['pods'],
+            'polylang_compatibility' => ['polylang', 'polylang-pro'],
+            'planner_compatibility' => ['publishpress', 'publishpress-pro'],
+            'woocommerce_compatibility' => ['woocommerce'],
+            'wpml_compatibility' => ['sitepress-multilingual-cms'],
+            'yoast_seo_compatibility' => ['wordpress-seo', 'wordpress-seo-premium'],
+            'rank_math' => ['seo-by-rank-math', 'seo-by-rank-math-pro'],
+            'all_in_one_seo' => ['all-in-one-seo-pack', 'all-in-one-seo-pack-pro'],
+            'capabilities' => ['capability-manager-enhanced', 'publishpress-capabilities-pro'],
+            'authors' => ['publishpress-authors', 'publishpress-authors-pro'],
+            'checklists' => ['publishpress-checklists', 'publishpress-checklists-pro'],
+            'taxopress' => ['simple-tags', 'taxopress-pro'],
+        ];
+        foreach ($integrations as &$integration) {
+            if (!isset($integration['installed'])) {
+                $integration['installed'] = false;
+                foreach ($known[$integration['id']] ?? [] as $directory) {
+                    foreach (array_keys($plugins) as $basename) {
+                        if (0 === strpos($basename, $directory . '/')) {
+                            $integration['installed'] = true;
+                            break 2;
+                        }
+                    }
+                }
+            }
+        }
+        unset($integration);
         return $integrations;
     }
 
@@ -235,6 +271,7 @@ class IntegrationCards
             ))),
             'features' => $features,
             'enabled' => false,
+            'installed' => !$theme && isset(self::installedPlugins()[$card['plugin']]),
             'available' => $theme
                 ? self::themeActive($card['slug'])
                 : self::pluginActive(
@@ -267,6 +304,7 @@ class IntegrationCards
                 esc_html__('Support immediate and scheduled publication', 'revisionary'),
             ],
             'enabled' => false,
+            'installed' => isset(self::installedPlugins()[$card['plugin']]),
             'available' => self::pluginActive(
                 $card['plugin'],
                 $card['constant'] ?? '',
@@ -376,6 +414,14 @@ class IntegrationCards
         }
 
         return $cards;
+    }
+
+    private static function installedPlugins()
+    {
+        if (!function_exists('get_plugins')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+        return (array) get_plugins();
     }
 
     private static function pluginActive($plugin, $constant = '', $function = '', $class = '')
