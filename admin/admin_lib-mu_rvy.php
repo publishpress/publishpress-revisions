@@ -1,6 +1,10 @@
 <?php
 
-function rvy_mu_site_menu() {	
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+function rvy_mu_site_menu() {
 	if ( ! current_user_can( 'manage_options' ) )
 		return;
 

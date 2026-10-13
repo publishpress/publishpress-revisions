@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "409fa40d4c7d31ab0bd8d234a742f243",
+    "content-hash": "08009a71abc093a71cfed51a2abccfc4",
     "packages": [
         {
             "name": "publishpress/bundled-translations",
@@ -109,34 +109,26 @@
         },
         {
             "name": "publishpress/pimple-pimple",
-            "version": "3.5.0.10",
+            "version": "3.5.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-pimple-pimple.git",
-                "reference": "f2784f4b1ccaf195b373a46a74cf3742e7c9f826"
+                "reference": "c5246f8b0b1aaa59088b058d7bee1434ad6dd25c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-pimple-pimple/zipball/f2784f4b1ccaf195b373a46a74cf3742e7c9f826",
-                "reference": "f2784f4b1ccaf195b373a46a74cf3742e7c9f826",
+                "url": "https://api.github.com/repos/publishpress/library-pimple-pimple/zipball/c5246f8b0b1aaa59088b058d7bee1434ad6dd25c",
+                "reference": "c5246f8b0b1aaa59088b058d7bee1434ad6dd25c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
+                "php": ">=7.4.0",
                 "publishpress/psr-container": "^2.0.1.10"
             },
             "require-dev": {
-                "brianhenryie/strauss": "^0.14.0",
-                "codeception/module-asserts": "^1.0",
-                "codeception/module-cli": "^1.0",
-                "codeception/module-db": "^1.0",
-                "codeception/module-filesystem": "^1.0",
-                "codeception/module-phpbrowser": "^1.0",
-                "codeception/module-webdriver": "^1.0",
-                "codeception/util-universalframework": "^1.0",
-                "lucatume/wp-browser": "^3.1",
+                "brianhenryie/strauss": "0.29.2",
                 "pimple/pimple": "3.5.0",
-                "publishpress/codeception-extension-extended-copier": "^1.0",
+                "publishpress/dev-workspace": "^1.8",
                 "publishpress/version-loader-generator": "^1.0"
             },
             "type": "library",
@@ -146,32 +138,26 @@
                         "pimple/pimple",
                         "psr/container"
                     ],
-                    "include_author": "true",
-                    "classmap_output": "true",
+                    "include_author": true,
+                    "classmap_output": true,
                     "classmap_prefix": "PublishPress_",
                     "constant_prefix": "PUBLISHPRESS_",
                     "namespace_prefix": "PublishPress\\",
                     "target_directory": "lib",
-                    "exclude_from_copy": {
-                        "packages": [],
-                        "namespaces": [],
-                        "file_patterns": []
-                    },
-                    "override_autoload": [],
                     "delete_vendor_files": true,
-                    "exclude_from_prefix": {
-                        "packages": [],
-                        "namespaces": [],
-                        "file_patterns": []
-                    },
-                    "delete_vendor_packages": true,
-                    "namespace_replacement_patterns": []
+                    "delete_vendor_packages": true
                 },
                 "generator": {
-                    "lib-class-test": "class_exists('PublishPress\\Pimple\\Container')",
+                    "lib-class-test": "class_exists('PublishPress\\Pimple\\Container', false)",
                     "action-register-priority": "-200",
                     "action-initialize-priority": "-185"
-                }
+                },
+                "plugin-name": "library-pimple-pimple",
+                "plugin-slug": "library-pimple-pimple",
+                "plugin-folder": "library-pimple-pimple",
+                "plugin-github-repo": "publishpress/library-pimple-pimple",
+                "plugin-lang-domain": "pimple-pimple",
+                "plugin-composer-package": "publishpress/pimple-pimple"
             },
             "autoload": {
                 "files": [
@@ -201,9 +187,9 @@
             ],
             "support": {
                 "issues": "https://github.com/publishpress/library-pimple-pimple/issues",
-                "source": "https://github.com/publishpress/library-pimple-pimple/tree/3.5.0.10"
+                "source": "https://github.com/publishpress/library-pimple-pimple/tree/3.5.0.11"
             },
-            "time": "2023-05-30T18:41:10+00:00"
+            "time": "2026-09-11T18:31:32+00:00"
         },
         {
             "name": "publishpress/psr-container",
@@ -306,16 +292,16 @@
         },
         {
             "name": "publishpress/wordpress-reviews",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-wordpress-reviews.git",
-                "reference": "f6cff7c2a773c03bbe074a2e8d4180b04e8b8f0d"
+                "reference": "0a8cd140cdc17088c1910f8db6a6ba8ccc17482d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-wordpress-reviews/zipball/f6cff7c2a773c03bbe074a2e8d4180b04e8b8f0d",
-                "reference": "f6cff7c2a773c03bbe074a2e8d4180b04e8b8f0d",
+                "url": "https://api.github.com/repos/publishpress/library-wordpress-reviews/zipball/0a8cd140cdc17088c1910f8db6a6ba8ccc17482d",
+                "reference": "0a8cd140cdc17088c1910f8db6a6ba8ccc17482d",
                 "shasum": ""
             },
             "require": {
@@ -364,9 +350,9 @@
             ],
             "support": {
                 "issues": "https://github.com/publishpress/library-wordpress-reviews/issues",
-                "source": "https://github.com/publishpress/library-wordpress-reviews/tree/1.2.1"
+                "source": "https://github.com/publishpress/library-wordpress-reviews/tree/1.2.2"
             },
-            "time": "2026-05-13T15:21:26+00:00"
+            "time": "2026-09-11T02:52:42+00:00"
         },
         {
             "name": "publishpress/wordpress-version-notices",
@@ -442,6 +428,53 @@
                 "source": "https://github.com/publishpress/library-wordpress-version-notices/tree/2.2.1"
             },
             "time": "2026-05-13T15:05:11+00:00"
+        },
+        {
+            "name": "woocommerce/action-scheduler",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/woocommerce/action-scheduler.git",
+                "reference": "40a3df93a251590c58717b91b1049a13410e2ac4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/40a3df93a251590c58717b91b1049a13410e2ac4",
+                "reference": "40a3df93a251590c58717b91b1049a13410e2ac4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5",
+                "sirbrillig/phpcs-changed": "^2.11",
+                "woocommerce/woocommerce-sniffs": "^1.0.1",
+                "wp-cli/wp-cli": "~2.5.0",
+                "yoast/phpunit-polyfills": "^2.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "scripts-description": {
+                    "lint": "Run phpcs against PHP files with unstaged changes",
+                    "test": "Run unit tests",
+                    "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+                    "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier",
+                    "lint-branch": "Run phpcs against PHP files changed on the current branch compared to its base branch",
+                    "lint-staged": "Run phpcs against PHP files with staged changes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Action Scheduler for WordPress and WooCommerce",
+            "homepage": "https://actionscheduler.org/",
+            "support": {
+                "issues": "https://github.com/woocommerce/action-scheduler/issues",
+                "source": "https://github.com/woocommerce/action-scheduler/tree/4.1.0"
+            },
+            "time": "2026-08-05T21:19:48+00:00"
         }
     ],
     "packages-dev": [],

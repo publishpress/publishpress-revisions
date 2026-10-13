@@ -166,3 +166,127 @@ function agp_check_by_name(elem_name, check_it, visibility_check, click_event, r
 		}
 	}
 }
+
+/**
+ * Keep list-search controls beside the view links when they fit. When they do
+ * not, move them into the top table navigation so they share the row with
+ * Bulk Actions instead of consuming a row of their own.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+	var wrappers = document.querySelectorAll('.revision-q, .revision-archive');
+
+	Array.prototype.forEach.call(wrappers, function(wrapper) {
+		var controls = wrapper.querySelector('.revisionary-list-header-controls');
+		var views = controls ? controls.querySelector('.subsubsub') : null;
+		var search = controls ? controls.querySelector('p.search-box') : null;
+		var topNav = wrapper.querySelector('.tablenav.top');
+
+		if (!controls || !views || !search || !topNav) {
+			return;
+		}
+
+		search.classList.add('revisionary-list-responsive-search');
+
+		var placeSearch = function() {
+			var pagination;
+
+			controls.appendChild(search);
+
+			if (search.offsetTop > views.offsetTop) {
+				pagination = topNav.querySelector('.tablenav-pages');
+				if (pagination) {
+					topNav.insertBefore(search, pagination);
+				} else {
+					topNav.appendChild(search);
+				}
+			}
+		};
+
+		placeSearch();
+
+		if ('ResizeObserver' in window) {
+			var lastWidth = wrapper.getBoundingClientRect().width;
+			new ResizeObserver(function(entries) {
+				var width = entries[0].contentRect.width;
+				if (Math.abs(width - lastWidth) < 1) {
+					return;
+				}
+
+				lastWidth = width;
+				placeSearch();
+			}).observe(wrapper);
+		} else {
+			window.addEventListener('resize', placeSearch);
+		}
+	});
+});
+
+/**
+ * Keep the plugin footer within the viewport when admin notices or other
+ * messages occupy space above the plugin wrapper. The original footer layout
+ * allows for the wrapper's normal 10px top offset; only additional displacement
+ * needs to be removed from its viewport-based minimum height.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+	var content = document.getElementById('wpbody-content');
+	var wrapper = content && content.querySelector(':scope > .pressshack-admin-wrapper');
+	var resizeObserver;
+	var observedNotices = [];
+
+	if (
+		!content
+		|| !wrapper
+		|| !(
+			document.body.classList.contains('revisionary-q')
+			|| document.body.classList.contains('revisionary-archive')
+		)
+	) {
+		return;
+	}
+
+	var updateFooterHeight = function() {
+		var hasPrecedingNotice = Array.prototype.some.call(
+			content.querySelectorAll('div.notice'),
+			function(notice) {
+				return !wrapper.contains(notice)
+					&& Boolean(notice.compareDocumentPosition(wrapper) & Node.DOCUMENT_POSITION_FOLLOWING);
+			}
+		);
+		var contentTop = content.getBoundingClientRect().top;
+		var wrapperTop = wrapper.getBoundingClientRect().top;
+		var preWrapperHeight = hasPrecedingNotice
+			? Math.max(0, Math.round(wrapperTop - contentTop - 10))
+			: 0;
+
+		wrapper.style.setProperty('--revisionary-pre-wrapper-height', preWrapperHeight + 'px');
+	};
+
+	var observeNotices = function() {
+		if (!resizeObserver) {
+			return;
+		}
+
+		observedNotices.forEach(function(notice) {
+			resizeObserver.unobserve(notice);
+		});
+		observedNotices = Array.prototype.slice.call(content.querySelectorAll('div.notice'));
+		observedNotices.forEach(function(notice) {
+			resizeObserver.observe(notice);
+		});
+	};
+
+	if ('ResizeObserver' in window) {
+		resizeObserver = new ResizeObserver(updateFooterHeight);
+		observeNotices();
+	}
+
+	if ('MutationObserver' in window) {
+		new MutationObserver(function() {
+			observeNotices();
+			window.requestAnimationFrame(updateFooterHeight);
+		}).observe(content, { childList: true, subtree: true });
+	}
+
+	window.addEventListener('resize', updateFooterHeight);
+	updateFooterHeight();
+});
