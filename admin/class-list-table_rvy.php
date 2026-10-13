@@ -812,8 +812,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		&& ( ! empty( $have_scheduled )
 		|| $this->scheduled_only
 		|| (!empty($_REQUEST['orderby']) && 'date_sched' == $_REQUEST['orderby']) 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		) ) {
-			$arr['date_sched'] = esc_html__('Schedule');
+		) {
+			$arr['date_sched'] = esc_html__('Schedule', 'revisionary');
 		}
 
 		if ( $this->scheduled_only && ! rvy_get_option( 'scheduled_publish_cron' ) ) {
@@ -879,7 +879,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						$time_diff = time() - $time;
 
 						if ( $time_diff > 0 && $time_diff < DAY_IN_SECONDS ) {
-							$h_time = sprintf( esc_html__( '%s ago' ), human_time_diff( $time ) );
+							$h_time = sprintf( esc_html__( '%s ago', 'revisionary' ), human_time_diff( $time ) );
 						} else {
 							$h_time = mysql2date( esc_html__( 'Y/m/d g:i a', 'revisionary' ), get_date_from_gmt($post->post_date_gmt) );
 							$h_time = str_replace( ' am', '&nbsp;am', $h_time );
@@ -904,7 +904,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 							&& 'future-revision' === $post->post_mime_type
 							&& ( empty( $publication_row ) || 'pending' === $publication_row['status_name'] )
 						) {
-							echo '<strong class="error-message">' . esc_html__( 'Missed schedule' ) . '</strong>';
+							echo '<strong class="error-message">' . esc_html__( 'Missed schedule', 'revisionary' ) . '</strong>';
 							echo '<br />';
 						}
 
@@ -1041,7 +1041,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					$edit_link,
 					/* translators: %s: post title */
 					esc_attr__( 'Edit published post', 'revisionary' ),
-					esc_html__( 'Edit' )
+					esc_html__( 'Edit', 'revisionary' )
 				);
 			}
 		}
@@ -1055,8 +1055,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 			esc_url( $filter_url ),
 			/* translators: %s: post title */
-			esc_attr( sprintf( esc_html__( 'Filter: view only revisions of %s', 'revisionary' ), '&#8220;' . $post->post_title . '&#8221;' ) ),
-			esc_html__( 'Filter' )
+			esc_attr( sprintf( esc_html__( 'View only revisions of %s', 'revisionary' ), '&#8220;' . $post->post_title . '&#8221;' ) ),
+				esc_html__( 'Filter', 'revisionary' )
 		);
 
 		if ( is_post_type_viewable( $post_type_object ) ) {
@@ -1067,14 +1067,14 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_permalink( $post->ID ),
 					esc_attr__( 'View published post', 'revisionary' ),
-					esc_html__( 'View' )
+					esc_html__( 'View', 'revisionary' )
 				);
 			} else {
 				$actions['view'] = sprintf(
 					'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 					get_preview_post_link( $post->ID ),
 					esc_attr__( 'Preview published post', 'revisionary' ),
-					esc_html_x( 'Preview', 'verb' )
+					esc_html_x( 'Preview', 'verb', 'revisionary' )
 				);
 			}
 		}
@@ -1127,7 +1127,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		echo '</div>';
 
-		echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details' ) . '</span></button>';
+			echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'revisionary' ) . '</span></button>';
 	}
 
 	/**
@@ -1695,10 +1695,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		echo '<label for="bulk-action-selector-' . esc_attr( $which ) . '" class="screen-reader-text">' .
 			/* translators: Hidden accessibility text. */
-			esc_html__( 'Select bulk action' ) .
+				esc_html__( 'Select bulk action', 'revisionary' ) .
 		'</label>';
 		echo '<select name="action' . esc_attr($two) . '" id="bulk-action-selector-' . esc_attr( $which ) . "\">\n";
-		echo '<option value="-1">' . esc_html__( 'Bulk actions' ) . "</option>\n";
+		echo '<option value="-1">' . esc_html__( 'Bulk actions', 'revisionary' ) . "</option>\n";
 
 		foreach ( $this->_actions as $key => $value ) {
 			if ( is_array( $value ) ) {
@@ -1719,7 +1719,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		echo "</select>\n";
 
-		submit_button( esc_html__( 'Apply' ), 'action', 'bulk_action', false, array( 'id' => "doaction$two" ) );
+		submit_button( esc_html__( 'Apply', 'revisionary' ), 'action', 'bulk_action', false, array( 'id' => "doaction$two" ) );
 		echo "\n";
 	}
 
@@ -1742,12 +1742,12 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 		}
 
-		$actions['submit_revision'] = esc_html__('Submit');
+		$actions['submit_revision'] = esc_html__('Submit', 'revisionary');
 
 		if ($approval_potential = apply_filters('revisionary_bulk_action_approval', $approval_potential)) {
-			$actions['approve_revision'] = esc_html__('Approve');
-			$actions['decline_revision'] = esc_html__('Decline');
-			$actions['publish_revision'] = esc_html__('Publish');
+			$actions['approve_revision'] = esc_html__('Approve', 'revisionary');
+			$actions['decline_revision'] = esc_html__('Decline', 'revisionary');
+			$actions['publish_revision'] = esc_html__('Publish', 'revisionary');
 
 			if (rvy_get_option('scheduled_revisions')) {
 				$actions['unschedule_revision'] = esc_html__('Unschedule', 'revisionary');
@@ -1775,7 +1775,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			'selected' => $cat
 		);
 
-		echo '<label class="screen-reader-text" for="cat">' . esc_html__( 'Filter by category' ) . '</label>';
+		echo '<label class="screen-reader-text" for="cat">' . esc_html__( 'Filter by category', 'revisionary' ) . '</label>';
 		wp_dropdown_categories( $dropdown_options );
 	}
 
@@ -1975,7 +1975,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		</select>
 
 		<?php
-		submit_button( esc_html__( 'Filter' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+		submit_button( esc_html__( 'Filter', 'revisionary' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
 		?>
 
 		<script type="text/javascript">
@@ -2050,7 +2050,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		if ( ! empty( $columns['cb'] ) ) {
 			static $cb_counter = 1;
-			$columns['cb']     = '<label class="screen-reader-text" for="cb-select-all-' . $cb_counter . '">' . esc_html__( 'Select All' ) . '</label>'
+			$columns['cb']     = '<label class="screen-reader-text" for="cb-select-all-' . $cb_counter . '">' . esc_html__( 'Select All', 'revisionary' ) . '</label>'
 				. '<input id="cb-select-all-' . $cb_counter . '" type="checkbox" />';
 			$cb_counter++;
 		}
@@ -2156,7 +2156,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				'<a class="row-title" href="%s" aria-label="%s">%s%s</a>',
 				esc_url($edit_link),
 				/* translators: %s: post title */
-				esc_attr( sprintf( esc_html__( '&#8220;%s&#8221; (Edit)' ), $title ) ),
+				esc_attr( sprintf( esc_html__( '&#8220;%s&#8221; (Edit)', 'revisionary' ), $title ) ),
 				'',
 				esc_attr($title)
 			);
@@ -2235,7 +2235,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					get_edit_post_link( $post->ID ),
 					/* translators: %s: post title */
 					esc_attr__( 'Edit Revision', 'revisionary' ),
-					esc_html__( 'Edit' )
+					esc_html__( 'Edit', 'revisionary' )
 				);
 			}
 
@@ -2246,7 +2246,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy$redirect_arg");
-				$actions['copy_revision'] = "<a href='$url'>" . esc_html__('Copy') . '</a>';
+				$actions['copy_revision'] = "<a href='$url'>" . esc_html__('Copy', 'revisionary') . '</a>';
 			}
 		}
 
@@ -2258,7 +2258,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						$delete_link,
 						/* translators: %s: post title */
 						esc_attr( sprintf( esc_html__( 'Discard Revision', 'revisionary' ), $title ) ),
-						esc_html__( 'Discard' )
+						esc_html__( 'Discard', 'revisionary' )
 					);
 				} else {
 					$delete_caption = (defined('RVY_DISCARD_CAPTION')) ? esc_html__( 'Discard Revision', 'revisionary' ) : esc_html__( 'Delete Revision', 'revisionary' );
@@ -2267,8 +2267,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						'<a href="%1$s" class="submitdelete" title="%2$s" aria-label="%2$s">%3$s</a>',
 						$delete_link,
 						/* translators: %s: post title */
-						esc_attr( $delete_caption . ': ' . $title ),
-						esc_html__( 'Delete' )
+						esc_attr( sprintf( $delete_caption, $title ) ),
+						esc_html__( 'Delete', 'revisionary' )
 					);
 				}
 			}
@@ -2286,7 +2286,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
 						esc_attr__( 'Preview Revision', 'revisionary' ),
-						esc_html_x( 'Preview', 'verb' )
+						esc_html_x( 'Preview', 'verb', 'revisionary' )
 					);
 
 					do_action('pp_revisions_post_link_done', $post->ID);
