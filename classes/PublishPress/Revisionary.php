@@ -83,17 +83,17 @@ class Revisions {
             return false;
         }
 
-        $revision_status_csv = array_diff(
-            implode("','", array_map('sanitize_key', rvy_revision_statuses())),
+        $revision_statuses = array_diff(
+            array_map('sanitize_key', rvy_revision_statuses()),
             ['draft-revision']
         );
+        $status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $revision_id = $wpdb->get_var(
             $wpdb->prepare(
-                "SELECT ID FROM $wpdb->posts WHERE comment_count = %d AND post_author = %d AND post_status IN ('$revision_status_csv') ORDER BY ID DESC LIMIT 1",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-                $post_id,
-                $user_id
+                "SELECT ID FROM $wpdb->posts WHERE comment_count = %d AND post_author = %d AND post_status IN ($status_placeholders) ORDER BY ID DESC LIMIT 1",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                array_merge([$post_id, $user_id], $revision_statuses)
             )
         );
 
