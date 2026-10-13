@@ -293,7 +293,7 @@ class RevisionaryHistory
         if (!isset($title)) {
             $title = sprintf(                                                         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
                 esc_html__( 'Compare %s of "%s"', 'revisionary' ), 
-                esc_html__('Revisions'),
+	                esc_html__('Revisions', 'revisionary'),
                 esc_html(_draft_or_post_title($published_post))
             );
         }
@@ -305,7 +305,7 @@ class RevisionaryHistory
         <div class="wrap">
             <h1 class="long-header"><?php 
             if (!empty($do_h1)) {
-                $status_plural = (!empty($status_obj->labels->plural)) ? $status_obj->labels->plural : esc_html__('Revisions');
+	                $status_plural = (!empty($status_obj->labels->plural)) ? $status_obj->labels->plural : esc_html__('Revisions', 'revisionary');
 
                 if (!$url = get_edit_post_link($published_post)) {
                     $url = '';
@@ -321,7 +321,7 @@ class RevisionaryHistory
             </h1>
             <?php
             if (get_edit_post_link($published_post)) {
-                echo '<a href="' . esc_url(get_edit_post_link($published_post)) . '">' . esc_html__( 'Return to editor' ) . '</a>';
+	                echo '<a href="' . esc_url(get_edit_post_link($published_post)) . '">' . esc_html__( 'Return to editor', 'revisionary' ) . '</a>';
             }
             ?>
         </div>
@@ -570,9 +570,9 @@ class RevisionaryHistory
         if ( is_null( $fields ) ) {
             // Allow these to be versioned.
             $fields = array(
-                'post_title'   => esc_html__( 'Title' ),
-                'post_content' => esc_html__( 'Content' ),
-                'post_excerpt' => esc_html__( 'Excerpt' ),
+	                'post_title'   => esc_html__( 'Title', 'revisionary' ),
+	                'post_content' => esc_html__( 'Content', 'revisionary' ),
+	                'post_excerpt' => esc_html__( 'Excerpt', 'revisionary' ),
             );
         }
     
@@ -709,10 +709,10 @@ class RevisionaryHistory
 
         // Add default title if title field is empty
         if ( $compare_from && empty( $compare_from->post_title ) ) {
-            $compare_from->post_title = esc_html__( '(no title)' );
+	            $compare_from->post_title = esc_html__( '(no title)', 'revisionary' );
         }
         if ( empty( $compare_to->post_title ) ) {
-            $compare_to->post_title = esc_html__( '(no title)' );
+	            $compare_to->post_title = esc_html__( '(no title)', 'revisionary' );
         }
 
         $return = array();
@@ -1262,7 +1262,7 @@ class RevisionaryHistory
 		        $modified_gmt = strtotime( $revision->post_modified_gmt . ' +0000' );
             }
 
-            $time_diff_label = ($now_gmt > $modified_gmt) ? esc_html__( '%s%s ago' ) : esc_html__( '%s%s from now', 'revisionary');
+	            $time_diff_label = ($now_gmt > $modified_gmt) ? esc_html__( '%s%s ago', 'revisionary' ) : esc_html__( '%s%s from now', 'revisionary');
 
             $use_multiple_authors = function_exists('get_multiple_authors') && !rvy_in_revision_workflow($revision);
 
@@ -1274,7 +1274,7 @@ class RevisionaryHistory
                 'title'      => get_the_title( $revision->ID ),
                 'author'     => $this->authors[ $author_key ],
                 'date'       => sprintf('%s%s', $date_prefix, date_i18n( esc_html__( 'M j, Y @ g:i a', 'revisionary' ), $modified )),
-                'dateShort'  => date_i18n( esc_html_x( 'j M @ g:i a', 'revision date short format' ), $modified ),
+	                'dateShort'  => date_i18n( esc_html_x( 'j M @ g:i a', 'revision date short format', 'revisionary' ), $modified ),
                 'timeAgo'    => sprintf( $time_diff_label, $date_prefix, human_time_diff( $modified_gmt, $now_gmt ) ),
                 'autosave'   => false,
                 'current'    => $current,
@@ -1320,7 +1320,7 @@ class RevisionaryHistory
                 'author'     => $this->authors[ $author_key ],
                 'date'       => date_i18n( esc_html__( 'M j, Y @ H:i', 'revisionary' ), strtotime( $post->post_modified ) ),
                 'dateShort'  => date_i18n( esc_html_x( 'j M @ H:i', 'revision date short format', 'revisionary' ), strtotime( $post->post_modified ) ),
-                'timeAgo'    => sprintf( esc_html__( '%s ago' ), human_time_diff( strtotime( $post->post_modified_gmt ), $now_gmt ) ),
+	                'timeAgo'    => sprintf( esc_html__( '%s ago', 'revisionary' ), human_time_diff( strtotime( $post->post_modified_gmt ), $now_gmt ) ),
                 'autosave'   => false,
                 'current'    => true,
                 'restoreUrl' => false,
@@ -1449,7 +1449,7 @@ class RevisionaryHistory
                             for (rkey = 0; rkey < _wpRevisionsSettings.revisionData.length; rkey++) {
                                 if (_wpRevisionsSettings.revisionData[rkey].id == rselected) {
                                     if (_wpRevisionsSettings.revisionData[rkey].editUrl) {
-	                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '" aria-label="<?php echo esc_attr( esc_html__( 'Edit revision', 'revisionary' ) ); ?>"><input type="button" class="edit-revision button button-primary button-compact" style="float:right" value="<?php echo esc_attr__('Edit');?>"></a>');
+	                                        $('input.restore-revision').after('<a href="' + _wpRevisionsSettings.revisionData[rkey].editUrl + '" aria-label="<?php echo esc_attr( esc_html__( 'Edit revision', 'revisionary' ) ); ?>"><input type="button" class="edit-revision button button-primary button-compact" style="float:right" value="<?php echo esc_attr__('Edit', 'revisionary');?>"></a>');
                                     }
                                 }
                             }
@@ -1512,7 +1512,7 @@ class RevisionaryHistory
         if ($show_preview_link) {
             $preview_label = (empty($type_obj) || $can_edit)
             ?  esc_html__('Preview / Restore', 'revisionary')
-            : esc_html_x( 'Preview', 'verb' );
+            : esc_html_x( 'Preview', 'verb', 'revisionary' );
 
             $preview_url = rvy_preview_url($post);
         }
