@@ -364,7 +364,7 @@ class RvyPostEdit {
             //$(document).on('loaded-ui', 'div.rvy-submission-div', function() {
                 $('div.misc-pub-section:first').after(
                     "<div class='misc-pub-section'><div class='rvy-author-selection'>"
-                    + '<label>' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
+                    + '<label for="rvy_post_author">' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
                     + '</div>'
                     + "<div class='rvy-author-selection'>"
                     + "<?php echo $select_html;     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
@@ -375,7 +375,8 @@ class RvyPostEdit {
             $(document).on('change', 'div.rvy-author-selection select', function(e) {
                 var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select'));?>'};
 
-                $('div.rvy-author-selection select').attr('disabled', 'disabled');
+                // Keep focus on the select while saving (WCAG 2.4.3); announce the result (WCAG 4.1.3)
+                $('div.rvy-author-selection select').attr('aria-busy', 'true');
 
                 $.ajax({
                     url: rvyObjEdit.ajaxurl,
@@ -387,11 +388,19 @@ class RvyPostEdit {
             });
 
             function revisionarySelectAuthorDone() {
-                $('div.rvy-author-selection select').removeAttr('disabled');
+                $('div.rvy-author-selection select').removeAttr('aria-busy');
+                rvyAuthorSpeak('<?php echo esc_js(__('Author saved.', 'revisionary'));?>');
             }
 
             function revisionarySelectAuthorError() {
-                $('div.rvy-author-selection select').removeAttr('disabled');
+                $('div.rvy-author-selection select').removeAttr('aria-busy');
+                rvyAuthorSpeak('<?php echo esc_js(__('The author could not be saved.', 'revisionary'));?>');
+            }
+
+            function rvyAuthorSpeak(msg) {
+                if (window.wp && wp.a11y && wp.a11y.speak) {
+                    wp.a11y.speak(msg);
+                }
             }
         });
 		/* ]]> */

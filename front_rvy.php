@@ -801,15 +801,15 @@ class RevisionaryFront {
 				var $compare = $previewMessage.find('a[target="_revision_diff"]').addClass('rvy-preview-compare components-button is-secondary ppr-purple-button');
 				var $primaryActions = $previewMessage.find('a.rvy-submit-revision, a.rvy-approve-revision, a.button-primary');
 				var $menuActions = $previewMessage.find('a').not($compare).not($primaryActions);
-				var $menuCompare = $compare.clone().removeClass('rvy-preview-compare rvy-preview-link rvy_has_empty_spacing components-button is-secondary ppr-purple-button').addClass('rvy-preview-menu-item').attr('role', 'menuitem');
+				var $menuCompare = $compare.clone().removeClass('rvy-preview-compare rvy-preview-link rvy_has_empty_spacing components-button is-secondary ppr-purple-button').addClass('rvy-preview-menu-item');
 				var $menu = $('<span class="rvy-preview-actions"></span>');
 				var $menuButton = $('<button type="button" class="rvy-preview-actions-toggle" aria-expanded="false" aria-label="<?php echo esc_attr__( 'More revision actions', 'revisionary' ); ?>"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M4 6.5h16v2H4zM4 11h16v2H4zM4 15.5h16v2H4z"></path></svg></button>');
-				var $menuPanel = $('<span class="rvy-preview-actions-menu" role="menu" hidden></span>');
+				var $menuPanel = $('<span class="rvy-preview-actions-menu" hidden></span>');
 				var primarySlots = [];
 				var primaryClasses = [];
 
 				$menuActions.each(function() {
-					$(this).removeClass('button button-primary button-secondary rvy-preview-link rvy_has_empty_spacing').addClass('rvy-preview-menu-item').attr('role', 'menuitem').appendTo($menuPanel);
+					$(this).removeClass('button button-primary button-secondary rvy-preview-link rvy_has_empty_spacing').addClass('rvy-preview-menu-item').appendTo($menuPanel);
 				});
 				$primaryActions.each(function(index) {
 					var $slot = $('<span class="rvy-preview-primary-slot"></span>');
@@ -842,7 +842,7 @@ class RevisionaryFront {
 					}
 					$primaryActions.each(function(index) {
 						if (narrowest) {
-							$(this).removeClass('button button-primary button-secondary').addClass('rvy-preview-menu-item rvy-preview-menu-primary').attr('role', 'menuitem').appendTo($menuPanel);
+							$(this).removeClass('button button-primary button-secondary').addClass('rvy-preview-menu-item rvy-preview-menu-primary').appendTo($menuPanel);
 						} else {
 							$(this).attr('class', primaryClasses[index]).removeAttr('role').insertAfter(primarySlots[index]);
 						}
@@ -858,7 +858,11 @@ class RevisionaryFront {
 					$menuPanel.attr('hidden', expanded ? 'hidden' : null);
 				});
 				$(document).on('click', closeRevisionActions).on('keydown', function(event) {
-					if ('Escape' === event.key) closeRevisionActions();
+					if ('Escape' === event.key) {
+						var focusInMenu = $menuPanel.has(document.activeElement).length > 0;
+						closeRevisionActions();
+						if (focusInMenu) $menuButton.trigger('focus');
+					}
 				});
 				$(window).on('resize', updateRevisionActionsLayout);
 				updateRevisionActionsLayout();

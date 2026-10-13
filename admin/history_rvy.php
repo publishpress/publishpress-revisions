@@ -104,6 +104,24 @@ class RevisionaryHistory
                 );
             }, 500);
 
+            // Confirm the copy to screen reader users (WCAG 4.1.3)
+            var rvyCopyDone = function() {
+                var msg = '<?php echo esc_js(__('Copied to clipboard.', 'revisionary'));?>';
+
+                if (window.wp && wp.a11y && wp.a11y.speak) {
+                    wp.a11y.speak(msg);
+                } else {
+                    var $status = $('#rvy-copy-status');
+
+                    if (!$status.length) {
+                        $status = $('<div id="rvy-copy-status" class="screen-reader-text" role="status" aria-live="polite"></div>').appendTo('body');
+                    }
+
+                    $status.text('');
+                    setTimeout(function() { $status.text(msg); }, 100);
+                }
+            };
+
             $(document).on('click', '#rvy_copy_old_content', function (e) {
                 var content = '';
 
@@ -113,7 +131,7 @@ class RevisionaryHistory
                     content = content + '\r\n\r\n' + $(e).html();
                 })
                 
-                navigator.clipboard.writeText(content);
+                navigator.clipboard.writeText(content).then(rvyCopyDone);
             });
 
             $(document).on('click', '#rvy_copy_new_content', function (e) {
@@ -125,7 +143,7 @@ class RevisionaryHistory
                     content = content + '\r\n\r\n' + $(e).html();
                 })
                 
-                navigator.clipboard.writeText(content);
+                navigator.clipboard.writeText(content).then(rvyCopyDone);
             });
         });
         /* ]]> */
