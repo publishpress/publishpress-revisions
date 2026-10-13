@@ -351,7 +351,7 @@ class RevisionaryAdminPosts {
 				
 				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);
 
-				$caption = (isset($actions['edit']) || !rvy_get_option('caption_copy_as_edit')) ? pp_revisions_status_label('draft-revision', 'submit') : esc_html__('Edit');
+				$caption = (isset($actions['edit']) || !rvy_get_option('caption_copy_as_edit')) ? pp_revisions_status_label('draft-revision', 'submit') : esc_html__('Edit', 'revisionary');
 				$caption = str_replace(' ', '&nbsp;', $caption);
 
 				$actions['create_revision'] = "<a href='" . esc_url($url) . "'>" . $caption . '</a>';

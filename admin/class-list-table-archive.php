@@ -1091,7 +1091,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			</select>
 			<?php
 
-			submit_button( esc_html__( 'Filter' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+			submit_button( esc_html__( 'Filter', 'revisionary' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
 
 			if( count( $_REQUEST ) > 1 ) :		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				?>
@@ -1239,7 +1239,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
 						esc_attr__( 'Preview Revision', 'revisionary' ),
-						esc_html_x( 'Preview', 'verb' )
+						esc_html_x( 'Preview', 'verb', 'revisionary' )
 					);
 
 					do_action('pp_revisions_post_link_done', $item->ID);
@@ -1284,7 +1284,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				'<a href="%1$s" class="submitdelete" title="%2$s" aria-label="%2$s">%3$s</a>',
 				$delete_link,
 				esc_html__( 'Delete Past Revision', 'revisionary' ),
-				esc_html__( 'Delete' )
+				esc_html__( 'Delete', 'revisionary' )
 			);
 		}
 

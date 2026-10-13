@@ -115,8 +115,8 @@ function rvy_admin_init() {
 						wp_die( esc_html__('Sorry, you are not allowed to delete this revision.', 'revisionary') );
 					} 
 	
-					if ( !wp_delete_post_revision($post_id, true) )
-						wp_die( esc_html__('Error in deleting.') );
+						if ( !wp_delete_post_revision($post_id, true) )
+							wp_die( esc_html__('Error in deleting.', 'revisionary') );
 	
 					$deleted++;
 				}
@@ -366,8 +366,8 @@ function rvy_admin_init() {
 						}
 					}
 
-					if ( !wp_delete_post($post_id, true) )
-						wp_die( esc_html__('Error in deleting.') );
+						if ( !wp_delete_post($post_id, true) )
+							wp_die( esc_html__('Error in deleting.', 'revisionary') );
 	
 					$deleted++;
 				}
@@ -679,5 +679,5 @@ function rvy_get_admin_notice( $message, $args = array() ) {
 		$classes .= ' ' . implode( ' ', $args['additional_classes'] );
 	}
 
-		return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
-	}
+	return sprintf( '<div class="%1$s">%2$s</div>', $classes, $message );
+}
