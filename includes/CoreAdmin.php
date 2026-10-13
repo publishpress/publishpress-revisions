@@ -186,9 +186,9 @@ class CoreAdmin {
             <div class="meta-box-sortables">
                 <div class="advertisement-box-content postbox">
                     <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                        <h2 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Upgrade to Revisions Pro', 'revisionary'); ?></span>
-                        </h3>
+                        </h2>
                     </div>
         
                     <div class="inside">
@@ -215,9 +215,9 @@ class CoreAdmin {
                 </div>
                 <div class="advertisement-box-content postbox">
                     <div class="postbox-header">
-                        <h3 class="advertisement-box-header hndle is-non-sortable">
+                        <h2 class="advertisement-box-header hndle is-non-sortable">
                             <span><?php echo esc_html__('Need Revisions Support?', 'revisionary'); ?></span>
-                        </h3>
+                        </h2>
                     </div>
         
                     <div class="inside">
