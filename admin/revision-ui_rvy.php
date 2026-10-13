@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /*
  * Legacy functions for listing Past Revisions, with bulk deletion
  */
@@ -272,7 +276,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 				$rows .= "<td>$date</td>";
 
 				$rows .= "<td>"
-				. '<a href="' . esc_url($preview_url) . '" title="' . esc_attr( sprintf( esc_html__( 'Preview &#8220;%s&#8221;', 'revisionary' ), $revision->post_title ) ) . '" rel="permalink">' . esc_html__( 'Preview', 'revisionary' ) . '</a>'
+				. '<a href="' . esc_url($preview_url) . '" title="' . esc_attr( sprintf( esc_html__( 'Preview &#8220;%s&#8221;', 'revisionary' ), $revision->post_title ) ) . '" rel="permalink">' . esc_html_x( 'Preview', 'verb', 'revisionary' ) . '</a>'
 				. "</td>";
 
 				$rows .= "<td>" . esc_html($name) . "</td>";
@@ -314,7 +318,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 				$rows .= "<td>$date</td>";
 
 				$rows .= "<td>"
-				. '<a href="' . esc_url(site_url("?p={$revision->ID}&amp;mark_current_revision=1")) . '" target="_blank">' . esc_html__( 'Preview', 'revisionary' ) . '</a>'
+				. '<a href="' . esc_url(site_url("?p={$revision->ID}&amp;mark_current_revision=1")) . '" target="_blank">' . esc_html_x( 'Preview', 'verb', 'revisionary' ) . '</a>'
 				. "</td>";
 
 				$rows .= "<td>" . esc_html($name) . "</td>";
@@ -325,7 +329,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			if ( $post->ID != $revision->ID 
 			&& ( $can_edit_post || ( ('pending-revision' == $status) && rvy_is_post_author($revision) ) )	// allow submitters to delete their own still-pending revisions
 			) {
-				$rows .= "<td style='text-align:right'><input class='rvy-rev-chk' type='checkbox' name='delete_revisions[]' value='" . esc_attr($revision->ID) . "' /></td>";
+				$rows .= "<td style='text-align:right'><input class='rvy-rev-chk' type='checkbox' name='delete_revisions[]' value='" . esc_attr($revision->ID) . "' aria-label='" . esc_attr__('Select revision for deletion', 'revisionary') . "' /></td>";
 				$can_delete_any = true;
 			} else
 				$rows .= "<td></td>";

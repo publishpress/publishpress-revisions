@@ -1,6 +1,7 @@
 <?php // avoid bombing out if the actual debug file is not loaded
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists('d_echo') ) {
 function d_echo($str) {
