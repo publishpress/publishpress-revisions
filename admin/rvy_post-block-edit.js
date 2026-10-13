@@ -203,6 +203,7 @@ jQuery(document).ready( function($) {
 		$('div.revision-creating span.ppr-submission-spinner').css('visibility', 'visible');
 
 		var revisionaryCreateDone = function () {
+			window.dispatchEvent(new CustomEvent('revisionary:revision-created'));
 			$('.revision-create').hide();
 			$('.revision-creating').hide();
 			$('.revision-created').show();

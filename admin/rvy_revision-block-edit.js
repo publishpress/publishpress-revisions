@@ -58,10 +58,66 @@ jQuery(document).ready(function ($) {
         	}
         }
 
-        ediv = null;
+		ediv = null;
 	}
-	var RvyHideInterval = setInterval(RvyHideElements, 50);
-	
+	var RvyHideUpdateScheduled = false;
+	var RvyHideObserver;
+	var RvyHideObserverOptions = {
+		childList: true,
+		subtree: true,
+		attributes: true,
+		attributeOldValue: true,
+		attributeFilter: ['class', 'style', 'hidden', 'aria-hidden']
+	};
+	var RvyVisibilityTargets = 'div.edit-post-sidebar, button.editor-post-publish-button, button.editor-post-save-draft, button.editor-post-saved-stated, #icl_div';
+	var RvyContainsVisibilityTarget = function (node) {
+		return node.nodeType === 1 && (node.matches(RvyVisibilityTargets) || !!node.querySelector(RvyVisibilityTargets));
+	};
+	var RvyVisibilityMutations = function (records) {
+		var relevant = records.some(function (record) {
+			// React and other integrations may set an existing value again.
+			if (record.type === 'attributes' && record.oldValue === record.target.getAttribute(record.attributeName)) {
+				return false;
+			}
+			if (record.target.nodeType === 1 && record.target.closest(RvyVisibilityTargets)) {
+				return true;
+			}
+			if (record.type === 'attributes') {
+				// Ancestor visibility can change without changing a control.
+				return RvyContainsVisibilityTarget(record.target);
+			}
+			return Array.prototype.some.call(record.addedNodes, RvyContainsVisibilityTarget)
+				|| Array.prototype.some.call(record.removedNodes, RvyContainsVisibilityTarget);
+		});
+		if (relevant) {
+			RvyScheduleHideElements();
+		}
+	};
+	var RvyScheduleHideElements = function () {
+		if (RvyHideUpdateScheduled) {
+			return;
+		}
+		RvyHideUpdateScheduled = true;
+		window.requestAnimationFrame(function () {
+			RvyHideUpdateScheduled = false;
+			// Do not observe our own show/hide writes: they would schedule
+			// another frame indefinitely. Restore observation even on failure.
+			RvyHideObserver.disconnect();
+			try {
+				RvyHideElements();
+			} finally {
+				RvyHideObserver.observe(document.documentElement, RvyHideObserverOptions);
+			}
+		});
+	};
+
+	RvyHideElements();
+	RvyHideObserver = new MutationObserver(RvyVisibilityMutations);
+	RvyHideObserver.observe(document.documentElement, RvyHideObserverOptions);
+	window.addEventListener('resize', RvyScheduleHideElements);
+	document.addEventListener('change', RvyScheduleHideElements, true);
+	document.addEventListener('click', RvyScheduleHideElements, true);
+
     var RvySubmissionUI = function () {
 		if (RvyIsNativeRevisionComparison()) {
 			$('div.rvy-creation-ui').remove();

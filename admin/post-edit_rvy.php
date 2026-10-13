@@ -43,7 +43,7 @@ class RvyPostEdit {
                     ?>
                     $('#revisions .misc-pub-revisions a, .misc-pub-revisions a').filter(function() {
                         return /(?:^|\/)revision\.php(?:\?|$)/.test(this.href) && String(<?php echo (int) $browse_revision->ID; ?>) === (new URL(this.href, window.location.href)).searchParams.get('revision');
-                    }).attr('href', <?php echo wp_json_encode(rvy_preview_url($browse_revision->ID)); ?>);
+                    }).attr('href', <?php echo wp_json_encode(rvy_compare_url($browse_revision->ID)); ?>);
                     <?php
                 }
             }
@@ -78,7 +78,7 @@ class RvyPostEdit {
                     var revisionID = urlParams.get('revision');
 
                     if (typeof rvyDeleteURL[revisionID] != 'undefined') {
-                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete"><?php esc_html_e('Delete', 'revisionary');?></a>');
+                        $(this).append(' <a href="' + rvyDeleteURL[revisionID] + '" class="rvy-delete" aria-label="<?php echo esc_attr( esc_html__( 'Delete revision', 'revisionary' ) ); ?>"><?php esc_html_e('Delete', 'revisionary');?></a>');
                     }
                 });
             <?php endif;?>
@@ -87,7 +87,7 @@ class RvyPostEdit {
         </script>
 
         <style>
-        ul.post-revisions a.rvy-delete {text-decoration: none; color:#f44336}
+        ul.post-revisions a.rvy-delete {text-decoration: none; color:#b32d2e}
         </style>
 
         <?php
@@ -218,7 +218,7 @@ class RvyPostEdit {
         <?php self::revision_preview_button($post); ?>
 
         <a id="rvy_compare_button" class="preview button" href="<?php echo esc_url($compare_link); ?>" target="_blank" id="revision-compare"
-        tabindex="4" title="<?php echo esc_attr($compare_title);?>" style="float:right"><?php echo esc_html($compare_button); ?></a>
+        title="<?php echo esc_attr($compare_title);?>" style="float:right"><?php echo esc_html($compare_button); ?></a>
 
         </div>
 
@@ -255,7 +255,7 @@ class RvyPostEdit {
 
         ?>
         <a class="preview button" href="<?php echo esc_url($preview_link); ?>" target="revision-preview" id="revision-preview"
-           tabindex="4" title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
+           title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
         <?php
     }
 

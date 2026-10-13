@@ -232,9 +232,9 @@ function rvy_get_scheduling_log_table() {
 			public function column_preview( $row ) {
 				$revision_id = rvy_scheduling_log_revision_id( $row );
 				if ( ! $revision_id ) return '';
-				return sprintf( '<a href="%s"><span class="dashicons dashicons-cover-image" title="%s"></span></a>', esc_url( rvy_preview_url( $revision_id ) ), esc_attr__( 'View preview', 'revisionary' ) );
+				return sprintf( '<a href="%s" aria-label="%s"><span class="dashicons dashicons-cover-image" title="%s" aria-hidden="true"></span></a>', esc_url( rvy_preview_url( $revision_id ) ), esc_attr__( 'View preview', 'revisionary' ), esc_attr__( 'View preview', 'revisionary' ) );
+				}
 			}
-		}
 	}
 	$table = new Revisionary_Scheduling_Log_Table( ActionScheduler::store(), ActionScheduler::logger(), ActionScheduler::runner() );
 	return $table;
@@ -345,11 +345,11 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
 		if ( $revision && ( 'future-revision' === $revision->post_mime_type ) ) {
 			$publication_time = strtotime( $revision->post_date_gmt . ' UTC' );
 
-			if ( $publication_time && ( $publication_time > current_time( 'timestamp', true ) ) ) {
-				return esc_html__( 'Scheduled', 'revisionary' );
+			if ( $publication_time && ( current_time( 'timestamp', true ) >= $publication_time + MINUTE_IN_SECONDS ) ) {
+				return esc_html__( 'Missed Schedule', 'revisionary' );
 			}
 
-			return esc_html__( 'Missed Schedule', 'revisionary' );
+			return esc_html__( 'Scheduled', 'revisionary' );
 		}
 
 		return '<span aria-hidden="true">—</span>';

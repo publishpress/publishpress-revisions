@@ -190,8 +190,9 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'revise_posts_capability' =>				rvy_get_option('revision_statuses_noun_labels') ? esc_html__("Change Request submission require role capability", 'revisionary') : esc_html__("Revision submission requires role capability", 'revisionary'),
 	'revisor_lock_others_revisions' =>			esc_html__("Editing others' Revisions requires role capability", 'revisionary'),
 	'revisor_hide_others_revisions' => 			esc_html__("Listing others' Revisions requires role capability", 'revisionary'),
+    'visual_compare_javascript' => 				esc_html__('Enable javascript in visual compare', 'revisionary'),
 	'visual_compare' =>							esc_html__('Use visual compare for Revisions', 'revisionary'),
-	'rvy_compare_other_internal_fields' =>	esc_html__('Include unidentified internal fields on Compare screen', 'revisionary'),
+	'rvy_compare_other_internal_fields' =>		esc_html__('Include unidentified internal fields on Compare screen', 'revisionary'),
 	'admin_menu_pending_count_icon' =>			esc_html__('Show Submitted Revisions count in Admin menu', 'revisionary'),
 	'front_end_indicator' =>					esc_html__('Show indicator on front end if page has Revisions', 'revisionary'),
 	'admin_revisions_to_own_posts' =>			esc_html__("Users can always administer revisions to their own editable posts", 'revisionary'),
@@ -274,7 +275,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_capability', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_menu_pending_count_icon', 'front_end_indicator', 'admin_revisions_to_own_posts', 'view_filters_include_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
-	'revisions'		=>		 ['visual_compare', 'rvy_compare_other_internal_fields', 'revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
+	'revisions'		=>		 ['visual_compare', 'visual_compare_javascript', 'rvy_compare_other_internal_fields', 'revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
 	'license' =>			 ['edd_key'],
 ]
 ]);
@@ -476,12 +477,12 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				$badge =
 				[
 					'text' => 'PRO',
-					'bg_color' => '#8B5CF6',
+					'bg_color' => '#6950bd',
 					'class' => 'pp-pro-badge'
 				];
 				$badge_text = isset($badge['text']) ? esc_html($badge['text']) : 'PRO';
-				$badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#8B5CF6';
-				$badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#8B5CF6';
+				$badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#6950bd';
+				$badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#6950bd';
 				$badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
 				
 				printf(
@@ -507,7 +508,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 	if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty($this->form_options['features']['license'])) {
 		?>
 		<li class="nav-tab nav-tab-license <?php if ('license' == $setActiveTab) echo 'nav-tab-active';?>">
-			<a href="#ppr-tab-license">
+			<a href="#ppr-tab-license" aria-label="<?php echo esc_attr__( 'License settings', 'revisionary' ); ?>">
 				<?php esc_html_e('License', 'revisionary') ?>
 			</a>
 		</li>
@@ -549,7 +550,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 		?>
 		<td style="padding-right: 70px">
-		<h3 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Past Revisions', 'revisionary');?>
+		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Past Revisions', 'revisionary');?>
         <?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -557,7 +558,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			true
 		);
 		?>
-        </h3>
+        </h2>
 		<?php
 		$locked_types = [];
 		$no_revision_types = [];
@@ -603,7 +604,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 				$locked = (!empty($locked_types[$key])) ? ' disabled ' : '';
 			?>
 			<div class="agp-vtight_input">
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="0"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="0" aria-label="<?php echo esc_attr__( 'Past revisions post type fallback', 'revisionary' ); ?>"/>
 				<label for="<?php echo esc_attr($id); ?>">
 
 				<?php 
@@ -701,17 +702,17 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			?>
 
 			<?php if ('nav_menu' == $key) : ?>
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" id="<?php echo esc_attr($id); ?>" value="1"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" id="<?php echo esc_attr($id); ?>" value="1" aria-label="<?php echo esc_attr__( 'Navigation menu revision setting', 'revisionary' ); ?>"/>
 			<?php else : ?>
 			
 			<?php if (isset($hidden_types[$key])) : ?>
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_types[$key]); ?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_types[$key]); ?>" aria-label="<?php echo esc_attr__( 'Hidden post type revision setting', 'revisionary' ); ?>"/>
 			<?php else : 
 					$locked = (!empty($locked_types[$key])) ? ' disabled ' : '';
 				?>
 				<div class="agp-vtight_input">
 				
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>" aria-label="<?php echo esc_attr__( 'New revisions post type fallback', 'revisionary' ); ?>"/>
 				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
 				<input name="<?php if (empty($locked_types[$key])) echo esc_attr($name); ?>" type="checkbox" id="<?php echo esc_attr($id); ?>"
 					value="1" <?php checked('1', !empty($revisionary->enabled_post_types[$key])); echo esc_attr($locked); ?> />
@@ -787,13 +788,13 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			?>
 
 			<?php if (isset($hidden_fields[$key])) : ?>
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_fields[$key]); ?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_fields[$key]); ?>" aria-label="<?php echo esc_attr__( 'Hidden revision field setting', 'revisionary' ); ?>"/>
 			<?php else : 
 				$locked = (!empty($locked_fields[$key])) ? ' disabled ' : '';
 			?>
 				<div class="agp-vtight_input">
 				
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_fields[$key])) ? '0' : '1';?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_fields[$key])) ? '0' : '1';?>" aria-label="<?php echo esc_attr__( 'Revision field fallback', 'revisionary' ); ?>"/>
 				
 				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
 
@@ -872,16 +873,16 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			?>
 
 			<?php if ('nav_menu' == $key) : ?>
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" id="<?php echo esc_attr($id); ?>" value="1"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" id="<?php echo esc_attr($id); ?>" value="1" aria-label="<?php echo esc_attr__( 'Navigation menu copy setting', 'revisionary' ); ?>"/>
 			<?php else : ?>
 			<?php if (isset($hidden_types[$key])) : ?>
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_types[$key]); ?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_types[$key]); ?>" aria-label="<?php echo esc_attr__( 'Hidden copied post type setting', 'revisionary' ); ?>"/>
 			<?php else : 
 					$locked = (!empty($locked_types[$key])) ? ' disabled ' : '';
 				?>
 				<div class="agp-vtight_input">
 
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_types[$key])) ? '0' : '1';?>" aria-label="<?php echo esc_attr__( 'Copied post type fallback', 'revisionary' ); ?>"/>
 
 				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
 					
@@ -950,13 +951,13 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 			?>
 
 			<?php if (isset($hidden_fields[$key])) : ?>
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_fields[$key]); ?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo esc_attr($hidden_fields[$key]); ?>" aria-label="<?php echo esc_attr__( 'Hidden copied field setting', 'revisionary' ); ?>"/>
 			<?php else : 
 				$locked = (!empty($locked_fields[$key])) ? ' disabled ' : '';
 			?>
 				<div class="agp-vtight_input">
 				
-				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_fields[$key])) ? '0' : '1';?>"/>
+				<input name="<?php echo esc_attr($name); ?>" type="hidden" value="<?php echo (empty($locked_fields[$key])) ? '0' : '1';?>" aria-label="<?php echo esc_attr__( 'Copied field fallback', 'revisionary' ); ?>"/>
 				
 				<label for="<?php echo esc_attr($id); ?>" title="<?php echo esc_attr($key); ?>">
 
@@ -1039,11 +1040,13 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 
 		<div class="pp-cta-buttons">
 			<a href="https://publishpress.com/statuses/" 
+				aria-label="<?php echo esc_attr__( 'Get PublishPress Statuses Pro', 'revisionary' ); ?>"
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
 				<?php esc_html_e('Get PublishPress Statuses Pro', 'revisionary'); ?>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
+				aria-label="<?php echo esc_attr__( 'Learn more about revision statuses', 'revisionary' ); ?>"
 				target="_blank"
 				class="pp-learn-more-link">
 				<?php esc_html_e('Learn More', 'revisionary'); ?>
@@ -1063,11 +1066,11 @@ if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ! empty( $this->form_option
 		<p><?php esc_html_e('Install Statuses Pro to unlock custom revision statuses.', 'revisionary');?></p>
 		<p><?php esc_html_e('Configure for any post type and role to match your editing workflow.', 'revisionary');?></p>
 		<div class="pp-upgrade-buttons">
-			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/revisions-statuses/'); ?>" target="_blank" class="pp-upgrade-btn-secondary">
+			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/revisions-statuses/'); ?>" target="_blank" class="pp-upgrade-btn-secondary" aria-label="<?php echo esc_attr__( 'Learn more about revision statuses', 'revisionary' ); ?>">
 				<?php esc_html_e('Learn More', 'revisionary'); ?>
 			</a>
 
-			<a href="https://publishpress.com/statuses/" target="_blank" class="pp-upgrade-btn-primary">
+			<a href="https://publishpress.com/statuses/" target="_blank" class="pp-upgrade-btn-primary" aria-label="<?php echo esc_attr__( 'Get Statuses Pro', 'revisionary' ); ?>">
 			<?php esc_html_e('Get Statuses Pro', 'revisionary');?>
 			</a>
 		</div>
@@ -1486,7 +1489,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			$color = rvy_get_option($option);
 
 			?>
-			<input type="hidden" name="revision_editor_bg_color" value="<?php echo esc_attr($color);?>"> 
+			<input type="hidden" name="revision_editor_bg_color" value="<?php echo esc_attr($color);?>" aria-label="<?php echo esc_attr__( 'Revision editor background color', 'revisionary' ); ?>">
 			<?php
 			$default = (\PublishPress\Revisions\Utils::isBlockEditorActive()) ? '#fff' : '#efe'; 
 
@@ -2148,11 +2151,13 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 
 		<div class="pp-cta-buttons">
 			<a href="https://publishpress.com/revisions/" 
+				aria-label="<?php echo esc_attr__( 'Upgrade to Revisions Pro', 'revisionary' ); ?>"
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
 				<?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/advanced-revisions-notifications/" 
+				aria-label="<?php echo esc_attr__( 'Learn more about advanced revision notifications', 'revisionary' ); ?>"
 				target="_blank"
 				class="pp-learn-more-link">
 				<?php esc_html_e('Learn More', 'revisionary'); ?>
@@ -2172,11 +2177,11 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		<p><?php esc_html_e('Upgrade to Revisions Pro to unlock Planner Notifications integration.', 'revisionary');?></p>
 		<p><?php esc_html_e('Customize notification content and recipients for each notification type.', 'revisionary');?></p>
 		<div class="pp-upgrade-buttons">
-			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/customize-email-notifications/'); ?>" target="_blank" class="pp-upgrade-btn-secondary">
+			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/customize-email-notifications/'); ?>" target="_blank" class="pp-upgrade-btn-secondary" aria-label="<?php echo esc_attr__( 'Learn more about custom email notifications', 'revisionary' ); ?>">
 				<?php esc_html_e('Learn More', 'revisionary'); ?>
 			</a>
 
-			<a href="https://publishpress.com/links/revisions-banner/" target="_blank" class="pp-upgrade-btn-primary">
+			<a href="https://publishpress.com/links/revisions-banner/" target="_blank" class="pp-upgrade-btn-primary" aria-label="<?php echo esc_attr__( 'Upgrade to Revisions Pro', 'revisionary' ); ?>">
 			<?php esc_html_e('Upgrade to Pro', 'revisionary');?>
 			</a>
 		</div>
@@ -2204,6 +2209,8 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			}
 			$check_args['val'] = (int) $setting;
 			$this->option_checkbox('visual_compare', $tab, $section, $hint, '', $check_args);
+            $this->option_checkbox('visual_compare_javascript', $tab, $section, esc_html__("This supports the page's normal javascript behavior inside the compare window.", 'revisionary'));
+            do_action('revisionary_option_ui_builder_compare', $this, $tab, $section);
 
 			$hint = esc_html__('If enabled, Editors and Administrators can see unidentified internal fields keys in comparisons. An attempt is still made to suppress sensitive and transient fields.', 'revisionary');
 			echo '<div id="rvy-compare-other-internal-fields"' . (!$setting ? ' style="display:none"' : '') . '>';
@@ -2501,7 +2508,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 							.animate({ opacity: "0" }, 500);
 						if (!card.find(".pp-temp-message").length) {
 							$(
-								'<div class="pp-temp-message" style="position:absolute;top:10px;right:10px;background:#ff5722;color:white;padding:5px 10px;border-radius:3px;font-size:12px;z-index:999;">Pro Feature</div>'
+								'<div class="pp-temp-message" style="position:absolute;top:10px;right:10px;background:#c43c0c;color:white;padding:5px 10px;border-radius:3px;font-size:12px;z-index:999;">Pro Feature</div>'
 							)
 								.appendTo(card)
 								.delay(2000)
@@ -2723,7 +2730,7 @@ private function renderCompatibilityPack($integration)
 						style="background: #9e9e9e;"><?php esc_html_e('Supported', 'revisionary'); ?></span>-->
 				<?php else: ?>
 					<span class="pp-badge"
-						style="background: #5e92c4;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
+						style="background: #2271b1;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
 				<?php endif; ?>
 			</h3>
 
@@ -2837,10 +2844,12 @@ private function renderCompatibilityPack($integration)
 
 private function renderIntegrations()
 {
-	$int = array_merge(
-		wp_filter_object_list($this->defined_integrations, ['available' => true, 'free' => false]),
-		wp_filter_object_list($this->defined_integrations, ['available' => false, 'free' => false])
-	);
+	$int = wp_filter_object_list($this->defined_integrations, ['free' => false]);
+	usort($int, function($a, $b) {
+		$group_a = !empty($a['available']) ? 0 : (!empty($a['installed']) ? 1 : 2);
+		$group_b = !empty($b['available']) ? 0 : (!empty($b['installed']) ? 1 : 2);
+		return ($group_a <=> $group_b) ?: strnatcasecmp(wp_strip_all_tags($a['title']), wp_strip_all_tags($b['title']));
+	});
 
 	// Render each fallback integration
 	foreach ($int as $integration) {
@@ -2876,7 +2885,7 @@ private function colorPicker($current_value = '', $field_name = '', $attributes 
 		$pp_color = $default_color;
 	}
 
-	echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($field_name) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($default_color) . '" />';
+	echo '<input type="text" aria-required="true" aria-label="' . esc_attr__( 'Color setting', 'revisionary' ) . '" size="7" maxlength="7" name="' . esc_attr($field_name) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($default_color) . '" />';
 }
 
 
