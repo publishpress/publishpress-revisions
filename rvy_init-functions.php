@@ -1571,7 +1571,12 @@ function rvy_preview_url($revision, $args = []) {
 
 	$preview_arg = (defined('RVY_PREVIEW_ARG')) ? sanitize_key(constant('RVY_PREVIEW_ARG')) : 'rv_preview';
 
-	if ('id_only' == $link_type) {
+	if ('revision' === $revision->post_type) {
+		// Native archives have synthetic slugs and may have dates different from
+		// their parent. Route by ID without permalink date or slug constraints.
+		$preview_url = add_query_arg($preview_arg, true, home_url('/'));
+		$id_arg = ('page' === $post_type) ? 'page_id' : 'p';
+	} elseif ('id_only' == $link_type) {
 		// support using ids only if theme or plugins do not tolerate published post url and do not require standard format with revision slug
 		$preview_url = add_query_arg($preview_arg, true, get_post_permalink($revision));
 
