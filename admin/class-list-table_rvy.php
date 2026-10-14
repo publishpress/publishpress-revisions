@@ -812,7 +812,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		&& ( ! empty( $have_scheduled )
 		|| $this->scheduled_only
 		|| (!empty($_REQUEST['orderby']) && 'date_sched' == $_REQUEST['orderby']) 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		) {
+		) ) {
 			$arr['date_sched'] = esc_html__('Schedule', 'revisionary');
 		}
 
