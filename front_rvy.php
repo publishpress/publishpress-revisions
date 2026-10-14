@@ -174,6 +174,11 @@ class RevisionaryFront {
 			if (rvy_in_revision_workflow($post_id) || wp_is_post_revision($post_id)) {
 				$query->queried_object = get_post($post_id);
 				$query->queried_object_id = $post_id;
+				// Query the archive's stored type instead of rewriting parent-type SQL.
+				if ($query->is_main_query() && wp_is_post_revision($post_id)
+				&& (current_user_can('read_post', $post_id) || current_user_can('edit_post', $post_id))) {
+					$query->set('post_type', 'revision');
+				}
 			}
 		}
 	}
