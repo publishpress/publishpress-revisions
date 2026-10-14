@@ -14,6 +14,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	private $scheduled_action_rows = [];
 	private $scheduled_status_counts = [];
 	private $filter_dates = [];
+	private $bulk_approval_allowed = null;
 
 	public function __construct($args = []) {
 		global $wpdb, $revisionary;
