@@ -1,5 +1,4 @@
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 [4.1.0] - 1 Oct 2026
 - Fixed : Visual Compare display of Classic Editor content changes
