@@ -862,9 +862,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	$update = (array) $revision;
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	$published = $wpdb->get_row(
-		$wpdb->prepare("SELECT * FROM $wpdb->posts WHERE ID = %d", $published_id)
-	);
+	$published = get_post($published_id);
 
 	if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 		if (!$published_authors = get_multiple_authors($published_id)) {
