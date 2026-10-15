@@ -3582,7 +3582,7 @@
 
 				const presentation = comparison.presentation || {};
 
-				setApprovalNotice({ status: 'success', message: presentation.revisionApplied });
+				setApprovalNotice({ status: 'success', message: updatedComparison.approvalMessage || presentation.revisionApplied });
 			} catch (approveError) {
 				setApprovalNotice({
 					status: 'error',

@@ -870,6 +870,21 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				break;
 		
 			case 'date_sched' :
+				// Scheduling history can refer to a native Past Revision whose post
+				// date is no longer its scheduled publication date.
+				if ( $this->scheduled_only && 'future-revision' !== $post->post_mime_type ) {
+					$scheduled_time = $this->scheduled_action_time( $post );
+					if ( $scheduled_time ) {
+						$scheduled_date = esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $scheduled_time ) );
+						echo $revisionary->admin->tooltipText( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							apply_filters( 'rvy_post_schedule_date_column_time', $scheduled_date, $post, 'date', 'list' ),
+							sprintf( esc_html__( 'Scheduled publication: %s', 'revisionary' ), $scheduled_date )
+						);
+					} else {
+						echo '<span aria-hidden="true">—</span>';
+					}
+					break;
+				}
 				if ( ('future-revision' === $post->post_mime_type ) || ( strtotime($post->post_date_gmt) > agp_time_gmt() ) ) {
 						$t_time = esc_html(mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date ));
 						$m_time = $post->post_date;
@@ -1392,6 +1407,16 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		return preg_replace( '/\s+LIMIT\s+\d+(?:\s*,\s*\d+)?\s*$/i', '', $request );
 	}
 
+	private function scheduled_action_time( $post ) {
+		$row = isset( $this->scheduled_action_rows[$post->ID] ) ? $this->scheduled_action_rows[$post->ID] : [];
+		if ( empty( $row['schedule'] ) ) {
+			return 0;
+		}
+
+		$date = $row['schedule']->get_date();
+		return $date ? $date->getTimestamp() : 0;
+	}
+
 	private function sort_scheduled_posts( &$posts ) {
 		$orderby = ! empty( $_REQUEST['orderby'] ) ? sanitize_key( $_REQUEST['orderby'] ) : 'date_sched'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$order = ! empty( $_REQUEST['order'] )
@@ -1403,7 +1428,12 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				case 'post_type': $left = $a->post_type; $right = $b->post_type; break;
 				case 'author': $left = $a->post_author; $right = $b->post_author; break;
 				case 'modified': $left = $a->post_modified_gmt; $right = $b->post_modified_gmt; break;
-				default: $left = $a->post_date_gmt; $right = $b->post_date_gmt;
+				default:
+					$left = ( 'future-revision' !== $a->post_mime_type ) ? $this->scheduled_action_time( $a ) : 0;
+					$right = ( 'future-revision' !== $b->post_mime_type ) ? $this->scheduled_action_time( $b ) : 0;
+					$left = $left ? gmdate( 'Y-m-d H:i:s', $left ) : $a->post_date_gmt;
+					$right = $right ? gmdate( 'Y-m-d H:i:s', $right ) : $b->post_date_gmt;
+					break;
 			}
 			return $order * strnatcasecmp( (string) $left, (string) $right );
 		} );
