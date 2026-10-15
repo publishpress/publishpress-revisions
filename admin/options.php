@@ -116,6 +116,10 @@ class RvyOptionUI {
 
 			echo "</label>";
 
+			if ( ! empty( $args['after_label'] ) ) {
+				echo wp_kses_post( $args['after_label'] );
+			}
+
 			if ( $hint_text && $this->display_hints ) {
 				echo "<div class='rvy-subtext'>";
 				
@@ -2151,6 +2155,21 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			if (!$setting && rvy_visual_compare_disabled()) {
 				$check_args['disabled'] = true;
 				$hint = esc_html__('This feature is incompatible with page builder plugins.', 'revisionary');
+			}
+			if ( ! defined( 'PUBLISHPRESS_REVISIONS_PRO_VERSION' ) ) {
+				$builder_promos = [];
+				foreach ( rvy_visual_compare_pro_builders() as $builder_name ) {
+					$builder_promos[] = '<a class="rvy-visual-compare-upgrade" href="' . esc_url( self::UPGRADE_PRO_URL ) . '" target="_blank" rel="noopener noreferrer">'
+						. sprintf(
+							/* translators: %s: page builder plugin name. */
+							esc_html__( 'Upgrade to Pro for visual comparison with %s.', 'revisionary' ),
+							esc_html( $builder_name )
+						) . '</a>';
+				}
+				$check_args['after_label'] = implode( ' ', $builder_promos );
+				if ( $builder_promos ) {
+					$hint = '';
+				}
 			}
 			$check_args['val'] = (int) $setting;
 			$this->option_checkbox('visual_compare', $tab, $section, $hint, '', $check_args);
