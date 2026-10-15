@@ -1,7 +1,6 @@
 <?php
 
 class RevisionaryFront {
-	var $orig_inherit_protected_value;
 
 	function __construct() {
 		global $revisionary;
@@ -12,6 +11,7 @@ class RevisionaryFront {
 		}
 
 		add_action('parse_query', [$this, 'actSetQueriedObject'], 20);
+		add_action('pre_get_posts', [$this, 'configureNativeRevisionPreview'], 99);
 		add_action('parse_query', [$this, 'actFlagHomeRevision'], 20);
 
 		if (!defined('ET_BUILDER_VERSION') || defined('REVISIONARY_DIVI_HOME_PREVIEW_FILTER')) {
@@ -37,8 +37,6 @@ class RevisionaryFront {
 			add_action('template_redirect', [$this, 'actRevisionPreviewRedirect'], 1);
 		}
 
-		add_filter('posts_results', [$this, 'inherit_status_workaround']);
-		add_filter('the_posts', [$this, 'undo_inherit_status_workaround']);
 
 		remove_action( 'init', 'register_block_core_post_comments' );
 
@@ -174,12 +172,51 @@ class RevisionaryFront {
 			if (rvy_in_revision_workflow($post_id) || wp_is_post_revision($post_id)) {
 				$query->queried_object = get_post($post_id);
 				$query->queried_object_id = $post_id;
-				// Query the archive's stored type instead of rewriting parent-type SQL.
-				if ($query->is_main_query() && wp_is_post_revision($post_id)
-				&& (current_user_can('read_post', $post_id) || current_user_can('edit_post', $post_id))) {
-					$query->set('post_type', 'revision');
-				}
 			}
+		}
+	}
+
+	function configureNativeRevisionPreview($query) {
+		$preview_arg = defined('RVY_PREVIEW_ARG') ? sanitize_key(constant('RVY_PREVIEW_ARG')) : 'rv_preview';
+		// Only the main, explicitly requested archive preview is eligible.
+		if (!$query->is_main_query() || is_admin()
+		|| empty($_GET[$preview_arg]) || !empty($_REQUEST['preview_id'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return;
+		}
+		$revision_id = (int) ($query->get('page_id') ?: $query->get('p'));
+		$revision = get_post($revision_id);
+		if (!$revision || 'revision' !== $revision->post_type || 'inherit' !== $revision->post_status) {
+			return;
+		}
+
+		$parent = get_post($revision->post_parent);
+		$authorized = $parent && is_user_logged_in()
+			&& (current_user_can('read_post', $revision_id) || current_user_can('edit_post', $parent->ID));
+		if (!$authorized) {
+			// Prevent an explicit status query from exposing archives to guests.
+			$query->set('p', 0);
+			$query->set('page_id', 0);
+			$query->set('attachment_id', 0);
+			$query->set('post__in', [0]);
+			return;
+		}
+
+		// An explicit, authorized status query avoids WordPress's later protected
+		// status edit check, and works even when SQL/result filters are suppressed.
+		$query->set('post_type', 'revision');
+		$query->set('post_status', 'inherit');
+		$query->set('p', $revision_id);
+		$query->set('page_id', 0);
+		$query->set('attachment_id', 0);
+		foreach (['name', 'pagename', 'attachment'] as $key) {
+			$query->set($key, '');
+		}
+		foreach (['year', 'monthnum', 'day'] as $key) {
+			$query->set($key, 0);
+		}
+		// Zero is a valid time constraint (midnight), not an unset value.
+		foreach (['hour', 'minute', 'second'] as $key) {
+			$query->set($key, '');
 		}
 	}
 
@@ -303,26 +340,6 @@ class RevisionaryFront {
 		}
 
 		return $request;
-	}
-
-	// work around WP query_posts behavior (won't allow preview on posts unless status is public, private or protected)
-	function inherit_status_workaround( $results ) {
-		global $wp_post_statuses;
-
-		if ( isset( $this->orig_inherit_protected_value ) )
-			return $results;
-
-		$this->orig_inherit_protected_value = $wp_post_statuses['inherit']->protected;
-
-		$wp_post_statuses['inherit']->protected = true;
-		return $results;
-	}
-
-	function undo_inherit_status_workaround( $results ) {
-		if ( ! empty( $this->orig_inherit_protected_value ) )
-			$wp_post_statuses['inherit']->protected = $this->orig_inherit_protected_value;
-
-		return $results;
 	}
 
 	// allows for front-end viewing of a revision by those who can edit the current revision (also needed for post preview by users editing for pending revision)
@@ -545,7 +562,12 @@ class RevisionaryFront {
 				$edit_button = '';
 			}
 
-			if ( !in_array( $post->post_mime_type, array( 'pending-revision', 'revision-approved', 'future-revision', 'inherit' ), true ) ) {
+			$is_past_revision = ('revision' === $post->post_type);
+			if ($is_past_revision) {
+				$publish_url = $can_publish
+					? wp_nonce_url(rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=restore$redirect_arg"), "restore-post_$published_post_id|$revision_id")
+					: '';
+			} elseif ( !in_array( $post->post_mime_type, array( 'pending-revision', 'revision-approved', 'future-revision', 'inherit' ), true ) ) {
 				if ($can_edit = current_user_can('edit_post', $revision_id)) {
 					$submit_url = wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=submit$redirect_arg"), "submit-post_$published_post_id|$revision_id" );
 					$publish_url =  wp_nonce_url( rvy_admin_url("admin.php?page=rvy-revisions&revision=$revision_id&action=approve$redirect_arg"), "approve-post_$published_post_id|$revision_id" );
@@ -591,7 +613,8 @@ class RevisionaryFront {
 					}
 				}
 			} else {
-				switch ( $post->post_status ) {
+				// Native archives have no workflow MIME status; always use the Past Revision bar.
+				switch ($is_past_revision ? 'inherit' : $post->post_status) {
 				case 'draft' :
 				case 'draft-revision' :	 // If permissions_compat_mode setting is enabled, revision status is stored directly to post_status column
 					$class = 'draft';
@@ -625,7 +648,7 @@ class RevisionaryFront {
 				// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 				//case 'pending-revision' :
 				default :
-				if (empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval']) && ('inherit' != $post->post_status)) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if (empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval']) && !$is_past_revision) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ('future-revision' != $post->post_mime_type) {
 						$approve_caption = esc_html__( 'Approve', 'revisionary' );
 
@@ -725,7 +748,7 @@ class RevisionaryFront {
 								? esc_html__( 'Revision approved and live.', 'revisionary' )
 								: esc_html__( 'Current Revision.', 'revisionary' );
 
-					} elseif ('inherit' == $post->post_status) {
+					} elseif ($is_past_revision) {
 						if ( current_user_can('edit_post', $revision_id ) ) {
 							$class = 'past';
 							$date = agp_date_i18n( $datef, strtotime( $post->post_modified ) );
