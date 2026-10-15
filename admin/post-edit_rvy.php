@@ -113,6 +113,14 @@ class RvyPostEdit {
 
             $args = array_merge($args, \PublishPress\Revisions\PostEditorWorkflowUI::revisionLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions')));
 
+            wp_enqueue_script('rvy_revision_delete', RVY_URLPATH . '/admin/revision-delete-confirm.js', ['jquery'], PUBLISHPRESS_REVISIONS_VERSION, true);
+            wp_localize_script('rvy_revision_delete', 'rvyDeleteConfirm', [
+                'title' => __('Delete Revision', 'revisionary'),
+                'message' => __('Delete this revision and leave the editor? Any unsaved changes to this revision will be discarded.', 'revisionary'),
+                'confirm' => __('Delete revision', 'revisionary'),
+                'cancel' => __('Continue editing revision', 'revisionary'),
+            ]);
+
             $args['deleteCaption'] = (defined('RVY_DISCARD_CAPTION')) ? esc_html__( 'Discard Revision', 'revisionary' ) : esc_html__('Delete Revision', 'revisionary');
 
             $args['submissionDelay'] = (defined('PUBLISHPRESS_VERSION')) ? 2000 : 200;
