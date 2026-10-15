@@ -514,6 +514,24 @@
 			|| formatRoots.has(previousRoot.tagName.toLowerCase());
 	}
 
+    function canPairParagraphs(currentBlock, previousBlock) {
+        const current = document.createElement('div');
+        const previous = document.createElement('div');
+        current.innerHTML = currentBlock.innerHTML || '';
+        previous.innerHTML = previousBlock.innerHTML || '';
+        const isParagraph = (block, node) => block.blockName === 'core/paragraph'
+            || (!block.blockName && node.children.length === 1 && node.firstElementChild.tagName === 'P');
+        if (!isParagraph(currentBlock, current) || !isParagraph(previousBlock, previous)) return true;
+        const before = (previous.textContent || '').replace(/\s+/g, ' ').trim();
+        const after = (current.textContent || '').replace(/\s+/g, ' ').trim();
+        if (before === after) return true; // Preserve formatting-only and image changes.
+        if (textSimilarity(before, after) < 0.5) return false;
+        const changed = diffTokens(tokenize(before), tokenize(after)).filter((part) => part.type !== 'unchanged');
+        const chars = changed.reduce((total, part) => total + Array.from(part.value.trim()).length, 0);
+        const words = changed.reduce((total, part) => total + tokenize(part.value).filter((word) => /[\p{L}\p{N}]/u.test(word)).length, 0);
+        return chars <= 50 && words <= 10;
+    }
+
 	function pairSimilarBlocks(rawBlocks, enableClassicGranularDiff = false) {
 		const removed = [];
 		const added = [];
@@ -545,6 +563,11 @@
 			);
 
 			sameTypeAdded.forEach((candidate) => {
+                if (!canPairParagraphs(candidate.block, rem.block)) return;
+                // Never pair changes across an intervening unchanged block.
+                const start = Math.min(candidate.index, rem.index);
+                const end = Math.max(candidate.index, rem.index);
+                if (rawBlocks.slice(start + 1, end).some((block) => !block.__revisionDiffStatus)) return;
 				const formattingRootReplacement = isFormattingRootReplacement(candidate.block, rem.block);
 				let canBlend = false;
 				if (
