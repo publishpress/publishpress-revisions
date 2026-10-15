@@ -2698,8 +2698,10 @@
 		const titleChanged = !isCurrentReference && displayedTitle !== currentTitle;
 		const diffResult = useMemo(() => {
 			try {
+				const pair = hooks.applyFilters('visual_post_compare.content_pair', { current: displayedPost.content || '', previous: comparisonBase.content || '' }, displayedPost, comparisonBase);
 				return {
-					blocks: diffRevisionContent(displayedPost.content || '', comparisonBase.content || ''),
+					isBlockEditorComparison: containsSerializedBlocks(pair.current) && containsSerializedBlocks(pair.previous),
+					blocks: diffRevisionContent(pair.current, pair.previous),
 					error: null,
 				};
 			} catch (error) {
@@ -2707,8 +2709,7 @@
 				return { blocks: [], error };
 			}
 		}, [comparison]);
-		const isBlockEditorComparison = containsSerializedBlocks(displayedPost.content || '')
-			&& containsSerializedBlocks(comparisonBase.content || '');
+		const isBlockEditorComparison = Boolean(diffResult.isBlockEditorComparison);
 		const blockIndex = useMemo(() => indexBlocksByClientId(diffResult.blocks), [diffResult.blocks]);
 		const hasContentChanges = useMemo(() => {
 			const changed = (block) => Boolean(

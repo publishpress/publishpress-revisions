@@ -886,3 +886,30 @@ function pp_revisions_plugin_deactivation() {
         wp_unschedule_event($timestamp,'rvy_mail_buffer_hook');
     }
 }
+
+/**
+ * Resolve only the explicitly requested, authorized native archive preview.
+ * Renderers may use the parent for relations, but must overlay revision content.
+ *
+ * @return WP_Post|null
+ */
+function rvy_get_native_revision_preview($revision_id) {
+    $preview_arg = defined('RVY_PREVIEW_ARG') ? sanitize_key(RVY_PREVIEW_ARG) : 'rv_preview';
+    if (is_admin() || empty($_GET[$preview_arg]) || !is_user_logged_in()) {
+        return null;
+    }
+    $requested_id = !empty($_GET['page_id']) ? $_GET['page_id'] : (isset($_GET['p']) ? $_GET['p'] : 0);
+    if (!is_scalar($requested_id) || ((int) $requested_id !== (int) $revision_id)) {
+        return null;
+    }
+    $revision = get_post($revision_id);
+    if (!$revision || 'revision' !== $revision->post_type || 'inherit' !== $revision->post_status) {
+        return null;
+    }
+    $parent = get_post($revision->post_parent);
+    if (!$parent || 'revision' === $parent->post_type
+        || (!current_user_can('edit_post', $revision_id) && !current_user_can('edit_post', $parent->ID))) {
+        return null;
+    }
+    return clone $revision;
+}
