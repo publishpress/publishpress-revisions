@@ -87,8 +87,8 @@ function rvy_mail_buffer_cron_interval( $schedules ) {
 
 function _revisionary_publish_scheduled_cron($revision_id) {
 	if (rvy_get_option('scheduled_revisions') && rvy_get_option('legacy_cron_publication')) {
-		$revision_id = (isset($args['revision_id'])) ? $args['revision_id'] : 0;
-		revisionary_publish_scheduled(compact('revision_id'));
+		// WordPress passes the event's revision ID as the callback argument.
+		revisionary_publish_scheduled(['revision_id' => (int) $revision_id]);
 	}
 }
 

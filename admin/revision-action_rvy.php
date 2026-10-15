@@ -458,7 +458,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 	$db_action = false;
 		
 	// If requested publish date is in the past or within the scheduling limit, publish the revision
-		if ( strtotime( $revision->post_date_gmt ) <= agp_time_gmt() + 120 ) {
+		if ( strtotime( $revision->post_date_gmt ) <= agp_time_gmt() ) {
 			$status_obj = get_post_status_object( $revision->post_mime_type );
 
 			if ( empty($status_obj->public) && empty($status_obj->private) ) {
@@ -1042,7 +1042,13 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	}
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	$wpdb->update($wpdb->posts, $update_fields, ['ID' => $post_id]);
+	if ( false === $wpdb->update( $wpdb->posts, $update_fields, ['ID' => $post_id] ) ) {
+		return new WP_Error( 'revisionary_publication_failed', __( 'The revision could not be published.', 'revisionary' ) );
+	}
+
+	if ( 'future-revision' === $original_revision_status ) {
+		rvy_clear_revision_publication_events( $revision_id );
+	}
 
 	// also copy all stored postmeta from revision
 
@@ -1346,7 +1352,7 @@ function rvy_do_revision_restore( $revision_id, $actual_revision_status = '' ) {
 
 	if ( $revision = wp_get_post_revision( $revision_id ) ) {
 		if ('future-revision' == $revision->post_mime_type) {
-			rvy_publish_scheduled_revisions(array('revision_id' => $revision->ID));
+			rvy_publish_scheduled_revisions(['revision_id' => $revision->ID, 'force_publish' => true]);
 			return $revision;
 		}
 		
@@ -1540,6 +1546,7 @@ function rvy_revision_unschedule($revision_id) {
 		
 		clean_post_cache($revision->ID);
 
+		rvy_clear_revision_publication_events( $revision_id );
 		rvy_update_next_publish_date();
 
 	return true;
@@ -1586,7 +1593,7 @@ function rvy_revision_publish($revision_id = false) {
 	do_action( 'revision_published', rvy_post_id($revision->ID), $revision->ID );
 
 	if (!empty($do_publish)) {
-		rvy_publish_scheduled_revisions(array('revision_id' => $revision->ID));
+		rvy_publish_scheduled_revisions(['revision_id' => $revision->ID, 'force_publish' => true]);
 
 		clean_post_cache($revision->ID);
 
@@ -1646,8 +1653,10 @@ function rvy_publish_scheduled_revisions($args = []) {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$results = $wpdb->get_results( 
 			$wpdb->prepare( 
-				"SELECT * FROM $wpdb->posts WHERE post_type != 'revision' AND post_status != 'inherit' AND post_mime_type = 'future-revision' AND ID = %d",
-				(int) $args['revision_id']
+				"SELECT * FROM $wpdb->posts WHERE post_type != 'revision' AND post_status != 'inherit' AND post_mime_type = 'future-revision' AND ID = %d AND (post_date_gmt <= %s OR %d = 1)",
+				(int) $args['revision_id'],
+				$time_gmt,
+				! empty( $args['force_publish'] ) ? 1 : 0
 			)
 		);
 	} else {
@@ -1908,6 +1917,21 @@ function rvy_publish_scheduled_revisions($args = []) {
 	}
 }
 
+/** Cancel outstanding triggers without removing scheduler history. */
+function rvy_clear_revision_publication_events( $revision_id ) {
+	$revision_id = (int) $revision_id;
+	if ( ! $revision_id ) return;
+
+	// Clear both trigger types so an option change or previous migration cannot leave a duplicate publication event.
+	wp_clear_scheduled_hook( 'publish_revision_rvy', [$revision_id] );
+	wp_clear_scheduled_hook( 'publish_revision_rvy', ['revision_id' => $revision_id] );
+	if ( function_exists( 'as_unschedule_all_actions' ) ) {
+		as_unschedule_all_actions( 'publish_revision_rvy_action_scheduler', [$revision_id], 'revisionary' );
+		as_unschedule_all_actions( 'publish_revision_rvy_action_scheduler', ['revision_id' => $revision_id], 'revisionary' );
+	}
+
+}
+
 function rvy_reschedule_revision_publication( $revision_id, $post_date_gmt = '' ) {
 	$revision_id = (int) $revision_id;
 	if ( ! $revision_id ) return false;
@@ -1918,13 +1942,7 @@ function rvy_reschedule_revision_publication( $revision_id, $post_date_gmt = '' 
 	$timestamp = strtotime( $post_date_gmt . ' UTC' );
 	if ( ! $timestamp ) return false;
 
-	// Clear both trigger types so an option change or previous migration cannot leave a duplicate publication event.
-	wp_clear_scheduled_hook( 'publish_revision_rvy', [$revision_id] );
-	wp_clear_scheduled_hook( 'publish_revision_rvy', ['revision_id' => $revision_id] );
-	if ( function_exists( 'as_unschedule_all_actions' ) ) {
-		as_unschedule_all_actions( 'publish_revision_rvy_action_scheduler', [$revision_id], 'revisionary' );
-		as_unschedule_all_actions( 'publish_revision_rvy_action_scheduler', ['revision_id' => $revision_id], 'revisionary' );
-	}
+	rvy_clear_revision_publication_events( $revision_id );
 
 	if ( rvy_get_option( 'scheduled_publish_cron' ) ) {
 		return wp_schedule_single_event( $timestamp, 'publish_revision_rvy', [$revision_id] );
