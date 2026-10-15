@@ -1,5 +1,5 @@
 # Copyright (C) 2026 PublishPress
-# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-01T20:29:41+00:00\n"
-"PO-Revision-Date: 2026-10-01 21:26+0000\n"
+"POT-Creation-Date: 2026-10-01T21:23:34+00:00\n"
+"PO-Revision-Date: 2026-10-15 20:12+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7, fuzzy
+#: revisionary.php:7
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
@@ -41,108 +41,120 @@ msgstr ""
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13, fuzzy
+#: revisionary.php:13
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
 
-#: admin/action-scheduler_rvy.php:52
+#: admin/action-scheduler_rvy.php:55
 #, php-format
 msgid "Migrate %d Scheduled Revision"
 msgid_plural "Migrate %d Scheduled Revisions"
 msgstr[0] "Migrálás %d Ütemezett Revízió"
 msgstr[1] "Migrálás %d Ütemezett Revíziók"
 
-#: admin/action-scheduler_rvy.php:68
-#: admin/action-scheduler_rvy.php:72
+#: admin/action-scheduler_rvy.php:71
+#: admin/action-scheduler_rvy.php:75
 msgid "Migration failed."
 msgstr "A migráció meghiúsult."
 
-#: admin/action-scheduler_rvy.php:83
-#: admin/action-scheduler_rvy.php:258
+#: admin/action-scheduler_rvy.php:86
+#: admin/action-scheduler_rvy.php:261
 msgid "Permission denied."
 msgstr "Hozzáférés megtagadva."
 
-#: admin/action-scheduler_rvy.php:84
+#: admin/action-scheduler_rvy.php:87
 msgid "Action Scheduler is unavailable."
 msgstr "Az Action Scheduler nem elérhető."
 
-#: admin/action-scheduler_rvy.php:110
+#: admin/action-scheduler_rvy.php:113
 msgid "No Scheduled Revisions could be migrated."
 msgstr "Nincs migrálható Ütemezett Revízió."
 
-#: admin/action-scheduler_rvy.php:116
+#: admin/action-scheduler_rvy.php:119
 #, php-format
 msgid "%d Scheduled Revisions remaining."
 msgstr "%d Ütemezett Revízió maradt."
 
-#: admin/action-scheduler_rvy.php:117
+#: admin/action-scheduler_rvy.php:120
 msgid "Scheduled Revision migration complete."
 msgstr "Az Ütemezett Revízió migrálása befejeződött."
 
-#: admin/action-scheduler_rvy.php:150
-#: admin/action-scheduler_rvy.php:151
-#: admin/admin_rvy.php:279
+#: admin/action-scheduler_rvy.php:153
+#: admin/action-scheduler_rvy.php:154
+#: admin/admin_rvy.php:284
 #: admin/revision-queue_rvy.php:174
 #: rvy_init-functions.php:363
 #: visual-compare_rvy.php:175
 msgid "Scheduled Revisions"
 msgstr "Ütemezett Módosítások"
 
-#: admin/action-scheduler_rvy.php:166
+#: admin/action-scheduler_rvy.php:169
 msgid "Scheduling Log"
 msgstr "Ütemezési Napló"
 
-#: admin/action-scheduler_rvy.php:168
-#: admin/admin-posts_rvy.php:294
+#: admin/action-scheduler_rvy.php:171
+#: admin/admin-posts_rvy.php:296
 #: admin/class-list-table-archive.php:584
 #: admin/post-edit-block-ui_rvy.php:165
-#: admin/post-edit_rvy.php:124
+#: admin/post-edit_rvy.php:132
 #: rvy_init-functions.php:470
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3080
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3081
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3328
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3203
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3451
 msgid "Revision"
 msgstr "Revízió"
 
-#: admin/action-scheduler_rvy.php:170
-#: admin/action-scheduler_rvy.php:367, fuzzy
+#: admin/action-scheduler_rvy.php:172
+#: admin/class-list-table_rvy.php:2209
+#: admin/history_rvy.php:1410
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:236
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Előnézet"
+
+#: admin/action-scheduler_rvy.php:173
+#: admin/action-scheduler_rvy.php:360
+#: admin/action-scheduler_rvy.php:416, fuzzy
 msgid "Hook"
 msgstr "Hook"
 
-#: admin/action-scheduler_rvy.php:171
+#: admin/action-scheduler_rvy.php:174
 #: admin/class-list-table_rvy.php:820
-#: admin/options.php:1212
+#: admin/options.php:1242
 msgid "Publication"
 msgstr "Közzététel"
 
-#: admin/action-scheduler_rvy.php:172
-#: admin/action-scheduler_rvy.php:368
+#: admin/action-scheduler_rvy.php:175
+#: admin/action-scheduler_rvy.php:361
+#: admin/action-scheduler_rvy.php:417
 msgid "Arguments"
 msgstr "Argumentumok"
 
-#: admin/action-scheduler_rvy.php:173
-#: admin/action-scheduler_rvy.php:369
+#: admin/action-scheduler_rvy.php:176
+#: admin/action-scheduler_rvy.php:362
+#: admin/action-scheduler_rvy.php:418
 msgid "Scheduled Date"
 msgstr "Ütemezett Dátum"
 
-#: admin/action-scheduler_rvy.php:174
-#: admin/action-scheduler_rvy.php:370
+#: admin/action-scheduler_rvy.php:177
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:419
 msgid "Log"
 msgstr "Napló"
 
-#: admin/action-scheduler_rvy.php:182
+#: admin/action-scheduler_rvy.php:185
 msgid "Search revision or hook ID"
 msgstr "Revízió vagy hook ID keresése"
 
-#: admin/action-scheduler_rvy.php:235
+#: admin/action-scheduler_rvy.php:238
 #: admin/class-list-table_rvy.php:853
 msgid "View preview"
 msgstr "Előnézet megtekintése"
 
-#: admin/action-scheduler_rvy.php:262
+#: admin/action-scheduler_rvy.php:265
 #, php-format
 msgid ""
 "Note: %1$d Revision is scheduled for future publication with legacy "
@@ -157,49 +169,104 @@ msgstr[1] ""
 "Megjegyzés: %1$d Revíziók ütemezve vannak a jövőbeli közzétételre örökölt "
 "aktiválással. %2$s a megbízhatóbb működés érdekében."
 
-#: admin/action-scheduler_rvy.php:268
+#: admin/action-scheduler_rvy.php:271
 msgid "Migrate it to Action Scheduler"
 msgid_plural "Migrate those to Action Scheduler"
 msgstr[0] "Migrálás az Action Scheduler-be"
 msgstr[1] "Migrálás az Action Scheduler-be"
 
-#: admin/action-scheduler_rvy.php:349
-#: admin/action-scheduler_rvy.php:357
-#: admin/class-list-table_rvy.php:1642
+#: admin/action-scheduler_rvy.php:350
+#: admin/action-scheduler_rvy.php:398
+msgid "Missed Schedule"
+msgstr "Elmaradt Ütemezés"
+
+#: admin/action-scheduler_rvy.php:350
+#: admin/action-scheduler_rvy.php:401
+#: admin/action-scheduler_rvy.php:406
+#: admin/class-list-table_rvy.php:1683
+#: admin/revisions.php:75
 #: rvy_init-functions.php:364
 msgid "Scheduled"
 msgstr "Ütemezve"
 
-#: admin/action-scheduler_rvy.php:352
-msgid "Missed Schedule"
-msgstr "Elmaradt Ütemezés"
+#: admin/action-scheduler_rvy.php:353
+msgid "Scheduler"
+msgstr "Ütemező"
+
+#: admin/action-scheduler_rvy.php:353, fuzzy
+msgid "WP-Cron"
+msgstr "WP-Cron"
+
+#: admin/action-scheduler_rvy.php:356
+msgid "Non-repeating"
+msgstr "Nem ismétlődő"
+
+#: admin/action-scheduler_rvy.php:358
+#, php-format
+msgid "%s seconds"
+msgstr "%s másodperc"
+
+#: admin/action-scheduler_rvy.php:363
+msgid "Recurrence"
+msgstr "Ismétlés"
+
+#: admin/action-scheduler_rvy.php:366
+msgid "Requested Publication"
+msgstr "Kért közzététel"
+
+#: admin/action-scheduler_rvy.php:368
+msgid "Event"
+msgstr "Esemény"
+
+#: admin/action-scheduler_rvy.php:369
+msgid "No matching WP-Cron event was found."
+msgstr "Nincs megfelelő WP-Cron esemény található."
 
 #: admin/action-scheduler_rvy.php:372
+msgid ""
+"WP-Cron does not retain an execution log. These details show the currently "
+"registered events only."
+msgstr ""
+"A WP-Cron nem őrzi meg a végrehajtási naplót. Ezek a részletek csak a "
+"jelenleg regisztrált eseményeket mutatják."
+
+#: admin/action-scheduler_rvy.php:374
+#: admin/action-scheduler_rvy.php:421
 msgid "Click to view scheduling log."
 msgstr "Kattintson a ütemezési napló megtekintéséhez."
 
-#: admin/action-scheduler_rvy.php:374
+#: admin/action-scheduler_rvy.php:375
+#: admin/action-scheduler_rvy.php:422
+msgid "(view scheduling log)"
+msgstr "(ütemezési napló megtekintése)"
+
+#: admin/action-scheduler_rvy.php:377
+#: admin/action-scheduler_rvy.php:423
 #: admin/class-list-table-archive.php:760
-#: functions.php:477
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:378
+#: functions.php:479
 msgid "Scheduled Revision Publication"
 msgstr "Ütemezett revízió közzététel"
 
 #: admin/admin-init_rvy.php:115
-#: admin/admin-init_rvy.php:352
+#: admin/admin-init_rvy.php:356
 msgid "Sorry, you are not allowed to delete this revision."
 msgstr "Sajnálom, nem vagy jogosult törölni ezt a revíziót."
 
-#: admin/admin-init_rvy.php:208
-#: admin/admin-init_rvy.php:318
+#: admin/admin-init_rvy.php:119
+#: admin/admin-init_rvy.php:370
+msgid "Error in deleting."
+msgstr "Hiba a törlésben."
+
+#: admin/admin-init_rvy.php:210
+#: admin/admin-init_rvy.php:322
 msgid "Sorry, you are not allowed to approve this revision."
 msgstr "Sajnálom, nem vagy jogosult jóváhagyni ezt a revíziót."
 
-#: admin/admin-init_rvy.php:245
+#: admin/admin-init_rvy.php:247
 msgid "Sorry, you are not allowed to submit this revision."
 msgstr "Sajnálom, nem vagy jogosult benyújtani ezt a revíziót."
 
-#: admin/admin-init_rvy.php:283
+#: admin/admin-init_rvy.php:287
 msgid "Sorry, you are not allowed to decline this revision."
 msgstr "Sajnálom, nem vagy jogosult elutasítani ezt a revíziót."
 
@@ -225,31 +292,44 @@ msgstr ""
 "revíziójának létrehozásához. Lásd a %s dokumentációt %s."
 
 #: admin/admin-posts_rvy.php:212
-#: rvy_init-functions.php:786
+#: rvy_init-functions.php:799
 msgid "The post already has a revision in process."
 msgstr "A bejegyzésnek már van folyamatban lévő revíziója."
 
-#: admin/admin-posts_rvy.php:311
+#: admin/admin-posts_rvy.php:313
 msgid "Has Revision"
 msgstr "Van revízió"
 
-#: admin/admin-posts_rvy.php:322
-#: admin/admin_rvy.php:465
-#: admin/admin_rvy.php:535
-#: admin/options.php:160
-#: admin/options.php:651
+#: admin/admin-posts_rvy.php:324
+#: admin/admin_rvy.php:470
+#: admin/admin_rvy.php:540
+#: admin/options.php:187
+#: admin/options.php:679
 msgid "New Revisions"
 msgstr "Új revíziók"
 
-#: admin/admin-posts_rvy.php:346
+#: admin/admin-posts_rvy.php:348
+#: admin/class-list-table_rvy.php:2328
 #: admin/history_rvy.php:99
 #: admin/history_rvy.php:102
 #: rvy_init-functions.php:264
 msgid "Copy"
 msgstr "Másolás"
 
+#: admin/admin-posts_rvy.php:356
+#: admin/class-list-table_rvy.php:1057
+#: admin/class-list-table_rvy.php:2317
+#: admin/edit-revision-classic-ui_rvy.php:218
+#: admin/history_rvy.php:1452
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:237
+#: admin/RevisionEditSubmitMetabox.php:196
+#: front_rvy.php:556
+msgid "Edit"
+msgstr "Szerkesztés"
+
 #: admin/admin_lib-mu_rvy.php:14
-#: admin/options.php:343
+#: admin/options.php:371
 msgid "PublishPress Revisions Network Settings"
 msgstr "PublishPress Revisions Hálózati Beállítások"
 
@@ -258,7 +338,7 @@ msgid "Network Settings"
 msgstr "Hálózati Beállítások"
 
 #: admin/admin_lib-mu_rvy.php:25
-#: admin/options.php:345
+#: admin/options.php:373
 msgid "PublishPress Revisions Network Defaults"
 msgstr "PublishPress Revisions Hálózati Alapértelmezések"
 
@@ -266,106 +346,120 @@ msgstr "PublishPress Revisions Hálózati Alapértelmezések"
 msgid "Network Defaults"
 msgstr "Hálózati alapértelmezések"
 
-#: admin/admin_rvy.php:371
+#: admin/admin_rvy.php:376
+#: admin/admin_rvy.php:405
+#: admin/history_rvy.php:296
+#: admin/history_rvy.php:308
 #: front-notice.php:59
 msgid "Revisions"
 msgstr "Módosítások"
 
-#: admin/admin_rvy.php:474
-#: admin/admin_rvy.php:475
-#: admin/admin_rvy.php:536
-#: admin/options.php:159
-#: admin/options.php:552
+#: admin/admin_rvy.php:479
+#: admin/admin_rvy.php:480
+#: admin/admin_rvy.php:541
+#: admin/options.php:186
+#: admin/options.php:580
 #: admin/revision-archive_rvy.php:101
-#: admin/revisions.php:238
+#: admin/revisions.php:239
 #: visual-compare_rvy.php:143
 msgid "Past Revisions"
 msgstr "Korábbi módosítások"
 
-#: admin/admin_rvy.php:492
-#: admin/options.php:349
+#: admin/admin_rvy.php:497
+#: admin/options.php:377
 msgid "PublishPress Revisions Settings"
 msgstr "PublishPress módosítások beállításai"
 
-#: admin/admin_rvy.php:492
-#: admin/admin_rvy.php:539
-#: admin/options.php:154
+#: admin/admin_rvy.php:497
+#: admin/admin_rvy.php:544
+#: admin/options.php:181
 msgid "Settings"
 msgstr "Beállítások"
 
-#: admin/admin_rvy.php:501
-#: admin/admin_rvy.php:502
-#: admin/admin_rvy.php:542
-#: admin/options.php:2146
-#: admin/options.php:2173
-#: admin/options.php:2416
-#: admin/options.php:2792
+#: admin/admin_rvy.php:506
+#: admin/admin_rvy.php:507
+#: admin/admin_rvy.php:547
+#: admin/options.php:2106
+#: admin/options.php:2134
+#: admin/options.php:2394
+#: admin/options.php:2770
 #: includes/CoreAdmin.php:212
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2558
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
 msgid "Upgrade to Pro"
 msgstr "Frissítés Pro verzióra"
 
-#: admin/admin_rvy.php:583
+#: admin/admin_rvy.php:588
 msgid "Can edit draft Posts from other users."
 msgstr "Más felhasználók vázlatait szerkesztheti."
 
-#: admin/admin_rvy.php:584
+#: admin/admin_rvy.php:589
 msgid "Can edit Revisions from other users."
 msgstr "Más felhasználók módosításait szerkesztheti."
 
-#: admin/admin_rvy.php:585
+#: admin/admin_rvy.php:590
 msgid "Can see New Revisions from other users."
 msgstr "Más felhasználók új módosításait láthatja."
 
-#: admin/admin_rvy.php:586
+#: admin/admin_rvy.php:591
 msgid "Can access New Revisions."
 msgstr "Hozzáférhet az új módosításokhoz."
 
-#: admin/admin_rvy.php:587
+#: admin/admin_rvy.php:592
 msgid "Can manage Unsubmitted Revisions."
 msgstr "Kezeletlen módosításokat kezelhet."
 
-#: admin/admin_rvy.php:588
+#: admin/admin_rvy.php:593
 msgid "Preview other user's Revisions (without needing editing access)."
 msgstr "Más felhasználó módosításait előnézheti (szerkesztési hozzáférés nélkül)."
 
-#: admin/admin_rvy.php:589
+#: admin/admin_rvy.php:594
 msgid "Restore an archived Revision as the current revision."
 msgstr "Egy archivált módosítást visszaállíthat aktuális módosításként."
 
-#: admin/admin_rvy.php:590
+#: admin/admin_rvy.php:595
 msgid "View Past Revisions."
 msgstr "Korábbi módosítások megtekintése."
 
-#: admin/admin_rvy.php:620
+#: admin/admin_rvy.php:623
+msgid "Review PublishPress Revisions on WordPress.org"
+msgstr "Nézze meg a PublishPress Revisions-t a WordPress.org-on"
+
+#: admin/admin_rvy.php:625
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr "Ha tetszik a %1$s, kérjük, hagyjon nekünk egy %2$s értékelést. Köszönjük!"
 
-#: admin/admin_rvy.php:631
+#: admin/admin_rvy.php:636
 msgid "About PublishPress Revisions"
 msgstr "A PublishPress módosításokról"
 
-#: admin/admin_rvy.php:631
+#: admin/admin_rvy.php:636
 msgid "About"
 msgstr "Névjegy"
 
-#: admin/admin_rvy.php:633
+#: admin/admin_rvy.php:638
 msgid "PublishPress Revisions Documentation"
 msgstr "PublishPress módosítások dokumentáció"
 
-#: admin/admin_rvy.php:633
+#: admin/admin_rvy.php:638
 msgid "Documentation"
 msgstr "Dokumentáció"
 
-#: admin/admin_rvy.php:635
+#: admin/admin_rvy.php:640
 msgid "Contact the PublishPress team"
 msgstr "Lépjen kapcsolatba a PublishPress csapattal"
 
-#: admin/admin_rvy.php:635
+#: admin/admin_rvy.php:640
 msgid "Contact"
 msgstr "Kapcsolat"
+
+#: admin/admin_rvy.php:646
+msgid "Visit PublishPress"
+msgstr "Látogasson el a PublishPress-ra"
+
+#: admin/admin_rvy.php:694
+msgid "More information"
+msgstr "További információ"
 
 #: admin/agents_checklist_rvy.php:77
 #, php-format
@@ -429,26 +523,27 @@ msgid "Publication Date: %s"
 msgstr "Közzététel dátuma: %s"
 
 #: admin/class-list-table-archive.php:275
+#: admin/revision-queue_rvy.php:185
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Keresési eredmények a \"%s\" kifejezésre"
 
 #: admin/class-list-table-archive.php:544
-#: admin/class-list-table_rvy.php:1750
-#: admin/class-list-table_rvy.php:2249
+#: admin/class-list-table_rvy.php:1836
+#: admin/class-list-table_rvy.php:2343
 #: admin/post-edit-block-ui_rvy.php:124
-#: admin/post-edit_rvy.php:116
+#: admin/post-edit_rvy.php:118
+#: admin/post-edit_rvy.php:124
 #: admin/RevisionEditSubmitMetabox.php:62
 msgid "Delete Revision"
 msgstr "Revízió törlése"
 
 #: admin/class-list-table-archive.php:583
-#: admin/revision-ui_rvy.php:393
 msgid "Select all revisions"
 msgstr "Összes revízió kiválasztása"
 
 #: admin/class-list-table-archive.php:585
-#: admin/class-list-table_rvy.php:795
+#: admin/class-list-table_rvy.php:796
 msgid "Post Type"
 msgstr "Post Type"
 
@@ -479,328 +574,448 @@ msgid "Published Author"
 msgstr "Közzétett szerző"
 
 #: admin/class-list-table-archive.php:620
-#: admin/class-list-table_rvy.php:994
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:462
+#: admin/class-list-table_rvy.php:1014
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:463
 msgid "just now"
 msgstr "éppen most"
 
 #: admin/class-list-table-archive.php:625
-#: admin/class-list-table_rvy.php:999
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:467
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s perccel ezelőtt"
 
 #: admin/class-list-table-archive.php:625
-#: admin/class-list-table_rvy.php:999
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:467
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
 #, php-format
 msgid "%s minute ago"
 msgstr "%s perccel ezelőtt"
 
 #: admin/class-list-table-archive.php:632
-#: admin/class-list-table_rvy.php:1006
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:474
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
 #, php-format
 msgid "%s hours ago"
 msgstr "%s órával ezelőtt"
 
 #: admin/class-list-table-archive.php:632
-#: admin/class-list-table_rvy.php:1006
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:474
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
 #, php-format
 msgid "%s hour ago"
 msgstr "%s órával ezelőtt"
 
-#: admin/class-list-table-archive.php:764
+#: admin/class-list-table-archive.php:762
 #: functions.php:481
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:382
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1330
-#: includes/visual-post-compare/visual-post-compare-standalone.js:246
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
 msgid "Revision Publication"
 msgstr "Revízió közzététel"
 
-#: admin/class-list-table-archive.php:775
+#: admin/class-list-table-archive.php:773
 #: functions.php:492
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:392
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:393
 #, fuzzy, php-format
 msgid "Autosave of %s"
 msgstr "Autosave of %s"
 
-#: admin/class-list-table-archive.php:780
+#: admin/class-list-table-archive.php:778
 #: functions.php:497
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:394
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:395
 #, php-format
 msgid "Edit of %s"
 msgstr "%s szerkesztése"
 
-#: admin/class-list-table-archive.php:789
+#: admin/class-list-table-archive.php:787
 #: functions.php:506
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:399, fuzzy
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:400, fuzzy
 msgid "Autosave of published Revision"
 msgstr "Autosave of published Revision"
 
-#: admin/class-list-table-archive.php:794
+#: admin/class-list-table-archive.php:792
 #: functions.php:511
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:401
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:402
 msgid "Edit of published Revision"
 msgstr "Közzétett revízió szerkesztése"
 
-#: admin/class-list-table-archive.php:799
+#: admin/class-list-table-archive.php:797
 #: functions.php:516
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:406, fuzzy
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:407, fuzzy
 msgid "Autosave"
 msgstr "Autosave"
 
-#: admin/class-list-table-archive.php:801
+#: admin/class-list-table-archive.php:799
 #: functions.php:518
 #: functions.php:582
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:408
 msgid "Direct Edit"
 msgstr "Közvetlen szerkesztés"
 
-#: admin/class-list-table-archive.php:840, fuzzy
+#: admin/class-list-table-archive.php:838
+#: admin/class-list-table_rvy.php:792, fuzzy
 msgid "Select revision"
 msgstr "Select revision"
 
-#: admin/class-list-table-archive.php:858, fuzzy
+#: admin/class-list-table-archive.php:856, fuzzy
 msgid "Filter by original post type"
 msgstr "Filter by original post type"
 
-#: admin/class-list-table-archive.php:862
-#: admin/class-list-table_rvy.php:1811
+#: admin/class-list-table-archive.php:860
+#: admin/class-list-table_rvy.php:1897
 msgid "All Post Types"
 msgstr "Minden bejegyzéstípus"
 
-#: admin/class-list-table-archive.php:892
-#: admin/class-list-table_rvy.php:1844, fuzzy
+#: admin/class-list-table-archive.php:890
+#: admin/class-list-table_rvy.php:1930, fuzzy
 msgid "Filter by revision author"
 msgstr "Filter by revision author"
 
-#: admin/class-list-table-archive.php:896
-#: admin/class-list-table_rvy.php:1848
+#: admin/class-list-table-archive.php:894
+#: admin/class-list-table_rvy.php:1934
 msgid "All Revision Authors"
 msgstr "Minden revízió szerző"
 
-#: admin/class-list-table-archive.php:941
-#: admin/class-list-table_rvy.php:1878, fuzzy
+#: admin/class-list-table-archive.php:939
+#: admin/class-list-table_rvy.php:1964, fuzzy
 msgid "Filter by revision date"
 msgstr "Filter by revision date"
 
-#: admin/class-list-table-archive.php:945
-#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table-archive.php:943
+#: admin/class-list-table_rvy.php:1968
 msgid "All Revision Dates"
 msgstr "Minden revízió dátum"
 
-#: admin/class-list-table-archive.php:1000, fuzzy
+#: admin/class-list-table-archive.php:998, fuzzy
 msgid "Filter by published date"
 msgstr "Filter by published date"
 
-#: admin/class-list-table-archive.php:1004
+#: admin/class-list-table-archive.php:1002
 msgid "All Publish Dates"
 msgstr "Minden közzétételi dátum"
 
-#: admin/class-list-table-archive.php:1037, fuzzy
+#: admin/class-list-table-archive.php:1035, fuzzy
 msgid "Filter by approver"
 msgstr "Filter by approver"
 
-#: admin/class-list-table-archive.php:1041
+#: admin/class-list-table-archive.php:1039
 msgid "All Approvers"
 msgstr "Minden jóváhagyó"
 
-#: admin/class-list-table-archive.php:1074
-#: admin/class-list-table_rvy.php:1951, fuzzy
+#: admin/class-list-table-archive.php:1072
+#: admin/class-list-table_rvy.php:2037, fuzzy
 msgid "Filter by published author"
 msgstr "Filter by published author"
 
-#: admin/class-list-table-archive.php:1078
-#: admin/class-list-table_rvy.php:1955
+#: admin/class-list-table-archive.php:1076
+#: admin/class-list-table_rvy.php:2041
 msgid "All Authors"
 msgstr "Minden szerző"
 
-#: admin/class-list-table-archive.php:1100
-#: admin/class-list-table_rvy.php:1991
+#: admin/class-list-table-archive.php:1092
+#: admin/class-list-table-archive.php:1272
+#: admin/class-list-table_rvy.php:1072
+#: admin/class-list-table_rvy.php:2057
+msgid "Filter"
+msgstr "Szűrő"
+
+#: admin/class-list-table-archive.php:1098
+#: admin/class-list-table_rvy.php:2077
 msgid "Reset Filters"
 msgstr "Szűrők visszaállítása"
 
-#: admin/class-list-table-archive.php:1131
-#: admin/options.php:2427
+#: admin/class-list-table-archive.php:1129
+#: admin/options.php:2405
 msgid "All"
 msgstr "Összes"
 
-#: admin/class-list-table-archive.php:1145
+#: admin/class-list-table-archive.php:1143
 msgid "My Revisions"
 msgstr "Saját módosításaim"
 
-#: admin/class-list-table-archive.php:1200
+#: admin/class-list-table-archive.php:1198
 #, fuzzy, php-format
 msgid "Visually compare changes in %s"
 msgstr "Visually compare changes in %s"
 
-#: admin/class-list-table-archive.php:1221
+#: admin/class-list-table-archive.php:1219
 #, fuzzy, php-format
 msgid "Classic text diff for %s"
 msgstr "Classic text diff for %s"
 
-#: admin/class-list-table-archive.php:1241
-#: admin/class-list-table_rvy.php:2273
+#: admin/class-list-table-archive.php:1239
+#: admin/class-list-table_rvy.php:2367
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
 msgstr "Módosítás előnézete"
 
-#: admin/class-list-table-archive.php:1255
+#: admin/class-list-table-archive.php:1253
 msgid "Edit parent revision"
 msgstr "Szülő módosítás szerkesztése"
 
-#: admin/class-list-table-archive.php:1255
+#: admin/class-list-table-archive.php:1253
 msgid "Edit parent post"
 msgstr "Szülő bejegyzés szerkesztése"
 
-#: admin/class-list-table-archive.php:1256
+#: admin/class-list-table-archive.php:1254
 msgid "Edit Parent"
 msgstr "Szülő szerkesztése"
 
-#: admin/class-list-table-archive.php:1273
-msgid "List Revisions of this Post"
-msgstr "Ennek a bejegyzésnek a módosításai"
+#: admin/class-list-table-archive.php:1271
+msgid "Filter: list revisions of this post"
+msgstr "Szűrő: a bejegyzés revisióinak listázása"
 
-#: admin/class-list-table-archive.php:1274
-msgid "Filter"
-msgstr "Szűrő"
-
-#: admin/class-list-table-archive.php:1286
+#: admin/class-list-table-archive.php:1284
 msgid "Delete Past Revision"
 msgstr "Régi módosítás törlése"
 
-#: admin/class-list-table-archive.php:1374
+#: admin/class-list-table-archive.php:1285
+#: admin/class-list-table_rvy.php:2350
+#: admin/post-edit_rvy.php:81
+#: admin/revision-ui_rvy.php:299
+#: admin/revision-ui_rvy.php:411
+#: classes/PublishPress/Revisions/Planner.php:116
+#: classes/PublishPress/Revisions/Planner.php:260
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:20
+#: front_rvy.php:597
+msgid "Delete"
+msgstr "Törlés"
+
+#: admin/class-list-table-archive.php:1372
 msgid "No revisions found."
 msgstr "Nincs található módosítás."
 
-#: admin/class-list-table_rvy.php:794
-#: admin/options.php:769
-#: admin/options.php:932
+#: admin/class-list-table_rvy.php:795
+#: admin/options.php:797
+#: admin/options.php:960
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "Állapot"
 
-#: admin/class-list-table_rvy.php:874, fuzzy
-msgid "Y/m/d, g:i:s a"
-msgstr "Y/m/d, g:i:s a"
+#: admin/class-list-table_rvy.php:816
+#: front_rvy.php:674
+#: rvy_init-functions.php:355
+msgid "Schedule"
+msgstr "Ütemezés"
 
-#: admin/class-list-table_rvy.php:884, fuzzy
-msgid "Y/m/d g:i a"
-msgstr "Y/m/d g:i a"
-
-#: admin/class-list-table_rvy.php:891
+#: admin/class-list-table_rvy.php:881
+#: admin/class-list-table_rvy.php:904
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "Ütemezett közzététel: %s"
 
-#: admin/class-list-table_rvy.php:894
+#: admin/class-list-table_rvy.php:897
+#: admin/history_rvy.php:1323
+#, php-format
+msgid "%s ago"
+msgstr "%s ezelőtt"
+
+#: admin/class-list-table_rvy.php:907
 #, php-format
 msgid "Requested publication: %s"
 msgstr "Kért közzététel: %s"
 
-#: admin/class-list-table_rvy.php:896, fuzzy
+#: admin/class-list-table_rvy.php:909, fuzzy
 msgid "This revision is not scheduled yet."
 msgstr "This revision is not scheduled yet."
 
-#: admin/class-list-table_rvy.php:918
+#: admin/class-list-table_rvy.php:920
+msgid "Missed schedule"
+msgstr "Elmaradt ütemezés"
+
+#: admin/class-list-table_rvy.php:938
 #. translators: %s: human-readable time difference, e.g. "3 days"
 #, fuzzy, php-format
 msgid "in %s"
 msgstr "in %s"
 
-#: admin/class-list-table_rvy.php:962
-#: admin/history_rvy.php:1085
+#: admin/class-list-table_rvy.php:982
+#: admin/history_rvy.php:1103
 msgid "No author"
 msgstr "Nincs szerző"
 
-#: admin/class-list-table_rvy.php:1036
+#: admin/class-list-table_rvy.php:1056
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "Közzétett bejegyzés szerkesztése"
 
-#: admin/class-list-table_rvy.php:1051
+#: admin/class-list-table_rvy.php:1071
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "Csak a %s verziók megtekintése"
 
-#: admin/class-list-table_rvy.php:1062
-#: admin/class-list-table_rvy.php:1069
+#: admin/class-list-table_rvy.php:1082
 msgid "View published post"
 msgstr "Kiadott bejegyzés megtekintése"
 
-#: admin/class-list-table_rvy.php:1094
-#: visual-compare_rvy.php:90
-msgid "Compare Past Revisions"
-msgstr "Korábbi verziók összehasonlítása"
+#: admin/class-list-table_rvy.php:1083
+msgid "View"
+msgstr "Megtekintés"
 
-#: admin/class-list-table_rvy.php:1095
+#: admin/class-list-table_rvy.php:1089
+msgid "Preview published post"
+msgstr "Közzétett bejegyzés előnézete"
+
+#: admin/class-list-table_rvy.php:1114
+msgid "History: compare past revisions"
+msgstr "Történet: múltbeli revisiók összehasonlítása"
+
+#: admin/class-list-table_rvy.php:1115
 msgid "History"
 msgstr "Történet"
 
-#: admin/class-list-table_rvy.php:1622
+#: admin/class-list-table_rvy.php:1143
+msgid "Show more details"
+msgstr "További részletek megjelenítése"
+
+#: admin/class-list-table_rvy.php:1444
+msgid "There are no scheduled revisions at this time."
+msgstr "Jelenleg nincs ütemezett revisió."
+
+#: admin/class-list-table_rvy.php:1663
 msgid "My Activity"
 msgstr "Saját tevékenység"
 
-#: admin/class-list-table_rvy.php:1631
+#: admin/class-list-table_rvy.php:1672
 #, php-format
 msgid "All %s"
 msgstr "Minden %s"
 
-#: admin/class-list-table_rvy.php:1746
+#: admin/class-list-table_rvy.php:1732
+#. translators: Hidden accessibility text.
+msgid "Select bulk action"
+msgstr "Tömeges művelet kiválasztása"
+
+#: admin/class-list-table_rvy.php:1735
+msgid "Bulk actions"
+msgstr "Tömeges műveletek"
+
+#: admin/class-list-table_rvy.php:1756
+#: admin/revision-ui_rvy.php:413
+msgid "Apply"
+msgstr "Alkalmaz"
+
+#: admin/class-list-table_rvy.php:1819
+#: front_rvy.php:626
+#: rvy_init-functions.php:282
+#: rvy_init-functions.php:338
+msgid "Submit"
+msgstr "Beküldés"
+
+#: admin/class-list-table_rvy.php:1824
+#: admin/history_rvy.php:1408
+#: front_rvy.php:623
+#: front_rvy.php:633
+#: front_rvy.php:661
+#: front_rvy.php:695
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:427
+#: includes/visual-post-compare/visual-post-compare.php:323
+#: rvy_init-functions.php:268
+#: rvy_init-functions.php:286
+#: rvy_init-functions.php:324
+#: rvy_init-functions.php:325
+#: rvy_init-functions.php:341
+#: rvy_init-functions.php:342
+#: rvy_init-functions.php:358
+#: rvy_init-functions.php:359
+msgid "Approve"
+msgstr "Jóváhagyás"
+
+#: admin/class-list-table_rvy.php:1825
+#: front_rvy.php:665
+msgid "Decline"
+msgstr "Elutasítás"
+
+#: admin/class-list-table_rvy.php:1829
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:424
+msgid "Publish"
+msgstr "Közzététel"
+
+#: admin/class-list-table_rvy.php:1832
+#: admin/revision-ui_rvy.php:289
 msgid "Unschedule"
 msgstr "Ütemezés eltávolítása"
 
-#: admin/class-list-table_rvy.php:1750
-#: admin/class-list-table_rvy.php:2245
-#: admin/class-list-table_rvy.php:2249
+#: admin/class-list-table_rvy.php:1836
+#: admin/class-list-table_rvy.php:2339
+#: admin/class-list-table_rvy.php:2343
 #: admin/post-edit-block-ui_rvy.php:124
-#: admin/post-edit_rvy.php:116
+#: admin/post-edit_rvy.php:124
 #: admin/RevisionEditSubmitMetabox.php:62
 #. translators: %s: post title
 msgid "Discard Revision"
 msgstr "Verzió elvetése"
 
-#: admin/class-list-table_rvy.php:1788, fuzzy
+#: admin/class-list-table_rvy.php:1857
+msgid "Filter by category"
+msgstr "Szűrés kategória szerint"
+
+#: admin/class-list-table_rvy.php:1874, fuzzy
 msgid "Filter by revision status"
 msgstr "Filter by revision status"
 
-#: admin/class-list-table_rvy.php:1790
+#: admin/class-list-table_rvy.php:1876
 msgid "All Revision Statuses"
 msgstr "Minden verzió állapot"
 
-#: admin/class-list-table_rvy.php:1809, fuzzy
+#: admin/class-list-table_rvy.php:1895, fuzzy
 msgid "Filter by post type"
 msgstr "Filter by post type"
 
-#: admin/class-list-table_rvy.php:1915, fuzzy
+#: admin/class-list-table_rvy.php:2001, fuzzy
 msgid "Filter by published post"
 msgstr "Filter by published post"
 
-#: admin/class-list-table_rvy.php:1919
+#: admin/class-list-table_rvy.php:2005
 msgid "All Posts"
 msgstr "Minden bejegyzés"
 
-#: admin/class-list-table_rvy.php:2136
+#: admin/class-list-table_rvy.php:2132
+msgid "Select All"
+msgstr "Összes kijelölése"
+
+#: admin/class-list-table_rvy.php:2197
+msgid "(clear filter)"
+msgstr "(szűrő törlése)"
+
+#: admin/class-list-table_rvy.php:2201
+msgid "Sort ascending."
+msgstr "Növekvő sorrendbe rendezés."
+
+#: admin/class-list-table_rvy.php:2201
+msgid "Sort descending."
+msgstr "Csökkenő sorrendbe rendezés."
+
+#: admin/class-list-table_rvy.php:2230
 #, fuzzy, php-format
 msgid "Compare changes for &#8220;%s&#8221;"
 msgstr "Compare changes for &#8220;%s&#8221;"
 
-#: admin/class-list-table_rvy.php:2222
+#: admin/class-list-table_rvy.php:2238
+#. translators: %s: post title
+#, php-format
+msgid "&#8220;%s&#8221; (Edit)"
+msgstr "&#8220;%s&#8221; (Szerkesztés)"
+
+#: admin/class-list-table_rvy.php:2316
 #: admin/post-editor-workflow-ui_rvy.php:237
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2990
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3113
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "Verzió szerkesztése"
 
-#: admin/class-list-table_rvy.php:2287
+#: admin/class-list-table_rvy.php:2340
+msgid "Discard"
+msgstr "Elvetés"
+
+#: admin/class-list-table_rvy.php:2381
 msgid "Compare Changes"
 msgstr "Változások összehasonlítása"
+
+#: admin/edit-revision-block-ui_rvy.php:23
+msgid "Enable public preview"
+msgstr "Nyilvános előnézet engedélyezése"
 
 #: admin/edit-revision-classic-ui_rvy.php:126
 msgid "Publish <b>on approval</b>"
@@ -815,166 +1030,223 @@ msgstr "A verzió frissítve. %sElőnézet megtekintése%s"
 msgid "Revision updated."
 msgstr "A verzió frissítve."
 
+#: admin/edit-revision-classic-ui_rvy.php:176
+#. translators: Publish box date string. 1: Date, 2: Time. See https://www.php.net/manual/datetime.format.php
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s -kor %2$s"
+
+#: admin/edit-revision-classic-ui_rvy.php:185
+#: admin/RevisionEditSubmitMetabox.php:185
+#. translators: Post date information. %s: Date on which the post is currently scheduled to be published.
+#, php-format
+msgid "Scheduled for: %s"
+msgstr "Ütemezve: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:188
+#. translators: Post date information. %s: Date on which the post was published.
+#, php-format
+msgid "Published on: %s"
+msgstr "Közzétéve: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:190
+#: admin/edit-revision-classic-ui_rvy.php:204
+msgid "Publish <b>immediately</b>"
+msgstr "Közzététel <b>azonnal</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:193
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Schedule for: %s"
+msgstr "Ütemezés ideje: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:196
+#: admin/RevisionEditSubmitMetabox.php:188
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Publish on: %s"
+msgstr "Közzététel ideje: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:222
+#. translators: Hidden accessibility text.
+msgid "Edit date and time"
+msgstr "Dátum és idő szerkesztése"
+
+#: admin/edit-revision-classic-ui_rvy.php:230
+#. translators: Hidden accessibility text.
+msgid "Date and time"
+msgstr "Dátum és idő"
+
 #: admin/history_rvy.php:99
 #: admin/history_rvy.php:102
 msgid "Copy the above content to the clipboard."
 msgstr "A fenti tartalom másolása a vágólapra."
 
-#: admin/history_rvy.php:277
-#: admin/history_rvy.php:297
+#: admin/history_rvy.php:109
+msgid "Copied to clipboard."
+msgstr "Másolat a vágólapra másolva."
+
+#: admin/history_rvy.php:295
+#: admin/history_rvy.php:315
 #, php-format
 msgid "Compare %s of \"%s\""
 msgstr "Összehasonlítás %s a \"%s\" -val"
 
-#: admin/history_rvy.php:810
-#: admin/options.php:1181
+#: admin/history_rvy.php:324
+msgid "Return to editor"
+msgstr "Vissza az editorhoz"
+
+#: admin/history_rvy.php:573
+#: admin/options.php:795
+#: admin/options.php:958
+#: admin/restrict-editor-features.php:100
+msgid "Title"
+msgstr "Cím"
+
+#: admin/history_rvy.php:574
+#: admin/options.php:794
+#: admin/options.php:957
+#: admin/restrict-editor-features.php:106
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
+msgid "Content"
+msgstr "Tartalom"
+
+#: admin/history_rvy.php:575
+#: admin/options.php:800
+#: admin/options.php:963
+#: admin/restrict-editor-features.php:159
+msgid "Excerpt"
+msgstr "Kivonat"
+
+#: admin/history_rvy.php:712
+#: admin/history_rvy.php:715
+msgid "(no title)"
+msgstr "(nincs cím)"
+
+#: admin/history_rvy.php:828
+#: admin/options.php:1211
 msgid "Post Date"
 msgstr "Bejegyzés dátuma"
 
-#: admin/history_rvy.php:811
+#: admin/history_rvy.php:829
 msgid "Post Parent"
 msgstr "Szülő közzététele"
 
-#: admin/history_rvy.php:812
+#: admin/history_rvy.php:830
 msgid "Menu Order"
 msgstr "Menü sorrend"
 
-#: admin/history_rvy.php:813
+#: admin/history_rvy.php:831
 msgid "Comment Status"
 msgstr "Hozzászólás állapot"
 
-#: admin/history_rvy.php:814
+#: admin/history_rvy.php:832
 msgid "Ping Status"
 msgstr "Ping állapot"
 
-#: admin/history_rvy.php:953
+#: admin/history_rvy.php:971
 msgid "Page Template"
 msgstr "Oldal sablon"
 
-#: admin/history_rvy.php:956
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2542
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: admin/history_rvy.php:974
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2664
 msgid "Featured Image"
 msgstr "Kiemelt kép"
 
-#: admin/history_rvy.php:960
+#: admin/history_rvy.php:978
 msgid "Beaver Builder Data"
 msgstr "Beaver Builder adatok"
 
-#: admin/history_rvy.php:961
+#: admin/history_rvy.php:979
 msgid "Beaver Builder Settings"
 msgstr "Beaver Builder beállítások"
 
-#: admin/history_rvy.php:1040
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3307
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362, fuzzy
+#: admin/history_rvy.php:1058
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3430, fuzzy
 msgid "No changes detected."
 msgstr "No changes detected."
 
-#: admin/history_rvy.php:1232
+#: admin/history_rvy.php:1250
 msgid "Scheduled for "
 msgstr "Ütemezve: "
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1255
 msgid "Requested for "
 msgstr "Kért: "
 
-#: admin/history_rvy.php:1242
+#: admin/history_rvy.php:1260
 msgid "Modified "
 msgstr "Módosítva: "
 
-#: admin/history_rvy.php:1247
+#: admin/history_rvy.php:1265
+#, php-format
+msgid "%s%s ago"
+msgstr "%s%s előtt"
+
+#: admin/history_rvy.php:1265
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s mostantól"
 
-#: admin/history_rvy.php:1258, fuzzy
-msgid "M j, Y @ g:i a"
-msgstr "M j, Y @ g:i a"
-
-#: admin/history_rvy.php:1303, fuzzy
-msgid "M j, Y @ H:i"
-msgstr "M j, Y @ H:i"
-
-#: admin/history_rvy.php:1390
-#: front_rvy.php:556
-#: front_rvy.php:566
-#: front_rvy.php:586
-#: front_rvy.php:620
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:426
-#: includes/visual-post-compare/visual-post-compare.php:298
-#: rvy_init-functions.php:268
-#: rvy_init-functions.php:286
-#: rvy_init-functions.php:324
-#: rvy_init-functions.php:325
-#: rvy_init-functions.php:341
-#: rvy_init-functions.php:342
-#: rvy_init-functions.php:358
-#: rvy_init-functions.php:359
-msgid "Approve"
-msgstr "Jóváhagyás"
-
-#: admin/history_rvy.php:1390
+#: admin/history_rvy.php:1408
 msgid "Preview / Approve"
 msgstr "Előnézet / Jóváhagyás"
 
-#: admin/history_rvy.php:1392
-#: admin/post-editor-workflow-ui_rvy.php:77
-#: admin/post-editor-workflow-ui_rvy.php:118
-#: admin/post-editor-workflow-ui_rvy.php:236
-#: admin/revision-ui_rvy.php:390
-#: admin/RevisionEditSubmitMetabox.php:123
-msgid "Preview"
-msgstr "Előnézet"
+#: admin/history_rvy.php:1452
+msgid "Edit revision"
+msgstr "Revízió szerkesztése"
 
-#: admin/history_rvy.php:1486
+#: admin/history_rvy.php:1514
 msgid "Preview / Restore"
 msgstr "Előnézet / Visszaállítás"
 
-#: admin/history_rvy.php:1493
+#: admin/history_rvy.php:1521
 msgid "Manage"
 msgstr "Kezelés"
 
-#: admin/history_rvy.php:1494
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1310
-#: includes/visual-post-compare/visual-post-compare-standalone.js:243
+#: admin/history_rvy.php:1522
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1429
 msgid "List"
 msgstr "Lista"
 
-#: admin/options.php:124
+#: admin/options.php:54, fuzzy
+msgid "PublishPress Capabilities"
+msgstr "PublishPress Capabilities"
+
+#: admin/options.php:151
 msgid "All settings on this tab are assigned network-wide."
 msgstr "Minden beállítás ezen a lapon hálózaton belül van hozzárendelve."
 
-#: admin/options.php:154
+#: admin/options.php:181
 msgid "Setting Scope"
 msgstr "Beállítási terjedelem"
 
-#: admin/options.php:158
+#: admin/options.php:185
 msgid "Features"
 msgstr "Funkciók"
 
-#: admin/options.php:161
+#: admin/options.php:188
 msgid "Options"
 msgstr "Opciók"
 
-#: admin/options.php:162
+#: admin/options.php:189
 msgid "Integrations"
 msgstr "Integrációk"
 
-#: admin/options.php:163
+#: admin/options.php:190
 msgid "Statuses"
 msgstr "Állapotok"
 
-#: admin/options.php:164
-#: admin/options.php:1214
+#: admin/options.php:191
+#: admin/options.php:1244
 msgid "Notifications"
 msgstr "Értesítések"
 
-#: admin/options.php:170
+#: admin/options.php:197
 msgid "Revision Submission"
 msgstr "Revízió benyújtása"
 
-#: admin/options.php:178
+#: admin/options.php:205
 msgid ""
 "Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
 "Change\""
@@ -982,231 +1254,235 @@ msgstr ""
 "Alternatív címkézés használata: \"Munka másolat\" > \"Módosítási kérelem\" "
 "> \"Ütemezett módosítás\""
 
-#: admin/options.php:179
+#: admin/options.php:206
 msgid "New Revisions access requires role capability"
 msgstr "Az új revíziók eléréséhez szerepképesség szükséges"
 
-#: admin/options.php:180
+#: admin/options.php:207
 #, php-format
 msgid "Managing %s requires role capability"
 msgstr "A %s kezelése szerepképességet igényel"
 
-#: admin/options.php:181
+#: admin/options.php:208
 msgid "Working Copy creation requires role capability"
 msgstr "A munka másolat létrehozása szerepképességet igényel"
 
-#: admin/options.php:181
+#: admin/options.php:208
 msgid "Revision creation requires role capability"
 msgstr "A revízió létrehozása szerepképességet igényel"
 
-#: admin/options.php:182
+#: admin/options.php:209
 #, php-format
 msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
 msgstr "Bejegyzések / Oldalak lista: Használja az \"Edit\" feliratot a %s linkhez"
 
-#: admin/options.php:183
-#: admin/options.php:189
+#: admin/options.php:210
+#: admin/options.php:216
 #, php-format
 msgid "Enable %s"
 msgstr "Engedélyezze a %s"
 
-#: admin/options.php:184
+#: admin/options.php:211
 msgid "Revision Limit"
 msgstr "Felülvizsgálati korlát"
 
-#: admin/options.php:185
+#: admin/options.php:212
 msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
 msgstr ""
 "Frissítse a \"Van revízió\" jelzőt, mielőtt elnyomja a Revízió létrehozása "
 "lehetőséget"
 
-#: admin/options.php:186
+#: admin/options.php:213
 msgid "If post contains custom html, require unfiltered_html capability"
 msgstr "Ha a bejegyzés egyedi html-t tartalmaz, kérje az unfiltered_html képességet"
 
-#: admin/options.php:187
+#: admin/options.php:214
 msgid "Auto-submit revisions created by a user with publishing capability"
 msgstr ""
 "Automatikusan benyújtja a revíziókat, amelyeket kiadási képességgel "
 "rendelkező felhasználó hozott létre"
 
-#: admin/options.php:188
+#: admin/options.php:215
 msgid "Auto-submit revisions"
 msgstr "Automatikusan benyújtja a revíziókat"
 
-#: admin/options.php:190
+#: admin/options.php:217
 msgid "Change Request submission require role capability"
 msgstr "A változtatási kérelem benyújtásához szerepképesség szükséges"
 
-#: admin/options.php:190
+#: admin/options.php:217
 msgid "Revision submission requires role capability"
 msgstr "A felülvizsgálati benyújtáshoz szerepképesség szükséges"
 
-#: admin/options.php:191
+#: admin/options.php:218
 msgid "Editing others' Revisions requires role capability"
 msgstr "Mások felülvizsgálatainak szerkesztéséhez szerepképesség szükséges"
 
-#: admin/options.php:192
+#: admin/options.php:219
 msgid "Listing others' Revisions requires role capability"
 msgstr "Mások felülvizsgálatainak listázásához szerepképesség szükséges"
 
-#: admin/options.php:193, fuzzy
+#: admin/options.php:220
+msgid "Enable javascript in visual compare"
+msgstr "Javascript engedélyezése a vizuális összehasonlításhoz"
+
+#: admin/options.php:221, fuzzy
 msgid "Use visual compare for Revisions"
 msgstr "Use visual compare for Revisions"
 
-#: admin/options.php:194, fuzzy
+#: admin/options.php:222, fuzzy
 msgid "Include unidentified internal fields on Compare screen"
 msgstr "Include unidentified internal fields on Compare screen"
 
-#: admin/options.php:195
+#: admin/options.php:223
 msgid "Show Submitted Revisions count in Admin menu"
 msgstr "Az admin menüben mutassa a benyújtott felülvizsgálatok számát"
 
-#: admin/options.php:196
+#: admin/options.php:224
 msgid "Show indicator on front end if page has Revisions"
 msgstr "Jelző megjelenítése az előtérben, ha az oldalnak van verziója"
 
-#: admin/options.php:197
+#: admin/options.php:225
 msgid "Users can always administer revisions to their own editable posts"
 msgstr ""
 "A felhasználók mindig kezelhetik a saját szerkeszthető bejegyzéseikhez "
 "tartozó felülvizsgálatokat"
 
-#: admin/options.php:198
+#: admin/options.php:226
 msgid "Also notify on Revision Update"
 msgstr "Értesítés a felülvizsgálat frissítéséről"
 
-#: admin/options.php:199
+#: admin/options.php:227
 msgid "Apply API actions to mimic Post Update"
 msgstr "API műveletek alkalmazása a bejegyzés frissítésének utánzására"
 
-#: admin/options.php:200
+#: admin/options.php:228
 msgid "Hide html tags on Compare screen"
 msgstr "HTML tagek elrejtése az összehasonlító képernyőn"
 
-#: admin/options.php:201
+#: admin/options.php:229
 msgid "Hide copy buttons on Compare screen"
 msgstr "Másoló gombok elrejtése az összehasonlító képernyőn"
 
-#: admin/options.php:202, fuzzy
+#: admin/options.php:230, fuzzy
 msgid "Legacy: Schedule Revisions with WP-Cron"
 msgstr "Legacy: Schedule Revisions with WP-Cron"
 
-#: admin/options.php:203
+#: admin/options.php:231
 msgid "Site uses a custom trigger for WP-Cron tasks"
 msgstr "Az oldal egyedi kiváltót használ a WP-Cron feladatokhoz"
 
-#: admin/options.php:204
+#: admin/options.php:232
 msgid "Asynchronous Publishing"
 msgstr "Aszinkron közzététel"
 
-#: admin/options.php:205
+#: admin/options.php:233
 msgid "Editor background color"
 msgstr "Szerkesztő háttérszíne"
 
-#: admin/options.php:206
-#: admin/options.php:207
+#: admin/options.php:234
+#: admin/options.php:235
 msgid "Update Publish Date"
 msgstr "Közzétételi dátum frissítése"
 
-#: admin/options.php:208
-#: admin/options.php:209
+#: admin/options.php:236
+#: admin/options.php:237
 msgid "Update Modified Date"
 msgstr "Módosított dátum frissítése"
 
-#: admin/options.php:212
-#: admin/options.php:213
+#: admin/options.php:240
+#: admin/options.php:241
 #, php-format
 msgid "Use %1$sPlanner Notifications%2$s"
 msgstr "Használja a %1$sTervező Értesítések%2$s-t"
 
-#: admin/options.php:215
+#: admin/options.php:243
 #, php-format
 msgid "Email original Author when a %s is submitted"
 msgstr "E-mail az eredeti szerzőnek, amikor egy %s benyújtásra kerül"
 
-#: admin/options.php:216
+#: admin/options.php:244
 #, php-format
 msgid "Email the original Author when a %s is approved"
 msgstr "E-mail az eredeti szerzőnek, amikor egy %s jóváhagyásra kerül"
 
-#: admin/options.php:217
+#: admin/options.php:245
 #, php-format
 msgid "Email the Revisor when a %s is approved"
 msgstr "E-mail a felülvizsgálónak, amikor egy %s jóváhagyásra kerül"
 
-#: admin/options.php:218
+#: admin/options.php:246
 #, php-format
 msgid "Email the original Author when a %s is published"
 msgstr "E-mail az eredeti szerzőnek, amikor egy %s közzétételre kerül"
 
-#: admin/options.php:219
+#: admin/options.php:247
 #, php-format
 msgid "Email the Revisor when a %s is published"
 msgstr "E-mail a felülvizsgálónak, amikor egy %s közzétételre kerül"
 
-#: admin/options.php:220
+#: admin/options.php:248
 msgid "Enable notification buffer"
 msgstr "Értesítési puffert engedélyezése"
 
-#: admin/options.php:221
+#: admin/options.php:249
 msgid "Revisors can create a new revision for any custom post type"
 msgstr "A felülvizsgálók új verziót készíthetnek bármelyéni post type esetén"
 
-#: admin/options.php:222
+#: admin/options.php:250
 msgid "Prevent Revisors from editing others' unpublished Posts"
 msgstr ""
 "Megakadályozza a felülvizsgálók által mások közzé nem tett bejegyzéseinek "
 "szerkesztését"
 
-#: admin/options.php:223
+#: admin/options.php:251
 msgid "Add database index to posts table for Revision queries"
 msgstr "Adatbázis index hozzáadása a bejegyzések táblához a verziók lekérdezéséhez"
 
-#: admin/options.php:224
+#: admin/options.php:252
 msgid "Display Hints"
 msgstr "Javaslatok megjelenítése"
 
-#: admin/options.php:225
+#: admin/options.php:253
 msgid "Delete settings and Revisions if plugin is deleted"
 msgstr "A beállítások és a verziók törlése, ha a bővítmény törlésre kerül"
 
-#: admin/options.php:226
+#: admin/options.php:254
 msgid "Show Preview Links"
 msgstr "Előnézeti linkek megjelenítése"
 
-#: admin/options.php:227
+#: admin/options.php:255
 msgid "Preview Link Type"
 msgstr "Előnézeti link típusa"
 
-#: admin/options.php:228
+#: admin/options.php:256
 msgid "Modify preview link for better theme compatibility"
 msgstr "Előnézeti link módosítása a jobb téma kompatibilitás érdekében"
 
-#: admin/options.php:229
+#: admin/options.php:257
 msgid "Theme Compat: For front page revision preview, set home flag"
 msgstr ""
 "Téma kompatibilitás: A kezdőlap verzió előnézetéhez állítsa be a kezdőlap "
 "jelzőt"
 
-#: admin/options.php:230
+#: admin/options.php:258
 msgid "Approve Button on Compare screen"
 msgstr "Jóváhagyás gomb a összehasonlító képernyőn"
 
-#: admin/options.php:231
+#: admin/options.php:259
 msgid "Copy revision comments to published post"
 msgstr "A verzió megjegyzéseinek másolása a közzétett bejegyzésbe"
 
-#: admin/options.php:232
+#: admin/options.php:260
 msgid "Compare Past Revisions ordering:"
 msgstr "A múltbeli verziók összehasonlítása:"
 
-#: admin/options.php:233
+#: admin/options.php:261
 #, php-format
 msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
 msgstr "Lista %s az \"Aktivitásom\" vagy \"Verziók az én bejegyzéseimhez\" nézethez"
 
-#: admin/options.php:234
+#: admin/options.php:262
 msgid ""
 "Archive a copy of custom fields when a submitted or scheduled revision is "
 "published"
@@ -1214,69 +1490,69 @@ msgstr ""
 "Archíválj egy példányt a testreszabott mezőkről, amikor egy beküldött vagy "
 "ütemezett verzió meg van publikálva"
 
-#: admin/options.php:235
+#: admin/options.php:263
 msgid "Archive a copy of custom fields with each Past Revision"
 msgstr "Archíválj egy példányt a testreszabott mezőkről minden korábbi verzióval"
 
-#: admin/options.php:236
+#: admin/options.php:264
 msgid "Keep an archive of revision edits, even after the revision is published"
 msgstr "Archiválja a verziók szerkesztéseit, még a verzió közzététele után is"
 
-#: admin/options.php:237
+#: admin/options.php:265
 msgid "On Revision publication, delete Editorial Comments"
 msgstr "A verzió közzétételekor a szerkesztői megjegyzések törlése"
 
-#: admin/options.php:238
+#: admin/options.php:266
 msgid "Enable deletion queue"
 msgstr "Törlési sor engedélyezése"
 
-#: admin/options.php:239
+#: admin/options.php:267
 msgid "Allow Past Revisions to be deleted"
 msgstr "A múltbeli verziók törlésének engedélyezése"
 
-#: admin/options.php:240
+#: admin/options.php:268
 msgid "Restoring a Revision requires role capability"
 msgstr "A verzió helyreállításához szerepkör képesség szükséges"
 
-#: admin/options.php:241
+#: admin/options.php:269
 msgid "Compatibility Mode"
 msgstr "Kompatibilitási mód"
 
-#: admin/options.php:242
+#: admin/options.php:270
 msgid "Planner Notifications Access-Limited"
 msgstr "Tervezői értesítések hozzáférés-korlátozott"
 
-#: admin/options.php:243
+#: admin/options.php:271
 msgid "Maximum Revisions per post"
 msgstr "Maximális verziók bejegyzésenként"
 
-#: admin/options.php:244
+#: admin/options.php:272
 msgid "Apply Post Permissions to Revisions"
 msgstr "A bejegyzés jogosultságait alkalmazza a verziókra"
 
-#: admin/options.php:245
+#: admin/options.php:273
 msgid "Enable legacy email notifications"
 msgstr "Örökölt e-mail értesítések engedélyezése"
 
-#: admin/options.php:246
+#: admin/options.php:274
 msgid "Revision Approval requires role capability"
 msgstr "A jóváhagyás engedélyezéséhez szerepképesség szükséges"
 
-#: admin/options.php:247
+#: admin/options.php:275
 msgid "Use extended captions for Approve button in Post Editor"
 msgstr ""
 "Használjon kiterjesztett feliratokat az Engedélyezés gombhoz a Bejegyzés "
 "szerkesztőjében"
 
-#: admin/options.php:248
+#: admin/options.php:276
 msgid "Allow the Author field to be modified by Revision"
 msgstr "Engedje meg, hogy a Szerző mezőt a verzió módosítsa"
 
-#: admin/options.php:249
+#: admin/options.php:277
 msgid "Create Revision button in editor opens new tab"
 msgstr "A Szerkesztőben a Verzió létrehozása gomb új lapot nyit meg"
 
-#: admin/options.php:250
+#: admin/options.php:278
 msgid ""
 "Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
 "previewing in Revision editor"
@@ -1284,71 +1560,71 @@ msgstr ""
 "Lekérdezési ciklus blokk: Állítsa be a Revisor és Contributor "
 "jogosultságait a verzió szerkesztőjében való előnézet engedélyezéséhez"
 
-#: admin/options.php:251
+#: admin/options.php:279
 msgid "Disable Rank Math SEO panel for Revision edit"
 msgstr "A Rank Math SEO panel letiltása a verzió szerkesztéséhez"
 
-#: admin/options.php:252
+#: admin/options.php:280
 msgid "Allow custom fields (post meta) to be revisioned"
 msgstr "Engedélyezze a testreszabott mezőket (bejegyzés meta) a verziózásra"
 
-#: admin/options.php:253
+#: admin/options.php:281
 msgid "Permission for Submit Revision also enables Revision creation"
 msgstr ""
 "A Verzió benyújtásához szükséges jogosultság a verzió létrehozását is "
 "lehetővé teszi"
 
-#: admin/options.php:254
+#: admin/options.php:282
 msgid "Enable classic metaboxes in editor"
 msgstr "Engedélyezze a klasszikus metaboxokat a szerkesztőben"
 
-#: admin/options.php:259
+#: admin/options.php:287
 #, php-format
 msgid "Email designated Publishers when a %s is submitted"
 msgstr "E-mailt küld a kijelölt kiadóknak, amikor egy %s be van nyújtva"
 
-#: admin/options.php:260
+#: admin/options.php:288
 #, php-format
 msgid "Email designated Publishers when a %s is published"
 msgstr "E-mailt küld a kijelölt kiadóknak, amikor egy %s közzétételre kerül"
 
-#: admin/options.php:261
+#: admin/options.php:289
 #, php-format
 msgid "Email designated Publishers when a %s is approved"
 msgstr "E-mailt küld a kijelölt kiadóknak, amikor egy %s jóváhagyásra kerül"
 
-#: admin/options.php:263
+#: admin/options.php:291
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
 msgstr ""
 "E-mailt küld a Szerkesztőknek és Adminisztrátoroknak, amikor egy %s be van "
 "nyújtva"
 
-#: admin/options.php:264
+#: admin/options.php:292
 #, php-format
 msgid "Email Editors and Administrators when a %s is published"
 msgstr ""
 "E-mailt küld a Szerkesztőknek és Adminisztrátoroknak, amikor egy %s "
 "közzétételre kerül"
 
-#: admin/options.php:265
+#: admin/options.php:293
 #, php-format
 msgid "Email Editors and Administrators when a %s is approved"
 msgstr ""
 "E-mailt küld a Szerkesztőknek és Adminisztrátoroknak, amikor egy %s "
 "jóváhagyásra kerül"
 
-#: admin/options.php:347
+#: admin/options.php:375
 msgid "PublishPress Revisions Site Settings"
 msgstr "PublishPress verziók webhelybeállításai"
 
-#: admin/options.php:377
+#: admin/options.php:405
 msgid "These are the default settings for options which can be adjusted per-site."
 msgstr ""
 "Ezek az alapértelmezett beállítások, amelyeket webhelyenként lehet "
 "módosítani."
 
-#: admin/options.php:415
+#: admin/options.php:443
 #, php-format
 msgid ""
 "Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
@@ -1357,14 +1633,14 @@ msgstr ""
 "Használja ezt a lapot a PublishPress Revisions beállításainak HÁLÓZATI "
 "VÁLTOZTATÁSAIhoz. %s"
 
-#: admin/options.php:418
+#: admin/options.php:446
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
 msgstr ""
 "Megadhat %1$s alapértelmezett beállításokat webhelyspecifikus "
 "beállításokhoz %2$s is."
 
-#: admin/options.php:421
+#: admin/options.php:449
 msgid ""
 "Here you can change the default value for settings which are controlled "
 "separately on each site."
@@ -1372,131 +1648,176 @@ msgstr ""
 "Itt megváltoztathatja az alapértelmezett értéket azokhoz a beállításokhoz, "
 "amelyeket külön-külön kezelnek minden webhelyen."
 
-#: admin/options.php:431
-#: admin/options.php:433
+#: admin/options.php:459
+#: admin/options.php:461
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
 msgstr ""
 "Vegye figyelembe, hogy %1$s a hálózati szintű beállítások %2$s is elérhetők "
 "lehetnek."
 
-#: admin/options.php:511
+#: admin/options.php:538
+msgid "License settings"
+msgstr "Licenc beállítások"
+
+#: admin/options.php:539
 msgid "License"
 msgstr "Licenc"
 
-#: admin/options.php:556
+#: admin/options.php:584
 msgid "Past Revisions are earlier versions of a post."
 msgstr "A korábbi verziók a bejegyzés korábbi változatai."
 
-#: admin/options.php:613
+#: admin/options.php:634
+msgid "Past revisions post type fallback"
+msgstr "Régi revíziók post type visszaállítás"
+
+#: admin/options.php:641
 msgid "This post type does not support Past Revisions."
 msgstr "Ez a post type nem támogatja a korábbi verziókat."
 
-#: admin/options.php:635, fuzzy
+#: admin/options.php:662
+msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
+msgstr "PRO: A Revisions Pro szükséges ehhez a post type-hoz (új lapon nyílik meg)"
+
+#: admin/options.php:663, fuzzy
 msgid "PRO"
 msgstr "PRO"
 
-#: admin/options.php:655
+#: admin/options.php:683
 msgid "New Revisions are changes which are not yet published."
 msgstr "Az új verziók olyan változások, amelyek még nincsenek közzétéve."
 
-#: admin/options.php:754
+#: admin/options.php:732
+msgid "Navigation menu revision setting"
+msgstr "Navigációs menü revízió beállítás"
+
+#: admin/options.php:736
+msgid "Hidden post type revision setting"
+msgstr "Rejtett post type revízió beállítás"
+
+#: admin/options.php:742
+msgid "New revisions post type fallback"
+msgstr "Új revíziók post type visszaállítás"
+
+#: admin/options.php:762
+#, php-format
+msgid "%s capabilities"
+msgstr "%s jogosultságok"
+
+#: admin/options.php:782
 msgid "Revision Fields"
 msgstr "Felülvizsgálati mezők"
 
-#: admin/options.php:758
+#: admin/options.php:786
 msgid "Specify fields which can be modified by New Revisions."
 msgstr "Adja meg azokat a mezőket, amelyeket az Új Revíziók módosíthatnak."
 
-#: admin/options.php:766
-#: admin/options.php:929
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3256
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
-msgid "Content"
-msgstr "Tartalom"
-
-#: admin/options.php:767
-#: admin/options.php:930
-msgid "Title"
-msgstr "Cím"
-
-#: admin/options.php:768
-#: admin/options.php:931
+#: admin/options.php:796
+#: admin/options.php:959
+#: admin/restrict-editor-features.php:112
 msgid "Date"
 msgstr "Dátum"
 
-#: admin/options.php:770
-#: admin/options.php:933
+#: admin/options.php:798
+#: admin/options.php:961
+#: admin/restrict-editor-features.php:141
 msgid "Parent"
 msgstr "Szülő"
 
-#: admin/options.php:771
-#: admin/options.php:934, fuzzy
+#: admin/options.php:799
+#: admin/options.php:962, fuzzy
 msgid "Slug"
 msgstr "Slug"
 
-#: admin/options.php:772
-#: admin/options.php:935
-msgid "Excerpt"
-msgstr "Kivonat"
-
-#: admin/options.php:773
-#: admin/options.php:936
+#: admin/options.php:801
+#: admin/options.php:964
 #: admin/post-edit-block-ui_rvy.php:212
-#: admin/post-edit_rvy.php:367
+#: admin/post-edit_rvy.php:375
+#: admin/restrict-editor-features.php:147
+#: admin/revision-ui_rvy.php:391
 msgid "Author"
 msgstr "Szerző"
 
-#: admin/options.php:774
+#: admin/options.php:802
 msgid "Thumbnail"
 msgstr "Bélyegkép"
 
-#: admin/options.php:775
-#: admin/options.php:938
+#: admin/options.php:803
+#: admin/options.php:966
+#: admin/restrict-editor-features.php:120
 msgid "Template"
 msgstr "Sablon"
 
-#: admin/options.php:776
-#: admin/options.php:939
+#: admin/options.php:804
+#: admin/options.php:967
+#: admin/restrict-editor-features.php:127
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: admin/options.php:777
-#: admin/options.php:940
+#: admin/options.php:805
+#: admin/options.php:968
+#: admin/restrict-editor-features.php:134
 msgid "Tags"
 msgstr "Címkék"
 
-#: admin/options.php:778
-#: admin/options.php:941
+#: admin/options.php:806
+#: admin/options.php:969
 #: admin/restrict-editor-features.php:166
 msgid "Taxonomies"
 msgstr "taxonomies"
 
-#: admin/options.php:822
-msgid "Copy Posts"
-msgstr "Bejegyzések másolása"
+#: admin/options.php:818
+msgid "Hidden revision field setting"
+msgstr "Rejtett revízió mező beállítás"
 
-#: admin/options.php:826
+#: admin/options.php:824
+msgid "Revision field fallback"
+msgstr "Revízió mező visszaállítás"
+
+#: admin/options.php:850
+msgid "Duplicate Posts"
+msgstr "Duplikált bejegyzések"
+
+#: admin/options.php:854
 msgid "Copy post directly without using the revision process."
 msgstr ""
 "A bejegyzést közvetlenül másolja, anélkül hogy a felülvizsgálati folyamatot "
 "használná."
 
-#: admin/options.php:917
-msgid "Copy Fields"
-msgstr "Mezők másolása"
+#: admin/options.php:903
+msgid "Navigation menu copy setting"
+msgstr "Navigációs menü másoló beállítás"
 
-#: admin/options.php:921
-msgid "Specify fields to include when Posts are copied."
-msgstr ""
-"Adja meg azokat a mezőket, amelyeket be kell vonni a bejegyzések "
-"másolásakor."
+#: admin/options.php:906
+msgid "Hidden copied post type setting"
+msgstr "Rejtett másolt post type beállítás"
 
-#: admin/options.php:937
+#: admin/options.php:912
+msgid "Copied post type fallback"
+msgstr "Másolt post type visszaállítás"
+
+#: admin/options.php:945
+msgid "Duplicate Fields"
+msgstr "Duplikált mezők"
+
+#: admin/options.php:949
+msgid "Specify fields to include when Posts are duplicated."
+msgstr "Határozza meg a bejegyzéseknél duplikált mezőket."
+
+#: admin/options.php:965
 msgid "Thumnbnail"
 msgstr "Bélyegkép"
 
-#: admin/options.php:983
+#: admin/options.php:981
+msgid "Hidden copied field setting"
+msgstr "Rejtett másolt mező beállítás"
+
+#: admin/options.php:987
+msgid "Copied field fallback"
+msgstr "Másolt mező visszaállítás"
+
+#: admin/options.php:1011
 msgid ""
 "Note: Third party code may cause some post types to be incompatible with "
 "PublishPress Revisions."
@@ -1504,7 +1825,7 @@ msgstr ""
 "Megjegyzés: Harmadik fél kódja miatt egyes post type-ok nem lehetnek "
 "kompatibilisek a PublishPress Revisions-szal."
 
-#: admin/options.php:993
+#: admin/options.php:1021
 #, php-format
 msgid ""
 "For Revisions integration on the Content Calendar, Overview and Content "
@@ -1513,11 +1834,11 @@ msgstr ""
 "A Revisions integrációhoz a Tartalom Naptáron, Áttekintésen és Tartalom "
 "Táblán, kérjük, frissítse a %sPublishPress Planner Pro%s-t."
 
-#: admin/options.php:1014
+#: admin/options.php:1042
 msgid "Ready to enhance your revision workflow?"
 msgstr "Készen áll a revíziós munkafolyamatának javítására?"
 
-#: admin/options.php:1017
+#: admin/options.php:1045
 msgid ""
 "Get PublishPress Statuses Pro and optimize your revision process with "
 "custom revision statuses."
@@ -1525,109 +1846,108 @@ msgstr ""
 "Szerezze be a PublishPress Statuses Pro-t, és optimalizálja revíziós "
 "folyamatát egyedi revíziós állapotokkal."
 
-#: admin/options.php:1023
+#: admin/options.php:1051
 msgid "Define your own statuses before or after Revision Submitted"
 msgstr "Határozza meg saját állapotait a Revízió Beküldése előtt vagy után"
 
-#: admin/options.php:1026
+#: admin/options.php:1054
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
 msgstr "Új előre definiált állapotok: Halasztott, Kér munkát, Elutasított"
 
-#: admin/options.php:1029
+#: admin/options.php:1057
 msgid "Statuses can be specific to a post type"
 msgstr "Az állapotok specifikusak lehetnek egy post type-ra"
 
-#: admin/options.php:1032
+#: admin/options.php:1060
 msgid "Control access to statuses per-role"
 msgstr "Szerepkör szerint szabályozza az állapotokhoz való hozzáférést"
 
-#: admin/options.php:1035
+#: admin/options.php:1063
 msgid "Status workflow can be nested with sub-statuses"
 msgstr "Az állapot munkafolyamatok beágyazhatók aláállapotokkal"
 
-#: admin/options.php:1044
+#: admin/options.php:1070
+#: admin/options.php:1073
 msgid "Get PublishPress Statuses Pro"
 msgstr "Szerezze be a PublishPress Statuses Pro-t"
 
-#: admin/options.php:1049
-#: admin/options.php:1067
-#: admin/options.php:2151
-#: admin/options.php:2169
-#: admin/options.php:2758
-#: admin/options.php:2771
-#: admin/options.php:2788
-#: admin/options.php:2802
-#: admin/options.php:2812
-#: admin/options.php:2822
+#: admin/options.php:1076
+#: admin/options.php:1096
+msgid "Learn more about revision statuses"
+msgstr "Tudjon meg többet a revízió státuszokról"
+
+#: admin/options.php:1079
+#: admin/options.php:1097
+#: admin/options.php:2112
+#: admin/options.php:2130
+#: admin/options.php:2736
+#: admin/options.php:2749
+#: admin/options.php:2766
+#: admin/options.php:2780
+#: admin/options.php:2790
+#: admin/options.php:2800
 msgid "Learn More"
 msgstr "Tudjon meg többet"
 
-#: admin/options.php:1058
+#: admin/options.php:1088
 msgid "Revision statuses settings preview"
 msgstr "A verzió állapotok beállításainak előnézete"
 
-#: admin/options.php:1062, fuzzy
+#: admin/options.php:1092, fuzzy
 msgid "Pro Plugin"
 msgstr "Pro Plugin"
 
-#: admin/options.php:1063
+#: admin/options.php:1093
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr ""
 "Telepítse a Statuses Pro-t, hogy feloldja a testreszabott revíziós "
 "állapotokat."
 
-#: admin/options.php:1064
+#: admin/options.php:1094
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
 "Konfigurálja bármely post type és szerep számára, hogy illeszkedjen a "
 "szerkesztési munkafolyamatához."
 
-#: admin/options.php:1071
+#: admin/options.php:1100
+#: admin/options.php:1101
 msgid "Get Statuses Pro"
 msgstr "Szerezze be a Statuses Pro-t"
 
-#: admin/options.php:1098
+#: admin/options.php:1128
 msgid "Maximum revisions per post:"
 msgstr "Maximális revíziók postonként:"
 
-#: admin/options.php:1100
+#: admin/options.php:1130
 msgid "(unlimited)"
 msgstr "(határtalan)"
 
-#: admin/options.php:1108
+#: admin/options.php:1138
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
 msgstr "Vegye figyelembe, hogy az archívum letiltható a %1$sPost Type%2$s által is."
 
-#: admin/options.php:1149
-#: admin/options.php:1321
-#: admin/options.php:1660
-#: admin/options.php:1686
-#: admin/options.php:1712
-#: admin/options.php:1740
-#: admin/options.php:2302
+#: admin/options.php:1179
+#: admin/options.php:1358
+#: admin/options.php:2280
 #, php-format
 msgid "%s capability"
 msgstr "%s képesség"
 
-#: admin/options.php:1154
-#: admin/options.php:1326
-#: admin/options.php:1665
-#: admin/options.php:1691
-#: admin/options.php:1717
-#: admin/options.php:1745
-#: admin/options.php:2307
+#: admin/options.php:1184
+#: admin/options.php:1363
+#: admin/options.php:2285
 msgid "Assign capability to roles"
 msgstr "Képesség hozzárendelése szerepekhez"
 
-#: admin/options.php:1161
+#: admin/options.php:1191
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
 msgstr ""
 "Megakadályozza, hogy a nem-adminisztrátorok helyreállítsanak egy revíziót a "
 "%s nélkül."
 
-#: admin/options.php:1167
+#: admin/options.php:1197
 msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
@@ -1635,46 +1955,46 @@ msgstr ""
 "Megakadályozza, hogy a nem-adminisztrátorok helyreállítsanak egy revíziót a "
 "restore_revisions képesség nélkül"
 
-#: admin/options.php:1181
+#: admin/options.php:1211
 msgid "Modification Date"
 msgstr "Módosítás dátuma"
 
-#: admin/options.php:1209
+#: admin/options.php:1239
 msgid "Revision Creation"
 msgstr "Revízió létrehozása"
 
-#: admin/options.php:1210
+#: admin/options.php:1240
 msgid "Submission"
 msgstr "Beküldés"
 
-#: admin/options.php:1211
+#: admin/options.php:1241
 msgid "Scheduling"
 msgstr "Ütemezés"
 
-#: admin/options.php:1213
+#: admin/options.php:1243
 msgid "Management"
 msgstr "Kezelés"
 
-#: admin/options.php:1271
+#: admin/options.php:1308
 msgid "Create Revision capabilities"
 msgstr "Revízió képességek létrehozása"
 
-#: admin/options.php:1276
-#: admin/options.php:1301
-#: admin/options.php:1459
-#: admin/options.php:1611
+#: admin/options.php:1313
+#: admin/options.php:1338
+#: admin/options.php:1496
+#: admin/options.php:1648
 msgid "Assign capabilities to roles"
 msgstr "Képességek hozzárendelése szerepekhez"
 
-#: admin/options.php:1283
-#: admin/options.php:1466
+#: admin/options.php:1320
+#: admin/options.php:1503
 #, php-format
 msgid "If the user can't edit the published post, require %s."
 msgstr ""
 "Ha a felhasználó nem tudja szerkeszteni a közzétett postot, akkor "
 "követeljen %s."
 
-#: admin/options.php:1289
+#: admin/options.php:1326
 msgid ""
 "If the user can't edit the published post, require Create Revision "
 "capabilities (copy_posts, copy_others_pages, etc.)"
@@ -1683,16 +2003,16 @@ msgstr ""
 "Revízió létrehozásához szükséges jogosultságok (copy_posts, "
 "copy_others_pages, stb.)"
 
-#: admin/options.php:1297
+#: admin/options.php:1334
 #, php-format
 msgid "To expand the Pages list, assign %s."
 msgstr "A Pages lista kibővítéséhez rendeljen %s."
 
-#: admin/options.php:1300
+#: admin/options.php:1337
 msgid "Listing capabilities"
 msgstr "Lista jogosultságok"
 
-#: admin/options.php:1307
+#: admin/options.php:1344
 msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
@@ -1700,11 +2020,11 @@ msgstr ""
 "A Pages lista kibővítéséhez rendeljen Lista jogosultságokat "
 "(list_others_pages, list_published_posts, stb.)"
 
-#: admin/options.php:1313
+#: admin/options.php:1350
 msgid "This plugin introduces a new user role, \"Revisor.\""
 msgstr "Ez a bővítmény egy új felhasználói szerepet vezet be, \"Revisor.\""
 
-#: admin/options.php:1333
+#: admin/options.php:1370
 #, php-format
 msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
@@ -1713,7 +2033,7 @@ msgstr ""
 "Egy olyan felhasználó által végzett revízió, akinek nincs meg a %s, minden "
 "egyedi html címkét eltávolít."
 
-#: admin/options.php:1339
+#: admin/options.php:1376
 msgid ""
 "Revision by a user who does not have the unfiltered_html capability will "
 "cause all custom html tags to be stripped out."
@@ -1721,15 +2041,15 @@ msgstr ""
 "Egy olyan felhasználó által végzett revízió, akinek nincs meg az "
 "unfiltered_html jogosultság, minden egyedi html címkét eltávolít."
 
-#: admin/options.php:1355
+#: admin/options.php:1392
 msgid "Standard storage schema for broadest 3rd party compat"
 msgstr "Általános tárolási séma a legszélesebb harmadik fél kompatibilitás érdekében"
 
-#: admin/options.php:1356
+#: admin/options.php:1393
 msgid "Enhanced Revision access control with PublishPress plugins"
 msgstr "Fejlett Revízió hozzáférés-vezérlés a PublishPress bővítményekkel"
 
-#: admin/options.php:1367
+#: admin/options.php:1404
 msgid ""
 "In enhanced mode, a Revision's status is stored by standard WordPress "
 "schema. Some plugins are incompatible."
@@ -1737,23 +2057,23 @@ msgstr ""
 "Fejlett módban a Revízió állapotát a standard WordPress séma tárolja. "
 "Néhány bővítmény inkompatibilis."
 
-#: admin/options.php:1383
+#: admin/options.php:1420
 msgid "Allow any number of Revisions per post."
 msgstr "Bármennyi felülvizsgálat engedélyezése bejegyzésenként."
 
-#: admin/options.php:1384
+#: admin/options.php:1421
 msgid "Prevent Revision creation if another was already created."
 msgstr ""
 "A felülvizsgálat létrehozásának megakadályozása, ha már létrehoztak egy "
 "másikat."
 
-#: admin/options.php:1385
+#: admin/options.php:1422
 msgid "Prevent Revision creation if another was already submitted."
 msgstr ""
 "A felülvizsgálat létrehozásának megakadályozása, ha már benyújtottak egy "
 "másikat."
 
-#: admin/options.php:1400
+#: admin/options.php:1437
 msgid ""
 "Work around cache plugin conflicts by requerying for revisions before "
 "suppressing the New Revision link."
@@ -1761,7 +2081,7 @@ msgstr ""
 "Kerülje el a cache bővítmény konfliktusokat azzal, hogy újra lekérdezi a "
 "revíziókat a Új Revízió link elrejtése előtt."
 
-#: admin/options.php:1419
+#: admin/options.php:1456
 #, php-format
 msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
@@ -1770,7 +2090,7 @@ msgstr ""
 "Ha a felhasználónak nincs rendszeres Szerkesztés linkje, nevezze át a %s "
 "linket \"Szerkesztés.\" névre."
 
-#: admin/options.php:1422
+#: admin/options.php:1459
 msgid ""
 "Default labels are \"Not Submitted for Approval\", \"Submitted for "
 "Approval\", \"Scheduled Revision\""
@@ -1778,7 +2098,7 @@ msgstr ""
 "Alapértelmezett címkék: \"Nem benyújtva jóváhagyásra\", \"Benyújtva "
 "jóváhagyásra\", \"Ütemezett Revízió\""
 
-#: admin/options.php:1440
+#: admin/options.php:1477
 #, php-format
 msgid ""
 "Enable published content to be copied, edited, submitted for approval and "
@@ -1787,11 +2107,11 @@ msgstr ""
 "Engedélyezze a közzétett tartalom másolását, szerkesztését, jóváhagyásra "
 "való benyújtását és kezelését a %sÚj Revíziók%s képernyőn."
 
-#: admin/options.php:1454
+#: admin/options.php:1491
 msgid "Submit Revision capabilities"
 msgstr "Revízió benyújtási jogosultságok"
 
-#: admin/options.php:1472
+#: admin/options.php:1509
 msgid ""
 "If the user can't edit the published post, require Submit Revision "
 "capabilities (revise_posts, revise_others_pages, etc.)"
@@ -1800,29 +2120,33 @@ msgstr ""
 "Revízió benyújtásához szükséges jogosultságok (revise_posts, "
 "revise_others_pages, stb.)"
 
-#: admin/options.php:1493
+#: admin/options.php:1519
+msgid "Revision editor background color"
+msgstr "A revízió szerkesztő háttérszíne"
+
+#: admin/options.php:1530
 msgid "Select a custom background color to show that a Revision is being edited."
 msgstr ""
 "Válasszon egy egyedi háttérszínt, hogy jelezze, hogy egy revíziót "
 "szerkesztenek."
 
-#: admin/options.php:1532
-#: admin/options.php:1566
+#: admin/options.php:1569
+#: admin/options.php:1603
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr ""
 "Amikor egy %s közzétételre kerül, frissítse a bejegyzés közzétételi idejét "
 "a jelenlegi időre."
 
-#: admin/options.php:1535
-#: admin/options.php:1569
+#: admin/options.php:1572
+#: admin/options.php:1606
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr ""
 "Amikor egy %s közzétételre kerül, frissítse a bejegyzés módosított idejét a "
 "jelenlegi időre."
 
-#: admin/options.php:1538
+#: admin/options.php:1575
 msgid ""
 "When a new revision is created by any user who is allowed to submit "
 "revisions, automatically submit it."
@@ -1830,13 +2154,13 @@ msgstr ""
 "Amikor egy új revíziót készít bármely felhasználó, akinek engedélyezett a "
 "revíziók benyújtása, automatikusan nyújtsa be azt."
 
-#: admin/options.php:1541
+#: admin/options.php:1578
 msgid "Auto-submit revisions if the user can directly edit the main post."
 msgstr ""
 "Automatikusan nyújtsa be a revíziókat, ha a felhasználó közvetlenül "
 "szerkesztheti a fő bejegyzést."
 
-#: admin/options.php:1544
+#: admin/options.php:1581
 msgid ""
 "This allows immediate approval within the Compare screen. If disabled, a "
 "Preview link is provided instead."
@@ -1844,7 +2168,7 @@ msgstr ""
 "Ez lehetővé teszi az azonnali jóváhagyást az Összehasonlító képernyőn. Ha "
 "le van tiltva, akkor egy Előnézeti linket biztosítanak helyette."
 
-#: admin/options.php:1560
+#: admin/options.php:1597
 msgid ""
 "If a currently published post or page is edited and a future date set, the "
 "change will not be applied until the selected date."
@@ -1852,13 +2176,13 @@ msgstr ""
 "Ha egy jelenleg publikált bejegyzést vagy oldalt szerkesztenek és jövőbeli "
 "dátumot állítanak be, a változtatás nem lép életbe a kiválasztott dátumig."
 
-#: admin/options.php:1572
+#: admin/options.php:1609
 msgid "Leave this setting disabled to use Action Scheduler (recommended)."
 msgstr ""
 "Hagyd ezt a beállítást letiltva az Action Scheduler használatához "
 "(ajánlott)."
 
-#: admin/options.php:1577
+#: admin/options.php:1614
 msgid ""
 "Support publication of existing scheduled revisions asynchronously, via a "
 "secondary http request from the server.  This is usually best since it "
@@ -1868,7 +2192,7 @@ msgstr ""
 "érkező másodlagos http kérés útján. Ez általában a legjobb, mivel "
 "kiküszöböli a késlekedést, de néhány szerver nem támogathatja."
 
-#: admin/options.php:1582
+#: admin/options.php:1619
 msgid ""
 "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
 "using a custom trigger."
@@ -1876,7 +2200,7 @@ msgstr ""
 "A WP-Cron trigger le van tiltva, de az ütemezett feladatokat továbbra is "
 "végrehajtják egy egyedi trigger segítségével."
 
-#: admin/options.php:1600
+#: admin/options.php:1637
 msgid ""
 "Currently, users who can edit the published post can also approve Revisions "
 "to it."
@@ -1884,16 +2208,16 @@ msgstr ""
 "Jelenleg azok a felhasználók, akik szerkeszthetik a közzétett bejegyzést, "
 "egyben jóváhagyhatják a rá vonatkozó revíziókat is."
 
-#: admin/options.php:1606
+#: admin/options.php:1643
 msgid "Approve Revision capabilities"
 msgstr "Revízió jóváhagyási képességek"
 
-#: admin/options.php:1615
+#: admin/options.php:1652
 #, php-format
 msgid "Control access with %s."
 msgstr "Hozzáférés vezérlése a %s segítségével."
 
-#: admin/options.php:1623
+#: admin/options.php:1660
 msgid ""
 "Require Approve Revision capabilities (approve_posts, approve_others_pages, "
 "etc.)"
@@ -1901,7 +2225,7 @@ msgstr ""
 "A revíziók jóváhagyásához szükséges képességek (approve_posts, "
 "approve_others_pages, stb.)"
 
-#: admin/options.php:1628
+#: admin/options.php:1665
 msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
@@ -1909,61 +2233,49 @@ msgstr ""
 "A gomb feliratát állítsa be „Jóváhagyás és Közzététel” vagy „Jóváhagyás és "
 "Ütemezés” lehetőségre."
 
-#: admin/options.php:1637
+#: admin/options.php:1674
 msgid "This may improve compatibility with some plugins."
 msgstr "Ez javíthatja a kompatibilitást egyes bővítményekkel."
 
-#: admin/options.php:1672
+#: admin/options.php:1696
+#. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
-msgid "Control New Revisions access with the %s."
-msgstr "A %s segítségével ellenőrizze az Új Revíziók elérhetőségét."
-
-#: admin/options.php:1678
-msgid "Control New Revisions access with the manage_revision_queue capability."
+msgid "If enabled, New Revisions screen access can be configured per-role using %s."
 msgstr ""
-"A manage_revision_queue jogosultsággal ellenőrizze az Új Revíziók "
-"elérhetőségét."
+"Ha engedélyezve van, az Új Revíziók képernyő hozzáférése szerepkör szerint "
+"konfigurálható a %s használatával."
 
-#: admin/options.php:1698
+#: admin/options.php:1703
+#. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
-msgid "Users will need the %s to edit others' Unsubmitted Revisions."
-msgstr ""
-"A felhasználóknak szükségük lesz a %s-ra, hogy szerkeszthessék mások Nem "
-"Benyújtott Revízióit."
-
-#: admin/options.php:1704
 msgid ""
-"Users will need the manage_unsubmitted_revisions capability to edit others' "
-"Unsubmitted Revisions."
+"If enabled, access to Unsubmitted Revisions can be configured per-role "
+"using %s."
 msgstr ""
-"A felhasználóknak szükségük lesz a manage_unsubmitted_revisions "
-"jogosultságra, hogy szerkeszthessék mások Nem Benyújtott Revízióit."
+"Ha engedélyezve van, a benyújtatlan revíziókhoz való hozzáférés szerepkör "
+"szerint konfigurálható a %s használatával."
 
-#: admin/options.php:1724
-#: admin/options.php:1752
+#: admin/options.php:1710
+#. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
-msgid "If the user can't edit the published post, require the %s."
-msgstr ""
-"Ha a felhasználó nem tudja szerkeszteni a közzétett bejegyzést, kérje a "
-"%s-t."
-
-#: admin/options.php:1730
 msgid ""
-"If the user can't edit the published post, require the "
-"edit_others_revisions capability."
+"If a user cannot edit the published post, control their access to others’ "
+"Revisions using %s."
 msgstr ""
-"Ha a felhasználó nem tudja szerkeszteni a közzétett bejegyzést, kérje az "
-"edit_others_revisions jogosultságot."
+"Ha egy felhasználó nem szerkesztheti a közzétett bejegyzést, a mások "
+"revízióihoz való hozzáférésüket a %s segítségével vezérelheti."
 
-#: admin/options.php:1758
+#: admin/options.php:1717
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
 msgid ""
-"If the user can't edit the published post, require the "
-"list_others_revisions capability."
+"If a user cannot edit the published post, control their ability to list "
+"others’ Revisions using %s."
 msgstr ""
-"Ha a felhasználó nem tudja szerkeszteni a közzétett bejegyzést, kérje a "
-"list_others_revisions jogosultságot."
+"Ha egy felhasználó nem szerkesztheti a közzétett bejegyzést, a mások "
+"revízióinak listázási lehetőségét a %s segítségével vezérelheti."
 
-#: admin/options.php:1763
+#: admin/options.php:1722
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -1971,7 +2283,7 @@ msgstr ""
 "Hagyd figyelmen kívül a fenti korlátozásokat mások revízióihoz a "
 "bejelentkezett felhasználó saját bejegyzéseihez."
 
-#: admin/options.php:1774
+#: admin/options.php:1733
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -1979,11 +2291,11 @@ msgstr ""
 "Ha verziók készültek egy szerkeszthető oldalhoz, akkor egy lebegő Verziók "
 "gombot kell megjeleníteni az előtér nézetekben."
 
-#: admin/options.php:1782
+#: admin/options.php:1741
 msgid "Regenerate \"post has revision\" flags"
 msgstr "Regenerálja a „bejegyzésnek van revíziója” jelzéseket"
 
-#: admin/options.php:1785
+#: admin/options.php:1744
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1992,17 +2304,17 @@ msgstr ""
 "Bejegyzések / Oldalak képernyőn nem egyeznek meg az Új Revíziók "
 "listázásával."
 
-#: admin/options.php:1809
+#: admin/options.php:1768
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "A fejlettebb értesítésekhez telepítse a %sPublishPress Planner%s-t."
 
-#: admin/options.php:1822
+#: admin/options.php:1781
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "A fejlettebb értesítésekhez frissítse a %sPublishPress Planner%s-t."
 
-#: admin/options.php:1844
+#: admin/options.php:1803
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -2011,7 +2323,7 @@ msgstr ""
 "Küldjön módosítási akció értesítéseket a testreszabható %1$sPublishPress "
 "Planner Notifications rendszer%2$s segítségével."
 
-#: admin/options.php:1845
+#: admin/options.php:1804
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -2021,7 +2333,7 @@ msgstr ""
 "küldhessen a testreszabható %1$sPublishPress Planner Notifications "
 "rendszer%2$s segítségével."
 
-#: admin/options.php:1857
+#: admin/options.php:1816
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -2029,27 +2341,31 @@ msgstr ""
 "A Planner > Notifications beállításoknak megfelelő felhasználók csak akkor "
 "kapnak módosítási értesítéseket, ha szerkeszthetik a közzétett bejegyzést."
 
-#: admin/options.php:1900
-#: admin/options.php:1923
+#: admin/options.php:1826
+msgid "Legacy Email Notifications:"
+msgstr "Örökölt e-mail értesítések:"
+
+#: admin/options.php:1859
+#: admin/options.php:1882
 msgid "Never"
 msgstr "Soha"
 
-#: admin/options.php:1900
-#: admin/options.php:1923
+#: admin/options.php:1859
+#: admin/options.php:1882
 msgid "By default"
 msgstr "Alapértelmezés szerint"
 
-#: admin/options.php:1900
-#: admin/options.php:1923
+#: admin/options.php:1859
+#: admin/options.php:1882
 msgid "Always"
 msgstr "Mindig"
 
-#: admin/options.php:1911
-#: admin/options.php:1959
+#: admin/options.php:1870
+#: admin/options.php:1918
 msgid "select recipients"
 msgstr "válassza ki a címzetteket"
 
-#: admin/options.php:1973
+#: admin/options.php:1932
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -2057,55 +2373,55 @@ msgstr ""
 "Az értesítési hibák elkerülése érdekében a késleltetett küldéshez "
 "pufferezze az e-maileket, ha az egy perc, óra vagy nap korlátokat túllépik"
 
-#: admin/options.php:1996
+#: admin/options.php:1955
 msgid "Notification Buffer"
 msgstr "Értesítési Puffertároló"
 
-#: admin/options.php:2024
+#: admin/options.php:1983
 msgid "Notification Log"
 msgstr "Értesítési Napló"
 
-#: admin/options.php:2058
+#: admin/options.php:2017
 msgid "Purge Notification Buffer"
 msgstr "Értesítési Puffertároló Törlése"
 
-#: admin/options.php:2069
+#: admin/options.php:2028
 msgid "Truncate Notification Log"
 msgstr "Értesítési Napló Lerövidítése"
 
-#: admin/options.php:2075
+#: admin/options.php:2034
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "Utolsó percben elküldve: %d / %d"
 
-#: admin/options.php:2076
+#: admin/options.php:2035
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "Utolsó órában elküldve: %d / %d"
 
-#: admin/options.php:2077
+#: admin/options.php:2036
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "Utolsó napon elküldve: %d / %d"
 
-#: admin/options.php:2084
+#: admin/options.php:2043
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "Másodpercek a következő pufferfeldolgozási időig: %d"
 
-#: admin/options.php:2095
+#: admin/options.php:2054
 msgid "Show Notification Log / Buffer"
 msgstr "Értesítési Napló / Puffer megjelenítése"
 
-#: admin/options.php:2097
+#: admin/options.php:2056
 msgid "Show with message content"
 msgstr "Megjelenítés üzenet tartalommal"
 
-#: admin/options.php:2119
+#: admin/options.php:2078
 msgid "Ready to enhance your revision notifications?"
 msgstr "Készen áll arra, hogy fejlessze a módosítási értesítéseit?"
 
-#: admin/options.php:2122
+#: admin/options.php:2081
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -2113,47 +2429,61 @@ msgstr ""
 "Frissítsen a Revisions Pro-ra az integrációhoz a PublishPress Planner "
 "Notifications keretrendszerünkkel."
 
-#: admin/options.php:2128
+#: admin/options.php:2087
 msgid "Customize notification message and subject"
 msgstr "Testreszabás a értesítési üzenethez és tárgyhoz"
 
-#: admin/options.php:2131
+#: admin/options.php:2090
 msgid "Notify for a specific post type, category or term"
 msgstr "Értesítés egy adott post type, kategória vagy kifejezés esetén"
 
-#: admin/options.php:2134
+#: admin/options.php:2093
 msgid "Target specific roles, users, or user groups"
 msgstr "Célzott szerepkörök, felhasználók vagy felhasználói csoportok"
 
-#: admin/options.php:2137
+#: admin/options.php:2096
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr ""
 "A PublishPress Planner Pro segítségével értesítéseket küldhet egy Slack "
 "csatornára"
 
-#: admin/options.php:2160
+#: admin/options.php:2103
+#: admin/options.php:2133
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Frissítés Revisions Pro-ra"
+
+#: admin/options.php:2109
+msgid "Learn more about advanced revision notifications"
+msgstr "Tudjon meg többet az előrehaladott revízió értesítésekről"
+
+#: admin/options.php:2121
 msgid "Revision notifications settings preview"
 msgstr "A verzió értesítések beállításainak előnézete"
 
-#: admin/options.php:2164
-#: admin/options.php:2766
-#: admin/options.php:2782
+#: admin/options.php:2125
+#: admin/options.php:2744
+#: admin/options.php:2760
 msgid "Pro Feature"
 msgstr "Pro Funkció"
 
-#: admin/options.php:2165
+#: admin/options.php:2126
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr ""
 "Frissítsen a Revisions Pro-ra a Planner Notifications integráció "
 "feloldásához."
 
-#: admin/options.php:2166
+#: admin/options.php:2127
 msgid "Customize notification content and recipients for each notification type."
 msgstr ""
 "Testreszabja az értesítési tartalmat és címzettjeit minden "
 "értesítéstípushoz."
 
-#: admin/options.php:2191
+#: admin/options.php:2129
+msgid "Learn more about custom email notifications"
+msgstr "Tudjon meg többet a testreszabott e-mail értesítésekről"
+
+#: admin/options.php:2152
 msgid ""
 "Disable this setting if visual comparison shows your changes incorrectly. "
 "Some page-builders and themes don't support the new style of WordPress "
@@ -2163,11 +2493,25 @@ msgstr ""
 "mutatja a változtatásait. Néhány oldalépítő és téma nem támogatja a "
 "WordPress új verzióstílusát."
 
-#: admin/options.php:2196
+#: admin/options.php:2157
 msgid "This feature is incompatible with page builder plugins."
 msgstr "Ez a funkció nem kompatibilis az oldalépítő bővítményekkel."
 
-#: admin/options.php:2201
+#: admin/options.php:2165
+#. translators: %s: page builder plugin name.
+#, php-format
+msgid "Upgrade to Pro for visual comparison with %s."
+msgstr "Frissítés Pro-ra a vizuális összehasonlításhoz a %s használatával."
+
+#: admin/options.php:2176
+msgid ""
+"This supports the page's normal javascript behavior inside the compare "
+"window."
+msgstr ""
+"Ez támogatja az oldal normál javascript viselkedését az összehasonlító "
+"ablakban."
+
+#: admin/options.php:2179
 msgid ""
 "If enabled, Editors and Administrators can see unidentified internal fields "
 "keys in comparisons. An attempt is still made to suppress sensitive and "
@@ -2177,23 +2521,23 @@ msgstr ""
 "azonosítatlan belső mezőkulcsokat az összehasonlításokban. Még mindig "
 "próbálkoznak a érzékeny és átmeneti mezők elnyomásával."
 
-#: admin/options.php:2217
+#: admin/options.php:2195
 msgid "Some themes may block revision preview."
 msgstr "Néhány téma blokkolhatja a verzió előnézetét."
 
-#: admin/options.php:2234
+#: admin/options.php:2212
 msgid "Published Post Slug"
 msgstr "Közzétett bejegyzés slug"
 
-#: admin/options.php:2235
+#: admin/options.php:2213
 msgid "Revision Slug"
 msgstr "Verzió slug"
 
-#: admin/options.php:2236
+#: admin/options.php:2214
 msgid "Revision ID only"
 msgstr "Csak a verzió ID"
 
-#: admin/options.php:2251
+#: admin/options.php:2229
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -2201,12 +2545,12 @@ msgstr ""
 "Néhány téma vagy bővítmény a Verzió slug vagy Verzió ID link típust "
 "igényelheti a megfelelő sablon betöltéséhez és mező megjelenítéséhez."
 
-#: admin/options.php:2260
+#: admin/options.php:2238
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "A verzió előnézeti argumentumot konstans definícióval konfigurálják: %s"
 
-#: admin/options.php:2267
+#: admin/options.php:2245
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -2215,13 +2559,13 @@ msgstr ""
 "használja a \"preview\" helyett. Kísérletezzen, hogy megtudja, melyik "
 "működik a legjobban a témájával."
 
-#: admin/options.php:2271
+#: admin/options.php:2249
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "Néhány téma ezt a beállítást igényelheti a helyes verzió előnézeti "
 "megjelenítéséhez."
 
-#: admin/options.php:2290
+#: admin/options.php:2268
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -2229,14 +2573,14 @@ msgstr ""
 "Ezt általában engedélyezni kell, kivéve, ha másik bővítmény postmeta "
 "adatainak ütközéseit kell megkerülni."
 
-#: admin/options.php:2314
+#: admin/options.php:2292
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "Ha a felhasználó nem tud közzétenni, kérje meg a %s-t, hogy mások nem "
 "közzétett bejegyzéseit szerkeszthesse."
 
-#: admin/options.php:2320
+#: admin/options.php:2298
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -2244,7 +2588,7 @@ msgstr ""
 "Ha a felhasználó nem tud közzétenni, kérje meg az edit_others_drafts "
 "képességet, hogy mások nem közzétett bejegyzéseit szerkeszthesse."
 
-#: admin/options.php:2326
+#: admin/options.php:2304
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -2252,20 +2596,20 @@ msgstr ""
 "Ha a post-specifikus engedélyek korlátozzák vagy bővítik a hozzáférést egy "
 "bejegyzéshez, alkalmazza ezeket az engedélyeket annak verzióira is."
 
-#: admin/options.php:2338
+#: admin/options.php:2316
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "A Rank Math SEO megakadályozhatja a verziófrissítést egyes webhelyeken."
 
-#: admin/options.php:2345
+#: admin/options.php:2323
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
 msgstr "WPML Fordítási Menedzsment"
 
-#: admin/options.php:2350
+#: admin/options.php:2328
 msgid "Sync \"Needs Update\" flags"
 msgstr "Sync \"Frissítés szükséges\" jelzések"
 
-#: admin/options.php:2354
+#: admin/options.php:2332
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -2274,11 +2618,11 @@ msgstr ""
 "amelynek fordításai frissebbek (esetleg a verziójóváhagyás miatt) mint a "
 "fordításai."
 
-#: admin/options.php:2372
+#: admin/options.php:2350
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "Mutassa a leíró feliratokat a PublishPress Revisions beállításokhoz."
 
-#: admin/options.php:2390
+#: admin/options.php:2368
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -2287,11 +2631,11 @@ msgstr ""
 "törlésre kerülnek, de csak a Verziók / Verziók Pro utolsó példányának "
 "törlése után."
 
-#: admin/options.php:2411
+#: admin/options.php:2389
 msgid "Unlock Pro Integrations"
 msgstr "Pro Integrációk feloldása"
 
-#: admin/options.php:2412
+#: admin/options.php:2390
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -2299,45 +2643,49 @@ msgstr ""
 "Frissítés a Pro verzióra az optimális kompatibilitás és a gyors, "
 "professzionális támogatás érdekében."
 
-#: admin/options.php:2430
-#: admin/options.php:2687, fuzzy
+#: admin/options.php:2403
+msgid "Filter integrations by category"
+msgstr "Integrációk szűrése kategória szerint"
+
+#: admin/options.php:2408
+#: admin/options.php:2665, fuzzy
 msgid "Builder"
 msgstr "Builder"
 
-#: admin/options.php:2433
-#: admin/options.php:2688, fuzzy
+#: admin/options.php:2411
+#: admin/options.php:2666, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2436
+#: admin/options.php:2414
 msgid "E-Commerce"
 msgstr "E-kereskedelem"
 
-#: admin/options.php:2439
-#: admin/options.php:2690
+#: admin/options.php:2417
+#: admin/options.php:2668
 msgid "Fields"
 msgstr "Mezők"
 
-#: admin/options.php:2442
-#: admin/options.php:2695
+#: admin/options.php:2420
+#: admin/options.php:2673
 msgid "Themes"
 msgstr "Témák"
 
-#: admin/options.php:2446
+#: admin/options.php:2424
 msgid "Multilingual"
 msgstr "Többnyelvű"
 
-#: admin/options.php:2450
-#: admin/options.php:2693, fuzzy
+#: admin/options.php:2428
+#: admin/options.php:2671, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2453
-#: admin/options.php:2696
+#: admin/options.php:2431
+#: admin/options.php:2674
 msgid "Workflow"
 msgstr "Munkafolyamat"
 
-#: admin/options.php:2535
+#: admin/options.php:2513
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2346,20 +2694,20 @@ msgstr ""
 "szinten irányítani. A nem kiválasztott beállítások külön-külön vannak "
 "irányítva minden webhelyen."
 
-#: admin/options.php:2581
+#: admin/options.php:2559
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "hálózati szintű irányítás a \"%s\" felett"
 
-#: admin/options.php:2608
+#: admin/options.php:2586
 msgid "Save Changes"
 msgstr "Változások mentése"
 
-#: admin/options.php:2609
+#: admin/options.php:2587
 msgid "Revert to Defaults"
 msgstr "Visszaállítás az alapértelmezettekre"
 
-#: admin/options.php:2611
+#: admin/options.php:2589
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2368,53 +2716,53 @@ msgstr ""
 "beállításokat is beleértve) alapértelmezettre lesz visszaállítva. Biztos "
 "benne?"
 
-#: admin/options.php:2689, fuzzy
+#: admin/options.php:2667, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2691
+#: admin/options.php:2669
 msgid "Form"
 msgstr "Űrlap"
 
-#: admin/options.php:2692, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2694
+#: admin/options.php:2672
 msgid "Slider"
 msgstr "Csúszka"
 
-#: admin/options.php:2711, fuzzy
+#: admin/options.php:2689, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2716
+#: admin/options.php:2694
 msgid "Supported"
 msgstr "Támogatott"
 
-#: admin/options.php:2719
-#: admin/options.php:2799
+#: admin/options.php:2697
+#: admin/options.php:2777
 msgid "Active Plugin"
 msgstr "Aktív bővítmény"
 
-#: admin/options.php:2731
+#: admin/options.php:2709
 msgid "Supported by PublishPress Revisions"
 msgstr "A PublishPress Revisions támogatja"
 
-#: admin/options.php:2733
+#: admin/options.php:2711
 msgid "Supported by Revisions Pro"
 msgstr "A Revisions Pro támogatja"
 
-#: admin/options.php:2746
+#: admin/options.php:2724
 msgid "Integration Active"
 msgstr "Integráció aktív"
 
-#: admin/options.php:2754
-#: admin/options.php:2809
+#: admin/options.php:2732
+#: admin/options.php:2787
 msgid "Supported plugin integration"
 msgstr "Támogatott bővítmény integráció"
 
-#: admin/options.php:2767
+#: admin/options.php:2745
 msgid ""
 "Unlock PublishPress Statuses Pro integration to enhance your revisions "
 "solution."
@@ -2422,26 +2770,40 @@ msgstr ""
 "Oldd fel a PublishPress Statuses Pro integrációt a verzióid megoldásának "
 "javítása érdekében."
 
-#: admin/options.php:2775
+#: admin/options.php:2753
 msgid "Upgrade to Statuses Pro"
 msgstr "Frissíts a Statuses Pro-ra"
 
-#: admin/options.php:2783
+#: admin/options.php:2761
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "Oldja fel a %s integrációt a revíziós megoldása fokozásához."
 
-#: admin/options.php:2799
+#: admin/options.php:2777
 msgid "Active Plugin Integration"
 msgstr "Aktív bővítmény integráció"
 
-#: admin/options.php:2819
+#: admin/options.php:2797
 msgid "Supported Plugin"
 msgstr "Támogatott bővítmény"
+
+#: admin/options.php:2852
+msgid "Color setting"
+msgstr "Szín beállítás"
 
 #: admin/post-edit-block-ui_rvy.php:164
 msgid "Now"
 msgstr "Most"
+
+#: admin/post-edit-block-ui_rvy.php:238
+#: admin/post-edit_rvy.php:400
+msgid "Author saved."
+msgstr "Szerző mentve."
+
+#: admin/post-edit-block-ui_rvy.php:243
+#: admin/post-edit_rvy.php:405
+msgid "The author could not be saved."
+msgstr "A szerzőt nem sikerült menteni."
 
 #: admin/post-editor-workflow-ui_rvy.php:34
 msgid "(on approval)"
@@ -2467,6 +2829,14 @@ msgstr "Megtekintés / Jóváhagyás"
 msgid "View / Moderate saved revision"
 msgstr "Megtekintés / Mentett revízió moderálása"
 
+#: admin/post-editor-workflow-ui_rvy.php:84
+msgid "Preview / Submit"
+msgstr "Előnézet / Beküldés"
+
+#: admin/post-editor-workflow-ui_rvy.php:84
+msgid "View / Submit"
+msgstr "Megtekintés / Beküldés"
+
 #: admin/post-editor-workflow-ui_rvy.php:85
 msgid "View / Submit saved revision"
 msgstr "Megtekintés / Mentett revízió benyújtása"
@@ -2489,12 +2859,6 @@ msgstr "Revizió Benyújtási Hiba"
 #: admin/post-editor-workflow-ui_rvy.php:118
 msgid "Preview this Revision"
 msgstr "Ezen Revízió Előnézete"
-
-#: admin/post-editor-workflow-ui_rvy.php:123
-#: admin/post-editor-workflow-ui_rvy.php:237
-#: front_rvy.php:495
-msgid "Edit"
-msgstr "Szerkesztés"
 
 #: admin/post-editor-workflow-ui_rvy.php:132
 msgid "Approve and Publish"
@@ -2536,38 +2900,55 @@ msgstr "Frissítse a bejegyzést a %s létrehozása előtt."
 msgid "Error Creating Revision"
 msgstr "Revizió Létrehozási Hiba"
 
+#: admin/post-editor-workflow-ui_rvy.php:252
+#: admin/post-editor-workflow-ui_rvy.php:272
+msgid "Update"
+msgstr "Frissítés"
+
 #: admin/post-editor-workflow-ui_rvy.php:266
 #, php-format
 msgid "For custom field changes, edit a scheduled %s."
 msgstr "Egyedi mező változtatások esetén szerkessze a ütemezett %s-t."
 
 #: admin/post-edit_rvy.php:28
-#: admin/post-edit_rvy.php:164
+#: admin/post-edit_rvy.php:172
 msgid "Current Time"
 msgstr "Jelenlegi Idő"
 
 #: admin/post-edit_rvy.php:81
-#: front_rvy.php:531
-msgid "Delete"
-msgstr "Törlés"
+#: admin/post-edit_rvy.php:120
+msgid "Delete revision"
+msgstr "Revízió törlése"
 
-#: admin/post-edit_rvy.php:191
+#: admin/post-edit_rvy.php:119
+msgid ""
+"Delete this revision and leave the editor? Any unsaved changes to this "
+"revision will be discarded."
+msgstr ""
+"Törölni szeretné ezt a revíziót és elhagyni a szerkesztőt? Bármely nem "
+"mentett változtatás a revízión elvész."
+
+#: admin/post-edit_rvy.php:121
+msgid "Continue editing revision"
+msgstr "Folytassa a revízió szerkesztését"
+
+#: admin/post-edit_rvy.php:199
 msgid "View revision in progress"
 msgstr "Folyamatban lévő revízió megtekintése"
 
-#: admin/post-edit_rvy.php:215
+#: admin/post-edit_rvy.php:223
 msgid "Compare this revision to published copy, or to other revisions"
 msgstr "Hasonlítsa össze ezt a revíziót a közzétett másolattal, vagy más revíziókkal"
 
-#: admin/post-edit_rvy.php:247
+#: admin/post-edit_rvy.php:255
 msgid "View Saved Revision"
 msgstr "Mentett verzió megtekintése"
 
-#: admin/post-edit_rvy.php:250
+#: admin/post-edit_rvy.php:258
 msgid "View / moderate saved revision"
 msgstr "Mentett módosítás megtekintése / mérséklése"
 
-#: admin/post-edit_rvy.php:253
+#: admin/post-edit_rvy.php:261
 msgid "View saved revision"
 msgstr "Mentett módosítás megtekintése"
 
@@ -2583,58 +2964,62 @@ msgstr "Permalink"
 msgid "Featured image"
 msgstr "Kiemelt kép"
 
-#: admin/revision-action_rvy.php:556
-#: admin/revision-action_rvy.php:642
+#: admin/revision-action_rvy.php:566
+#: admin/revision-action_rvy.php:652
 #, php-format
 msgid "[%s] Revision Approval Notice"
 msgstr "[%s] Módosítási Jóváhagyási Értesítő"
 
-#: admin/revision-action_rvy.php:557
+#: admin/revision-action_rvy.php:567
 #, php-format
 msgid "A revision to the %1$s \"%2$s\" has been approved."
 msgstr "A %1$s \"%2$s\" módosítást jóváhagyták."
 
-#: admin/revision-action_rvy.php:561
+#: admin/revision-action_rvy.php:571
 #, php-format
 msgid "The submitter was %1$s."
 msgstr "A benyújtó: %1$s."
 
-#: admin/revision-action_rvy.php:565
-#: admin/revision-action_rvy.php:651
+#: admin/revision-action_rvy.php:575
+#: admin/revision-action_rvy.php:661
 #, php-format
 msgid "It will be published on %s"
 msgstr "Ez közzétételre kerül: %s"
 
-#: admin/revision-action_rvy.php:569
-#: admin/revision-action_rvy.php:655
+#: admin/revision-action_rvy.php:579
+#: admin/revision-action_rvy.php:665
 msgid "Preview it here: "
 msgstr "Előnézet itt: "
 
-#: admin/revision-action_rvy.php:572
-#: admin/revision-action_rvy.php:658
+#: admin/revision-action_rvy.php:582
+#: admin/revision-action_rvy.php:668
 msgid "Editor: "
 msgstr "Szerkesztő: "
 
-#: admin/revision-action_rvy.php:574
-#: admin/revision-action_rvy.php:660
-#: admin/revision-action_rvy.php:1691
-#: admin/revision-action_rvy.php:1722
-#: admin/revision-action_rvy.php:1788
+#: admin/revision-action_rvy.php:584
+#: admin/revision-action_rvy.php:670
+#: admin/revision-action_rvy.php:1710
+#: admin/revision-action_rvy.php:1741
+#: admin/revision-action_rvy.php:1807
 msgid "View it online: "
 msgstr "Online megtekintés: "
 
-#: admin/revision-action_rvy.php:643
+#: admin/revision-action_rvy.php:653
 #, php-format
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr "A %1$s \"%2$s\" módosítást, amelyet benyújtott, jóváhagyták."
 
-#: admin/revision-action_rvy.php:1683
-#: admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1046
+msgid "The revision could not be published."
+msgstr "A revíziót nem lehetett közzétenni."
+
+#: admin/revision-action_rvy.php:1702
+#: admin/revision-action_rvy.php:1730
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr "[%s] %s Közzétételi Értesítő"
 
-#: admin/revision-action_rvy.php:1684
+#: admin/revision-action_rvy.php:1703
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
@@ -2643,17 +3028,46 @@ msgstr ""
 "A tervezett módosítást, amelyet benyújtott a %1$s \"%2$s\" számára, "
 "közzétették."
 
-#: admin/revision-action_rvy.php:1712
+#: admin/revision-action_rvy.php:1731
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr "A tervezett módosítást a %1$s \"%2$s\" számára közzétették."
+
+#: admin/revision-action_rvy.php:1738
+#: admin/revision-action_rvy.php:1804
+#, php-format
+msgid "It was submitted by %1$s."
+msgstr "A %1$s által lett benyújtva."
+
+#: admin/revision-action_rvy.php:1795
+#, php-format
+msgid "[%s] %s Publication"
+msgstr "[%s] %s Kiadás"
+
+#: admin/revision-action_rvy.php:1797
+#, php-format
+msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
+msgstr "A %1$s \"%2$s\" ütemezett revíziója közzétételre került."
 
 #: admin/revision-archive_rvy.php:15
 msgid "Revision for:"
 msgstr "Módosítás a következőhöz:"
 
+#: admin/revision-archive_rvy.php:48
+#: admin/revision-queue_rvy.php:98
+#, php-format
+msgid "%s revision permanently deleted."
+msgid_plural "%s revisions permanently deleted."
+msgstr[0] "%s revízió véglegesen törölve."
+msgstr[1] "%s revízió véglegesen törölve."
+
+#: admin/revision-archive_rvy.php:78
+#: admin/revision-queue_rvy.php:217
+msgid "Undo"
+msgstr "Visszavonás"
+
 #: admin/revision-archive_rvy.php:110
-#: admin/revision-queue_rvy.php:272
+#: admin/revision-queue_rvy.php:325
 msgid "Search Revisions"
 msgstr "Módosítások keresése"
 
@@ -2762,11 +3176,11 @@ msgstr " (Bejegyzés szerzője: %s)"
 msgid "New Revisions %s"
 msgstr "Új revíziók %s"
 
-#: admin/revision-queue_rvy.php:293
+#: admin/revision-queue_rvy.php:346
 msgid "About Scheduled Revisions"
 msgstr "A ütemezett verziókról"
 
-#: admin/revision-queue_rvy.php:295
+#: admin/revision-queue_rvy.php:348
 msgid ""
 "The Scheduled Revisions feature allows you to choose a date and time to "
 "publish content updates."
@@ -2774,39 +3188,39 @@ msgstr ""
 "Az ütemezett verziók funkció lehetővé teszi, hogy dátumot és időt válassz a "
 "tartalomfrissítések közzétételéhez."
 
-#: admin/revision-queue_rvy.php:297
-#: admin/revision-queue_rvy.php:311
+#: admin/revision-queue_rvy.php:350
+#: admin/revision-queue_rvy.php:364
 msgid "Click \"Create Revision\"."
 msgstr "Kattints a \"Revízió Létrehozása\" gombra."
 
-#: admin/revision-queue_rvy.php:298
-#: admin/revision-queue_rvy.php:312
+#: admin/revision-queue_rvy.php:351
+#: admin/revision-queue_rvy.php:365
 msgid "Make your changes to the post."
 msgstr "Hozd létre a változtatásaidat a bejegyzésben."
 
-#: admin/revision-queue_rvy.php:299
+#: admin/revision-queue_rvy.php:352
 msgid "Select a publishing date in the future."
 msgstr "Válassz egy jövőbeli közzétételi dátumot."
 
-#: admin/revision-queue_rvy.php:300
+#: admin/revision-queue_rvy.php:353
 msgid "Click the \"Schedule Revision\" button."
 msgstr "Kattints a \"Verzió ütemezése\" gombra."
 
-#: admin/revision-queue_rvy.php:307
+#: admin/revision-queue_rvy.php:360
 msgid "About New Revisions"
 msgstr "Új Revíziók"
 
-#: admin/revision-queue_rvy.php:309
+#: admin/revision-queue_rvy.php:362
 msgid "The New Revisions feature gives you a safe space to work on content updates."
 msgstr ""
 "Az Új verziók funkció biztonságos teret biztosít a tartalomfrissítések "
 "elkészítéséhez."
 
-#: admin/revision-queue_rvy.php:313
+#: admin/revision-queue_rvy.php:366
 msgid "Save your revision."
 msgstr "Mentsd el a revíziódat."
 
-#: admin/revision-queue_rvy.php:314
+#: admin/revision-queue_rvy.php:367
 msgid ""
 "When you're happy with it, click \"Submit Revision\". You can then share "
 "the revision with other users, or publish the update."
@@ -2842,6 +3256,16 @@ msgstr "%1$s <span>(Közzététel dátuma: %2$s)</span>"
 msgid "%1$s <span>(Requested publication: %2$s)</span>"
 msgstr "%1$s <span>(Kért közzététel: %2$s)</span>"
 
+#: admin/revision-ui_rvy.php:125
+#, fuzzy, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: admin/revision-ui_rvy.php:279
+#, php-format
+msgid "Preview &#8220;%s&#8221;"
+msgstr "Előnézet &#8220;%s&#8221;"
+
 #: admin/revision-ui_rvy.php:295
 msgid "The revision will be deleted. Are you sure?"
 msgstr "A revízió törlésre kerül. Biztos benne?"
@@ -2854,18 +3278,25 @@ msgstr "Revizió kiválasztása törléshez"
 msgid "Modified Date"
 msgstr "Módosított dátum"
 
-#: admin/revision-ui_rvy.php:409
-msgid "Select bulk action"
-msgstr "Tömeges művelet kiválasztása"
+#: admin/revision-ui_rvy.php:392
+msgid "Actions"
+msgstr "Műveletek"
+
+#: admin/revision-ui_rvy.php:410
+msgid "Bulk Actions"
+msgstr "Tömeges műveletek"
+
+#: admin/RevisionEditSubmitMetabox.php:64
+msgid "Move to Trash"
+msgstr "Áthelyezés a Lomtárba"
 
 #: admin/RevisionEditSubmitMetabox.php:124
 msgid "Preview revision in progress"
 msgstr "A revízió előnézete folyamatban"
 
-#: admin/RevisionEditSubmitMetabox.php:180, fuzzy
-#. translators: Publish box date formt, see http://php.net/date
-msgid "M j, Y @ G:i"
-msgstr "M j, Y @ G:i"
+#: admin/RevisionEditSubmitMetabox.php:147
+msgid "Status:"
+msgstr "Állapot:"
 
 #: admin/RevisionEditSubmitMetabox.php:191
 #, php-format
@@ -2894,6 +3325,10 @@ msgstr "Nincs megadva revízió."
 msgid "Past"
 msgstr "Múlt"
 
+#: admin/revisions.php:74
+msgid "Pending"
+msgstr "Függőben"
+
 #: admin/revisions.php:136
 #, php-format
 msgid "Revisions of %s"
@@ -2903,134 +3338,133 @@ msgstr "A %s revíziói"
 msgid "The requested revision does not exist."
 msgstr "A kért verzió nem létezik."
 
-#: admin/revisions.php:254
+#: admin/revisions.php:255
 #, fuzzy, php-format
 msgid "%1$s %2$s (%3$s)%4$s"
 msgstr "%1$s %2$s (%3$s)%4$s"
 
-#: admin/revisions.php:275
+#: admin/revisions.php:276
 #, php-format
 msgid "no %s revisions available."
 msgstr "nincs %s rendelkezésre álló verzió."
 
-#: classes/PublishPress/IntegrationCards.php:36
 #: classes/PublishPress/IntegrationCards.php:39
 #: classes/PublishPress/IntegrationCards.php:42
 #: classes/PublishPress/IntegrationCards.php:45
-#: classes/PublishPress/IntegrationCards.php:324
-#: classes/PublishPress/Revisionary.php:246
-#: classes/PublishPress/Revisionary.php:276
+#: classes/PublishPress/IntegrationCards.php:362
+#: classes/PublishPress/Revisionary.php:249
+#: classes/PublishPress/Revisionary.php:279
 msgid "Revise custom fields and display changes"
 msgstr "Egyéni mezők felülvizsgálata és a változások megjelenítése"
 
-#: classes/PublishPress/IntegrationCards.php:80
+#: classes/PublishPress/IntegrationCards.php:116
 msgid "PublishPress Statuses"
 msgstr "PublishPress Állapotok"
 
-#: classes/PublishPress/IntegrationCards.php:81
+#: classes/PublishPress/IntegrationCards.php:117
 msgid "PublishPress Statuses Pro integration."
 msgstr "PublishPress Állapotok Pro integráció."
 
-#: classes/PublishPress/IntegrationCards.php:85
+#: classes/PublishPress/IntegrationCards.php:121
 msgid "Define custom statuses for revisions"
 msgstr "Határozd meg az egyéni állapotokat a revíziókhoz"
 
-#: classes/PublishPress/IntegrationCards.php:86
+#: classes/PublishPress/IntegrationCards.php:122
 msgid "Control editing access for each revision status"
 msgstr "Irányítsd az szerkesztési hozzáférést minden revízió állapothoz"
 
-#: classes/PublishPress/IntegrationCards.php:213
+#: classes/PublishPress/IntegrationCards.php:249
 #: classes/PublishPress/Revisionary.php:112
-#: classes/PublishPress/Revisionary.php:200
+#: classes/PublishPress/Revisionary.php:203
 msgid "Store custom fields with revisions"
 msgstr "Egyedi mezők tárolása verziókkal"
 
-#: classes/PublishPress/IntegrationCards.php:214
+#: classes/PublishPress/IntegrationCards.php:250
 #: classes/PublishPress/Revisionary.php:113
-#: classes/PublishPress/Revisionary.php:201
+#: classes/PublishPress/Revisionary.php:204
 msgid "Display custom field changes"
 msgstr "Egyedi mezők változásainak megjelenítése"
 
-#: classes/PublishPress/IntegrationCards.php:215
+#: classes/PublishPress/IntegrationCards.php:251
 #: classes/PublishPress/Revisionary.php:114
-#: classes/PublishPress/Revisionary.php:202
+#: classes/PublishPress/Revisionary.php:205
 msgid "Update custom fields on revision publication"
 msgstr "Egyedi mezők frissítése a verzió közzétételekor"
 
-#: classes/PublishPress/IntegrationCards.php:228
+#: classes/PublishPress/IntegrationCards.php:264
 #, php-format
 msgid "Compatibility with %s theme custom fields."
 msgstr "Kompatibilitás a %s téma egyedi mezőivel."
 
-#: classes/PublishPress/IntegrationCards.php:229
+#: classes/PublishPress/IntegrationCards.php:265
 #, php-format
 msgid "Compatibility with %s custom fields."
 msgstr "Kompatibilitás a %s egyedi mezőivel."
 
-#: classes/PublishPress/IntegrationCards.php:255
+#: classes/PublishPress/IntegrationCards.php:292
 #, php-format
 msgid "Compatibility with %s."
 msgstr "Kompatibilitás a %s-val."
 
-#: classes/PublishPress/IntegrationCards.php:256
+#: classes/PublishPress/IntegrationCards.php:293
 #, php-format
 msgid "Compatibility with %s cache."
 msgstr "Kompatibilitás a %s gyorsítótárral."
 
-#: classes/PublishPress/IntegrationCards.php:266
-#: classes/PublishPress/Revisionary.php:186
+#: classes/PublishPress/IntegrationCards.php:303
+#: classes/PublishPress/Revisionary.php:189
 msgid "Clear cache on revision publication"
 msgstr "Gyorsítótár törlése a revízió közzétételekor"
 
-#: classes/PublishPress/IntegrationCards.php:267
-#: classes/PublishPress/Revisionary.php:187
+#: classes/PublishPress/IntegrationCards.php:304
+#: classes/PublishPress/Revisionary.php:190
 msgid "Support immediate and scheduled publication"
 msgstr "Azonnali és ütemezett közzétel támogatása"
 
-#: classes/PublishPress/IntegrationCards.php:284, fuzzy
+#: classes/PublishPress/IntegrationCards.php:322, fuzzy
 msgid "LiteSpeed Cache"
 msgstr "LiteSpeed Cache"
 
-#: classes/PublishPress/IntegrationCards.php:285, fuzzy
+#: classes/PublishPress/IntegrationCards.php:323, fuzzy
 msgid "WP Fastest Cache"
 msgstr "WP Fastest Cache"
 
-#: classes/PublishPress/IntegrationCards.php:286, fuzzy
+#: classes/PublishPress/IntegrationCards.php:324, fuzzy
 msgid "WP Super Cache"
 msgstr "WP Super Cache"
 
-#: classes/PublishPress/IntegrationCards.php:287, fuzzy
+#: classes/PublishPress/IntegrationCards.php:325, fuzzy
 msgid "WP-Optimize"
 msgstr "WP-Optimize"
 
-#: classes/PublishPress/IntegrationCards.php:288, fuzzy
+#: classes/PublishPress/IntegrationCards.php:326, fuzzy
 msgid "W3 Total Cache"
 msgstr "W3 Total Cache"
 
-#: classes/PublishPress/IntegrationCards.php:289, fuzzy
+#: classes/PublishPress/IntegrationCards.php:327, fuzzy
 msgid "Breeze"
 msgstr "Breeze"
 
-#: classes/PublishPress/IntegrationCards.php:290, fuzzy
+#: classes/PublishPress/IntegrationCards.php:328, fuzzy
 msgid "SpeedyCache"
 msgstr "SpeedyCache"
 
-#: classes/PublishPress/IntegrationCards.php:315, fuzzy
+#: classes/PublishPress/IntegrationCards.php:353, fuzzy
 msgid "PublishPress Cart"
 msgstr "PublishPress Cart"
 
-#: classes/PublishPress/IntegrationCards.php:320
-#: classes/PublishPress/Revisionary.php:239
+#: classes/PublishPress/IntegrationCards.php:358
+#: classes/PublishPress/Revisionary.php:242
 msgid "Revision submission and approval for products."
 msgstr "Verzió benyújtása és jóváhagyás termékekhez."
 
-#: classes/PublishPress/IntegrationCards.php:322
-#: classes/PublishPress/Revisionary.php:243
+#: classes/PublishPress/IntegrationCards.php:360
+#: classes/PublishPress/Revisionary.php:246
 msgid "Product revisions"
 msgstr "Termék verziók"
 
-#: classes/PublishPress/IntegrationCards.php:323
-#: classes/PublishPress/Revisionary.php:245
+#: classes/PublishPress/IntegrationCards.php:361
+#: classes/PublishPress/Revisionary.php:248
 msgid "Priority on ongoing compatibility"
 msgstr "Prioritás a folyamatban lévő kompatibilitásra"
 
@@ -3069,132 +3503,138 @@ msgid "Integration with Beaver Builder's front end editor."
 msgstr "Integráció a Beaver Builder front-end szerkesztőjével."
 
 #: classes/PublishPress/Revisionary.php:141
-#: classes/PublishPress/Revisionary.php:156
-#: classes/PublishPress/Revisionary.php:171
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:173
 msgid "Front end Revision submission"
 msgstr "Front-end verzió beküldése"
 
 #: classes/PublishPress/Revisionary.php:142
-#: classes/PublishPress/Revisionary.php:157
-#: classes/PublishPress/Revisionary.php:172
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:174
 msgid "Front end Revision editing"
 msgstr "Front-end verzió szerkesztése"
 
 #: classes/PublishPress/Revisionary.php:143
-#: classes/PublishPress/Revisionary.php:158
-#: classes/PublishPress/Revisionary.php:173
+#: classes/PublishPress/Revisionary.php:159
+#: classes/PublishPress/Revisionary.php:175
+msgid "Visual comparison of changes"
+msgstr "A változások vizuális összehasonlítása"
+
+#: classes/PublishPress/Revisionary.php:144
+#: classes/PublishPress/Revisionary.php:160
+#: classes/PublishPress/Revisionary.php:176
 msgid "Revision preview and redirects"
 msgstr "Verzió előnézet és átirányítások"
 
-#: classes/PublishPress/Revisionary.php:151, fuzzy
+#: classes/PublishPress/Revisionary.php:152, fuzzy
 msgid "Divi"
 msgstr "Divi"
 
-#: classes/PublishPress/Revisionary.php:152
+#: classes/PublishPress/Revisionary.php:153
 msgid "Integration with Divi Builder and Divi Theme."
 msgstr "Integráció a Divi Builder-rel és a Divi témával."
 
-#: classes/PublishPress/Revisionary.php:166
+#: classes/PublishPress/Revisionary.php:168
 #: includes/CoreAdmin.php:198, fuzzy
 msgid "Elementor"
 msgstr "Elementor"
 
-#: classes/PublishPress/Revisionary.php:167
+#: classes/PublishPress/Revisionary.php:169
 msgid "Integration with Elementor's front end editor."
 msgstr "Integráció az Elementor front-end szerkesztőjével."
 
-#: classes/PublishPress/Revisionary.php:181, fuzzy
+#: classes/PublishPress/Revisionary.php:184, fuzzy
 msgid "Nitro Pack"
 msgstr "Nitro Pack"
 
-#: classes/PublishPress/Revisionary.php:182
+#: classes/PublishPress/Revisionary.php:185
 msgid "Compatibility with Nitro Pack cache."
 msgstr "Kompatibilitás a Nitro Pack gyorsítótárral."
 
-#: classes/PublishPress/Revisionary.php:195
+#: classes/PublishPress/Revisionary.php:198
 #: includes/CoreAdmin.php:202, fuzzy
 msgid "Pods"
 msgstr "Pods"
 
-#: classes/PublishPress/Revisionary.php:196
+#: classes/PublishPress/Revisionary.php:199
 msgid "Compatibility with Pods custom fields."
 msgstr "Kompatibilitás a Pods egyedi mezőkkel."
 
-#: classes/PublishPress/Revisionary.php:210, fuzzy
+#: classes/PublishPress/Revisionary.php:213, fuzzy
 msgid "Polylang"
 msgstr "Polylang"
 
-#: classes/PublishPress/Revisionary.php:211
+#: classes/PublishPress/Revisionary.php:214
 msgid "Compatibility with Polylang translation."
 msgstr "Kompatibilitás a Polylang fordítással."
 
-#: classes/PublishPress/Revisionary.php:215
+#: classes/PublishPress/Revisionary.php:218
 msgid "Revisions carry over Polylang data"
 msgstr "A verziók átviszik a Polylang adatokat"
 
-#: classes/PublishPress/Revisionary.php:216
+#: classes/PublishPress/Revisionary.php:219
 msgid "Translation retained on Revision approval"
 msgstr "A fordítás megmarad a verzió jóváhagyásakor"
 
-#: classes/PublishPress/Revisionary.php:224, fuzzy
+#: classes/PublishPress/Revisionary.php:227, fuzzy
 msgid "PublishPress Planner"
 msgstr "PublishPress Planner"
 
-#: classes/PublishPress/Revisionary.php:225
+#: classes/PublishPress/Revisionary.php:228
 msgid "PublishPress Planner Integration."
 msgstr "PublishPress Planner integráció."
 
-#: classes/PublishPress/Revisionary.php:229
+#: classes/PublishPress/Revisionary.php:232
 msgid "Planner Notifications for revision actions"
 msgstr "Planner értesítések a verzió műveletekhez"
 
-#: classes/PublishPress/Revisionary.php:230
+#: classes/PublishPress/Revisionary.php:233
 msgid "Revision schedule shown in Calendar"
 msgstr "Verzió ütemezés a Naptárban"
 
-#: classes/PublishPress/Revisionary.php:238
+#: classes/PublishPress/Revisionary.php:241
 #: includes/CoreAdmin.php:203
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: classes/PublishPress/Revisionary.php:244
+#: classes/PublishPress/Revisionary.php:247
 msgid "Compatible with Product Variations"
 msgstr "Kompatibilis a termékvariációkkal"
 
-#: classes/PublishPress/Revisionary.php:254
+#: classes/PublishPress/Revisionary.php:257
 #: includes/CoreAdmin.php:204, fuzzy
 msgid "WPML"
 msgstr "WPML"
 
-#: classes/PublishPress/Revisionary.php:255
+#: classes/PublishPress/Revisionary.php:258
 msgid "Multilingual revisioning with WPML."
 msgstr "Többnyelvű revízió WPML-lel."
 
-#: classes/PublishPress/Revisionary.php:259
+#: classes/PublishPress/Revisionary.php:262
 msgid "Language-specific revisions"
 msgstr "Nyelvspecifikus revíziók"
 
-#: classes/PublishPress/Revisionary.php:260
+#: classes/PublishPress/Revisionary.php:263
 msgid "Translation Management integration"
 msgstr "Fordítási menedzsment integráció"
 
-#: classes/PublishPress/Revisionary.php:268, fuzzy
+#: classes/PublishPress/Revisionary.php:271, fuzzy
 msgid "Yoast SEO"
 msgstr "Yoast SEO"
 
-#: classes/PublishPress/Revisionary.php:269, fuzzy
+#: classes/PublishPress/Revisionary.php:272, fuzzy
 msgid "."
 msgstr "."
 
-#: classes/PublishPress/Revisionary.php:273
+#: classes/PublishPress/Revisionary.php:276
 msgid "Prevent indexing of revisions"
 msgstr "A revíziók indexelésének megakadályozása"
 
-#: classes/PublishPress/Revisionary.php:274
+#: classes/PublishPress/Revisionary.php:277
 msgid "Compatibility for Yoast SEO + Elementor"
 msgstr "Kompatibilitás a Yoast SEO + Elementor számára"
 
-#: classes/PublishPress/Revisionary.php:275
+#: classes/PublishPress/Revisionary.php:278
 msgid "Compare revisions to Yoast SEO fields"
 msgstr "Revíziók összehasonlítása a Yoast SEO mezőivel"
 
@@ -3213,128 +3653,121 @@ msgstr ""
 msgid "Dismiss notice"
 msgstr "Értesítés elvetése"
 
-#: front_rvy.php:446
+#: front_rvy.php:507
 #, php-format
 msgid "%sManage%s"
 msgstr "%sKezelés%s"
 
-#: front_rvy.php:457
+#: front_rvy.php:518
 #, php-format
 msgid "%sCompare%s%sView Published Post%s"
 msgstr "%sÖsszehasonlítás%s%sKözzétett bejegyzés megtekintése%s"
 
-#: front_rvy.php:469
-#: front_rvy.php:484
+#: front_rvy.php:530
+#: front_rvy.php:545
 #, php-format
 msgid "%sView Published Post%s"
 msgstr "%sKözzétett bejegyzés megtekintése%s"
 
-#: front_rvy.php:559
-#: rvy_init-functions.php:282
-#: rvy_init-functions.php:338
-msgid "Submit"
-msgstr "Beküldés"
+#: front_rvy.php:639
+#: front_rvy.php:645
+#: front_rvy.php:701
+#: front_rvy.php:707
+#, php-format
+msgid "This Revision is Submitted for Approval. %s %s %s"
+msgstr "Ez a revízió jóváhagyásra került. %s %s %s"
 
-#: front_rvy.php:571
-#: front_rvy.php:573
-#: front_rvy.php:625
-#: front_rvy.php:627
+#: front_rvy.php:641
+#: front_rvy.php:647
+#: front_rvy.php:703
+#: front_rvy.php:709
 #, php-format
 msgid "This is a %s. %s %s %s"
 msgstr "Ez egy %s. %s %s %s"
 
-#: front_rvy.php:575
-#: front_rvy.php:629
+#: front_rvy.php:650
+#: front_rvy.php:712
 #, fuzzy, php-format
 msgid "%s."
 msgstr "%s."
 
-#: front_rvy.php:590
-msgid "Decline"
-msgstr "Elutasítás"
-
-#: front_rvy.php:599
-#: rvy_init-functions.php:355
-msgid "Schedule"
-msgstr "Ütemezés"
-
-#: front_rvy.php:604
-#: front_rvy.php:606
-#: front_rvy.php:651
-#: front_rvy.php:653
+#: front_rvy.php:679
+#: front_rvy.php:681
+#: front_rvy.php:734
+#: front_rvy.php:736
 #, php-format
 msgid "This is a %s (for %s). %s %s %s"
 msgstr "Ez egy %s (a %s-hoz). %s %s %s"
 
-#: front_rvy.php:608
-#: front_rvy.php:655
+#: front_rvy.php:683
+#: front_rvy.php:738
 #, php-format
 msgid "%1$s (for %2$s)."
 msgstr "%1$s (a %2$s-hoz)."
 
-#: front_rvy.php:611
-#: front_rvy.php:613
+#: front_rvy.php:686
+#: front_rvy.php:688
 #, php-format
 msgid "Revision status: %s (for %s) %s %s %s"
 msgstr "Javítás állapot: %s (a %s-hoz) %s %s %s"
 
-#: front_rvy.php:615
+#: front_rvy.php:690
 #, php-format
 msgid "Revision status: %1$s (for %2$s)"
 msgstr "Javítás állapot: %1$s (a %2$s-hoz)"
 
-#: front_rvy.php:632
-#: front_rvy.php:634
+#: front_rvy.php:715
+#: front_rvy.php:717
 #, php-format
 msgid "Revision status: %s %s %s %s"
 msgstr "Revízió állapot: %s %s %s %s"
 
-#: front_rvy.php:636
+#: front_rvy.php:719
 #, php-format
 msgid "Revision status: %s"
 msgstr "Javítás állapot: %s"
 
-#: front_rvy.php:648
+#: front_rvy.php:731
 #: rvy_init-functions.php:445
 msgid "Publish Now"
 msgstr "Közzététel most"
 
-#: front_rvy.php:672
+#: front_rvy.php:755
 #, php-format
 msgid "The revision was approved and is now live on the site. %s"
 msgstr "A revízió jóváhagyásra került, és most élő az oldalon. %s"
 
-#: front_rvy.php:673
+#: front_rvy.php:756
 #, php-format
 msgid "This is the Current Revision. %s"
 msgstr "Ez a Jelenlegi Revízió. %s"
 
-#: front_rvy.php:681
+#: front_rvy.php:764
 msgid "Revision approved and live."
 msgstr "A javítás jóváhagyva és élő."
 
-#: front_rvy.php:682
+#: front_rvy.php:765
 msgid "Current Revision."
 msgstr "Aktuális verzió."
 
-#: front_rvy.php:693
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:345
+#: front_rvy.php:776
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:348
 #: visual-compare_rvy.php:101
 msgid "Restore"
 msgstr "Visszaállítás"
 
-#: front_rvy.php:697
-#: front_rvy.php:699
+#: front_rvy.php:780
+#: front_rvy.php:782
 #, php-format
 msgid "This is a Past Revision (from %s). %s %s"
 msgstr "Ez egy Múltbeli Revízió (a %s-ból). %s %s"
 
-#: front_rvy.php:701
+#: front_rvy.php:784
 #, php-format
 msgid "Past Revision (from %s)."
 msgstr "Korábbi verzió (a %s-től)."
 
-#: front_rvy.php:767
+#: front_rvy.php:850
 msgid "More revision actions"
 msgstr "További verzió műveletek"
 
@@ -3355,10 +3788,6 @@ msgid ""
 msgstr ""
 "A PublishPress Revisions Free-t használja. A Pro verzió több funkciót és "
 "támogatást kínál. %sFrissítés Pro%s"
-
-#: includes/CoreAdmin.php:190
-msgid "Upgrade to Revisions Pro"
-msgstr "Frissítés Revisions Pro-ra"
 
 #: includes/CoreAdmin.php:195
 msgid ""
@@ -3388,6 +3817,10 @@ msgstr "Szüksége van Revisions Támogatásra?"
 msgid "If you need help or have a new feature request, let us know."
 msgstr "Ha segítségre van szüksége, vagy új funkciókérése van, értesítsen minket."
 
+#: includes/CoreAdmin.php:225
+msgid "Request support for PublishPress Revisions"
+msgstr "Támogatás kérés a PublishPress Revisions-hez"
+
 #: includes/CoreAdmin.php:226
 msgid "Request Support"
 msgstr "Támogatás Kérése"
@@ -3395,6 +3828,10 @@ msgstr "Támogatás Kérése"
 #: includes/CoreAdmin.php:235
 msgid "Detailed documentation is also available on the plugin website."
 msgstr "Részletes dokumentáció a bővítmény weboldalán is elérhető."
+
+#: includes/CoreAdmin.php:236
+msgid "View PublishPress Revisions knowledge base"
+msgstr "A PublishPress Revisions tudásbázisának megtekintése"
 
 #: includes/CoreAdmin.php:237
 msgid "View Knowledge Base"
@@ -3405,9 +3842,8 @@ msgid "Modified: "
 msgstr "Módosítva: "
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
-#: includes/visual-post-compare/visual-post-compare.php:110
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3011
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare.php:135
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3134
 msgid "Post Date: "
 msgstr "Közzététel dátuma: "
 
@@ -3430,101 +3866,131 @@ msgstr "Művelet: %s"
 msgid "Current"
 msgstr "Jelenlegi"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:214
-#, php-format
-msgid "by: %s"
-msgstr "szerző: %s"
-
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
+#. translators: %s: revision approver display name.
+#, php-format
+msgid "(approved by %s)"
+msgstr "(jóváhagyta: %s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#. translators: %s: direct editor display name.
+#, fuzzy, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
 msgid "Comparison legend"
 msgstr "Összehasonlítás legendája"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
 msgid "Added"
 msgstr "Hozzáadva"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
 msgid "Removed"
 msgstr "Eltávolítva"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
 msgid "Modified"
 msgstr "Módosítva"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
 msgid "Loading comparison..."
 msgstr "Összehasonlítás betöltése..."
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
 msgid "The target post content has been replaced with the approved content."
 msgstr "A célbejegyzés tartalmát a jóváhagyott tartalomra cseréltük."
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3344
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3467
 msgid "Classic compare screen"
 msgstr "Hagyományos összehasonlító képernyő"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:226
 msgid "Visual comparison settings"
 msgstr "Vizuális összehasonlítási beállítások"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:311
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:312
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:314
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:315
 msgid "Past Revision"
 msgstr "Régi revisió"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:346
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:349
 msgid "Restoring"
 msgstr "Visszaállítás"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:423
-msgid "Publish"
-msgstr "Közzététel"
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:381
+msgid "Published by Scheduled Revision"
+msgstr "Közzétéve ütemezett revízió által"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:424
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:383
+msgid "Published by Revision"
+msgstr "Közzétéve revízió által"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:409
+msgid "Published by Direct Edit"
+msgstr "Közzétéve közvetlen szerkesztés által"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
 msgid "Publishing"
 msgstr "Közzététel alatt"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:427
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
 msgid "Approving"
 msgstr "Jóváhagyás"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:64
-#: includes/visual-post-compare/visual-post-compare.php:38
-#: includes/visual-post-compare/visual-post-compare.php:233
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
+msgid "You are not allowed to view the revisions."
+msgstr "Nincs jogosultsága a revíziók megtekintésére."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:88
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare.php:258
 msgid "You are not allowed to view the revision."
 msgstr "Nincs engedélyed a revízió megtekintésére."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:83
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:90
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:141
-#: includes/visual-post-compare/visual-post-compare.php:28
-#: includes/visual-post-compare/visual-post-compare.php:214
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:107
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:181
+#: includes/visual-post-compare/visual-post-compare.php:53
+#: includes/visual-post-compare/visual-post-compare.php:239
 msgid "Invalid revision ID."
 msgstr "Érvénytelen revízióazonosító."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:107
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:131
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:142
 msgid "You are not allowed to approve the revision."
 msgstr "Nem engedélyezett a revízió jóváhagyása."
 
-#: includes/visual-post-compare/visual-post-compare.php:227
-#: includes/visual-post-compare/visual-post-compare.php:233
-#: includes/visual-post-compare/visual-post-compare.php:238
-#: includes/visual-post-compare/visual-post-compare.php:246
-#: includes/visual-post-compare/visual-post-compare.php:291
-#: includes/visual-post-compare/visual-post-compare.php:390
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:162
+msgid "The revision could not be approved."
+msgstr "A revíziót nem lehetett jóváhagyni."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:174
+msgid "The revision has been approved and scheduled for publication."
+msgstr "A revíziót jóváhagyták és közzétételre ütemezték."
+
+#: includes/visual-post-compare/visual-post-compare.php:252
+#: includes/visual-post-compare/visual-post-compare.php:258
+#: includes/visual-post-compare/visual-post-compare.php:263
+#: includes/visual-post-compare/visual-post-compare.php:271
+#: includes/visual-post-compare/visual-post-compare.php:316
+#: includes/visual-post-compare/visual-post-compare.php:415
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3477
-#: includes/visual-post-compare/visual-post-compare-standalone.js:371
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3600
 msgid "Compare Revisions"
 msgstr "Módosítások összehasonlítása"
 
-#: includes/visual-post-compare/visual-post-compare.php:238
+#: includes/visual-post-compare/visual-post-compare.php:263
 msgid "You are not allowed to view this comparison."
 msgstr "Nincs engedélyed ennek az összehasonlításnak a megtekintésére."
+
+#: includes/visual-post-compare/visual-post-compare.php:416
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3526
+msgid "Loading comparison…"
+msgstr "Összehasonlítás betöltése…"
 
 #: lib/debug.php:99
 #, php-format
@@ -3535,7 +4001,7 @@ msgstr "%1$s lekérdezés %2$s másodperc alatt. %3$s MB használva."
 msgid "Could not insert post into the database"
 msgstr "Nem sikerült a bejegyzést az adatbázisba beszúrni"
 
-#: revision-creation_rvy.php:401
+#: revision-creation_rvy.php:427
 msgid "Could not insert revision into the database"
 msgstr "Nem sikerült a revíziót beilleszteni az adatbázisba"
 
@@ -3576,7 +4042,7 @@ msgstr "Új revíziók: "
 msgid "Edit %s: "
 msgstr "%s szerkesztése: "
 
-#: revisionary.php:120
+#: revisionary.php:122
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>Ez a bővítmény törölhető.</strong>"
 
@@ -3830,11 +4296,11 @@ msgstr "Közzétett Bejegyzés"
 msgid "Submit Changes"
 msgstr "Változások benyújtása"
 
-#: rvy_init-functions.php:683
+#: rvy_init-functions.php:693
 msgid "Revisor"
 msgstr "Felülvizsgáló"
 
-#: rvy_init-functions.php:799
+#: rvy_init-functions.php:812
 msgid ""
 "The unfiltered_html capability is required to create a revision of this "
 "post."
@@ -3842,7 +4308,7 @@ msgstr ""
 "A nem szűrt_html képesség szükséges ehhez a bejegyzéshez tartozó revízió "
 "létrehozásához."
 
-#: rvy_init-functions.php:1247
+#: rvy_init-functions.php:1279
 msgid "Revision Workflow"
 msgstr "Revíziós folyamat"
 
@@ -3854,239 +4320,164 @@ msgstr "Ütemezett revisiók összehasonlítása"
 msgid "Compare New Revisions"
 msgstr "Új verziók összehasonlítása"
 
+#: visual-compare_rvy.php:90
+msgid "Compare Past Revisions"
+msgstr "Korábbi verziók összehasonlítása"
+
 #: visual-compare_rvy.php:180
 msgid "Scheduled:"
 msgstr "Ütemezett:"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:108
-#: includes/visual-post-compare/visual-post-compare-classic.js:193
-#: includes/visual-post-compare/visual-post-compare-classic.js:487
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
 msgid "Add Format"
 msgstr "Formátum hozzáadása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:109
-#: includes/visual-post-compare/visual-post-compare-classic.js:193
-#: includes/visual-post-compare/visual-post-compare-classic.js:487
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:195
 msgid "Remove Format"
 msgstr "Formátum eltávolítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:110
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:462
-#: includes/visual-post-compare/visual-post-compare-classic.js:193
-#: includes/visual-post-compare/visual-post-compare-classic.js:224
-#: includes/visual-post-compare/visual-post-compare-classic.js:487
-#: includes/visual-post-compare/visual-post-compare-classic.js:518
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:329
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
-#: includes/visual-post-compare/visual-post-compare-standalone.js:161
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:352
 msgid "Modify Format"
 msgstr "Formátum módosítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:224
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1371
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1372
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1889
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1913
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1918
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
 msgid "bolding"
 msgstr "félkövér"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:225
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1373
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1374
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1890
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1914
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1919
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
 msgid "italics"
 msgstr "dőlt"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:226
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1375
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1376
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1891
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1915
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1920
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
 msgid "underscore"
 msgstr "aláhúzás"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:227
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1377
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1378
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1892
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2016
 msgid "strikethrough"
 msgstr "átvonás"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:240
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:297
-#: includes/visual-post-compare/visual-post-compare-classic.js:205
-#: includes/visual-post-compare/visual-post-compare-classic.js:211
-#: includes/visual-post-compare/visual-post-compare-classic.js:499
-#: includes/visual-post-compare/visual-post-compare-classic.js:505
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1382
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1905
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1935
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:294
-#: includes/visual-post-compare/visual-post-compare-standalone.js:297
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2059
 msgid "Change font size"
 msgstr "Betűméret megváltoztatása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1372
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
 msgid "Remove bolding"
 msgstr "Félkövér eltávolítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1374
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1914
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
 msgid "Remove italics"
 msgstr "Dőlt eltávolítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1376
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1915
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
 msgid "Remove underscore"
 msgstr "Aláhúzás eltávolítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1378
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1916
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2040
 msgid "Remove strikethrough"
 msgstr "Átvonás eltávolítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1371
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1918
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
 msgid "Add bolding"
 msgstr "Félkövér hozzáadása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1373
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1919
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
 msgid "Add italics"
 msgstr "Dőlt hozzáadása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1375
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1920
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
 msgid "Add underscore"
 msgstr "Aláhúzás hozzáadása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:256
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1377
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1921
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2045
 msgid "Add strikethrough"
 msgstr "Átvonás hozzáadása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:276
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:907
-#: includes/visual-post-compare/visual-post-compare-classic.js:209
-#: includes/visual-post-compare/visual-post-compare-classic.js:258
-#: includes/visual-post-compare/visual-post-compare-classic.js:503
-#: includes/visual-post-compare/visual-post-compare-classic.js:552
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2171
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2197
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2231
-#: includes/visual-post-compare/visual-post-compare-standalone.js:316
-#: includes/visual-post-compare/visual-post-compare-standalone.js:319
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2355
 #, js-format
 msgid "Modified HTML tag: %s"
 msgstr "Megváltoztatott HTML címke: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:286
-#: includes/visual-post-compare/visual-post-compare-classic.js:210
-#: includes/visual-post-compare/visual-post-compare-classic.js:504
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2209
-#: includes/visual-post-compare/visual-post-compare-standalone.js:317
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2333
 #, js-format
 msgid "Modified HTML tag: %1$s, %2$s"
 msgstr "Megváltoztatott HTML címke: %1$s, %2$s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:300
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:330
-#: includes/visual-post-compare/visual-post-compare-classic.js:211
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:505
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid ""
 "Modify format:\n"
@@ -4096,48 +4487,41 @@ msgstr ""
 " %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:303
-#: includes/visual-post-compare/visual-post-compare-classic.js:212
-#: includes/visual-post-compare/visual-post-compare-classic.js:506
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Change ID"
 msgstr "ID megváltoztatása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:309
-#: includes/visual-post-compare/visual-post-compare-classic.js:213
-#: includes/visual-post-compare/visual-post-compare-classic.js:507
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Add classes: %s"
 msgstr "Osztályok hozzáadása: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:310
-#: includes/visual-post-compare/visual-post-compare-classic.js:213
-#: includes/visual-post-compare/visual-post-compare-classic.js:507
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Remove classes: %s"
 msgstr "Osztályok eltávolítása: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:313
-#: includes/visual-post-compare/visual-post-compare-classic.js:214
-#: includes/visual-post-compare/visual-post-compare-classic.js:508
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Modify style"
 msgstr "Stílus módosítása"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:323
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Remove %s"
 msgstr "Eltávolítás: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:325
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Add %s"
 msgstr "Hozzáadás: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:327
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Change %s"
 msgstr "Megváltoztatás: %s"
@@ -4145,71 +4529,66 @@ msgstr "Megváltoztatás: %s"
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:474
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:600
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:714
-#: includes/visual-post-compare/visual-post-compare-classic.js:225
-#: includes/visual-post-compare/visual-post-compare-classic.js:242
-#: includes/visual-post-compare/visual-post-compare-classic.js:246
-#: includes/visual-post-compare/visual-post-compare-classic.js:519
-#: includes/visual-post-compare/visual-post-compare-classic.js:536
-#: includes/visual-post-compare/visual-post-compare-classic.js:540
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:190
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:377
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
-#: includes/visual-post-compare/visual-post-compare-standalone.js:165
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:400
 msgid "Remove"
 msgstr "Eltávolítás"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:702
-#: includes/visual-post-compare/visual-post-compare-classic.js:246
-#: includes/visual-post-compare/visual-post-compare-classic.js:540
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:191
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:387
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
-#: includes/visual-post-compare/visual-post-compare-standalone.js:165
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:410
 msgid "Add"
 msgstr "Hozzáadás"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:960
-#: includes/visual-post-compare/visual-post-compare-classic.js:259
-#: includes/visual-post-compare/visual-post-compare-classic.js:553
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Add text: line break"
 msgstr "Szöveg hozzáadása: sortörés"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:969
-#: includes/visual-post-compare/visual-post-compare-classic.js:259
-#: includes/visual-post-compare/visual-post-compare-classic.js:553
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Remove text: line break"
 msgstr "Szöveg eltávolítása: sortörés"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:1155
-#: includes/visual-post-compare/visual-post-compare-classic.js:273
-#: includes/visual-post-compare/visual-post-compare-classic.js:567
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "WordPress Classic Editor content conversion APIs are unavailable."
 msgstr "A WordPress Classic Editor tartalomkonvertáló API-k nem elérhetők."
 
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1897
+#, js-format
+msgid "Show previous image: %s"
+msgstr "Előző kép megjelenítése: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1450
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1898
+msgid "Show previous image"
+msgstr "Előző kép megjelenítése"
+
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:60
-#: includes/visual-post-compare/visual-post-compare-standalone.js:4
 msgid "WordPress core block definitions are unavailable on this screen."
 msgstr "A WordPress alapértelmezett blokk definíciók nem elérhetők ezen a képernyőn."
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:68
-#: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr ""
 "A WordPress alapértelmezett blokkok nem regisztrálhatók az "
 "összehasonlításhoz."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:815
-#: includes/visual-post-compare/visual-post-compare-standalone.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:903
 msgid "Classic Editor comparison support is unavailable."
 msgstr "A Classic Editor összehasonlító támogatás nem elérhető."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:862
-#: includes/visual-post-compare/visual-post-compare-standalone.js:201
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:950
 msgid "WordPress 7.0 block revision parser APIs are unavailable."
 msgstr "A WordPress 7.0 blokk revisió elemző API-k nem elérhetők."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:902
-#: includes/visual-post-compare/visual-post-compare-standalone.js:205
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:990
 msgid ""
 "The comparison was generated, but WordPress could not parse any comparison "
 "blocks."
@@ -4217,536 +4596,467 @@ msgstr ""
 "Az összehasonlítás létrejött, de a WordPress nem tudta elemezni az "
 "összehasonlító blokkokat."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1037
-#: includes/visual-post-compare/visual-post-compare-standalone.js:218
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1125
 msgid "Select comparison post"
 msgstr "Válassza ki az összehasonlító bejegyzést"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1192
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1195
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1371
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1373
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1375
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1377
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1663
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:276
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1782
 msgid "add"
 msgstr "hozzáad"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1192
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1193
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1194
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1278
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:239
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
 msgid "image"
 msgstr "kép"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1193
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1196
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1372
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1374
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1376
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1378
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1669
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:276
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1788
 msgid "remove"
 msgstr "eltávolít"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1194
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1197
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1275
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1510
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:239
-#: includes/visual-post-compare/visual-post-compare-standalone.js:267
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1629
 msgid "modify"
 msgstr "módosít"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1195
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1196
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
 msgid "text"
 msgstr "szöveg"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1197
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
 msgid "format"
 msgstr "formátum"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1198
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1383
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:255
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1515
 msgid "change"
 msgstr "változtatás"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1198
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
 msgid "link"
 msgstr "hivatkozás"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1277
-#: includes/visual-post-compare/visual-post-compare-standalone.js:239
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
 msgid "image's attributes"
 msgstr "kép attribútumai"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1301
-#: includes/visual-post-compare/visual-post-compare-standalone.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1420
 msgid "Table"
 msgstr "Tábla"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1308
-#: includes/visual-post-compare/visual-post-compare-standalone.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1427
 msgid "Gallery"
 msgstr "Galéria"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1311
-#: includes/visual-post-compare/visual-post-compare-standalone.js:243
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1430
 msgid "Paragraph"
 msgstr "Bekezdés"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1312
-#: includes/visual-post-compare/visual-post-compare-standalone.js:243
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1431
 msgid "Section"
 msgstr "Szekció"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1329
-#: includes/visual-post-compare/visual-post-compare-standalone.js:246
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1448
 msgid "Revision Restore"
 msgstr "Változat visszaállítása"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1337
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1456
 msgid "added"
 msgstr "hozzáadva"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1338
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1457
 msgid "removed"
 msgstr "eltávolítva"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1339
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1458
 msgid "modified"
 msgstr "módosítva"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1340
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1342
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1461
 msgid "changed"
 msgstr "megváltoztatva"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1344
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1463
 #, js-format
 msgid "This %1$s was <b>%2$s</b>%3$s"
 msgstr "Ez a %1$s <b>%2$s</b>%3$s volt"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1356
-#: includes/visual-post-compare/visual-post-compare-standalone.js:250
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1475
 #, js-format
 msgid "%1$s will <b>%2$s</b> this %3$s%4$s"
 msgstr "%1$s <b>%2$s</b> ezt a %3$s%4$s fogja"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1383
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
 msgid "font size"
 msgstr "betűméret"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
-#: includes/visual-post-compare/visual-post-compare-standalone.js:255
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1516
 msgid "formatting"
 msgstr "formázás"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1404
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1523
 msgid "Revision restore"
 msgstr "Változat visszaállítása"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1405
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1524
 msgid "Revision publication"
 msgstr "Változat közzététele"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1407
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
 #, fuzzy
 msgid "<b>%1$s</b> %2$s"
 msgstr "<b>%1$s</b> %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1413
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
 #, js-format
 msgid "%1$s and %2$s"
 msgstr "%1$s és %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1414
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1533
 #, js-format
 msgid "%1$s will %2$s."
 msgstr "%1$s fog %2$s."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1421
-#: includes/visual-post-compare/visual-post-compare-standalone.js:257
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1540
 msgid "line break"
 msgstr "soros törés"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1442
-#: includes/visual-post-compare/visual-post-compare-standalone.js:260
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1561
 #, js-format
 msgid "Add %d Image"
 msgid_plural "Add %d Images"
 msgstr[0] "Hozzáadás %d Kép"
 msgstr[1] "Hozzáadás %d Képek"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1445
-#: includes/visual-post-compare/visual-post-compare-standalone.js:261
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1564
 #, js-format
 msgid "Remove %d Image"
 msgid_plural "Remove %d Images"
 msgstr[0] "Eltávolítás %d Kép"
 msgstr[1] "Eltávolítás %d Képek"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1447
-#: includes/visual-post-compare/visual-post-compare-standalone.js:262
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1566
 #, js-format
 msgid "Modify %d Image"
 msgid_plural "Modify %d Images"
 msgstr[0] "Módosítás %d Kép"
 msgstr[1] "Módosítás %d Képek"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1468
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1587
 #, js-format
 msgid "%d Text Addition"
 msgid_plural "%d Text Additions"
 msgstr[0] "%d Szöveg hozzáadása"
 msgstr[1] "%d Szöveg hozzáadások"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1470
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1589
 #, js-format
 msgid "%d Text Deletion"
 msgid_plural "%d Text Deletions"
 msgstr[0] "%d Szöveg törlés"
 msgstr[1] "%d Szöveg törlések"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1474
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1593
 #, js-format
 msgid "%d Link Change"
 msgid_plural "%d Link Changes"
 msgstr[0] "%d Link módosítás"
 msgstr[1] "%d Link módosítások"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1479
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1598
 #, js-format
 msgid "Add %d Line Break"
 msgid_plural "Add %d Line Breaks"
 msgstr[0] "Hozzáadás %d Sor törés"
 msgstr[1] "Hozzáadás %d Sor törések"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1480
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1599
 #, js-format
 msgid "Remove %d Line Break"
 msgid_plural "Remove %d Line Breaks"
 msgstr[0] "Eltávolítás %d Sor törés"
 msgstr[1] "Eltávolítás %d Sor törések"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1487
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
 #, js-format
 msgid "%d formatting change"
 msgid_plural "%d formatting changes"
 msgstr[0] "%d formázás változás"
 msgstr[1] "%d formázás változások"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1504
-#: includes/visual-post-compare/visual-post-compare-standalone.js:266
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
 #, js-format
 msgid "Modified attributes: %s"
 msgstr "Módosított attribútumok: %s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1506
-#: includes/visual-post-compare/visual-post-compare-standalone.js:266
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1625
 msgid "Modified html markup"
 msgstr "Módosított html jelölés"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1776
-#: includes/visual-post-compare/visual-post-compare-standalone.js:288
-msgid "Show previous image"
-msgstr "Előző kép megjelenítése"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1941
-#: includes/visual-post-compare/visual-post-compare-standalone.js:297
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2065
 #, js-format
 msgid "%1$s class added: %2$s"
 msgstr "%1$s osztály hozzáadva: %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1942
-#: includes/visual-post-compare/visual-post-compare-standalone.js:297
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2066
 #, js-format
 msgid "%1$s class removed: %2$s"
 msgstr "%1$s osztály eltávolítva: %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1948
-#: includes/visual-post-compare/visual-post-compare-standalone.js:298
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2072
 #, js-format
 msgid "%s style modified"
 msgstr "%s stílus módosítva"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1961
-#: includes/visual-post-compare/visual-post-compare-standalone.js:299
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2085
 #, js-format
 msgid "%1$s attribute modified: %2$s"
 msgstr "%1$s attribútum módosítva: %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2058
-#: includes/visual-post-compare/visual-post-compare-standalone.js:309
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
 msgid "Modified html tag:"
 msgstr "Módosított html tag:"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2281
-#: includes/visual-post-compare/visual-post-compare-standalone.js:324
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2405
 msgid "Select a changed block to view its details."
 msgstr "Válasszon ki egy megváltozott blokkot a részleteinek megtekintéséhez."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2308
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2499
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2511
-#: includes/visual-post-compare/visual-post-compare-standalone.js:325
-#: includes/visual-post-compare/visual-post-compare-standalone.js:338
-#: includes/visual-post-compare/visual-post-compare-standalone.js:339
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2631
+msgid "No attribute changes"
+msgstr "Nincsenek attribútum változások"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2639
 msgid "Changed attributes"
 msgstr "Megváltozott attribútumok"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2323
-#: includes/visual-post-compare/visual-post-compare-standalone.js:325
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2448
 msgid "Changes detected."
 msgstr "Változások észlelve."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2382
-#: includes/visual-post-compare/visual-post-compare-standalone.js:329, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2507, fuzzy
 msgid "html tag"
 msgstr "html tag"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2477
-#: includes/visual-post-compare/visual-post-compare-standalone.js:337
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
 msgid "Image"
 msgstr "Kép"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2477
-#: includes/visual-post-compare/visual-post-compare-standalone.js:337
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
 msgid "Link"
 msgstr "Hivatkozás"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2492
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3334
-#: includes/visual-post-compare/visual-post-compare-standalone.js:338
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
 msgid "Info"
 msgstr "Információ"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2498
-#: includes/visual-post-compare/visual-post-compare-standalone.js:338
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2624
 msgid "Attributes"
 msgstr "Attribútumok"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2504
-#: includes/visual-post-compare/visual-post-compare-standalone.js:339
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2630
 msgid "Select content to view its details."
 msgstr "Válasszon tartalmat a részleteinek megtekintéséhez."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2536
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2658
 msgid "Compare Custom Fields"
 msgstr "Egyéni mezők összehasonlítása"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2539
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2661
 msgid "Revisions Pro displays cleanly formatted field changes for:"
 msgstr ""
 "Revisions Pro tisztán formázott mezőváltozásokat jelenít meg a "
 "következőkhöz:"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2543
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2665
 msgid "Core WordPress fields"
 msgstr "Alap WordPress mezők"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2549
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2671
 msgid "Many other popular plugins"
 msgstr "Sok más népszerű plugin"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2550
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2672
 msgid "Many popular themes"
 msgstr "Sok népszerű téma"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2989
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3112
 msgid "Edit Current"
 msgstr "Aktuális szerkesztése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3025
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3148
 msgid "View Current"
 msgstr "Aktuális megtekintése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3032
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3033
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3155
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
 msgid "Hide current post details"
 msgstr "Aktuális bejegyzés részleteinek elrejtése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3032
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3033
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3155
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
 msgid "Show current post details"
 msgstr "Aktuális bejegyzés részleteinek megjelenítése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3038
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3161
 #, js-format
 msgid "Post %d"
 msgstr "Bejegyzés %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3051
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3078
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3174
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3201
 msgid "View Revision"
 msgstr "Revision megtekintése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3053
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3176
 msgid "Previous Revision"
 msgstr "Előző revízió"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3058
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3059
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3181
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
 msgid "Hide previous revision details"
 msgstr "Előző revízió részleteinek elrejtése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3058
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3059
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3181
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
 msgid "Show previous revision details"
 msgstr "Előző revízió részleteinek megjelenítése"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3064
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3082
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3187
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
 #, js-format
 msgid "Revision %d"
 msgstr "Verzió %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3110
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3233
 msgid "Click to view changes"
 msgstr "Kattintson a változások megtekintéséhez"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3136
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3259, fuzzy
 msgid "Custom Field Changes"
 msgstr "Custom Field Changes"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3144
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3267
 #, fuzzy
 msgid "%s: %d"
 msgstr "%s: %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3262
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3373
+msgid "Preview content"
+msgstr "Előnézet tartalom"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3385, fuzzy
 msgid "Field Changes"
 msgstr "Field Changes"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3294
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3389
+msgid "Comparison preview"
+msgstr "Összehasonlító előnézet"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3417
 msgid "This title was changed"
 msgstr "Ez a cím megváltozott"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3294
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3417
 msgid "Change Title"
 msgstr "Cím megváltoztatása"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3334
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3445
+msgid "Sidebar view"
+msgstr "Oldalsáv nézet"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
 msgid "Block"
 msgstr "Blokk"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3398
-#: includes/visual-post-compare/visual-post-compare-standalone.js:366
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3521
 msgid "Unable to load this comparison."
 msgstr "Nem sikerült betölteni ezt az összehasonlítást."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3426
-#: includes/visual-post-compare/visual-post-compare-standalone.js:368
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3549
 msgid "Unable to reload this comparison."
 msgstr "Nem sikerült újratölteni ezt az összehasonlítást."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3466
-#: includes/visual-post-compare/visual-post-compare-standalone.js:371
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3589
 msgid "Unable to approve this comparison."
 msgstr "Nem sikerült jóváhagyni ezt az összehasonlítást."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3493
-#: includes/visual-post-compare/visual-post-compare-standalone.js:371
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3616
 msgid "Compare to current post"
 msgstr "Összehasonlítás a jelenlegi bejegyzéssel"
 
-#: admin/admin_rvy.php:331
+#: admin/admin_rvy.php:336
 msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "Revíziók"
 
-#: admin/class-list-table-archive.php:1204
-#: admin/class-list-table_rvy.php:2288
-#: admin/post-edit_rvy.php:214
-#: admin/post-edit_rvy.php:278
-#: admin/post-edit_rvy.php:292
+#: admin/class-list-table-archive.php:1202
+#: admin/class-list-table_rvy.php:2382
+#: admin/post-edit_rvy.php:222
+#: admin/post-edit_rvy.php:286
+#: admin/post-edit_rvy.php:300
 msgctxt "revisions"
 msgid "Compare"
 msgstr "Összehasonlítás"
 
-#: admin/class-list-table-archive.php:1226, fuzzy
+#: admin/class-list-table-archive.php:1224, fuzzy
 msgctxt "revisions"
 msgid "Diff"
 msgstr "Diff"
 
-#: admin/class-list-table_rvy.php:2299
+#: admin/class-list-table_rvy.php:2394
 msgctxt "revisions"
 msgid "Approve"
 msgstr "Jóváhagyás"
 
-#: admin/class-list-table_rvy.php:2306
+#: admin/class-list-table_rvy.php:2401
 msgctxt "revisions"
 msgid "Publish"
 msgstr "Közzététel"
 
-#: admin/class-list-table_rvy.php:2315
+#: admin/class-list-table_rvy.php:2410
 msgctxt "revisions"
 msgid "Decline"
 msgstr "Elutasítás"
 
-#: admin/history_rvy.php:1304, fuzzy
+#: admin/class-list-table-archive.php:1240
+#: admin/class-list-table_rvy.php:1090
+#: admin/class-list-table_rvy.php:2368
+#: admin/history_rvy.php:1515
+#: admin/post-edit_rvy.php:187
+#: admin/revision-ui_rvy.php:279
+#: admin/revision-ui_rvy.php:321
+msgctxt "verb"
+msgid "Preview"
+msgstr "Előnézet"
+
+#: admin/history_rvy.php:1322, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2545
+#: admin/options.php:2523
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
@@ -4782,17 +5092,14 @@ msgctxt "revision date"
 msgid "on %s"
 msgstr "on %s"
 
-#: admin/revision-ui_rvy.php:83, fuzzy
-msgctxt "revision date format"
-msgid "j F, Y @ g:i a"
-msgstr "j F, Y @ g:i a"
+#: admin/revision-ui_rvy.php:351
+#. translators: post revision: 1: when, 2: author name
+#, php-format
+msgctxt "post revision"
+msgid "%1$s by %2$s"
+msgstr "%1$s által: %2$s"
 
-#: admin/revision-ui_rvy.php:113, fuzzy
-msgctxt "revision schedule date format"
-msgid "j F, Y, g:i a"
-msgstr "j F, Y, g:i a"
-
-#: rvy_init-functions.php:695
+#: rvy_init-functions.php:705
 msgctxt "User role"
 msgid "Revisor"
 msgstr "Felülvizsgáló"
