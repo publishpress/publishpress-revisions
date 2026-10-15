@@ -1,5 +1,40 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.2.0] - 15 Oct 2026
+- Added : Visual Compare extension API for page builder integrations in Revisions Pro
+- Added : Option to enable page JavaScript behavior in Visual Compare
+- Changed : Rename Copy Posts actions and settings to Duplicate Posts
+- Changed : Clarify revision submission and approval captions
+- Changed : Clarify Past Revision publication method and approver captions
+- Changed : Improve capability setting descriptions and links to PublishPress Capabilities
+- Changed : Align default-enabled post types across Past Revisions, New Revisions and Duplicate Posts
+- Changed : Sort Scheduled Revisions by upcoming publication date by default
+- Changed : Follow WordPress date and time format settings on revision screens
+- Changed : Improve Settings > Integrations loading criteria and card ordering
+- Changed : Improve empty-state messages and hide unnecessary revision view filters
+- Changed : Improve spacing in editor sidebar revision lists
+- Fixed : Repeated revision creation could create additional unsubmitted revisions instead of reopening the author's existing revision
+- Fixed : Repeated unsaved-change prompts when deleting or leaving a revision
+- Fixed : Schedule column missing when using legacy WP-Cron scheduling
+- Fixed : Schedule cells blank for some revisions
+- Fixed : Scheduling details unavailable for revisions scheduled without Action Scheduler
+- Fixed : Scheduled Revisions empty-state message could hide completed or failed publications
+- Fixed : Incorrect Missed Schedule messages around scheduled publication time
+- Fixed : Visual Compare could incorrectly match paragraphs after a paragraph was deleted
+- Fixed : Revision previews could omit page styles under some conditions
+- Fixed : JavaScript warnings and performance issues in post and revision editors
+- Fixed : Autosave comparison could display an inaccessible Manage link or inappropriate Preview / Restore action
+- Fixed : Incorrect argument type passed to the wp_after_insert_post action
+- Fixed : Revision button layout issues with WooCommerce
+- Fixed : Unwanted underline on the Decline Revision button
+- Fixed : Missing translations in Preview actions, revision screens, editor controls and Planner integration
+- Fixed : Keyboard access, focus indicators, tooltips, color contrast and screen reader announcements across revision screens
+- Fixed : Accessibility of Visual Compare controls, revision tables, settings and preview bar actions
+- Fixed : WordPress 5.5 compatibility of user lookups
+- Changed : Harden SQL preparation for revision status and ID lists
+- Changed : Add WordPress-recognized plugin license headers
+- Added : GitHub Actions workflow to build plugin ZIP packages from branches and pull requests
+
 [4.1.0] - 1 Oct 2026
 - Fixed : Visual Compare display of Classic Editor content changes
 - Changed : Visual Compare enhancements
