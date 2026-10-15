@@ -50,6 +50,29 @@ class RvyOptionUI {
 		$this->loadIntegrations();
     }
 
+	private function capabilities_settings_link( $option_name ) {
+		$caption = esc_html__( 'PublishPress Capabilities', 'revisionary' );
+
+		if ( defined( 'PUBLISHPRESS_CAPS_VERSION' ) ) {
+			// Disabled restrictions are not listed in the Capabilities role editor.
+			if ( ! rvy_get_option( $option_name ) ) {
+				return $caption;
+			}
+
+			return '<a href="' . esc_url( admin_url( 'admin.php?page=pp-capabilities&pp_caps_tab=publishpress-revisions' ) ) . '">' . $caption . '</a>';
+		}
+
+		// WordPress requires install_plugins even to open plugin information.
+		if ( current_user_can( 'install_plugins' ) && current_user_can( 'activate_plugins' ) ) {
+			add_thickbox();
+			wp_enqueue_script( 'plugin-install' );
+			$url = self_admin_url( 'plugin-install.php?tab=plugin-information&plugin=capability-manager-enhanced&TB_iframe=true&width=640&height=678' );
+			return '<a href="' . esc_url( $url ) . '" class="thickbox">' . $caption . '</a>';
+		}
+
+		return '<a href="https://wordpress.org/plugins/capability-manager-enhanced/" target="_blank" rel="noopener noreferrer">' . $caption . '</a>';
+	}
+
 	function setSection($section_name) {
 		$this->section_name = $section_name;
 		$this->section_options = false;
@@ -1662,112 +1685,34 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		if ( 	// To avoid confusion, don't display any revision settings if pending revisions / scheduled revisions are unavailable
 			$pending_revisions_available || $scheduled_revisions_available ) :
 		
-			$checkbox_args = [];
+			$checkbox_args = ['no_escape' => true];
 
-			if (defined('PUBLISHPRESS_CAPS_VERSION')) {
-				$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-revisions');
-		
-				$cap_caption = sprintf(__('%s capability', 'revisionary'), 'manage_revision_queue');
+			$hint = sprintf(
+				/* translators: %s: PublishPress Capabilities plugin name or link. */
+				esc_html__( 'If enabled, New Revisions screen access can be configured per-role using %s.', 'revisionary' ),
+				$this->capabilities_settings_link( 'revision_queue_capability' )
+			);
+			$this->option_checkbox( 'revision_queue_capability', $tab, $section, $hint, '', $checkbox_args );
 
-				if (rvy_get_option('revision_queue_capability')) {
-					$link = $revisionary->admin->tooltipText(
-						"<a href='$url'>" . $cap_caption . '</a>',
-						__('Assign capability to roles', 'revisionary')
-					);
-				} else {
-					$link = $cap_caption;
-				}
+			$hint = sprintf(
+				/* translators: %s: PublishPress Capabilities plugin name or link. */
+				esc_html__( 'If enabled, access to Unsubmitted Revisions can be configured per-role using %s.', 'revisionary' ),
+				$this->capabilities_settings_link( 'manage_unsubmitted_capability' )
+			);
+			$this->option_checkbox( 'manage_unsubmitted_capability', $tab, $section, $hint, '', $checkbox_args );
 
-				$hint = sprintf(
-					__('Control New Revisions access with the %s.', 'revisionary'),
-					$link
-				);
-
-				$checkbox_args['no_escape'] = true;
-			} else {
-				$hint = esc_html__('Control New Revisions access with the manage_revision_queue capability.', 'revisionary');
-			}
-
-			$this->option_checkbox('revision_queue_capability', $tab, $section, $hint, '', $checkbox_args);
-
-			if (defined('PUBLISHPRESS_CAPS_VERSION')) {
-				$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-revisions');
-
-				$cap_caption = sprintf(__('%s capability', 'revisionary'), 'manage_unsubmitted_revisions');
-
-				if (rvy_get_option('manage_unsubmitted_capability')) {
-					$link = $revisionary->admin->tooltipText(
-						"<a href='$url'>" . $cap_caption . '</a>',
-						__('Assign capability to roles', 'revisionary')
-					);
-				} else {
-					$link = $cap_caption;
-				}
-
-				$hint = sprintf(
-					__('Users will need the %s to edit others\' Unsubmitted Revisions.', 'revisionary'),
-					$link
-				);
-
-				$checkbox_args['no_escape'] = true;
-			} else {
-				$hint = esc_html__('Users will need the manage_unsubmitted_revisions capability to edit others\' Unsubmitted Revisions.', 'revisionary');
-			}
-
-			$this->option_checkbox('manage_unsubmitted_capability', $tab, $section, $hint, '', $checkbox_args);
-
-			if (defined('PUBLISHPRESS_CAPS_VERSION')) {
-				$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-revisions');
-		
-				$cap_caption = sprintf(__('%s capability', 'revisionary'), 'edit_others_revisions');
-
-				if (rvy_get_option('revisor_lock_others_revisions')) {
-					$link = $revisionary->admin->tooltipText(
-						"<a href='$url'>" . $cap_caption . '</a>',
-						__('Assign capability to roles', 'revisionary')
-					);
-				} else {
-					$link = $cap_caption;
-				}
-
-				$hint = sprintf(
-					__('If the user can\'t edit the published post, require the %s.', 'revisionary'),
-					$link
-				);
-
-				$checkbox_args['no_escape'] = true;
-			} else {
-				$hint = esc_html__('If the user can\'t edit the published post, require the edit_others_revisions capability.', 'revisionary');
-			}
-
+			$hint = sprintf(
+				/* translators: %s: PublishPress Capabilities plugin name or link. */
+				esc_html__( 'If a user cannot edit the published post, control their access to others’ Revisions using %s.', 'revisionary' ),
+				$this->capabilities_settings_link( 'revisor_lock_others_revisions' )
+			);
 			$this->option_checkbox( 'revisor_lock_others_revisions', $tab, $section, $hint, '', $checkbox_args );
 
-			$checkbox_args = [];
-
-			if (defined('PUBLISHPRESS_CAPS_VERSION')) {
-				$url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-revisions');
-		
-				$cap_caption = sprintf(__('%s capability', 'revisionary'), 'list_others_revisions');
-
-				if (rvy_get_option('revisor_hide_others_revisions')) {
-					$link = $revisionary->admin->tooltipText(
-						"<a href='$url'>" . $cap_caption . '</a>',
-						__('Assign capability to roles', 'revisionary')
-					);
-				} else {
-					$link = $cap_caption;
-				}
-
-				$hint = sprintf(
-					__('If the user can\'t edit the published post, require the %s.', 'revisionary'),
-					$link
-				);
-
-				$checkbox_args['no_escape'] = true;
-			} else {
-				$hint = esc_html__('If the user can\'t edit the published post, require the list_others_revisions capability.', 'revisionary');
-			}
-
+			$hint = sprintf(
+				/* translators: %s: PublishPress Capabilities plugin name or link. */
+				esc_html__( 'If a user cannot edit the published post, control their ability to list others’ Revisions using %s.', 'revisionary' ),
+				$this->capabilities_settings_link( 'revisor_hide_others_revisions' )
+			);
 			$this->option_checkbox( 'revisor_hide_others_revisions', $tab, $section, $hint, '', $checkbox_args );
 
 			$hint = esc_html__('Bypass the above restrictions for others\' revisions to logged in user\'s own posts.', 'revisionary');
