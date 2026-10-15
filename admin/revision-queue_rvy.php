@@ -28,7 +28,7 @@ if (rvy_get_option('revision_queue_capability') && !is_content_administrator_rvy
 set_current_screen( 'revisionary-q' );
 
 $scheduled_only = ! empty( $_REQUEST['post_status'] ) && 'future-revision' === sanitize_key( $_REQUEST['post_status'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-if ( $scheduled_only && ! rvy_get_option( 'scheduled_publish_cron' ) && function_exists( 'rvy_load_scheduled_revisions' ) ) {
+if ( $scheduled_only && function_exists( 'rvy_load_scheduled_revisions' ) ) {
 	rvy_load_scheduled_revisions();
 }
 
@@ -382,7 +382,7 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 <?php
 do_action('revisionary_admin_footer');
 
-if ( $scheduled_only && ! rvy_get_option( 'scheduled_publish_cron' ) && function_exists( 'rvy_scheduled_revisions_modal_ui' ) ) {
+if ( $scheduled_only && function_exists( 'rvy_scheduled_revisions_modal_ui' ) ) {
 	rvy_scheduled_revisions_modal_ui();
 }
 ?>
