@@ -44,7 +44,7 @@ final class Visual_Post_Compare_Editor_Sidebar_Builder {
 
 				$items[] = array(
 					'id'           => (int) $post->ID,
-					'postDate'     => mysql2date( 'M j, Y g:i a', $post->post_date, true ),
+					'postDate'     => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 					'author'       => $author ? $author->display_name : '',
 					'authorAvatar' => esc_url_raw( get_avatar_url( $post->post_author, array( 'size' => 24 ) ) ),
 					'url'          => esc_url_raw( $url ),
