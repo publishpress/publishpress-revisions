@@ -52,11 +52,11 @@ jQuery(document).ready( function($) {
 					+ rvyObjEdit.scheduledCaption + '</span> ';
 
 					if (rvyObjEdit.scheduledLinkCaption) {
-						html += '&nbsp;<a href="javascript:void(0)" class="revision-approve revision-preview" target="_blank">' 
+						html += '<a href="javascript:void(0)" class="revision-approve revision-preview" target="_blank">' 
 						+ rvyObjEdit.scheduledLinkCaption + '</a>';
 					}
 					
-					html += '&nbsp;<a href="javascript:void(0)" class="revision-approve revision-edit" target="_blank">' 
+					html += '<a href="javascript:void(0)" class="revision-approve revision-edit" target="_blank">' 
 					+ rvyObjEdit.scheduledEditLinkCaption + '</a>'
 
 					+ '</div>';

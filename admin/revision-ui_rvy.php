@@ -80,7 +80,7 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 
 	/* translators: revision date format, see http://php.net/date */
 	if (!$datef) {
-		$datef = esc_html_x( 'j F, Y @ g:i a', 'revision date format', 'revisionary' );
+		$datef = get_option('date_format') . ' ' . get_option('time_format');
 	}
 
 	$date = agp_date_i18n( $datef, strtotime( $revision->$date_field ) );
@@ -110,7 +110,7 @@ function rvy_post_revision_title( $revision, $link = true, $date_field = 'post_d
 
 	if ( in_array( $revision->post_status, array( 'inherit', 'pending-revision' ), true ) && $post && ( 'list' == $format ) && ( 'post_modified' == $date_field ) ) {
 		if ( $post->post_date != $revision->post_date ) {
-			$datef = esc_html_x( 'j F, Y, g:i a', 'revision schedule date format', 'revisionary' );
+			$datef = get_option('date_format') . ' ' . get_option('time_format');
 			$revision_date = agp_date_i18n( $datef, strtotime( $revision->post_date ) );
 			
 			if (strtotime($revision->post_date) > agp_time_gmt()) {
@@ -260,7 +260,7 @@ function rvy_list_post_revisions( $post_id = 0, $status = '', $args = null ) {
 			else
 				$class = "rvy-revision-row alternate"; 
 			
-				$datef = esc_html__( 'M j, Y @ g:i a', 'revisionary' );
+				$datef = get_option('date_format') . ' ' . get_option('time_format');
 			
 			$rows .= "<tr class='" . esc_attr($class) . "'>";
 

@@ -871,7 +871,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 			case 'date_sched' :
 				if ( ('future-revision' === $post->post_mime_type ) || ( strtotime($post->post_date_gmt) > agp_time_gmt() ) ) {
-						$t_time = get_the_time( esc_html__( 'Y/m/d, g:i:s a', 'revisionary' ) );
+						$t_time = esc_html(mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date ));
 						$m_time = $post->post_date;
 						
 						$time = get_post_time( 'G', true, $post );
@@ -881,10 +881,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 						if ( $time_diff > 0 && $time_diff < DAY_IN_SECONDS ) {
 							$h_time = sprintf( esc_html__( '%s ago', 'revisionary' ), human_time_diff( $time ) );
 						} else {
-							$h_time = mysql2date( esc_html__( 'Y/m/d g:i a', 'revisionary' ), get_date_from_gmt($post->post_date_gmt) );
-							$h_time = str_replace( ' am', '&nbsp;am', $h_time );
-							$h_time = str_replace( ' pm', '&nbsp;pm', $h_time );
-							$h_time = str_replace( ' ', '<br />', $h_time );
+							$h_time = esc_html(mysql2date( get_option('date_format') . ' ' . get_option('time_format'), get_date_from_gmt($post->post_date_gmt) ));
+
 						}
 
 						if ('future-revision' == $post->post_mime_type) {
@@ -1015,10 +1013,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$result = sprintf($caption, $diff);
 
 		} else {
-			$result = date_i18n( "Y/m/d g:i a", $timestamp );
+			$result = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $timestamp );
 		}
 
-		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
+		$saved_time = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $timestamp );
 
 		echo '<abbr title="' . esc_attr( $saved_time ) . '">' . esc_html($result) . '</abbr>';
 	}
@@ -1396,7 +1394,9 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 	private function sort_scheduled_posts( &$posts ) {
 		$orderby = ! empty( $_REQUEST['orderby'] ) ? sanitize_key( $_REQUEST['orderby'] ) : 'date_sched'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$order = ! empty( $_REQUEST['order'] ) && 'asc' === strtolower( sanitize_key( $_REQUEST['order'] ) ) ? 1 : -1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$order = ! empty( $_REQUEST['order'] )
+            ? ('asc' === strtolower(sanitize_key($_REQUEST['order'])) ? 1 : -1)
+            : ('date_sched' === $orderby ? 1 : -1); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		usort( $posts, function( $a, $b ) use ( $orderby, $order ) {
 			switch ( $orderby ) {
 				case 'title': $left = $a->post_title; $right = $b->post_title; break;
@@ -1410,6 +1410,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	public function no_items() {
+        if ($this->scheduled_only) {
+            echo esc_html__('There are no scheduled revisions at this time.', 'revisionary');
+            return;
+        }
 		$post_type = 'page';
 		
 		if (isset($_REQUEST['post_status']) && 'trash' === sanitize_key($_REQUEST['post_status']))			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -2064,7 +2068,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			'post_type' => 'post_type',
 			'author'	=> 'author',
 			'date'     => array( 'modified', true ),
-			'date_sched'     => array( 'date_sched', true ),
+			'date_sched'     => array( 'date_sched', !$this->scheduled_only ),
 			'published_post' => 'published_post',
 			'post_author'	=> 'post_author',
 		];
@@ -2084,7 +2088,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		if ( isset( $_GET['orderby'] ) ) {								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$current_orderby = sanitize_key($_GET['orderby']);			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		} else {
-			$current_orderby = '';
+			$current_orderby = $this->scheduled_only ? 'date_sched' : '';
 		}
 
 		if ( isset( $_GET['order'] ) && 'desc' === $_GET['order'] ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended

@@ -177,7 +177,7 @@ class RvyRevisionEditSubmitMetabox
         <span id="timestamp">
         <?php
         // translators: Publish box date formt, see http://php.net/date
-        $datef = esc_html__('M j, Y @ G:i', 'revisionary');
+        $datef = get_option('date_format') . ' ' . get_option('time_format');
 
         $published_stati = get_post_stati(['public' => true, 'private' => true], 'names', 'or');
 

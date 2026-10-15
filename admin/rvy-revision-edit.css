@@ -126,3 +126,54 @@ width: fit-content;
 #publishing-action input.button-primary {
 display: none !important;
 }
+/* WooCommerce product editors use a narrow publish box and larger button styles. */
+body.post-type-product #submitdiv .rvy-creation-ui {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    float: none !important;
+    padding: 0 10px !important;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+body.post-type-product #submitdiv .rvy-creation-ui > a.button {
+    margin: 0;
+    max-width: 100%;
+    height: auto;
+    white-space: normal;
+    text-align: center;
+}
+body.post-type-product #submitdiv .rvy-save-revision-tip,
+body.post-type-product #submitdiv .revision-created-wrapper {
+    flex-basis: 100%;
+}
+body.post-type-product #submitdiv #rvy_compare_button,
+body.post-type-product #submitdiv a.rvy-post-preview {
+    float: none;
+    display: inline-block;
+    margin: 4px 4px 8px 0;
+    max-width: 100%;
+    height: auto;
+    white-space: normal;
+    box-sizing: border-box;
+}
+
+body.post-type-product #submitdiv .rvy-misc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    float: none !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+body.post-type-product #submitdiv .rvy-misc-actions > a.button {
+    float: none !important;
+    margin: 0 !important;
+    max-width: 100%;
+    white-space: normal;
+    height: auto;
+    text-align: center;
+    box-sizing: border-box;
+}

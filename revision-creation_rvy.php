@@ -246,6 +246,31 @@ class RevisionCreation {
 
         $published_post = get_post($main_post_id);
 
+        if (!$is_revision && !empty($args['reuse_unsubmitted']) && 'future-revision' !== $revision_status) {
+            // Keep each author's unfinished changes together; do not overwrite a saved draft.
+
+            $existing_ids = $wpdb->get_col($wpdb->prepare(
+                "SELECT ID FROM $wpdb->posts WHERE comment_count = %d AND post_author = %d
+                 AND post_mime_type = 'draft-revision' AND post_status IN ('draft', 'draft-revision')
+                 AND post_type = %s ORDER BY post_modified_gmt DESC, ID DESC",
+                    $main_post_id, get_current_user_id(), get_post_type($main_post_id)
+            ));
+            foreach ($existing_ids as $existing_id) {
+                if (!current_user_can('edit_post', $existing_id)) {
+                    continue;
+                }
+                $url = isset($args['redirect_url']) ? $args['redirect_url'] : rvy_admin_url("post.php?post=$existing_id&action=edit");
+                $url = apply_filters('revisionary_create_revision_redirect', $url, (int) $existing_id);
+                if (!$url || !empty($args['suppress_redirect'])) {
+                    return (int) $existing_id;
+                }
+                wp_safe_redirect($url);
+                exit;
+            }
+
+        }
+
+
 		$set_post_properties = [       
 			'post_content',          
 			'post_content_filtered', 
