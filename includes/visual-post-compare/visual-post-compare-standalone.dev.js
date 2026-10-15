@@ -3136,7 +3136,7 @@
 			presentation.showAuthor !== false ? authorLine(post) : null,
 			Number(post.id) !== Number(comparison.current.id) && post.revision_action ? el('div', { className: 'visual-post-compare-revision__author visual-post-compare-revision__action' }, post.revision_action) : null,
 			Number(post.id) !== Number(comparison.current.id) && post.revision_published ? dateLine(post, presentation.approvedDatePrefix, post.revision_published, 'is-approved-date') : null,
-			Number(post.id) !== Number(comparison.current.id) && post.approver ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(presentation.approvedByCaption, post.approver)) : null,
+			Number(post.id) !== Number(comparison.current.id) && post.approver ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(post.direct_edit ? presentation.directEditByCaption : presentation.approvedByCaption, post.approver)) : null,
 			
 			// @todo: current post status, revision type, approved by
 

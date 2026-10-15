@@ -211,7 +211,10 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'currentStatusCaption' => esc_html__('Status: %s', 'revisionary'),
 			'actionCaption'	   => esc_html__('Action: %s', 'revisionary'),
 			'currentCaption'   => esc_html__('Current', 'revisionary'),
-			'approvedByCaption' => esc_html__('by: %s', 'revisionary'),
+			/* translators: %s: revision approver display name. */
+			'approvedByCaption' => esc_html__('(approved by %s)', 'revisionary'),
+			/* translators: %s: direct editor display name. */
+			'directEditByCaption' => esc_html__('(%s)', 'revisionary'),
 			'legendCaption' => esc_html__('Comparison legend', 'revisionary'),
 			'addedCaption' => esc_html__('Added', 'revisionary'),
 			'removedCaption' => esc_html__('Removed', 'revisionary'),
@@ -375,9 +378,9 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			if ($_post['from_revision_workflow']) {
 				// from_revision_workflow may be boolean true, which a loose switch comparison would match to 'future-revision'
 				if ('future-revision' === $_post['from_revision_workflow']) {
-					$_post['revision_action'] = esc_html__('Scheduled Revision Publication', 'revisionary');
+					$_post['revision_action'] = esc_html__('Published by Scheduled Revision', 'revisionary');
 				} else {
-					$_post['revision_action'] = esc_html__('Revision Publication', 'revisionary');
+					$_post['revision_action'] = esc_html__('Published by Revision', 'revisionary');
 				}
 			} elseif ($_post['parent_in_revision_workflow']) {
 				if ($status_obj = get_post_status_object($_post['parent_in_revision_workflow'])) {
@@ -403,7 +406,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 				if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
 					$_post['revision_action'] = esc_html__('Autosave', 'revisionary');
 				} else {
-					$_post['revision_action'] = esc_html__('Direct Edit', 'revisionary');
+					$_post['revision_action'] = esc_html__('Published by Direct Edit', 'revisionary');
 				}
 			}
 
