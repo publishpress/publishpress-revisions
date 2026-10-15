@@ -1,5 +1,5 @@
 # Copyright (C) 2026 PublishPress
-# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-01T20:29:41+00:00\n"
-"PO-Revision-Date: 2026-10-01 21:26+0000\n"
+"POT-Creation-Date: 2026-10-01T21:23:34+00:00\n"
+"PO-Revision-Date: 2026-10-15 20:16+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
@@ -22,7 +22,7 @@ msgstr ""
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7, fuzzy
+#: revisionary.php:7
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
@@ -41,12 +41,12 @@ msgstr ""
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13, fuzzy
+#: revisionary.php:13
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
 
-#: admin/action-scheduler_rvy.php:52
+#: admin/action-scheduler_rvy.php:55
 #, php-format
 msgid "Migrate %d Scheduled Revision"
 msgid_plural "Migrate %d Scheduled Revisions"
@@ -54,96 +54,108 @@ msgstr[0] "Migrați %d Revizie Programată"
 msgstr[1] "Migrați %d Revizii Programate"
 msgstr[2] "Migrați %d Revizii Programate"
 
-#: admin/action-scheduler_rvy.php:68
-#: admin/action-scheduler_rvy.php:72
+#: admin/action-scheduler_rvy.php:71
+#: admin/action-scheduler_rvy.php:75
 msgid "Migration failed."
 msgstr "Migrarea a eșuat."
 
-#: admin/action-scheduler_rvy.php:83
-#: admin/action-scheduler_rvy.php:258
+#: admin/action-scheduler_rvy.php:86
+#: admin/action-scheduler_rvy.php:261
 msgid "Permission denied."
 msgstr "Permisiune refuzată."
 
-#: admin/action-scheduler_rvy.php:84
+#: admin/action-scheduler_rvy.php:87
 msgid "Action Scheduler is unavailable."
 msgstr "Action Scheduler nu este disponibil."
 
-#: admin/action-scheduler_rvy.php:110
+#: admin/action-scheduler_rvy.php:113
 msgid "No Scheduled Revisions could be migrated."
 msgstr "Nici o Revizie Programată nu a putut fi migrată."
 
-#: admin/action-scheduler_rvy.php:116
+#: admin/action-scheduler_rvy.php:119
 #, php-format
 msgid "%d Scheduled Revisions remaining."
 msgstr "%d Revizii Programate rămase."
 
-#: admin/action-scheduler_rvy.php:117
+#: admin/action-scheduler_rvy.php:120
 msgid "Scheduled Revision migration complete."
 msgstr "Migrarea Reviziei Programate completă."
 
-#: admin/action-scheduler_rvy.php:150
-#: admin/action-scheduler_rvy.php:151
-#: admin/admin_rvy.php:279
+#: admin/action-scheduler_rvy.php:153
+#: admin/action-scheduler_rvy.php:154
+#: admin/admin_rvy.php:284
 #: admin/revision-queue_rvy.php:174
 #: rvy_init-functions.php:363
 #: visual-compare_rvy.php:175
 msgid "Scheduled Revisions"
 msgstr "Revizii Programate"
 
-#: admin/action-scheduler_rvy.php:166
+#: admin/action-scheduler_rvy.php:169
 msgid "Scheduling Log"
 msgstr "Jurnal de Programare"
 
-#: admin/action-scheduler_rvy.php:168
-#: admin/admin-posts_rvy.php:294
+#: admin/action-scheduler_rvy.php:171
+#: admin/admin-posts_rvy.php:296
 #: admin/class-list-table-archive.php:584
 #: admin/post-edit-block-ui_rvy.php:165
-#: admin/post-edit_rvy.php:124
+#: admin/post-edit_rvy.php:132
 #: rvy_init-functions.php:470
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3080
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3081
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3328
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3203
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3451
 msgid "Revision"
 msgstr "Revizie"
 
-#: admin/action-scheduler_rvy.php:170
-#: admin/action-scheduler_rvy.php:367, fuzzy
+#: admin/action-scheduler_rvy.php:172
+#: admin/class-list-table_rvy.php:2209
+#: admin/history_rvy.php:1410
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:236
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Previzualizare"
+
+#: admin/action-scheduler_rvy.php:173
+#: admin/action-scheduler_rvy.php:360
+#: admin/action-scheduler_rvy.php:416, fuzzy
 msgid "Hook"
 msgstr "Hook"
 
-#: admin/action-scheduler_rvy.php:171
+#: admin/action-scheduler_rvy.php:174
 #: admin/class-list-table_rvy.php:820
-#: admin/options.php:1212
+#: admin/options.php:1242
 msgid "Publication"
 msgstr "Publicare"
 
-#: admin/action-scheduler_rvy.php:172
-#: admin/action-scheduler_rvy.php:368
+#: admin/action-scheduler_rvy.php:175
+#: admin/action-scheduler_rvy.php:361
+#: admin/action-scheduler_rvy.php:417
 msgid "Arguments"
 msgstr "Argumente"
 
-#: admin/action-scheduler_rvy.php:173
-#: admin/action-scheduler_rvy.php:369
+#: admin/action-scheduler_rvy.php:176
+#: admin/action-scheduler_rvy.php:362
+#: admin/action-scheduler_rvy.php:418
 msgid "Scheduled Date"
 msgstr "Data Programată"
 
-#: admin/action-scheduler_rvy.php:174
-#: admin/action-scheduler_rvy.php:370
+#: admin/action-scheduler_rvy.php:177
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:419
 msgid "Log"
 msgstr "Jurnal"
 
-#: admin/action-scheduler_rvy.php:182
+#: admin/action-scheduler_rvy.php:185
 msgid "Search revision or hook ID"
 msgstr "Căutați ID-ul reviziei sau hook-ului"
 
-#: admin/action-scheduler_rvy.php:235
+#: admin/action-scheduler_rvy.php:238
 #: admin/class-list-table_rvy.php:853
 msgid "View preview"
 msgstr "Vezi previzualizarea"
 
-#: admin/action-scheduler_rvy.php:262
+#: admin/action-scheduler_rvy.php:265
 #, php-format
 msgid ""
 "Note: %1$d Revision is scheduled for future publication with legacy "
@@ -161,50 +173,105 @@ msgstr[2] ""
 "Notă: %1$d Revizii sunt programate pentru publicare viitoare cu declanșare "
 "moștenită. %2$s pentru fiabilitate mai bună."
 
-#: admin/action-scheduler_rvy.php:268
+#: admin/action-scheduler_rvy.php:271
 msgid "Migrate it to Action Scheduler"
 msgid_plural "Migrate those to Action Scheduler"
 msgstr[0] "Migrați-l la Action Scheduler"
 msgstr[1] "Migrați-le la Action Scheduler"
 msgstr[2] "Migrați-le la Action Scheduler"
 
-#: admin/action-scheduler_rvy.php:349
-#: admin/action-scheduler_rvy.php:357
-#: admin/class-list-table_rvy.php:1642
+#: admin/action-scheduler_rvy.php:350
+#: admin/action-scheduler_rvy.php:398
+msgid "Missed Schedule"
+msgstr "Program pierdut"
+
+#: admin/action-scheduler_rvy.php:350
+#: admin/action-scheduler_rvy.php:401
+#: admin/action-scheduler_rvy.php:406
+#: admin/class-list-table_rvy.php:1683
+#: admin/revisions.php:75
 #: rvy_init-functions.php:364
 msgid "Scheduled"
 msgstr "Programat"
 
-#: admin/action-scheduler_rvy.php:352
-msgid "Missed Schedule"
-msgstr "Program pierdut"
+#: admin/action-scheduler_rvy.php:353
+msgid "Scheduler"
+msgstr "Programator"
+
+#: admin/action-scheduler_rvy.php:353, fuzzy
+msgid "WP-Cron"
+msgstr "WP-Cron"
+
+#: admin/action-scheduler_rvy.php:356
+msgid "Non-repeating"
+msgstr "Non-repetitiv"
+
+#: admin/action-scheduler_rvy.php:358
+#, php-format
+msgid "%s seconds"
+msgstr "%s secunde"
+
+#: admin/action-scheduler_rvy.php:363
+msgid "Recurrence"
+msgstr "Recurență"
+
+#: admin/action-scheduler_rvy.php:366
+msgid "Requested Publication"
+msgstr "Publicare solicitată"
+
+#: admin/action-scheduler_rvy.php:368
+msgid "Event"
+msgstr "Eveniment"
+
+#: admin/action-scheduler_rvy.php:369
+msgid "No matching WP-Cron event was found."
+msgstr "Nu a fost găsit niciun eveniment WP-Cron corespunzător."
 
 #: admin/action-scheduler_rvy.php:372
+msgid ""
+"WP-Cron does not retain an execution log. These details show the currently "
+"registered events only."
+msgstr ""
+"WP-Cron nu păstrează un jurnal de execuție. Aceste detalii arată doar "
+"evenimentele înregistrate în prezent."
+
+#: admin/action-scheduler_rvy.php:374
+#: admin/action-scheduler_rvy.php:421
 msgid "Click to view scheduling log."
 msgstr "Faceți clic pentru a vizualiza jurnalul de programare."
 
-#: admin/action-scheduler_rvy.php:374
+#: admin/action-scheduler_rvy.php:375
+#: admin/action-scheduler_rvy.php:422
+msgid "(view scheduling log)"
+msgstr "(vizualizați jurnalul programării)"
+
+#: admin/action-scheduler_rvy.php:377
+#: admin/action-scheduler_rvy.php:423
 #: admin/class-list-table-archive.php:760
-#: functions.php:477
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:378
+#: functions.php:479
 msgid "Scheduled Revision Publication"
 msgstr "Publicarea reviziei programate"
 
 #: admin/admin-init_rvy.php:115
-#: admin/admin-init_rvy.php:352
+#: admin/admin-init_rvy.php:356
 msgid "Sorry, you are not allowed to delete this revision."
 msgstr "Ne pare rău, nu aveți permisiunea de a șterge această revizie."
 
-#: admin/admin-init_rvy.php:208
-#: admin/admin-init_rvy.php:318
+#: admin/admin-init_rvy.php:119
+#: admin/admin-init_rvy.php:370
+msgid "Error in deleting."
+msgstr "Eroare la ștergere."
+
+#: admin/admin-init_rvy.php:210
+#: admin/admin-init_rvy.php:322
 msgid "Sorry, you are not allowed to approve this revision."
 msgstr "Ne pare rău, nu aveți permisiunea de a aproba această revizie."
 
-#: admin/admin-init_rvy.php:245
+#: admin/admin-init_rvy.php:247
 msgid "Sorry, you are not allowed to submit this revision."
 msgstr "Ne pare rău, nu aveți permisiunea de a trimite această revizie."
 
-#: admin/admin-init_rvy.php:283
+#: admin/admin-init_rvy.php:287
 msgid "Sorry, you are not allowed to decline this revision."
 msgstr "Ne pare rău, nu aveți permisiunea de a refuza această revizie."
 
@@ -230,31 +297,44 @@ msgstr ""
 "post. Consultați %sdocumentația%s."
 
 #: admin/admin-posts_rvy.php:212
-#: rvy_init-functions.php:786
+#: rvy_init-functions.php:799
 msgid "The post already has a revision in process."
 msgstr "Postul are deja o revizie în curs de desfășurare."
 
-#: admin/admin-posts_rvy.php:311
+#: admin/admin-posts_rvy.php:313
 msgid "Has Revision"
 msgstr "Are Revizie"
 
-#: admin/admin-posts_rvy.php:322
-#: admin/admin_rvy.php:465
-#: admin/admin_rvy.php:535
-#: admin/options.php:160
-#: admin/options.php:651
+#: admin/admin-posts_rvy.php:324
+#: admin/admin_rvy.php:470
+#: admin/admin_rvy.php:540
+#: admin/options.php:187
+#: admin/options.php:679
 msgid "New Revisions"
 msgstr "Revizii Noi"
 
-#: admin/admin-posts_rvy.php:346
+#: admin/admin-posts_rvy.php:348
+#: admin/class-list-table_rvy.php:2328
 #: admin/history_rvy.php:99
 #: admin/history_rvy.php:102
 #: rvy_init-functions.php:264
 msgid "Copy"
 msgstr "Copiați"
 
+#: admin/admin-posts_rvy.php:356
+#: admin/class-list-table_rvy.php:1057
+#: admin/class-list-table_rvy.php:2317
+#: admin/edit-revision-classic-ui_rvy.php:218
+#: admin/history_rvy.php:1452
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:237
+#: admin/RevisionEditSubmitMetabox.php:196
+#: front_rvy.php:556
+msgid "Edit"
+msgstr "Editare"
+
 #: admin/admin_lib-mu_rvy.php:14
-#: admin/options.php:343
+#: admin/options.php:371
 msgid "PublishPress Revisions Network Settings"
 msgstr "Setări de Rețea PublishPress Revisions"
 
@@ -263,7 +343,7 @@ msgid "Network Settings"
 msgstr "Setări de Rețea"
 
 #: admin/admin_lib-mu_rvy.php:25
-#: admin/options.php:345
+#: admin/options.php:373
 msgid "PublishPress Revisions Network Defaults"
 msgstr "Definiri Implicite pentru Rețea PublishPress Revisions"
 
@@ -271,108 +351,122 @@ msgstr "Definiri Implicite pentru Rețea PublishPress Revisions"
 msgid "Network Defaults"
 msgstr "Setări implicite ale rețelei"
 
-#: admin/admin_rvy.php:371
+#: admin/admin_rvy.php:376
+#: admin/admin_rvy.php:405
+#: admin/history_rvy.php:296
+#: admin/history_rvy.php:308
 #: front-notice.php:59
 msgid "Revisions"
 msgstr "Revizii"
 
-#: admin/admin_rvy.php:474
-#: admin/admin_rvy.php:475
-#: admin/admin_rvy.php:536
-#: admin/options.php:159
-#: admin/options.php:552
+#: admin/admin_rvy.php:479
+#: admin/admin_rvy.php:480
+#: admin/admin_rvy.php:541
+#: admin/options.php:186
+#: admin/options.php:580
 #: admin/revision-archive_rvy.php:101
-#: admin/revisions.php:238
+#: admin/revisions.php:239
 #: visual-compare_rvy.php:143
 msgid "Past Revisions"
 msgstr "Revizii anterioare"
 
-#: admin/admin_rvy.php:492
-#: admin/options.php:349
+#: admin/admin_rvy.php:497
+#: admin/options.php:377
 msgid "PublishPress Revisions Settings"
 msgstr "Setări Revizii PublishPress"
 
-#: admin/admin_rvy.php:492
-#: admin/admin_rvy.php:539
-#: admin/options.php:154
+#: admin/admin_rvy.php:497
+#: admin/admin_rvy.php:544
+#: admin/options.php:181
 msgid "Settings"
 msgstr "Setări"
 
-#: admin/admin_rvy.php:501
-#: admin/admin_rvy.php:502
-#: admin/admin_rvy.php:542
-#: admin/options.php:2146
-#: admin/options.php:2173
-#: admin/options.php:2416
-#: admin/options.php:2792
+#: admin/admin_rvy.php:506
+#: admin/admin_rvy.php:507
+#: admin/admin_rvy.php:547
+#: admin/options.php:2106
+#: admin/options.php:2134
+#: admin/options.php:2394
+#: admin/options.php:2770
 #: includes/CoreAdmin.php:212
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2558
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
 msgid "Upgrade to Pro"
 msgstr "Upgrade la Pro"
 
-#: admin/admin_rvy.php:583
+#: admin/admin_rvy.php:588
 msgid "Can edit draft Posts from other users."
 msgstr "Poate edita postări în draft de la alți utilizatori."
 
-#: admin/admin_rvy.php:584
+#: admin/admin_rvy.php:589
 msgid "Can edit Revisions from other users."
 msgstr "Poate edita revizii de la alți utilizatori."
 
-#: admin/admin_rvy.php:585
+#: admin/admin_rvy.php:590
 msgid "Can see New Revisions from other users."
 msgstr "Poate vedea revizii noi de la alți utilizatori."
 
-#: admin/admin_rvy.php:586
+#: admin/admin_rvy.php:591
 msgid "Can access New Revisions."
 msgstr "Poate accesa revizii noi."
 
-#: admin/admin_rvy.php:587
+#: admin/admin_rvy.php:592
 msgid "Can manage Unsubmitted Revisions."
 msgstr "Poate gestiona revizii nesubmise."
 
-#: admin/admin_rvy.php:588
+#: admin/admin_rvy.php:593
 msgid "Preview other user's Revisions (without needing editing access)."
 msgstr ""
 "Previzualizați reviziile altui utilizator (fără a necesita acces de "
 "editare)."
 
-#: admin/admin_rvy.php:589
+#: admin/admin_rvy.php:594
 msgid "Restore an archived Revision as the current revision."
 msgstr "Restaurare o revizie arhivat ca revizie curentă."
 
-#: admin/admin_rvy.php:590
+#: admin/admin_rvy.php:595
 msgid "View Past Revisions."
 msgstr "Vizualizați reviziile anterioare."
 
-#: admin/admin_rvy.php:620
+#: admin/admin_rvy.php:623
+msgid "Review PublishPress Revisions on WordPress.org"
+msgstr "Revizuiți PublishPress Revisions pe WordPress.org"
+
+#: admin/admin_rvy.php:625
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr "Dacă vă place %1$s, vă rugăm să ne lăsați o evaluare %2$s. Vă mulțumim!"
 
-#: admin/admin_rvy.php:631
+#: admin/admin_rvy.php:636
 msgid "About PublishPress Revisions"
 msgstr "Despre Reviziile PublishPress"
 
-#: admin/admin_rvy.php:631
+#: admin/admin_rvy.php:636
 msgid "About"
 msgstr "Despre"
 
-#: admin/admin_rvy.php:633
+#: admin/admin_rvy.php:638
 msgid "PublishPress Revisions Documentation"
 msgstr "Documentația Reviziilor PublishPress"
 
-#: admin/admin_rvy.php:633
+#: admin/admin_rvy.php:638
 msgid "Documentation"
 msgstr "Documentație"
 
-#: admin/admin_rvy.php:635
+#: admin/admin_rvy.php:640
 msgid "Contact the PublishPress team"
 msgstr "Contactați echipa PublishPress"
 
-#: admin/admin_rvy.php:635, fuzzy
+#: admin/admin_rvy.php:640, fuzzy
 msgid "Contact"
 msgstr "Contact"
+
+#: admin/admin_rvy.php:646
+msgid "Visit PublishPress"
+msgstr "Vizitați PublishPress"
+
+#: admin/admin_rvy.php:694
+msgid "More information"
+msgstr "Mai multe informații"
 
 #: admin/agents_checklist_rvy.php:77
 #, php-format
@@ -436,26 +530,27 @@ msgid "Publication Date: %s"
 msgstr "Data Publicării: %s"
 
 #: admin/class-list-table-archive.php:275
+#: admin/revision-queue_rvy.php:185
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Rezultatele căutării pentru \"%s\""
 
 #: admin/class-list-table-archive.php:544
-#: admin/class-list-table_rvy.php:1750
-#: admin/class-list-table_rvy.php:2249
+#: admin/class-list-table_rvy.php:1836
+#: admin/class-list-table_rvy.php:2343
 #: admin/post-edit-block-ui_rvy.php:124
-#: admin/post-edit_rvy.php:116
+#: admin/post-edit_rvy.php:118
+#: admin/post-edit_rvy.php:124
 #: admin/RevisionEditSubmitMetabox.php:62
 msgid "Delete Revision"
 msgstr "Șterge Revizuirea"
 
 #: admin/class-list-table-archive.php:583
-#: admin/revision-ui_rvy.php:393
 msgid "Select all revisions"
 msgstr "Selectați toate reviziile"
 
 #: admin/class-list-table-archive.php:585
-#: admin/class-list-table_rvy.php:795
+#: admin/class-list-table_rvy.php:796
 msgid "Post Type"
 msgstr "Tip Post"
 
@@ -486,328 +581,448 @@ msgid "Published Author"
 msgstr "Autor publicat"
 
 #: admin/class-list-table-archive.php:620
-#: admin/class-list-table_rvy.php:994
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:462
+#: admin/class-list-table_rvy.php:1014
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:463
 msgid "just now"
 msgstr "chiar acum"
 
 #: admin/class-list-table-archive.php:625
-#: admin/class-list-table_rvy.php:999
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:467
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s minute în urmă"
 
 #: admin/class-list-table-archive.php:625
-#: admin/class-list-table_rvy.php:999
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:467
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
 #, php-format
 msgid "%s minute ago"
 msgstr "%s minut în urmă"
 
 #: admin/class-list-table-archive.php:632
-#: admin/class-list-table_rvy.php:1006
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:474
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
 #, php-format
 msgid "%s hours ago"
 msgstr "%s ore în urmă"
 
 #: admin/class-list-table-archive.php:632
-#: admin/class-list-table_rvy.php:1006
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:474
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
 #, php-format
 msgid "%s hour ago"
 msgstr "%s oră în urmă"
 
-#: admin/class-list-table-archive.php:764
+#: admin/class-list-table-archive.php:762
 #: functions.php:481
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:382
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1330
-#: includes/visual-post-compare/visual-post-compare-standalone.js:246
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
 msgid "Revision Publication"
 msgstr "Publicarea reviziei"
 
-#: admin/class-list-table-archive.php:775
+#: admin/class-list-table-archive.php:773
 #: functions.php:492
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:392
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:393
 #, php-format
 msgid "Autosave of %s"
 msgstr "Salvare automată a %s"
 
-#: admin/class-list-table-archive.php:780
+#: admin/class-list-table-archive.php:778
 #: functions.php:497
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:394
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:395
 #, php-format
 msgid "Edit of %s"
 msgstr "Editare %s"
 
-#: admin/class-list-table-archive.php:789
+#: admin/class-list-table-archive.php:787
 #: functions.php:506
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:399
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:400
 msgid "Autosave of published Revision"
 msgstr "Salvare automată a Reviziei publicate"
 
-#: admin/class-list-table-archive.php:794
+#: admin/class-list-table-archive.php:792
 #: functions.php:511
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:401
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:402
 msgid "Edit of published Revision"
 msgstr "Editare revizie publicată"
 
-#: admin/class-list-table-archive.php:799
+#: admin/class-list-table-archive.php:797
 #: functions.php:516
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:406, fuzzy
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:407, fuzzy
 msgid "Autosave"
 msgstr "Autosave"
 
-#: admin/class-list-table-archive.php:801
+#: admin/class-list-table-archive.php:799
 #: functions.php:518
 #: functions.php:582
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:408
 msgid "Direct Edit"
 msgstr "Editare directă"
 
-#: admin/class-list-table-archive.php:840, fuzzy
+#: admin/class-list-table-archive.php:838
+#: admin/class-list-table_rvy.php:792, fuzzy
 msgid "Select revision"
 msgstr "Select revision"
 
-#: admin/class-list-table-archive.php:858, fuzzy
+#: admin/class-list-table-archive.php:856, fuzzy
 msgid "Filter by original post type"
 msgstr "Filter by original post type"
 
-#: admin/class-list-table-archive.php:862
-#: admin/class-list-table_rvy.php:1811
+#: admin/class-list-table-archive.php:860
+#: admin/class-list-table_rvy.php:1897
 msgid "All Post Types"
 msgstr "Toate tipurile de postări"
 
-#: admin/class-list-table-archive.php:892
-#: admin/class-list-table_rvy.php:1844, fuzzy
+#: admin/class-list-table-archive.php:890
+#: admin/class-list-table_rvy.php:1930, fuzzy
 msgid "Filter by revision author"
 msgstr "Filter by revision author"
 
-#: admin/class-list-table-archive.php:896
-#: admin/class-list-table_rvy.php:1848
+#: admin/class-list-table-archive.php:894
+#: admin/class-list-table_rvy.php:1934
 msgid "All Revision Authors"
 msgstr "Toți autorii reviziilor"
 
-#: admin/class-list-table-archive.php:941
-#: admin/class-list-table_rvy.php:1878, fuzzy
+#: admin/class-list-table-archive.php:939
+#: admin/class-list-table_rvy.php:1964, fuzzy
 msgid "Filter by revision date"
 msgstr "Filter by revision date"
 
-#: admin/class-list-table-archive.php:945
-#: admin/class-list-table_rvy.php:1882
+#: admin/class-list-table-archive.php:943
+#: admin/class-list-table_rvy.php:1968
 msgid "All Revision Dates"
 msgstr "Toate datele reviziilor"
 
-#: admin/class-list-table-archive.php:1000, fuzzy
+#: admin/class-list-table-archive.php:998, fuzzy
 msgid "Filter by published date"
 msgstr "Filter by published date"
 
-#: admin/class-list-table-archive.php:1004
+#: admin/class-list-table-archive.php:1002
 msgid "All Publish Dates"
 msgstr "Toate datele publicării"
 
-#: admin/class-list-table-archive.php:1037, fuzzy
+#: admin/class-list-table-archive.php:1035, fuzzy
 msgid "Filter by approver"
 msgstr "Filter by approver"
 
-#: admin/class-list-table-archive.php:1041
+#: admin/class-list-table-archive.php:1039
 msgid "All Approvers"
 msgstr "Toți aprobatarii"
 
-#: admin/class-list-table-archive.php:1074
-#: admin/class-list-table_rvy.php:1951, fuzzy
+#: admin/class-list-table-archive.php:1072
+#: admin/class-list-table_rvy.php:2037, fuzzy
 msgid "Filter by published author"
 msgstr "Filter by published author"
 
-#: admin/class-list-table-archive.php:1078
-#: admin/class-list-table_rvy.php:1955
+#: admin/class-list-table-archive.php:1076
+#: admin/class-list-table_rvy.php:2041
 msgid "All Authors"
 msgstr "Toți autorii"
 
-#: admin/class-list-table-archive.php:1100
-#: admin/class-list-table_rvy.php:1991
+#: admin/class-list-table-archive.php:1092
+#: admin/class-list-table-archive.php:1272
+#: admin/class-list-table_rvy.php:1072
+#: admin/class-list-table_rvy.php:2057
+msgid "Filter"
+msgstr "Filtru"
+
+#: admin/class-list-table-archive.php:1098
+#: admin/class-list-table_rvy.php:2077
 msgid "Reset Filters"
 msgstr "Resetează filtrele"
 
-#: admin/class-list-table-archive.php:1131
-#: admin/options.php:2427
+#: admin/class-list-table-archive.php:1129
+#: admin/options.php:2405
 msgid "All"
 msgstr "Toate"
 
-#: admin/class-list-table-archive.php:1145
+#: admin/class-list-table-archive.php:1143
 msgid "My Revisions"
 msgstr "Revistele Mele"
 
-#: admin/class-list-table-archive.php:1200
+#: admin/class-list-table-archive.php:1198
 #, fuzzy, php-format
 msgid "Visually compare changes in %s"
 msgstr "Visually compare changes in %s"
 
-#: admin/class-list-table-archive.php:1221
+#: admin/class-list-table-archive.php:1219
 #, fuzzy, php-format
 msgid "Classic text diff for %s"
 msgstr "Classic text diff for %s"
 
-#: admin/class-list-table-archive.php:1241
-#: admin/class-list-table_rvy.php:2273
+#: admin/class-list-table-archive.php:1239
+#: admin/class-list-table_rvy.php:2367
 #: admin/post-editor-workflow-ui_rvy.php:77
 #: admin/post-editor-workflow-ui_rvy.php:236
 msgid "Preview Revision"
 msgstr "Previzualizează Revizia"
 
-#: admin/class-list-table-archive.php:1255
+#: admin/class-list-table-archive.php:1253
 msgid "Edit parent revision"
 msgstr "Editează revizia părinte"
 
-#: admin/class-list-table-archive.php:1255
+#: admin/class-list-table-archive.php:1253
 msgid "Edit parent post"
 msgstr "Editează postarea părinte"
 
-#: admin/class-list-table-archive.php:1256
+#: admin/class-list-table-archive.php:1254
 msgid "Edit Parent"
 msgstr "Editează Părintele"
 
-#: admin/class-list-table-archive.php:1273
-msgid "List Revisions of this Post"
-msgstr "Listează Revistele acestei Postări"
+#: admin/class-list-table-archive.php:1271
+msgid "Filter: list revisions of this post"
+msgstr "Filtru: lista reviziilor acestui post"
 
-#: admin/class-list-table-archive.php:1274
-msgid "Filter"
-msgstr "Filtru"
-
-#: admin/class-list-table-archive.php:1286
+#: admin/class-list-table-archive.php:1284
 msgid "Delete Past Revision"
 msgstr "Șterge Revizia Anterioară"
 
-#: admin/class-list-table-archive.php:1374
+#: admin/class-list-table-archive.php:1285
+#: admin/class-list-table_rvy.php:2350
+#: admin/post-edit_rvy.php:81
+#: admin/revision-ui_rvy.php:299
+#: admin/revision-ui_rvy.php:411
+#: classes/PublishPress/Revisions/Planner.php:116
+#: classes/PublishPress/Revisions/Planner.php:260
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:20
+#: front_rvy.php:597
+msgid "Delete"
+msgstr "Șterge"
+
+#: admin/class-list-table-archive.php:1372
 msgid "No revisions found."
 msgstr "Nu au fost găsite reviste."
 
-#: admin/class-list-table_rvy.php:794
-#: admin/options.php:769
-#: admin/options.php:932
+#: admin/class-list-table_rvy.php:795
+#: admin/options.php:797
+#: admin/options.php:960
 #: admin/post-editor-workflow-ui_rvy.php:31
 msgid "Status"
 msgstr "Stare"
 
-#: admin/class-list-table_rvy.php:874, fuzzy
-msgid "Y/m/d, g:i:s a"
-msgstr "Y/m/d, g:i:s a"
+#: admin/class-list-table_rvy.php:816
+#: front_rvy.php:674
+#: rvy_init-functions.php:355
+msgid "Schedule"
+msgstr "Programeaza"
 
-#: admin/class-list-table_rvy.php:884, fuzzy
-msgid "Y/m/d g:i a"
-msgstr "Y/m/d g:i a"
-
-#: admin/class-list-table_rvy.php:891
+#: admin/class-list-table_rvy.php:881
+#: admin/class-list-table_rvy.php:904
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "Publicare programată: %s"
 
-#: admin/class-list-table_rvy.php:894
+#: admin/class-list-table_rvy.php:897
+#: admin/history_rvy.php:1323
+#, php-format
+msgid "%s ago"
+msgstr "%s în urmă"
+
+#: admin/class-list-table_rvy.php:907
 #, php-format
 msgid "Requested publication: %s"
 msgstr "Publicare solicitată: %s"
 
-#: admin/class-list-table_rvy.php:896, fuzzy
+#: admin/class-list-table_rvy.php:909, fuzzy
 msgid "This revision is not scheduled yet."
 msgstr "This revision is not scheduled yet."
 
-#: admin/class-list-table_rvy.php:918
+#: admin/class-list-table_rvy.php:920
+msgid "Missed schedule"
+msgstr "Program ratat"
+
+#: admin/class-list-table_rvy.php:938
 #. translators: %s: human-readable time difference, e.g. "3 days"
 #, fuzzy, php-format
 msgid "in %s"
 msgstr "in %s"
 
-#: admin/class-list-table_rvy.php:962
-#: admin/history_rvy.php:1085
+#: admin/class-list-table_rvy.php:982
+#: admin/history_rvy.php:1103
 msgid "No author"
 msgstr "Fără autor"
 
-#: admin/class-list-table_rvy.php:1036
+#: admin/class-list-table_rvy.php:1056
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "Editează postarea publicată"
 
-#: admin/class-list-table_rvy.php:1051
+#: admin/class-list-table_rvy.php:1071
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "Vizualizați doar revizuirile lui %s"
 
-#: admin/class-list-table_rvy.php:1062
-#: admin/class-list-table_rvy.php:1069
+#: admin/class-list-table_rvy.php:1082
 msgid "View published post"
 msgstr "Vizualizați postarea publicată"
 
-#: admin/class-list-table_rvy.php:1094
-#: visual-compare_rvy.php:90
-msgid "Compare Past Revisions"
-msgstr "Comparare Revizii Anterioare"
+#: admin/class-list-table_rvy.php:1083
+msgid "View"
+msgstr "Vizualizare"
 
-#: admin/class-list-table_rvy.php:1095
+#: admin/class-list-table_rvy.php:1089
+msgid "Preview published post"
+msgstr "Previzualizați postarea publicată"
+
+#: admin/class-list-table_rvy.php:1114
+msgid "History: compare past revisions"
+msgstr "Istoric: comparare reviziilor anterioare"
+
+#: admin/class-list-table_rvy.php:1115
 msgid "History"
 msgstr "Istoric"
 
-#: admin/class-list-table_rvy.php:1622
+#: admin/class-list-table_rvy.php:1143
+msgid "Show more details"
+msgstr "Arată mai multe detalii"
+
+#: admin/class-list-table_rvy.php:1444
+msgid "There are no scheduled revisions at this time."
+msgstr "Nu există revizii programate în acest moment."
+
+#: admin/class-list-table_rvy.php:1663
 msgid "My Activity"
 msgstr "Activitatea mea"
 
-#: admin/class-list-table_rvy.php:1631
+#: admin/class-list-table_rvy.php:1672
 #, php-format
 msgid "All %s"
 msgstr "Toate %s"
 
-#: admin/class-list-table_rvy.php:1746
+#: admin/class-list-table_rvy.php:1732
+#. translators: Hidden accessibility text.
+msgid "Select bulk action"
+msgstr "Selectează acțiunea în masă"
+
+#: admin/class-list-table_rvy.php:1735
+msgid "Bulk actions"
+msgstr "Acțiuni în masă"
+
+#: admin/class-list-table_rvy.php:1756
+#: admin/revision-ui_rvy.php:413
+msgid "Apply"
+msgstr "Aplică"
+
+#: admin/class-list-table_rvy.php:1819
+#: front_rvy.php:626
+#: rvy_init-functions.php:282
+#: rvy_init-functions.php:338
+msgid "Submit"
+msgstr "Trimite"
+
+#: admin/class-list-table_rvy.php:1824
+#: admin/history_rvy.php:1408
+#: front_rvy.php:623
+#: front_rvy.php:633
+#: front_rvy.php:661
+#: front_rvy.php:695
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:427
+#: includes/visual-post-compare/visual-post-compare.php:323
+#: rvy_init-functions.php:268
+#: rvy_init-functions.php:286
+#: rvy_init-functions.php:324
+#: rvy_init-functions.php:325
+#: rvy_init-functions.php:341
+#: rvy_init-functions.php:342
+#: rvy_init-functions.php:358
+#: rvy_init-functions.php:359
+msgid "Approve"
+msgstr "Aprobă"
+
+#: admin/class-list-table_rvy.php:1825
+#: front_rvy.php:665, fuzzy
+msgid "Decline"
+msgstr "Decline"
+
+#: admin/class-list-table_rvy.php:1829
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:424
+msgid "Publish"
+msgstr "Publicare"
+
+#: admin/class-list-table_rvy.php:1832
+#: admin/revision-ui_rvy.php:289
 msgid "Unschedule"
 msgstr "Anulați programarea"
 
-#: admin/class-list-table_rvy.php:1750
-#: admin/class-list-table_rvy.php:2245
-#: admin/class-list-table_rvy.php:2249
+#: admin/class-list-table_rvy.php:1836
+#: admin/class-list-table_rvy.php:2339
+#: admin/class-list-table_rvy.php:2343
 #: admin/post-edit-block-ui_rvy.php:124
-#: admin/post-edit_rvy.php:116
+#: admin/post-edit_rvy.php:124
 #: admin/RevisionEditSubmitMetabox.php:62
 #. translators: %s: post title
 msgid "Discard Revision"
 msgstr "Aruncați Revizia"
 
-#: admin/class-list-table_rvy.php:1788, fuzzy
+#: admin/class-list-table_rvy.php:1857
+msgid "Filter by category"
+msgstr "Filtru după categorie"
+
+#: admin/class-list-table_rvy.php:1874, fuzzy
 msgid "Filter by revision status"
 msgstr "Filter by revision status"
 
-#: admin/class-list-table_rvy.php:1790
+#: admin/class-list-table_rvy.php:1876
 msgid "All Revision Statuses"
 msgstr "Toate Stările Reviziei"
 
-#: admin/class-list-table_rvy.php:1809, fuzzy
+#: admin/class-list-table_rvy.php:1895, fuzzy
 msgid "Filter by post type"
 msgstr "Filter by post type"
 
-#: admin/class-list-table_rvy.php:1915, fuzzy
+#: admin/class-list-table_rvy.php:2001, fuzzy
 msgid "Filter by published post"
 msgstr "Filter by published post"
 
-#: admin/class-list-table_rvy.php:1919
+#: admin/class-list-table_rvy.php:2005
 msgid "All Posts"
 msgstr "Toate Postările"
 
-#: admin/class-list-table_rvy.php:2136
+#: admin/class-list-table_rvy.php:2132
+msgid "Select All"
+msgstr "Selectați tot"
+
+#: admin/class-list-table_rvy.php:2197
+msgid "(clear filter)"
+msgstr "(ștergeți filtrul)"
+
+#: admin/class-list-table_rvy.php:2201
+msgid "Sort ascending."
+msgstr "Sortează ascendent."
+
+#: admin/class-list-table_rvy.php:2201
+msgid "Sort descending."
+msgstr "Sortează descendent."
+
+#: admin/class-list-table_rvy.php:2230
 #, fuzzy, php-format
 msgid "Compare changes for &#8220;%s&#8221;"
 msgstr "Compare changes for &#8220;%s&#8221;"
 
-#: admin/class-list-table_rvy.php:2222
+#: admin/class-list-table_rvy.php:2238
+#. translators: %s: post title
+#, php-format
+msgid "&#8220;%s&#8221; (Edit)"
+msgstr "&#8220;%s&#8221; (Editează)"
+
+#: admin/class-list-table_rvy.php:2316
 #: admin/post-editor-workflow-ui_rvy.php:237
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2990
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3113
 #. translators: %s: post title
 msgid "Edit Revision"
 msgstr "Editați Revizia"
 
-#: admin/class-list-table_rvy.php:2287
+#: admin/class-list-table_rvy.php:2340
+msgid "Discard"
+msgstr "Aruncă"
+
+#: admin/class-list-table_rvy.php:2381
 msgid "Compare Changes"
 msgstr "Comparare Schimbări"
+
+#: admin/edit-revision-block-ui_rvy.php:23
+msgid "Enable public preview"
+msgstr "Activează previzualizarea publică"
 
 #: admin/edit-revision-classic-ui_rvy.php:126
 msgid "Publish <b>on approval</b>"
@@ -822,166 +1037,223 @@ msgstr "Revizia actualizată. %sVizualizați Previzualizarea%s"
 msgid "Revision updated."
 msgstr "Revizia actualizată."
 
+#: admin/edit-revision-classic-ui_rvy.php:176
+#. translators: Publish box date string. 1: Date, 2: Time. See https://www.php.net/manual/datetime.format.php
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s la %2$s"
+
+#: admin/edit-revision-classic-ui_rvy.php:185
+#: admin/RevisionEditSubmitMetabox.php:185
+#. translators: Post date information. %s: Date on which the post is currently scheduled to be published.
+#, php-format
+msgid "Scheduled for: %s"
+msgstr "Programat pentru: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:188
+#. translators: Post date information. %s: Date on which the post was published.
+#, php-format
+msgid "Published on: %s"
+msgstr "Publicat pe: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:190
+#: admin/edit-revision-classic-ui_rvy.php:204
+msgid "Publish <b>immediately</b>"
+msgstr "Publicați <b>imediat</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:193
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Schedule for: %s"
+msgstr "Programat pentru: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:196
+#: admin/RevisionEditSubmitMetabox.php:188
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Publish on: %s"
+msgstr "Publicați pe: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:222
+#. translators: Hidden accessibility text.
+msgid "Edit date and time"
+msgstr "Editează data și ora"
+
+#: admin/edit-revision-classic-ui_rvy.php:230
+#. translators: Hidden accessibility text.
+msgid "Date and time"
+msgstr "Data și ora"
+
 #: admin/history_rvy.php:99
 #: admin/history_rvy.php:102
 msgid "Copy the above content to the clipboard."
 msgstr "Copiați conținutul de mai sus în clipboard."
 
-#: admin/history_rvy.php:277
-#: admin/history_rvy.php:297
+#: admin/history_rvy.php:109
+msgid "Copied to clipboard."
+msgstr "Copiat în clipboard."
+
+#: admin/history_rvy.php:295
+#: admin/history_rvy.php:315
 #, php-format
 msgid "Compare %s of \"%s\""
 msgstr "Comparare %s din \"%s\""
 
-#: admin/history_rvy.php:810
-#: admin/options.php:1181
+#: admin/history_rvy.php:324
+msgid "Return to editor"
+msgstr "Întoarceți-vă la editor"
+
+#: admin/history_rvy.php:573
+#: admin/options.php:795
+#: admin/options.php:958
+#: admin/restrict-editor-features.php:100
+msgid "Title"
+msgstr "Titlu"
+
+#: admin/history_rvy.php:574
+#: admin/options.php:794
+#: admin/options.php:957
+#: admin/restrict-editor-features.php:106
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
+msgid "Content"
+msgstr "Conținut"
+
+#: admin/history_rvy.php:575
+#: admin/options.php:800
+#: admin/options.php:963
+#: admin/restrict-editor-features.php:159
+msgid "Excerpt"
+msgstr "Extras"
+
+#: admin/history_rvy.php:712
+#: admin/history_rvy.php:715
+msgid "(no title)"
+msgstr "(fără titlu)"
+
+#: admin/history_rvy.php:828
+#: admin/options.php:1211
 msgid "Post Date"
 msgstr "Data Postării"
 
-#: admin/history_rvy.php:811
+#: admin/history_rvy.php:829
 msgid "Post Parent"
 msgstr "Post părinte"
 
-#: admin/history_rvy.php:812
+#: admin/history_rvy.php:830
 msgid "Menu Order"
 msgstr "Ordine meniu"
 
-#: admin/history_rvy.php:813
+#: admin/history_rvy.php:831
 msgid "Comment Status"
 msgstr "Stare comentariu"
 
-#: admin/history_rvy.php:814
+#: admin/history_rvy.php:832
 msgid "Ping Status"
 msgstr "Stare ping"
 
-#: admin/history_rvy.php:953
+#: admin/history_rvy.php:971
 msgid "Page Template"
 msgstr "Șablon pagină"
 
-#: admin/history_rvy.php:956
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2542
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: admin/history_rvy.php:974
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2664
 msgid "Featured Image"
 msgstr "Imagine prezentată"
 
-#: admin/history_rvy.php:960
+#: admin/history_rvy.php:978
 msgid "Beaver Builder Data"
 msgstr "Date Beaver Builder"
 
-#: admin/history_rvy.php:961
+#: admin/history_rvy.php:979
 msgid "Beaver Builder Settings"
 msgstr "Setări Beaver Builder"
 
-#: admin/history_rvy.php:1040
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3307
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362, fuzzy
+#: admin/history_rvy.php:1058
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3430, fuzzy
 msgid "No changes detected."
 msgstr "No changes detected."
 
-#: admin/history_rvy.php:1232
+#: admin/history_rvy.php:1250
 msgid "Scheduled for "
 msgstr "Programat pentru "
 
-#: admin/history_rvy.php:1237
+#: admin/history_rvy.php:1255
 msgid "Requested for "
 msgstr "Solicitat pentru "
 
-#: admin/history_rvy.php:1242
+#: admin/history_rvy.php:1260
 msgid "Modified "
 msgstr "Modificat "
 
-#: admin/history_rvy.php:1247
+#: admin/history_rvy.php:1265
+#, php-format
+msgid "%s%s ago"
+msgstr "%s%s în urmă"
+
+#: admin/history_rvy.php:1265
 #, php-format
 msgid "%s%s from now"
 msgstr "%s%s de acum"
 
-#: admin/history_rvy.php:1258, fuzzy
-msgid "M j, Y @ g:i a"
-msgstr "M j, Y @ g:i a"
-
-#: admin/history_rvy.php:1303, fuzzy
-msgid "M j, Y @ H:i"
-msgstr "M j, Y @ H:i"
-
-#: admin/history_rvy.php:1390
-#: front_rvy.php:556
-#: front_rvy.php:566
-#: front_rvy.php:586
-#: front_rvy.php:620
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:426
-#: includes/visual-post-compare/visual-post-compare.php:298
-#: rvy_init-functions.php:268
-#: rvy_init-functions.php:286
-#: rvy_init-functions.php:324
-#: rvy_init-functions.php:325
-#: rvy_init-functions.php:341
-#: rvy_init-functions.php:342
-#: rvy_init-functions.php:358
-#: rvy_init-functions.php:359
-msgid "Approve"
-msgstr "Aprobă"
-
-#: admin/history_rvy.php:1390
+#: admin/history_rvy.php:1408
 msgid "Preview / Approve"
 msgstr "Previzualizare / Aprobă"
 
-#: admin/history_rvy.php:1392
-#: admin/post-editor-workflow-ui_rvy.php:77
-#: admin/post-editor-workflow-ui_rvy.php:118
-#: admin/post-editor-workflow-ui_rvy.php:236
-#: admin/revision-ui_rvy.php:390
-#: admin/RevisionEditSubmitMetabox.php:123
-msgid "Preview"
-msgstr "Previzualizare"
+#: admin/history_rvy.php:1452
+msgid "Edit revision"
+msgstr "Editează revizia"
 
-#: admin/history_rvy.php:1486
+#: admin/history_rvy.php:1514
 msgid "Preview / Restore"
 msgstr "Previzualizare / Restaurează"
 
-#: admin/history_rvy.php:1493
+#: admin/history_rvy.php:1521
 msgid "Manage"
 msgstr "Gestionează"
 
-#: admin/history_rvy.php:1494
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1310
-#: includes/visual-post-compare/visual-post-compare-standalone.js:243
+#: admin/history_rvy.php:1522
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1429
 msgid "List"
 msgstr "Listă"
 
-#: admin/options.php:124
+#: admin/options.php:54
+msgid "PublishPress Capabilities"
+msgstr "Capabilitățile PublishPress"
+
+#: admin/options.php:151
 msgid "All settings on this tab are assigned network-wide."
 msgstr "Toate setările de pe această filă sunt atribuite la nivel de rețea."
 
-#: admin/options.php:154
+#: admin/options.php:181
 msgid "Setting Scope"
 msgstr "Domeniul de aplicare al setărilor"
 
-#: admin/options.php:158
+#: admin/options.php:185
 msgid "Features"
 msgstr "Funcționalități"
 
-#: admin/options.php:161
+#: admin/options.php:188
 msgid "Options"
 msgstr "Opțiuni"
 
-#: admin/options.php:162
+#: admin/options.php:189
 msgid "Integrations"
 msgstr "Integrări"
 
-#: admin/options.php:163
+#: admin/options.php:190
 msgid "Statuses"
 msgstr "Stări"
 
-#: admin/options.php:164
-#: admin/options.php:1214
+#: admin/options.php:191
+#: admin/options.php:1244
 msgid "Notifications"
 msgstr "Notificări"
 
-#: admin/options.php:170
+#: admin/options.php:197
 msgid "Revision Submission"
 msgstr "Trimiterea reviziei"
 
-#: admin/options.php:178
+#: admin/options.php:205
 msgid ""
 "Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
 "Change\""
@@ -989,231 +1261,235 @@ msgstr ""
 "Utilizați etichetarea alternativă: \"Copie de lucru\" > \"Cerere de "
 "modificare\" > \"Modificare programată\""
 
-#: admin/options.php:179
+#: admin/options.php:206
 msgid "New Revisions access requires role capability"
 msgstr "Accesul la revizii noi necesită capacitate de rol"
 
-#: admin/options.php:180
+#: admin/options.php:207
 #, php-format
 msgid "Managing %s requires role capability"
 msgstr "Gestionarea %s necesită capacitate de rol"
 
-#: admin/options.php:181
+#: admin/options.php:208
 msgid "Working Copy creation requires role capability"
 msgstr "Crearea unei copii de lucru necesită capacitate de rol"
 
-#: admin/options.php:181
+#: admin/options.php:208
 msgid "Revision creation requires role capability"
 msgstr "Crearea reviziei necesită capacitate de rol"
 
-#: admin/options.php:182
+#: admin/options.php:209
 #, php-format
 msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
 msgstr "Lista Postări / Pagini: Utilizați legenda \"Editați\" pentru linkul %s"
 
-#: admin/options.php:183
-#: admin/options.php:189
+#: admin/options.php:210
+#: admin/options.php:216
 #, php-format
 msgid "Enable %s"
 msgstr "Activare %s"
 
-#: admin/options.php:184
+#: admin/options.php:211
 msgid "Revision Limit"
 msgstr "Limită Revizie"
 
-#: admin/options.php:185
+#: admin/options.php:212
 msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
 msgstr "Reîmprospătați steagul \"Are revizie\" înainte de a suprima Crearea reviziei"
 
-#: admin/options.php:186
+#: admin/options.php:213
 msgid "If post contains custom html, require unfiltered_html capability"
 msgstr ""
 "Dacă postarea conține html personalizat, necesitați capacitatea "
 "unfiltered_html"
 
-#: admin/options.php:187
+#: admin/options.php:214
 msgid "Auto-submit revisions created by a user with publishing capability"
 msgstr ""
 "Trimiterea automată a reviziilor create de un utilizator cu capacitate de "
 "publicare"
 
-#: admin/options.php:188
+#: admin/options.php:215
 msgid "Auto-submit revisions"
 msgstr "Trimiterea automată a reviziilor"
 
-#: admin/options.php:190
+#: admin/options.php:217
 msgid "Change Request submission require role capability"
 msgstr "Trimiterea unei cereri de schimbare necesită capacitatea rolului"
 
-#: admin/options.php:190
+#: admin/options.php:217
 msgid "Revision submission requires role capability"
 msgstr "Trimiterea reviziei necesită capacitatea rolului"
 
-#: admin/options.php:191
+#: admin/options.php:218
 msgid "Editing others' Revisions requires role capability"
 msgstr "Editarea reviziilor altora necesită capacitatea rolului"
 
-#: admin/options.php:192
+#: admin/options.php:219
 msgid "Listing others' Revisions requires role capability"
 msgstr "Listarea reviziilor altora necesită capacitatea rolului"
 
-#: admin/options.php:193, fuzzy
+#: admin/options.php:220
+msgid "Enable javascript in visual compare"
+msgstr "Activare javascript în compararea vizuală"
+
+#: admin/options.php:221, fuzzy
 msgid "Use visual compare for Revisions"
 msgstr "Use visual compare for Revisions"
 
-#: admin/options.php:194, fuzzy
+#: admin/options.php:222, fuzzy
 msgid "Include unidentified internal fields on Compare screen"
 msgstr "Include unidentified internal fields on Compare screen"
 
-#: admin/options.php:195
+#: admin/options.php:223
 msgid "Show Submitted Revisions count in Admin menu"
 msgstr "Afișează numărul de Revizii Trimise în meniul Admin"
 
-#: admin/options.php:196
+#: admin/options.php:224
 msgid "Show indicator on front end if page has Revisions"
 msgstr "Afișați indicatorul pe partea frontală dacă pagina are Revizii"
 
-#: admin/options.php:197
+#: admin/options.php:225
 msgid "Users can always administer revisions to their own editable posts"
 msgstr "Utilizatorii pot administra întotdeauna reviziile postărilor lor editabile"
 
-#: admin/options.php:198
+#: admin/options.php:226
 msgid "Also notify on Revision Update"
 msgstr "De asemenea, notifică la actualizarea reviziei"
 
-#: admin/options.php:199
+#: admin/options.php:227
 msgid "Apply API actions to mimic Post Update"
 msgstr "Aplică acțiuni API pentru a imita actualizarea postării"
 
-#: admin/options.php:200
+#: admin/options.php:228
 msgid "Hide html tags on Compare screen"
 msgstr "Ascunde etichetele html pe ecranul Comparare"
 
-#: admin/options.php:201
+#: admin/options.php:229
 msgid "Hide copy buttons on Compare screen"
 msgstr "Ascunde butoanele de copiere pe ecranul Comparare"
 
-#: admin/options.php:202, fuzzy
+#: admin/options.php:230, fuzzy
 msgid "Legacy: Schedule Revisions with WP-Cron"
 msgstr "Legacy: Schedule Revisions with WP-Cron"
 
-#: admin/options.php:203
+#: admin/options.php:231
 msgid "Site uses a custom trigger for WP-Cron tasks"
 msgstr "Site-ul folosește un declanșator personalizat pentru sarcinile WP-Cron"
 
-#: admin/options.php:204
+#: admin/options.php:232
 msgid "Asynchronous Publishing"
 msgstr "Publicare asincronă"
 
-#: admin/options.php:205
+#: admin/options.php:233
 msgid "Editor background color"
 msgstr "Culoarea de fundal a editorului"
 
-#: admin/options.php:206
-#: admin/options.php:207
+#: admin/options.php:234
+#: admin/options.php:235
 msgid "Update Publish Date"
 msgstr "Actualizează data publicării"
 
-#: admin/options.php:208
-#: admin/options.php:209
+#: admin/options.php:236
+#: admin/options.php:237
 msgid "Update Modified Date"
 msgstr "Actualizează data modificării"
 
-#: admin/options.php:212
-#: admin/options.php:213
+#: admin/options.php:240
+#: admin/options.php:241
 #, php-format
 msgid "Use %1$sPlanner Notifications%2$s"
 msgstr "Folosește %1$sNotificările Planner%2$s"
 
-#: admin/options.php:215
+#: admin/options.php:243
 #, php-format
 msgid "Email original Author when a %s is submitted"
 msgstr "Trimite un email autorului original când un %s este trimis"
 
-#: admin/options.php:216
+#: admin/options.php:244
 #, php-format
 msgid "Email the original Author when a %s is approved"
 msgstr "Trimite un email autorului original când un %s este aprobat"
 
-#: admin/options.php:217
+#: admin/options.php:245
 #, php-format
 msgid "Email the Revisor when a %s is approved"
 msgstr "Trimite un email revizorului când un %s este aprobat"
 
-#: admin/options.php:218
+#: admin/options.php:246
 #, php-format
 msgid "Email the original Author when a %s is published"
 msgstr "Trimite un email autorului original când un %s este publicat"
 
-#: admin/options.php:219
+#: admin/options.php:247
 #, php-format
 msgid "Email the Revisor when a %s is published"
 msgstr "Trimite un email revizorului când un %s este publicat"
 
-#: admin/options.php:220
+#: admin/options.php:248
 msgid "Enable notification buffer"
 msgstr "Activează bufferul de notificare"
 
-#: admin/options.php:221
+#: admin/options.php:249
 msgid "Revisors can create a new revision for any custom post type"
 msgstr "Revisori pot crea o nouă revizie pentru orice post type personalizat"
 
-#: admin/options.php:222
+#: admin/options.php:250
 msgid "Prevent Revisors from editing others' unpublished Posts"
 msgstr "Previne revisori să editeze postările nepublicate ale altora"
 
-#: admin/options.php:223
+#: admin/options.php:251
 msgid "Add database index to posts table for Revision queries"
 msgstr ""
 "Adaugă index de bază de date la tabela postărilor pentru interogările de "
 "revizie"
 
-#: admin/options.php:224
+#: admin/options.php:252
 msgid "Display Hints"
 msgstr "Afișează sugestii"
 
-#: admin/options.php:225
+#: admin/options.php:253
 msgid "Delete settings and Revisions if plugin is deleted"
 msgstr "Șterge setările și reviziile dacă pluginul este șters"
 
-#: admin/options.php:226
+#: admin/options.php:254
 msgid "Show Preview Links"
 msgstr "Arată linkuri de previzualizare"
 
-#: admin/options.php:227
+#: admin/options.php:255
 msgid "Preview Link Type"
 msgstr "Tip link de previzualizare"
 
-#: admin/options.php:228
+#: admin/options.php:256
 msgid "Modify preview link for better theme compatibility"
 msgstr "Modifică linkul de previzualizare pentru o mai bună compatibilitate cu tema"
 
-#: admin/options.php:229
+#: admin/options.php:257
 msgid "Theme Compat: For front page revision preview, set home flag"
 msgstr ""
 "Compatibilitate Temă: Pentru previzualizarea reviziei paginii de start, "
 "setează steagul home"
 
-#: admin/options.php:230
+#: admin/options.php:258
 msgid "Approve Button on Compare screen"
 msgstr "Buton Aprobat pe ecranul Comparare"
 
-#: admin/options.php:231
+#: admin/options.php:259
 msgid "Copy revision comments to published post"
 msgstr "Copiază comentariile reviziei în postarea publicată"
 
-#: admin/options.php:232
+#: admin/options.php:260
 msgid "Compare Past Revisions ordering:"
 msgstr "Compară ordonarea reviziilor anterioare:"
 
-#: admin/options.php:233
+#: admin/options.php:261
 #, php-format
 msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
 msgstr ""
 "Listează %s pentru vizualizarea \"Activitatea mea\" sau \"Revizii la "
 "Postările Mele\""
 
-#: admin/options.php:234
+#: admin/options.php:262
 msgid ""
 "Archive a copy of custom fields when a submitted or scheduled revision is "
 "published"
@@ -1221,69 +1497,69 @@ msgstr ""
 "Arhivează o copie a câmpurilor personalizate atunci când o revizuire "
 "trimisă sau programată este publicată"
 
-#: admin/options.php:235
+#: admin/options.php:263
 msgid "Archive a copy of custom fields with each Past Revision"
 msgstr "Arhivează o copie a câmpurilor personalizate cu fiecare revizuire anterioară"
 
-#: admin/options.php:236
+#: admin/options.php:264
 msgid "Keep an archive of revision edits, even after the revision is published"
 msgstr ""
 "Păstrează o arhivă a editărilor de revizie, chiar și după ce revizia este "
 "publicată"
 
-#: admin/options.php:237
+#: admin/options.php:265
 msgid "On Revision publication, delete Editorial Comments"
 msgstr "La publicarea reviziei, șterge Comentariile Editoriale"
 
-#: admin/options.php:238
+#: admin/options.php:266
 msgid "Enable deletion queue"
 msgstr "Activează coada de ștergere"
 
-#: admin/options.php:239
+#: admin/options.php:267
 msgid "Allow Past Revisions to be deleted"
 msgstr "Permite ștergerea reviziilor anterioare"
 
-#: admin/options.php:240
+#: admin/options.php:268
 msgid "Restoring a Revision requires role capability"
 msgstr "Restaurarea unei revizii necesită capacitatea de rol"
 
-#: admin/options.php:241
+#: admin/options.php:269
 msgid "Compatibility Mode"
 msgstr "Mod de Compatibilitate"
 
-#: admin/options.php:242
+#: admin/options.php:270
 msgid "Planner Notifications Access-Limited"
 msgstr "Acces Limitat la Notificările Planificatorului"
 
-#: admin/options.php:243
+#: admin/options.php:271
 msgid "Maximum Revisions per post"
 msgstr "Maxim Revizii pe post"
 
-#: admin/options.php:244
+#: admin/options.php:272
 msgid "Apply Post Permissions to Revisions"
 msgstr "Aplică Permisiunile Postului la Revizii"
 
-#: admin/options.php:245
+#: admin/options.php:273
 msgid "Enable legacy email notifications"
 msgstr "Activează notificările prin email vechi"
 
-#: admin/options.php:246
+#: admin/options.php:274
 msgid "Revision Approval requires role capability"
 msgstr "Aprobatul reviziei necesită capacitatea de rol"
 
-#: admin/options.php:247
+#: admin/options.php:275
 msgid "Use extended captions for Approve button in Post Editor"
 msgstr "Folosește subtitluri extinse pentru butonul Aprobat în Editorul de Posturi"
 
-#: admin/options.php:248
+#: admin/options.php:276
 msgid "Allow the Author field to be modified by Revision"
 msgstr "Permite modificarea câmpului Autor prin Revizie"
 
-#: admin/options.php:249
+#: admin/options.php:277
 msgid "Create Revision button in editor opens new tab"
 msgstr "Butonul Creare Revizie în editor deschide un tab nou"
 
-#: admin/options.php:250
+#: admin/options.php:278
 msgid ""
 "Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
 "previewing in Revision editor"
@@ -1291,63 +1567,63 @@ msgstr ""
 "Bloc Ciclul Interogării: Ajustează capacitățile Revisorului și "
 "Contribuitorului pentru a permite previzualizarea în editorul de Revizie"
 
-#: admin/options.php:251
+#: admin/options.php:279
 msgid "Disable Rank Math SEO panel for Revision edit"
 msgstr "Dezactivează panoul Rank Math SEO pentru editarea Reviziei"
 
-#: admin/options.php:252
+#: admin/options.php:280
 msgid "Allow custom fields (post meta) to be revisioned"
 msgstr "Permite câmpurile personalizate (meta post) să fie revizuite"
 
-#: admin/options.php:253
+#: admin/options.php:281
 msgid "Permission for Submit Revision also enables Revision creation"
 msgstr "Permisiunea de a Trimite Revizia activează de asemenea crearea Reviziei"
 
-#: admin/options.php:254
+#: admin/options.php:282
 msgid "Enable classic metaboxes in editor"
 msgstr "Activează metaboxurile clasice în editor"
 
-#: admin/options.php:259
+#: admin/options.php:287
 #, php-format
 msgid "Email designated Publishers when a %s is submitted"
 msgstr "Trimite email editorilor desemnați când un %s este trimis"
 
-#: admin/options.php:260
+#: admin/options.php:288
 #, php-format
 msgid "Email designated Publishers when a %s is published"
 msgstr "Trimite email editorilor desemnați când un %s este publicat"
 
-#: admin/options.php:261
+#: admin/options.php:289
 #, php-format
 msgid "Email designated Publishers when a %s is approved"
 msgstr "Trimite email editorilor desemnați când un %s este aprobat"
 
-#: admin/options.php:263
+#: admin/options.php:291
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
 msgstr "Trimite email editorilor și administratorilor când un %s este trimis"
 
-#: admin/options.php:264
+#: admin/options.php:292
 #, php-format
 msgid "Email Editors and Administrators when a %s is published"
 msgstr "Trimite email editorilor și administratorilor când un %s este publicat"
 
-#: admin/options.php:265
+#: admin/options.php:293
 #, php-format
 msgid "Email Editors and Administrators when a %s is approved"
 msgstr "Trimite email editorilor și administratorilor când un %s este aprobat"
 
-#: admin/options.php:347
+#: admin/options.php:375
 msgid "PublishPress Revisions Site Settings"
 msgstr "Setările Site-ului PublishPress Revisions"
 
-#: admin/options.php:377
+#: admin/options.php:405
 msgid "These are the default settings for options which can be adjusted per-site."
 msgstr ""
 "Acestea sunt setările implicite pentru opțiuni care pot fi ajustate pe "
 "fiecare site."
 
-#: admin/options.php:415
+#: admin/options.php:443
 #, php-format
 msgid ""
 "Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
@@ -1356,12 +1632,12 @@ msgstr ""
 "Folosește acest tab pentru a face modificări la nivel de REȚEA pentru "
 "setările PublishPress Revisions. %s"
 
-#: admin/options.php:418
+#: admin/options.php:446
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
 msgstr "Poți specifica de asemenea %1$ssetări implicite specifice site-ului%2$s."
 
-#: admin/options.php:421
+#: admin/options.php:449
 msgid ""
 "Here you can change the default value for settings which are controlled "
 "separately on each site."
@@ -1369,125 +1645,174 @@ msgstr ""
 "Aici poți schimba valoarea implicită pentru setările care sunt controlate "
 "separat pe fiecare site."
 
-#: admin/options.php:431
-#: admin/options.php:433
+#: admin/options.php:459
+#: admin/options.php:461
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
 msgstr "Reține că %1$ssetările la nivel de rețea%2$s pot fi de asemenea disponibile."
 
-#: admin/options.php:511
+#: admin/options.php:538
+msgid "License settings"
+msgstr "Setări licență"
+
+#: admin/options.php:539
 msgid "License"
 msgstr "Licență"
 
-#: admin/options.php:556
+#: admin/options.php:584
 msgid "Past Revisions are earlier versions of a post."
 msgstr "Reviste anterioare sunt versiuni anterioare ale unei postări."
 
-#: admin/options.php:613
+#: admin/options.php:634
+msgid "Past revisions post type fallback"
+msgstr "Fallback pentru tipul de postare reviziile anterioare"
+
+#: admin/options.php:641
 msgid "This post type does not support Past Revisions."
 msgstr "Acest tip de postare nu suportă Reviste anterioare."
 
-#: admin/options.php:635, fuzzy
+#: admin/options.php:662
+msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
+msgstr ""
+"PRO: Revisions Pro este necesar pentru acest tip de postare (se deschide "
+"într-o filă nouă)"
+
+#: admin/options.php:663, fuzzy
 msgid "PRO"
 msgstr "PRO"
 
-#: admin/options.php:655
+#: admin/options.php:683
 msgid "New Revisions are changes which are not yet published."
 msgstr "Reviste noi sunt modificări care nu au fost încă publicate."
 
-#: admin/options.php:754
+#: admin/options.php:732
+msgid "Navigation menu revision setting"
+msgstr "Setarea reviziei meniului de navigare"
+
+#: admin/options.php:736
+msgid "Hidden post type revision setting"
+msgstr "Setarea reviziei tipului de postare ascuns"
+
+#: admin/options.php:742
+msgid "New revisions post type fallback"
+msgstr "Fallback pentru tipul de postare reviziile noi"
+
+#: admin/options.php:762
+#, php-format
+msgid "%s capabilities"
+msgstr "%s capabilități"
+
+#: admin/options.php:782
 msgid "Revision Fields"
 msgstr "Câmpuri de revizuire"
 
-#: admin/options.php:758
+#: admin/options.php:786
 msgid "Specify fields which can be modified by New Revisions."
 msgstr "Specificați câmpurile care pot fi modificate de Reviziile Noi."
 
-#: admin/options.php:766
-#: admin/options.php:929
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3256
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
-msgid "Content"
-msgstr "Conținut"
-
-#: admin/options.php:767
-#: admin/options.php:930
-msgid "Title"
-msgstr "Titlu"
-
-#: admin/options.php:768
-#: admin/options.php:931
+#: admin/options.php:796
+#: admin/options.php:959
+#: admin/restrict-editor-features.php:112
 msgid "Date"
 msgstr "Dată"
 
-#: admin/options.php:770
-#: admin/options.php:933
+#: admin/options.php:798
+#: admin/options.php:961
+#: admin/restrict-editor-features.php:141
 msgid "Parent"
 msgstr "Părinte"
 
-#: admin/options.php:771
-#: admin/options.php:934, fuzzy
+#: admin/options.php:799
+#: admin/options.php:962, fuzzy
 msgid "Slug"
 msgstr "Slug"
 
-#: admin/options.php:772
-#: admin/options.php:935
-msgid "Excerpt"
-msgstr "Extras"
-
-#: admin/options.php:773
-#: admin/options.php:936
+#: admin/options.php:801
+#: admin/options.php:964
 #: admin/post-edit-block-ui_rvy.php:212
-#: admin/post-edit_rvy.php:367
+#: admin/post-edit_rvy.php:375
+#: admin/restrict-editor-features.php:147
+#: admin/revision-ui_rvy.php:391
 msgid "Author"
 msgstr "Autor"
 
-#: admin/options.php:774
+#: admin/options.php:802
 msgid "Thumbnail"
 msgstr "Miniatură"
 
-#: admin/options.php:775
-#: admin/options.php:938
+#: admin/options.php:803
+#: admin/options.php:966
+#: admin/restrict-editor-features.php:120
 msgid "Template"
 msgstr "Șablon"
 
-#: admin/options.php:776
-#: admin/options.php:939
+#: admin/options.php:804
+#: admin/options.php:967
+#: admin/restrict-editor-features.php:127
 msgid "Categories"
 msgstr "Categorii"
 
-#: admin/options.php:777
-#: admin/options.php:940
+#: admin/options.php:805
+#: admin/options.php:968
+#: admin/restrict-editor-features.php:134
 msgid "Tags"
 msgstr "Etichete"
 
-#: admin/options.php:778
-#: admin/options.php:941
+#: admin/options.php:806
+#: admin/options.php:969
 #: admin/restrict-editor-features.php:166
 msgid "Taxonomies"
 msgstr "Taxonomies"
 
-#: admin/options.php:822
-msgid "Copy Posts"
-msgstr "Copiază Postările"
+#: admin/options.php:818
+msgid "Hidden revision field setting"
+msgstr "Setarea câmpului de revizie ascuns"
 
-#: admin/options.php:826
+#: admin/options.php:824
+msgid "Revision field fallback"
+msgstr "Fallback pentru câmpul de revizie"
+
+#: admin/options.php:850
+msgid "Duplicate Posts"
+msgstr "Postări duplicate"
+
+#: admin/options.php:854
 msgid "Copy post directly without using the revision process."
 msgstr "Copiați postarea direct fără a folosi procesul de revizuire."
 
-#: admin/options.php:917
-msgid "Copy Fields"
-msgstr "Copiază câmpuri"
+#: admin/options.php:903
+msgid "Navigation menu copy setting"
+msgstr "Setarea copiei meniului de navigare"
 
-#: admin/options.php:921
-msgid "Specify fields to include when Posts are copied."
-msgstr "Specificați câmpurile de inclus atunci când Postările sunt copiate."
+#: admin/options.php:906
+msgid "Hidden copied post type setting"
+msgstr "Setarea tipului de postare copiat ascuns"
 
-#: admin/options.php:937
+#: admin/options.php:912
+msgid "Copied post type fallback"
+msgstr "Fallback pentru tipul de postare copiat"
+
+#: admin/options.php:945
+msgid "Duplicate Fields"
+msgstr "Câmpuri duplicate"
+
+#: admin/options.php:949
+msgid "Specify fields to include when Posts are duplicated."
+msgstr "Specificați câmpurile de inclus atunci când postările sunt duplicate."
+
+#: admin/options.php:965
 msgid "Thumnbnail"
 msgstr "Miniatură"
 
-#: admin/options.php:983
+#: admin/options.php:981
+msgid "Hidden copied field setting"
+msgstr "Setarea câmpului copiat ascuns"
+
+#: admin/options.php:987
+msgid "Copied field fallback"
+msgstr "Fallback pentru câmpul copiat"
+
+#: admin/options.php:1011
 msgid ""
 "Note: Third party code may cause some post types to be incompatible with "
 "PublishPress Revisions."
@@ -1495,7 +1820,7 @@ msgstr ""
 "Notă: Codul terț poate face ca unele tipuri de postare să fie incompatibile "
 "cu PublishPress Revisions."
 
-#: admin/options.php:993
+#: admin/options.php:1021
 #, php-format
 msgid ""
 "For Revisions integration on the Content Calendar, Overview and Content "
@@ -1504,11 +1829,11 @@ msgstr ""
 "Pentru integrarea Reviziei în Calendarul de Conținut, Prezentare generală "
 "și Taboul de Conținut, te rugăm să actualizezi %sPublishPress Planner Pro%s."
 
-#: admin/options.php:1014
+#: admin/options.php:1042
 msgid "Ready to enhance your revision workflow?"
 msgstr "Ești pregătit să îmbunătățești fluxul tău de lucru pentru revizii?"
 
-#: admin/options.php:1017
+#: admin/options.php:1045
 msgid ""
 "Get PublishPress Statuses Pro and optimize your revision process with "
 "custom revision statuses."
@@ -1516,105 +1841,104 @@ msgstr ""
 "Obține PublishPress Statuses Pro și optimizează procesul tău de revizie cu "
 "statusuri personalizate de revizie."
 
-#: admin/options.php:1023
+#: admin/options.php:1051
 msgid "Define your own statuses before or after Revision Submitted"
 msgstr "Definește-ți propriile statusuri înainte sau după Revizuirea Trimisă"
 
-#: admin/options.php:1026
+#: admin/options.php:1054
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
 msgstr "Statusuri predefinite noi: Amânat, Necesită Lucru, Respins"
 
-#: admin/options.php:1029
+#: admin/options.php:1057
 msgid "Statuses can be specific to a post type"
 msgstr "Statusurile pot fi specifice unui tip de postare"
 
-#: admin/options.php:1032
+#: admin/options.php:1060
 msgid "Control access to statuses per-role"
 msgstr "Controlează accesul la statusuri pe roluri"
 
-#: admin/options.php:1035
+#: admin/options.php:1063
 msgid "Status workflow can be nested with sub-statuses"
 msgstr "Fluxul de lucru al statusurilor poate fi imbricat cu sub-statusuri"
 
-#: admin/options.php:1044
+#: admin/options.php:1070
+#: admin/options.php:1073
 msgid "Get PublishPress Statuses Pro"
 msgstr "Obține PublishPress Statuses Pro"
 
-#: admin/options.php:1049
-#: admin/options.php:1067
-#: admin/options.php:2151
-#: admin/options.php:2169
-#: admin/options.php:2758
-#: admin/options.php:2771
-#: admin/options.php:2788
-#: admin/options.php:2802
-#: admin/options.php:2812
-#: admin/options.php:2822
+#: admin/options.php:1076
+#: admin/options.php:1096
+msgid "Learn more about revision statuses"
+msgstr "Aflați mai multe despre stările reviziilor"
+
+#: admin/options.php:1079
+#: admin/options.php:1097
+#: admin/options.php:2112
+#: admin/options.php:2130
+#: admin/options.php:2736
+#: admin/options.php:2749
+#: admin/options.php:2766
+#: admin/options.php:2780
+#: admin/options.php:2790
+#: admin/options.php:2800
 msgid "Learn More"
 msgstr "Află mai multe"
 
-#: admin/options.php:1058
+#: admin/options.php:1088
 msgid "Revision statuses settings preview"
 msgstr "Previzualizare setări stări revizuire"
 
-#: admin/options.php:1062, fuzzy
+#: admin/options.php:1092, fuzzy
 msgid "Pro Plugin"
 msgstr "Pro Plugin"
 
-#: admin/options.php:1063
+#: admin/options.php:1093
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr "Instalați Statuses Pro pentru a debloca stările personalizate de revizie."
 
-#: admin/options.php:1064
+#: admin/options.php:1094
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
 "Configurați pentru orice post type și rol pentru a se potrivi cu fluxul "
 "dvs. de lucru de editare."
 
-#: admin/options.php:1071
+#: admin/options.php:1100
+#: admin/options.php:1101
 msgid "Get Statuses Pro"
 msgstr "Obțineți Statuses Pro"
 
-#: admin/options.php:1098
+#: admin/options.php:1128
 msgid "Maximum revisions per post:"
 msgstr "Reviste maxime per post:"
 
-#: admin/options.php:1100
+#: admin/options.php:1130
 msgid "(unlimited)"
 msgstr "(nelimitat)"
 
-#: admin/options.php:1108
+#: admin/options.php:1138
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
 msgstr "Rețineți că arhivarea poate fi de asemenea dezactivată de %1$sPost Type%2$s."
 
-#: admin/options.php:1149
-#: admin/options.php:1321
-#: admin/options.php:1660
-#: admin/options.php:1686
-#: admin/options.php:1712
-#: admin/options.php:1740
-#: admin/options.php:2302
+#: admin/options.php:1179
+#: admin/options.php:1358
+#: admin/options.php:2280
 #, php-format
 msgid "%s capability"
 msgstr "%s capacitate"
 
-#: admin/options.php:1154
-#: admin/options.php:1326
-#: admin/options.php:1665
-#: admin/options.php:1691
-#: admin/options.php:1717
-#: admin/options.php:1745
-#: admin/options.php:2307
+#: admin/options.php:1184
+#: admin/options.php:1363
+#: admin/options.php:2285
 msgid "Assign capability to roles"
 msgstr "Atribuiți capacitatea rolurilor"
 
-#: admin/options.php:1161
+#: admin/options.php:1191
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
 msgstr "Preveniți ne-Administratorii să restabilească o revizie fără %s."
 
-#: admin/options.php:1167
+#: admin/options.php:1197
 msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
@@ -1622,44 +1946,44 @@ msgstr ""
 "Preveniți ne-Administratorii să restabilească o revizie fără capacitatea "
 "restore_revisions"
 
-#: admin/options.php:1181
+#: admin/options.php:1211
 msgid "Modification Date"
 msgstr "Data modificării"
 
-#: admin/options.php:1209
+#: admin/options.php:1239
 msgid "Revision Creation"
 msgstr "Crearea reviziei"
 
-#: admin/options.php:1210
+#: admin/options.php:1240
 msgid "Submission"
 msgstr "Trimite"
 
-#: admin/options.php:1211
+#: admin/options.php:1241
 msgid "Scheduling"
 msgstr "Programare"
 
-#: admin/options.php:1213, fuzzy
+#: admin/options.php:1243, fuzzy
 msgid "Management"
 msgstr "Management"
 
-#: admin/options.php:1271
+#: admin/options.php:1308
 msgid "Create Revision capabilities"
 msgstr "Creează capacități de revizie"
 
-#: admin/options.php:1276
-#: admin/options.php:1301
-#: admin/options.php:1459
-#: admin/options.php:1611
+#: admin/options.php:1313
+#: admin/options.php:1338
+#: admin/options.php:1496
+#: admin/options.php:1648
 msgid "Assign capabilities to roles"
 msgstr "Atribuiți capacități rolurilor"
 
-#: admin/options.php:1283
-#: admin/options.php:1466
+#: admin/options.php:1320
+#: admin/options.php:1503
 #, php-format
 msgid "If the user can't edit the published post, require %s."
 msgstr "Dacă utilizatorul nu poate edita postarea publicată, solicitați %s."
 
-#: admin/options.php:1289
+#: admin/options.php:1326
 msgid ""
 "If the user can't edit the published post, require Create Revision "
 "capabilities (copy_posts, copy_others_pages, etc.)"
@@ -1667,16 +1991,16 @@ msgstr ""
 "Dacă utilizatorul nu poate edita postarea publicată, necesită capacități de "
 "Creare Revizie (copy_posts, copy_others_pages, etc.)"
 
-#: admin/options.php:1297
+#: admin/options.php:1334
 #, php-format
 msgid "To expand the Pages list, assign %s."
 msgstr "Pentru a extinde lista de Pagini, aloca %s."
 
-#: admin/options.php:1300
+#: admin/options.php:1337
 msgid "Listing capabilities"
 msgstr "Capacități de listare"
 
-#: admin/options.php:1307
+#: admin/options.php:1344
 msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
@@ -1684,11 +2008,11 @@ msgstr ""
 "Pentru a extinde lista de Pagini, aloca capacitățile de Listare "
 "(list_others_pages, list_published_posts, etc.)"
 
-#: admin/options.php:1313
+#: admin/options.php:1350
 msgid "This plugin introduces a new user role, \"Revisor.\""
 msgstr "Acest plugin introduce un nou rol de utilizator, \"Revisor.\""
 
-#: admin/options.php:1333
+#: admin/options.php:1370
 #, php-format
 msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
@@ -1697,7 +2021,7 @@ msgstr ""
 "Revizia de către un utilizator care nu are %s va cauza eliminarea tuturor "
 "etichetelor HTML personalizate."
 
-#: admin/options.php:1339
+#: admin/options.php:1376
 msgid ""
 "Revision by a user who does not have the unfiltered_html capability will "
 "cause all custom html tags to be stripped out."
@@ -1705,15 +2029,15 @@ msgstr ""
 "Revizia de către un utilizator care nu are capacitatea unfiltered_html va "
 "cauza eliminarea tuturor etichetelor HTML personalizate."
 
-#: admin/options.php:1355
+#: admin/options.php:1392
 msgid "Standard storage schema for broadest 3rd party compat"
 msgstr "Schema de stocare standard pentru cea mai extinsă compatibilitate cu terți"
 
-#: admin/options.php:1356
+#: admin/options.php:1393
 msgid "Enhanced Revision access control with PublishPress plugins"
 msgstr "Control îmbunătățit al accesului la Revizie cu pluginurile PublishPress"
 
-#: admin/options.php:1367
+#: admin/options.php:1404
 msgid ""
 "In enhanced mode, a Revision's status is stored by standard WordPress "
 "schema. Some plugins are incompatible."
@@ -1721,19 +2045,19 @@ msgstr ""
 "În modul îmbunătățit, statutul unei Revizii este stocat conform schemei "
 "standard WordPress. Unele pluginuri sunt incompatibile."
 
-#: admin/options.php:1383
+#: admin/options.php:1420
 msgid "Allow any number of Revisions per post."
 msgstr "Permite orice număr de Revizii pe post."
 
-#: admin/options.php:1384
+#: admin/options.php:1421
 msgid "Prevent Revision creation if another was already created."
 msgstr "Prevenirea creării Reviziei dacă o alta a fost deja creată."
 
-#: admin/options.php:1385
+#: admin/options.php:1422
 msgid "Prevent Revision creation if another was already submitted."
 msgstr "Prevenirea creării Reviziei dacă o alta a fost deja trimisă."
 
-#: admin/options.php:1400
+#: admin/options.php:1437
 msgid ""
 "Work around cache plugin conflicts by requerying for revisions before "
 "suppressing the New Revision link."
@@ -1741,7 +2065,7 @@ msgstr ""
 "Soluționează conflictele pluginului de cache prin reinterogarea reviziilor "
 "înainte de a suprima linkul Nouă Revizie."
 
-#: admin/options.php:1419
+#: admin/options.php:1456
 #, php-format
 msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
@@ -1750,7 +2074,7 @@ msgstr ""
 "Dacă utilizatorul nu are un link Editare obișnuit, redenumește linkul %s ca "
 "\"Editare.\""
 
-#: admin/options.php:1422
+#: admin/options.php:1459
 msgid ""
 "Default labels are \"Not Submitted for Approval\", \"Submitted for "
 "Approval\", \"Scheduled Revision\""
@@ -1758,7 +2082,7 @@ msgstr ""
 "Etichetele implicite sunt \"Nu a fost trimis pentru aprobat\", \"Trimis "
 "pentru aprobat\", \"Revizie programată\""
 
-#: admin/options.php:1440
+#: admin/options.php:1477
 #, php-format
 msgid ""
 "Enable published content to be copied, edited, submitted for approval and "
@@ -1767,11 +2091,11 @@ msgstr ""
 "Activează conținutul publicat să fie copiat, editat, trimis pentru aprobat "
 "și gestionat pe ecranul %sRevizii Noi%s."
 
-#: admin/options.php:1454
+#: admin/options.php:1491
 msgid "Submit Revision capabilities"
 msgstr "Capacități de trimitere Revizie"
 
-#: admin/options.php:1472
+#: admin/options.php:1509
 msgid ""
 "If the user can't edit the published post, require Submit Revision "
 "capabilities (revise_posts, revise_others_pages, etc.)"
@@ -1779,29 +2103,33 @@ msgstr ""
 "Dacă utilizatorul nu poate edita postarea publicată, necesită capacități de "
 "Trimitere Revizie (revise_posts, revise_others_pages, etc.)"
 
-#: admin/options.php:1493
+#: admin/options.php:1519
+msgid "Revision editor background color"
+msgstr "Culoarea de fundal a editorului de revizii"
+
+#: admin/options.php:1530
 msgid "Select a custom background color to show that a Revision is being edited."
 msgstr ""
 "Selectați o culoare de fundal personalizată pentru a arăta că o Revizie "
 "este în curs de editare."
 
-#: admin/options.php:1532
-#: admin/options.php:1566
+#: admin/options.php:1569
+#: admin/options.php:1603
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr ""
 "Când un %s este publicat, actualizează data publicării postării la ora "
 "curentă."
 
-#: admin/options.php:1535
-#: admin/options.php:1569
+#: admin/options.php:1572
+#: admin/options.php:1606
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr ""
 "Când un %s este publicat, actualizează data modificării postării la ora "
 "curentă."
 
-#: admin/options.php:1538
+#: admin/options.php:1575
 msgid ""
 "When a new revision is created by any user who is allowed to submit "
 "revisions, automatically submit it."
@@ -1809,13 +2137,13 @@ msgstr ""
 "Când o nouă revizie este creată de orice utilizator care are permisiunea de "
 "a trimite revizii, trimite-o automat."
 
-#: admin/options.php:1541
+#: admin/options.php:1578
 msgid "Auto-submit revisions if the user can directly edit the main post."
 msgstr ""
 "Trimite reviziile automat dacă utilizatorul poate edita direct postarea "
 "principală."
 
-#: admin/options.php:1544
+#: admin/options.php:1581
 msgid ""
 "This allows immediate approval within the Compare screen. If disabled, a "
 "Preview link is provided instead."
@@ -1823,7 +2151,7 @@ msgstr ""
 "Aceasta permite aprobarea imediată în ecranul Comparare. Dacă este "
 "dezactivat, se oferă un link pentru Previziune în schimb."
 
-#: admin/options.php:1560
+#: admin/options.php:1597
 msgid ""
 "If a currently published post or page is edited and a future date set, the "
 "change will not be applied until the selected date."
@@ -1831,13 +2159,13 @@ msgstr ""
 "Dacă o postare sau o pagină publicată în prezent este editată și se setează "
 "o dată viitoare, modificarea nu va fi aplicată până la data selectată."
 
-#: admin/options.php:1572
+#: admin/options.php:1609
 msgid "Leave this setting disabled to use Action Scheduler (recommended)."
 msgstr ""
 "Lasă această setare dezactivată pentru a utiliza Action Scheduler "
 "(recomandat)."
 
-#: admin/options.php:1577
+#: admin/options.php:1614
 msgid ""
 "Support publication of existing scheduled revisions asynchronously, via a "
 "secondary http request from the server.  This is usually best since it "
@@ -1848,7 +2176,7 @@ msgstr ""
 "mai bine, deoarece elimină întârzierea, dar unele servere s-ar putea să nu "
 "o suporte."
 
-#: admin/options.php:1582
+#: admin/options.php:1619
 msgid ""
 "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
 "using a custom trigger."
@@ -1856,7 +2184,7 @@ msgstr ""
 "Declanșatorul WP-Cron este dezactivat, dar sarcinile programate sunt încă "
 "executate folosind un declanșator personalizat."
 
-#: admin/options.php:1600
+#: admin/options.php:1637
 msgid ""
 "Currently, users who can edit the published post can also approve Revisions "
 "to it."
@@ -1864,16 +2192,16 @@ msgstr ""
 "În prezent, utilizatorii care pot edita postarea publicată pot, de "
 "asemenea, să aprobe revizii ale acesteia."
 
-#: admin/options.php:1606
+#: admin/options.php:1643
 msgid "Approve Revision capabilities"
 msgstr "Capacități de aprobat revizii"
 
-#: admin/options.php:1615
+#: admin/options.php:1652
 #, php-format
 msgid "Control access with %s."
 msgstr "Controlați accesul cu %s."
 
-#: admin/options.php:1623
+#: admin/options.php:1660
 msgid ""
 "Require Approve Revision capabilities (approve_posts, approve_others_pages, "
 "etc.)"
@@ -1881,7 +2209,7 @@ msgstr ""
 "Necesar capacități de aprobat revizii (approve_posts, approve_others_pages, "
 "etc.)"
 
-#: admin/options.php:1628
+#: admin/options.php:1665
 msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
@@ -1889,57 +2217,49 @@ msgstr ""
 "Etichetează butonul fie ca \"Aprobă și Publică\", fie ca \"Aprobă și "
 "Programează.\""
 
-#: admin/options.php:1637
+#: admin/options.php:1674
 msgid "This may improve compatibility with some plugins."
 msgstr "Acest lucru poate îmbunătăți compatibilitatea cu unele pluginuri."
 
-#: admin/options.php:1672
+#: admin/options.php:1696
+#. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
-msgid "Control New Revisions access with the %s."
-msgstr "Controlează accesul la Revizii Noi cu %s."
+msgid "If enabled, New Revisions screen access can be configured per-role using %s."
+msgstr ""
+"Dacă este activat, accesul la ecranul Reviziilor Noi poate fi configurat pe "
+"roluri folosind %s."
 
-#: admin/options.php:1678
-msgid "Control New Revisions access with the manage_revision_queue capability."
-msgstr "Controlează accesul la Revizii Noi cu capacitatea manage_revision_queue."
-
-#: admin/options.php:1698
+#: admin/options.php:1703
+#. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
-msgid "Users will need the %s to edit others' Unsubmitted Revisions."
-msgstr ""
-"Utilizatorii vor avea nevoie de %s pentru a edita Reviziile Netrimise ale "
-"altora."
-
-#: admin/options.php:1704
 msgid ""
-"Users will need the manage_unsubmitted_revisions capability to edit others' "
-"Unsubmitted Revisions."
+"If enabled, access to Unsubmitted Revisions can be configured per-role "
+"using %s."
 msgstr ""
-"Utilizatorii vor avea nevoie de capacitatea manage_unsubmitted_revisions "
-"pentru a edita Reviziile Netrimise ale altora."
+"Dacă este activat, accesul la Reviziile Netrimise poate fi configurat pe "
+"roluri folosind %s."
 
-#: admin/options.php:1724
-#: admin/options.php:1752
+#: admin/options.php:1710
+#. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
-msgid "If the user can't edit the published post, require the %s."
-msgstr "Dacă utilizatorul nu poate edita postarea publicată, solicită %s."
-
-#: admin/options.php:1730
 msgid ""
-"If the user can't edit the published post, require the "
-"edit_others_revisions capability."
+"If a user cannot edit the published post, control their access to others’ "
+"Revisions using %s."
 msgstr ""
-"Dacă utilizatorul nu poate edita postarea publicată, solicită capacitatea "
-"edit_others_revisions."
+"Dacă un utilizator nu poate edita postarea publicată, controlați accesul "
+"lor la Reviziile altora folosind %s."
 
-#: admin/options.php:1758
+#: admin/options.php:1717
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
 msgid ""
-"If the user can't edit the published post, require the "
-"list_others_revisions capability."
+"If a user cannot edit the published post, control their ability to list "
+"others’ Revisions using %s."
 msgstr ""
-"Dacă utilizatorul nu poate edita postarea publicată, solicită capacitatea "
-"list_others_revisions."
+"Dacă un utilizator nu poate edita postarea publicată, controlați "
+"capacitatea lor de a lista Reviziile altora folosind %s."
 
-#: admin/options.php:1763
+#: admin/options.php:1722
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -1947,7 +2267,7 @@ msgstr ""
 "Ocolește restricțiile de mai sus pentru reviziile altora la postările "
 "proprii ale utilizatorului conectat."
 
-#: admin/options.php:1774
+#: admin/options.php:1733
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -1955,11 +2275,11 @@ msgstr ""
 "Dacă au fost create revizii pentru o pagină editabilă, includeți un buton "
 "flotant de Revizii în vizualizările de pe partea frontală."
 
-#: admin/options.php:1782
+#: admin/options.php:1741
 msgid "Regenerate \"post has revision\" flags"
 msgstr "Regenerare a etichetelor \"postarea are revizie\""
 
-#: admin/options.php:1785
+#: admin/options.php:1744
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -1967,17 +2287,17 @@ msgstr ""
 "Aplică această operațiune de întreținere dacă etichetele Has Revision de pe "
 "ecranele Postări / Pagini nu se potrivesc cu lista Reviziilor Noi."
 
-#: admin/options.php:1809
+#: admin/options.php:1768
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "Pentru notificări îmbunătățite, instalează %sPublishPress Planner%s."
 
-#: admin/options.php:1822
+#: admin/options.php:1781
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "Pentru notificări îmbunătățite, actualizați %sPublishPress Planner%s."
 
-#: admin/options.php:1844
+#: admin/options.php:1803
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -1986,7 +2306,7 @@ msgstr ""
 "Trimiteți notificări de acțiune de revizuire folosind sistemul "
 "personalizabil %1$sPublishPress Planner Notifications%2$s."
 
-#: admin/options.php:1845
+#: admin/options.php:1804
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -1996,7 +2316,7 @@ msgstr ""
 "revizuire folosind sistemul personalizabil %1$sPublishPress Planner "
 "Notifications%2$s."
 
-#: admin/options.php:1857
+#: admin/options.php:1816
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -2004,27 +2324,31 @@ msgstr ""
 "Utilizatorii care corespund configurației Planner > Notifications primesc "
 "notificări de revizuire doar dacă pot edita postarea publicată."
 
-#: admin/options.php:1900
-#: admin/options.php:1923
+#: admin/options.php:1826
+msgid "Legacy Email Notifications:"
+msgstr "Notificări prin email vechi:"
+
+#: admin/options.php:1859
+#: admin/options.php:1882
 msgid "Never"
 msgstr "Niciodată"
 
-#: admin/options.php:1900
-#: admin/options.php:1923
+#: admin/options.php:1859
+#: admin/options.php:1882
 msgid "By default"
 msgstr "Din oficiu"
 
-#: admin/options.php:1900
-#: admin/options.php:1923
+#: admin/options.php:1859
+#: admin/options.php:1882
 msgid "Always"
 msgstr "Întotdeauna"
 
-#: admin/options.php:1911
-#: admin/options.php:1959
+#: admin/options.php:1870
+#: admin/options.php:1918
 msgid "select recipients"
 msgstr "selectați destinatarii"
 
-#: admin/options.php:1973
+#: admin/options.php:1932
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -2032,55 +2356,55 @@ msgstr ""
 "Pentru a evita eșecurile notificărilor, bufferizați e-mailurile pentru "
 "trimitere întârziată odată ce limitele de minut, oră sau zi sunt depășite"
 
-#: admin/options.php:1996
+#: admin/options.php:1955
 msgid "Notification Buffer"
 msgstr "Buffer de Notificare"
 
-#: admin/options.php:2024
+#: admin/options.php:1983
 msgid "Notification Log"
 msgstr "Jurnal de Notificare"
 
-#: admin/options.php:2058
+#: admin/options.php:2017
 msgid "Purge Notification Buffer"
 msgstr "Curățați Bufferul de Notificare"
 
-#: admin/options.php:2069
+#: admin/options.php:2028
 msgid "Truncate Notification Log"
 msgstr "Trunchiați Jurnalul de Notificare"
 
-#: admin/options.php:2075
+#: admin/options.php:2034
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "Trimise în ultima minută: %d / %d"
 
-#: admin/options.php:2076
+#: admin/options.php:2035
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "Trimise în ultima oră: %d / %d"
 
-#: admin/options.php:2077
+#: admin/options.php:2036
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "Trimise în ultima zi: %d / %d"
 
-#: admin/options.php:2084
+#: admin/options.php:2043
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "Secunde până la următoarea procesare a bufferului: %d"
 
-#: admin/options.php:2095
+#: admin/options.php:2054
 msgid "Show Notification Log / Buffer"
 msgstr "Arată Jurnalul / Bufferul de Notificare"
 
-#: admin/options.php:2097
+#: admin/options.php:2056
 msgid "Show with message content"
 msgstr "Arată cu conținutul mesajului"
 
-#: admin/options.php:2119
+#: admin/options.php:2078
 msgid "Ready to enhance your revision notifications?"
 msgstr "Ești gata să îmbunătățești notificările tale de revizuire?"
 
-#: admin/options.php:2122
+#: admin/options.php:2081
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -2088,45 +2412,59 @@ msgstr ""
 "Actualizați la Revisions Pro pentru integrarea cu cadrul nostru "
 "PublishPress Planner Notifications."
 
-#: admin/options.php:2128
+#: admin/options.php:2087
 msgid "Customize notification message and subject"
 msgstr "Personalizați mesajul și subiectul notificării"
 
-#: admin/options.php:2131
+#: admin/options.php:2090
 msgid "Notify for a specific post type, category or term"
 msgstr "Notificare pentru un anumit post type, categorie sau termen"
 
-#: admin/options.php:2134
+#: admin/options.php:2093
 msgid "Target specific roles, users, or user groups"
 msgstr "Vizați roluri, utilizatori sau grupuri de utilizatori specifice"
 
-#: admin/options.php:2137
+#: admin/options.php:2096
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "Cu PublishPress Planner Pro, trimiteți notificări către un canal Slack"
 
-#: admin/options.php:2160
+#: admin/options.php:2103
+#: admin/options.php:2133
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Upgradează la Revisions Pro"
+
+#: admin/options.php:2109
+msgid "Learn more about advanced revision notifications"
+msgstr "Aflați mai multe despre notificările avansate ale reviziilor"
+
+#: admin/options.php:2121
 msgid "Revision notifications settings preview"
 msgstr "Previzualizare setări notificări revizuire"
 
-#: admin/options.php:2164
-#: admin/options.php:2766
-#: admin/options.php:2782
+#: admin/options.php:2125
+#: admin/options.php:2744
+#: admin/options.php:2760
 msgid "Pro Feature"
 msgstr "Funcție Pro"
 
-#: admin/options.php:2165
+#: admin/options.php:2126
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr ""
 "Actualizați la Revisions Pro pentru a debloca integrarea notificărilor "
 "Planner."
 
-#: admin/options.php:2166
+#: admin/options.php:2127
 msgid "Customize notification content and recipients for each notification type."
 msgstr ""
 "Personalizați conținutul notificării și destinatarii pentru fiecare tip de "
 "notificare."
 
-#: admin/options.php:2191
+#: admin/options.php:2129
+msgid "Learn more about custom email notifications"
+msgstr "Aflați mai multe despre notificările personalizate prin email"
+
+#: admin/options.php:2152
 msgid ""
 "Disable this setting if visual comparison shows your changes incorrectly. "
 "Some page-builders and themes don't support the new style of WordPress "
@@ -2136,11 +2474,25 @@ msgstr ""
 "tale sunt incorecte. Unele constructori de pagini și teme nu suportă noul "
 "stil de revizii WordPress."
 
-#: admin/options.php:2196
+#: admin/options.php:2157
 msgid "This feature is incompatible with page builder plugins."
 msgstr "Această funcție este incompatibilă cu pluginurile de construire a paginilor."
 
-#: admin/options.php:2201
+#: admin/options.php:2165
+#. translators: %s: page builder plugin name.
+#, php-format
+msgid "Upgrade to Pro for visual comparison with %s."
+msgstr "Faceți upgrade la Pro pentru compararea vizuală cu %s."
+
+#: admin/options.php:2176
+msgid ""
+"This supports the page's normal javascript behavior inside the compare "
+"window."
+msgstr ""
+"Aceasta susține comportamentul normal javascript al paginii în fereastra de "
+"comparare."
+
+#: admin/options.php:2179
 msgid ""
 "If enabled, Editors and Administrators can see unidentified internal fields "
 "keys in comparisons. An attempt is still made to suppress sensitive and "
@@ -2150,23 +2502,23 @@ msgstr ""
 "interne neidentificate în comparații. Se face totuși o încercare de a "
 "suprima câmpurile sensibile și tranzitorii."
 
-#: admin/options.php:2217
+#: admin/options.php:2195
 msgid "Some themes may block revision preview."
 msgstr "Unele teme pot bloca previzualizarea revizuirii."
 
-#: admin/options.php:2234
+#: admin/options.php:2212
 msgid "Published Post Slug"
 msgstr "Slug Post Publicat"
 
-#: admin/options.php:2235
+#: admin/options.php:2213
 msgid "Revision Slug"
 msgstr "Slug Revizuire"
 
-#: admin/options.php:2236
+#: admin/options.php:2214
 msgid "Revision ID only"
 msgstr "ID Revizuire doar"
 
-#: admin/options.php:2251
+#: admin/options.php:2229
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -2174,14 +2526,14 @@ msgstr ""
 "Unele teme sau pluginuri pot necesita tipul de link Slug Revizuire sau ID "
 "Revizuire pentru o încărcare corectă a șablonului și afișarea câmpurilor."
 
-#: admin/options.php:2260
+#: admin/options.php:2238
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr ""
 "Argumentul de previzualizare a revizuirii este configurat prin definiția "
 "constantelor: %s"
 
-#: admin/options.php:2267
+#: admin/options.php:2245
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -2190,13 +2542,13 @@ msgstr ""
 "\"rv_preview\" în loc de \"preview\". Experimentați pentru a vedea care "
 "funcționează cel mai bine cu tema dvs."
 
-#: admin/options.php:2271
+#: admin/options.php:2249
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "Unele teme pot necesita această setare pentru a afișa corect "
 "previzualizarea revizuirii."
 
-#: admin/options.php:2290
+#: admin/options.php:2268
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -2204,14 +2556,14 @@ msgstr ""
 "Aceasta ar trebui de obicei să fie activată, cu excepția cazului în care "
 "trebuie să evitați conflictele cu datele postmeta ale altui plugin."
 
-#: admin/options.php:2314
+#: admin/options.php:2292
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "Dacă utilizatorul nu poate publica, solicitați %s pentru a edita posturile "
 "nepublicate ale altora."
 
-#: admin/options.php:2320
+#: admin/options.php:2298
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -2219,7 +2571,7 @@ msgstr ""
 "Dacă utilizatorul nu poate publica, solicitați capacitatea "
 "edit_others_drafts pentru a edita posturile nepublicate ale altora."
 
-#: admin/options.php:2326
+#: admin/options.php:2304
 msgid ""
 "If post-specific permissions restrict or expand access to a post, apply "
 "those permissions to its revisions also."
@@ -2227,20 +2579,20 @@ msgstr ""
 "Dacă permisiunile specifice postului restricționează sau extind accesul la "
 "un post, aplicați acele permisiuni și reviziunilor sale."
 
-#: admin/options.php:2338
+#: admin/options.php:2316
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO poate preveni actualizarea Reviziei pe unele site-uri."
 
-#: admin/options.php:2345
+#: admin/options.php:2323
 #: includes/CoreAdmin.php:205
 msgid "WPML Translation Management"
 msgstr "WPML Managementul traducerilor"
 
-#: admin/options.php:2350
+#: admin/options.php:2328
 msgid "Sync \"Needs Update\" flags"
 msgstr "Sincronizează steagurile \"Necesită actualizare\""
 
-#: admin/options.php:2354
+#: admin/options.php:2332
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -2249,11 +2601,11 @@ msgstr ""
 "fost actualizată (posibil prin aprobarea reviziei) mai recent decât "
 "traducerile sale."
 
-#: admin/options.php:2372
+#: admin/options.php:2350
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "Afișează descrieri pentru setările Reviziilor PublishPress."
 
-#: admin/options.php:2390
+#: admin/options.php:2368
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -2262,11 +2614,11 @@ msgstr ""
 "șterse, dar doar după ce ultima copie a Reviziilor / Reviziilor Pro este "
 "ștearsă."
 
-#: admin/options.php:2411
+#: admin/options.php:2389
 msgid "Unlock Pro Integrations"
 msgstr "Deblochează Integrările Pro"
 
-#: admin/options.php:2412
+#: admin/options.php:2390
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -2274,45 +2626,49 @@ msgstr ""
 "Upgradează la versiunea Pro pentru compatibilitate optimă și suport prompt, "
 "profesionist."
 
-#: admin/options.php:2430
-#: admin/options.php:2687
+#: admin/options.php:2403
+msgid "Filter integrations by category"
+msgstr "Filtrați integrările după categorie"
+
+#: admin/options.php:2408
+#: admin/options.php:2665
 msgid "Builder"
 msgstr "Constructor"
 
-#: admin/options.php:2433
-#: admin/options.php:2688, fuzzy
+#: admin/options.php:2411
+#: admin/options.php:2666, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2436
+#: admin/options.php:2414
 msgid "E-Commerce"
 msgstr "Comerț electronic"
 
-#: admin/options.php:2439
-#: admin/options.php:2690
+#: admin/options.php:2417
+#: admin/options.php:2668
 msgid "Fields"
 msgstr "Câmpuri"
 
-#: admin/options.php:2442
-#: admin/options.php:2695
+#: admin/options.php:2420
+#: admin/options.php:2673
 msgid "Themes"
 msgstr "Teme"
 
-#: admin/options.php:2446
+#: admin/options.php:2424
 msgid "Multilingual"
 msgstr "Multilingv"
 
-#: admin/options.php:2450
-#: admin/options.php:2693, fuzzy
+#: admin/options.php:2428
+#: admin/options.php:2671, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2453
-#: admin/options.php:2696
+#: admin/options.php:2431
+#: admin/options.php:2674
 msgid "Workflow"
 msgstr "Flux de lucru"
 
-#: admin/options.php:2535
+#: admin/options.php:2513
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2320,20 +2676,20 @@ msgstr ""
 "Specificați ce setări ale Reviziilor PublishPress să controleze la nivel de "
 "rețea. Setările neslectate sunt controlate separat pe fiecare site."
 
-#: admin/options.php:2581
+#: admin/options.php:2559
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "control la nivel de rețea al \"%s\""
 
-#: admin/options.php:2608
+#: admin/options.php:2586
 msgid "Save Changes"
 msgstr "Salvează modificările"
 
-#: admin/options.php:2609
+#: admin/options.php:2587
 msgid "Revert to Defaults"
 msgstr "Revenire la setările implicite"
 
-#: admin/options.php:2611
+#: admin/options.php:2589
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2341,53 +2697,53 @@ msgstr ""
 "Toate setările din acest formular (inclusiv cele de pe tab-urile "
 "neselectate) vor fi resetate la VALORI IMPUS. Ești sigur?"
 
-#: admin/options.php:2689, fuzzy
+#: admin/options.php:2667, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2691
+#: admin/options.php:2669
 msgid "Form"
 msgstr "Formular"
 
-#: admin/options.php:2692, fuzzy
+#: admin/options.php:2670, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2694, fuzzy
+#: admin/options.php:2672, fuzzy
 msgid "Slider"
 msgstr "Slider"
 
-#: admin/options.php:2711, fuzzy
+#: admin/options.php:2689, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2716, fuzzy
+#: admin/options.php:2694, fuzzy
 msgid "Supported"
 msgstr "Supported"
 
-#: admin/options.php:2719
-#: admin/options.php:2799
+#: admin/options.php:2697
+#: admin/options.php:2777
 msgid "Active Plugin"
 msgstr "Plugin activ"
 
-#: admin/options.php:2731
+#: admin/options.php:2709
 msgid "Supported by PublishPress Revisions"
 msgstr "Suportat de PublishPress Revisions"
 
-#: admin/options.php:2733
+#: admin/options.php:2711
 msgid "Supported by Revisions Pro"
 msgstr "Suportat de Revisions Pro"
 
-#: admin/options.php:2746
+#: admin/options.php:2724
 msgid "Integration Active"
 msgstr "Integrare activă"
 
-#: admin/options.php:2754
-#: admin/options.php:2809
+#: admin/options.php:2732
+#: admin/options.php:2787
 msgid "Supported plugin integration"
 msgstr "Integrare plugin suportat"
 
-#: admin/options.php:2767
+#: admin/options.php:2745
 msgid ""
 "Unlock PublishPress Statuses Pro integration to enhance your revisions "
 "solution."
@@ -2395,26 +2751,40 @@ msgstr ""
 "Deblochează integrarea PublishPress Statuses Pro pentru a îmbunătăți "
 "soluția ta de revizuiri."
 
-#: admin/options.php:2775
+#: admin/options.php:2753
 msgid "Upgrade to Statuses Pro"
 msgstr "Upgrade la Statuses Pro"
 
-#: admin/options.php:2783
+#: admin/options.php:2761
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "Deblochează integrarea %s pentru a îmbunătăți soluția ta de revizuire."
 
-#: admin/options.php:2799
+#: admin/options.php:2777
 msgid "Active Plugin Integration"
 msgstr "Integrare plugin activ"
 
-#: admin/options.php:2819
+#: admin/options.php:2797
 msgid "Supported Plugin"
 msgstr "Plugin suportat"
+
+#: admin/options.php:2852
+msgid "Color setting"
+msgstr "Setare culoare"
 
 #: admin/post-edit-block-ui_rvy.php:164
 msgid "Now"
 msgstr "Acum"
+
+#: admin/post-edit-block-ui_rvy.php:238
+#: admin/post-edit_rvy.php:400
+msgid "Author saved."
+msgstr "Autor salvat."
+
+#: admin/post-edit-block-ui_rvy.php:243
+#: admin/post-edit_rvy.php:405
+msgid "The author could not be saved."
+msgstr "Autorul nu a putut fi salvat."
 
 #: admin/post-editor-workflow-ui_rvy.php:34
 msgid "(on approval)"
@@ -2440,6 +2810,14 @@ msgstr "Vizualizare / Aprobat"
 msgid "View / Moderate saved revision"
 msgstr "Vizualizare / Moderare revizie salvată"
 
+#: admin/post-editor-workflow-ui_rvy.php:84
+msgid "Preview / Submit"
+msgstr "Previzualizare / Trimiteți"
+
+#: admin/post-editor-workflow-ui_rvy.php:84
+msgid "View / Submit"
+msgstr "Vizualizează / Trimite"
+
 #: admin/post-editor-workflow-ui_rvy.php:85
 msgid "View / Submit saved revision"
 msgstr "Vizualizare / Trimite revizie salvată"
@@ -2463,12 +2841,6 @@ msgstr "Eroare la Trimiterea Reviziei"
 #: admin/post-editor-workflow-ui_rvy.php:118
 msgid "Preview this Revision"
 msgstr "Previzualizează această Revizie"
-
-#: admin/post-editor-workflow-ui_rvy.php:123
-#: admin/post-editor-workflow-ui_rvy.php:237
-#: front_rvy.php:495
-msgid "Edit"
-msgstr "Editare"
 
 #: admin/post-editor-workflow-ui_rvy.php:132
 msgid "Approve and Publish"
@@ -2510,38 +2882,55 @@ msgstr "Actualizează postarea înainte de a crea %s."
 msgid "Error Creating Revision"
 msgstr "Eroare la Crearea Reviziei"
 
+#: admin/post-editor-workflow-ui_rvy.php:252
+#: admin/post-editor-workflow-ui_rvy.php:272
+msgid "Update"
+msgstr "Actualizează"
+
 #: admin/post-editor-workflow-ui_rvy.php:266
 #, php-format
 msgid "For custom field changes, edit a scheduled %s."
 msgstr "Pentru modificările câmpului personalizat, editează un %s programat."
 
 #: admin/post-edit_rvy.php:28
-#: admin/post-edit_rvy.php:164
+#: admin/post-edit_rvy.php:172
 msgid "Current Time"
 msgstr "Timpul Curent"
 
 #: admin/post-edit_rvy.php:81
-#: front_rvy.php:531
-msgid "Delete"
-msgstr "Șterge"
+#: admin/post-edit_rvy.php:120
+msgid "Delete revision"
+msgstr "Șterge revizia"
 
-#: admin/post-edit_rvy.php:191
+#: admin/post-edit_rvy.php:119
+msgid ""
+"Delete this revision and leave the editor? Any unsaved changes to this "
+"revision will be discarded."
+msgstr ""
+"Șterge această revizie și părăsește editorul? Orice modificări nesalvate la "
+"această revizie vor fi abandonate."
+
+#: admin/post-edit_rvy.php:121
+msgid "Continue editing revision"
+msgstr "Continuă editarea reviziei"
+
+#: admin/post-edit_rvy.php:199
 msgid "View revision in progress"
 msgstr "Vizualizează revizia în curs"
 
-#: admin/post-edit_rvy.php:215
+#: admin/post-edit_rvy.php:223
 msgid "Compare this revision to published copy, or to other revisions"
 msgstr "Compară această revizie cu copia publicată sau cu alte revizii"
 
-#: admin/post-edit_rvy.php:247
+#: admin/post-edit_rvy.php:255
 msgid "View Saved Revision"
 msgstr "Vizualizați Revizia Salvată"
 
-#: admin/post-edit_rvy.php:250
+#: admin/post-edit_rvy.php:258
 msgid "View / moderate saved revision"
 msgstr "Vizualizați / moderați revizia salvată"
 
-#: admin/post-edit_rvy.php:253
+#: admin/post-edit_rvy.php:261
 msgid "View saved revision"
 msgstr "Vizualizați revizia salvată"
 
@@ -2557,58 +2946,62 @@ msgstr "Permalink"
 msgid "Featured image"
 msgstr "Imagine prezentată"
 
-#: admin/revision-action_rvy.php:556
-#: admin/revision-action_rvy.php:642
+#: admin/revision-action_rvy.php:566
+#: admin/revision-action_rvy.php:652
 #, php-format
 msgid "[%s] Revision Approval Notice"
 msgstr "[%s] Notificare de Aprobat Revizie"
 
-#: admin/revision-action_rvy.php:557
+#: admin/revision-action_rvy.php:567
 #, php-format
 msgid "A revision to the %1$s \"%2$s\" has been approved."
 msgstr "O revizie la %1$s \"%2$s\" a fost aprobată."
 
-#: admin/revision-action_rvy.php:561
+#: admin/revision-action_rvy.php:571
 #, php-format
 msgid "The submitter was %1$s."
 msgstr "Persoana care a trimis a fost %1$s."
 
-#: admin/revision-action_rvy.php:565
-#: admin/revision-action_rvy.php:651
+#: admin/revision-action_rvy.php:575
+#: admin/revision-action_rvy.php:661
 #, php-format
 msgid "It will be published on %s"
 msgstr "Va fi publicată pe %s"
 
-#: admin/revision-action_rvy.php:569
-#: admin/revision-action_rvy.php:655
+#: admin/revision-action_rvy.php:579
+#: admin/revision-action_rvy.php:665
 msgid "Preview it here: "
 msgstr "Previzualizați-o aici: "
 
-#: admin/revision-action_rvy.php:572
-#: admin/revision-action_rvy.php:658, fuzzy
+#: admin/revision-action_rvy.php:582
+#: admin/revision-action_rvy.php:668, fuzzy
 msgid "Editor: "
 msgstr "Editor: "
 
-#: admin/revision-action_rvy.php:574
-#: admin/revision-action_rvy.php:660
-#: admin/revision-action_rvy.php:1691
-#: admin/revision-action_rvy.php:1722
-#: admin/revision-action_rvy.php:1788
+#: admin/revision-action_rvy.php:584
+#: admin/revision-action_rvy.php:670
+#: admin/revision-action_rvy.php:1710
+#: admin/revision-action_rvy.php:1741
+#: admin/revision-action_rvy.php:1807
 msgid "View it online: "
 msgstr "Vizualizați-o online: "
 
-#: admin/revision-action_rvy.php:643
+#: admin/revision-action_rvy.php:653
 #, php-format
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr "Revizia pe care ați trimis-o pentru %1$s \"%2$s\" a fost aprobată."
 
-#: admin/revision-action_rvy.php:1683
-#: admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1046
+msgid "The revision could not be published."
+msgstr "Revizia nu a putut fi publicată."
+
+#: admin/revision-action_rvy.php:1702
+#: admin/revision-action_rvy.php:1730
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr "[%s] Notificare de Publicare %s"
 
-#: admin/revision-action_rvy.php:1684
+#: admin/revision-action_rvy.php:1703
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
@@ -2617,17 +3010,47 @@ msgstr ""
 "Revizia programată pe care ați trimis-o pentru %1$s \"%2$s\" a fost "
 "publicată."
 
-#: admin/revision-action_rvy.php:1712
+#: admin/revision-action_rvy.php:1731
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr "O revizie programată a %1$s \"%2$s\" a fost publicată."
+
+#: admin/revision-action_rvy.php:1738
+#: admin/revision-action_rvy.php:1804
+#, php-format
+msgid "It was submitted by %1$s."
+msgstr "A fost trimisă de %1$s."
+
+#: admin/revision-action_rvy.php:1795
+#, php-format
+msgid "[%s] %s Publication"
+msgstr "[%s] %s Publicație"
+
+#: admin/revision-action_rvy.php:1797
+#, php-format
+msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
+msgstr "O revizie programată pentru %1$s \"%2$s\" a fost publicată."
 
 #: admin/revision-archive_rvy.php:15
 msgid "Revision for:"
 msgstr "Revizia pentru:"
 
+#: admin/revision-archive_rvy.php:48
+#: admin/revision-queue_rvy.php:98
+#, php-format
+msgid "%s revision permanently deleted."
+msgid_plural "%s revisions permanently deleted."
+msgstr[0] "%s revizie ștearsă permanent."
+msgstr[1] ""
+msgstr[2] ""
+
+#: admin/revision-archive_rvy.php:78
+#: admin/revision-queue_rvy.php:217
+msgid "Undo"
+msgstr "Anulează"
+
 #: admin/revision-archive_rvy.php:110
-#: admin/revision-queue_rvy.php:272
+#: admin/revision-queue_rvy.php:325
 msgid "Search Revisions"
 msgstr "Căutare Revizii"
 
@@ -2742,11 +3165,11 @@ msgstr " (Autor postare: %s)"
 msgid "New Revisions %s"
 msgstr "Revizii noi %s"
 
-#: admin/revision-queue_rvy.php:293
+#: admin/revision-queue_rvy.php:346
 msgid "About Scheduled Revisions"
 msgstr "Despre Reviziile Programate"
 
-#: admin/revision-queue_rvy.php:295
+#: admin/revision-queue_rvy.php:348
 msgid ""
 "The Scheduled Revisions feature allows you to choose a date and time to "
 "publish content updates."
@@ -2754,39 +3177,39 @@ msgstr ""
 "Funcția Reviziilor Programate îți permite să alegi o dată și o oră pentru a "
 "publica actualizări de conținut."
 
-#: admin/revision-queue_rvy.php:297
-#: admin/revision-queue_rvy.php:311
+#: admin/revision-queue_rvy.php:350
+#: admin/revision-queue_rvy.php:364
 msgid "Click \"Create Revision\"."
 msgstr "Apasă \"Creează Revizie\"."
 
-#: admin/revision-queue_rvy.php:298
-#: admin/revision-queue_rvy.php:312
+#: admin/revision-queue_rvy.php:351
+#: admin/revision-queue_rvy.php:365
 msgid "Make your changes to the post."
 msgstr "Fă modificările dorite postării."
 
-#: admin/revision-queue_rvy.php:299
+#: admin/revision-queue_rvy.php:352
 msgid "Select a publishing date in the future."
 msgstr "Selectează o dată de publicare în viitor."
 
-#: admin/revision-queue_rvy.php:300
+#: admin/revision-queue_rvy.php:353
 msgid "Click the \"Schedule Revision\" button."
 msgstr "Apasă pe butonul \"Programează Revizia\"."
 
-#: admin/revision-queue_rvy.php:307
+#: admin/revision-queue_rvy.php:360
 msgid "About New Revisions"
 msgstr "Despre Reviziile Noi"
 
-#: admin/revision-queue_rvy.php:309
+#: admin/revision-queue_rvy.php:362
 msgid "The New Revisions feature gives you a safe space to work on content updates."
 msgstr ""
 "Funcția Noilor Revizii îți oferă un spațiu sigur pentru a lucra la "
 "actualizările de conținut."
 
-#: admin/revision-queue_rvy.php:313
+#: admin/revision-queue_rvy.php:366
 msgid "Save your revision."
 msgstr "Salvează revizia ta."
 
-#: admin/revision-queue_rvy.php:314
+#: admin/revision-queue_rvy.php:367
 msgid ""
 "When you're happy with it, click \"Submit Revision\". You can then share "
 "the revision with other users, or publish the update."
@@ -2822,6 +3245,16 @@ msgstr "%1$s <span>(Data publicării: %2$s)</span>"
 msgid "%1$s <span>(Requested publication: %2$s)</span>"
 msgstr "%1$s <span>(Publicare solicitată: %2$s)</span>"
 
+#: admin/revision-ui_rvy.php:125
+#, fuzzy, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: admin/revision-ui_rvy.php:279
+#, php-format
+msgid "Preview &#8220;%s&#8221;"
+msgstr "Previzualizare &#8220;%s&#8221;"
+
 #: admin/revision-ui_rvy.php:295
 msgid "The revision will be deleted. Are you sure?"
 msgstr "Revizia va fi ștearsă. Ești sigur?"
@@ -2834,18 +3267,25 @@ msgstr "Selectează revizia pentru ștergere"
 msgid "Modified Date"
 msgstr "Data modificării"
 
-#: admin/revision-ui_rvy.php:409
-msgid "Select bulk action"
-msgstr "Selectează acțiunea în masă"
+#: admin/revision-ui_rvy.php:392
+msgid "Actions"
+msgstr "Acțiuni"
+
+#: admin/revision-ui_rvy.php:410
+msgid "Bulk Actions"
+msgstr "Acțiuni în masă"
+
+#: admin/RevisionEditSubmitMetabox.php:64
+msgid "Move to Trash"
+msgstr "Mută în Coș"
 
 #: admin/RevisionEditSubmitMetabox.php:124
 msgid "Preview revision in progress"
 msgstr "Previzualizare revizie în curs"
 
-#: admin/RevisionEditSubmitMetabox.php:180, fuzzy
-#. translators: Publish box date formt, see http://php.net/date
-msgid "M j, Y @ G:i"
-msgstr "M j, Y @ G:i"
+#: admin/RevisionEditSubmitMetabox.php:147
+msgid "Status:"
+msgstr "Stare:"
 
 #: admin/RevisionEditSubmitMetabox.php:191
 #, php-format
@@ -2874,6 +3314,10 @@ msgstr "Nicio revizie specificată."
 msgid "Past"
 msgstr "Trecut"
 
+#: admin/revisions.php:74
+msgid "Pending"
+msgstr "Întârziat"
+
 #: admin/revisions.php:136
 #, php-format
 msgid "Revisions of %s"
@@ -2883,134 +3327,133 @@ msgstr "Reviziile lui %s"
 msgid "The requested revision does not exist."
 msgstr "Revizia solicitată nu există."
 
-#: admin/revisions.php:254
+#: admin/revisions.php:255
 #, fuzzy, php-format
 msgid "%1$s %2$s (%3$s)%4$s"
 msgstr "%1$s %2$s (%3$s)%4$s"
 
-#: admin/revisions.php:275
+#: admin/revisions.php:276
 #, php-format
 msgid "no %s revisions available."
 msgstr "nu sunt disponibile %s revisii."
 
-#: classes/PublishPress/IntegrationCards.php:36
 #: classes/PublishPress/IntegrationCards.php:39
 #: classes/PublishPress/IntegrationCards.php:42
 #: classes/PublishPress/IntegrationCards.php:45
-#: classes/PublishPress/IntegrationCards.php:324
-#: classes/PublishPress/Revisionary.php:246
-#: classes/PublishPress/Revisionary.php:276
+#: classes/PublishPress/IntegrationCards.php:362
+#: classes/PublishPress/Revisionary.php:249
+#: classes/PublishPress/Revisionary.php:279
 msgid "Revise custom fields and display changes"
 msgstr "Revizuiește câmpurile personalizate și afișează modificările"
 
-#: classes/PublishPress/IntegrationCards.php:80
+#: classes/PublishPress/IntegrationCards.php:116
 msgid "PublishPress Statuses"
 msgstr "Stările PublishPress"
 
-#: classes/PublishPress/IntegrationCards.php:81
+#: classes/PublishPress/IntegrationCards.php:117
 msgid "PublishPress Statuses Pro integration."
 msgstr "Integrarea Stărilor PublishPress Pro."
 
-#: classes/PublishPress/IntegrationCards.php:85
+#: classes/PublishPress/IntegrationCards.php:121
 msgid "Define custom statuses for revisions"
 msgstr "Definește stări personalizate pentru revizii"
 
-#: classes/PublishPress/IntegrationCards.php:86
+#: classes/PublishPress/IntegrationCards.php:122
 msgid "Control editing access for each revision status"
 msgstr "Controlează accesul la editare pentru fiecare stare de revizie"
 
-#: classes/PublishPress/IntegrationCards.php:213
+#: classes/PublishPress/IntegrationCards.php:249
 #: classes/PublishPress/Revisionary.php:112
-#: classes/PublishPress/Revisionary.php:200
+#: classes/PublishPress/Revisionary.php:203
 msgid "Store custom fields with revisions"
 msgstr "Stochează câmpuri personalizate cu revisii"
 
-#: classes/PublishPress/IntegrationCards.php:214
+#: classes/PublishPress/IntegrationCards.php:250
 #: classes/PublishPress/Revisionary.php:113
-#: classes/PublishPress/Revisionary.php:201
+#: classes/PublishPress/Revisionary.php:204
 msgid "Display custom field changes"
 msgstr "Afișează modificările câmpurilor personalizate"
 
-#: classes/PublishPress/IntegrationCards.php:215
+#: classes/PublishPress/IntegrationCards.php:251
 #: classes/PublishPress/Revisionary.php:114
-#: classes/PublishPress/Revisionary.php:202
+#: classes/PublishPress/Revisionary.php:205
 msgid "Update custom fields on revision publication"
 msgstr "Actualizează câmpurile personalizate la publicarea revisiilor"
 
-#: classes/PublishPress/IntegrationCards.php:228
+#: classes/PublishPress/IntegrationCards.php:264
 #, php-format
 msgid "Compatibility with %s theme custom fields."
 msgstr "Compatibilitate cu câmpurile personalizate %s ale temei."
 
-#: classes/PublishPress/IntegrationCards.php:229
+#: classes/PublishPress/IntegrationCards.php:265
 #, php-format
 msgid "Compatibility with %s custom fields."
 msgstr "Compatibilitate cu câmpurile personalizate %s."
 
-#: classes/PublishPress/IntegrationCards.php:255
+#: classes/PublishPress/IntegrationCards.php:292
 #, php-format
 msgid "Compatibility with %s."
 msgstr "Compatibilitate cu %s."
 
-#: classes/PublishPress/IntegrationCards.php:256
+#: classes/PublishPress/IntegrationCards.php:293
 #, php-format
 msgid "Compatibility with %s cache."
 msgstr "Compatibilitate cu cache-ul %s."
 
-#: classes/PublishPress/IntegrationCards.php:266
-#: classes/PublishPress/Revisionary.php:186
+#: classes/PublishPress/IntegrationCards.php:303
+#: classes/PublishPress/Revisionary.php:189
 msgid "Clear cache on revision publication"
 msgstr "Șterge cache-ul la publicarea reviziei"
 
-#: classes/PublishPress/IntegrationCards.php:267
-#: classes/PublishPress/Revisionary.php:187
+#: classes/PublishPress/IntegrationCards.php:304
+#: classes/PublishPress/Revisionary.php:190
 msgid "Support immediate and scheduled publication"
 msgstr "Suport pentru publicare imediată și programată"
 
-#: classes/PublishPress/IntegrationCards.php:284, fuzzy
+#: classes/PublishPress/IntegrationCards.php:322, fuzzy
 msgid "LiteSpeed Cache"
 msgstr "LiteSpeed Cache"
 
-#: classes/PublishPress/IntegrationCards.php:285, fuzzy
+#: classes/PublishPress/IntegrationCards.php:323, fuzzy
 msgid "WP Fastest Cache"
 msgstr "WP Fastest Cache"
 
-#: classes/PublishPress/IntegrationCards.php:286, fuzzy
+#: classes/PublishPress/IntegrationCards.php:324, fuzzy
 msgid "WP Super Cache"
 msgstr "WP Super Cache"
 
-#: classes/PublishPress/IntegrationCards.php:287, fuzzy
+#: classes/PublishPress/IntegrationCards.php:325, fuzzy
 msgid "WP-Optimize"
 msgstr "WP-Optimize"
 
-#: classes/PublishPress/IntegrationCards.php:288, fuzzy
+#: classes/PublishPress/IntegrationCards.php:326, fuzzy
 msgid "W3 Total Cache"
 msgstr "W3 Total Cache"
 
-#: classes/PublishPress/IntegrationCards.php:289, fuzzy
+#: classes/PublishPress/IntegrationCards.php:327, fuzzy
 msgid "Breeze"
 msgstr "Breeze"
 
-#: classes/PublishPress/IntegrationCards.php:290, fuzzy
+#: classes/PublishPress/IntegrationCards.php:328, fuzzy
 msgid "SpeedyCache"
 msgstr "SpeedyCache"
 
-#: classes/PublishPress/IntegrationCards.php:315, fuzzy
+#: classes/PublishPress/IntegrationCards.php:353, fuzzy
 msgid "PublishPress Cart"
 msgstr "PublishPress Cart"
 
-#: classes/PublishPress/IntegrationCards.php:320
-#: classes/PublishPress/Revisionary.php:239
+#: classes/PublishPress/IntegrationCards.php:358
+#: classes/PublishPress/Revisionary.php:242
 msgid "Revision submission and approval for products."
 msgstr "Trimiterea și aprobarea reviziilor pentru produse."
 
-#: classes/PublishPress/IntegrationCards.php:322
-#: classes/PublishPress/Revisionary.php:243
+#: classes/PublishPress/IntegrationCards.php:360
+#: classes/PublishPress/Revisionary.php:246
 msgid "Product revisions"
 msgstr "Revizii de produse"
 
-#: classes/PublishPress/IntegrationCards.php:323
-#: classes/PublishPress/Revisionary.php:245
+#: classes/PublishPress/IntegrationCards.php:361
+#: classes/PublishPress/Revisionary.php:248
 msgid "Priority on ongoing compatibility"
 msgstr "Prioritate pentru compatibilitatea în curs"
 
@@ -3049,132 +3492,138 @@ msgid "Integration with Beaver Builder's front end editor."
 msgstr "Integrare cu editorul front-end al Beaver Builder."
 
 #: classes/PublishPress/Revisionary.php:141
-#: classes/PublishPress/Revisionary.php:156
-#: classes/PublishPress/Revisionary.php:171
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:173
 msgid "Front end Revision submission"
 msgstr "Trimiterea revisiilor pe front-end"
 
 #: classes/PublishPress/Revisionary.php:142
-#: classes/PublishPress/Revisionary.php:157
-#: classes/PublishPress/Revisionary.php:172
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:174
 msgid "Front end Revision editing"
 msgstr "Editarea revisiilor pe front-end"
 
 #: classes/PublishPress/Revisionary.php:143
-#: classes/PublishPress/Revisionary.php:158
-#: classes/PublishPress/Revisionary.php:173
+#: classes/PublishPress/Revisionary.php:159
+#: classes/PublishPress/Revisionary.php:175
+msgid "Visual comparison of changes"
+msgstr "Comparație vizuală a modificărilor"
+
+#: classes/PublishPress/Revisionary.php:144
+#: classes/PublishPress/Revisionary.php:160
+#: classes/PublishPress/Revisionary.php:176
 msgid "Revision preview and redirects"
 msgstr "Previzualizarea revisiilor și redirecționările"
 
-#: classes/PublishPress/Revisionary.php:151, fuzzy
+#: classes/PublishPress/Revisionary.php:152, fuzzy
 msgid "Divi"
 msgstr "Divi"
 
-#: classes/PublishPress/Revisionary.php:152
+#: classes/PublishPress/Revisionary.php:153
 msgid "Integration with Divi Builder and Divi Theme."
 msgstr "Integrare cu Divi Builder și tema Divi."
 
-#: classes/PublishPress/Revisionary.php:166
+#: classes/PublishPress/Revisionary.php:168
 #: includes/CoreAdmin.php:198, fuzzy
 msgid "Elementor"
 msgstr "Elementor"
 
-#: classes/PublishPress/Revisionary.php:167
+#: classes/PublishPress/Revisionary.php:169
 msgid "Integration with Elementor's front end editor."
 msgstr "Integrare cu editorul de front-end Elementor."
 
-#: classes/PublishPress/Revisionary.php:181, fuzzy
+#: classes/PublishPress/Revisionary.php:184, fuzzy
 msgid "Nitro Pack"
 msgstr "Nitro Pack"
 
-#: classes/PublishPress/Revisionary.php:182
+#: classes/PublishPress/Revisionary.php:185
 msgid "Compatibility with Nitro Pack cache."
 msgstr "Compatibilitate cu cache-ul Nitro Pack."
 
-#: classes/PublishPress/Revisionary.php:195
+#: classes/PublishPress/Revisionary.php:198
 #: includes/CoreAdmin.php:202, fuzzy
 msgid "Pods"
 msgstr "Pods"
 
-#: classes/PublishPress/Revisionary.php:196
+#: classes/PublishPress/Revisionary.php:199
 msgid "Compatibility with Pods custom fields."
 msgstr "Compatibilitate cu câmpurile personalizate Pods."
 
-#: classes/PublishPress/Revisionary.php:210, fuzzy
+#: classes/PublishPress/Revisionary.php:213, fuzzy
 msgid "Polylang"
 msgstr "Polylang"
 
-#: classes/PublishPress/Revisionary.php:211
+#: classes/PublishPress/Revisionary.php:214
 msgid "Compatibility with Polylang translation."
 msgstr "Compatibilitate cu traducerea Polylang."
 
-#: classes/PublishPress/Revisionary.php:215
+#: classes/PublishPress/Revisionary.php:218
 msgid "Revisions carry over Polylang data"
 msgstr "Reviziile păstrează datele Polylang"
 
-#: classes/PublishPress/Revisionary.php:216
+#: classes/PublishPress/Revisionary.php:219
 msgid "Translation retained on Revision approval"
 msgstr "Traducerea păstrată la aprobarea reviziei"
 
-#: classes/PublishPress/Revisionary.php:224, fuzzy
+#: classes/PublishPress/Revisionary.php:227, fuzzy
 msgid "PublishPress Planner"
 msgstr "PublishPress Planner"
 
-#: classes/PublishPress/Revisionary.php:225
+#: classes/PublishPress/Revisionary.php:228
 msgid "PublishPress Planner Integration."
 msgstr "Integrarea PublishPress Planner."
 
-#: classes/PublishPress/Revisionary.php:229
+#: classes/PublishPress/Revisionary.php:232
 msgid "Planner Notifications for revision actions"
 msgstr "Notificări Planner pentru acțiunile reviziei"
 
-#: classes/PublishPress/Revisionary.php:230
+#: classes/PublishPress/Revisionary.php:233
 msgid "Revision schedule shown in Calendar"
 msgstr "Programul reviziilor afișat în Calendar"
 
-#: classes/PublishPress/Revisionary.php:238
+#: classes/PublishPress/Revisionary.php:241
 #: includes/CoreAdmin.php:203
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: classes/PublishPress/Revisionary.php:244
+#: classes/PublishPress/Revisionary.php:247
 msgid "Compatible with Product Variations"
 msgstr "Compatibil cu variațiile de produse"
 
-#: classes/PublishPress/Revisionary.php:254
+#: classes/PublishPress/Revisionary.php:257
 #: includes/CoreAdmin.php:204, fuzzy
 msgid "WPML"
 msgstr "WPML"
 
-#: classes/PublishPress/Revisionary.php:255
+#: classes/PublishPress/Revisionary.php:258
 msgid "Multilingual revisioning with WPML."
 msgstr "Revizuire multilingvă cu WPML."
 
-#: classes/PublishPress/Revisionary.php:259
+#: classes/PublishPress/Revisionary.php:262
 msgid "Language-specific revisions"
 msgstr "Revizuiri specifice pentru limbă"
 
-#: classes/PublishPress/Revisionary.php:260
+#: classes/PublishPress/Revisionary.php:263
 msgid "Translation Management integration"
 msgstr "Integrare cu gestionarea traducerilor"
 
-#: classes/PublishPress/Revisionary.php:268, fuzzy
+#: classes/PublishPress/Revisionary.php:271, fuzzy
 msgid "Yoast SEO"
 msgstr "Yoast SEO"
 
-#: classes/PublishPress/Revisionary.php:269, fuzzy
+#: classes/PublishPress/Revisionary.php:272, fuzzy
 msgid "."
 msgstr "."
 
-#: classes/PublishPress/Revisionary.php:273
+#: classes/PublishPress/Revisionary.php:276
 msgid "Prevent indexing of revisions"
 msgstr "Prevenirea indexării revizuirilor"
 
-#: classes/PublishPress/Revisionary.php:274
+#: classes/PublishPress/Revisionary.php:277
 msgid "Compatibility for Yoast SEO + Elementor"
 msgstr "Compatibilitate pentru Yoast SEO + Elementor"
 
-#: classes/PublishPress/Revisionary.php:275
+#: classes/PublishPress/Revisionary.php:278
 msgid "Compare revisions to Yoast SEO fields"
 msgstr "Compară revizuirile cu câmpurile Yoast SEO"
 
@@ -3193,128 +3642,121 @@ msgstr ""
 msgid "Dismiss notice"
 msgstr "Respinge notificarea"
 
-#: front_rvy.php:446
+#: front_rvy.php:507
 #, php-format
 msgid "%sManage%s"
 msgstr "%sGestionare%s"
 
-#: front_rvy.php:457
+#: front_rvy.php:518
 #, php-format
 msgid "%sCompare%s%sView Published Post%s"
 msgstr "%sComparare%s%sVezi articolul publicat%s"
 
-#: front_rvy.php:469
-#: front_rvy.php:484
+#: front_rvy.php:530
+#: front_rvy.php:545
 #, php-format
 msgid "%sView Published Post%s"
 msgstr "%sVezi articolul publicat%s"
 
-#: front_rvy.php:559
-#: rvy_init-functions.php:282
-#: rvy_init-functions.php:338
-msgid "Submit"
-msgstr "Trimite"
+#: front_rvy.php:639
+#: front_rvy.php:645
+#: front_rvy.php:701
+#: front_rvy.php:707
+#, php-format
+msgid "This Revision is Submitted for Approval. %s %s %s"
+msgstr "Această revizie este trimisă pentru aprobat. %s %s %s"
 
-#: front_rvy.php:571
-#: front_rvy.php:573
-#: front_rvy.php:625
-#: front_rvy.php:627
+#: front_rvy.php:641
+#: front_rvy.php:647
+#: front_rvy.php:703
+#: front_rvy.php:709
 #, php-format
 msgid "This is a %s. %s %s %s"
 msgstr "Aceasta este un %s. %s %s %s"
 
-#: front_rvy.php:575
-#: front_rvy.php:629
+#: front_rvy.php:650
+#: front_rvy.php:712
 #, fuzzy, php-format
 msgid "%s."
 msgstr "%s."
 
-#: front_rvy.php:590, fuzzy
-msgid "Decline"
-msgstr "Decline"
-
-#: front_rvy.php:599
-#: rvy_init-functions.php:355
-msgid "Schedule"
-msgstr "Programeaza"
-
-#: front_rvy.php:604
-#: front_rvy.php:606
-#: front_rvy.php:651
-#: front_rvy.php:653
+#: front_rvy.php:679
+#: front_rvy.php:681
+#: front_rvy.php:734
+#: front_rvy.php:736
 #, php-format
 msgid "This is a %s (for %s). %s %s %s"
 msgstr "Aceasta este un %s (pentru %s). %s %s %s"
 
-#: front_rvy.php:608
-#: front_rvy.php:655
+#: front_rvy.php:683
+#: front_rvy.php:738
 #, php-format
 msgid "%1$s (for %2$s)."
 msgstr "%1$s (pentru %2$s)."
 
-#: front_rvy.php:611
-#: front_rvy.php:613
+#: front_rvy.php:686
+#: front_rvy.php:688
 #, php-format
 msgid "Revision status: %s (for %s) %s %s %s"
 msgstr "Stare revizie: %s (pentru %s) %s %s %s"
 
-#: front_rvy.php:615
+#: front_rvy.php:690
 #, php-format
 msgid "Revision status: %1$s (for %2$s)"
 msgstr "Stare revizie: %1$s (pentru %2$s)"
 
-#: front_rvy.php:632
-#: front_rvy.php:634
+#: front_rvy.php:715
+#: front_rvy.php:717
 #, php-format
 msgid "Revision status: %s %s %s %s"
 msgstr "Starea revizuirii: %s %s %s %s"
 
-#: front_rvy.php:636
+#: front_rvy.php:719
 #, php-format
 msgid "Revision status: %s"
 msgstr "Stare revizie: %s"
 
-#: front_rvy.php:648
+#: front_rvy.php:731
 #: rvy_init-functions.php:445
 msgid "Publish Now"
 msgstr "Publică acum"
 
-#: front_rvy.php:672
+#: front_rvy.php:755
 #, php-format
 msgid "The revision was approved and is now live on the site. %s"
 msgstr "Revizia a fost aprobată și este acum activă pe site. %s"
 
-#: front_rvy.php:673
+#: front_rvy.php:756
 #, php-format
 msgid "This is the Current Revision. %s"
 msgstr "Aceasta este Revizia Curentă. %s"
 
-#: front_rvy.php:681
+#: front_rvy.php:764
 msgid "Revision approved and live."
 msgstr "Revizia a fost aprobată și este activă."
 
-#: front_rvy.php:682
+#: front_rvy.php:765
 msgid "Current Revision."
 msgstr "Revizia curentă."
 
-#: front_rvy.php:693
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:345
+#: front_rvy.php:776
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:348
 #: visual-compare_rvy.php:101
 msgid "Restore"
 msgstr "Restaurare"
 
-#: front_rvy.php:697
-#: front_rvy.php:699
+#: front_rvy.php:780
+#: front_rvy.php:782
 #, php-format
 msgid "This is a Past Revision (from %s). %s %s"
 msgstr "Aceasta este o Revizie Anterioară (din %s). %s %s"
 
-#: front_rvy.php:701
+#: front_rvy.php:784
 #, php-format
 msgid "Past Revision (from %s)."
 msgstr "Revizia anterioară (din %s)."
 
-#: front_rvy.php:767
+#: front_rvy.php:850
 msgid "More revision actions"
 msgstr "Mai multe acțiuni de revizie"
 
@@ -3335,10 +3777,6 @@ msgid ""
 msgstr ""
 "Folosești PublishPress Revisions Free. Versiunea Pro are mai multe funcții "
 "și suport. %sUpgradează la Pro%s"
-
-#: includes/CoreAdmin.php:190
-msgid "Upgrade to Revisions Pro"
-msgstr "Upgradează la Revisions Pro"
 
 #: includes/CoreAdmin.php:195
 msgid ""
@@ -3368,6 +3806,10 @@ msgstr "Ai nevoie de suport pentru Revizii?"
 msgid "If you need help or have a new feature request, let us know."
 msgstr "Dacă ai nevoie de ajutor sau ai o solicitare de funcție nouă, anunță-ne."
 
+#: includes/CoreAdmin.php:225
+msgid "Request support for PublishPress Revisions"
+msgstr "Solicită suport pentru PublishPress Revisions"
+
 #: includes/CoreAdmin.php:226
 msgid "Request Support"
 msgstr "Solicită Suport"
@@ -3375,6 +3817,10 @@ msgstr "Solicită Suport"
 #: includes/CoreAdmin.php:235
 msgid "Detailed documentation is also available on the plugin website."
 msgstr "Documentație detaliată este de asemenea disponibilă pe site-ul pluginului."
+
+#: includes/CoreAdmin.php:236
+msgid "View PublishPress Revisions knowledge base"
+msgstr "Vizualizează baza de cunoștințe PublishPress Revisions"
 
 #: includes/CoreAdmin.php:237
 msgid "View Knowledge Base"
@@ -3385,9 +3831,8 @@ msgid "Modified: "
 msgstr "Modificat: "
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
-#: includes/visual-post-compare/visual-post-compare.php:110
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3011
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare.php:135
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3134
 msgid "Post Date: "
 msgstr "Data postării: "
 
@@ -3410,101 +3855,131 @@ msgstr "Acțiune: %s"
 msgid "Current"
 msgstr "Curent"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:214
-#, php-format
-msgid "by: %s"
-msgstr "de: %s"
-
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
+#. translators: %s: revision approver display name.
+#, php-format
+msgid "(approved by %s)"
+msgstr "(aprobat de %s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#. translators: %s: direct editor display name.
+#, fuzzy, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
 msgid "Comparison legend"
 msgstr "Legendă comparație"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
 msgid "Added"
 msgstr "Adăugat"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
 msgid "Removed"
 msgstr "Eliminat"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
 msgid "Modified"
 msgstr "Modificat"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
 msgid "Loading comparison..."
 msgstr "Se încarcă comparația..."
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
 msgid "The target post content has been replaced with the approved content."
 msgstr "Conținutul postului țintă a fost înlocuit cu conținutul aprobat."
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3344
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3467
 msgid "Classic compare screen"
 msgstr "Ecran de comparare clasic"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:226
 msgid "Visual comparison settings"
 msgstr "Setările de comparație vizuală"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:311
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:312
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:314
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:315
 msgid "Past Revision"
 msgstr "Revizie Anterioară"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:346
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:349
 msgid "Restoring"
 msgstr "Restaurare"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:423
-msgid "Publish"
-msgstr "Publicare"
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:381
+msgid "Published by Scheduled Revision"
+msgstr "Publicat de Revizia Programată"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:424
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:383
+msgid "Published by Revision"
+msgstr "Publicat de Revizie"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:409
+msgid "Published by Direct Edit"
+msgstr "Publicat prin Editare Directă"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
 msgid "Publishing"
 msgstr "Publicare în curs"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:427
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
 msgid "Approving"
 msgstr "Aprobarea"
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:64
-#: includes/visual-post-compare/visual-post-compare.php:38
-#: includes/visual-post-compare/visual-post-compare.php:233
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
+msgid "You are not allowed to view the revisions."
+msgstr "Nu ai permisiunea de a vizualiza reviziile."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:88
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare.php:258
 msgid "You are not allowed to view the revision."
 msgstr "Nu ai permisiunea de a vizualiza revizia."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:83
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:90
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:141
-#: includes/visual-post-compare/visual-post-compare.php:28
-#: includes/visual-post-compare/visual-post-compare.php:214
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:107
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:181
+#: includes/visual-post-compare/visual-post-compare.php:53
+#: includes/visual-post-compare/visual-post-compare.php:239
 msgid "Invalid revision ID."
 msgstr "ID-ul reviziei este invalid."
 
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:107
-#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:118
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:131
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:142
 msgid "You are not allowed to approve the revision."
 msgstr "Nu ai voie să aprobi revizuirea."
 
-#: includes/visual-post-compare/visual-post-compare.php:227
-#: includes/visual-post-compare/visual-post-compare.php:233
-#: includes/visual-post-compare/visual-post-compare.php:238
-#: includes/visual-post-compare/visual-post-compare.php:246
-#: includes/visual-post-compare/visual-post-compare.php:291
-#: includes/visual-post-compare/visual-post-compare.php:390
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:162
+msgid "The revision could not be approved."
+msgstr "Revizia nu a putut fi aprobată."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:174
+msgid "The revision has been approved and scheduled for publication."
+msgstr "Revizia a fost aprobată și programată pentru publicare."
+
+#: includes/visual-post-compare/visual-post-compare.php:252
+#: includes/visual-post-compare/visual-post-compare.php:258
+#: includes/visual-post-compare/visual-post-compare.php:263
+#: includes/visual-post-compare/visual-post-compare.php:271
+#: includes/visual-post-compare/visual-post-compare.php:316
+#: includes/visual-post-compare/visual-post-compare.php:415
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3477
-#: includes/visual-post-compare/visual-post-compare-standalone.js:371
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3600
 msgid "Compare Revisions"
 msgstr "Comparați Reviziile"
 
-#: includes/visual-post-compare/visual-post-compare.php:238
+#: includes/visual-post-compare/visual-post-compare.php:263
 msgid "You are not allowed to view this comparison."
 msgstr "Nu ai permisiunea de a vizualiza această comparație."
+
+#: includes/visual-post-compare/visual-post-compare.php:416
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3526
+msgid "Loading comparison…"
+msgstr "Se încarcă comparația…"
 
 #: lib/debug.php:99
 #, php-format
@@ -3515,7 +3990,7 @@ msgstr "%1$s interogări în %2$s secunde. %3$s MB utilizați."
 msgid "Could not insert post into the database"
 msgstr "Nu s-a putut insera postarea în baza de date"
 
-#: revision-creation_rvy.php:401
+#: revision-creation_rvy.php:427
 msgid "Could not insert revision into the database"
 msgstr "Nu s-a putut insera revizia în baza de date"
 
@@ -3556,7 +4031,7 @@ msgstr "Reviste Noi: "
 msgid "Edit %s: "
 msgstr "Editează %s: "
 
-#: revisionary.php:120
+#: revisionary.php:122
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>Acest plugin poate fi șters.</strong>"
 
@@ -3819,11 +4294,11 @@ msgstr "Postare Publicata"
 msgid "Submit Changes"
 msgstr "Trimite modificările"
 
-#: rvy_init-functions.php:683, fuzzy
+#: rvy_init-functions.php:693, fuzzy
 msgid "Revisor"
 msgstr "Revisor"
 
-#: rvy_init-functions.php:799
+#: rvy_init-functions.php:812
 msgid ""
 "The unfiltered_html capability is required to create a revision of this "
 "post."
@@ -3831,7 +4306,7 @@ msgstr ""
 "Capacitatea unfiltered_html este necesară pentru a crea o revizuire a "
 "acestui post."
 
-#: rvy_init-functions.php:1247
+#: rvy_init-functions.php:1279
 msgid "Revision Workflow"
 msgstr "Flux de lucru pentru revizuiri"
 
@@ -3843,239 +4318,164 @@ msgstr "Comparare Revizii Programate"
 msgid "Compare New Revisions"
 msgstr "Compară reviziile noi"
 
+#: visual-compare_rvy.php:90
+msgid "Compare Past Revisions"
+msgstr "Comparare Revizii Anterioare"
+
 #: visual-compare_rvy.php:180
 msgid "Scheduled:"
 msgstr "Programat:"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:108
-#: includes/visual-post-compare/visual-post-compare-classic.js:193
-#: includes/visual-post-compare/visual-post-compare-classic.js:487
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
 msgid "Add Format"
 msgstr "Adaugă format"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:109
-#: includes/visual-post-compare/visual-post-compare-classic.js:193
-#: includes/visual-post-compare/visual-post-compare-classic.js:487
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:195
 msgid "Remove Format"
 msgstr "Elimină format"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:110
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:462
-#: includes/visual-post-compare/visual-post-compare-classic.js:193
-#: includes/visual-post-compare/visual-post-compare-classic.js:224
-#: includes/visual-post-compare/visual-post-compare-classic.js:487
-#: includes/visual-post-compare/visual-post-compare-classic.js:518
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:329
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
-#: includes/visual-post-compare/visual-post-compare-standalone.js:161
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:352
 msgid "Modify Format"
 msgstr "Modifică format"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:224
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1371
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1372
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1889
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1913
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1918
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
 msgid "bolding"
 msgstr "îngroșare"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:225
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1373
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1374
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1890
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1914
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1919
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
 msgid "italics"
 msgstr "cursiv"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:226
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1375
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1376
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1891
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1915
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1920
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
 msgid "underscore"
 msgstr "subliniere"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:227
-#: includes/visual-post-compare/visual-post-compare-classic.js:203
-#: includes/visual-post-compare/visual-post-compare-classic.js:497
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1377
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1378
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1892
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:292
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2016
 msgid "strikethrough"
 msgstr "tăiere"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:240
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:297
-#: includes/visual-post-compare/visual-post-compare-classic.js:205
-#: includes/visual-post-compare/visual-post-compare-classic.js:211
-#: includes/visual-post-compare/visual-post-compare-classic.js:499
-#: includes/visual-post-compare/visual-post-compare-classic.js:505
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1382
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1905
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1935
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:294
-#: includes/visual-post-compare/visual-post-compare-standalone.js:297
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2059
 msgid "Change font size"
 msgstr "Schimbă dimensiunea fontului"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1372
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1913
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
 msgid "Remove bolding"
 msgstr "Elimină îngroșarea"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1374
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1914
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
 msgid "Remove italics"
 msgstr "Elimină cursivul"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1376
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1915
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
 msgid "Remove underscore"
 msgstr "Elimină sublinierea"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:251
-#: includes/visual-post-compare/visual-post-compare-classic.js:206
-#: includes/visual-post-compare/visual-post-compare-classic.js:500
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1378
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1916
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:295
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2040
 msgid "Remove strikethrough"
 msgstr "Elimină tăierea"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1371
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1918
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
 msgid "Add bolding"
 msgstr "Adaugă îngroșare"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1373
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1919
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
 msgid "Add italics"
 msgstr "Adaugă cursiv"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1375
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1920
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
 msgid "Add underscore"
 msgstr "Adaugă subliniere"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:256
-#: includes/visual-post-compare/visual-post-compare-classic.js:207
-#: includes/visual-post-compare/visual-post-compare-classic.js:501
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1377
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1921
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:296
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2045
 msgid "Add strikethrough"
 msgstr "Adaugă tăiere"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:276
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:907
-#: includes/visual-post-compare/visual-post-compare-classic.js:209
-#: includes/visual-post-compare/visual-post-compare-classic.js:258
-#: includes/visual-post-compare/visual-post-compare-classic.js:503
-#: includes/visual-post-compare/visual-post-compare-classic.js:552
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2171
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2197
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2231
-#: includes/visual-post-compare/visual-post-compare-standalone.js:316
-#: includes/visual-post-compare/visual-post-compare-standalone.js:319
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2355
 #, js-format
 msgid "Modified HTML tag: %s"
 msgstr "Tag HTML modificat: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:286
-#: includes/visual-post-compare/visual-post-compare-classic.js:210
-#: includes/visual-post-compare/visual-post-compare-classic.js:504
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2209
-#: includes/visual-post-compare/visual-post-compare-standalone.js:317
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2333
 #, js-format
 msgid "Modified HTML tag: %1$s, %2$s"
 msgstr "Tag HTML modificat: %1$s, %2$s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:300
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:330
-#: includes/visual-post-compare/visual-post-compare-classic.js:211
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:505
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid ""
 "Modify format:\n"
@@ -4085,48 +4485,41 @@ msgstr ""
 " %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:303
-#: includes/visual-post-compare/visual-post-compare-classic.js:212
-#: includes/visual-post-compare/visual-post-compare-classic.js:506
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Change ID"
 msgstr "Schimbă ID"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:309
-#: includes/visual-post-compare/visual-post-compare-classic.js:213
-#: includes/visual-post-compare/visual-post-compare-classic.js:507
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Add classes: %s"
 msgstr "Adaugă clase: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:310
-#: includes/visual-post-compare/visual-post-compare-classic.js:213
-#: includes/visual-post-compare/visual-post-compare-classic.js:507
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Remove classes: %s"
 msgstr "Elimină clase: %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:313
-#: includes/visual-post-compare/visual-post-compare-classic.js:214
-#: includes/visual-post-compare/visual-post-compare-classic.js:508
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Modify style"
 msgstr "Modifică stilul"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:323
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Remove %s"
 msgstr "Elimină %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:325
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Add %s"
 msgstr "Adaugă %s"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:327
-#: includes/visual-post-compare/visual-post-compare-classic.js:215
-#: includes/visual-post-compare/visual-post-compare-classic.js:509
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 #, js-format
 msgid "Change %s"
 msgstr "Schimbă %s"
@@ -4134,71 +4527,66 @@ msgstr "Schimbă %s"
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:474
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:600
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:714
-#: includes/visual-post-compare/visual-post-compare-classic.js:225
-#: includes/visual-post-compare/visual-post-compare-classic.js:242
-#: includes/visual-post-compare/visual-post-compare-classic.js:246
-#: includes/visual-post-compare/visual-post-compare-classic.js:519
-#: includes/visual-post-compare/visual-post-compare-classic.js:536
-#: includes/visual-post-compare/visual-post-compare-classic.js:540
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:190
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:377
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
-#: includes/visual-post-compare/visual-post-compare-standalone.js:165
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:400
 msgid "Remove"
 msgstr "Elimină"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:702
-#: includes/visual-post-compare/visual-post-compare-classic.js:246
-#: includes/visual-post-compare/visual-post-compare-classic.js:540
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:191
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:387
-#: includes/visual-post-compare/visual-post-compare-standalone.js:145
-#: includes/visual-post-compare/visual-post-compare-standalone.js:165
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:410
 msgid "Add"
 msgstr "Adaugă"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:960
-#: includes/visual-post-compare/visual-post-compare-classic.js:259
-#: includes/visual-post-compare/visual-post-compare-classic.js:553
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Add text: line break"
 msgstr "Adaugă text: întrerupere de linie"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:969
-#: includes/visual-post-compare/visual-post-compare-classic.js:259
-#: includes/visual-post-compare/visual-post-compare-classic.js:553
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "Remove text: line break"
 msgstr "Elimină text: întrerupere de linie"
 
 #: includes/visual-post-compare/visual-post-compare-classic.dev.js:1155
-#: includes/visual-post-compare/visual-post-compare-classic.js:273
-#: includes/visual-post-compare/visual-post-compare-classic.js:567
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
 msgid "WordPress Classic Editor content conversion APIs are unavailable."
 msgstr ""
 "API-urile de conversie a conținutului editorului clasic WordPress nu sunt "
 "disponibile."
 
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1897
+#, js-format
+msgid "Show previous image: %s"
+msgstr "Arată imaginea anterioară: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1450
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1898
+msgid "Show previous image"
+msgstr "Arată imaginea anterioară"
+
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:60
-#: includes/visual-post-compare/visual-post-compare-standalone.js:4
 msgid "WordPress core block definitions are unavailable on this screen."
 msgstr "Definițiile blocurilor de bază WordPress nu sunt disponibile pe acest ecran."
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:68
-#: includes/visual-post-compare/visual-post-compare-standalone.js:5
 msgid "WordPress core blocks could not be registered for comparison."
 msgstr "Blocurile de bază WordPress nu au putut fi înregistrate pentru comparare."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:815
-#: includes/visual-post-compare/visual-post-compare-standalone.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:903
 msgid "Classic Editor comparison support is unavailable."
 msgstr "Suportul pentru compararea editorului clasic nu este disponibil."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:862
-#: includes/visual-post-compare/visual-post-compare-standalone.js:201
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:950
 msgid "WordPress 7.0 block revision parser APIs are unavailable."
 msgstr "APIs pentru parserul de revizii bloc WordPress 7.0 nu sunt disponibile."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:902
-#: includes/visual-post-compare/visual-post-compare-standalone.js:205
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:990
 msgid ""
 "The comparison was generated, but WordPress could not parse any comparison "
 "blocks."
@@ -4206,189 +4594,150 @@ msgstr ""
 "Compararea a fost generată, dar WordPress nu a putut analiza niciun bloc de "
 "comparare."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1037
-#: includes/visual-post-compare/visual-post-compare-standalone.js:218
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1125
 msgid "Select comparison post"
 msgstr "Selectează postarea de comparare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1192
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1195
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1371
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1373
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1375
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1377
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1663
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:276
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1782
 msgid "add"
 msgstr "adaugă"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1192
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1193
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1194
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1278
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:239
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
 msgid "image"
 msgstr "imagine"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1193
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1196
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1372
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1374
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1376
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1378
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1669
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:276
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1788
 msgid "remove"
 msgstr "elimină"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1194
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1197
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1275
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1510
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:239
-#: includes/visual-post-compare/visual-post-compare-standalone.js:267
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1629
 msgid "modify"
 msgstr "modifică"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1195
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1196
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285, fuzzy
 msgid "text"
 msgstr "text"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1197
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286, fuzzy
 msgid "format"
 msgstr "format"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1198
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1383
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
-#: includes/visual-post-compare/visual-post-compare-standalone.js:255
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1515
 msgid "change"
 msgstr "schimbare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1198
-#: includes/visual-post-compare/visual-post-compare-standalone.js:230, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287, fuzzy
 msgid "link"
 msgstr "link"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1277
-#: includes/visual-post-compare/visual-post-compare-standalone.js:239
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
 msgid "image's attributes"
 msgstr "atributele imaginii"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1301
-#: includes/visual-post-compare/visual-post-compare-standalone.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1420
 msgid "Table"
 msgstr "Tabel"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1308
-#: includes/visual-post-compare/visual-post-compare-standalone.js:242
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1427
 msgid "Gallery"
 msgstr "Galerie"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1311
-#: includes/visual-post-compare/visual-post-compare-standalone.js:243
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1430
 msgid "Paragraph"
 msgstr "Paragraf"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1312
-#: includes/visual-post-compare/visual-post-compare-standalone.js:243
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1431
 msgid "Section"
 msgstr "Secțiune"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1329
-#: includes/visual-post-compare/visual-post-compare-standalone.js:246
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1448
 msgid "Revision Restore"
 msgstr "Restaurare revizie"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1337
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1456
 msgid "added"
 msgstr "adăugat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1338
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1457
 msgid "removed"
 msgstr "eliminat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1339
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1458
 msgid "modified"
 msgstr "modificat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1340
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1342
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1461
 msgid "changed"
 msgstr "schimbat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1344
-#: includes/visual-post-compare/visual-post-compare-standalone.js:247
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1463
 #, js-format
 msgid "This %1$s was <b>%2$s</b>%3$s"
 msgstr "Această %1$s a fost <b>%2$s</b>%3$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1356
-#: includes/visual-post-compare/visual-post-compare-standalone.js:250
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1475
 #, js-format
 msgid "%1$s will <b>%2$s</b> this %3$s%4$s"
 msgstr "%1$s va <b>%2$s</b> acest %3$s%4$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1383
-#: includes/visual-post-compare/visual-post-compare-standalone.js:253
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
 msgid "font size"
 msgstr "dimensiunea fontului"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
-#: includes/visual-post-compare/visual-post-compare-standalone.js:255
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1516
 msgid "formatting"
 msgstr "formatare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1404
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1523
 msgid "Revision restore"
 msgstr "restaurare revizie"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1405
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1524
 msgid "Revision publication"
 msgstr "publicare revizie"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1407
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
 #, fuzzy
 msgid "<b>%1$s</b> %2$s"
 msgstr "<b>%1$s</b> %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1413
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
 #, js-format
 msgid "%1$s and %2$s"
 msgstr "%1$s și %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1414
-#: includes/visual-post-compare/visual-post-compare-standalone.js:256
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1533
 #, js-format
 msgid "%1$s will %2$s."
 msgstr "%1$s va %2$s."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1421
-#: includes/visual-post-compare/visual-post-compare-standalone.js:257
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1540
 msgid "line break"
 msgstr "linie de separare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1442
-#: includes/visual-post-compare/visual-post-compare-standalone.js:260
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1561
 #, js-format
 msgid "Add %d Image"
 msgid_plural "Add %d Images"
@@ -4396,8 +4745,7 @@ msgstr[0] "Adaugă %d imagine"
 msgstr[1] "Adaugă %d imagini"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1445
-#: includes/visual-post-compare/visual-post-compare-standalone.js:261
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1564
 #, js-format
 msgid "Remove %d Image"
 msgid_plural "Remove %d Images"
@@ -4405,8 +4753,7 @@ msgstr[0] "Elimină %d imagine"
 msgstr[1] "Elimină %d imagini"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1447
-#: includes/visual-post-compare/visual-post-compare-standalone.js:262
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1566
 #, js-format
 msgid "Modify %d Image"
 msgid_plural "Modify %d Images"
@@ -4414,8 +4761,7 @@ msgstr[0] "Modifică %d imagine"
 msgstr[1] "Modifică %d imagini"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1468
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1587
 #, js-format
 msgid "%d Text Addition"
 msgid_plural "%d Text Additions"
@@ -4423,8 +4769,7 @@ msgstr[0] "%d adăugare de text"
 msgstr[1] "%d adăugări de text"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1470
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1589
 #, js-format
 msgid "%d Text Deletion"
 msgid_plural "%d Text Deletions"
@@ -4432,8 +4777,7 @@ msgstr[0] "%d ștergere de text"
 msgstr[1] "%d ștergeri de text"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1474
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1593
 #, js-format
 msgid "%d Link Change"
 msgid_plural "%d Link Changes"
@@ -4441,8 +4785,7 @@ msgstr[0] "%d modificare de link"
 msgstr[1] "%d modificări de link"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1479
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1598
 #, js-format
 msgid "Add %d Line Break"
 msgid_plural "Add %d Line Breaks"
@@ -4450,8 +4793,7 @@ msgstr[0] "Adaugă %d linie de separare"
 msgstr[1] "Adaugă %d linii de separare"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1480
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1599
 #, js-format
 msgid "Remove %d Line Break"
 msgid_plural "Remove %d Line Breaks"
@@ -4459,8 +4801,7 @@ msgstr[0] "Elimină %d linie de separare"
 msgstr[1] "Elimină %d linii de separare"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1487
-#: includes/visual-post-compare/visual-post-compare-standalone.js:264
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
 #, js-format
 msgid "%d formatting change"
 msgid_plural "%d formatting changes"
@@ -4468,281 +4809,259 @@ msgstr[0] "%d modificare de format"
 msgstr[1] "%d modificări de format"
 msgstr[2] ""
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1504
-#: includes/visual-post-compare/visual-post-compare-standalone.js:266
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
 #, js-format
 msgid "Modified attributes: %s"
 msgstr "Atribute modificate: %s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1506
-#: includes/visual-post-compare/visual-post-compare-standalone.js:266
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1625
 msgid "Modified html markup"
 msgstr "Markup html modificat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1776
-#: includes/visual-post-compare/visual-post-compare-standalone.js:288
-msgid "Show previous image"
-msgstr "Arată imaginea anterioară"
-
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1941
-#: includes/visual-post-compare/visual-post-compare-standalone.js:297
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2065
 #, js-format
 msgid "%1$s class added: %2$s"
 msgstr "%1$s clasă adăugată: %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1942
-#: includes/visual-post-compare/visual-post-compare-standalone.js:297
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2066
 #, js-format
 msgid "%1$s class removed: %2$s"
 msgstr "%1$s clasă eliminată: %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1948
-#: includes/visual-post-compare/visual-post-compare-standalone.js:298
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2072
 #, js-format
 msgid "%s style modified"
 msgstr "%s stil modificat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1961
-#: includes/visual-post-compare/visual-post-compare-standalone.js:299
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2085
 #, js-format
 msgid "%1$s attribute modified: %2$s"
 msgstr "%1$s atribut modificat: %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2058
-#: includes/visual-post-compare/visual-post-compare-standalone.js:309
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
 msgid "Modified html tag:"
 msgstr "Tag html modificat:"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2281
-#: includes/visual-post-compare/visual-post-compare-standalone.js:324
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2405
 msgid "Select a changed block to view its details."
 msgstr "Selectați un bloc modificat pentru a vizualiza detaliile acestuia."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2308
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2499
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2511
-#: includes/visual-post-compare/visual-post-compare-standalone.js:325
-#: includes/visual-post-compare/visual-post-compare-standalone.js:338
-#: includes/visual-post-compare/visual-post-compare-standalone.js:339
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2631
+msgid "No attribute changes"
+msgstr "Fără modificări de atribut"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2639
 msgid "Changed attributes"
 msgstr "Atribute modificate"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2323
-#: includes/visual-post-compare/visual-post-compare-standalone.js:325
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2448
 msgid "Changes detected."
 msgstr "Modificări detectate."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2382
-#: includes/visual-post-compare/visual-post-compare-standalone.js:329
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2507
 msgid "html tag"
 msgstr "tag html"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2477
-#: includes/visual-post-compare/visual-post-compare-standalone.js:337
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
 msgid "Image"
 msgstr "Imagine"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2477
-#: includes/visual-post-compare/visual-post-compare-standalone.js:337, fuzzy
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602, fuzzy
 msgid "Link"
 msgstr "Link"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2492
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3334
-#: includes/visual-post-compare/visual-post-compare-standalone.js:338
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
 msgid "Info"
 msgstr "Informații"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2498
-#: includes/visual-post-compare/visual-post-compare-standalone.js:338
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2624
 msgid "Attributes"
 msgstr "Atribute"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2504
-#: includes/visual-post-compare/visual-post-compare-standalone.js:339
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2630
 msgid "Select content to view its details."
 msgstr "Selectați conținutul pentru a vizualiza detaliile acestuia."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2536
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2658
 msgid "Compare Custom Fields"
 msgstr "Comparare câmpuri personalizate"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2539
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2661
 msgid "Revisions Pro displays cleanly formatted field changes for:"
 msgstr "Revisions Pro afișează modificările de câmpuri formatate corect pentru:"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2543
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2665
 msgid "Core WordPress fields"
 msgstr "Câmpuri de bază WordPress"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2549
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2671
 msgid "Many other popular plugins"
 msgstr "Multe alte pluginuri populare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2550
-#: includes/visual-post-compare/visual-post-compare-standalone.js:340
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2672
 msgid "Many popular themes"
 msgstr "Multe teme populare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2989
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3112
 msgid "Edit Current"
 msgstr "Editează curentul"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3025
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3148
 msgid "View Current"
 msgstr "Vizualizează curentul"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3032
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3033
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3155
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
 msgid "Hide current post details"
 msgstr "Ascunde detaliile postării curente"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3032
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3033
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3155
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
 msgid "Show current post details"
 msgstr "Afișează detaliile postării curente"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3038
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3161
 #, fuzzy
 msgid "Post %d"
 msgstr "Post %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3051
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3078
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3174
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3201
 msgid "View Revision"
 msgstr "Vizualizează revizia"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3053
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3176
 msgid "Previous Revision"
 msgstr "Revizia anterioară"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3058
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3059
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3181
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
 msgid "Hide previous revision details"
 msgstr "Ascunde detaliile reviziei anterioare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3058
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3059
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3181
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
 msgid "Show previous revision details"
 msgstr "Afișează detaliile reviziei anterioare"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3064
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3082
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3187
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
 #, js-format
 msgid "Revision %d"
 msgstr "Revizia %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3110
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3233
 msgid "Click to view changes"
 msgstr "Click pentru a vizualiza modificările"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3136
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3259
 msgid "Custom Field Changes"
 msgstr "Modificări câmp personalizat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3144
-#: includes/visual-post-compare/visual-post-compare-standalone.js:359
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3267
 #, fuzzy
 msgid "%s: %d"
 msgstr "%s: %d"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3262
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3373
+msgid "Preview content"
+msgstr "Previzualizează conținutul"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3385
 msgid "Field Changes"
 msgstr "Modificări câmp"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3294
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3389
+msgid "Comparison preview"
+msgstr "Previzualizare comparație"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3417
 msgid "This title was changed"
 msgstr "Acest titlu a fost modificat"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3294
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3417
 msgid "Change Title"
 msgstr "Schimbă titlul"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3334
-#: includes/visual-post-compare/visual-post-compare-standalone.js:362
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3445
+msgid "Sidebar view"
+msgstr "Vizualizare sidebar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
 msgid "Block"
 msgstr "Blochează"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3398
-#: includes/visual-post-compare/visual-post-compare-standalone.js:366
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3521
 msgid "Unable to load this comparison."
 msgstr "Imposibil de încărcat această comparație."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3426
-#: includes/visual-post-compare/visual-post-compare-standalone.js:368
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3549
 msgid "Unable to reload this comparison."
 msgstr "Imposibil de reîncărcat această comparație."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3466
-#: includes/visual-post-compare/visual-post-compare-standalone.js:371
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3589
 msgid "Unable to approve this comparison."
 msgstr "Imposibil de aprobat această comparație."
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3493
-#: includes/visual-post-compare/visual-post-compare-standalone.js:371
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3616
 msgid "Compare to current post"
 msgstr "Compară cu postarea actuală"
 
-#: admin/admin_rvy.php:331
+#: admin/admin_rvy.php:336
 msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "Revizuiri"
 
-#: admin/class-list-table-archive.php:1204
-#: admin/class-list-table_rvy.php:2288
-#: admin/post-edit_rvy.php:214
-#: admin/post-edit_rvy.php:278
-#: admin/post-edit_rvy.php:292
+#: admin/class-list-table-archive.php:1202
+#: admin/class-list-table_rvy.php:2382
+#: admin/post-edit_rvy.php:222
+#: admin/post-edit_rvy.php:286
+#: admin/post-edit_rvy.php:300
 msgctxt "revisions"
 msgid "Compare"
 msgstr "Compară"
 
-#: admin/class-list-table-archive.php:1226
+#: admin/class-list-table-archive.php:1224
 msgctxt "revisions"
 msgid "Diff"
 msgstr "Diferență"
 
-#: admin/class-list-table_rvy.php:2299
+#: admin/class-list-table_rvy.php:2394
 msgctxt "revisions"
 msgid "Approve"
 msgstr "Aprobat"
 
-#: admin/class-list-table_rvy.php:2306
+#: admin/class-list-table_rvy.php:2401
 msgctxt "revisions"
 msgid "Publish"
 msgstr "Publicați"
 
-#: admin/class-list-table_rvy.php:2315, fuzzy
+#: admin/class-list-table_rvy.php:2410, fuzzy
 msgctxt "revisions"
 msgid "Decline"
 msgstr "Decline"
 
-#: admin/history_rvy.php:1304, fuzzy
+#: admin/class-list-table-archive.php:1240
+#: admin/class-list-table_rvy.php:1090
+#: admin/class-list-table_rvy.php:2368
+#: admin/history_rvy.php:1515
+#: admin/post-edit_rvy.php:187
+#: admin/revision-ui_rvy.php:279
+#: admin/revision-ui_rvy.php:321
+msgctxt "verb"
+msgid "Preview"
+msgstr "Previzualizare"
+
+#: admin/history_rvy.php:1322, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2545
+#: admin/options.php:2523
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
@@ -4778,17 +5097,14 @@ msgctxt "revision date"
 msgid "on %s"
 msgstr "pe %s"
 
-#: admin/revision-ui_rvy.php:83, fuzzy
-msgctxt "revision date format"
-msgid "j F, Y @ g:i a"
-msgstr "j F, Y @ g:i a"
+#: admin/revision-ui_rvy.php:351
+#. translators: post revision: 1: when, 2: author name
+#, php-format
+msgctxt "post revision"
+msgid "%1$s by %2$s"
+msgstr "%1$s de %2$s"
 
-#: admin/revision-ui_rvy.php:113, fuzzy
-msgctxt "revision schedule date format"
-msgid "j F, Y, g:i a"
-msgstr "j F, Y, g:i a"
-
-#: rvy_init-functions.php:695, fuzzy
+#: rvy_init-functions.php:705, fuzzy
 msgctxt "User role"
 msgid "Revisor"
 msgstr "Revisor"

@@ -211,7 +211,10 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'currentStatusCaption' => esc_html__('Status: %s', 'revisionary'),
 			'actionCaption'	   => esc_html__('Action: %s', 'revisionary'),
 			'currentCaption'   => esc_html__('Current', 'revisionary'),
-			'approvedByCaption' => esc_html__('by: %s', 'revisionary'),
+			/* translators: %s: revision approver display name. */
+			'approvedByCaption' => esc_html__('(approved by %s)', 'revisionary'),
+			/* translators: %s: direct editor display name. */
+			'directEditByCaption' => esc_html__('(%s)', 'revisionary'),
 			'legendCaption' => esc_html__('Comparison legend', 'revisionary'),
 			'addedCaption' => esc_html__('Added', 'revisionary'),
 			'removedCaption' => esc_html__('Removed', 'revisionary'),
@@ -245,7 +248,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	 * @return string
 	 */
 	private static function comparison_content( \WP_Post $source_post ) {
-		$content = (string) $source_post->post_content;
+		$content = Visual_Post_Compare::strip_stray_empty_blocks( $source_post->post_content );
 
 		if ( has_blocks( $content ) || false === strpos( $content, '[' ) || ! function_exists( 'do_shortcode' ) ) {
 			return $content;
@@ -311,16 +314,16 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'statusLabel'		  => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($status_obj) && !empty($status_obj->label)) ? (!rvy_get_option('permissions_compat') && rvy_in_revision_workflow($post->ID) ? $mime_type_status_obj->label : $status_obj->label) : $post->post_status),
 			'mimeTypeStatusLabel' => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($mime_type_status_obj) && !empty($mime_type_status_obj->label)) ? $mime_type_status_obj->label : $post->post_mime_type),
 			'modified'            => mysql_to_rfc3339( $post->post_modified ),
-			'modifiedLabel'       => mysql2date( 'M j, Y g:i a', $post->post_modified, true ),
+			'modifiedLabel'       => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
 			'postDate'            => mysql_to_rfc3339( $post->post_date ),
-			'postDateLabel'       => mysql2date( 'M j, Y g:i a', $post->post_date, true ),
+			'postDateLabel'       => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 			'author'              => (int) $post->post_author,
 			'authorName'          => $author ? $author->display_name : '',
 			'authorAvatar'        => get_option('show_avatars') ? esc_url_raw( get_avatar_url( $post->post_author, array( 'size' => 32 ) ) ) : '',
-			'sliderModifiedLabel' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderModifiedTitle' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderPostDateLabel' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
-			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
+			'sliderModifiedLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderModifiedTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderPostDateLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
+			'sliderPostDateTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 			'canEdit'             => (bool) $can_edit,
 			'isPastRevision'      => (bool) $revision_parent_id,
 			'canApprove'		  => Visual_Post_Compare::can_apply_revision( $post ),
@@ -373,13 +376,11 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			}
 
 			if ($_post['from_revision_workflow']) {
-				switch ($_post['from_revision_workflow']) {
-					case 'future-revision':
-						$_post['revision_action'] = esc_html__('Scheduled Revision Publication', 'revisionary');
-						break;
-
-					default:
-						$_post['revision_action'] = esc_html__('Revision Publication', 'revisionary');
+				// from_revision_workflow may be boolean true, which a loose switch comparison would match to 'future-revision'
+				if ('future-revision' === $_post['from_revision_workflow']) {
+					$_post['revision_action'] = esc_html__('Published by Scheduled Revision', 'revisionary');
+				} else {
+					$_post['revision_action'] = esc_html__('Published by Revision', 'revisionary');
 				}
 			} elseif ($_post['parent_in_revision_workflow']) {
 				if ($status_obj = get_post_status_object($_post['parent_in_revision_workflow'])) {
@@ -405,7 +406,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 				if (0 === strpos($post->post_name, $post->post_parent . '-autosave')) {
 					$_post['revision_action'] = esc_html__('Autosave', 'revisionary');
 				} else {
-					$_post['revision_action'] = esc_html__('Direct Edit', 'revisionary');
+					$_post['revision_action'] = esc_html__('Published by Direct Edit', 'revisionary');
 				}
 			}
 
@@ -442,10 +443,10 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	public static function slider_post_data( \WP_Post $post ) {
 		return array(
 			'id'                  => (int) $post->ID,
-			'sliderModifiedLabel' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderModifiedTitle' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderPostDateLabel' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
-			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
+			'sliderModifiedLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderModifiedTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderPostDateLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
+			'sliderPostDateTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 		);
 	}
 
@@ -479,7 +480,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			$result = date_i18n( "$date_format @ $time_format", $timestamp );
 		}
 
-		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
+		$saved_time = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $timestamp );
 
 		return $result;
 	}

@@ -524,7 +524,7 @@ background-color: #d63638;
 }
 
 #publishpress-revisions-settings-tabs .nav-tab span.pp-integrations-active {
-background-color: #3f9716;
+background-color: #2e7d0f;
 }
 
 @media only screen and (max-height: 768px) {
@@ -636,7 +636,7 @@ body.revisionary #wpbody-content > .pressshack-admin-wrapper {
 box-sizing: border-box;
 display: flex;
 flex-direction: column;
-min-height: calc(100vh - 97px);
+min-height: calc(100vh - 65px - var(--wp-admin--admin-bar--height, 32px));
 width: 99%;
 }
 
@@ -644,7 +644,7 @@ width: 99%;
 body.revisionary-q #wpbody-content > .pressshack-admin-wrapper,
 body.revisionary-archive #wpbody-content > .pressshack-admin-wrapper {
 margin-top: 10px;
-min-height: calc(100vh - 97px - var(--revisionary-pre-wrapper-height, 0px));
+min-height: calc(100vh - 65px - var(--wp-admin--admin-bar--height, 32px) - var(--revisionary-pre-wrapper-height, 0px));
 --revisionary-screen-meta-height: 15px;
 }
 
@@ -754,6 +754,10 @@ div.components-panel button.revision-approve,
 div.components-panel div.revision-created
 {
 width: 100%;
+}
+
+div.components-panel div.rvy-creation-ui a, div.components-panel div.rvy-creation-ui a:hover, div.components-panel div.rvy-creation-ui a:visited {
+text-decoration: none;
 }
 
 div.components-panel .revision-preview {
@@ -1433,4 +1437,10 @@ body.revisionary-q .pressshack-admin-wrapper a.rvy-action-status--failed { backg
     clear: both;
     display: block !important;
   }
+}
+
+/* Keep classic editor revision lists clear of their metabox headers. */
+#pending_revisions .inside,
+#future_revisions .inside {
+  padding-top: 12px;
 }

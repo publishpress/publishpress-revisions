@@ -15,6 +15,18 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 	public static function register_routes() {
 		register_rest_route(
 			Visual_Post_Compare::REST_NS,
+			'/editor-sidebars',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'permission_callback' => array( __CLASS__, 'editor_sidebars_permissions' ),
+				'callback'            => array( __CLASS__, 'editor_sidebars_response' ),
+				'args'                => array(
+					'post_id' => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+				),
+			)
+		);
+		register_rest_route(
+			Visual_Post_Compare::REST_NS,
 			'/comparison',
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
@@ -54,6 +66,18 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 				),
 			)
 		);
+	}
+
+	public static function editor_sidebars_permissions( \WP_REST_Request $request ) {
+		if ( get_post( $request['post_id'] ) && current_user_can( 'edit_post', $request['post_id'] ) ) {
+			return true;
+		}
+		return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revisions.', 'revisionary' ), array( 'status' => 403 ) );
+	}
+
+	public static function editor_sidebars_response( \WP_REST_Request $request ) {
+		require_once __DIR__ . '/class-editor-sidebar-builder.php';
+		return rest_ensure_response( Visual_Post_Compare_Editor_Sidebar_Builder::comparison_sidebars_for_editor( $request['post_id'] ) );
 	}
 
 	public static function comparison_permissions( \WP_REST_Request $request ) {
@@ -120,10 +144,22 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 
 		if ( $revision ) {
 			require_once( dirname(REVISIONARY_FILE).'/admin/revision-action_rvy.php' );
-			$result = \rvy_apply_revision($revision->ID);
+			if ( \rvy_in_revision_workflow( $revision ) ) {
+				// Approval must honor the publication date. Applying directly would
+				// publish and archive a future-dated revision immediately.
+				$result = ( 'future-revision' === $revision->post_mime_type )
+					? \rvy_revision_publish( $revision->ID )
+					: \rvy_revision_approve( $revision->ID );
+			} else {
+				$result = \rvy_apply_revision( $revision->ID, $revision->post_mime_type );
+			}
 
 			if ( is_wp_error( $result ) ) {
 				return $result;
+			}
+
+			if ( ! $result ) {
+				return new \WP_Error( 'vpc_approval_failed', esc_html__( 'The revision could not be approved.', 'revisionary' ), array( 'status' => 500 ) );
 			}
 
 			clean_post_cache( $revision->ID );
@@ -134,6 +170,10 @@ final class Visual_Post_Compare_Dedicated_REST_Handler {
 			);
 
 			$response['approved'] = true;
+			if ( $updated_revision && 'future-revision' === $updated_revision->post_mime_type && ! wp_is_post_revision( $updated_revision ) ) {
+				$response['approvalMessage'] = esc_html__( 'The revision has been approved and scheduled for publication.', 'revisionary' );
+			}
+
 			$response['selectCurrentPost'] = (bool) wp_is_post_revision( $updated_revision ?: $revision );
 
 			return rest_ensure_response( $response );

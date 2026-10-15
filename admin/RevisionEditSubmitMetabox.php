@@ -61,7 +61,7 @@ class RvyRevisionEditSubmitMetabox
                         if (!EMPTY_TRASH_DAYS)
                             $delete_text = (defined('RVY_DISCARD_CAPTION')) ? esc_html__('Discard Revision', 'revisionary') : esc_html__('Delete Revision', 'revisionary');
                         else
-                            $delete_text = esc_html__('Move to Trash');
+                            $delete_text = esc_html__('Move to Trash', 'revisionary');
                         ?>
                         <a class="submitdelete deletion"
                            href="<?php echo esc_url(get_delete_post_link($post->ID)); ?>"><?php echo esc_html($delete_text); ?></a><?php
@@ -90,7 +90,7 @@ class RvyRevisionEditSubmitMetabox
         }
         ?>
         <input type="submit" name="save" id="save-post" value="<?php echo esc_attr($draft_label) ?>"
-                tabindex="4" class="button button-highlighted"/>
+                class="button button-highlighted"/>
 
         <span class="spinner" style="margin:2px 2px 0"></span>
         <?php
@@ -125,7 +125,7 @@ class RvyRevisionEditSubmitMetabox
             }
             ?>
             <a class="preview button" href="<?php echo esc_url($preview_link); ?>" target="_blank" id="post-preview"
-            tabindex="4" title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
+            title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
 
             <input type="hidden" name="wp-preview" id="wp-preview" value="">
             <?php
@@ -144,7 +144,7 @@ class RvyRevisionEditSubmitMetabox
         }
 
         ?>
-        <label for="post_status"><?php echo esc_html__('Status:'); ?></label>
+        <label for="post_status"><?php echo esc_html__('Status:', 'revisionary'); ?></label>
         <?php
         $status_label = (!empty($post_status_obj->labels->caption)) ? $post_status_obj->labels->caption : $post_status_obj->label;
         ?>
@@ -156,7 +156,7 @@ class RvyRevisionEditSubmitMetabox
 
         <?php /* Output status select for js consistency with date select OK / Cancel */?>
         <div id="post-status-select" class="hide-if-js" style="display:none">
-            <select name='post_status' id='post_status' tabindex='4'>
+            <select name='post_status' id='post_status'>
                     <option selected value='<?php echo esc_attr($post_status_obj->name) ?>'><?php echo esc_html($status_label) ?></option>
             </select>
         </div>
@@ -177,15 +177,15 @@ class RvyRevisionEditSubmitMetabox
         <span id="timestamp">
         <?php
         // translators: Publish box date formt, see http://php.net/date
-        $datef = esc_html__('M j, Y @ G:i', 'revisionary');
+        $datef = get_option('date_format') . ' ' . get_option('time_format');
 
         $published_stati = get_post_stati(['public' => true, 'private' => true], 'names', 'or');
 
         if ('future-revision' == $post_status_obj->name) { // scheduled for publishing at a future date
-            printf(esc_html__('Scheduled for: %s'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
+            printf(esc_html__('Scheduled for: %s', 'revisionary'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
             <?php
         } elseif (strtotime($post->post_date_gmt) > agp_time_gmt()) {
-            printf(esc_html__('Publish on: %s'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
+            printf(esc_html__('Publish on: %s', 'revisionary'), '<b>' . esc_html(date_i18n($datef, strtotime($post->post_date))) . '</b>'); ?></span>
             <?php
         } else {
             printf(esc_html__('Publish %son approval%s', 'revisionary'), '<b>', '</b>'); ?></span>
@@ -193,7 +193,7 @@ class RvyRevisionEditSubmitMetabox
         }
         ?>
 
-        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html__('Edit') ?></a>
+        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html__('Edit', 'revisionary') ?></a>
         <div id="timestampdiv" class="hide-if-js"><?php touch_time(('edit' == $action), 1, 4); ?></div>
         <?php
     }

@@ -45,7 +45,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 
 	$bulk_messages = [];
 	$bulk_messages['post'] = array(
-		'deleted'   => sprintf(esc_html(_n( '%s revision permanently deleted.', '%s revisions permanently deleted.', $bulk_counts['deleted'] )), $bulk_counts['deleted']),
+		'deleted'   => sprintf(esc_html(_n( '%s revision permanently deleted.', '%s revisions permanently deleted.', $bulk_counts['deleted'], 'revisionary' )), $bulk_counts['deleted']),
 	);
 
 	$bulk_messages['page'] = $bulk_messages['post'];
@@ -75,7 +75,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 		) {
 			$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field(wp_unslash($_REQUEST['ids'])));		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			
-			echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo') . '</a> ';
+			echo '<a href="' . esc_url( wp_nonce_url( "edit.php?post_type=$post_type&doaction=undo&action=untrash&ids=$ids", "bulk-revision-queue" ) ) . '">' . esc_html__('Undo', 'revisionary') . '</a> ';
 		
 		} elseif (!empty($bulk_messages['post'][$message])) {
 			echo esc_html($bulk_messages['post'][$message]) . ' ';
@@ -96,7 +96,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 <div class="wrap pressshack-admin-wrapper revision-archive">
 	<header>
 		<h1 class="wp-heading-inline">
-			<span class="dashicons dashicons-backup"></span>
+			<span class="dashicons dashicons-backup" aria-hidden="true"></span>
 			<?php
 			esc_html_e( 'Past Revisions', 'revisionary' );
 			$wp_list_table->filters_in_heading();
@@ -106,7 +106,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 	</header>
 	<form method="get">
 		<div class="revisionary-list-header-controls">
-	<?php $wp_list_table->views(); ?>
+	<?php if ( !$past_empty_unfiltered ) $wp_list_table->views(); ?>
 			<?php $wp_list_table->search_box( esc_html__( 'Search Revisions', 'revisionary' ), 'revision' ); ?>
 		</div>
 		<?php
@@ -130,7 +130,7 @@ if (rvy_get_option('revision_archive_deletion') && !empty($_REQUEST['deleted']))
 			<div class="revisionary-scheduled-empty revisionary-past-empty">
 				<div class="revisionary-scheduled-empty-header">
 					<span class="revisionary-scheduled-empty-icon dashicons dashicons-backup" aria-hidden="true"></span>
-					<h3><?php esc_html_e( 'About Past Revisions', 'revisionary' ); ?></h3>
+					<h2><?php esc_html_e( 'About Past Revisions', 'revisionary' ); ?></h2>
 				</div>
 				<p><?php esc_html_e( 'Every time you edit a post or page, WordPress can save a backup copy for you, so you\'ll always have a history of your changes.', 'revisionary' ); ?></p>
 				<ul>

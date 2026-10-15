@@ -167,7 +167,7 @@ class Revisionary
 		new PublishPress\Revisions\PluginCompat();
 
 		// NOTE: $_GET['preview'] and $_GET['post_type'] arguments are set by rvy_init() at response to ?p= request when the requested post is a revision.
-		if (!is_admin() && (!defined('REST_REQUEST') || ! REST_REQUEST)) { // preview_id indicates a regular preview via WP core, based on autosave revision
+		if (!is_admin() && !rvy_is_divi_editing_preview() && (!defined('REST_REQUEST') || ! REST_REQUEST)) { // preview_id indicates a regular preview via WP core, based on autosave revision
 			$preview_arg = (defined('RVY_PREVIEW_ARG')) ? sanitize_key(constant('RVY_PREVIEW_ARG')) : 'rv_preview';
 			
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
@@ -580,42 +580,34 @@ class Revisionary
 		return $clauses;
 	}
 
+    /** Shared first-install policy. Saved checkbox values and integration filters still take precedence. */
+    private function defaultPostTypes() {
+        $registered = get_post_types([], 'objects');
+        $enabled = array_fill_keys(['post', 'page'], true);
+        $hidden = $this->getHiddenPostTypes();
+        foreach ($registered as $post_type => $type_obj) {
+            if (isset($hidden[$post_type]) || in_array($post_type, ['order', 'shop_order'], true)) {
+                continue;
+            }
+            $specific_caps = !empty($type_obj->cap->edit_posts)
+                && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages'], true);
+            if ((!empty($type_obj->public) && $specific_caps)
+                || defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')) {
+                $enabled[$post_type] = true;
+				}
+			}
+        if (class_exists('WooCommerce') && isset($registered['product'])) {
+            $enabled['product'] = true;
+			}
+        return array_intersect_key($enabled, $registered);
+			}
+
 	// This is intentionally called twice: once for code that fires on 'init' and then very late on 'init' for types which were registered late on 'init'
 	public function setPostTypes() {
 		$enabled_post_types = get_option('rvy_enabled_post_types', false);
 
 		if (false === $enabled_post_types) {
-			$enabled_post_types = array_fill_keys(['post', 'page'], true);
-			
-			$available_post_types = get_post_types(['public' => true], 'object');
-
-			// by default, enable public post types that have type-specific capabilities defined
-			foreach($available_post_types as $post_type => $type_obj) {
-				if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages'], true))
-				|| defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
-				) {
-					$enabled_post_types[$post_type] = true;
-				}
-			}
-
-			if (class_exists('WooCommerce')) {
-				$enabled_post_types['product'] = true;
-				$enabled_post_types['order'] = true;
-			}
-
-			if (class_exists('Tribe__Events__Main')) {
-				$enabled_post_types['tribe_events'] = true;
-			}
-
-			if ($private_types = $this->getAvailablePrivatePostTypes()) {
-				$enabled_post_types = array_merge(
-					$enabled_post_types, 
-					array_fill_keys(
-						array_keys($private_types),
-						true
-					)
-				);
-			}
+            $enabled_post_types = $this->defaultPostTypes();
 		}
 
 		$enabled_post_types = apply_filters(
@@ -685,42 +677,7 @@ class Revisionary
 	    $enabled_post_types_archive = get_option('rvy_enabled_post_types_archive', false);
 
 	    if (false === $enabled_post_types_archive) {
-			$types = get_post_types(['public' => true]);
-
-			$enabled_post_types_archive = array_fill_keys(
-	            $types, true
-	        );
-
-			if (!defined('REVISIONARY_NO_PRIVATE_TYPES')) {
-	            $private_types = array_merge(
-	                get_post_types(['public' => false], 'object'),
-	                get_post_types(['public' => null], 'object')
-	            );
-
-	            // by default, enable non-public post types that have type-specific capabilities defined
-	            foreach($private_types as $post_type => $type_obj) {
-	                if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages'], true))
-	                || defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
-	                ) {
-	                    $enabled_post_types_archive[$post_type] = true;
-	                }
-	            }
-	        }
-
-			foreach (array_keys($enabled_post_types_archive) as $post_type) {
-				if (!post_type_supports($post_type, 'revisions')) {
-					unset($enabled_post_types_archive[$post_type]);
-				}
-			}
-
-	        if (class_exists('WooCommerce')) {
-	            $enabled_post_types_archive['product'] = true;
-	            $enabled_post_types_archive['order'] = true;
-	        }
-
-	        if (class_exists('Tribe__Events__Main')) {
-	            $enabled_post_types_archive['tribe_events'] = true;
-	        }
+            $enabled_post_types_archive = $this->defaultPostTypes();
 	    }
 
 	    $enabled_post_types_archive = array_diff_key(
@@ -752,6 +709,12 @@ class Revisionary
 			'revisionary_archive_post_types', 
 			$this->enabled_post_types_archive
 		);
+
+        foreach ($this->defaultPostTypes() as $post_type => $enabled) {
+            if (!empty($this->enabled_post_types_archive[$post_type]) && !post_type_supports($post_type, 'revisions')) {
+                add_post_type_support($post_type, 'revisions');
+            }
+        }
 	}
 
 	function getHiddenPostTypesCopy() {
@@ -770,36 +733,7 @@ class Revisionary
 	    $enabled_post_types_copy = get_option('rvy_enabled_post_types_copy', false);
 
 	    if (false === $enabled_post_types_copy) {
-			$types = get_post_types(['public' => true]);
-
-			$enabled_post_types_copy = array_fill_keys(
-	            $types, true
-	        );
-
-			if (!defined('REVISIONARY_NO_PRIVATE_TYPES')) {
-	            $private_types = array_merge(
-	                get_post_types(['public' => false], 'object'),
-	                get_post_types(['public' => null], 'object')
-	            );
-
-	            // by default, enable non-public post types that have type-specific capabilities defined
-	            foreach($private_types as $post_type => $type_obj) {
-	                if ((!empty($type_obj->cap) && !empty($type_obj->cap->edit_posts) && !in_array($type_obj->cap->edit_posts, ['edit_posts', 'edit_pages'], true))
-	                || defined('REVISIONARY_ENABLE_' . strtoupper($post_type) . '_TYPE')
-	                ) {
-	                    $enabled_post_types_copy[$post_type] = true;
-	                }
-	            }
-	        }
-
-	        if (class_exists('WooCommerce')) {
-	            $enabled_post_types_copy['product'] = true;
-	            $enabled_post_types_copy['order'] = true;
-	        }
-
-	        if (class_exists('Tribe__Events__Main')) {
-	            $enabled_post_types_copy['tribe_events'] = true;
-	        }
+            $enabled_post_types_copy = $this->defaultPostTypes();
 	    }
 
 	    $enabled_post_types_copy = array_diff_key(
@@ -842,8 +776,11 @@ class Revisionary
 	}
 
 	function fltNumRevisions ($num, $post) {
-        if (isset($this->enabled_post_types_archive[$post->post_type]) && empty($this->enabled_post_types_archive[$post->post_type])) {
-            $num = 0;
+        if (empty($this->enabled_post_types_archive[$post->post_type])) {
+            // Past Revisions disabled for this post type, or not configured by Revisions (leave WordPress setting in place)
+            if (isset($this->enabled_post_types_archive[$post->post_type])) {
+                $num = 0;
+            }
         } else {
             $num = rvy_get_option('num_revisions');
 
@@ -1428,7 +1365,7 @@ class Revisionary
 				// Normally, it does not make sense to allow direct post editing but not revision approval, so don't comp the settings UI with that option.
 				$can_approve = !rvy_get_option('approve_capability') && current_user_can('edit_post', $main_post_id);
 				
-				if (!$can_approve) { // bypass capability check for those with full editing caps on main post
+				if (!$can_approve) {
 					if ($_post = get_post($post_id)) {
 						if ($type_obj = get_post_type_object($_post->post_type)) {
 							$base_prop = (rvy_is_post_author($main_post_id)) ? 'edit_posts' : 'edit_others_posts';
@@ -1436,7 +1373,7 @@ class Revisionary
 							$can_approve = current_user_can($approve_cap_name);
 							$filter_args = compact('main_post_id', 'type_obj');
 
-							if (!$can_approve && defined('PRESSPERMIT_VERSION')) {
+							if (!$can_approve && defined('PRESSPERMIT_VERSION') && defined('REVISIONARY_LEGACY_APPROVE_PERMISSIONS')) {
 								$can_approve = current_user_can('edit_post', $main_post_id);
 							}
 						}

@@ -105,7 +105,7 @@
 			outline-offset: 6px;
 		}
 		.is-revision-modified {
-			outline: 3px dotted #dba617 !important;
+			outline: 3px dotted #9a7000 !important;
 			outline-offset: 6px;
 		}
 		.is-revision-changed {
@@ -118,7 +118,9 @@
 		}
 		.revision-diff-added {
 			background-color: color-mix(in srgb, currentColor 5%, #00a32a 15%);
-			text-decoration: none;
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 2px;
 		}
 		.revision-diff-format-added,
 		.revision-diff-format-removed,
@@ -136,7 +138,7 @@
 		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,
 		.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-border-active,
 		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-border-active {
-			outline-color: #dba617 !important;
+			outline-color: #9a7000 !important;
 		}
 		.is-revision-added.is-diff-border-active,
 		.is-revision-removed.is-diff-border-active,
@@ -218,6 +220,27 @@
 		return String(value || '').match(/(?:[a-z][a-z\d+.-]*:|\/\/)[^\s<>"']+|www\.[^\s<>"']+|\s+|[\p{L}\p{N}_]+|[^\s\p{L}\p{N}_]+/giu) || [];
 	}
 
+
+    function groupTextChanges(parts, unchanged) {
+        const result = [];
+        let removed = '', added = '';
+        const flush = () => {
+            if (removed) result.push({ type: 'removed', value: removed });
+            if (added) result.push({ type: 'added', value: added });
+            removed = ''; added = '';
+        };
+        parts.forEach((part, index) => {
+            if (part.type !== unchanged) {
+                if (part.type === 'removed') removed += part.value;
+                else added += part.value;
+            } else if (!part.value.trim() && (removed || added) && parts[index + 1] && parts[index + 1].type !== unchanged) {
+                removed += part.value; added += part.value;
+            } else { flush(); result.push(part); }
+        });
+        flush();
+        return result;
+    }
+
 	function diffTokens(previousTokens, currentTokens) {
 		const rows = previousTokens.length + 1;
 		const cols = currentTokens.length + 1;
@@ -258,7 +281,7 @@
 			}
 		}
 
-		return parts;
+		return groupTextChanges(parts, 'unchanged');
 	}
 
 	function diffValues(previousValue, currentValue, compareWholeValue = false) {
@@ -491,6 +514,24 @@
 			|| formatRoots.has(previousRoot.tagName.toLowerCase());
 	}
 
+    function canPairParagraphs(currentBlock, previousBlock) {
+        const current = document.createElement('div');
+        const previous = document.createElement('div');
+        current.innerHTML = currentBlock.innerHTML || '';
+        previous.innerHTML = previousBlock.innerHTML || '';
+        const isParagraph = (block, node) => block.blockName === 'core/paragraph'
+            || (!block.blockName && node.children.length === 1 && node.firstElementChild.tagName === 'P');
+        if (!isParagraph(currentBlock, current) || !isParagraph(previousBlock, previous)) return true;
+        const before = (previous.textContent || '').replace(/\s+/g, ' ').trim();
+        const after = (current.textContent || '').replace(/\s+/g, ' ').trim();
+        if (before === after) return true; // Preserve formatting-only and image changes.
+        if (textSimilarity(before, after) < 0.5) return false;
+        const changed = diffTokens(tokenize(before), tokenize(after)).filter((part) => part.type !== 'unchanged');
+        const chars = changed.reduce((total, part) => total + Array.from(part.value.trim()).length, 0);
+        const words = changed.reduce((total, part) => total + tokenize(part.value).filter((word) => /[\p{L}\p{N}]/u.test(word)).length, 0);
+        return chars <= 50 && words <= 10;
+    }
+
 	function pairSimilarBlocks(rawBlocks, enableClassicGranularDiff = false) {
 		const removed = [];
 		const added = [];
@@ -522,6 +563,11 @@
 			);
 
 			sameTypeAdded.forEach((candidate) => {
+                if (!canPairParagraphs(candidate.block, rem.block)) return;
+                // Never pair changes across an intervening unchanged block.
+                const start = Math.min(candidate.index, rem.index);
+                const end = Math.max(candidate.index, rem.index);
+                if (rawBlocks.slice(start + 1, end).some((block) => !block.__revisionDiffStatus)) return;
 				const formattingRootReplacement = isFormattingRootReplacement(candidate.block, rem.block);
 				let canBlend = false;
 				if (
@@ -709,7 +755,49 @@
 		}
 	}
 
+
+    function attributeEmpty(value) {
+        return value === undefined || value === null || value === '' ||
+            (typeof value === 'object' && Object.values(value).every(attributeEmpty));
+    }
+    function attributeVisible(current, previous) { return !attributeEmpty(current) || !attributeEmpty(previous); }
+    function attributePartsValues(parts) {
+        const decode = (value) => {
+            try { const parsed = JSON.parse(value); return parsed && typeof parsed === 'object' ? parsed : value; } catch (error) { return value; }
+        };
+        return {
+            previous: decode(parts.filter((part) => part.type !== 'added').map((part) => part.value).join('')),
+            current: decode(parts.filter((part) => part.type !== 'removed').map((part) => part.value).join('')),
+        };
+    }
+    function renderAttributeValues(current, previous, unchanged = false, depth = 0) {
+        if (depth < 3 && ((current && typeof current === 'object') || (previous && typeof previous === 'object'))) {
+            const a = current && typeof current === 'object' ? current : {};
+            const b = previous && typeof previous === 'object' ? previous : {};
+            return el('dl', { className: 'visual-post-compare-revision__attribute-array' },
+                ...Array.from(new Set([...Object.keys(b), ...Object.keys(a)])).filter((key) => attributeVisible(a[key], b[key])).flatMap((key) => [
+                    el('dt', { key: 'key-' + key }, el(attributeEmpty(a[key]) && !attributeEmpty(b[key]) ? 'del' : 'span', { className: attributeEmpty(a[key]) && !attributeEmpty(b[key]) ? 'editor-revision-fields-diff__removed' : '' }, Array.isArray(current) || Array.isArray(previous) ? '[' + key + ']' : key)),
+                    el('dd', { key: 'value-' + key }, renderAttributeValues(a[key], b[key], unchanged, depth + 1)),
+                ]));
+        }
+        const show = (value) => typeof value === 'object' ? JSON.stringify(value) : String(value);
+        const same = unchanged || stringifyAttributeValue(current) === stringifyAttributeValue(previous);
+        return el('span', null,
+            !same && !attributeEmpty(previous) ? el('del', { className: 'editor-revision-fields-diff__removed' }, show(previous)) : null,
+            !attributeEmpty(current) ? el(same ? 'span' : 'ins', { className: same ? '' : 'editor-revision-fields-diff__added' }, show(current)) : null);
+    }
+    function renderAttributeRow(label, current, previous, unchanged = false, key = label) {
+        if (!attributeVisible(current, previous)) return null;
+        const removed = attributeEmpty(current) && !attributeEmpty(previous);
+        return el('div', { key, className: 'visual-post-compare-revision__attribute-row' },
+            el(removed ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' + (removed ? ' editor-revision-fields-diff__removed' : '') }, label),
+            el('div', { className: 'editor-revision-fields-diff__value' }, renderAttributeValues(current, previous, unchanged)));
+    }
+    window.RevisionaryCompareAttributes = { visible: attributeVisible, renderRow: renderAttributeRow };
+
 	function renderBlockAttributeValue(attributeName, parts) {
+        const structured = attributePartsValues(parts);
+        if ((structured.current && typeof structured.current === 'object') || (structured.previous && typeof structured.previous === 'object')) return [renderAttributeValues(structured.current, structured.previous)];
 		const previousValue = parts.filter((part) => part.type !== 'added').map((part) => part.value).join('');
 		const currentValue = parts.filter((part) => part.type !== 'removed').map((part) => part.value).join('');
 		const isWebUrl = (value) => /^https?:\/\/[^\s]+$/i.test(value);
@@ -1035,6 +1123,7 @@
 					step: 1,
 					value: selectedIndex,
 					'aria-label': __('Select comparison post', 'revisionary'),
+					'aria-valuetext': selectedPost ? String(sliderDateLabel(selectedPost) || '') : undefined,
 					onFocus: () => setHasFocus(true),
 					onBlur: () => setHasFocus(false),
 					onChange: (event) => {
@@ -1209,11 +1298,40 @@
 		if (!tooltipElement) return null;
 		tooltipElement.classList.add('visual-post-compare-diff-tooltip', 'click');
 		tooltipElement.setAttribute('aria-hidden', 'true');
+		// Keep the tooltip open while the pointer is over it (WCAG 1.4.13)
+		tooltipElement.addEventListener('mouseenter', cancelHideDiffTooltip);
+		tooltipElement.addEventListener('mouseleave', () => scheduleHideDiffTooltip());
 		document.body.appendChild(tooltipElement);
 		return tooltipElement;
 	}
 
+	let tooltipHideTimer = null;
+
+	function cancelHideDiffTooltip() {
+		if (tooltipHideTimer) {
+			window.clearTimeout(tooltipHideTimer);
+			tooltipHideTimer = null;
+		}
+	}
+
+	function scheduleHideDiffTooltip() {
+		cancelHideDiffTooltip();
+		tooltipHideTimer = window.setTimeout(() => {
+			tooltipHideTimer = null;
+			hideDiffTooltip();
+		}, 300);
+	}
+
+	// Escape dismisses the diff tooltip (WCAG 1.4.13)
+	document.addEventListener('keydown', (event) => {
+		if ('Escape' === event.key && tooltipTarget) {
+			cancelHideDiffTooltip();
+			hideDiffTooltip();
+		}
+	});
+
 	function hideDiffTooltip() {
+		cancelHideDiffTooltip();
 		if (tooltipTarget) tooltipTarget.classList.remove('is-diff-tooltip-active');
 		const tooltip = ensureTooltipElement();
 		if (tooltip) {
@@ -1251,6 +1369,7 @@
 	}
 
 	function showDiffTooltip(target, caption) {
+		cancelHideDiffTooltip();
 		const tooltip = ensureTooltipElement();
 		if (!tooltip || !target || !caption) return;
 		if (tooltipTarget && tooltipTarget !== target) {
@@ -1773,7 +1892,11 @@
 		swap.className = 'visual-post-compare-image-diff--modified visual-post-compare-block-image-diff';
 		swap.tabIndex = 0;
 		swap.setAttribute('role', 'button');
-		swap.setAttribute('aria-label', __('Show previous image', 'revisionary'));
+		const imageAlt = currentImage.getAttribute('alt') || '';
+		swap.setAttribute('aria-label', imageAlt
+			? sprintf(__('Show previous image: %s', 'revisionary'), imageAlt)
+			: __('Show previous image', 'revisionary'));
+		swap.setAttribute('aria-pressed', 'false');
 		const previous = previousImage.cloneNode(true);
 		previous.removeAttribute('id');
 		currentImage.classList.add('visual-post-compare-image-diff__current');
@@ -1784,8 +1907,8 @@
 		backup.setAttribute('aria-hidden', 'true');
 		currentImage.parentNode.insertBefore(swap, currentImage);
 		swap.append(currentImage, previous, backup);
-		const showPrevious = () => swap.classList.add('is-showing-previous');
-		const showCurrent = () => swap.classList.remove('is-showing-previous');
+		const showPrevious = () => { swap.classList.add('is-showing-previous'); swap.setAttribute('aria-pressed', 'true'); };
+		const showCurrent = () => { swap.classList.remove('is-showing-previous'); swap.setAttribute('aria-pressed', 'false'); };
 		swap.addEventListener('mouseenter', showPrevious);
 		swap.addEventListener('mouseleave', showCurrent);
 		swap.addEventListener('click', (event) => {
@@ -1796,7 +1919,8 @@
 		swap.addEventListener('keydown', (event) => {
 			if (event.key !== 'Enter' && event.key !== ' ') return;
 			event.preventDefault();
-			swap.classList.toggle('is-showing-previous');
+			if (swap.classList.contains('is-showing-previous')) showCurrent();
+			else showPrevious();
 		});
 		return true;
 	}
@@ -2284,15 +2408,16 @@
 		const blockType = blocks.getBlockType(block.name);
 		const diffStatus = block.attributes && block.attributes.__revisionDiffStatus;
 		const changedAttributes = diffStatus && diffStatus.changedAttributes;
-		const changedAttributeEntries = Object.entries(changedAttributes || {});
+		const changedAttributeEntries = Object.entries(changedAttributes || {}).filter(([, parts]) => { const values = attributePartsValues(parts); return attributeVisible(values.current, values.previous); });
 		const hasChanges = Boolean(diffStatus && (
-			diffStatus.status
+			(diffStatus.status && diffStatus.status !== 'unchanged')
 			|| diffStatus.hasGranularDiff
 			|| diffStatus.hasGranularImageDiff
 			|| diffStatus.hasUnrepresentedAttributeDiff
 			|| diffStatus.forceContainerModified
 			|| diffStatus.currentHtml !== diffStatus.previousHtml
 		));
+        if (!hasChanges) return el('div', { className: 'visual-post-compare-revision__block-details' }, el('strong', null, (blockType && blockType.title) || block.name), el('h2', { className: 'visual-post-compare-revision__no-attribute-changes' }, __('No attribute changes', 'revisionary')));
 		return el(
 			'div',
 			{ className: 'visual-post-compare-revision__block-details' },
@@ -2309,8 +2434,8 @@
 				...changedAttributeEntries.map(([attributeName, parts]) => el(
 					'div',
 					{ className: 'visual-post-compare-revision__attribute-row', key: attributeName },
-					el('span', { className: 'visual-post-compare-revision__attribute-label' }, attributeName),
-					el('span', { className: 'editor-revision-fields-diff__value' },
+					el(attributeEmpty(attributePartsValues(parts).current) ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' + (attributeEmpty(attributePartsValues(parts).current) ? ' editor-revision-fields-diff__removed' : '') }, attributeName),
+					el('div', { className: 'editor-revision-fields-diff__value' },
 						...renderBlockAttributeValue(attributeName, parts)
 					)
 				))
@@ -2489,6 +2614,7 @@
 		const isAddedOrRemovedContainer = !image && !link
 			&& target.matches('.is-revision-added, .is-revision-removed');
 		return {
+			unchanged: !isAddedOrRemovedItem && !textChange && !imageDiff && !target.closest('.is-revision-modified') && !target.querySelector('.revision-diff-added,.revision-diff-removed,.is-revision-added,.is-revision-removed,.is-revision-modified,[data-visual-post-compare-tooltip]'),
 			title: title || __('Info', 'revisionary'),
 			tooltip: classicInfoTooltip(target),
 			attributes: isAddedOrRemovedContainer
@@ -2502,23 +2628,19 @@
 
 	function ClassicInfoSidebar({ info }) {
 		if (!info) return el('p', { className: 'visual-post-compare-revision__block-empty' }, __('Select content to view its details.', 'revisionary'));
+        if (info.unchanged) return el('div', { className: 'visual-post-compare-revision__block-details' }, el('strong', null, info.title), el('h2', { className: 'visual-post-compare-revision__no-attribute-changes' }, __('No attribute changes', 'revisionary')));
+		const attributes = info.attributes.filter((attribute) => { const values = attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]); return attributeVisible(values.current, values.previous); });
 		return el('div', { className: 'visual-post-compare-revision__block-details' },
 			el('div', { className: 'visual-post-compare-revision__block-identity' }, el('strong', null, info.title)),
 			info.tooltip
 				? el('div', { className: 'visual-post-compare-revision__classic-info-text', dangerouslySetInnerHTML: { __html: info.tooltip } })
 				: null,
-			info.attributes.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
+			attributes.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
 				el('h2', null, info.attributeCaption || __('Changed attributes', 'revisionary')),
-				...info.attributes.map((attribute, index) => el('div', { className: 'visual-post-compare-revision__attribute-row', key: index },
-					el('span', { className: 'visual-post-compare-revision__attribute-label' }, attribute.label),
-					el('span', { className: 'editor-revision-fields-diff__value' },
-						...(attribute.parts || [{ type: 'unchanged', value: attribute.value }]).map((part, partIndex) =>
-							part.type === 'added'
-								? el('ins', { key: partIndex, className: 'editor-revision-fields-diff__added' }, part.value)
-								: part.type === 'removed'
-									? el('del', { key: partIndex, className: 'editor-revision-fields-diff__removed' }, part.value)
-									: el('span', { key: partIndex }, part.value)
-						)
+				...attributes.map((attribute, index) => el('div', { className: 'visual-post-compare-revision__attribute-row', key: index },
+					el(attributeEmpty(attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]).current) ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' }, attribute.label),
+					el('div', { className: 'editor-revision-fields-diff__value' },
+						...renderBlockAttributeValue(attribute.label, attribute.parts || [{ type: 'unchanged', value: attribute.value }])
 					)
 				))
 			) : null
@@ -2550,7 +2672,7 @@
 										{ label: __('Many popular themes', 'revisionary'), integrationLink: true },
 									].map((item) => el('li', { key: item.label },
 										item.integrationLink && promo.integrationUrl
-											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl }, item.label)
+											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl, target: '_blank', rel: 'noopener noreferrer' }, item.label)
 											: item.label
 									))
 								),
@@ -2599,8 +2721,10 @@
 		const titleChanged = !isCurrentReference && displayedTitle !== currentTitle;
 		const diffResult = useMemo(() => {
 			try {
+				const pair = hooks.applyFilters('visual_post_compare.content_pair', { current: displayedPost.content || '', previous: comparisonBase.content || '' }, displayedPost, comparisonBase);
 				return {
-					blocks: diffRevisionContent(displayedPost.content || '', comparisonBase.content || ''),
+					isBlockEditorComparison: containsSerializedBlocks(pair.current) && containsSerializedBlocks(pair.previous),
+					blocks: diffRevisionContent(pair.current, pair.previous),
 					error: null,
 				};
 			} catch (error) {
@@ -2608,8 +2732,7 @@
 				return { blocks: [], error };
 			}
 		}, [comparison]);
-		const isBlockEditorComparison = containsSerializedBlocks(displayedPost.content || '')
-			&& containsSerializedBlocks(comparisonBase.content || '');
+		const isBlockEditorComparison = Boolean(diffResult.isBlockEditorComparison);
 		const blockIndex = useMemo(() => indexBlocksByClientId(diffResult.blocks), [diffResult.blocks]);
 		const hasContentChanges = useMemo(() => {
 			const changed = (block) => Boolean(
@@ -2619,7 +2742,7 @@
 					|| (block.innerBlocks || []).some(changed)
 				)
 			);
-			return diffResult.blocks.some(changed);
+			return wp.hooks.applyFilters('visual_post_compare.has_content_changes', diffResult.blocks.some(changed), comparison);
 		}, [diffResult.blocks]);
 		const proFields = window.RevisionaryVisualCompareFields;
 		const hasCustomFieldChanges = Boolean(
@@ -2977,10 +3100,10 @@
 
 		const presentation = comparison.presentation || {};
 		const formattedTooltipProps = (caption) => ({
-			'aria-label': caption,
+			'aria-description': caption,
 			'data-visual-post-compare-tooltip': caption,
 			onMouseEnter: (event) => showDiffTooltip(event.currentTarget, caption),
-			onMouseLeave: () => hideDiffTooltip(),
+			onMouseLeave: () => scheduleHideDiffTooltip(),
 			onFocus: (event) => showDiffTooltip(event.currentTarget, caption),
 			onBlur: () => hideDiffTooltip(),
 		});
@@ -3013,7 +3136,7 @@
 			presentation.showAuthor !== false ? authorLine(post) : null,
 			Number(post.id) !== Number(comparison.current.id) && post.revision_action ? el('div', { className: 'visual-post-compare-revision__author visual-post-compare-revision__action' }, post.revision_action) : null,
 			Number(post.id) !== Number(comparison.current.id) && post.revision_published ? dateLine(post, presentation.approvedDatePrefix, post.revision_published, 'is-approved-date') : null,
-			Number(post.id) !== Number(comparison.current.id) && post.approver ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(presentation.approvedByCaption, post.approver)) : null,
+			Number(post.id) !== Number(comparison.current.id) && post.approver ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(post.direct_edit ? presentation.directEditByCaption : presentation.approvedByCaption, post.approver)) : null,
 			
 			// @todo: current post status, revision type, approved by
 
@@ -3111,7 +3234,7 @@
 		const viewChangesTooltipProps = {
 			'data-visual-post-compare-tooltip': viewChangesTooltip,
 			onMouseEnter: (event) => showDiffTooltip(event.currentTarget, viewChangesTooltip),
-			onMouseLeave: () => hideDiffTooltip(),
+			onMouseLeave: () => scheduleHideDiffTooltip(),
 			onFocus: (event) => showDiffTooltip(event.currentTarget, viewChangesTooltip),
 			onBlur: () => hideDiffTooltip(),
 		};
@@ -3247,23 +3370,23 @@
 						{ className: 'visual-post-compare-revision__canvas-shell' },
 						hasCustomFieldChanges ? el(
 							'div',
-							{ className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs', role: 'tablist' },
+							{ className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Preview content', 'revisionary') },
 							el('button', {
-								type: 'button', role: 'tab',
+								type: 'button',
 								className: activeCanvasTab === 'content' ? 'is-active' : '',
-								'aria-selected': activeCanvasTab === 'content',
+								'aria-pressed': activeCanvasTab === 'content',
 								onClick: () => setCanvasTab('content'),
 							}, __('Content', 'revisionary')),
 							el('button', {
-								type: 'button', role: 'tab',
+								type: 'button',
 								className: activeCanvasTab === 'fields' ? 'is-active' : '',
-								'aria-selected': activeCanvasTab === 'fields',
+								'aria-pressed': activeCanvasTab === 'fields',
 								onClick: () => setCanvasTab('fields'),
 							}, __('Field Changes', 'revisionary'))
 						) : null,
 						el(
 							'div',
-							{ className: 'visual-post-compare-revision__canvas', ref: canvasRef },
+							{ className: 'visual-post-compare-revision__canvas', ref: canvasRef, tabIndex: 0, role: 'region', 'aria-label': __('Comparison preview', 'revisionary') },
 							activeCanvasTab === 'fields' ? fieldsSection : [
 							...editorStyleElements,
 						el('style', null, REVISION_DIFF_STYLES + (classicDiff ? classicDiff.styles : '')),
@@ -3301,43 +3424,43 @@
 										? el('ins', { className: 'revision-diff-added' }, displayedTitle)
 										: (!titleChanged ? displayedTitle : null)
 									) : null,
-									noChangesDetected ? el(
+									noChangesDetected && wp.hooks.applyFilters('visual_post_compare.show_no_changes_notice', true, comparison) ? el(
 										'div',
-										{ className: 'notice notice-info inline visual-post-compare-revision__no-changes' },
+										{ className: 'notice notice-info inline visual-post-compare-revision__no-changes', role: 'status' },
 										el('p', null, __('No changes detected.', 'revisionary'))
 									) : null
 								)
 								: null,
-							el('div', previewProps)
+							wp.hooks.applyFilters('visual_post_compare.render_content', el('div', previewProps), comparison, { displayedPost, comparisonBase, isCurrentReference, lacksPreviousRevision })
 						),
 							]
 						),
-						activeCanvasTab === 'content' ? diffMarkerNav : null
+						activeCanvasTab === 'content' ? wp.hooks.applyFilters('visual_post_compare.render_markers', diffMarkerNav, comparison) : null
 					),
 				el(
 					'aside',
 					{ className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
 					el(
 						'div',
-						{ className: 'visual-post-compare-revision__sidebar-tabs', role: 'tablist' },
+						{ className: 'visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Sidebar view', 'revisionary') },
 						el('button', {
-							type: 'button', role: 'tab',
+							type: 'button',
 							className: sidebarTab === 'revision' ? 'is-active' : '',
-							'aria-selected': sidebarTab === 'revision',
+							'aria-pressed': sidebarTab === 'revision',
 							onClick: () => setSidebarTab('revision'),
 						}, __('Revision', 'revisionary')),
 						el('button', {
-							type: 'button', role: 'tab',
+							type: 'button',
 							className: sidebarTab === 'block' ? 'is-active' : '',
-							'aria-selected': sidebarTab === 'block',
+							'aria-pressed': sidebarTab === 'block',
 							onClick: () => setSidebarTab('block'),
 						}, isBlockEditorComparison ? __('Block', 'revisionary') : (classicInfo ? classicInfo.title : __('Info', 'revisionary')))
 					),
 					sidebarTab === 'revision'
 						? revisionSidebarContent
-						: (isBlockEditorComparison
+						: wp.hooks.applyFilters('visual_post_compare.render_content_details', isBlockEditorComparison
 							? el(BlockDiffSidebar, { block: selectedBlock, tooltip: selectedBlockTooltip, historicalComparison })
-							: el(ClassicInfoSidebar, { info: classicInfo })),
+							: el(ClassicInfoSidebar, { info: classicInfo }), comparison),
 					Number(comparison.revision.id) !== Number(comparison.current.id) && comparison.revision.classicCompareURL
 						? el('div', { className: 'visual-post-compare-classic' },
 							el('a', { href: comparison.revision.classicCompareURL, className: 'visual-post-compare-classic-link', target: '_blank', rel: 'noopener noreferrer' },
@@ -3400,7 +3523,7 @@
 		}
 
 		if (!comparison) {
-			return el('div', { className: 'visual-post-compare-loading' }, el(Spinner), config.loadingComparisonCaption);
+			return el('div', { className: 'visual-post-compare-loading', role: 'status' }, el(Spinner), config.loadingComparisonCaption || __('Loading comparison…', 'revisionary'));
 		}
 
 		const reloadComparison = async (revisionId, request = {}, queuedRequestId = 0) => {
@@ -3459,7 +3582,7 @@
 
 				const presentation = comparison.presentation || {};
 
-				setApprovalNotice({ status: 'success', message: presentation.revisionApplied });
+				setApprovalNotice({ status: 'success', message: updatedComparison.approvalMessage || presentation.revisionApplied });
 			} catch (approveError) {
 				setApprovalNotice({
 					status: 'error',

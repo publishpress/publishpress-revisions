@@ -637,7 +637,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$result = date_i18n( "$date_format @ $time_format", $timestamp );
 		}
 
-		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
+		$saved_time = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $timestamp );
 
 		return '<abbr title="' . esc_attr( $saved_time ) . '">' . $result . '</abbr>';
 	}
@@ -755,13 +755,11 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 
 			case 'publication_method':
 				if ($this->from_revision_workflow) {
-					switch ($this->from_revision_workflow) {
-						case 'future-revision':
-							esc_html_e('Scheduled Revision Publication', 'revisionary');
-							break;
-	
-						default:
-							esc_html_e('Revision Publication', 'revisionary');
+					// from_revision_workflow may be boolean true, which a loose switch comparison would match to 'future-revision'
+					if ('future-revision' === $this->from_revision_workflow) {
+						esc_html_e('Scheduled Revision Publication', 'revisionary');
+					} else {
+						esc_html_e('Revision Publication', 'revisionary');
 					}
 				} elseif ($this->parent_in_revision_workflow) {
 					if ($status_obj = get_post_status_object($this->parent_in_revision_workflow)) {
@@ -900,7 +898,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1045,7 +1043,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1082,7 +1080,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					<option <?php echo $current_option === $user_id ? 'selected' : '' ?>
 						value="<?php echo esc_attr($user_id) ?>">
 						<?php 
-						if ($user = get_user($user_id)) {
+							if ($user = get_userdata($user_id)) {
 							echo esc_html($display_name);
 						} 
 						?>
@@ -1091,7 +1089,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			</select>
 			<?php
 
-			submit_button( esc_html__( 'Filter' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+			submit_button( esc_html__( 'Filter', 'revisionary' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
 
 			if( count( $_REQUEST ) > 1 ) :		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				?>
@@ -1239,7 +1237,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 						'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 						esc_url( $preview_link ),
 						esc_attr__( 'Preview Revision', 'revisionary' ),
-						esc_html_x( 'Preview', 'verb' )
+						esc_html_x( 'Preview', 'verb', 'revisionary' )
 					);
 
 					do_action('pp_revisions_post_link_done', $item->ID);
@@ -1270,7 +1268,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		$actions['post_filter'] = sprintf(
 			'<a href="%1$s" rel="bookmark" title="%2$s" aria-label="%2$s">%3$s</a>',
 			esc_url( $post_filter_url ),
-			esc_attr__( 'List Revisions of this Post', 'revisionary' ),
+			esc_attr__( 'Filter: list revisions of this post', 'revisionary' ),
 			esc_html__( 'Filter', 'revisionary' )
 		);
 
@@ -1284,7 +1282,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				'<a href="%1$s" class="submitdelete" title="%2$s" aria-label="%2$s">%3$s</a>',
 				$delete_link,
 				esc_html__( 'Delete Past Revision', 'revisionary' ),
-				esc_html__( 'Delete' )
+				esc_html__( 'Delete', 'revisionary' )
 			);
 		}
 
@@ -1359,7 +1357,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$v = 'current';
 		}
 
-		echo '<a href="' . esc_url(add_query_arg( $args, admin_url( 'admin.php?page=revisionary-archive' ) ) ) . '" class="' . esc_attr($v) . '">'
+		echo '<a href="' . esc_url(add_query_arg( $args, admin_url( 'admin.php?page=revisionary-archive' ) ) ) . '" class="' . esc_attr($v) . '"' . ( $v ? ' aria-current="page"' : '' ) . '>'
 		. $label;																		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if (true == $count) echo ' <span class="count">(' . esc_html($count) . ')</span>';
