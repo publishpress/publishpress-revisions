@@ -241,7 +241,7 @@ class RevisionaryAdminPosts {
 				$wpdb->prepare(
 					"SELECT comment_count AS published_post, COUNT(comment_count) AS num_revisions FROM $wpdb->posts"
 					. " WHERE $wpdb->posts.comment_count IN ($id_placeholders)"			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-					. " AND $wpdb->posts.post_mime_type IN ($revision_status_placeholders) AND $wpdb->posts.post_type != '' GROUP BY comment_count",		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					. " AND $wpdb->posts.post_mime_type IN ($revision_status_placeholders) AND $wpdb->posts.post_type != '' GROUP BY comment_count",		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Placeholders are generated from the value count.
 					array_merge($listed_ids, $revision_statuses)
 				)
 			);

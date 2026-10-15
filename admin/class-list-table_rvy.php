@@ -877,8 +877,8 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 					if ( $scheduled_time ) {
 						$scheduled_date = esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $scheduled_time ) );
 						echo $revisionary->admin->tooltipText( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							apply_filters( 'rvy_post_schedule_date_column_time', $scheduled_date, $post, 'date', 'list' ),
-							sprintf( esc_html__( 'Scheduled publication: %s', 'revisionary' ), $scheduled_date )
+							apply_filters( 'rvy_post_schedule_date_column_time', $scheduled_date, $post, 'date', 'list' ),	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							sprintf( esc_html__( 'Scheduled publication: %s', 'revisionary' ), $scheduled_date )			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						);
 					} else {
 						echo '<span aria-hidden="true">—</span>';
@@ -1419,9 +1419,9 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 	private function sort_scheduled_posts( &$posts ) {
 		$orderby = ! empty( $_REQUEST['orderby'] ) ? sanitize_key( $_REQUEST['orderby'] ) : 'date_sched'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$order = ! empty( $_REQUEST['order'] )
-            ? ('asc' === strtolower(sanitize_key($_REQUEST['order'])) ? 1 : -1)
-            : ('date_sched' === $orderby ? 1 : -1); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$order = ! empty( $_REQUEST['order'] )																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            ? ('asc' === strtolower(sanitize_key($_REQUEST['order'])) ? 1 : -1)								// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            : ('date_sched' === $orderby ? 1 : -1); 								
 		usort( $posts, function( $a, $b ) use ( $orderby, $order ) {
 			switch ( $orderby ) {
 				case 'title': $left = $a->post_title; $right = $b->post_title; break;

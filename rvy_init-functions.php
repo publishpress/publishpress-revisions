@@ -614,8 +614,8 @@ function rvy_detect_post_type() {
  * Divi's template retains responsibility for nonce and edit permission checks.
  */
 function rvy_is_divi_editing_preview() {
-	return !is_admin() && isset($_GET['et_pb_preview'], $_GET['et_pb_preview_nonce'])
-		&& is_string($_GET['et_pb_preview']) && ('true' === $_GET['et_pb_preview']);
+	return !is_admin() && isset($_GET['et_pb_preview'], $_GET['et_pb_preview_nonce'])		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		&& is_string($_GET['et_pb_preview']) && ('true' === $_GET['et_pb_preview']);		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 }
 
 function rvy_detect_post_id() {
@@ -867,7 +867,7 @@ function revisionary_refresh_revision_flags($published_post_id = 0, $args = []) 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$ids = $wpdb->get_col(
 			$wpdb->prepare(
-				"SELECT meta_id FROM $wpdb->postmeta WHERE meta_key = '_rvy_has_revisions' AND post_id NOT IN ($have_revision_placeholders)",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"SELECT meta_id FROM $wpdb->postmeta WHERE meta_key = '_rvy_has_revisions' AND post_id NOT IN ($have_revision_placeholders)",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Placeholders are generated from the value count.
 				$have_revisions
 			)
 		);

@@ -199,7 +199,7 @@ if ( $is_administrator = is_content_administrator_rvy() ) {
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$results = $wpdb->get_results( 
-		$wpdb->prepare(
+		$wpdb->prepare( // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- The merged array supplies all dynamic and literal placeholders.
 			"SELECT post_mime_type, COUNT( * ) AS num_posts FROM {$wpdb->posts}"
 				. " WHERE post_status IN ($base_status_placeholders)"														// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			. " AND ((post_type = 'revision' AND post_status = 'inherit' AND post_parent = %d)"

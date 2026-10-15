@@ -250,8 +250,7 @@ if ( $scheduled_only && ! $wp_list_table->has_items() ) {
 
 // Empty onboarding must not conceal scheduling history in another view.
 if ( $scheduled_empty_unfiltered ) {
-	global $wpdb;
-	$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+	$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );	 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$has_actions = false;
 	if ( class_exists( 'ActionScheduler' ) ) {
 		try {
@@ -275,8 +274,7 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 
 			// Empty onboarding must not conceal scheduling history in another view.
 			if ( $scheduled_empty_unfiltered ) {
-				global $wpdb;
-				$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+				$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				$has_actions = false;
 				if ( class_exists( 'ActionScheduler' ) ) {
 					try {
@@ -300,8 +298,7 @@ if ( ! $scheduled_only && ! $wp_list_table->has_items() ) {
 	if ( ! empty( $_REQUEST['post_status'] ) && 'all' !== sanitize_key( $_REQUEST['post_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		// Empty onboarding must not conceal scheduling history in another view.
 		if ( $scheduled_empty_unfiltered ) {
-			global $wpdb;
-			$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );
+			$has_scheduled_posts = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_mime_type = 'future-revision' OR post_status = 'future-revision' LIMIT 1" );		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$has_actions = false;
 			if ( class_exists( 'ActionScheduler' ) ) {
 				try {

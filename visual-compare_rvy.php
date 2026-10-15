@@ -256,7 +256,7 @@ class RevisionaryVisualCompare {
 
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$posts = $wpdb->get_col(
-				$wpdb->prepare(
+				$wpdb->prepare( // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- The merged array supplies all dynamic and literal placeholders.
 					"SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ($status_placeholders) AND comment_count = %d ORDER BY ID DESC LIMIT %d",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					array_merge($statuses, [$main_post_id, $limit])
 				)

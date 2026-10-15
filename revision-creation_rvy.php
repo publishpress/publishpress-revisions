@@ -249,6 +249,7 @@ class RevisionCreation {
         if (!$is_revision && !empty($args['reuse_unsubmitted']) && 'future-revision' !== $revision_status) {
             // Keep each author's unfinished changes together; do not overwrite a saved draft.
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
             $existing_ids = $wpdb->get_col($wpdb->prepare(
                 "SELECT ID FROM $wpdb->posts WHERE comment_count = %d AND post_author = %d
                  AND post_mime_type = 'draft-revision' AND post_status IN ('draft', 'draft-revision')

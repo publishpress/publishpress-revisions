@@ -91,7 +91,7 @@ class Revisions {
 
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $revision_id = $wpdb->get_var(
-            $wpdb->prepare(
+            $wpdb->prepare( // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- The merged array supplies all dynamic and literal placeholders.
                 "SELECT ID FROM $wpdb->posts WHERE comment_count = %d AND post_author = %d AND post_status IN ($status_placeholders) ORDER BY ID DESC LIMIT 1",  // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 array_merge([$post_id, $user_id], $revision_statuses)
             )

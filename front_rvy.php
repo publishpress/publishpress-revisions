@@ -696,7 +696,7 @@ class RevisionaryFront {
 							$publish_button = ($can_publish || !empty($can_approve)) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $publish_caption . '</a>' : '';
 							
 							if ('pending-revision' == $post->post_mime_type) {
-								if (!empty($_REQUEST['elementor-preview'])) {
+								if (!empty($_REQUEST['elementor-preview'])) {				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 									if ('pending-revision' == $post->post_mime_type) {
 										$message = sprintf( esc_html__('This Revision is Submitted for Approval. %s %s %s', 'revisionary'), '', '', '' );
 									} else {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended

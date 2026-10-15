@@ -382,7 +382,7 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
     if (!isset($cron_events)) $cron_events = rvy_scheduled_revision_cron_events();
     $revision = get_post($revision_id);
     $events = isset($cron_events[$revision_id]) ? $cron_events[$revision_id] : [];
-    $view = isset($_REQUEST['action_status']) ? sanitize_key(wp_unslash($_REQUEST['action_status'])) : 'pending';
+    $view = isset($_REQUEST['action_status']) ? sanitize_key(wp_unslash($_REQUEST['action_status'])) : 'pending';				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if ($revision && 'future-revision' === $revision->post_mime_type
         && (empty($row) || ($events && 'pending' !== $row['status_name'] && in_array($view, ['pending', 'all'], true)))) {
         return rvy_scheduled_revision_wp_cron_cell($revision, $events);
