@@ -1489,11 +1489,26 @@ function rvy_is_post_author($post, $user = false) {
 	return false;
 }
 
+/** Active builders whose visual comparison support requires Revisions Pro. */
+function rvy_visual_compare_pro_builders() {
+	$builders = [];
+	if ( defined( 'ELEMENTOR_VERSION' ) ) $builders[] = 'Elementor';
+	if ( defined( 'ET_BUILDER_PLUGIN_VERSION' ) || defined( 'ET_BUILDER_VERSION' )
+		|| false !== stripos( get_template(), 'divi' ) ) $builders[] = 'Divi';
+	if ( defined( 'FL_BUILDER_VERSION' ) ) $builders[] = 'Beaver Builder';
+	if ( defined( 'UAGB_VER' ) ) $builders[] = 'Spectra Legacy';
+	return $builders;
+}
+
 function rvy_visual_compare_disabled() {
+	if ( ! defined( 'PUBLISHPRESS_REVISIONS_PRO_VERSION' ) && rvy_visual_compare_pro_builders() ) {
+		return true;
+	}
+
 	return (defined('REVISIONARY_DISABLE_VISUAL_COMPARE') && REVISIONARY_DISABLE_VISUAL_COMPARE)
-	|| (defined('ELEMENTOR_VERSION') && (!defined('REVISIONARY_ELEMENTOR_VISUAL_COMPARE') || ! REVISIONARY_ELEMENTOR_VISUAL_COMPARE))
-	|| (defined('ET_BUILDER_PLUGIN_VERSION') && (!defined('REVISIONARY_DIVI_VISUAL_COMPARE') || ! REVISIONARY_DIVI_VISUAL_COMPARE))
-	|| (defined('FL_BUILDER_VERSION') && (!defined('REVISIONARY_BEAVER_VISUAL_COMPARE') || ! REVISIONARY_BEAVER_VISUAL_COMPARE));
+	|| (defined('ELEMENTOR_VERSION') && (defined('REVISIONARY_ELEMENTOR_VISUAL_COMPARE') && ! REVISIONARY_ELEMENTOR_VISUAL_COMPARE))
+	|| (defined('ET_BUILDER_PLUGIN_VERSION') && (defined('REVISIONARY_DIVI_VISUAL_COMPARE') && ! REVISIONARY_DIVI_VISUAL_COMPARE))
+	|| (defined('FL_BUILDER_VERSION') && (defined('REVISIONARY_BEAVER_VISUAL_COMPARE') && ! REVISIONARY_BEAVER_VISUAL_COMPARE));
 }
 
 function rvy_use_visual_compare() {
