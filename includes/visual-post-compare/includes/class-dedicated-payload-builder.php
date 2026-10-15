@@ -311,16 +311,16 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'statusLabel'		  => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($status_obj) && !empty($status_obj->label)) ? (!rvy_get_option('permissions_compat') && rvy_in_revision_workflow($post->ID) ? $mime_type_status_obj->label : $status_obj->label) : $post->post_status),
 			'mimeTypeStatusLabel' => ('inherit' == $post->post_status) ? esc_html__('Past Revision', 'revisionary') : ((!empty($mime_type_status_obj) && !empty($mime_type_status_obj->label)) ? $mime_type_status_obj->label : $post->post_mime_type),
 			'modified'            => mysql_to_rfc3339( $post->post_modified ),
-			'modifiedLabel'       => mysql2date( 'M j, Y g:i a', $post->post_modified, true ),
+			'modifiedLabel'       => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
 			'postDate'            => mysql_to_rfc3339( $post->post_date ),
-			'postDateLabel'       => mysql2date( 'M j, Y g:i a', $post->post_date, true ),
+			'postDateLabel'       => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 			'author'              => (int) $post->post_author,
 			'authorName'          => $author ? $author->display_name : '',
 			'authorAvatar'        => get_option('show_avatars') ? esc_url_raw( get_avatar_url( $post->post_author, array( 'size' => 32 ) ) ) : '',
-			'sliderModifiedLabel' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderModifiedTitle' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderPostDateLabel' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
-			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
+			'sliderModifiedLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderModifiedTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderPostDateLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
+			'sliderPostDateTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 			'canEdit'             => (bool) $can_edit,
 			'isPastRevision'      => (bool) $revision_parent_id,
 			'canApprove'		  => Visual_Post_Compare::can_apply_revision( $post ),
@@ -440,10 +440,10 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	public static function slider_post_data( \WP_Post $post ) {
 		return array(
 			'id'                  => (int) $post->ID,
-			'sliderModifiedLabel' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderModifiedTitle' => mysql2date( 'F j, Y g:i a', $post->post_modified, true ),
-			'sliderPostDateLabel' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
-			'sliderPostDateTitle' => mysql2date( 'F j, Y g:i a', $post->post_date, true ),
+			'sliderModifiedLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderModifiedTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_modified, true ),
+			'sliderPostDateLabel' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
+			'sliderPostDateTitle' => mysql2date( get_option('date_format') . ' ' . get_option('time_format'), $post->post_date, true ),
 		);
 	}
 
@@ -477,7 +477,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			$result = date_i18n( "$date_format @ $time_format", $timestamp );
 		}
 
-		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
+		$saved_time = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $timestamp );
 
 		return $result;
 	}
