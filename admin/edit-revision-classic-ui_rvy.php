@@ -175,9 +175,9 @@ class RevisionaryEditRevisionClassicUI {
 			/* translators: Publish box date string. 1: Date, 2: Time. See https://www.php.net/manual/datetime.format.php */
 				$date_string = esc_html__( '%1$s at %2$s', 'revisionary' );
 			/* translators: Publish box date format, see https://www.php.net/manual/datetime.format.php */
-				$date_format = esc_html_x('M j, Y', 'publish box date format', 'revisionary' );
+				$date_format = get_option('date_format');
 			/* translators: Publish box time format, see https://www.php.net/manual/datetime.format.php */
-				$time_format = esc_html_x('H:i', 'publish box time format', 'revisionary' );
+				$time_format = get_option('time_format');
 
 			if ( 0 !== $post->ID ) {
 				if ( 'future' === $post->post_status ) { // Scheduled for publishing at a future date.

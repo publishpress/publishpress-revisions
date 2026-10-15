@@ -469,7 +469,7 @@ class RevisionaryFront {
 				return;
 			}
 
-				$datef = esc_html__( 'M j, Y @ g:i a', 'revisionary' );
+				$datef = get_option('date_format') . ' ' . get_option('time_format');
 			$date = agp_date_i18n( $datef, strtotime( $post->post_date ) );
 
 			$color = '#ccc';

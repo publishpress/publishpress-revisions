@@ -90,14 +90,14 @@ jQuery(document).ready( function($) {
                 }
 
                 if (rvyObjEdit.canPublish && (rvyObjEdit.PendingStatus != rvyObjEdit.currentStatus) && ('future' != rvyObjEdit.currentStatus)) {
-					approveButtonHTML = '&nbsp;<a href="' + rvyObjEdit['pendingActionURL'] + '" class="button rvy-direct-approve" role="button">'
+					approveButtonHTML = '<a href="' + rvyObjEdit['pendingActionURL'] + '" class="button rvy-direct-approve" role="button">'
 					+ approveCaption + '</a>'
 				}
 
                 var rvyPreviewLink = '';
 
 				if (rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption']) {
-                    rvyPreviewLink = '&nbsp; <a href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" class="revision-preview" target="_blank">' 
+                    rvyPreviewLink = '<a href="' + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedURL'] + '" class="revision-preview" target="_blank">' 
                     + rvyObjEdit[rvyObjEdit.currentStatus + 'CompletedLinkCaption'] + '</a>';
                 }
 

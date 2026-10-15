@@ -637,7 +637,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			$result = date_i18n( "$date_format @ $time_format", $timestamp );
 		}
 
-		$saved_time = gmdate( 'Y/m/d H:i:s', $timestamp );
+		$saved_time = date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $timestamp );
 
 		return '<abbr title="' . esc_attr( $saved_time ) . '">' . $result . '</abbr>';
 	}
