@@ -635,9 +635,17 @@ class RevisionaryFront {
 					}
 					
 					if (!empty($_REQUEST['elementor-preview'])) {													//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label($post->post_mime_type, 'name'), '', '', '');
+						if ('pending-revision' == $post->post_mime_type) {
+							$message = sprintf( esc_html__('This Revision is Submitted for Approval. %s %s %s', 'revisionary'), '', '', '' );
+						} else {
+							$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label($post->post_mime_type, 'name'), '', '', '');
+						}
 					} else {
-						$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label($post->post_mime_type, 'name'), $view_published, $edit_button, $publish_button . $delete_button );
+						if ('pending-revision' == $post->post_mime_type) {
+							$message = sprintf( esc_html__('This Revision is Submitted for Approval. %s %s %s', 'revisionary'), $view_published, $edit_button, $publish_button . $delete_button );
+						} else {
+							$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label($post->post_mime_type, 'name'), $view_published, $edit_button, $publish_button . $delete_button );
+						}
 					}
 					$compact_caption = sprintf( esc_html__( '%s.', 'revisionary' ), pp_revisions_status_label( $post->post_mime_type, 'name' ) );
 
@@ -688,10 +696,18 @@ class RevisionaryFront {
 							$publish_button = ($can_publish || !empty($can_approve)) ? '<a href="' . $publish_url . '" class="button button-primary rvy-approve-revision">' . $publish_caption . '</a>' : '';
 							
 							if ('pending-revision' == $post->post_mime_type) {
-								if (!empty($_REQUEST['elementor-preview'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-									$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label('pending-revision', 'name'), '', '', '' );
+								if (!empty($_REQUEST['elementor-preview'])) {
+									if ('pending-revision' == $post->post_mime_type) {
+										$message = sprintf( esc_html__('This Revision is Submitted for Approval. %s %s %s', 'revisionary'), '', '', '' );
+									} else {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+										$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label('pending-revision', 'name'), '', '', '' );
+									}
 								} else {
-									$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label('pending-revision', 'name'), $view_published, $edit_button, $publish_button . $decline_button );
+									if ('pending-revision' == $post->post_mime_type) {
+										$message = sprintf( esc_html__('This Revision is Submitted for Approval. %s %s %s', 'revisionary'), $view_published, $edit_button, $publish_button . $decline_button );
+									} else {
+										$message = sprintf( esc_html__('This is a %s. %s %s %s', 'revisionary'), pp_revisions_status_label('pending-revision', 'name'), $view_published, $edit_button, $publish_button . $decline_button );
+									}
 								}
 								$compact_caption = sprintf( esc_html__( '%s.', 'revisionary' ), pp_revisions_status_label( 'pending-revision', 'name' ) );
 							} else {
