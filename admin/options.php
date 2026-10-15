@@ -550,7 +550,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 
 		?>
 		<td style="padding-right: 70px">
-		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Past Revisions', 'revisionary');?>
+		<h2 style="margin-top:0;"><?php esc_html_e('Past Revisions', 'revisionary');?>
         <?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -649,7 +649,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<td style="padding-right: 70px">
-		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('New Revisions', 'revisionary');?>
+		<h2 style="margin-top:0;"><?php esc_html_e('New Revisions', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -752,7 +752,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<br />
-		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Revision Fields', 'revisionary');?>
+		<h2 style="margin-top:0;"><?php esc_html_e('Revision Fields', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -820,7 +820,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<td>
-		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Duplicate Posts', 'revisionary');?>
+		<h2 style="margin-top:0;"><?php esc_html_e('Duplicate Posts', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
@@ -915,7 +915,7 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$this->all_options []= $option_name;
 		?>
 		<br />
-		<h2 style="margin-top:0; margin-bottom:8px"><?php esc_html_e('Duplicate Fields', 'revisionary');?>
+		<h2 style="margin-top:0;"><?php esc_html_e('Duplicate Fields', 'revisionary');?>
 		<?php 
 		echo $revisionary->admin->tooltipText(												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'',
