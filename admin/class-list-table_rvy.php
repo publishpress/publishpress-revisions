@@ -816,7 +816,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$arr['date_sched'] = esc_html__('Schedule', 'revisionary');
 		}
 
-		if ( $this->scheduled_only && ! rvy_get_option( 'scheduled_publish_cron' ) ) {
+		if ( $this->scheduled_only ) {
 			$arr['publication'] = esc_html__( 'Publication', 'revisionary' );
 		}
 
