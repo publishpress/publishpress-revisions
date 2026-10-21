@@ -964,6 +964,12 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
+	// Prevent a revision from making the published post its own parent. This
+	// must run before wp_update_post()/rvy_update_post() writes post_parent.
+	if (isset($update['post_parent']) && ((int) $published->ID === (int) $update['post_parent'])) {
+		$update['post_parent'] = 0;
+	}
+
 	if (defined('REVISIONARY_APPLY_REVISION_WP_UPDATE')) {
 		$post_id = wp_update_post( $update );
 	} else {
