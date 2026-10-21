@@ -1772,28 +1772,23 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			return true;
 		}
 
-		// Use the filtered result set, including rows beyond the current page.
-		$post_types = [];
+		// Use the filtered result set, including rows beyond the current page. Offer approval only if the user
+		// can approve at least one listed revision, the same check applied by the row actions and bulk handler.
+		// (A type-wide publish_posts check let Authors see bulk Approve for revisions of others' posts.)
+		$post_ids = [];
 		$request = isset($wp_query->request) ? $wp_query->request : '';
 		$from_position = stripos($request, " FROM $wpdb->posts");
 		if (false !== $from_position) {
-			$request = "SELECT DISTINCT $wpdb->posts.post_type" . substr($request, $from_position);
-			$request = $this->strip_outer_order_and_limit($request);
+			$request = "SELECT DISTINCT $wpdb->posts.ID" . substr($request, $from_position);
+			$request = $this->strip_outer_order_and_limit($request) . ' LIMIT 500';
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
-			$post_types = (array) $wpdb->get_col($request);
+			$post_ids = (array) $wpdb->get_col($request);
 		} elseif (!empty($wp_query->posts)) {
-			$post_types = wp_list_pluck($wp_query->posts, 'post_type');
+			$post_ids = wp_list_pluck($wp_query->posts, 'ID');
 		}
 
-		$require_approve = rvy_get_option('approve_capability');
-		foreach (array_unique($post_types) as $post_type) {
-			$type_obj = get_post_type_object($post_type);
-			if (!$type_obj || empty($type_obj->cap->edit_others_posts)) {
-				continue;
-			}
-			$approve_cap = str_replace('edit_', 'approve_', $type_obj->cap->edit_others_posts);
-			if (current_user_can($approve_cap)
-			|| (!$require_approve && !empty($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->publish_posts))) {
+		foreach ($post_ids as $post_id) {
+			if (current_user_can('approve_revision', (int) $post_id)) {
 				$this->bulk_approval_allowed = true;
 				break;
 			}
@@ -1825,7 +1820,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			$actions['decline_revision'] = esc_html__('Decline', 'revisionary');
 		}
 
-		if ($approval_potential) {
+		if ($can_bulk_approve) {
 			$actions['publish_revision'] = esc_html__('Publish', 'revisionary');
 
 			if (rvy_get_option('scheduled_revisions')) {
