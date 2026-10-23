@@ -22,6 +22,7 @@ jQuery(document).ready( function($) {
 		}
 	});
     var rvySaveClicked = false;
+    var rvyUnsavedFieldChange = false;
     
     var RvyInitializeBlockEditorModifications = function () {
         if ($('#wpbody-content .wp-heading-inline').length) {
@@ -177,6 +178,16 @@ jQuery(document).ready( function($) {
 		RvyDisableSubmitButtons();
 	});
 
+    // Autosave only stores title, content and excerpt. Changes to other fields (custom fields, ACF, taxonomies) are only stored by a full save.
+    $(document).on('change', '#poststuff :input', function() {
+        if ($(this).closest('#submitdiv, #titlediv, #postdivrich, #postexcerpt').length) {
+            return;
+        }
+
+        rvyUnsavedFieldChange = true;
+        RvyDisableSubmitButtons();
+    });
+
     var rvyThumbnail = $('#set-post-thumbnail img').attr('src');
 
     setInterval(function() {
@@ -277,7 +288,7 @@ jQuery(document).ready( function($) {
     $(document).on('click', '#post-body-content *, #content_ifr *, #wp-content-editor-container *, #tinymce *, #submitpost, span.revision-created', function() {
         $('.revision-created-wrapper, .revision-created').hide();
 
-        if (!$('a.rvy-direct-approve').length) {
+        if (!$('a.rvy-direct-approve').length && !(rvyUnsavedFieldChange && rvyObjEdit.disableSubmitUntilSave)) {
             $('a.revision-approve').show().removeAttr('disabled aria-disabled');
             $('div.rvy-save-revision-tip').hide();
         }
