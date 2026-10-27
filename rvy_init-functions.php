@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once __DIR__ . '/builder-schema_rvy.php';
+
 require_once( dirname(__FILE__).'/lib/agapetry_wp_core_lib.php');
 
 if (defined('REVISIONARY_PRO_FILE')) {
@@ -789,6 +791,10 @@ function rvy_post_revision_supported($post, $args = []) {
 function rvy_post_revision_blocked($post, $args = []) {
 	global $wpdb;
 	static $unfiltered_html;
+
+	if (rvy_builder_schema_blocked($post)) {
+		return ['code' => 'builder_storage_schema', 'description' => rvy_builder_schema_message(false)];
+	}
 
 	$revision_unfiltered_html_check = rvy_get_option('revision_unfiltered_html_check');
 
