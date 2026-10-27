@@ -42,6 +42,25 @@ class Revisionary_Submittee {
 
 		rvy_refresh_options();
 
+        // init may already have fired (late bulk-action admin initialization).
+        // Convert after saving values AND network scope, using each site's effective setting.
+        if (!empty($_POST['all_options'])
+            && in_array('permissions_compat_mode', array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options'])))), true)) {
+            $site_ids = ($sitewide && is_multisite() && defined('RVY_NETWORK') && RVY_NETWORK)
+                ? get_sites(['fields' => 'ids']) : [get_current_blog_id()];
+            foreach ($site_ids as $site_id) {
+                $switched = (int) $site_id !== get_current_blog_id();
+                if ($switched) { switch_to_blog($site_id); }
+                try {
+                    rvy_refresh_options();
+                    rvy_sync_revision_storage_schema();
+                } finally {
+                    if ($switched) { restore_current_blog(); }
+                }
+            }
+            rvy_refresh_options();
+        }
+
 		if (!empty($_REQUEST['add_revisions_index'])) {													// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$wpdb->query("CREATE INDEX pp_revisions ON $wpdb->posts (comment_count, post_mime_type)");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
 		}
@@ -72,74 +91,6 @@ class Revisionary_Submittee {
 					}
 				} else {
 					$value = '';
-				}
-
-				if ('permissions_compat_mode' == $option_basename) {
-					$current_val = rvy_get_option('permissions_compat_mode');
-
-					if ($current_val != $value) {
-						add_action(
-							'init',
-							function() use ($value) {
-								global $wpdb, $rvy_options_sitewide;
-
-								$orig_site_id = get_current_blog_id();
-
-								if (is_multisite() && defined('RVY_NETWORK') && RVY_NETWORK) {
-									if (!isset($rvy_options_sitewide)) {
-										rvy_refresh_options_sitewide();
-									}
-
-									$network_setting = isset($rvy_options_sitewide) && ! empty($rvy_options_sitewide['permissions_compat_mode']);
-
-									$site_ids = ($network_setting && function_exists('get_sites')) ? get_sites(['fields' => 'ids']) : (array) $orig_site_id;
-								} else {
-									$site_ids = (array) $orig_site_id;
-								}
-
-								// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-
-								foreach ($site_ids as $_blog_id) {
-									if (count($site_ids) > 1) {
-										switch_to_blog($_blog_id);
-									}
-
-									$revision_statuses = rvy_revision_statuses();
-
-									if ($revision_statuses) {
-										if ($value) {
-											$wpdb->query(	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-												$wpdb->prepare(
-													"UPDATE $wpdb->posts
-													SET post_status = post_mime_type
-													WHERE comment_count != 0
-													AND post_mime_type IN (" . implode(', ', array_fill(0, count($revision_statuses), '%s')) . ")",
-													...$revision_statuses
-												)
-											);
-										} else {
-											$wpdb->query(
-												$wpdb->prepare(
-													"UPDATE $wpdb->posts
-													SET post_status = CASE
-														WHEN post_mime_type = 'draft-revision' THEN 'draft' 
-														ELSE 'pending' 
-														END 
-													WHERE comment_count != 0
-													AND post_mime_type IN (" . implode(', ', array_fill(0, count($revision_statuses), '%s')) . ")",
-													...$revision_statuses
-												)
-											);
-										}
-									}
-								}
-
-								if (count($site_ids) > 1) {
-									switch_to_blog($orig_site_id);
-								}
-							}
-						, 9999);
-					}
 				}
 
 				rvy_update_option( $default_prefix . $option_basename, $value, $sitewide );
