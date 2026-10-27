@@ -54,3 +54,21 @@ add_filter('map_meta_cap', function ($caps, $cap, $user_id, $args) {
     return 'copy_post' === $cap && !empty($args[0]) && rvy_builder_schema_blocked($args[0])
         ? ['do_not_allow'] : $caps;
 }, PHP_INT_MAX, 4);
+
+/** Reconcile only to the selected schema, never normalize enhanced mode to draft/pending. */
+function rvy_sync_revision_storage_schema() {
+    if (rvy_get_option('permissions_compat_mode')) {
+        rvy_bulk_apply_revision_statuses();
+    } else {
+        rvy_bulk_remove_revision_statuses();
+    }
+    delete_option('rvy_storage_schema_pending');
+}
+
+// WordPress silently reactivates updates without activation hooks. The pending
+// marker also covers reinstalling the same version, which has no version change.
+add_action('init', function () {
+    if (get_option('rvy_storage_schema_pending')) {
+        rvy_sync_revision_storage_schema();
+    }
+}, 50);

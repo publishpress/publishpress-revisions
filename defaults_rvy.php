@@ -179,6 +179,7 @@ function rvy_default_options() {
 		'visual_compare' => 1,
         'visual_compare_javascript' => 1,
         'builder_compare_external_requests' => 1,
+        'divi4_revisor_backend_workaround' => 0,
 		'rvy_compare_other_internal_fields' => 1,
 	);
 

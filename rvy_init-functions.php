@@ -22,24 +22,6 @@ require_once(dirname(__FILE__).'/functions.php');
 require_once(dirname(__FILE__).'/utils.php');
 require_once(dirname(__FILE__).'/defaults_rvy.php');
 
-// WordPress silently reactivates updates without activation hooks. The pending
-// marker also covers reinstalling the same version, which has no version change.
-add_action('init', function () {
-    if (get_option('rvy_storage_schema_pending')) {
-        rvy_sync_revision_storage_schema();
-    }
-}, 50);
-
-/** Reconcile only to the selected schema, never normalize enhanced mode to draft/pending. */
-function rvy_sync_revision_storage_schema() {
-    if (rvy_get_option('permissions_compat_mode')) {
-        rvy_bulk_apply_revision_statuses();
-    } else {
-        rvy_bulk_remove_revision_statuses();
-    }
-    delete_option('rvy_storage_schema_pending');
-}
-
 function _rvy_delete_revision($revision_id, $published_post_id) {
 	revisionary_refresh_revision_flags($published_post_id, ['ignore_revision_ids' => $revision_id]);
 }
@@ -1371,7 +1353,12 @@ function rvy_init() {
 			rvy_admin_init();
 		} else {
 			// bulk approval fails on some sites due to post types not registered early enough
-			add_action('wp_loaded', 'rvy_admin_init');
+			// Defer until post types are registered, then let the workflow action
+			// added by rvy_admin_init run later on this same wp_loaded pass.
+			// Using the default priority here registers both callbacks at 10, after
+			// that priority's iteration has begun, so single-item submit/approve
+			// actions can fall through without being applied.
+			add_action('wp_loaded', 'rvy_admin_init', 0);
 		}
 	} else {		// @todo: fix links instead
 		// fill in the missing args for Pending / Scheduled revision preview link from Edit Posts / Pages
