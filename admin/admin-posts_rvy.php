@@ -319,6 +319,15 @@ class RevisionaryAdminPosts {
 	function revisions_row_action_link($actions = array()) {
 		global $post, $revisionary;
 
+		// fltPostsResults() temporarily restores missing edit capabilities so
+		// the Posts table can render Revisor-visible content without warnings.
+		// That compatibility grant also makes core add nonfunctional Edit and
+		// Quick Edit links. Remove those links server-side for posts detected as
+		// non-editable before the temporary capability filter was installed.
+		if (!empty($this->filtering_edit_link[$post->ID])) {
+			unset($actions['edit'], $actions['inline hide-if-no-js'], $actions['inline'], $actions['quick_edit']);
+		}
+
 		if (!empty($this->post_revision_count[$post->ID])) {
 			if ( 'trash' != $post->post_status && wp_check_post_lock( $post->ID ) === false ) {
 				$actions['revision_queue'] = "<a href='admin.php?page=revisionary-q&published_post={$post->ID}&all=1'>" . esc_html__('New Revisions', 'revisionary') . '</a>';
