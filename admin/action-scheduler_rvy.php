@@ -1,5 +1,24 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
+require_once __DIR__ . '/scheduled-publication-mode_rvy.php';
+
+/** Move upcoming revisions to the selected trigger when a scheduler setting changes. */
+function rvy_reschedule_upcoming_revisions_for_trigger_change() {
+	if ( function_exists( 'rvy_refresh_options' ) ) rvy_refresh_options();
+	if ( ! rvy_use_wp_cron_for_revision_publication() ) return;
+	$now = time();
+	foreach ( rvy_future_revision_ids() as $revision_id ) {
+		$revision = get_post( $revision_id );
+		if ( ! $revision || 'future-revision' !== $revision->post_mime_type ) continue;
+		$timestamp = strtotime( $revision->post_date_gmt . ' UTC' );
+		if ( ! $timestamp || $timestamp <= $now ) continue;
+		rvy_reschedule_revision_publication( $revision_id, $revision->post_date_gmt );
+	}
+}
+add_action( 'update_option_rvy_scheduled_publish_cron', 'rvy_reschedule_upcoming_revisions_for_trigger_change', 20, 2 );
+add_action( 'update_option_rvy_wp_cron_usage_detected', 'rvy_reschedule_upcoming_revisions_for_trigger_change', 20, 2 );
+add_action( 'add_option_rvy_scheduled_publish_cron', 'rvy_reschedule_upcoming_revisions_for_trigger_change', 20, 2 );
+add_action( 'add_option_rvy_wp_cron_usage_detected', 'rvy_reschedule_upcoming_revisions_for_trigger_change', 20, 2 );
 
 function rvy_scheduled_revision_cron_events() {
 	$events = [];
@@ -46,7 +65,7 @@ function rvy_legacy_scheduled_revision_ids() {
 }
 
 function rvy_scheduled_revision_migration_ui() {
-	if ( ! is_content_administrator_rvy() || ! function_exists( 'as_schedule_single_action' ) ) return;
+	if ( ! is_content_administrator_rvy() || ! function_exists( 'as_schedule_single_action' ) || rvy_get_option( 'wp_cron_usage_detected' ) ) return;
 	if ( ! rvy_legacy_scheduled_revision_ids() ) return;
 	$count = array_sum( array_map( 'count', rvy_scheduled_revision_cron_events() ) );
 	?>
@@ -84,6 +103,7 @@ function rvy_scheduled_revision_migration_ui() {
 function rvy_ajax_migrate_scheduled_revisions() {
 	check_ajax_referer( 'rvy-migrate-scheduled-revisions' );
 	if ( ! is_content_administrator_rvy() ) wp_send_json_error( [ 'message' => __( 'Permission denied.', 'revisionary' ) ], 403 );
+	if ( rvy_get_option( 'wp_cron_usage_detected' ) ) wp_send_json_error( [ 'message' => __( 'Action Scheduler migration is disabled while the custom WP-Cron trigger setting is selected.', 'revisionary' ) ], 409 );
 	if ( ! function_exists( 'as_schedule_single_action' ) ) wp_send_json_error( [ 'message' => __( 'Action Scheduler is unavailable.', 'revisionary' ) ], 500 );
 
 	update_option( 'rvy_scheduled_publish_cron', '0' );
@@ -243,6 +263,7 @@ function rvy_get_scheduling_log_table() {
 	return $table;
 }
 
+
 function rvy_scheduling_log_revision_cell( $revision ) {
 	static $renderer;
 	if ( ! $renderer ) {
@@ -384,6 +405,7 @@ function rvy_scheduled_revision_publication_cell( $row, $revision_id ) {
     $events = isset($cron_events[$revision_id]) ? $cron_events[$revision_id] : [];
     $view = isset($_REQUEST['action_status']) ? sanitize_key(wp_unslash($_REQUEST['action_status'])) : 'pending';				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if ($revision && 'future-revision' === $revision->post_mime_type
+        && rvy_use_wp_cron_for_revision_publication()
         && (empty($row) || ($events && 'pending' !== $row['status_name'] && in_array($view, ['pending', 'all'], true)))) {
         return rvy_scheduled_revision_wp_cron_cell($revision, $events);
     }
