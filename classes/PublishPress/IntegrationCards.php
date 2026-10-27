@@ -11,6 +11,26 @@ namespace PublishPress;
  */
 class IntegrationCards
 {
+    /** Sort currently active/available cards first, then alphabetically. */
+    public static function sortByAvailability($integrations)
+    {
+        $integrations = array_values((array) $integrations);
+        usort($integrations, static function ($a, $b) {
+            $groupA = !empty($a['available']) ? 0 : 1;
+            $groupB = !empty($b['available']) ? 0 : 1;
+            if ($groupA !== $groupB) {
+                return $groupA <=> $groupB;
+            }
+
+            return strnatcasecmp(
+                wp_strip_all_tags((string) ($a['title'] ?? '')),
+                wp_strip_all_tags((string) ($b['title'] ?? ''))
+            );
+        });
+
+        return $integrations;
+    }
+
     public static function filter($integrations)
     {
         $integrations = array_values((array) $integrations);
@@ -67,6 +87,14 @@ class IntegrationCards
             $integrations[] = self::fieldCard($card, true);
         }
 
+        foreach (self::builderCards() as $card) {
+            $integrations[] = self::workflowCard($card, 'builder');
+        }
+
+        foreach (self::blockCards() as $card) {
+            $integrations[] = self::workflowCard($card, 'blocks');
+        }
+
         // Resolve installation separately from runtime availability.
         $plugins = self::installedPlugins();
         $known = [
@@ -100,6 +128,20 @@ class IntegrationCards
                         }
                     }
                 }
+            }
+        }
+        unset($integration);
+
+        // Keep Builder copy consistent across built-in and Pro-only cards.
+        foreach ($integrations as &$integration) {
+            if (in_array('builder', (array) ($integration['categories'] ?? []), true)) {
+                $title = wp_strip_all_tags((string) ($integration['title'] ?? ''));
+                $integration['description'] = 'divi_compatibility' === $integration['id']
+                    ? esc_html__('Integration with Divi 4/5 editor and blocks', 'revisionary')
+                    : sprintf(
+                        esc_html__('Integration with %s\'s editor and blocks.', 'revisionary'),
+                        $title
+                    );
             }
         }
         unset($integration);
@@ -186,8 +228,10 @@ class IntegrationCards
             // Gallery state is primarily maintained in proprietary tables.
             'nextgen_gallery_field_compatibility',
 
-            // Custom block styles use the plugin's stackable_temp_post store.
+            // These block plugins have dedicated block-editor integration cards.
             'stackable_field_compatibility',
+            'spectra_field_compatibility',
+            'publishpress_blocks_field_compatibility',
 
             // Expiration changes require PublishPress Future to reschedule its
             // separate action; Revisionary currently disables this editor UI.
@@ -246,7 +290,7 @@ class IntegrationCards
     {
         $title = $card['title'];
         $features = [
-            esc_html__('Store custom fields with revisions', 'revisionary'),
+            esc_html__('Revise and compare custom fields', 'revisionary'),
             esc_html__('Display custom field changes', 'revisionary'),
             esc_html__('Update custom fields on revision publication', 'revisionary'),
         ];
@@ -312,6 +356,67 @@ class IntegrationCards
                 $card['class'] ?? ''
             ),
             'learn_more_url' => $card['learn_more_url'] ?? '',
+            'free' => false,
+        ];
+    }
+
+    private static function builderCards()
+    {
+        return [
+            ['id' => 'avada_builder_integration', 'title' => esc_html__('Avada Builder', 'revisionary'), 'theme' => 'avada-one', 'icon_url' => plugins_url('common/img/avada.svg', REVISIONARY_FILE), 'icon_class' => 'remote'],
+            ['id' => 'wpbakery_builder_integration', 'title' => esc_html__('WPBakery Page Builder', 'revisionary'), 'plugin' => 'js_composer/js_composer.php', 'constant' => 'WPB_VC_VERSION', 'function' => 'wpbakery', 'icon_url' => 'https://rankmath.com/wp-content/uploads/2022/02/WPBakery.jpg', 'features' => [esc_html__('Frontend revision editing, submission', 'revisionary'), esc_html__('Visually compare changes', 'revisionary'), esc_html__('Revision preview with builder styling', 'revisionary'), esc_html__('Revise and compare custom fields', 'revisionary')]],
+            ['id' => 'siteorigin_builder_integration', 'title' => esc_html__('SiteOrigin Page Builder', 'revisionary'), 'plugin' => 'siteorigin-panels/siteorigin-panels.php', 'constant' => 'SITEORIGIN_PANELS_VERSION', 'class' => 'SiteOrigin\\Panels\\Plugin', 'icon_url' => 'https://ps.w.org/siteorigin-panels/assets/icon-128x128.png'],
+            ['id' => 'seedprod_builder_integration', 'title' => esc_html__('SeedProd', 'revisionary'), 'plugin' => 'coming-soon/coming-soon.php', 'constant' => 'SEEDPROD_VERSION', 'icon_url' => 'https://ps.w.org/coming-soon/assets/icon-128x128.png'],
+            ['id' => 'breakdance_builder_integration', 'title' => esc_html__('Breakdance', 'revisionary'), 'plugin' => 'breakdance/plugin.php', 'constant' => 'BREAKDANCE_VERSION', 'class' => 'Breakdance\\Plugin', 'icon_url' => plugins_url('common/img/breakdance.svg', REVISIONARY_FILE)],
+            ['id' => 'bricks_builder_integration', 'title' => esc_html__('Bricks', 'revisionary'), 'constant' => 'BRICKS_VERSION', 'theme' => 'bricks', 'icon_url' => 'https://accessally.com/wp-content/uploads/2023/06/bricks-favicon-512x512-1.png', 'features' => [esc_html__('Frontend revision editing, submission', 'revisionary'), esc_html__('Visually compare changes', 'revisionary'), esc_html__('Revision preview with builder styling', 'revisionary'), esc_html__('Revise and compare custom fields', 'revisionary')]],
+        ];
+    }
+
+    private static function blockCards()
+    {
+        $features = [
+            esc_html__('Submit revisions to blocks', 'revisionary'),
+            esc_html__('Visually compare changes', 'revisionary'),
+            esc_html__('Revision preview with block styling', 'revisionary'),
+        ];
+
+        return [
+            ['id' => 'kadence_blocks_integration', 'title' => esc_html__('Kadence Blocks', 'revisionary'), 'plugin' => 'kadence-blocks/kadence-blocks.php', 'constant' => 'KADENCE_BLOCKS_VERSION', 'icon_url' => 'https://ps.w.org/kadence-blocks/assets/icon-128x128.png', 'features' => $features],
+            ['id' => 'spectra_blocks_integration', 'title' => esc_html__('Spectra Legacy', 'revisionary'), 'plugin' => 'ultimate-addons-for-gutenberg/ultimate-addons-for-gutenberg.php', 'constant' => 'UAGB_VER', 'icon_url' => 'https://ps.w.org/ultimate-addons-for-gutenberg/assets/icon-256x256.gif?rev=3240412', 'features' => array_merge($features, [esc_html__('Revise and compare custom fields', 'revisionary')])],
+            ['id' => 'otter_blocks_integration', 'title' => esc_html__('Otter Blocks', 'revisionary'), 'plugin' => 'otter-blocks/otter-blocks.php', 'constant' => 'OTTER_VERSION', 'icon_url' => 'https://ps.w.org/otter-blocks/assets/icon-256x256.gif?rev=3452114', 'features' => $features],
+            ['id' => 'essential_blocks_integration', 'title' => esc_html__('Essential Blocks', 'revisionary'), 'plugin' => 'essential-blocks/essential-blocks.php', 'constant' => 'EB_VERSION', 'icon_url' => 'https://ps.w.org/essential-blocks/assets/icon-256x256.gif?rev=2964049', 'features' => $features],
+            ['id' => 'stackable_blocks_integration', 'title' => esc_html__('Stackable', 'revisionary'), 'plugin' => 'stackable-ultimate-gutenberg-blocks/plugin.php', 'constant' => 'STACKABLE_VERSION', 'icon_url' => 'https://ps.w.org/stackable-ultimate-gutenberg-blocks/assets/icon-128x128.png', 'features' => array_merge($features, [esc_html__('Revise and compare custom fields', 'revisionary')])],
+            ['id' => 'ultimate_blocks_integration', 'title' => esc_html__('Ultimate Blocks', 'revisionary'), 'plugin' => 'ultimate-blocks/ultimate-blocks.php', 'constant' => 'ULTIMATE_BLOCKS_VERSION', 'icon_url' => 'https://ps.w.org/ultimate-blocks/assets/icon-128x128.png', 'features' => $features],
+            ['id' => 'publishpress_blocks_integration', 'title' => esc_html__('PublishPress Blocks', 'revisionary'), 'plugin' => 'advanced-gutenberg/advanced-gutenberg.php', 'constant' => 'ADVANCED_GUTENBERG_VERSION', 'icon_url' => 'https://ps.w.org/advanced-gutenberg/assets/icon-128x128.png', 'features' => array_merge($features, [esc_html__('Revise and compare custom fields', 'revisionary')])],
+        ];
+    }
+
+    private static function workflowCard($card, $category)
+    {
+        $theme = !empty($card['theme']);
+        $plugins = self::installedPlugins();
+        $themes = $theme && function_exists('wp_get_themes') ? wp_get_themes() : [];
+        $installed = $theme ? isset($themes[$card['theme']]) : isset($plugins[$card['plugin'] ?? '']);
+        $available = $theme
+            ? self::themeActive($card['theme'])
+            : self::pluginActive($card['plugin'] ?? '', $card['constant'] ?? '', $card['function'] ?? '', $card['class'] ?? '');
+
+        return [
+            'id' => $card['id'],
+            'title' => $card['title'],
+            'description' => sprintf(esc_html__('Integration with %s.', 'revisionary'), $card['title']),
+            'icon_class' => $card['icon_class'] ?? 'remote',
+            'icon_url' => $card['icon_url'],
+            'categories' => ['all', $category],
+            'features' => $card['features'] ?? [
+                esc_html__('Frontend revision editing, submission', 'revisionary'),
+                esc_html__('Visually compare changes', 'revisionary'),
+                esc_html__('Revision preview with builder styling', 'revisionary'),
+            ],
+            'enabled' => false,
+            'installed' => $installed,
+            'available' => $available,
+            'learn_more_url' => '',
             'free' => false,
         ];
     }

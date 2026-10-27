@@ -1345,6 +1345,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		}
 	}
 	
+	do_action('revisionary_option_ui_revision_creation', $this, $tab, $section);
 	$this->option_checkbox( 'copy_posts_capability', $tab, $section, $hint, '', $checkbox_args );
 
 	$hint = esc_html__('This plugin introduces a new user role, "Revisor."', 'revisionary');
@@ -1398,6 +1399,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			echo "\n\t<option value='" . esc_attr($key) . "' " . esc_attr($selected) . ">" . esc_html($captions[$key]) . "</option>";
 		}
 		echo '</select>&nbsp;';
+        if (rvy_get_option('permissions_compat_mode')) {
+            echo '<div class="notice notice-warning inline rvy-builder-schema-warning"><p>' . esc_html(rvy_builder_schema_message(false)) . '</p></div>';
+        }
 
 		if (revisionary()->getOption('display_hints')) :?>
 			<div class="rvy-subtext">
@@ -2379,6 +2383,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 		<?php
+			if (rvy_get_option('permissions_compat_mode')) { rvy_builder_schema_notice(false); }
 			do_action('revisionary_integrations_ui', $this);
 		?>
 
@@ -2406,6 +2411,9 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 				</button>
 				<button type="button" class="pp-category-label" data-category="builder" aria-pressed="false">
 					<?php esc_html_e('Builder', 'revisionary'); ?>
+				</button>
+				<button type="button" class="pp-category-label" data-category="blocks" aria-pressed="false">
+					<?php esc_html_e('Blocks', 'revisionary'); ?>
 				</button>
 				<button type="button" class="pp-category-label" data-category="cache" aria-pressed="false">
 					<?php esc_html_e('Cache', 'revisionary'); ?>
@@ -2442,6 +2450,22 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 
 		<script type="text/javascript">
 			jQuery(function ($) {
+				const sortVisibleCards = function () {
+					const cards = $(".pp-integration-card").filter(function () {
+						return !$(this).hasClass("pp-hidden");
+					}).get();
+					cards.sort(function (left, right) {
+						const leftPriority = $(left).hasClass("pp-available") ? 0 : 1;
+						const rightPriority = $(right).hasClass("pp-available") ? 0 : 1;
+						if (leftPriority !== rightPriority) return leftPriority - rightPriority;
+						const leftTitle = $(left).find(".pp-integration-title").first().text().trim();
+						const rightTitle = $(right).find(".pp-integration-title").first().text().trim();
+						return leftTitle.localeCompare(rightTitle, undefined, { sensitivity: "base", numeric: true });
+					});
+					const grid = $(".pp-integrations-grid").first();
+					cards.forEach(function (card) { grid.append(card); });
+				};
+
 				// Category filtering
 				$(".pp-category-label").on("click", function () {
 					$(".pp-category-label").removeClass("active").attr("aria-pressed", "false");
@@ -2457,7 +2481,11 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 							$(this).addClass("pp-hidden");
 						}
 					});
+					sortVisibleCards();
 				});
+
+				// Apply the same ordering to the initial All tab before any filter is used.
+				sortVisibleCards();
 
 				// Disabled checkbox upgrade message
 				$('.pp-integration-card.pp-disabled input[type="checkbox"]').on(
@@ -2632,6 +2660,7 @@ private function renderCompatibilityPack($integration)
 {
 	$is_pro = defined('PUBLISHPRESS_REVISIONS_PRO_VERSION');
 	$is_enabled = $is_pro;
+    $schema_issue = rvy_get_option('permissions_compat_mode') && in_array('builder', $integration['categories'], true);
 	$is_statuses = !empty($integration['statuses_pro_card'])
 		|| ('statuses_compatibility' === $integration['id']);
 	$is_statuses_installed = $is_statuses && !empty($integration['installed']);
@@ -2663,6 +2692,7 @@ private function renderCompatibilityPack($integration)
 			<?php
 			$category_tags = [
 				'builder' => __('Builder', 'revisionary'),
+				'blocks' => __('Blocks', 'revisionary'),
 				'cache' => __('Cache', 'revisionary'),
 				'ecommerce' => __('Commerce', 'revisionary'),
 				'fields' => __('Fields', 'revisionary'),
@@ -2689,12 +2719,8 @@ private function renderCompatibilityPack($integration)
 					<span class="pp-badge pp-pro-badge"><?php esc_html_e('Pro', 'revisionary');?></span>
 				<?php endif; ?>
 
-				<?php if (!$integration['available']): ?>
-					<!--<span class="pp-badge"
-						style="background: #9e9e9e;"><?php esc_html_e('Supported', 'revisionary'); ?></span>-->
-				<?php else: ?>
-					<span class="pp-badge"
-						style="background: #2271b1;"><?php esc_html_e('Active Plugin', 'revisionary'); ?></span>
+				<?php if (!empty($integration['available'])): ?>
+					<span class="pp-badge pp-integration-state pp-integration-state-active"><?php esc_html_e('Active', 'revisionary'); ?></span>
 				<?php endif; ?>
 			</h3>
 
@@ -2720,8 +2746,8 @@ private function renderCompatibilityPack($integration)
 
 			<?php if (!$integration['free'] && $integration['available']):?>
 				<div class="pp-settings-toggle">
-					<?php if ($is_pro && $is_enabled): ?>
-						<div class="pp-integration-status active"><?php esc_html_e('Integration Active', 'revisionary'); ?></div>
+					<?php if (($is_pro && $is_enabled) || $schema_issue): ?>
+						<div class="pp-integration-status <?php echo $schema_issue ? 'config-issue' : 'active'; ?>"><?php echo esc_html($schema_issue ? __('Integration Config Issue', 'revisionary') : __('Integration Active', 'revisionary')); ?></div>
 					<?php endif; ?>
 				</div>
 			<?php endif;?>
@@ -2809,11 +2835,7 @@ private function renderCompatibilityPack($integration)
 private function renderIntegrations()
 {
 	$int = wp_filter_object_list($this->defined_integrations, ['free' => false]);
-	usort($int, function($a, $b) {
-		$group_a = !empty($a['available']) ? 0 : (!empty($a['installed']) ? 1 : 2);
-		$group_b = !empty($b['available']) ? 0 : (!empty($b['installed']) ? 1 : 2);
-		return ($group_a <=> $group_b) ?: strnatcasecmp(wp_strip_all_tags($a['title']), wp_strip_all_tags($b['title']));
-	});
+	$int = \PublishPress\IntegrationCards::sortByAvailability($int);
 
 	// Render each fallback integration
 	foreach ($int as $integration) {

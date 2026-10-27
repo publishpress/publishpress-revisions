@@ -195,7 +195,7 @@ class PostEditorWorkflowUI {
 
         global $wp_version;
 
-        if (empty($post)) {
+        if (empty($post) || rvy_builder_schema_blocked($post)) {
             return [];
         }
 

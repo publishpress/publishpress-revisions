@@ -743,6 +743,11 @@ function rvy_bulk_remove_revision_statuses() {
     $revision_statuses   = array_map('sanitize_key', pp_revisions_get_revision_statuses());
     $status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
+    $revision_ids = $wpdb->get_col($wpdb->prepare(
+        "SELECT ID FROM $wpdb->posts WHERE post_status IN ($status_placeholders)",
+        $revision_statuses
+    )); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
     $wpdb->query(                                                                                                                                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $wpdb->prepare(
             "UPDATE $wpdb->posts SET post_mime_type = post_status WHERE post_status IN ($status_placeholders)",                                // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Placeholders are generated from the value count.
@@ -758,6 +763,10 @@ function rvy_bulk_remove_revision_statuses() {
     );
     
     $wpdb->query("UPDATE $wpdb->posts SET post_status = 'draft' WHERE post_status IN ('draft-revision')");       // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+    foreach ($revision_ids as $revision_id) {
+        clean_post_cache((int) $revision_id);
+    }
 }
 
 function rvy_bulk_apply_revision_statuses() {
@@ -790,12 +799,17 @@ function rvy_bulk_apply_revision_statuses() {
     $revision_statuses   = array_map('sanitize_key', $revision_statuses);
     $status_placeholders = implode(', ', array_fill(0, count($revision_statuses), '%s'));
 
+    $revision_ids = $wpdb->get_col($wpdb->prepare(
+        "SELECT ID FROM $wpdb->posts WHERE post_mime_type IN ($status_placeholders)", $revision_statuses
+    ));
+
     $wpdb->query(                                                                                                                                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $wpdb->prepare(
             "UPDATE $wpdb->posts SET post_status = post_mime_type WHERE post_mime_type IN ($status_placeholders)",                              // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Placeholders are generated from the value count.
             $revision_statuses
         )
     );
+    foreach ($revision_ids as $revision_id) { clean_post_cache((int) $revision_id); }
 }
 
 function pp_revisions_plugin_activation() {
