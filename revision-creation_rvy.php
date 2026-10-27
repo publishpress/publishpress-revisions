@@ -252,6 +252,9 @@ class RevisionCreation {
 		$main_post_id = $is_revision ? rvy_post_id($post_id) : $post_id;
 
         $published_post = get_post($main_post_id);
+        if (rvy_builder_schema_blocked($published_post)) {
+            return new \WP_Error('builder_storage_schema', rvy_builder_schema_message(false));
+        }
 
         if (!$is_revision && !empty($args['reuse_unsubmitted']) && 'future-revision' !== $revision_status) {
             // Keep each author's unfinished changes together; do not overwrite a saved draft.

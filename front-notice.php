@@ -13,7 +13,7 @@ class FrontNotice {
     }
 
     function revisionsIndicator() {
-        if (!$this->post_id) {
+        if (!$this->post_id || apply_filters('revisionary_hide_front_revision_indicator', false, $this->post_id)) {
             return;
         }
         ?>
