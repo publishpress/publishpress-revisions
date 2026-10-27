@@ -247,7 +247,7 @@ class Revisionary
 							}
 							
 							if (rvy_get_option('query_loop_revision_editor_allowance')) {
-    							if (!empty($can_edit_any) || current_user_can('revisor') || current_user_can('editor')) {
+    							if (!empty($can_edit_any)) {
     								unset($_REQUEST['context']);
     								unset($_GET['context']);
     							}
