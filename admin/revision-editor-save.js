@@ -109,7 +109,40 @@
             if (!input) { input = document.createElement('input'); input.type = 'hidden'; input.name = name; form.appendChild(input); }
             input.value = values[name];
         });
-        save.click();
+        // Most builders require requestSubmit() to bypass click-only handlers
+        // that perform a partial save. Divi 4's interactive Classic backend
+        // builder uses the #save-post click to serialize its iframe canvas into
+        // the core content field before submitting the full form. Bypassing
+        // that click leaves stale content in the form and overwrites the
+        // already-saved builder revision during Submit/Approve.
+        if (document.getElementById('et-bfb-app-frame')) {
+            save.click();
+            return;
+        }
+        // requestSubmit() runs native form validation and submit handlers
+        // while bypassing click-only builder handlers, so the server
+        // completion callback sees the fully saved revision form.
+        // WPBakery owns the backend form submit event as well as the Save
+        // click. Flush its shortcode model before posting the complete native
+        // form, otherwise requestSubmit() can stop at a builder partial save.
+        if (document.getElementById('vc_navbar') && window.vc && window.vc.storage) {
+            if (typeof window.vc.storage.getContent !== 'function') throw new Error(message());
+            var content = window.vc.storage.getContent();
+            var field = document.getElementById('content');
+            if (!field || typeof content !== 'string') throw new Error(message());
+            field.value = content;
+            if (!form.checkValidity()) { form.reportValidity(); throw new Error(message()); }
+            // Native submit() omits the clicked submitter. Preserve core's Save
+            // Draft intent without invoking WPBakery's event interception.
+            var submitter = document.createElement('input');
+            submitter.type = 'hidden'; submitter.name = save.name || 'save'; submitter.value = save.value;
+            form.appendChild(submitter);
+            window.HTMLFormElement.prototype.submit.call(form);
+        } else if (typeof form.requestSubmit === 'function') {
+            form.requestSubmit(save);
+        } else {
+            save.click();
+        }
     }
     function saveClassic(operation) {
         if (classicActive) return classicActive;

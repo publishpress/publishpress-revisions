@@ -5,6 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $pagenow, $revisionary;
 
+// Register completion independently of builder editor initialization.
+require_once __DIR__ . '/post-editor-workflow-ui_rvy.php';
+
 add_action( 'init', '_rvy_post_edit_ui' );
 
 function _rvy_post_edit_ui() {
@@ -19,17 +22,45 @@ function _rvy_post_edit_ui() {
 				revisionary_refresh_postmeta($post_id);
 			}
 
-			if (\PublishPress\Revisions\Utils::isBlockEditorActive()) {
-				require_once( dirname(__FILE__).'/post-edit-block-ui_rvy.php' );
-			} else {
-				require_once( dirname(__FILE__).'/post-edit_rvy.php' );
+			// Builder plugins may register editor-selection filters at admin_init,
+			// after this init callback. Keep early Classic filters where needed,
+			// but wire UI to WordPress's actual editor lifecycle, not this guess.
+			if (!\PublishPress\Revisions\Utils::isBlockEditorActive()) {
+				require_once __DIR__ . '/post-edit_rvy.php';
 				$revisionary->post_edit_ui = new RvyPostEdit();
 			}
+            add_action('enqueue_block_editor_assets', '_rvy_load_actual_block_editor_ui', 0);
+            add_action('admin_head', '_rvy_load_actual_classic_editor_ui', 0);
 		}
 	} elseif ('edit.php' == $pagenow) {
 		require_once( dirname(__FILE__).'/admin-posts_rvy.php' );
 		new RevisionaryAdminPosts();
 	}
+}
+
+/** Called only when WordPress renders the block editor, after builder filters. */
+function _rvy_load_actual_block_editor_ui() {
+    require_once __DIR__ . '/post-edit-block-ui_rvy.php';
+}
+
+/** Reconcile a late switch to Classic before its admin_head UI callback runs. */
+function _rvy_load_actual_classic_editor_ui() {
+    global $pagenow, $revisionary;
+    $screen = get_current_screen();
+    if ('post.php' !== $pagenow || !$screen || 'post' !== $screen->base
+        || $screen->is_block_editor() || $revisionary->post_edit_ui instanceof RvyPostEdit) { return; }
+    require_once __DIR__ . '/post-edit_rvy.php';
+    $revisionary->post_edit_ui = new RvyPostEdit();
+}
+
+/** Run an editor action now when its deferred dispatcher is already on wp_loaded. */
+function rvy_run_or_defer_wp_loaded($callback) {
+	if (did_action('wp_loaded')) {
+		call_user_func($callback);
+		return;
+	}
+
+	add_action('wp_loaded', $callback);
 }
 
 function rvy_load_textdomain() {
@@ -400,15 +431,15 @@ function rvy_admin_init() {
 			
 			if ( ! empty($_GET['action']) && ('restore' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_restore' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_restore');
 		
 			} elseif ( ! empty($_GET['action']) && ('delete' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_delete' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_delete');
 				
 			} elseif ( ! empty($_GET['action']) && ('copy' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_post_copy' );
+				rvy_run_or_defer_wp_loaded('rvy_post_copy');
 
 			} elseif ( ! empty($_GET['action']) && ('revise' == $_GET['action']) ) {
 				if (!empty($_REQUEST['post'])) {
@@ -425,27 +456,27 @@ function rvy_admin_init() {
 				}
 
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_create' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_create');
 
 			} elseif ( ! empty($_GET['action']) && ('submit' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_submit' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_submit');
 
 			} elseif ( ! empty($_GET['action']) && ('approve' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_approve' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_approve');
 
 			} elseif ( ! empty($_GET['action']) && ('decline' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_decline' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_decline');
 				
 			} elseif ( ! empty($_GET['action']) && ('publish' == $_GET['action']) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_publish' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_publish');
 
 			} elseif ( ! empty($_POST['action']) && ('bulk-delete' == $_POST['action'] ) ) {
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
-				add_action( 'wp_loaded', 'rvy_revision_bulk_delete' );
+				rvy_run_or_defer_wp_loaded('rvy_revision_bulk_delete');
 			}
 		}
 		

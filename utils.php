@@ -62,13 +62,15 @@ class Utils {
             }
         }
 
-        // If the editor is being accessed in this request, we have an easy and reliable test
-        if ((did_action('load-post.php') || did_action('load-post-new.php')) && did_action('admin_enqueue_scripts')) {
-            if (did_action('enqueue_block_editor_assets')) {
-                return true;
+        // Once WordPress has selected the actual screen, its editor flag wins
+        // over cached init-time guesses, user preferences and builder filters.
+        if ((did_action('load-post.php') || did_action('load-post-new.php'))
+            && (did_action('admin_enqueue_scripts') || did_action('enqueue_block_editor_assets'))) {
+            $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+            if ($screen && 'post' === $screen->base && method_exists($screen, 'is_block_editor')
+                && (!$post_type || $post_type === $screen->post_type)) {
+                return (bool) $screen->is_block_editor();
             }
-
-			$is_gutenberg_edit = true;
         }
 
         // For other requests (or if the decision needs to be made prior to admin_enqueue_scripts action), proceed with other logic...

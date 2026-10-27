@@ -20,6 +20,9 @@ class RvyPostEdit {
     }
 
     function act_admin_head() {
+        // An early Classic prediction can be superseded by a builder's filter.
+        $screen = get_current_screen();
+        if ($screen && $screen->is_block_editor()) { return; }
         global $post;
         ?>
         <script type="text/javascript">

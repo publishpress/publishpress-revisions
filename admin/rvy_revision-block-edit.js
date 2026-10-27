@@ -374,7 +374,7 @@ jQuery(document).ready(function ($) {
 
 
     var rvyTransitionBusy = false;
-    $(document).on('click', 'button.revision-approve, button.revision-schedule', function (event) {
+    $(document).on('click', 'a.revision-approve, a.revision-schedule, button.revision-approve, button.revision-schedule', function (event) {
         event.preventDefault();
         if (rvyTransitionBusy) return false;
         var control = $(this);

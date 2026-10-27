@@ -932,3 +932,17 @@ function rvy_get_native_revision_preview($revision_id) {
     }
     return clone $revision;
 }
+
+/** Identify revision contributors by primitive capabilities, without role names.
+ * Accept a role's capabilities or a user's resolved allcaps. Avoid has_cap()
+ * here because this helper is also called from user_has_cap filters.
+ */
+function rvy_has_revisor_capabilities($caps) {
+    foreach (get_post_types(['show_ui' => true], 'objects') as $type) {
+        if (!empty($caps[$type->cap->edit_posts]) && !empty($caps[$type->cap->edit_others_posts])
+            && empty($caps[$type->cap->publish_posts]) && empty($caps[$type->cap->edit_published_posts])) {
+            return true;
+        }
+    }
+    return false;
+}
