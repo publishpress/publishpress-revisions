@@ -117,7 +117,8 @@ class RVY_PostBlockEditUI {
         $do_scheduled_revisions = rvy_get_option('scheduled_revisions');
 
         if (('revision' == $post->post_type) || rvy_in_revision_workflow($post)) {
-            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_revision-block-edit{$suffix}.js", array('jquery', 'jquery-form'), PUBLISHPRESS_REVISIONS_VERSION, true );
+            wp_enqueue_script('rvy_editor_save', RVY_URLPATH . '/admin/revision-editor-save.js', ['wp-data', 'wp-api-fetch', 'wp-editor'], PUBLISHPRESS_REVISIONS_VERSION, true);
+            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_revision-block-edit{$suffix}.js", array('jquery', 'jquery-form', 'rvy_editor_save'), PUBLISHPRESS_REVISIONS_VERSION, true );
 
             $args = \PublishPress\Revisions\PostEditorWorkflowUI::revisionLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions'));
 
@@ -127,7 +128,6 @@ class RVY_PostBlockEditUI {
                 add_action('admin_print_footer_scripts', ['RVY_PostBlockEditUI', 'author_ui'], 20);
             }
 
-            $args['disableSubmitUntilSave'] = !defined('ET_BUILDER_PLUGIN_VERSION') && (false === stripos(get_template(), 'divi')) && !defined('REVISIONARY_EDITOR_NO_BUTTON_DISABLE');
 
         } elseif (current_user_can('edit_post', $post->ID)) {
             $status_obj = get_post_status_object($post->post_status);

@@ -109,7 +109,8 @@ class RvyPostEdit {
         $args['timezoneOffset'] = 0 - $wp_timezone->getOffset($utc_time);
 
         if (('revision' == $post->post_type) || rvy_in_revision_workflow($post)) {
-            wp_enqueue_script('rvy_object_edit', RVY_URLPATH . "/admin/rvy_revision-classic-edit{$suffix}.js", ['jquery', 'jquery-form'], PUBLISHPRESS_REVISIONS_VERSION, true);
+            wp_enqueue_script('rvy_editor_save', RVY_URLPATH . '/admin/revision-editor-save.js', [], PUBLISHPRESS_REVISIONS_VERSION, true);
+            wp_enqueue_script('rvy_object_edit', RVY_URLPATH . "/admin/rvy_revision-classic-edit{$suffix}.js", ['jquery', 'jquery-form', 'rvy_editor_save'], PUBLISHPRESS_REVISIONS_VERSION, true);
 
             $args = array_merge($args, \PublishPress\Revisions\PostEditorWorkflowUI::revisionLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions')));
 
@@ -127,7 +128,6 @@ class RvyPostEdit {
 
             $args['isStatusesPro'] = rvy_status_revisions_active($post->post_type);
 
-            $args['disableSubmitUntilSave'] = !defined('ET_BUILDER_PLUGIN_VERSION') && (false === stripos(get_template(), 'divi')) && !defined('REVISIONARY_EDITOR_NO_BUTTON_DISABLE');
 
             $args['revisionCaption'] = esc_html__('Revision', 'revisionary');
 

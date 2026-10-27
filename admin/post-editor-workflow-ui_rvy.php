@@ -32,16 +32,8 @@ class PostEditorWorkflowUI {
             'ajaxurl' => rvy_admin_url(''),
             'currentPostAuthor' => get_post_field('post_author', $published_post_id),
             'onApprovalCaption' => esc_html__('(on approval)', 'revisionary'),
-            'saveRevisionTooltip' =>  htmlEntities(
-                rvy_get_admin_notice(
-                    $revisionary->admin->tooltipText(
-                        esc_html__('Save changes to continue.', 'revisionary'),
-                        esc_html__('Please save changes to the revision before submitting it.', 'revisionary'),
-                        false
-                    ),
-                    ['type' => 'info', 'additional_classes' => ['rvy-save-revision-tip']]
-                )
-            ),
+            'fullSaveNonce' => wp_create_nonce('rvy-editor-transition:' . $post->ID),
+            'saveError' => esc_html__('The revision could not be updated. Resolve any save or validation errors and try again.', 'revisionary'),
             'canPublish' => $can_publish
         ];
 
@@ -283,3 +275,31 @@ class PostEditorWorkflowUI {
         return $vars;
     }
 }
+
+
+// Native Classic form save completion; all edit_post() hooks have run here.
+add_filter('redirect_post_location', static function ($location, $post_id) {
+    if ((empty($_POST['_rvy_editor_transition']) && empty($_POST['_rvy_editor_save_verify'])) || 'editpost' !== ($_POST['action'] ?? '')
+        || (int) $post_id !== absint($_POST['post_ID'] ?? 0)
+        || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_rvy_editor_transition_nonce'] ?? '')), 'rvy-editor-transition:' . $post_id)
+        || !current_user_can('edit_post', $post_id)) { return $location; }
+    $revision = get_post($post_id);
+    if (!$revision || !rvy_in_revision_workflow($revision)) { return $location; }
+    $operation = sanitize_key(wp_unslash($_POST['_rvy_editor_transition'] ?? 'verify'));
+    if (!in_array($operation, ['submit', 'approve', 'publish', 'verify'], true)) { return $location; }
+    if ('submit' === $operation) {
+        if ('draft-revision' !== $revision->post_mime_type
+            || (!is_content_administrator_rvy() && !current_user_can('set_revision_pending-revision', $post_id))) { return $location; }
+    } elseif ('verify' !== $operation && !current_user_can('approve_revision', $post_id)) { return $location; }
+    $verified = apply_filters('revisionary_editor_save_verified', true, $post_id, $operation);
+    if (is_wp_error($verified) || !$verified) {
+        wp_die(esc_html(is_wp_error($verified) ? $verified->get_error_message() : __('The revision could not be verified as saved.', 'revisionary')), '', ['response' => 400]);
+    }
+    if ('verify' === $operation) { return $location; }
+    $parent_id = rvy_post_id($post_id);
+    if (!$parent_id || $parent_id === (int) $post_id) { return $location; }
+    $url = add_query_arg(['page' => 'rvy-revisions', 'revision' => $post_id, 'action' => $operation, 'rvy_redirect' => 'edit'], admin_url('admin.php'));
+    // No editor=1 flag: this was a full save, so a stale autosave must not
+    // overwrite it in the transition endpoint. That endpoint rechecks access.
+    return html_entity_decode(wp_nonce_url($url, $operation . '-post_' . $parent_id . '|' . $post_id), ENT_QUOTES, 'UTF-8');
+}, PHP_INT_MAX, 2);
