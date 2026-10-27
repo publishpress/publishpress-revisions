@@ -164,9 +164,13 @@ class RevisionCreation {
 
 		add_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
 
+		do_action('revisionary_pre_copy_post_insert', $post_id, $data);
+		try {
 		$copy_id = wp_insert_post(\wp_slash($data), true);
-
+		} finally {
 		remove_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
+			do_action('revisionary_post_copy_post_insert', $post_id, $copy_id ?? 0, $data);
+		}
 
 		if (!empty($args['force_revision_copy'])) {
 			$update_data = ['comment_count' => rvy_post_id($post_id)];
@@ -215,6 +219,9 @@ class RevisionCreation {
 
 		if ($post_id != $copy_id) {
 			rvy_update_post_meta($copy_id, '_rvy_source_post_id', $post_id);
+			// Editor integrations may initialize field metadata merely by opening the new duplicate.
+			// Do not turn those initialization writes into Past Revisions before the first post update.
+			update_post_meta($copy_id, '_rvy_duplicate_field_archive_pending', 1);
 		}
 	
 		// Set GUID.

@@ -140,8 +140,10 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         $from_post = get_post($from_post);
     }
 
+    do_action('revisionary_pre_copy_postmeta', $from_post, $to_post_id, $args);
     $source_meta_keys = \get_post_custom_keys( $from_post->ID );
     if ( empty( $source_meta_keys ) ) {
+        do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
         return;
     }
 
@@ -237,6 +239,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
     );
 
     do_action('revisionary_copy_postmeta', $from_post, $to_post_id, $args);
+    do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
 }
 
 function rvy_revision_base_statuses($args = []) {
