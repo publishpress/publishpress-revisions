@@ -20,6 +20,24 @@ require_once(dirname(__FILE__).'/functions.php');
 require_once(dirname(__FILE__).'/utils.php');
 require_once(dirname(__FILE__).'/defaults_rvy.php');
 
+// WordPress silently reactivates updates without activation hooks. The pending
+// marker also covers reinstalling the same version, which has no version change.
+add_action('init', function () {
+    if (get_option('rvy_storage_schema_pending')) {
+        rvy_sync_revision_storage_schema();
+    }
+}, 50);
+
+/** Reconcile only to the selected schema, never normalize enhanced mode to draft/pending. */
+function rvy_sync_revision_storage_schema() {
+    if (rvy_get_option('permissions_compat_mode')) {
+        rvy_bulk_apply_revision_statuses();
+    } else {
+        rvy_bulk_remove_revision_statuses();
+    }
+    delete_option('rvy_storage_schema_pending');
+}
+
 function _rvy_delete_revision($revision_id, $published_post_id) {
 	revisionary_refresh_revision_flags($published_post_id, ['ignore_revision_ids' => $revision_id]);
 }

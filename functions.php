@@ -684,6 +684,9 @@ function pp_revisions_plugin_updated($current_version, $args = []) {
     if ($current_version != $last_ver) {
         require_once( dirname(__FILE__).'/lib/agapetry_wp_core_lib.php');
         require_once(dirname(__FILE__).'/rvy_init.php');
+        // Silent update reactivation skips activation hooks. Reconcile with the
+        // selected schema; enhanced mode intentionally retains custom statuses.
+        rvy_sync_revision_storage_schema();
         revisionary_refresh_revision_flags();
 
         // mirror to REVISIONARY_VERSION
@@ -862,15 +865,14 @@ function pp_revisions_plugin_activation() {
     }
 
     // Revisions were prevented from being being listed as regular drafts / pending posts after plugin deactivation
-    if (rvy_get_option('permissions_compat_mode')) {
-        rvy_bulk_apply_revision_statuses();
-    } else {
-        rvy_bulk_remove_revision_statuses();
-    }
+    rvy_sync_revision_storage_schema();
 }
 
 function pp_revisions_plugin_deactivation() {
     global $wpdb;
+
+    // Also covers silent reactivation of the SAME version (no upgrade callback).
+    update_option('rvy_storage_schema_pending', 1);
 
     require_once(dirname(__FILE__).'/functions.php');
 
