@@ -1816,7 +1816,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 				'</a>'
 			);
 
-			$this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
+			if (defined('PUBLISHPRESS_VERSION')) {
+				$this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
+            }
 
 			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES') && defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
 				echo '<br />';
