@@ -149,6 +149,26 @@ jQuery(document).ready( function($) {
 
 			$('body').css('padding-top', $('div.rvy_view_revision').height());
 
+			// SeedProd renders its page inside #sp-page. Some templates position
+			// that root independently of the body offset, so ensure it clears the
+			// fixed revision bar without adding padding when the normal offset works.
+			var $seedprodPage = $('#sp-page');
+			if ($seedprodPage.length) {
+				// SeedProd's canvas can position inner content relative to the viewport,
+				// so body padding alone may leave it underneath the admin bar + revision bar.
+				var seedprodAdminBarHeight = $('#wpadminbar').length ? $('#wpadminbar').outerHeight() : 0;
+				var seedprodBasePadding = parseFloat($seedprodPage.css('padding-top')) || 0;
+				var offsetSeedprodPage = function() {
+					seedprodAdminBarHeight = $('#wpadminbar').length ? $('#wpadminbar').outerHeight() : 0;
+					$seedprodPage[0].style.setProperty('padding-top', (seedprodBasePadding + seedprodAdminBarHeight) + 'px', 'important');
+				};
+				offsetSeedprodPage();
+				$(window).on('resize', offsetSeedprodPage);
+				if (typeof ResizeObserver !== 'undefined' && $('#wpadminbar').length) {
+					new ResizeObserver(offsetSeedprodPage).observe($('#wpadminbar')[0]);
+				}
+			}
+
 			$('header,div').each(function(i,e) {
 				if ($(this).css('position') == 'fixed' && ($(this).attr('id') != 'wpadminbar') && (!$(this).hasClass('rvy_view_revision'))) {
 					if ($(this).position().top < rvyTotalHeight ) {

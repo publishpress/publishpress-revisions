@@ -363,7 +363,7 @@ class IntegrationCards
     private static function builderCards()
     {
         return [
-            ['id' => 'avada_builder_integration', 'title' => esc_html__('Avada Builder', 'revisionary'), 'theme' => 'avada-one', 'icon_url' => plugins_url('common/img/avada.svg', REVISIONARY_FILE), 'icon_class' => 'remote'],
+            ['id' => 'avada_builder_integration', 'title' => esc_html__('Avada Builder', 'revisionary'), 'theme' => 'avada-one', 'alternate_themes' => ['Avada'], 'icon_url' => plugins_url('common/img/avada.svg', REVISIONARY_FILE), 'icon_class' => 'remote'],
             ['id' => 'wpbakery_builder_integration', 'title' => esc_html__('WPBakery Page Builder', 'revisionary'), 'plugin' => 'js_composer/js_composer.php', 'constant' => 'WPB_VC_VERSION', 'function' => 'wpbakery', 'icon_url' => 'https://rankmath.com/wp-content/uploads/2022/02/WPBakery.jpg', 'features' => [esc_html__('Frontend revision editing, submission', 'revisionary'), esc_html__('Visually compare changes', 'revisionary'), esc_html__('Revision preview with builder styling', 'revisionary'), esc_html__('Revise and compare custom fields', 'revisionary')]],
             ['id' => 'siteorigin_builder_integration', 'title' => esc_html__('SiteOrigin Page Builder', 'revisionary'), 'plugin' => 'siteorigin-panels/siteorigin-panels.php', 'constant' => 'SITEORIGIN_PANELS_VERSION', 'class' => 'SiteOrigin\\Panels\\Plugin', 'icon_url' => 'https://ps.w.org/siteorigin-panels/assets/icon-128x128.png'],
             ['id' => 'seedprod_builder_integration', 'title' => esc_html__('SeedProd', 'revisionary'), 'plugin' => 'coming-soon/coming-soon.php', 'constant' => 'SEEDPROD_VERSION', 'icon_url' => 'https://ps.w.org/coming-soon/assets/icon-128x128.png'],
@@ -400,6 +400,10 @@ class IntegrationCards
         $available = $theme
             ? self::themeActive($card['theme'])
             : self::pluginActive($card['plugin'] ?? '', $card['constant'] ?? '', $card['function'] ?? '', $card['class'] ?? '');
+        foreach ($card['alternate_themes'] ?? [] as $alternate) {
+            $installed = $installed || isset($themes[$alternate]);
+            $available = $available || self::themeActive($alternate);
+        }
 
         return [
             'id' => $card['id'],
