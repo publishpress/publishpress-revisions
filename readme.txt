@@ -62,9 +62,25 @@ PublishPress Revisions will notify Administrators and Editors when a new revisio
 
 Page builder / front end editing integrations:
 
-* BeaverBuilder integration 
-* Divi Theme, Divi Builder integration
-* Elementor integration 
+* Elementor 
+* Avada Classic, Avada One
+* BeaverBuilder 
+* Breakdance 2.8, 3
+* Bricks
+* Divi 4, Divi 5
+* SeedProd
+* SiteOrigin Page Builder
+* WPBakery
+
+Block plugin integrations:
+
+* Essential Blocks
+* Kadence Blocks
+* Otter Blocks
+* PublishPress Blocks
+* Spectra Legacy
+* Stackable
+* Utlimate Blocks
 
 Major plugins we maintain compatibility with:
 
@@ -73,7 +89,32 @@ Major plugins we maintain compatibility with:
 * WPML
 * The Events Calendar
 * WooCommerce
+* PublishPress Blocks
+* Breeze
+* LiteSpeed Cache
+* Nitro Pack
+* SpeedyCache
+* W3 Total Cache
+* WP Fastest Cache
+* WP Super Cache
+* WP Optimize
+* Rank Math SEO
 * Yoast SEO
+
+Themes with Pro integration for custom field comparison:
+
+* Astra
+* Blocksy
+* BlogHash
+* Envo One
+* Envo Royal
+* GeneratePress
+* Go
+* Inspiro
+* Kadence
+* Lightning
+* Neve
+* OceanWP
 
 [Click here for the full list of supported plugins in the Pro version](https://publishpress.com/knowledge-base/plugins-revisions-support/).
 
