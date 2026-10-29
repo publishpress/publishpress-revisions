@@ -166,9 +166,9 @@ class RevisionCreation {
 
 		do_action('revisionary_pre_copy_post_insert', $post_id, $data);
 		try {
-		$copy_id = wp_insert_post(\wp_slash($data), true);
+			$copy_id = wp_insert_post(\wp_slash($data), true);
 		} finally {
-		remove_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
+			remove_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
 			do_action('revisionary_post_copy_post_insert', $post_id, $copy_id ?? 0, $data);
 		}
 
