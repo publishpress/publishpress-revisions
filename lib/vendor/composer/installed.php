@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'publishpress/bundled-translations' => array(
-            'pretty_version' => 'v1.0.3',
-            'version' => '1.0.3.0',
-            'reference' => '95b06baed793a3a4ec44c5d932b68785302a0559',
+            'pretty_version' => 'v1.0.6',
+            'version' => '1.0.6.0',
+            'reference' => '29e91e3dddcdf63fa635d3e6fa43b0a43b0ddeb6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../publishpress/bundled-translations',
             'aliases' => array(),
