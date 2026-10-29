@@ -9,7 +9,7 @@
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Requires at least: 5.5
- * Requires PHP: 7.2.5
+ * Requires PHP: 8.2
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * 
@@ -45,7 +45,7 @@ $pp_revisions_version = '4.2.0';
 
 global $wp_version;
 
-$min_php_version = '7.2.5';
+$min_php_version = '8.2';
 $min_wp_version  = '5.5';
 
 $invalid_php_version = version_compare(phpversion(), $min_php_version, '<');

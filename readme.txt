@@ -5,7 +5,7 @@ Author: PublishPress
 Author URI: https://publishpress.com
 Tags: revisions, post revisions, duplicate post, content approval, scheduled changes
 Requires at least: 5.5
-Requires PHP: 7.2.5
+Requires PHP: 8.2
 Tested up to: 7.1
 Stable tag: 4.2.0
 License: GPLv2 or later
