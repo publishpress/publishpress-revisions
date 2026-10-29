@@ -155,6 +155,7 @@ function rvy_default_options() {
 		'revision_archive_deletion' => 0,
 		'revision_restore_require_cap' => 0,
 		'revision_limit_per_post' => 0,
+		'create_revision_reuse_unsubmitted' => 0,
 		'revision_unfiltered_html_check' => 0,
 		'revision_limit_compat_mode' => 0,
 		'permissions_compat_mode' => 0,

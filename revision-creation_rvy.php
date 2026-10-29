@@ -256,7 +256,7 @@ class RevisionCreation {
             return new \WP_Error('builder_storage_schema', rvy_builder_schema_message(false));
         }
 
-        if (!$is_revision && !empty($args['reuse_unsubmitted']) && 'future-revision' !== $revision_status) {
+		if (rvy_get_option('create_revision_reuse_unsubmitted') && !$is_revision && !empty($args['reuse_unsubmitted']) && 'future-revision' !== $revision_status) {
             // Keep each author's unfinished changes together; do not overwrite a saved draft.
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
