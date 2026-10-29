@@ -171,8 +171,6 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
         require_once REVISIONS_INTERNAL_VENDORPATH . '/autoload.php';
 	}
 	
-	include_once REVISIONS_INTERNAL_VENDORPATH . '/woocommerce/action-scheduler/action-scheduler.php';
-
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
     
 	// Load bundled-translations library
@@ -192,6 +190,31 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
 			$bundledTranslations->init();
 		}
 	}, 10);
+}
+
+if (!defined('REVISIONARY_FILE')) {
+	$vendor_path = (defined('REVISIONS_PRO_INTERNAL_VENDORPATH')) ? REVISIONS_PRO_INTERNAL_VENDORPATH : REVISIONS_INTERNAL_VENDORPATH;
+	include_once( dirname(__FILE__).'/classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php');
+
+	if (class_exists('PublishPress\Revisions\ActionSchedulerFallbackInitializer')) {
+		add_filter('query', [PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'filterSchemaCharset']);
+		/**
+		 * Ensure Action Scheduler is initialized.
+		 */
+		add_action(
+			'plugins_loaded',
+			[PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'ensureInitialized'],
+			2
+		);
+
+		add_action('init', [PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'ensureTablesOnPluginsScreen'], 2);
+
+		include_once $vendor_path . '/woocommerce/action-scheduler/action-scheduler.php';
+
+		if (did_action('plugins_loaded')) {
+			PublishPress\Revisions\ActionSchedulerFallbackInitializer::ensureInitialized();
+		}
+	}
 }
 
 if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_loaded_by_pro)) {
@@ -222,6 +245,9 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 
 			pp_revisions_plugin_updated($pp_revisions_version);
 			pp_revisions_plugin_activation();
+
+			PublishPress\Revisions\ActionSchedulerFallbackInitializer::ensureInitialized();
+			PublishPress\Revisions\ActionSchedulerFallbackInitializer::ensureTables();
 		}
 	);
 
