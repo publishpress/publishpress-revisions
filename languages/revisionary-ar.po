@@ -1,26 +1,4369 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Report-Msgid-Bugs-To: \n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-29T19:28:34+00:00\n"
-"PO-Revision-Date: 2026-10-29 04:31+0000\n"
+"POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
+"PO-Revision-Date: 2026-10-29 20:01+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
+"Plural-Forms: nplurals=6; plural=(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n "
 "% 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5);\n"
 "% 100 >= 3 && n % 100 <= 10 ? 3: n % 100 >= 11 ? 4 : 5);\n"
 "Language: ar\n"
 "&& n%100<=10 ? 3: n%100>=11 ? 4 : 5);\n"
-"Plural-Forms: nplurals=6; plural=(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5);\n"
 
+#: revisionary.php:3
+#. Plugin Name of the plugin
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#: revisionary.php:4
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#: revisionary.php:5
+#. Description of the plugin
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"الحفاظ على المحتوى المنشور من خلال العمل الجماعي والدقة باستخدام نموذج "
+"التعديلات لتقديم التغييرات والموافقة عليها وجدولتها."
+
+#: revisionary.php:6
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#: revisionary.php:7
+#. Author URI of the plugin
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/action-scheduler_rvy.php:74
+#, php-format
+msgid "Migrate %d Scheduled Revision"
+msgid_plural "Migrate %d Scheduled Revisions"
+msgstr[0] "%d مراجعة مجدولة|%d مراجعات مجدولة"
+
+#: admin/action-scheduler_rvy.php:90
+#: admin/action-scheduler_rvy.php:94
+msgid "Migration failed."
+msgstr "فشلت عملية الترحيل."
+
+#: admin/action-scheduler_rvy.php:105
+#: admin/action-scheduler_rvy.php:282
+msgid "Permission denied."
+msgstr "تم رفض الإذن."
+
+#: admin/action-scheduler_rvy.php:107
+msgid "Action Scheduler is unavailable."
+msgstr "جدول الإجراءات غير متاح."
+
+#: admin/action-scheduler_rvy.php:133
+msgid "No Scheduled Revisions could be migrated."
+msgstr "لا يمكن ترحيل أي مراجعات مجدولة."
+
+#: admin/action-scheduler_rvy.php:139
+#, php-format
+msgid "%d Scheduled Revisions remaining."
+msgstr "%d مراجعة مجدولة متبقية."
+
+#: admin/action-scheduler_rvy.php:140
+msgid "Scheduled Revision migration complete."
+msgstr "اكتمل ترحيل المراجعة المجدولة."
+
+#: admin/action-scheduler_rvy.php:173
+#: admin/action-scheduler_rvy.php:174
+#: admin/admin_rvy.php:284
+#: admin/revision-queue_rvy.php:174
+#: rvy_init-functions.php:365
+#: visual-compare_rvy.php:175
+msgid "Scheduled Revisions"
+msgstr "تم جدولة المراجعات"
+
+#: admin/action-scheduler_rvy.php:189
+msgid "Scheduling Log"
+msgstr "سجل الجدولة"
+
+#: admin/action-scheduler_rvy.php:191
+#: admin/admin-posts_rvy.php:296
+#: admin/class-list-table-archive.php:584
+#: admin/post-edit-block-ui_rvy.php:165
+#: admin/post-edit_rvy.php:135
+#: rvy_init-functions.php:472
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3205
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3457
+msgid "Revision"
+msgstr "مراجعة"
+
+#: admin/action-scheduler_rvy.php:192
+#: admin/class-list-table_rvy.php:2201
+#: admin/history_rvy.php:1410
+#: admin/post-editor-workflow-ui_rvy.php:69
+#: admin/post-editor-workflow-ui_rvy.php:110
+#: admin/post-editor-workflow-ui_rvy.php:228
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "معاينة"
+
+#: admin/action-scheduler_rvy.php:193
+#: admin/action-scheduler_rvy.php:381
+#: admin/action-scheduler_rvy.php:438
+msgid "Hook"
+msgstr "خطاف"
+
+#: admin/action-scheduler_rvy.php:194
+#: admin/class-list-table_rvy.php:820
+#: admin/options.php:1243
+msgid "Publication"
+msgstr "نشر"
+
+#: admin/action-scheduler_rvy.php:195
+#: admin/action-scheduler_rvy.php:382
+#: admin/action-scheduler_rvy.php:439
+msgid "Arguments"
+msgstr "المعطيات"
+
+#: admin/action-scheduler_rvy.php:196
+#: admin/action-scheduler_rvy.php:383
+#: admin/action-scheduler_rvy.php:440
+msgid "Scheduled Date"
+msgstr "التاريخ المجدول"
+
+#: admin/action-scheduler_rvy.php:197
+#: admin/action-scheduler_rvy.php:392
+#: admin/action-scheduler_rvy.php:441
+msgid "Log"
+msgstr "سجل"
+
+#: admin/action-scheduler_rvy.php:205
+msgid "Search revision or hook ID"
+msgstr "ابحث عن مراجعة أو معرف خطاف"
+
+#: admin/action-scheduler_rvy.php:258
+#: admin/class-list-table_rvy.php:853
+msgid "View preview"
+msgstr "عرض المعاينة"
+
+#: admin/action-scheduler_rvy.php:286
+#, php-format
+msgid ""
+"Note: %1$d Revision is scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgid_plural ""
+"Note: %1$d Revisions are scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgstr[0] ""
+"ملاحظة: %1$d مراجعة مجدولة للنشر في المستقبل مع تشغيل قديم. %2$s لتحسين "
+"الموثوقية.|ملاحظة: %1$d مراجعات مجدولة للنشر في المستقبل مع تشغيل قديم. "
+"%2$s لتحسين الموثوقية."
+
+#: admin/action-scheduler_rvy.php:292
+msgid "Migrate it to Action Scheduler"
+msgid_plural "Migrate those to Action Scheduler"
+msgstr[0] "ترحيلها إلى جدول الإجراءات|ترحيل تلك إلى جدول الإجراءات"
+
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:420
+msgid "Missed Schedule"
+msgstr "جدول مفقود"
+
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:423
+#: admin/action-scheduler_rvy.php:428
+#: admin/class-list-table_rvy.php:1683
+#: admin/revisions.php:75
+#: rvy_init-functions.php:366
+msgid "Scheduled"
+msgstr "مجدوَل"
+
+#: admin/action-scheduler_rvy.php:374
+msgid "Scheduler"
+msgstr "جدولة"
+
+#: admin/action-scheduler_rvy.php:374
+msgid "WP-Cron"
+msgstr "WP-Cron"
+
+#: admin/action-scheduler_rvy.php:377
+msgid "Non-repeating"
+msgstr "غير متكرر"
+
+#: admin/action-scheduler_rvy.php:379
+#, php-format
+msgid "%s seconds"
+msgstr "%s ثواني"
+
+#: admin/action-scheduler_rvy.php:384
+msgid "Recurrence"
+msgstr "تكرار"
+
+#: admin/action-scheduler_rvy.php:387
+msgid "Requested Publication"
+msgstr "النشر المطلوب"
+
+#: admin/action-scheduler_rvy.php:389
+msgid "Event"
+msgstr "حدث"
+
+#: admin/action-scheduler_rvy.php:390
+msgid "No matching WP-Cron event was found."
+msgstr "لم يتم العثور على حدث WP-Cron مطابق."
+
+#: admin/action-scheduler_rvy.php:393
+msgid ""
+"WP-Cron does not retain an execution log. These details show the currently "
+"registered events only."
+msgstr "WP-Cron لا يحتفظ بسجل التنفيذ. تظهر هذه التفاصيل الأحداث المسجلة حاليًا فقط."
+
+#: admin/action-scheduler_rvy.php:395
+#: admin/action-scheduler_rvy.php:443
+msgid "Click to view scheduling log."
+msgstr "انقر لعرض سجل الجدولة."
+
+#: admin/action-scheduler_rvy.php:396
+#: admin/action-scheduler_rvy.php:444
+msgid "(view scheduling log)"
+msgstr "(عرض سجل الجدولة)"
+
+#: admin/action-scheduler_rvy.php:398
+#: admin/action-scheduler_rvy.php:445
+#: admin/class-list-table-archive.php:760
+#: functions.php:482
+msgid "Scheduled Revision Publication"
+msgstr "نشر مراجعة مجدولة"
+
+#: admin/admin-init_rvy.php:146
+#: admin/admin-init_rvy.php:387
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "عذرًا، ليس لديك الإذن لحذف هذه المراجعة."
+
+#: admin/admin-init_rvy.php:150
+#: admin/admin-init_rvy.php:401
+msgid "Error in deleting."
+msgstr "خطأ في الحذف."
+
+#: admin/admin-init_rvy.php:241
+#: admin/admin-init_rvy.php:353
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "عذرًا، لا يُسمح لك بالموافقة على هذه المراجعة."
+
+#: admin/admin-init_rvy.php:278
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "عذرًا، لا يُسمح لك بتقديم هذه المراجعة."
+
+#: admin/admin-init_rvy.php:318
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "عذرًا، لا يُسمح لك برفض هذه المراجعة."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "تم استعادة المراجعة."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "تم جدولة المراجعة للنشر."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "تم نشر المراجعة."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"مطلوب القدرة على unfiltered_html لإنشاء مراجعة لهذه المشاركة. راجع "
+"%sالتوثيق%s."
+
+#: admin/admin-posts_rvy.php:212
+#: rvy_init-functions.php:805
+msgid "The post already has a revision in process."
+msgstr "تحتوي المشاركة بالفعل على مراجعة قيد المعالجة."
+
+#: admin/admin-posts_rvy.php:313
+msgid "Has Revision"
+msgstr "لديها مراجعة"
+
+#: admin/admin-posts_rvy.php:333
+#: admin/admin_rvy.php:470
+#: admin/admin_rvy.php:540
+#: admin/options.php:187
+#: admin/options.php:680
+msgid "New Revisions"
+msgstr "مراجعات جديدة"
+
+#: admin/admin-posts_rvy.php:357
+#: admin/class-list-table_rvy.php:2320
+#: rvy_init-functions.php:266
+msgid "Duplicate"
+msgstr "مكرر"
+
+#: admin/admin-posts_rvy.php:365
+#: admin/class-list-table_rvy.php:1057
+#: admin/class-list-table_rvy.php:2309
+#: admin/edit-revision-classic-ui_rvy.php:218
+#: admin/history_rvy.php:1452
+#: admin/post-editor-workflow-ui_rvy.php:115
+#: admin/post-editor-workflow-ui_rvy.php:229
+#: admin/RevisionEditSubmitMetabox.php:196
+#: front_rvy.php:583
+msgid "Edit"
+msgstr "تعديل"
+
+#: admin/admin_lib-mu_rvy.php:14
+#: admin/options.php:372
+msgid "PublishPress Revisions Network Settings"
+msgstr "إعدادات شبكة PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:14
+msgid "Network Settings"
+msgstr "إعدادات الشبكة"
+
+#: admin/admin_lib-mu_rvy.php:25
+#: admin/options.php:374
+msgid "PublishPress Revisions Network Defaults"
+msgstr "إعدادات شبكة PublishPress Revisions الافتراضية"
+
+#: admin/admin_lib-mu_rvy.php:25
+msgid "Network Defaults"
+msgstr "الإعدادات الافتراضية للشبكة"
+
+#: admin/admin_rvy.php:376
+#: admin/admin_rvy.php:405
+#: admin/history_rvy.php:296
+#: admin/history_rvy.php:308
+#: front-notice.php:59
+msgid "Revisions"
+msgstr "مراجعات"
+
+#: admin/admin_rvy.php:479
+#: admin/admin_rvy.php:480
+#: admin/admin_rvy.php:541
+#: admin/options.php:186
+#: admin/options.php:581
+#: admin/revision-archive_rvy.php:101
+#: admin/revisions.php:239
+#: visual-compare_rvy.php:143
+msgid "Past Revisions"
+msgstr "الإصدارات السابقة"
+
+#: admin/admin_rvy.php:497
+#: admin/options.php:378
+msgid "PublishPress Revisions Settings"
+msgstr "إعدادات PublishPress Revisions"
+
+#: admin/admin_rvy.php:497
+#: admin/admin_rvy.php:544
+#: admin/options.php:181
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: admin/admin_rvy.php:506
+#: admin/admin_rvy.php:507
+#: admin/admin_rvy.php:547
+#: admin/options.php:2115
+#: admin/options.php:2143
+#: admin/options.php:2404
+#: admin/options.php:2801
+#: includes/CoreAdmin.php:212
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2680
+msgid "Upgrade to Pro"
+msgstr "الترقية إلى النسخة الاحترافية"
+
+#: admin/admin_rvy.php:588
+msgid "Can edit draft Posts from other users."
+msgstr "يمكنه تعديل مسودات المشاركات من مستخدمين آخرين."
+
+#: admin/admin_rvy.php:589
+msgid "Can edit Revisions from other users."
+msgstr "يمكنه تعديل مراجعات من مستخدمين آخرين."
+
+#: admin/admin_rvy.php:590
+msgid "Can see New Revisions from other users."
+msgstr "يمكنه رؤية مراجعات جديدة من مستخدمين آخرين."
+
+#: admin/admin_rvy.php:591
+msgid "Can access New Revisions."
+msgstr "يمكنه الوصول إلى مراجعات جديدة."
+
+#: admin/admin_rvy.php:592
+msgid "Can manage Unsubmitted Revisions."
+msgstr "يمكنه إدارة المراجعات غير المقدمة."
+
+#: admin/admin_rvy.php:593
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr "معاينة مراجعات مستخدم آخر (دون الحاجة إلى الوصول للتعديل)."
+
+#: admin/admin_rvy.php:594
+msgid "Restore an archived Revision as the current revision."
+msgstr "استعادة مراجعة مؤرشفة كمراجعة حالية."
+
+#: admin/admin_rvy.php:595
+msgid "View Past Revisions."
+msgstr "عرض المراجعات السابقة."
+
+#: admin/admin_rvy.php:623
+msgid "Review PublishPress Revisions on WordPress.org"
+msgstr "مراجعة مراجعات PublishPress على WordPress.org"
+
+#: admin/admin_rvy.php:625
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "إذا أعجبك %1$s، يرجى ترك لنا تقييمًا %2$s. شكرًا لك!"
+
+#: admin/admin_rvy.php:636
+msgid "About PublishPress Revisions"
+msgstr "حول مراجعات PublishPress"
+
+#: admin/admin_rvy.php:636
+msgid "About"
+msgstr "حول"
+
+#: admin/admin_rvy.php:638
+msgid "PublishPress Revisions Documentation"
+msgstr "توثيق مراجعات PublishPress"
+
+#: admin/admin_rvy.php:638
+msgid "Documentation"
+msgstr "التوثيق"
+
+#: admin/admin_rvy.php:640
+msgid "Contact the PublishPress team"
+msgstr "الاتصال بفريق PublishPress"
+
+#: admin/admin_rvy.php:640
+msgid "Contact"
+msgstr "اتصل"
+
+#: admin/admin_rvy.php:646
+msgid "Visit PublishPress"
+msgstr "زيارة PublishPress"
+
+#: admin/admin_rvy.php:694
+msgid "More information"
+msgstr "مزيد من المعلومات"
+
+#: admin/agents_checklist_rvy.php:77
+#, php-format
+msgid "show current users (%d)"
+msgstr "عرض المستخدمين الحاليين (%d)"
+
+#: admin/agents_checklist_rvy.php:79
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "عرض المستخدمين المؤهلين (%d)"
+
+#: admin/agents_checklist_rvy.php:88
+msgid "filter:"
+msgstr "تصفية:"
+
+#: admin/agents_checklist_rvy.php:104
+msgid "select"
+msgstr "حدد"
+
+#: admin/agents_checklist_rvy.php:112
+msgid "unselect"
+msgstr "إلغاء التحديد"
+
+#: admin/class-list-table-archive.php:26
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:72
+msgid "This was an update to a revision which is still in the workflow process."
+msgstr "كان هذا تحديثًا لمراجعة لا تزال في عملية سير العمل."
+
+#: admin/class-list-table-archive.php:28
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:73
+msgid "This was an update to a revision which was published after further editing."
+msgstr "كان هذا تحديثًا لمراجعة نُشرت بعد تحرير إضافي."
+
+#: admin/class-list-table-archive.php:205
+#, php-format
+msgid "Revision Author: %s"
+msgstr "مؤلف المراجعة: %s"
+
+#: admin/class-list-table-archive.php:224
+#, php-format
+msgid "Post Author: %s"
+msgstr "مؤلف المنشور: %s"
+
+#: admin/class-list-table-archive.php:234
+#, php-format
+msgid "Revision Date: %s"
+msgstr "تاريخ المراجعة: %s"
+
+#: admin/class-list-table-archive.php:244
+#, php-format
+msgid "Approved by: %s"
+msgstr "موافق من: %s"
+
+#: admin/class-list-table-archive.php:254
+#, php-format
+msgid "Publication Date: %s"
+msgstr "تاريخ النشر: %s"
+
+#: admin/class-list-table-archive.php:275
+#: admin/revision-queue_rvy.php:185
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "نتائج البحث عن \"%s\""
+
+#: admin/class-list-table-archive.php:544
+#: admin/class-list-table_rvy.php:1828
+#: admin/class-list-table_rvy.php:2335
+#: admin/post-edit-block-ui_rvy.php:125
+#: admin/post-edit_rvy.php:122
+#: admin/post-edit_rvy.php:128
+#: admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "حذف المراجعة"
+
+#: admin/class-list-table-archive.php:583
+msgid "Select all revisions"
+msgstr "حدد جميع المراجعات"
+
+#: admin/class-list-table-archive.php:585
+#: admin/class-list-table_rvy.php:796
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:586
+#: rvy_init-functions.php:473
+msgid "Revised By"
+msgstr "تمت المراجعة بواسطة"
+
+#: admin/class-list-table-archive.php:587
+#: rvy_init-functions.php:474
+msgid "Revision Date"
+msgstr "تاريخ المراجعة"
+
+#: admin/class-list-table-archive.php:588
+msgid "Action"
+msgstr "إجراء"
+
+#: admin/class-list-table-archive.php:589
+msgid "Approved By"
+msgstr "تمت الموافقة بواسطة"
+
+#: admin/class-list-table-archive.php:590
+msgid "Published Date"
+msgstr "تاريخ النشر"
+
+#: admin/class-list-table-archive.php:591
+msgid "Published Author"
+msgstr "مؤلف النشر"
+
+#: admin/class-list-table-archive.php:620
+#: admin/class-list-table_rvy.php:1014
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:463
+msgid "just now"
+msgstr "الآن فقط"
+
+#: admin/class-list-table-archive.php:625
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s دقائق مضت"
+
+#: admin/class-list-table-archive.php:625
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
+#, php-format
+msgid "%s minute ago"
+msgstr "%s دقيقة مضت"
+
+#: admin/class-list-table-archive.php:632
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
+#, php-format
+msgid "%s hours ago"
+msgstr "%s ساعات مضت"
+
+#: admin/class-list-table-archive.php:632
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
+#, php-format
+msgid "%s hour ago"
+msgstr "%s ساعة مضت"
+
+#: admin/class-list-table-archive.php:762
+#: functions.php:484
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1449
+msgid "Revision Publication"
+msgstr "نشر المراجعة"
+
+#: admin/class-list-table-archive.php:773
+#: functions.php:495
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:393
+#, php-format
+msgid "Autosave of %s"
+msgstr "الحفظ التلقائي لـ %s"
+
+#: admin/class-list-table-archive.php:778
+#: functions.php:500
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:395
+#, php-format
+msgid "Edit of %s"
+msgstr "تحرير %s"
+
+#: admin/class-list-table-archive.php:787
+#: functions.php:509
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:400
+msgid "Autosave of published Revision"
+msgstr "الحفظ التلقائي لمراجعة منشورة"
+
+#: admin/class-list-table-archive.php:792
+#: functions.php:514
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:402
+msgid "Edit of published Revision"
+msgstr "تحرير المراجعة المنشورة"
+
+#: admin/class-list-table-archive.php:797
+#: functions.php:519
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:407
+msgid "Autosave"
+msgstr "الحفظ التلقائي"
+
+#: admin/class-list-table-archive.php:799
+#: functions.php:521
+#: functions.php:585
+msgid "Direct Edit"
+msgstr "تحرير مباشر"
+
+#: admin/class-list-table-archive.php:838
+#: admin/class-list-table_rvy.php:792
+msgid "Select revision"
+msgstr "حدد المراجعة"
+
+#: admin/class-list-table-archive.php:856
+msgid "Filter by original post type"
+msgstr "تصفية حسب نوع المنشور الأصلي"
+
+#: admin/class-list-table-archive.php:860
+#: admin/class-list-table_rvy.php:1889
+msgid "All Post Types"
+msgstr "جميع أنواع المنشورات"
+
+#: admin/class-list-table-archive.php:890
+#: admin/class-list-table_rvy.php:1922
+msgid "Filter by revision author"
+msgstr "تصفية حسب مؤلف المراجعة"
+
+#: admin/class-list-table-archive.php:894
+#: admin/class-list-table_rvy.php:1926
+msgid "All Revision Authors"
+msgstr "جميع مؤلفي المراجعات"
+
+#: admin/class-list-table-archive.php:939
+#: admin/class-list-table_rvy.php:1956
+msgid "Filter by revision date"
+msgstr "تصفية حسب تاريخ المراجعة"
+
+#: admin/class-list-table-archive.php:943
+#: admin/class-list-table_rvy.php:1960
+msgid "All Revision Dates"
+msgstr "جميع تواريخ المراجعة"
+
+#: admin/class-list-table-archive.php:998
+msgid "Filter by published date"
+msgstr "تصفية حسب تاريخ النشر"
+
+#: admin/class-list-table-archive.php:1002
+msgid "All Publish Dates"
+msgstr "تاريخ النشر الكل"
+
+#: admin/class-list-table-archive.php:1035
+msgid "Filter by approver"
+msgstr "تصفية حسب الموافقة"
+
+#: admin/class-list-table-archive.php:1039
+msgid "All Approvers"
+msgstr "جميع الموافقات"
+
+#: admin/class-list-table-archive.php:1072
+#: admin/class-list-table_rvy.php:2029
+msgid "Filter by published author"
+msgstr "تصفية حسب المؤلف المنشور"
+
+#: admin/class-list-table-archive.php:1076
+#: admin/class-list-table_rvy.php:2033
+msgid "All Authors"
+msgstr "جميع المؤلفين"
+
+#: admin/class-list-table-archive.php:1092
+#: admin/class-list-table-archive.php:1272
+#: admin/class-list-table_rvy.php:1072
+#: admin/class-list-table_rvy.php:2049
+msgid "Filter"
+msgstr "تصفية"
+
+#: admin/class-list-table-archive.php:1098
+#: admin/class-list-table_rvy.php:2069
+msgid "Reset Filters"
+msgstr "إعادة تعيين الفلاتر"
+
+#: admin/class-list-table-archive.php:1129
+#: admin/options.php:2415
+msgid "All"
+msgstr "الكل"
+
+#: admin/class-list-table-archive.php:1143
+msgid "My Revisions"
+msgstr "مراجعاتي"
+
+#: admin/class-list-table-archive.php:1198
+#, php-format
+msgid "Visually compare changes in %s"
+msgstr "مقارنة التغييرات بصريًا في %s"
+
+#: admin/class-list-table-archive.php:1219
+#, php-format
+msgid "Classic text diff for %s"
+msgstr "اختلاف النص الكلاسيكي لـ %s"
+
+#: admin/class-list-table-archive.php:1239
+#: admin/class-list-table_rvy.php:2359
+#: admin/post-editor-workflow-ui_rvy.php:69
+#: admin/post-editor-workflow-ui_rvy.php:228
+msgid "Preview Revision"
+msgstr "معاينة المراجعة"
+
+#: admin/class-list-table-archive.php:1253
+msgid "Edit parent revision"
+msgstr "تحرير المراجعة الأصلية"
+
+#: admin/class-list-table-archive.php:1253
+msgid "Edit parent post"
+msgstr "تحرير المنشور الأصلي"
+
+#: admin/class-list-table-archive.php:1254
+msgid "Edit Parent"
+msgstr "تحرير الأصل"
+
+#: admin/class-list-table-archive.php:1271
+msgid "Filter: list revisions of this post"
+msgstr "تصفية: قائمة مراجعات هذا المنشور"
+
+#: admin/class-list-table-archive.php:1284
+msgid "Delete Past Revision"
+msgstr "حذف المراجعة السابقة"
+
+#: admin/class-list-table-archive.php:1285
+#: admin/class-list-table_rvy.php:2342
+#: admin/post-edit_rvy.php:84
+#: admin/revision-ui_rvy.php:299
+#: admin/revision-ui_rvy.php:411
+#: classes/PublishPress/Revisions/Planner.php:116
+#: classes/PublishPress/Revisions/Planner.php:260
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:20
+#: front_rvy.php:626
+msgid "Delete"
+msgstr "حذف"
+
+#: admin/class-list-table-archive.php:1372
+msgid "No revisions found."
+msgstr "لم يتم العثور على مراجعات."
+
+#: admin/class-list-table_rvy.php:795
+#: admin/options.php:798
+#: admin/options.php:961
+#: admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "الحالة"
+
+#: admin/class-list-table_rvy.php:816
+#: front_rvy.php:703
+#: rvy_init-functions.php:357
+msgid "Schedule"
+msgstr "الجدول الزمني"
+
+#: admin/class-list-table_rvy.php:881
+#: admin/class-list-table_rvy.php:904
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "نشر مجدول: %s"
+
+#: admin/class-list-table_rvy.php:897
+#: admin/history_rvy.php:1323
+#, php-format
+msgid "%s ago"
+msgstr "%s مضى"
+
+#: admin/class-list-table_rvy.php:907
+#, php-format
+msgid "Requested publication: %s"
+msgstr "نشر مطلوب: %s"
+
+#: admin/class-list-table_rvy.php:909
+msgid "This revision is not scheduled yet."
+msgstr "هذه المراجعة لم تحدد بعد."
+
+#: admin/class-list-table_rvy.php:920
+msgid "Missed schedule"
+msgstr "جدول مفقود"
+
+#: admin/class-list-table_rvy.php:938
+#. translators: %s: human-readable time difference, e.g. "3 days"
+#, php-format
+msgid "in %s"
+msgstr "في %s"
+
+#: admin/class-list-table_rvy.php:982
+#: admin/history_rvy.php:1103
+msgid "No author"
+msgstr "لا يوجد مؤلف"
+
+#: admin/class-list-table_rvy.php:1056
+#. translators: %s: post title
+msgid "Edit published post"
+msgstr "تحرير المنشور المنشور"
+
+#: admin/class-list-table_rvy.php:1071
+#. translators: %s: post title
+#, php-format
+msgid "View only revisions of %s"
+msgstr "عرض مراجعات %s فقط"
+
+#: admin/class-list-table_rvy.php:1082
+msgid "View published post"
+msgstr "عرض المنشور المنشور"
+
+#: admin/class-list-table_rvy.php:1083
+msgid "View"
+msgstr "عرض"
+
+#: admin/class-list-table_rvy.php:1089
+msgid "Preview published post"
+msgstr "معاينة المنشور المنشور"
+
+#: admin/class-list-table_rvy.php:1114
+msgid "History: compare past revisions"
+msgstr "التاريخ: مقارنة المراجعات السابقة"
+
+#: admin/class-list-table_rvy.php:1115
+msgid "History"
+msgstr "التاريخ"
+
+#: admin/class-list-table_rvy.php:1143
+msgid "Show more details"
+msgstr "عرض المزيد من التفاصيل"
+
+#: admin/class-list-table_rvy.php:1444
+msgid "There are no scheduled revisions at this time."
+msgstr "لا توجد مراجعات مجدولة في هذا الوقت."
+
+#: admin/class-list-table_rvy.php:1663
+msgid "My Activity"
+msgstr "نشاطي"
+
+#: admin/class-list-table_rvy.php:1672
+#, php-format
+msgid "All %s"
+msgstr "جميع %s"
+
+#: admin/class-list-table_rvy.php:1732
+#. translators: Hidden accessibility text.
+msgid "Select bulk action"
+msgstr "اختيار إجراء جماعي"
+
+#: admin/class-list-table_rvy.php:1735
+msgid "Bulk actions"
+msgstr "إجراءات جماعية"
+
+#: admin/class-list-table_rvy.php:1756
+#: admin/revision-ui_rvy.php:413
+msgid "Apply"
+msgstr "تطبيق"
+
+#: admin/class-list-table_rvy.php:1811
+#: front_rvy.php:655
+#: rvy_init-functions.php:284
+#: rvy_init-functions.php:340
+msgid "Submit"
+msgstr "إرسال"
+
+#: admin/class-list-table_rvy.php:1816
+#: admin/history_rvy.php:1408
+#: front_rvy.php:652
+#: front_rvy.php:662
+#: front_rvy.php:690
+#: front_rvy.php:724
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:427
+#: includes/visual-post-compare/visual-post-compare.php:323
+#: rvy_init-functions.php:270
+#: rvy_init-functions.php:288
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:344
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:361
+msgid "Approve"
+msgstr "موافقة"
+
+#: admin/class-list-table_rvy.php:1817
+#: front_rvy.php:694
+msgid "Decline"
+msgstr "رفض"
+
+#: admin/class-list-table_rvy.php:1821
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:424
+msgid "Publish"
+msgstr "نشر"
+
+#: admin/class-list-table_rvy.php:1824
+#: admin/revision-ui_rvy.php:289
+msgid "Unschedule"
+msgstr "إلغاء الجدولة"
+
+#: admin/class-list-table_rvy.php:1828
+#: admin/class-list-table_rvy.php:2331
+#: admin/class-list-table_rvy.php:2335
+#: admin/post-edit-block-ui_rvy.php:125
+#: admin/post-edit_rvy.php:128
+#: admin/RevisionEditSubmitMetabox.php:62
+#. translators: %s: post title
+msgid "Discard Revision"
+msgstr "تجاهل المراجعة"
+
+#: admin/class-list-table_rvy.php:1849
+msgid "Filter by category"
+msgstr "تصفية حسب الفئة"
+
+#: admin/class-list-table_rvy.php:1866
+msgid "Filter by revision status"
+msgstr "تصفية حسب حالة المراجعة"
+
+#: admin/class-list-table_rvy.php:1868
+msgid "All Revision Statuses"
+msgstr "جميع حالات المراجعة"
+
+#: admin/class-list-table_rvy.php:1887
+msgid "Filter by post type"
+msgstr "تصفية حسب نوع المنشور"
+
+#: admin/class-list-table_rvy.php:1993
+msgid "Filter by published post"
+msgstr "تصفية حسب المنشور المنشور"
+
+#: admin/class-list-table_rvy.php:1997
+msgid "All Posts"
+msgstr "جميع المنشورات"
+
+#: admin/class-list-table_rvy.php:2124
+msgid "Select All"
+msgstr "حدد الكل"
+
+#: admin/class-list-table_rvy.php:2189
+msgid "(clear filter)"
+msgstr "(إزالة التصفية)"
+
+#: admin/class-list-table_rvy.php:2193
+msgid "Sort ascending."
+msgstr "ترتيب تصاعدي."
+
+#: admin/class-list-table_rvy.php:2193
+msgid "Sort descending."
+msgstr "ترتيب تنازلي."
+
+#: admin/class-list-table_rvy.php:2222
+#, php-format
+msgid "Compare changes for &#8220;%s&#8221;"
+msgstr "قارن التغييرات لـ &#8220;%s&#8221;"
+
+#: admin/class-list-table_rvy.php:2230
+#. translators: %s: post title
+#, php-format
+msgid "&#8220;%s&#8221; (Edit)"
+msgstr "&#8220;%s&#8221; (تعديل)"
+
+#: admin/class-list-table_rvy.php:2308
+#: admin/post-editor-workflow-ui_rvy.php:229
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3114
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3114
+#. translators: %s: post title
+msgid "Edit Revision"
+msgstr "تعديل المراجعة"
+
+#: admin/class-list-table_rvy.php:2332
+msgid "Discard"
+msgstr "تجاهل"
+
+#: admin/class-list-table_rvy.php:2373
+msgid "Compare Changes"
+msgstr "قارن التغييرات"
+
+#: admin/edit-revision-block-ui_rvy.php:23
+msgid "Enable public preview"
+msgstr "تفعيل المعاينة العامة"
+
+#: admin/edit-revision-classic-ui_rvy.php:126
+msgid "Publish <b>on approval</b>"
+msgstr "نشر <b>بعد الموافقة</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:157
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "تم تحديث المراجعة. %sعرض المعاينة%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:159
+msgid "Revision updated."
+msgstr "تم تحديث المراجعة."
+
+#: admin/edit-revision-classic-ui_rvy.php:176
+#. translators: Publish box date string. 1: Date, 2: Time. See https://www.php.net/manual/datetime.format.php
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s في %2$s"
+
+#: admin/edit-revision-classic-ui_rvy.php:185
+#: admin/RevisionEditSubmitMetabox.php:185
+#. translators: Post date information. %s: Date on which the post is currently scheduled to be published.
+#, php-format
+msgid "Scheduled for: %s"
+msgstr "جدولة لـ: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:188
+#. translators: Post date information. %s: Date on which the post was published.
+#, php-format
+msgid "Published on: %s"
+msgstr "تم النشر في: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:190
+#: admin/edit-revision-classic-ui_rvy.php:204
+msgid "Publish <b>immediately</b>"
+msgstr "نشر <b>على الفور</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:193
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Schedule for: %s"
+msgstr "جدولة للنشر في: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:196
+#: admin/RevisionEditSubmitMetabox.php:188
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Publish on: %s"
+msgstr "نشر في: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:222
+#. translators: Hidden accessibility text.
+msgid "Edit date and time"
+msgstr "تعديل التاريخ والوقت"
+
+#: admin/edit-revision-classic-ui_rvy.php:230
+#. translators: Hidden accessibility text.
+msgid "Date and time"
+msgstr "التاريخ والوقت"
+
+#: admin/history_rvy.php:99
+#: admin/history_rvy.php:102
+msgid "Copy"
+msgstr "نسخ"
+
+#: admin/history_rvy.php:99
+#: admin/history_rvy.php:102
+msgid "Copy the above content to the clipboard."
+msgstr "انسخ المحتوى أعلاه إلى الحافظة."
+
+#: admin/history_rvy.php:109
+msgid "Copied to clipboard."
+msgstr "تم النسخ إلى الحافظة."
+
+#: admin/history_rvy.php:295
+#: admin/history_rvy.php:315
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "قارن %s لـ \"%s\""
+
+#: admin/history_rvy.php:324
+msgid "Return to editor"
+msgstr "العودة إلى المحرر"
+
+#: admin/history_rvy.php:573
+#: admin/options.php:796
+#: admin/options.php:959
+#: admin/restrict-editor-features.php:100
+msgid "Title"
+msgstr "عنوان"
+
+#: admin/history_rvy.php:574
+#: admin/options.php:795
+#: admin/options.php:958
+#: admin/restrict-editor-features.php:106
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3379
+msgid "Content"
+msgstr "محتوى"
+
+#: admin/history_rvy.php:575
+#: admin/options.php:801
+#: admin/options.php:964
+#: admin/restrict-editor-features.php:159
+msgid "Excerpt"
+msgstr "مقتطف"
+
+#: admin/history_rvy.php:712
+#: admin/history_rvy.php:715
+msgid "(no title)"
+msgstr "(لا عنوان)"
+
+#: admin/history_rvy.php:828
+#: admin/options.php:1212
+msgid "Post Date"
+msgstr "تاريخ المنشور"
+
+#: admin/history_rvy.php:829
+msgid "Post Parent"
+msgstr "المنشور الأب"
+
+#: admin/history_rvy.php:830
+msgid "Menu Order"
+msgstr "ترتيب القائمة"
+
+#: admin/history_rvy.php:831
+msgid "Comment Status"
+msgstr "حالة التعليق"
+
+#: admin/history_rvy.php:832
+msgid "Ping Status"
+msgstr "حالة Ping"
+
+#: admin/history_rvy.php:971
+msgid "Page Template"
+msgstr "قالب الصفحة"
+
+#: admin/history_rvy.php:974
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2664
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2664
+msgid "Featured Image"
+msgstr "الصورة المميزة"
+
+#: admin/history_rvy.php:978
+msgid "Beaver Builder Data"
+msgstr "بيانات Beaver Builder"
+
+#: admin/history_rvy.php:979
+msgid "Beaver Builder Settings"
+msgstr "إعدادات Beaver Builder"
+
+#: admin/history_rvy.php:1058
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3436
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3436
+msgid "No changes detected."
+msgstr "لم يتم الكشف عن تغييرات."
+
+#: admin/history_rvy.php:1250
+msgid "Scheduled for "
+msgstr "مجدولة لـ "
+
+#: admin/history_rvy.php:1255
+msgid "Requested for "
+msgstr "مطلوب لـ "
+
+#: admin/history_rvy.php:1260
+msgid "Modified "
+msgstr "تم التعديل "
+
+#: admin/history_rvy.php:1265
+#, php-format
+msgid "%s%s ago"
+msgstr "%s%s مضت"
+
+#: admin/history_rvy.php:1265
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s من الآن"
+
+#: admin/history_rvy.php:1408
+msgid "Preview / Approve"
+msgstr "معاينة / الموافقة"
+
+#: admin/history_rvy.php:1452
+msgid "Edit revision"
+msgstr "تحرير النسخة"
+
+#: admin/history_rvy.php:1514
+msgid "Preview / Restore"
+msgstr "معاينة / استعادة"
+
+#: admin/history_rvy.php:1521
+msgid "Manage"
+msgstr "إدارة"
+
+#: admin/history_rvy.php:1522
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1429
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1429
+msgid "List"
+msgstr "قائمة"
+
+#: admin/options.php:54
+msgid "PublishPress Capabilities"
+msgstr "قدرات PublishPress"
+
+#: admin/options.php:151
+msgid "All settings on this tab are assigned network-wide."
+msgstr "جميع الإعدادات في هذه الواجهة مخصصة على مستوى الشبكة."
+
+#: admin/options.php:181
+msgid "Setting Scope"
+msgstr "نطاق الإعدادات"
+
+#: admin/options.php:185
+msgid "Features"
+msgstr "الميزات"
+
+#: admin/options.php:188
+msgid "Options"
+msgstr "الخيارات"
+
+#: admin/options.php:189
+msgid "Integrations"
+msgstr "التكاملات"
+
+#: admin/options.php:190
+msgid "Statuses"
+msgstr "الحالات"
+
+#: admin/options.php:191
+#: admin/options.php:1245
+msgid "Notifications"
+msgstr "الإشعارات"
+
+#: admin/options.php:197
+msgid "Revision Submission"
+msgstr "تقديم النسخة"
+
+#: admin/options.php:205
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr "استخدم تسمية بديلة: \"نسخة العمل\" > \"طلب تغيير\" > \"تغيير مجدول\""
+
+#: admin/options.php:206
+msgid "New Revisions access requires role capability"
+msgstr "الوصول إلى النسخ الجديدة يتطلب قدرة الدور"
+
+#: admin/options.php:207
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "إدارة %s تتطلب قدرة الدور"
+
+#: admin/options.php:208
+msgid "Working Copy creation requires role capability"
+msgstr "إنشاء نسخة العمل يتطلب قدرة الدور"
+
+#: admin/options.php:208
+msgid "Revision creation requires role capability"
+msgstr "إنشاء النسخة يتطلب قدرة الدور"
+
+#: admin/options.php:209
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr "قائمة المنشورات / الصفحات: استخدم تسمية \"تحرير\" لارتباط %s"
+
+#: admin/options.php:210
+#: admin/options.php:217
+#, php-format
+msgid "Enable %s"
+msgstr "تمكين %s"
+
+#: admin/options.php:211
+msgid "Revision Limit"
+msgstr "حدود المراجعة"
+
+#: admin/options.php:212
+msgid "Create Revision redirects to user's existing Unsubmitted Revision"
+msgstr "إنشاء إعادة توجيه المراجعة إلى مراجعة المستخدم غير المرسلة الموجودة"
+
+#: admin/options.php:213
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr "تحديث علامة \"لديه مراجعة\" قبل كتم إنشاء مراجعة"
+
+#: admin/options.php:214
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr "إذا كانت المشاركة تحتوي على HTML مخصص، يتطلب القدرة على unfiltered_html"
+
+#: admin/options.php:215
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr "تقديم المراجعات تلقائيًا التي أنشأها مستخدم لديه قدرة النشر"
+
+#: admin/options.php:216
+msgid "Auto-submit revisions"
+msgstr "تقديم المراجعات تلقائيًا"
+
+#: admin/options.php:218
+msgid "Change Request submission require role capability"
+msgstr "تقديم طلب تغيير يتطلب قدرة الدور"
+
+#: admin/options.php:218
+msgid "Revision submission requires role capability"
+msgstr "تقديم المراجعة يتطلب قدرة الدور"
+
+#: admin/options.php:219
+msgid "Editing others' Revisions requires role capability"
+msgstr "تعديل مراجعات الآخرين يتطلب قدرة الدور"
+
+#: admin/options.php:220
+msgid "Listing others' Revisions requires role capability"
+msgstr "قائمة مراجعات الآخرين تتطلب قدرة الدور"
+
+#: admin/options.php:221
+msgid "Enable javascript in visual compare"
+msgstr "تفعيل JavaScript في المقارنة البصرية"
+
+#: admin/options.php:222
+msgid "Use visual compare for Revisions"
+msgstr "استخدام المقارنة البصرية للمراجعات"
+
+#: admin/options.php:223
+msgid "Include unidentified internal fields on Compare screen"
+msgstr "تضمين الحقول الداخلية غير المحددة على شاشة المقارنة"
+
+#: admin/options.php:224
+msgid "Show Submitted Revisions count in Admin menu"
+msgstr "عرض عدد المراجعات المقدمة في قائمة الإدارة"
+
+#: admin/options.php:225
+msgid "Show indicator on front end if page has Revisions"
+msgstr "عرض مؤشر في الواجهة الأمامية إذا كانت الصفحة تحتوي على مراجعات"
+
+#: admin/options.php:226
+msgid "Users can always administer revisions to their own editable posts"
+msgstr "يمكن للمستخدمين دائمًا إدارة المراجعات لمشاركاتهم القابلة للتعديل"
+
+#: admin/options.php:227
+msgid "Also notify on Revision Update"
+msgstr "إخطار أيضًا عند تحديث المراجعة"
+
+#: admin/options.php:228
+msgid "Apply API actions to mimic Post Update"
+msgstr "تطبيق إجراءات API لمحاكاة تحديث المشاركة"
+
+#: admin/options.php:229
+msgid "Hide html tags on Compare screen"
+msgstr "إخفاء علامات HTML على شاشة المقارنة"
+
+#: admin/options.php:230
+msgid "Hide copy buttons on Compare screen"
+msgstr "إخفاء أزرار النسخ على شاشة المقارنة"
+
+#: admin/options.php:231
+msgid "Legacy: Schedule Revisions with WP-Cron"
+msgstr "التقنية القديمة: جدولة المراجعات باستخدام WP-Cron"
+
+#: admin/options.php:232
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "يستخدم الموقع مشغلًا مخصصًا لمهام WP-Cron"
+
+#: admin/options.php:233
+msgid "Asynchronous Publishing"
+msgstr "النشر غير المتزامن"
+
+#: admin/options.php:234
+msgid "Editor background color"
+msgstr "لون خلفية المحرر"
+
+#: admin/options.php:235
+#: admin/options.php:236
+msgid "Update Publish Date"
+msgstr "تحديث تاريخ النشر"
+
+#: admin/options.php:237
+#: admin/options.php:238
+msgid "Update Modified Date"
+msgstr "تحديث تاريخ التعديل"
+
+#: admin/options.php:241
+#: admin/options.php:242
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "استخدام %1$sإشعارات المخطط%2$s"
+
+#: admin/options.php:244
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "إرسال بريد إلكتروني للمؤلف الأصلي عند تقديم %s"
+
+#: admin/options.php:245
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "إرسال بريد إلكتروني للمؤلف الأصلي عند الموافقة على %s"
+
+#: admin/options.php:246
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "إرسال بريد إلكتروني للمراجع عند الموافقة على %s"
+
+#: admin/options.php:247
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "إرسال بريد إلكتروني للمؤلف الأصلي عند نشر %s"
+
+#: admin/options.php:248
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "إرسال بريد إلكتروني للمراجع عند نشر %s"
+
+#: admin/options.php:249
+msgid "Enable notification buffer"
+msgstr "تفعيل حافظة الإشعارات"
+
+#: admin/options.php:250
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "يمكن للمراجعين إنشاء مراجعة جديدة لأي نوع مشاركة مخصص"
+
+#: admin/options.php:251
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "منع المراجعين من تعديل مشاركات الآخرين غير المنشورة"
+
+#: admin/options.php:252
+msgid "Add database index to posts table for Revision queries"
+msgstr "إضافة فهرس قاعدة البيانات إلى جدول المشاركات لاستعلامات المراجعة"
+
+#: admin/options.php:253
+msgid "Display Hints"
+msgstr "عرض تلميحات"
+
+#: admin/options.php:254
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "حذف الإعدادات والمراجعات إذا تم حذف المكون الإضافي"
+
+#: admin/options.php:255
+msgid "Show Preview Links"
+msgstr "عرض روابط المعاينة"
+
+#: admin/options.php:256
+msgid "Preview Link Type"
+msgstr "نوع رابط المعاينة"
+
+#: admin/options.php:257
+msgid "Modify preview link for better theme compatibility"
+msgstr "تعديل رابط المعاينة لتحسين توافق السمة"
+
+#: admin/options.php:258
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr "توافق السمة: لعرض معاينة مراجعة الصفحة الرئيسية، قم بتعيين علامة المنزل"
+
+#: admin/options.php:259
+msgid "Approve Button on Compare screen"
+msgstr "زر الموافقة على شاشة المقارنة"
+
+#: admin/options.php:260
+msgid "Copy revision comments to published post"
+msgstr "نسخ تعليقات المراجعة إلى المنشور المنشور"
+
+#: admin/options.php:261
+msgid "Compare Past Revisions ordering:"
+msgstr "مقارنة ترتيب المراجعات السابقة:"
+
+#: admin/options.php:262
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr "قائمة %s لـ \"نشاطي\" أو \"المراجعات لمنشورتي\" عرض"
+
+#: admin/options.php:263
+msgid ""
+"Archive a copy of custom fields when a submitted or scheduled revision is "
+"published"
+msgstr "أرشفة نسخة من الحقول المخصصة عند نشر مراجعة مقدمة أو مجدولة"
+
+#: admin/options.php:264
+msgid "Archive a copy of custom fields with each Past Revision"
+msgstr "أرشفة نسخة من الحقول المخصصة مع كل مراجعة سابقة"
+
+#: admin/options.php:265
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr "احتفظ بأرشيف لتعديلات المراجعة، حتى بعد نشر المراجعة"
+
+#: admin/options.php:266
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "عند نشر المراجعة، احذف التعليقات التحريرية"
+
+#: admin/options.php:267
+msgid "Enable deletion queue"
+msgstr "تمكين قائمة الحذف"
+
+#: admin/options.php:268
+msgid "Allow Past Revisions to be deleted"
+msgstr "السماح بحذف المراجعات السابقة"
+
+#: admin/options.php:269
+msgid "Restoring a Revision requires role capability"
+msgstr "استعادة مراجعة تتطلب قدرة الدور"
+
+#: admin/options.php:270
+msgid "Compatibility Mode"
+msgstr "وضع التوافق"
+
+#: admin/options.php:271
+msgid "Planner Notifications Access-Limited"
+msgstr "إشعارات المخطط محدودة الوصول"
+
+#: admin/options.php:272
+msgid "Maximum Revisions per post"
+msgstr "الحد الأقصى للمراجعات لكل منشور"
+
+#: admin/options.php:273
+msgid "Apply Post Permissions to Revisions"
+msgstr "تطبيق أذونات المنشور على المراجعات"
+
+#: admin/options.php:274
+msgid "Enable legacy email notifications"
+msgstr "تمكين إشعارات البريد الإلكتروني القديمة"
+
+#: admin/options.php:275
+msgid "Revision Approval requires role capability"
+msgstr "تتطلب موافقة المراجعة قدرة الدور"
+
+#: admin/options.php:276
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr "استخدام تسميات موسعة لزر الموافقة في محرر المنشورات"
+
+#: admin/options.php:277
+msgid "Allow the Author field to be modified by Revision"
+msgstr "السماح بتعديل حقل المؤلف بواسطة المراجعة"
+
+#: admin/options.php:278
+msgid "Create Revision button in editor opens new tab"
+msgstr "زر إنشاء مراجعة في المحرر يفتح علامة تبويب جديدة"
+
+#: admin/options.php:279
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"استعلام حلقة الكتلة: ضبط قدرات المراجع والمساهم للسماح بالمعاينة في محرر "
+"المراجعة"
+
+#: admin/options.php:280
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "تعطيل لوحة تحسين محركات البحث Rank Math لتعديل المراجعة"
+
+#: admin/options.php:281
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "السماح للحقول المخصصة (بيانات المنشور) بأن تكون قابلة للمراجعة"
+
+#: admin/options.php:282
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "إذن لتقديم مراجعة يمكن أن يمكن أيضًا إنشاء المراجعة"
+
+#: admin/options.php:283
+msgid "Enable classic metaboxes in editor"
+msgstr "تمكين صناديق الميتا الكلاسيكية في المحرر"
+
+#: admin/options.php:288
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "إرسال بريد إلكتروني للناشرين المعينين عند تقديم %s"
+
+#: admin/options.php:289
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "إرسال بريد إلكتروني للناشرين المعينين عند نشر %s"
+
+#: admin/options.php:290
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "إرسال بريد إلكتروني للناشرين المعينين عند الموافقة على %s"
+
+#: admin/options.php:292
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "إرسال بريد إلكتروني للمحررين والمديرين عند تقديم %s"
+
+#: admin/options.php:293
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "إرسال بريد إلكتروني للمحررين والمديرين عند نشر %s"
+
+#: admin/options.php:294
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "إرسال بريد إلكتروني للمحررين والمديرين عند الموافقة على %s"
+
+#: admin/options.php:376
+msgid "PublishPress Revisions Site Settings"
+msgstr "إعدادات موقع PublishPress Revisions"
+
+#: admin/options.php:406
+msgid "These are the default settings for options which can be adjusted per-site."
+msgstr "هذه هي الإعدادات الافتراضية للخيارات التي يمكن تعديلها لكل موقع."
+
+#: admin/options.php:444
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"استخدم هذه الصفحة لإجراء تغييرات على مستوى الشبكة على إعدادات PublishPress "
+"Revisions. %s"
+
+#: admin/options.php:447
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr "يمكنك أيضًا تحديد %1$s القيم الافتراضية لإعدادات محددة لكل موقع %2$s."
+
+#: admin/options.php:450
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"هنا يمكنك تغيير القيمة الافتراضية للإعدادات التي يتم التحكم بها بشكل منفصل "
+"في كل موقع."
+
+#: admin/options.php:460
+#: admin/options.php:462
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr "لاحظ أن إعدادات %1$s على مستوى الشبكة %2$s قد تكون متاحة أيضًا."
+
+#: admin/options.php:539
+msgid "License settings"
+msgstr "إعدادات الترخيص"
+
+#: admin/options.php:540
+msgid "License"
+msgstr "ترخيص"
+
+#: admin/options.php:585
+msgid "Past Revisions are earlier versions of a post."
+msgstr "الإصدارات السابقة هي نسخ سابقة من المشاركة."
+
+#: admin/options.php:635
+msgid "Past revisions post type fallback"
+msgstr "نسخة احتياطية من نوع المشاركة للإصدارات السابقة"
+
+#: admin/options.php:642
+msgid "This post type does not support Past Revisions."
+msgstr "هذا النوع من المشاركات لا يدعم الإصدارات السابقة."
+
+#: admin/options.php:663
+msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
+msgstr "PRO: مطلوب Revisions Pro لهذا النوع من المشاركات (يفتح في علامة تبويب جديدة)"
+
+#: admin/options.php:664
+msgid "PRO"
+msgstr "PRO"
+
+#: admin/options.php:684
+msgid "New Revisions are changes which are not yet published."
+msgstr "الإصدارات الجديدة هي تغييرات لم تُنشر بعد."
+
+#: admin/options.php:733
+msgid "Navigation menu revision setting"
+msgstr "إعدادات مراجعة قائمة التنقل"
+
+#: admin/options.php:737
+msgid "Hidden post type revision setting"
+msgstr "إعدادات مراجعة نوع المشاركة المخفية"
+
+#: admin/options.php:743
+msgid "New revisions post type fallback"
+msgstr "نسخة احتياطية من نوع المشاركة للإصدارات الجديدة"
+
+#: admin/options.php:763
+#, php-format
+msgid "%s capabilities"
+msgstr "%s القدرات"
+
+#: admin/options.php:783
+msgid "Revision Fields"
+msgstr "حقول المراجعة"
+
+#: admin/options.php:787
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "حدد الحقول التي يمكن تعديلها بواسطة الإصدارات الجديدة."
+
+#: admin/options.php:797
+#: admin/options.php:960
+#: admin/restrict-editor-features.php:112
+msgid "Date"
+msgstr "التاريخ"
+
+#: admin/options.php:799
+#: admin/options.php:962
+#: admin/restrict-editor-features.php:141
+msgid "Parent"
+msgstr "الأب"
+
+#: admin/options.php:800
+#: admin/options.php:963
+msgid "Slug"
+msgstr "الاسم المستعار"
+
+#: admin/options.php:802
+#: admin/options.php:965
+#: admin/post-edit-block-ui_rvy.php:212
+#: admin/post-edit_rvy.php:378
+#: admin/restrict-editor-features.php:147
+#: admin/revision-ui_rvy.php:391
+msgid "Author"
+msgstr "المؤلف"
+
+#: admin/options.php:803
+msgid "Thumbnail"
+msgstr "الصورة المصغرة"
+
+#: admin/options.php:804
+#: admin/options.php:967
+#: admin/restrict-editor-features.php:120
+msgid "Template"
+msgstr "القالب"
+
+#: admin/options.php:805
+#: admin/options.php:968
+#: admin/restrict-editor-features.php:127
+msgid "Categories"
+msgstr "الفئات"
+
+#: admin/options.php:806
+#: admin/options.php:969
+#: admin/restrict-editor-features.php:134
+msgid "Tags"
+msgstr "العلامات"
+
+#: admin/options.php:807
+#: admin/options.php:970
+#: admin/restrict-editor-features.php:166
+msgid "Taxonomies"
+msgstr "taxonomies"
+
+#: admin/options.php:819
+msgid "Hidden revision field setting"
+msgstr "إعدادات حقل المراجعة المخفية"
+
+#: admin/options.php:825
+msgid "Revision field fallback"
+msgstr "نسخة احتياطية من حقل المراجعة"
+
+#: admin/options.php:851
+msgid "Duplicate Posts"
+msgstr "المشاركات المكررة"
+
+#: admin/options.php:855
+msgid "Copy post directly without using the revision process."
+msgstr "نسخ المشاركة مباشرة دون استخدام عملية المراجعة."
+
+#: admin/options.php:904
+msgid "Navigation menu copy setting"
+msgstr "إعدادات النسخ في قائمة التنقل"
+
+#: admin/options.php:907
+msgid "Hidden copied post type setting"
+msgstr "إعدادات نوع المشاركة المنسوخة المخفية"
+
+#: admin/options.php:913
+msgid "Copied post type fallback"
+msgstr "نسخة احتياطية من نوع المشاركة المنسوخة"
+
+#: admin/options.php:946
+msgid "Duplicate Fields"
+msgstr "حقول مكررة"
+
+#: admin/options.php:950
+msgid "Specify fields to include when Posts are duplicated."
+msgstr "حدد الحقول التي يجب تضمينها عند تكرار المشاركات."
+
+#: admin/options.php:966
+msgid "Thumnbnail"
+msgstr "الصورة المصغرة"
+
+#: admin/options.php:982
+msgid "Hidden copied field setting"
+msgstr "إعدادات الحقل المنسوخ المخفية"
+
+#: admin/options.php:988
+msgid "Copied field fallback"
+msgstr "نسخة احتياطية من الحقل المنسوخ"
+
+#: admin/options.php:1012
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"ملاحظة: قد يتسبب كود الطرف الثالث في عدم توافق بعض أنواع المشاركات مع "
+"PublishPress Revisions."
+
+#: admin/options.php:1022
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"لدمج الإصدارات في تقويم المحتوى، والملخص، ولوحة المحتوى، يرجى تحديث "
+"%sPublishPress Planner Pro%s."
+
+#: admin/options.php:1043
+msgid "Ready to enhance your revision workflow?"
+msgstr "هل أنت مستعد لتعزيز سير عمل المراجعة الخاص بك؟"
+
+#: admin/options.php:1046
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with "
+"custom revision statuses."
+msgstr ""
+"احصل على PublishPress Statuses Pro وقم بتحسين عملية المراجعة الخاصة بك مع "
+"حالات مراجعة مخصصة."
+
+#: admin/options.php:1052
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "حدد حالاتك الخاصة قبل أو بعد تقديم المراجعة"
+
+#: admin/options.php:1055
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "حالات معرفة مسبقًا جديدة: مؤجلة، تحتاج إلى عمل، مرفوضة"
+
+#: admin/options.php:1058
+msgid "Statuses can be specific to a post type"
+msgstr "يمكن أن تكون الحالات محددة لنوع المنشور"
+
+#: admin/options.php:1061
+msgid "Control access to statuses per-role"
+msgstr "تحكم في الوصول إلى الحالات حسب الدور"
+
+#: admin/options.php:1064
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "يمكن أن يتم تضمين سير العمل للحالة مع حالات فرعية"
+
+#: admin/options.php:1071
+#: admin/options.php:1074
+msgid "Get PublishPress Statuses Pro"
+msgstr "احصل على PublishPress Statuses Pro"
+
+#: admin/options.php:1077
+#: admin/options.php:1097
+msgid "Learn more about revision statuses"
+msgstr "تعرف على المزيد حول حالات المراجعة"
+
+#: admin/options.php:1080
+#: admin/options.php:1098
+#: admin/options.php:2121
+#: admin/options.php:2139
+#: admin/options.php:2767
+#: admin/options.php:2780
+#: admin/options.php:2797
+#: admin/options.php:2811
+#: admin/options.php:2821
+#: admin/options.php:2831
+msgid "Learn More"
+msgstr "تعرف على المزيد"
+
+#: admin/options.php:1089
+msgid "Revision statuses settings preview"
+msgstr "معاينة إعدادات حالات المراجعة"
+
+#: admin/options.php:1093
+msgid "Pro Plugin"
+msgstr "الإضافة المحترفة"
+
+#: admin/options.php:1094
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "قم بتثبيت Statuses Pro لفتح حالات المراجعة المخصصة."
+
+#: admin/options.php:1095
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr "قم بتكوين أي نوع منشور ودور ليتناسب مع سير عمل التحرير الخاص بك."
+
+#: admin/options.php:1101
+#: admin/options.php:1102
+msgid "Get Statuses Pro"
+msgstr "احصل على Statuses Pro"
+
+#: admin/options.php:1129
+msgid "Maximum revisions per post:"
+msgstr "الحد الأقصى للمراجعات لكل منشور:"
+
+#: admin/options.php:1131
+msgid "(unlimited)"
+msgstr "(غير محدود)"
+
+#: admin/options.php:1139
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr "لاحظ أنه يمكن أيضًا تعطيل الأرشفة بواسطة %1$sنوع المنشور%2$s."
+
+#: admin/options.php:1180
+#: admin/options.php:1360
+#: admin/options.php:2289
+#, php-format
+msgid "%s capability"
+msgstr "%s القدرة"
+
+#: admin/options.php:1185
+#: admin/options.php:1365
+#: admin/options.php:2294
+msgid "Assign capability to roles"
+msgstr "تعيين القدرة للأدوار"
+
+#: admin/options.php:1192
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "منع غير المسؤولين من استعادة مراجعة بدون %s."
+
+#: admin/options.php:1198
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr "منع غير المسؤولين من استعادة مراجعة بدون قدرة restore_revisions"
+
+#: admin/options.php:1212
+msgid "Modification Date"
+msgstr "تاريخ التعديل"
+
+#: admin/options.php:1240
+msgid "Revision Creation"
+msgstr "إنشاء المراجعة"
+
+#: admin/options.php:1241
+msgid "Submission"
+msgstr "تقديم"
+
+#: admin/options.php:1242
+msgid "Scheduling"
+msgstr "جدولة"
+
+#: admin/options.php:1244
+msgid "Management"
+msgstr "إدارة"
+
+#: admin/options.php:1309
+msgid "Create Revision capabilities"
+msgstr "إنشاء قدرات المراجعة"
+
+#: admin/options.php:1314
+#: admin/options.php:1339
+#: admin/options.php:1503
+#: admin/options.php:1655
+msgid "Assign capabilities to roles"
+msgstr "تعيين القدرات للأدوار"
+
+#: admin/options.php:1321
+#: admin/options.php:1510
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "إذا لم يتمكن المستخدم من تحرير المنشور المنشور، فاطلب %s."
+
+#: admin/options.php:1327
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"إذا لم يتمكن المستخدم من تحرير المنشور المنشور، فاطلب قدرات إنشاء المراجعة "
+"(copy_posts، copy_others_pages، إلخ.)"
+
+#: admin/options.php:1335
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "لتوسيع قائمة الصفحات، قم بتعيين %s."
+
+#: admin/options.php:1338
+msgid "Listing capabilities"
+msgstr "قدرات الإدراج"
+
+#: admin/options.php:1345
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"لتوسيع قائمة الصفحات، قم بتعيين قدرات الإدراج (list_others_pages، "
+"list_published_posts، إلخ.)"
+
+#: admin/options.php:1352
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "تقدم هذه الإضافة دور مستخدم جديد، \"المراجع\"."
+
+#: admin/options.php:1372
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr "ستؤدي المراجعة من قبل مستخدم لا يمتلك %s إلى إزالة جميع علامات HTML المخصصة."
+
+#: admin/options.php:1378
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"ستؤدي المراجعة من قبل مستخدم لا يمتلك قدرة unfiltered_html إلى إزالة جميع "
+"علامات HTML المخصصة."
+
+#: admin/options.php:1394
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr "مخطط التخزين القياسي لأوسع توافق مع الطرف الثالث"
+
+#: admin/options.php:1395
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "تحكم معزز في الوصول إلى المراجعة مع إضافات PublishPress"
+
+#: admin/options.php:1409
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"في الوضع المعزز، يتم تخزين حالة المراجعة بواسطة مخطط WordPress القياسي. بعض "
+"الإضافات غير متوافقة."
+
+#: admin/options.php:1425
+msgid "Allow any number of Revisions per post."
+msgstr "السماح بعدد غير محدود من المراجعات لكل منشور."
+
+#: admin/options.php:1426
+msgid "Prevent Revision creation if another was already created."
+msgstr "منع إنشاء مراجعة إذا تم إنشاء أخرى بالفعل."
+
+#: admin/options.php:1427
+msgid "Prevent Revision creation if another was already submitted."
+msgstr "منع إنشاء مراجعة إذا تم تقديم أخرى بالفعل."
+
+#: admin/options.php:1444
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"تجاوز تعارضات إضافات التخزين المؤقت من خلال إعادة الاستعلام عن المراجعات "
+"قبل كتم رابط المراجعة الجديدة."
+
+#: admin/options.php:1463
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"إذا لم يكن لدى المستخدم رابط تعديل عادي، قم بتغيير تسمية الرابط %s إلى "
+"\"تعديل\"."
+
+#: admin/options.php:1466
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"تسميات افتراضية هي \"لم يتم تقديمها للموافقة\"، \"تم تقديمها للموافقة\"، "
+"\"مراجعة مجدولة\""
+
+#: admin/options.php:1484
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"قم بتمكين المحتوى المنشور ليتم نسخه، وتعديله، وتقديمه للموافقة وإدارته على "
+"شاشة %sالمراجعات الجديدة%s."
+
+#: admin/options.php:1498
+msgid "Submit Revision capabilities"
+msgstr "قدرات تقديم المراجعة"
+
+#: admin/options.php:1516
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"إذا لم يتمكن المستخدم من تعديل المنشور المنشور، تطلب قدرات تقديم المراجعة "
+"(revise_posts، revise_others_pages، إلخ)"
+
+#: admin/options.php:1526
+msgid "Revision editor background color"
+msgstr "لون خلفية محرر المراجعة"
+
+#: admin/options.php:1537
+msgid "Select a custom background color to show that a Revision is being edited."
+msgstr "اختر لون خلفية مخصص لعرض أن مراجعة يتم تعديلها."
+
+#: admin/options.php:1576
+#: admin/options.php:1610
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr "عندما يتم نشر %s، قم بتحديث تاريخ نشر المنشور إلى الوقت الحالي."
+
+#: admin/options.php:1579
+#: admin/options.php:1613
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr "عندما يتم نشر %s، قم بتحديث تاريخ تعديل المنشور إلى الوقت الحالي."
+
+#: admin/options.php:1582
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"عندما يتم إنشاء مراجعة جديدة من قبل أي مستخدم يُسمح له بتقديم المراجعات، قم "
+"بتقديمها تلقائيًا."
+
+#: admin/options.php:1585
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"تقديم المراجعات تلقائيًا إذا كان بإمكان المستخدم تعديل المنشور الرئيسي "
+"مباشرة."
+
+#: admin/options.php:1588
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"هذا يسمح بالموافقة الفورية ضمن شاشة المقارنة. إذا تم تعطيله، سيتم توفير "
+"رابط المعاينة بدلاً من ذلك."
+
+#: admin/options.php:1604
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"إذا تم تعديل منشور أو صفحة منشورة حاليًا وتم تعيين تاريخ مستقبلي، فلن يتم "
+"تطبيق التغيير حتى التاريخ المحدد."
+
+#: admin/options.php:1616
+msgid "Leave this setting disabled to use Action Scheduler (recommended)."
+msgstr "اترك هذا الإعداد معطلاً لاستخدام مجدول الإجراءات (موصى به)."
+
+#: admin/options.php:1621
+msgid ""
+"Support publication of existing scheduled revisions asynchronously, via a "
+"secondary http request from the server.  This is usually best since it "
+"eliminates delay, but some servers may not support it."
+msgstr ""
+"دعم نشر المراجعات المجدولة الحالية بشكل غير متزامن، عبر طلب http ثانوي من "
+"الخادم. هذا عادةً هو الأفضل لأنه يلغي التأخير، ولكن بعض الخوادم قد لا تدعمه."
+
+#: admin/options.php:1626
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr "تم تعطيل مشغل WP-Cron، لكن المهام المجدولة لا تزال تُنفذ باستخدام مشغل مخصص."
+
+#: admin/options.php:1644
+msgid ""
+"Currently, users who can edit the published post can also approve Revisions "
+"to it."
+msgstr ""
+"حاليًا، يمكن للمستخدمين الذين يمكنهم تعديل المنشور المنشور أيضًا الموافقة "
+"على المراجعات الخاصة به."
+
+#: admin/options.php:1650
+msgid "Approve Revision capabilities"
+msgstr "قدرات موافقة المراجعة"
+
+#: admin/options.php:1659
+#, php-format
+msgid "Control access with %s."
+msgstr "تحكم في الوصول باستخدام %s."
+
+#: admin/options.php:1667
+msgid ""
+"Require Approve Revision capabilities (approve_posts, approve_others_pages, "
+"etc.)"
+msgstr "تطلب قدرات موافقة المراجعة (approve_posts، approve_others_pages، إلخ)"
+
+#: admin/options.php:1672
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr "قم بتسمية الزر إما \"الموافقة والنشر\" أو \"الموافقة والجدولة\"."
+
+#: admin/options.php:1681
+msgid "This may improve compatibility with some plugins."
+msgstr "قد يحسن ذلك التوافق مع بعض الإضافات."
+
+#: admin/options.php:1703
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid "If enabled, New Revisions screen access can be configured per-role using %s."
+msgstr ""
+"إذا تم تمكينه، يمكن تكوين الوصول إلى شاشة المراجعات الجديدة حسب الدور "
+"باستخدام %s."
+
+#: admin/options.php:1710
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If enabled, access to Unsubmitted Revisions can be configured per-role "
+"using %s."
+msgstr ""
+"إذا تم تمكينه، يمكن تكوين الوصول إلى المراجعات غير المقدمة حسب الدور "
+"باستخدام %s."
+
+#: admin/options.php:1717
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If a user cannot edit the published post, control their access to others’ "
+"Revisions using %s."
+msgstr ""
+"إذا لم يتمكن المستخدم من تعديل المنشور المنشور، تحكم في وصوله إلى مراجعات "
+"الآخرين باستخدام %s."
+
+#: admin/options.php:1724
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If a user cannot edit the published post, control their ability to list "
+"others’ Revisions using %s."
+msgstr ""
+"إذا لم يتمكن المستخدم من تعديل المنشور المنشور، تحكم في قدرته على إدراج "
+"مراجعات الآخرين باستخدام %s."
+
+#: admin/options.php:1729
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr "تجاوز القيود المذكورة أعلاه لمراجعات الآخرين على منشورات المستخدم المسجل."
+
+#: admin/options.php:1740
+msgid ""
+"If revisions were created for an editable page, include a floating "
+"Revisions button in front end views."
+msgstr ""
+"إذا تم إنشاء مراجعات لصفحة قابلة للتعديل، قم بتضمين زر مراجعات عائم في عرض "
+"الواجهة الأمامية."
+
+#: admin/options.php:1748
+msgid "Regenerate \"post has revision\" flags"
+msgstr "إعادة توليد علامات \"المنشور به مراجعة\""
+
+#: admin/options.php:1751
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"قم بتطبيق هذه العملية الصيانة إذا كانت تسميات \"لديها مراجعة\" على شاشات "
+"المنشورات / الصفحات لا تتطابق مع قائمة المراجعات الجديدة."
+
+#: admin/options.php:1775
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "للحصول على إشعارات معززة، قم بتثبيت %sPublishPress Planner%s."
+
+#: admin/options.php:1788
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "للحصول على إشعارات معززة، قم بتحديث %sPublishPress Planner%s."
+
+#: admin/options.php:1810
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"أرسل إشعارات إجراء المراجعة باستخدام نظام %1$sإشعارات PublishPress Planner "
+"القابل للتخصيص%2$s."
+
+#: admin/options.php:1811
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"ترقية إلى Revisions Pro لإرسال إشعارات إجراء المراجعة باستخدام نظام "
+"%1$sإشعارات PublishPress Planner القابل للتخصيص%2$s."
+
+#: admin/options.php:1825
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"يتم الحصول على إشعارات المراجعة فقط للمستخدمين الذين يتطابقون مع تكوين "
+"Planner > Notifications إذا كان بإمكانهم تعديل المنشور المنشور."
+
+#: admin/options.php:1835
+msgid "Legacy Email Notifications:"
+msgstr "إشعارات البريد الإلكتروني القديمة:"
+
+#: admin/options.php:1868
+#: admin/options.php:1891
+msgid "Never"
+msgstr "أبدًا"
+
+#: admin/options.php:1868
+#: admin/options.php:1891
+msgid "By default"
+msgstr "بشكل افتراضي"
+
+#: admin/options.php:1868
+#: admin/options.php:1891
+msgid "Always"
+msgstr "دائمًا"
+
+#: admin/options.php:1879
+#: admin/options.php:1927
+msgid "select recipients"
+msgstr "حدد المستلمين"
+
+#: admin/options.php:1941
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"لتجنب فشل الإشعارات، قم بتخزين رسائل البريد الإلكتروني للإرسال المؤجل بمجرد "
+"تجاوز حدود الدقيقة أو الساعة أو اليوم"
+
+#: admin/options.php:1964
+msgid "Notification Buffer"
+msgstr "Buffer الإشعارات"
+
+#: admin/options.php:1992
+msgid "Notification Log"
+msgstr "سجل الإشعارات"
+
+#: admin/options.php:2026
+msgid "Purge Notification Buffer"
+msgstr "مسح Buffer الإشعارات"
+
+#: admin/options.php:2037
+msgid "Truncate Notification Log"
+msgstr "تقصير سجل الإشعارات"
+
+#: admin/options.php:2043
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "تم الإرسال في الدقيقة الأخيرة: %d / %d"
+
+#: admin/options.php:2044
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "تم الإرسال في الساعة الأخيرة: %d / %d"
+
+#: admin/options.php:2045
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "تم الإرسال في اليوم الأخير: %d / %d"
+
+#: admin/options.php:2052
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "ثوانٍ حتى وقت معالجة Buffer التالي: %d"
+
+#: admin/options.php:2063
+msgid "Show Notification Log / Buffer"
+msgstr "عرض سجل الإشعارات / Buffer"
+
+#: admin/options.php:2065
+msgid "Show with message content"
+msgstr "عرض مع محتوى الرسالة"
+
+#: admin/options.php:2087
+msgid "Ready to enhance your revision notifications?"
+msgstr "هل أنت مستعد لتعزيز إشعارات المراجعة الخاصة بك؟"
+
+#: admin/options.php:2090
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr "ترقية إلى Revisions Pro للتكامل مع إطار عمل إشعارات PublishPress Planner."
+
+#: admin/options.php:2096
+msgid "Customize notification message and subject"
+msgstr "تخصيص محتوى الرسالة وموضوع الإشعار"
+
+#: admin/options.php:2099
+msgid "Notify for a specific post type, category or term"
+msgstr "إخطار لنوع معين من المنشورات أو الفئة أو المصطلح"
+
+#: admin/options.php:2102
+msgid "Target specific roles, users, or user groups"
+msgstr "استهداف أدوار معينة أو مستخدمين أو مجموعات مستخدمين"
+
+#: admin/options.php:2105
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "مع PublishPress Planner Pro، أرسل إشعارات إلى قناة Slack"
+
+#: admin/options.php:2112
+#: admin/options.php:2142
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "ترقية إلى Revisions Pro"
+
+#: admin/options.php:2118
+msgid "Learn more about advanced revision notifications"
+msgstr "تعرف على المزيد حول إشعارات المراجعة المتقدمة"
+
+#: admin/options.php:2130
+msgid "Revision notifications settings preview"
+msgstr "معاينة إعدادات إشعارات المراجعة"
+
+#: admin/options.php:2134
+#: admin/options.php:2775
+#: admin/options.php:2791
+msgid "Pro Feature"
+msgstr "ميزة Pro"
+
+#: admin/options.php:2135
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr "ترقية إلى Revisions Pro لفتح تكامل إشعارات Planner."
+
+#: admin/options.php:2136
+msgid "Customize notification content and recipients for each notification type."
+msgstr "تخصيص محتوى الإشعار والمستلمين لكل نوع من أنواع الإشعارات."
+
+#: admin/options.php:2138
+msgid "Learn more about custom email notifications"
+msgstr "تعرف على المزيد حول إشعارات البريد الإلكتروني المخصصة"
+
+#: admin/options.php:2161
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"قم بتعطيل هذا الإعداد إذا كانت المقارنة المرئية تظهر تغييراتك بشكل غير "
+"صحيح. بعض منشئي الصفحات والثيمات لا تدعم نمط مراجعات WordPress الجديد."
+
+#: admin/options.php:2166
+msgid "This feature is incompatible with page builder plugins."
+msgstr "هذه الميزة غير متوافقة مع إضافات منشئ الصفحات."
+
+#: admin/options.php:2174
+#. translators: %s: page builder plugin name.
+#, php-format
+msgid "Upgrade to Pro for visual comparison with %s."
+msgstr "ترقية إلى Pro للمقارنة المرئية مع %s."
+
+#: admin/options.php:2185
+msgid ""
+"This supports the page's normal javascript behavior inside the compare "
+"window."
+msgstr "هذا يدعم سلوك الجافا سكريبت العادي للصفحة داخل نافذة المقارنة."
+
+#: admin/options.php:2188
+msgid ""
+"If enabled, Editors and Administrators can see unidentified internal fields "
+"keys in comparisons. An attempt is still made to suppress sensitive and "
+"transient fields."
+msgstr ""
+"إذا تم تمكينه، يمكن للمحررين والمديرين رؤية مفاتيح الحقول الداخلية غير "
+"المحددة في المقارنات. لا يزال يتم محاولة إخفاء الحقول الحساسة والعابرة."
+
+#: admin/options.php:2204
+msgid "Some themes may block revision preview."
+msgstr "بعض الثيمات قد تمنع معاينة المراجعة."
+
+#: admin/options.php:2221
+msgid "Published Post Slug"
+msgstr "Slug المنشور المنشور"
+
+#: admin/options.php:2222
+msgid "Revision Slug"
+msgstr "Slug المراجعة"
+
+#: admin/options.php:2223
+msgid "Revision ID only"
+msgstr "معرف المراجعة فقط"
+
+#: admin/options.php:2238
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"بعض الثيمات أو الإضافات قد تتطلب نوع رابط Slug المراجعة أو معرف المراجعة "
+"لتحميل القالب بشكل صحيح وعرض الحقول."
+
+#: admin/options.php:2247
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr "تم تكوين حجة معاينة المراجعة بواسطة تعريف ثابت: %s"
+
+#: admin/options.php:2254
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"قم بضبط روابط المعاينة لاستخدام حجة \"rv_preview\" بدلاً من \"preview\". "
+"جرب لترى أيها يعمل بشكل أفضل مع ثيمتك."
+
+#: admin/options.php:2258
+msgid "Some themes may require this setting for correct revision preview display."
+msgstr "بعض الثيمات قد تتطلب هذا الإعداد لعرض معاينة المراجعة بشكل صحيح."
+
+#: admin/options.php:2277
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"يجب عادةً تمكين ذلك، باستثناء العمل حول تعارضات مع بيانات postmeta لإضافة "
+"أخرى."
+
+#: admin/options.php:2301
+#, php-format
+msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr "إذا لم يتمكن المستخدم من النشر، تطلب %s لتحرير منشورات الآخرين غير المنشورة."
+
+#: admin/options.php:2307
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to "
+"edit others' unpublished Posts."
+msgstr ""
+"إذا لم يتمكن المستخدم من النشر، تطلب قدرة edit_others_drafts لتحرير منشورات "
+"الآخرين غير المنشورة."
+
+#: admin/options.php:2313
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"إذا كانت أذونات محددة للمنشور تقيد أو توسع الوصول إلى المنشور، يجب تطبيق "
+"تلك الأذونات على مراجعاته أيضًا."
+
+#: admin/options.php:2325
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr "قد يمنع Rank Math SEO تحديث المراجعة في بعض المواقع."
+
+#: admin/options.php:2332
+#: includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML إدارة الترجمة"
+
+#: admin/options.php:2337
+msgid "Sync \"Needs Update\" flags"
+msgstr "مزامنة علامات \"تحتاج إلى تحديث\""
+
+#: admin/options.php:2341
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"تعيين \"تحتاج إلى تحديث\" لأي منشور يحتوي على ترجمات تم تحديثها (ربما من "
+"خلال الموافقة على المراجعة) مؤخرًا أكثر من ترجماته."
+
+#: admin/options.php:2359
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "عرض تسميات وصفية لإعدادات PublishPress Revisions."
+
+#: admin/options.php:2377
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"سيتم حذف إعدادات المكون الإضافي ومحتويات المراجعات الجديدة والبيانات ذات "
+"الصلة، ولكن فقط بعد حذف النسخة الأخيرة من Revisions / Revisions Pro."
+
+#: admin/options.php:2399
+msgid "Unlock Pro Integrations"
+msgstr "فتح تكامل Pro"
+
+#: admin/options.php:2400
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr "ترقية إلى الإصدار Pro للحصول على أفضل توافق ودعم سريع واحترافي."
+
+#: admin/options.php:2413
+msgid "Filter integrations by category"
+msgstr "تصفية التكاملات حسب الفئة"
+
+#: admin/options.php:2418
+#: admin/options.php:2699
+msgid "Builder"
+msgstr "الباني"
+
+#: admin/options.php:2421
+#: admin/options.php:2700
+msgid "Blocks"
+msgstr "الكتل"
+
+#: admin/options.php:2424
+#: admin/options.php:2701
+msgid "Cache"
+msgstr "ذاكرة التخزين المؤقت"
+
+#: admin/options.php:2427
+msgid "E-Commerce"
+msgstr "التجارة الإلكترونية"
+
+#: admin/options.php:2430
+#: admin/options.php:2703
+msgid "Fields"
+msgstr "الحقول"
+
+#: admin/options.php:2433
+#: admin/options.php:2708
+msgid "Themes"
+msgstr "القوالب"
+
+#: admin/options.php:2437
+msgid "Multilingual"
+msgstr "متعدد اللغات"
+
+#: admin/options.php:2441
+#: admin/options.php:2706
+msgid "SEO"
+msgstr "تحسين محركات البحث"
+
+#: admin/options.php:2444
+#: admin/options.php:2709
+msgid "Workflow"
+msgstr "سير العمل"
+
+#: admin/options.php:2546
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"حدد أي إعدادات PublishPress Revisions للتحكم فيها على مستوى الشبكة. يتم "
+"التحكم في الإعدادات غير المحددة بشكل منفصل على كل موقع."
+
+#: admin/options.php:2592
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "التحكم على مستوى الشبكة في \"%s\""
+
+#: admin/options.php:2619
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#: admin/options.php:2620
+msgid "Revert to Defaults"
+msgstr "العودة إلى الإعدادات الافتراضية"
+
+#: admin/options.php:2622
+msgid ""
+"All settings in this form (including those on unselected tabs) will be "
+"reset to DEFAULTS.  Are you sure?"
+msgstr ""
+"سيتم إعادة تعيين جميع الإعدادات في هذا النموذج (بما في ذلك تلك الموجودة في "
+"علامات التبويب غير المحددة) إلى الإعدادات الافتراضية. هل أنت متأكد؟"
+
+#: admin/options.php:2702
+msgid "Commerce"
+msgstr "التجارة"
+
+#: admin/options.php:2704
+msgid "Form"
+msgstr "النموذج"
+
+#: admin/options.php:2705
+msgid "Multilang"
+msgstr "متعدد اللغات"
+
+#: admin/options.php:2707
+msgid "Slider"
+msgstr "شريط التمرير"
+
+#: admin/options.php:2724
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2728
+msgid "Active"
+msgstr "نشط"
+
+#: admin/options.php:2740
+msgid "Supported by PublishPress Revisions"
+msgstr "مدعوم بواسطة PublishPress Revisions"
+
+#: admin/options.php:2742
+msgid "Supported by Revisions Pro"
+msgstr "مدعوم بواسطة Revisions Pro"
+
+#: admin/options.php:2755
+msgid "Integration Config Issue"
+msgstr "مشكلة تكوين التكامل"
+
+#: admin/options.php:2755
+msgid "Integration Active"
+msgstr "تكامل نشط"
+
+#: admin/options.php:2763
+#: admin/options.php:2818
+msgid "Supported plugin integration"
+msgstr "تكامل المكون الإضافي المدعوم"
+
+#: admin/options.php:2776
+msgid ""
+"Unlock PublishPress Statuses Pro integration to enhance your revisions "
+"solution."
+msgstr "فتح تكامل PublishPress Statuses Pro لتعزيز حل المراجعات الخاص بك."
+
+#: admin/options.php:2784
+msgid "Upgrade to Statuses Pro"
+msgstr "ترقية إلى Statuses Pro"
+
+#: admin/options.php:2792
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "فتح تكامل %s لتعزيز حل المراجعات الخاص بك."
+
+#: admin/options.php:2808
+msgid "Active Plugin"
+msgstr "المكون الإضافي النشط"
+
+#: admin/options.php:2808
+msgid "Active Plugin Integration"
+msgstr "تكامل المكون الإضافي النشط"
+
+#: admin/options.php:2828
+msgid "Supported Plugin"
+msgstr "مدعوم مكون إضافي"
+
+#: admin/options.php:2879
+msgid "Color setting"
+msgstr "إعداد اللون"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "الآن"
+
+#: admin/post-edit-block-ui_rvy.php:238
+#: admin/post-edit_rvy.php:403
+msgid "Author saved."
+msgstr "تم حفظ المؤلف."
+
+#: admin/post-edit-block-ui_rvy.php:243
+#: admin/post-edit_rvy.php:408
+msgid "The author could not be saved."
+msgstr "لم يتمكن من حفظ المؤلف."
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(بانتظار الموافقة)"
+
+#: admin/post-editor-workflow-ui_rvy.php:36
+msgid ""
+"The revision could not be updated. Resolve any save or validation errors "
+"and try again."
+msgstr ""
+"لم يكن بالإمكان تحديث المراجعة. قم بحل أي أخطاء في الحفظ أو التحقق وحاول "
+"مرة أخرى."
+
+#: admin/post-editor-workflow-ui_rvy.php:71
+msgid "View / Publish"
+msgstr "عرض / نشر"
+
+#: admin/post-editor-workflow-ui_rvy.php:71
+msgid "View / Approve"
+msgstr "عرض / موافقة"
+
+#: admin/post-editor-workflow-ui_rvy.php:74
+msgid "View / Moderate saved revision"
+msgstr "عرض / إدارة المراجعة المحفوظة"
+
+#: admin/post-editor-workflow-ui_rvy.php:76
+msgid "Preview / Submit"
+msgstr "معاينة / إرسال"
+
+#: admin/post-editor-workflow-ui_rvy.php:76
+msgid "View / Submit"
+msgstr "عرض / إرسال"
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+msgid "View / Submit saved revision"
+msgstr "عرض / إرسال المراجعة المحفوظة"
+
+#: admin/post-editor-workflow-ui_rvy.php:86
+msgid "View unsaved changes"
+msgstr "عرض التغييرات غير المحفوظة"
+
+#: admin/post-editor-workflow-ui_rvy.php:90
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s تحرير المراجعة|%s%s تحريرات المراجعة"
+
+#: admin/post-editor-workflow-ui_rvy.php:101
+msgid "Revision Submission Error"
+msgstr "خطأ في تقديم المراجعة"
+
+#: admin/post-editor-workflow-ui_rvy.php:110
+msgid "Preview this Revision"
+msgstr "معاينة هذه المراجعة"
+
+#: admin/post-editor-workflow-ui_rvy.php:124
+msgid "Approve and Publish"
+msgstr "موافقة ونشر"
+
+#: admin/post-editor-workflow-ui_rvy.php:129
+#: rvy_init-functions.php:285
+#: rvy_init-functions.php:304
+#: rvy_init-functions.php:341
+#: rvy_init-functions.php:358
+msgid "Update in progress..."
+msgstr "التحديث جارٍ..."
+
+#: admin/post-editor-workflow-ui_rvy.php:133
+msgid "Approve and Schedule"
+msgstr "موافقة وجدولة"
+
+#: admin/post-editor-workflow-ui_rvy.php:165
+msgid "Decline Revision"
+msgstr "رفض المراجعة"
+
+#: admin/post-editor-workflow-ui_rvy.php:169
+#: rvy_init-functions.php:274
+#: rvy_init-functions.php:292
+#: rvy_init-functions.php:310
+#: rvy_init-functions.php:330
+#: rvy_init-functions.php:347
+#: rvy_init-functions.php:364
+#: rvy_init-functions.php:477
+msgid "Update Revision"
+msgstr "تحديث المراجعة"
+
+#: admin/post-editor-workflow-ui_rvy.php:235
+#, php-format
+msgid "Update post before creating %s."
+msgstr "قم بتحديث المنشور قبل إنشاء %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:242
+msgid "Error Creating Revision"
+msgstr "خطأ في إنشاء المراجعة"
+
+#: admin/post-editor-workflow-ui_rvy.php:244
+#: admin/post-editor-workflow-ui_rvy.php:264
+msgid "Update"
+msgstr "تحديث"
+
+#: admin/post-editor-workflow-ui_rvy.php:258
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "لإجراء تغييرات على الحقل المخصص، قم بتحرير %s المجدول."
+
+#: admin/post-editor-workflow-ui_rvy.php:296
+msgid "The revision could not be verified as saved."
+msgstr "لم تكن المراجعة قابلة للتحقق كالمحفوظة."
+
+#: admin/post-edit_rvy.php:31
+#: admin/post-edit_rvy.php:175
+msgid "Current Time"
+msgstr "الوقت الحالي"
+
+#: admin/post-edit_rvy.php:84
+#: admin/post-edit_rvy.php:124
+msgid "Delete revision"
+msgstr "حذف المراجعة"
+
+#: admin/post-edit_rvy.php:123
+msgid ""
+"Delete this revision and leave the editor? Any unsaved changes to this "
+"revision will be discarded."
+msgstr ""
+"هل تريد حذف هذه المراجعة وترك المحرر؟ سيتم تجاهل أي تغييرات غير محفوظة لهذه "
+"المراجعة."
+
+#: admin/post-edit_rvy.php:125
+msgid "Continue editing revision"
+msgstr "متابعة تحرير المراجعة"
+
+#: admin/post-edit_rvy.php:202
+msgid "View revision in progress"
+msgstr "عرض المراجعة قيد التقدم"
+
+#: admin/post-edit_rvy.php:226
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "مقارنة هذه المراجعة بنسخة منشورة، أو بمراجعات أخرى"
+
+#: admin/post-edit_rvy.php:258
+msgid "View Saved Revision"
+msgstr "عرض المراجعة المحفوظة"
+
+#: admin/post-edit_rvy.php:261
+msgid "View / moderate saved revision"
+msgstr "عرض / إدارة المراجعة المحفوظة"
+
+#: admin/post-edit_rvy.php:264
+msgid "View saved revision"
+msgstr "عرض المراجعة المحفوظة"
+
+#: admin/restrict-editor-features.php:117
+msgid "Status & visibility"
+msgstr "الحالة & الرؤية"
+
+#: admin/restrict-editor-features.php:124
+msgid "Permalink"
+msgstr "رابط دائم"
+
+#: admin/restrict-editor-features.php:153
+msgid "Featured image"
+msgstr "صورة مميزة"
+
+#: admin/revision-action_rvy.php:568
+#: admin/revision-action_rvy.php:654
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] إشعار موافقة المراجعة"
+
+#: admin/revision-action_rvy.php:569
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "تمت الموافقة على مراجعة لـ %1$s \"%2$s\"."
+
+#: admin/revision-action_rvy.php:573
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "كان المرسل %1$s."
+
+#: admin/revision-action_rvy.php:577
+#: admin/revision-action_rvy.php:663
+#, php-format
+msgid "It will be published on %s"
+msgstr "سيتم نشره في %s"
+
+#: admin/revision-action_rvy.php:581
+#: admin/revision-action_rvy.php:667
+msgid "Preview it here: "
+msgstr "عرضه هنا: "
+
+#: admin/revision-action_rvy.php:584
+#: admin/revision-action_rvy.php:670
+msgid "Editor: "
+msgstr "المحرر: "
+
+#: admin/revision-action_rvy.php:586
+#: admin/revision-action_rvy.php:672
+#: admin/revision-action_rvy.php:1718
+#: admin/revision-action_rvy.php:1749
+#: admin/revision-action_rvy.php:1815
+msgid "View it online: "
+msgstr "عرضه على الإنترنت: "
+
+#: admin/revision-action_rvy.php:655
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "تمت الموافقة على المراجعة التي قدمتها لـ %1$s \"%2$s\"."
+
+#: admin/revision-action_rvy.php:1054
+msgid "The revision could not be published."
+msgstr "لم يمكن نشر المراجعة."
+
+#: admin/revision-action_rvy.php:1710
+#: admin/revision-action_rvy.php:1738
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] إشعار نشر %s"
+
+#: admin/revision-action_rvy.php:1711
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr "تم نشر المراجعة المجدولة التي قدمتها لـ %1$s \"%2$s\"."
+
+#: admin/revision-action_rvy.php:1739
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "تم نشر مراجعة مجدولة لـ %1$s \"%2$s\"."
+
+#: admin/revision-action_rvy.php:1746
+#: admin/revision-action_rvy.php:1812
+#, php-format
+msgid "It was submitted by %1$s."
+msgstr "تم تقديمها بواسطة %1$s."
+
+#: admin/revision-action_rvy.php:1803
+#, php-format
+msgid "[%s] %s Publication"
+msgstr "[%s] نشر %s"
+
+#: admin/revision-action_rvy.php:1805
+#, php-format
+msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
+msgstr "تم نشر مراجعة مجدولة لـ %1$s \"%2$s\"."
+
+#: admin/revision-archive_rvy.php:15
+msgid "Revision for:"
+msgstr "مراجعة لـ:"
+
+#: admin/revision-archive_rvy.php:48
+#: admin/revision-queue_rvy.php:98
+#, php-format
+msgid "%s revision permanently deleted."
+msgid_plural "%s revisions permanently deleted."
+msgstr[0] "تم حذف %s مراجعة بشكل دائم.|"
+msgstr[1] "تم حذف %s مراجعات بشكل دائم."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: admin/revision-archive_rvy.php:78
+#: admin/revision-queue_rvy.php:217
+msgid "Undo"
+msgstr "تراجع"
+
+#: admin/revision-archive_rvy.php:110
+#: admin/revision-queue_rvy.php:325
+msgid "Search Revisions"
+msgstr "بحث عن المراجعات"
+
+#: admin/revision-archive_rvy.php:133
+msgid "About Past Revisions"
+msgstr "حول المراجعات السابقة"
+
+#: admin/revision-archive_rvy.php:135
+msgid ""
+"Every time you edit a post or page, WordPress can save a backup copy for "
+"you, so you'll always have a history of your changes."
+msgstr ""
+"في كل مرة تقوم فيها بتحرير منشور أو صفحة، يمكن لـ WordPress حفظ نسخة "
+"احتياطية لك، لذا سيكون لديك دائمًا تاريخ لتغييراتك."
+
+#: admin/revision-archive_rvy.php:139
+#, php-format
+msgid "Visit %s to adjust which post types keep Past Revisions."
+msgstr "قم بزيارة %s لتعديل أنواع المنشورات التي تحتفظ بالمراجعات السابقة."
+
+#: admin/revision-archive_rvy.php:140
+msgid "Revisions > Settings"
+msgstr "المراجعات > الإعدادات"
+
+#: admin/revision-archive_rvy.php:147
+#, php-format
+msgid "Revisions Pro is %s in Past Revisions."
+msgstr "Revisions Pro هو %s في المراجعات السابقة."
+
+#: admin/revision-archive_rvy.php:148
+msgid "configured to save custom fields"
+msgstr "مُعد لحفظ الحقول المخصصة"
+
+#: admin/revision-archive_rvy.php:152
+#, php-format
+msgid "To save custom fields in Past Revisions, see %s."
+msgstr "لحفظ الحقول المخصصة في المراجعات السابقة، راجع %s."
+
+#: admin/revision-archive_rvy.php:153
+msgid "Revisions > Settings > Past Revisions"
+msgstr "المراجعات > الإعدادات > المراجعات السابقة"
+
+#: admin/revision-archive_rvy.php:157
+msgid ""
+"PublishPress Revisions Pro can also save your custom fields in Past "
+"Revisions, so nothing gets left behind."
+msgstr ""
+"يمكن لـ PublishPress Revisions Pro أيضًا حفظ الحقول المخصصة الخاصة بك في "
+"المراجعات السابقة، حتى لا يتم ترك أي شيء خلفك."
+
+#: admin/revision-queue_rvy.php:13
+#: admin/revision-queue_rvy.php:25
+msgid "You are not allowed to manage revisions."
+msgstr "لا يُسمح لك بإدارة المراجعات."
+
+#: admin/revision-queue_rvy.php:17
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s و %s كلاهما معطّلان. راجع المراجعات > الإعدادات."
+
+#: admin/revision-queue_rvy.php:93
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "تم تقديم %s مراجعة.|"
+msgstr[1] "تم تقديم %s مراجعات."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: admin/revision-queue_rvy.php:94
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "تم رفض %s مراجعة.|"
+msgstr[1] "تم رفض %s مراجعات."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: admin/revision-queue_rvy.php:95
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "تمت الموافقة على %s مراجعة.|"
+msgstr[1] "تمت الموافقة على %s مراجعات."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: admin/revision-queue_rvy.php:96
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "تم إلغاء جدولة %s مراجعة.|"
+msgstr[1] "تم إلغاء جدولة %s مراجعات."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: admin/revision-queue_rvy.php:97
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "تم نشر %s مراجعة.|"
+msgstr[1] "تم نشر %s مراجعات."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: admin/revision-queue_rvy.php:167
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (كاتب المنشور: %s)"
+
+#: admin/revision-queue_rvy.php:178
+#, php-format
+msgid "New Revisions %s"
+msgstr "مراجعات جديدة %s"
+
+#: admin/revision-queue_rvy.php:346
+msgid "About Scheduled Revisions"
+msgstr "حول المراجعات المجدولة"
+
+#: admin/revision-queue_rvy.php:348
+msgid ""
+"The Scheduled Revisions feature allows you to choose a date and time to "
+"publish content updates."
+msgstr "تتيح لك ميزة المراجعات المجدولة اختيار تاريخ ووقت لنشر تحديثات المحتوى."
+
+#: admin/revision-queue_rvy.php:350
+#: admin/revision-queue_rvy.php:364
+msgid "Click \"Create Revision\"."
+msgstr "انقر على \"إنشاء مراجعة\"."
+
+#: admin/revision-queue_rvy.php:351
+#: admin/revision-queue_rvy.php:365
+msgid "Make your changes to the post."
+msgstr "قم بإجراء تغييراتك على المنشور."
+
+#: admin/revision-queue_rvy.php:352
+msgid "Select a publishing date in the future."
+msgstr "حدد تاريخ النشر في المستقبل."
+
+#: admin/revision-queue_rvy.php:353
+msgid "Click the \"Schedule Revision\" button."
+msgstr "انقر على زر \"جدولة المراجعة\"."
+
+#: admin/revision-queue_rvy.php:360
+msgid "About New Revisions"
+msgstr "حول المراجعات الجديدة"
+
+#: admin/revision-queue_rvy.php:362
+msgid "The New Revisions feature gives you a safe space to work on content updates."
+msgstr "تتيح لك ميزة المراجعات الجديدة مساحة آمنة للعمل على تحديثات المحتوى."
+
+#: admin/revision-queue_rvy.php:366
+msgid "Save your revision."
+msgstr "احفظ مراجعتك."
+
+#: admin/revision-queue_rvy.php:367
+msgid ""
+"When you're happy with it, click \"Submit Revision\". You can then share "
+"the revision with other users, or publish the update."
+msgstr ""
+"عندما تكون سعيدًا بها، انقر على \"إرسال المراجعة\". يمكنك بعد ذلك مشاركة "
+"المراجعة مع مستخدمين آخرين، أو نشر التحديث."
+
+#: admin/revision-ui_rvy.php:49
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "سيتم إخطار الناشرين (لكن لا يمكن اختيارهم هنا)."
+
+#: admin/revision-ui_rvy.php:51
+msgid "No email notifications will be sent."
+msgstr "لن يتم إرسال إشعارات عبر البريد الإلكتروني."
+
+#: admin/revision-ui_rvy.php:103
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (الحالي)"
+
+#: admin/revision-ui_rvy.php:107
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (حفظ تلقائي)"
+
+#: admin/revision-ui_rvy.php:118
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(تاريخ النشر: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:120
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(الطلب للنشر: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:125
+#, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: admin/revision-ui_rvy.php:279
+#, php-format
+msgid "Preview &#8220;%s&#8221;"
+msgstr "معاينة &#8220;%s&#8221;"
+
+#: admin/revision-ui_rvy.php:295
+msgid "The revision will be deleted. Are you sure?"
+msgstr "سيتم حذف المراجعة. هل أنت متأكد؟"
+
+#: admin/revision-ui_rvy.php:332
+msgid "Select revision for deletion"
+msgstr "اختر مراجعة للحذف"
+
+#: admin/revision-ui_rvy.php:388
+msgid "Modified Date"
+msgstr "تاريخ التعديل"
+
+#: admin/revision-ui_rvy.php:392
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: admin/revision-ui_rvy.php:410
+msgid "Bulk Actions"
+msgstr "الإجراءات الجماعية"
+
+#: admin/RevisionEditSubmitMetabox.php:64
+msgid "Move to Trash"
+msgstr "نقل إلى سلة المهملات"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "معاينة المراجعة قيد التقدم"
+
+#: admin/RevisionEditSubmitMetabox.php:147
+msgid "Status:"
+msgstr "الحالة:"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "نشر %son approval%s"
+
+#: admin/revisions.php:21
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>ملاحظة:</strong> لعرض مرئي للمراجعات، أضف الكود التالي إلى "
+"foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:62
+msgid "Revision of this post is not allowed."
+msgstr "غير مسموح بمراجعة هذه المشاركة."
+
+#: admin/revisions.php:65
+msgid "No revision specified."
+msgstr "لم يتم تحديد أي مراجعة."
+
+#: admin/revisions.php:73
+msgid "Past"
+msgstr "ماضي"
+
+#: admin/revisions.php:74
+msgid "Pending"
+msgstr "معلق"
+
+#: admin/revisions.php:136
+#, php-format
+msgid "Revisions of %s"
+msgstr "المراجعات لـ %s"
+
+#: admin/revisions.php:166
+msgid "The requested revision does not exist."
+msgstr "المراجعة المطلوبة غير موجودة."
+
+#: admin/revisions.php:255
+#, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:276
+#, php-format
+msgid "no %s revisions available."
+msgstr "لا توجد مراجعات %s متاحة."
+
+#: builder-schema_rvy.php:7
+msgid ""
+"Page Builder integration requires Revisions Pro to be set to standard "
+"storage schema."
+msgstr "يتطلب تكامل منشئ الصفحة أن يتم تعيين Revisions Pro إلى مخطط تخزين قياسي."
+
+#: builder-schema_rvy.php:10
+#, php-format
+msgid "Page Builder integration requires Revisions Pro to be set to %s."
+msgstr "يتطلب تكامل منشئ الصفحة أن يتم تعيين Revisions Pro إلى %s."
+
+#: builder-schema_rvy.php:12
+msgid "standard storage schema"
+msgstr "مخطط تخزين قياسي"
+
+#: classes/PublishPress/IntegrationCards.php:59
+#: classes/PublishPress/IntegrationCards.php:62
+#: classes/PublishPress/IntegrationCards.php:65
+#: classes/PublishPress/IntegrationCards.php:471
+#: classes/PublishPress/Revisionary.php:249
+#: classes/PublishPress/Revisionary.php:279
+msgid "Revise custom fields and display changes"
+msgstr "راجع الحقول المخصصة وعرض التغييرات"
+
+#: classes/PublishPress/IntegrationCards.php:140
+msgid "Integration with Divi 4/5 editor and blocks"
+msgstr "التكامل مع محرر Divi 4/5 والكتل"
+
+#: classes/PublishPress/IntegrationCards.php:142
+#, php-format
+msgid "Integration with %s's editor and blocks."
+msgstr "التكامل مع محرر %s والكتل."
+
+#: classes/PublishPress/IntegrationCards.php:158
+msgid "PublishPress Statuses"
+msgstr "حالات PublishPress"
+
+#: classes/PublishPress/IntegrationCards.php:159
+msgid "PublishPress Statuses Pro integration."
+msgstr "تكامل حالات PublishPress Pro."
+
+#: classes/PublishPress/IntegrationCards.php:163
+msgid "Define custom statuses for revisions"
+msgstr "حدد حالات مخصصة للمراجعات"
+
+#: classes/PublishPress/IntegrationCards.php:164
+msgid "Control editing access for each revision status"
+msgstr "تحكم في وصول التحرير لكل حالة مراجعة"
+
+#: classes/PublishPress/IntegrationCards.php:293
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:385
+#: classes/PublishPress/IntegrationCards.php:388
+#: classes/PublishPress/IntegrationCards.php:390
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:144
+#: classes/PublishPress/Revisionary.php:160
+#: classes/PublishPress/Revisionary.php:176
+#: classes/PublishPress/Revisionary.php:203
+msgid "Revise and compare custom fields"
+msgstr "راجع وقارن الحقول المخصصة"
+
+#: classes/PublishPress/IntegrationCards.php:294
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:204
+msgid "Display custom field changes"
+msgstr "عرض تغييرات الحقول المخصصة"
+
+#: classes/PublishPress/IntegrationCards.php:295
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:205
+msgid "Update custom fields on revision publication"
+msgstr "تحديث الحقول المخصصة عند نشر المراجعة"
+
+#: classes/PublishPress/IntegrationCards.php:308
+#, php-format
+msgid "Compatibility with %s theme custom fields."
+msgstr "التوافق مع حقول المظهر %s المخصصة."
+
+#: classes/PublishPress/IntegrationCards.php:309
+#, php-format
+msgid "Compatibility with %s custom fields."
+msgstr "التوافق مع حقول %s المخصصة."
+
+#: classes/PublishPress/IntegrationCards.php:336
+#, php-format
+msgid "Compatibility with %s."
+msgstr "التوافق مع %s."
+
+#: classes/PublishPress/IntegrationCards.php:337
+#, php-format
+msgid "Compatibility with %s cache."
+msgstr "التوافق مع ذاكرة التخزين المؤقت %s."
+
+#: classes/PublishPress/IntegrationCards.php:347
+#: classes/PublishPress/Revisionary.php:189
+msgid "Clear cache on revision publication"
+msgstr "مسح الذاكرة المؤقتة عند نشر المراجعة"
+
+#: classes/PublishPress/IntegrationCards.php:348
+#: classes/PublishPress/Revisionary.php:190
+msgid "Support immediate and scheduled publication"
+msgstr "دعم النشر الفوري والمجدول"
+
+#: classes/PublishPress/IntegrationCards.php:366
+msgid "Avada Builder"
+msgstr "Avada Builder"
+
+#: classes/PublishPress/IntegrationCards.php:367
+msgid "WPBakery Page Builder"
+msgstr "WPBakery Page Builder"
+
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:416
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:173
+msgid "Frontend revision editing, submission"
+msgstr "تحرير المراجعات في الواجهة الأمامية، التقديم"
+
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:379
+#: classes/PublishPress/IntegrationCards.php:417
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:174
+msgid "Visually compare changes"
+msgstr "مقارنة التغييرات بصريًا"
+
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:418
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:159
+#: classes/PublishPress/Revisionary.php:175
+msgid "Revision preview with builder styling"
+msgstr "معاينة المراجعة مع تنسيق الباني"
+
+#: classes/PublishPress/IntegrationCards.php:368
+msgid "SiteOrigin Page Builder"
+msgstr "SiteOrigin Page Builder"
+
+#: classes/PublishPress/IntegrationCards.php:369
+msgid "SeedProd"
+msgstr "SeedProd"
+
+#: classes/PublishPress/IntegrationCards.php:370
+msgid "Breakdance"
+msgstr "Breakdance"
+
+#: classes/PublishPress/IntegrationCards.php:371
+msgid "Bricks"
+msgstr "Bricks"
+
+#: classes/PublishPress/IntegrationCards.php:378
+msgid "Submit revisions to blocks"
+msgstr "تقديم المراجعات إلى الكتل"
+
+#: classes/PublishPress/IntegrationCards.php:380
+msgid "Revision preview with block styling"
+msgstr "معاينة المراجعة مع تنسيق الكتل"
+
+#: classes/PublishPress/IntegrationCards.php:384
+msgid "Kadence Blocks"
+msgstr "Kadence Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:385
+msgid "Spectra Legacy"
+msgstr "Spectra Legacy"
+
+#: classes/PublishPress/IntegrationCards.php:386
+msgid "Otter Blocks"
+msgstr "Otter Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:387
+msgid "Essential Blocks"
+msgstr "Essential Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:388
+msgid "Stackable"
+msgstr "Stackable"
+
+#: classes/PublishPress/IntegrationCards.php:389
+msgid "Ultimate Blocks"
+msgstr "Ultimate Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:390
+msgid "PublishPress Blocks"
+msgstr "PublishPress Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:411
+#, php-format
+msgid "Integration with %s."
+msgstr "التكامل مع %s."
+
+#: classes/PublishPress/IntegrationCards.php:431
+msgid "LiteSpeed Cache"
+msgstr "LiteSpeed Cache"
+
+#: classes/PublishPress/IntegrationCards.php:432
+msgid "WP Fastest Cache"
+msgstr "WP Fastest Cache"
+
+#: classes/PublishPress/IntegrationCards.php:433
+msgid "WP Super Cache"
+msgstr "WP Super Cache"
+
+#: classes/PublishPress/IntegrationCards.php:434
+msgid "WP-Optimize"
+msgstr "WP-Optimize"
+
+#: classes/PublishPress/IntegrationCards.php:435
+msgid "W3 Total Cache"
+msgstr "W3 Total Cache"
+
+#: classes/PublishPress/IntegrationCards.php:436
+msgid "Breeze"
+msgstr "Breeze"
+
+#: classes/PublishPress/IntegrationCards.php:437
+msgid "SpeedyCache"
+msgstr "SpeedyCache"
+
+#: classes/PublishPress/IntegrationCards.php:462
+msgid "PublishPress Cart"
+msgstr "PublishPress Cart"
+
+#: classes/PublishPress/IntegrationCards.php:467
+#: classes/PublishPress/Revisionary.php:242
+msgid "Revision submission and approval for products."
+msgstr "تقديم وموافقة المراجعات للمنتجات."
+
+#: classes/PublishPress/IntegrationCards.php:469
+#: classes/PublishPress/Revisionary.php:246
+msgid "Product revisions"
+msgstr "مراجعات المنتجات"
+
+#: classes/PublishPress/IntegrationCards.php:470
+#: classes/PublishPress/Revisionary.php:248
+msgid "Priority on ongoing compatibility"
+msgstr "الأولوية في التوافق المستمر"
+
+#: classes/PublishPress/Revisionary.php:107
+#: includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "التوافق مع حقول ACF المخصصة."
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "دعم نموذج بيانات ACFE."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "دعم نوع بيانات single_meta الخاص بـ ACFE"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "تصحيح عرض الحقل في شاشة المقارنة"
+
+#: classes/PublishPress/Revisionary.php:136
+#: includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "التكامل مع محرر الواجهة الأمامية لـ Beaver Builder."
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:153
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "التكامل مع Divi Builder وDivi Theme."
+
+#: classes/PublishPress/Revisionary.php:168
+#: includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:169
+msgid "Integration with Elementor's front end editor."
+msgstr "التكامل مع محرر الواجهة الأمامية لـ Elementor."
+
+#: classes/PublishPress/Revisionary.php:184
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:185
+msgid "Compatibility with Nitro Pack cache."
+msgstr "التوافق مع ذاكرة التخزين المؤقت Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:198
+#: includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:199
+msgid "Compatibility with Pods custom fields."
+msgstr "التوافق مع حقول Pods المخصصة."
+
+#: classes/PublishPress/Revisionary.php:213
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:214
+msgid "Compatibility with Polylang translation."
+msgstr "التوافق مع ترجمة Polylang."
+
+#: classes/PublishPress/Revisionary.php:218
+msgid "Revisions carry over Polylang data"
+msgstr "تقوم التعديلات بنقل بيانات Polylang"
+
+#: classes/PublishPress/Revisionary.php:219
+msgid "Translation retained on Revision approval"
+msgstr "تُحتفظ الترجمة عند الموافقة على التعديل"
+
+#: classes/PublishPress/Revisionary.php:227
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:228
+msgid "PublishPress Planner Integration."
+msgstr "تكامل PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:232
+msgid "Planner Notifications for revision actions"
+msgstr "إشعارات المنظم لإجراءات التعديل"
+
+#: classes/PublishPress/Revisionary.php:233
+msgid "Revision schedule shown in Calendar"
+msgstr "جدول التعديلات المعروض في التقويم"
+
+#: classes/PublishPress/Revisionary.php:241
+#: includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:247
+msgid "Compatible with Product Variations"
+msgstr "متوافق مع Variations المنتجات"
+
+#: classes/PublishPress/Revisionary.php:257
+#: includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Multilingual revisioning with WPML."
+msgstr "تعدد اللغات في التعديلات مع WPML."
+
+#: classes/PublishPress/Revisionary.php:262
+msgid "Language-specific revisions"
+msgstr "تعديلات خاصة باللغة"
+
+#: classes/PublishPress/Revisionary.php:263
+msgid "Translation Management integration"
+msgstr "تكامل إدارة الترجمة"
+
+#: classes/PublishPress/Revisionary.php:271
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:276
+msgid "Prevent indexing of revisions"
+msgstr "منع فهرسة التعديلات"
+
+#: classes/PublishPress/Revisionary.php:277
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "التوافق لـ Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:278
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "مقارنة التعديلات مع حقول Yoast SEO"
+
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+msgid ""
+"PublishPress Revisions could not create the required Action Scheduler "
+"database tables. Check the database error log and the database user's "
+"CREATE and ALTER permissions."
+msgstr ""
+"لم تتمكن تعديلات PublishPress من إنشاء الجداول المطلوبة في قاعدة بيانات "
+"Action Scheduler. تحقق من سجل أخطاء قاعدة البيانات وأذونات CREATE وALTER "
+"لمستخدم قاعدة البيانات."
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "حالة التعديل"
+
+#: front-notice.php:179
+#, php-format
+msgid "This %s has new revisions. Click the button below to review them."
+msgstr "هذا %s لديه تعديلات جديدة. انقر على الزر أدناه لمراجعتها."
+
+#: front-notice.php:188
+msgid "Dismiss notice"
+msgstr "رفض الإشعار"
+
+#: front_rvy.php:534
+#, php-format
+msgid "%sManage%s"
+msgstr "%sإدارة%s"
+
+#: front_rvy.php:545
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sمقارنة%s%sعرض المنشور المنشور%s"
+
+#: front_rvy.php:557
+#: front_rvy.php:572
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sعرض المنشور المنشور%s"
+
+#: front_rvy.php:668
+#: front_rvy.php:674
+#: front_rvy.php:730
+#: front_rvy.php:736
+#, php-format
+msgid "This Revision is Submitted for Approval. %s %s %s"
+msgstr "تم تقديم هذه المراجعة للموافقة. %s %s %s"
+
+#: front_rvy.php:670
+#: front_rvy.php:676
+#: front_rvy.php:732
+#: front_rvy.php:738
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "هذا هو %s. %s %s %s"
+
+#: front_rvy.php:679
+#: front_rvy.php:741
+#, php-format
+msgid "%s."
+msgstr "%s."
+
+#: front_rvy.php:708
+#: front_rvy.php:710
+#: front_rvy.php:763
+#: front_rvy.php:765
+#, php-format
+msgid "This is a %s (for %s). %s %s %s"
+msgstr "هذا هو %s (لـ %s). %s %s %s"
+
+#: front_rvy.php:712
+#: front_rvy.php:767
+#, php-format
+msgid "%1$s (for %2$s)."
+msgstr "%1$s (لـ %2$s)."
+
+#: front_rvy.php:715
+#: front_rvy.php:717
+#, php-format
+msgid "Revision status: %s (for %s) %s %s %s"
+msgstr "حالة المراجعة: %s (لـ %s) %s %s %s"
+
+#: front_rvy.php:719
+#, php-format
+msgid "Revision status: %1$s (for %2$s)"
+msgstr "حالة المراجعة: %1$s (لـ %2$s)"
+
+#: front_rvy.php:744
+#: front_rvy.php:746
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "حالة المراجعة: %s %s %s %s"
+
+#: front_rvy.php:748
+#, php-format
+msgid "Revision status: %s"
+msgstr "حالة المراجعة: %s"
+
+#: front_rvy.php:760
+#: rvy_init-functions.php:447
+msgid "Publish Now"
+msgstr "انشر الآن"
+
+#: front_rvy.php:784
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "تمت الموافقة على المراجعة وهي الآن حية على الموقع. %s"
+
+#: front_rvy.php:785
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "هذه هي المراجعة الحالية. %s"
+
+#: front_rvy.php:793
+msgid "Revision approved and live."
+msgstr "تمت الموافقة على المراجعة وهي حية."
+
+#: front_rvy.php:794
+msgid "Current Revision."
+msgstr "المراجعة الحالية."
+
+#: front_rvy.php:805
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:348
+#: visual-compare_rvy.php:101
+msgid "Restore"
+msgstr "استعادة"
+
+#: front_rvy.php:809
+#: front_rvy.php:811
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "هذه هي مراجعة سابقة (من %s). %s %s"
+
+#: front_rvy.php:813
+#, php-format
+msgid "Past Revision (from %s)."
+msgstr "مراجعة سابقة (من %s)."
+
+#: front_rvy.php:825
+msgid "More revision actions"
+msgstr "المزيد من إجراءات المراجعة"
+
+#: functions.php:569
+msgid "Scheduled Rev."
+msgstr "مراجعة مجدولة."
+
+#: functions.php:574
+#: functions.php:579
+msgid "Submitted Rev."
+msgstr "مراجعة مقدمة."
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"أنت تستخدم PublishPress Revisions Free. تحتوي النسخة Pro على ميزات ودعم "
+"إضافي. %sترقية إلى Pro%s"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"ترقية إلى PublishPress Revisions Pro من أجل التكامل مع الميزات الرئيسية "
+"لهذه المكونات الإضافية:"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: إشعارات مخصصة"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "تفاصيل تكامل المكون الإضافي"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "هل تحتاج إلى دعم المراجعات؟"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr "إذا كنت بحاجة إلى مساعدة أو لديك طلب ميزة جديدة، يرجى إبلاغنا."
+
+#: includes/CoreAdmin.php:225
+msgid "Request support for PublishPress Revisions"
+msgstr "طلب دعم لـ PublishPress Revisions"
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "طلب دعم"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "التوثيق التفصيلي متاح أيضًا على موقع المكون الإضافي."
+
+#: includes/CoreAdmin.php:236
+msgid "View PublishPress Revisions knowledge base"
+msgstr "عرض قاعدة المعرفة لـ PublishPress Revisions"
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "عرض قاعدة المعرفة"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
+msgid "Modified: "
+msgstr "تم التعديل: "
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
+#: includes/visual-post-compare/visual-post-compare.php:135
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3135
+msgid "Post Date: "
+msgstr "تاريخ المنشور: "
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:210
+#, php-format
+msgid "Author: %s"
+msgstr "المؤلف: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:211
+#, php-format
+msgid "Status: %s"
+msgstr "الحالة: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
+#, php-format
+msgid "Action: %s"
+msgstr "الإجراء: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:213
+msgid "Current"
+msgstr "الحالية"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
+#. translators: %s: revision approver display name.
+#, php-format
+msgid "(approved by %s)"
+msgstr "(تمت الموافقة من قبل %s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#. translators: %s: direct editor display name.
+#, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
+msgid "Comparison legend"
+msgstr "أسطورة المقارنة"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
+msgid "Added"
+msgstr "تمت الإضافة"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
+msgid "Removed"
+msgstr "تمت الإزالة"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
+msgid "Modified"
+msgstr "تم التعديل"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
+msgid "Loading comparison..."
+msgstr "جارٍ تحميل المقارنة..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
+msgid "The target post content has been replaced with the approved content."
+msgstr "تم استبدال محتوى المنشور المستهدف بالمحتوى المعتمد."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3473
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3473
+msgid "Classic compare screen"
+msgstr "شاشة المقارنة الكلاسيكية"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:226
+msgid "Visual comparison settings"
+msgstr "إعدادات المقارنة المرئية"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:314
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:315
+msgid "Past Revision"
+msgstr "الإصدار السابق"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:349
+msgid "Restoring"
+msgstr "جارٍ الاستعادة"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:381
+msgid "Published by Scheduled Revision"
+msgstr "تم النشر بواسطة الإصدار المجدول"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:383
+msgid "Published by Revision"
+msgstr "تم النشر بواسطة الإصدار"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:409
+msgid "Published by Direct Edit"
+msgstr "تم النشر بواسطة التحرير المباشر"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
+msgid "Publishing"
+msgstr "جارٍ النشر"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
+msgid "Approving"
+msgstr "جارٍ الموافقة"
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
+msgid "You are not allowed to view the revisions."
+msgstr "لا يُسمح لك بمشاهدة الإصدارات."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:88
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare.php:258
+msgid "You are not allowed to view the revision."
+msgstr "لا يُسمح لك بمشاهدة الإصدار."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:107
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:181
+#: includes/visual-post-compare/visual-post-compare.php:53
+#: includes/visual-post-compare/visual-post-compare.php:239
+msgid "Invalid revision ID."
+msgstr "معرف الإصدار غير صالح."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:131
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:142
+msgid "You are not allowed to approve the revision."
+msgstr "لا يُسمح لك بالموافقة على الإصدار."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:162
+msgid "The revision could not be approved."
+msgstr "لم يكن بالإمكان الموافقة على الإصدار."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:174
+msgid "The revision has been approved and scheduled for publication."
+msgstr "تمت الموافقة على الإصدار وتم جدولته للنشر."
+
+#: includes/visual-post-compare/visual-post-compare.php:252
+#: includes/visual-post-compare/visual-post-compare.php:258
+#: includes/visual-post-compare/visual-post-compare.php:263
+#: includes/visual-post-compare/visual-post-compare.php:271
+#: includes/visual-post-compare/visual-post-compare.php:316
+#: includes/visual-post-compare/visual-post-compare.php:415
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3606
 msgid "Compare Revisions"
 msgstr "قارن الإصدارات"
+
+#: includes/visual-post-compare/visual-post-compare.php:263
+msgid "You are not allowed to view this comparison."
+msgstr "لا يُسمح لك بمشاهدة هذه المقارنة."
+
+#: includes/visual-post-compare/visual-post-compare.php:416
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3532
+msgid "Loading comparison…"
+msgstr "جارٍ تحميل المقارنة…"
+
+#: lib/debug.php:99
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s استعلامات في %2$s ثواني. %3$s ميغابايت مستخدمة."
+
+#: revision-creation_rvy.php:183
+msgid "Could not insert post into the database"
+msgstr "لم يكن بالإمكان إدراج المنشور في قاعدة البيانات"
+
+#: revision-creation_rvy.php:437
+msgid "Could not insert revision into the database"
+msgstr "لم يكن بالإمكان إدراج الإصدار في قاعدة البيانات"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s تم التحديث"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s قام بتحديث %2$s من %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:174
+#, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr "%1$s قدم تغييرات على %2$s \"%3$s\". يمكنك مراجعة التغييرات للنشر المحتمل:"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "معاينة وموافقة: "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "إصدارات جديدة: "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "تحرير %s: "
+
+#: revisionary.php:122
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>يمكن حذف هذه الإضافة.</strong>"
+
+#: revisionary_main.php:208
+msgid "Visual compare is not enabled."
+msgstr "المقارنة المرئية غير مفعلة."
+
+#: rvy_init-functions.php:84
+msgid "Every 2 Minutes"
+msgstr "كل دقيقتين"
+
+#: rvy_init-functions.php:264
+#: rvy_init-functions.php:276
+msgid "Working Copy"
+msgstr "نسخة العمل"
+
+#: rvy_init-functions.php:265
+msgid "Create Working Copy"
+msgstr "إنشاء نسخة العمل"
+
+#: rvy_init-functions.php:267
+msgid "Creating Working Copy..."
+msgstr "إنشاء نسخة العمل..."
+
+#: rvy_init-functions.php:268
+msgid "Working Copy ready"
+msgstr "نسخة العمل جاهزة"
+
+#: rvy_init-functions.php:269
+#: rvy_init-functions.php:287
+msgid "Approve Changes"
+msgstr "الموافقة على التغييرات"
+
+#: rvy_init-functions.php:271
+#: rvy_init-functions.php:289
+msgid "Approving Changes..."
+msgstr "يتم الموافقة على التغييرات..."
+
+#: rvy_init-functions.php:272
+#: rvy_init-functions.php:290
+#: rvy_init-functions.php:308
+msgid "Publish Changes"
+msgstr "نشر التغييرات"
+
+#: rvy_init-functions.php:273
+#: rvy_init-functions.php:291
+#: rvy_init-functions.php:309
+#: rvy_init-functions.php:329
+#: rvy_init-functions.php:346
+#: rvy_init-functions.php:363
+msgid "Save Revision"
+msgstr "حفظ المراجعة"
+
+#: rvy_init-functions.php:275
+msgid "Working Copies"
+msgstr "نسخ العمل"
+
+#: rvy_init-functions.php:277
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] ""
+"نسخ العمل <span class=\"count\">(%d)</span>|نسخ العمل <span "
+"class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:282
+#: rvy_init-functions.php:294
+msgid "Change Request"
+msgstr "طلب تغيير"
+
+#: rvy_init-functions.php:283
+msgid "Submit Change Request"
+msgstr "تقديم طلب تغيير"
+
+#: rvy_init-functions.php:286
+msgid "Changes Submitted"
+msgstr "تم تقديم التغييرات"
+
+#: rvy_init-functions.php:293
+msgid "Change Requests"
+msgstr "طلبات التغيير"
+
+#: rvy_init-functions.php:295
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] ""
+"طلبات التغيير <span class=\"count\">(%d)</span>|طلبات التغيير <span "
+"class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:296
+msgid "Enable Change Requests"
+msgstr "تمكين طلبات التغيير"
+
+#: rvy_init-functions.php:301
+#: rvy_init-functions.php:312
+msgid "Scheduled Change"
+msgstr "تغيير مجدول"
+
+#: rvy_init-functions.php:302
+#: rvy_init-functions.php:303
+#: rvy_init-functions.php:306
+#: rvy_init-functions.php:307
+msgid "Schedule Changes"
+msgstr "جدولة التغييرات"
+
+#: rvy_init-functions.php:305
+msgid "Changes are Scheduled."
+msgstr "تم جدولة التغييرات."
+
+#: rvy_init-functions.php:311
+msgid "Scheduled Changes"
+msgstr "التغييرات المجدولة"
+
+#: rvy_init-functions.php:313
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] ""
+"مجدول <span class=\"count\">(%d)</span>|مجدول <span "
+"class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:321
+msgid "Unsubmitted Revision"
+msgstr "مراجعة غير مقدمة"
+
+#: rvy_init-functions.php:322
+#: rvy_init-functions.php:323
+msgid "Create Revision"
+msgstr "إنشاء مراجعة"
+
+#: rvy_init-functions.php:324
+msgid "Creating Revision..."
+msgstr "إنشاء مراجعة..."
+
+#: rvy_init-functions.php:325
+msgid "The Revision is ready to edit."
+msgstr "المراجعة جاهزة للتعديل."
+
+#: rvy_init-functions.php:325
+msgid "Revision ready to edit."
+msgstr "المراجعة جاهزة للتعديل."
+
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:328
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:362
+msgid "Publish Revision"
+msgstr "نشر المراجعة"
+
+#: rvy_init-functions.php:331
+msgid "Unsubmitted Revisions"
+msgstr "مراجعات غير مقدمة"
+
+#: rvy_init-functions.php:332
+msgid "Not Submitted"
+msgstr "لم يتم تقديمها"
+
+#: rvy_init-functions.php:333
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+"لم يتم تقديمها <span class=\"count\">(%s)</span>|لم يتم تقديمها <span "
+"class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:338
+msgid "Submitted Revision"
+msgstr "مراجعة مقدمة"
+
+#: rvy_init-functions.php:339
+#: rvy_init-functions.php:480
+msgid "Submit Revision"
+msgstr "تقديم مراجعة"
+
+#: rvy_init-functions.php:342
+msgid "The Revision is Submitted"
+msgstr "تم تقديم المراجعة"
+
+#: rvy_init-functions.php:342
+msgid "Revision Submitted"
+msgstr "تم تقديم المراجعة"
+
+#: rvy_init-functions.php:348
+#: visual-compare_rvy.php:160
+msgid "Submitted Revisions"
+msgstr "تم تقديم المراجعات"
+
+#: rvy_init-functions.php:349
+msgid "Submitted"
+msgstr "تم تقديمها"
+
+#: rvy_init-functions.php:350
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+"تم تقديمها <span class=\"count\">(%s)</span>|تم تقديمها <span "
+"class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:355
+msgid "Scheduled Revision"
+msgstr "مراجعة مجدولة"
+
+#: rvy_init-functions.php:356
+msgid "Schedule Revision"
+msgstr "جدولة مراجعة"
+
+#: rvy_init-functions.php:359
+msgid "The Revision is Scheduled"
+msgstr "تم جدولة المراجعة"
+
+#: rvy_init-functions.php:359
+msgid "Revision Scheduled"
+msgstr "تم جدولة المراجعة"
+
+#: rvy_init-functions.php:367
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+"مجدول <span class=\"count\">(%s)</span>|مجدول <span "
+"class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:467
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sنسخي وتغييراتي%s(%s)|%sنسخي وتغييراتي%s(%s)"
+
+#: rvy_init-functions.php:468
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sمراجعاتي%s(%s)|%sمراجعاتي%s(%s)"
+
+#: rvy_init-functions.php:470
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sمراجعات لمشاركاتي%s(%s)</span>|%sمراجعات لمشاركاتي%s(%s)"
+
+#: rvy_init-functions.php:475
+msgid "Post Author"
+msgstr "مؤلف المنشور"
+
+#: rvy_init-functions.php:476
+msgid "Published Post"
+msgstr "المنشور المنشور"
+
+#: rvy_init-functions.php:481
+msgid "Submit Changes"
+msgstr "إرسال التغييرات"
+
+#: rvy_init-functions.php:695
+msgid "Revisor"
+msgstr "المراجع"
+
+#: rvy_init-functions.php:818
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post."
+msgstr "يتطلب الأمر القدرة على unfiltered_html لإنشاء مراجعة لهذا المنشور."
+
+#: rvy_init-functions.php:1285
+msgid "Revision Workflow"
+msgstr "سير عمل المراجعة"
 
 #: visual-compare_rvy.php:85
 msgid "Compare Scheduled Revisions"
@@ -34,22 +4377,998 @@ msgstr "مقارنة الإصدارات الجديدة"
 msgid "Compare Past Revisions"
 msgstr "مقارنة المراجعات السابقة"
 
-#: visual-compare_rvy.php:101
-msgid "Restore"
-msgstr "استعادة"
-
-#: visual-compare_rvy.php:143
-msgid "Past Revisions"
-msgstr "الإصدارات السابقة"
-
-#: visual-compare_rvy.php:160
-msgid "Submitted Revisions"
-msgstr "تم تقديم المراجعات"
-
-#: visual-compare_rvy.php:175
-msgid "Scheduled Revisions"
-msgstr "تم جدولة المراجعات"
-
 #: visual-compare_rvy.php:180
 msgid "Scheduled:"
 msgstr "المجدولة:"
+
+#: admin/rvy_revision-block-edit.dev.js:34
+#: admin/rvy_revision-block-edit.js:34
+msgid "Revision updated"
+msgstr "تم تحديث المراجعة"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:108
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
+#: includes/visual-post-compare/visual-post-compare-standalone.js:194
+msgid "Add Format"
+msgstr "إضافة تنسيق"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:109
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:195
+#: includes/visual-post-compare/visual-post-compare-standalone.js:195
+msgid "Remove Format"
+msgstr "إزالة التنسيق"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:110
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:462
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:352
+#: includes/visual-post-compare/visual-post-compare-standalone.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.js:352
+msgid "Modify Format"
+msgstr "تعديل التنسيق"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:224
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2042
+msgid "bolding"
+msgstr "خط عريض"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:225
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2043
+msgid "italics"
+msgstr "خط مائل"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:226
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2044
+msgid "underscore"
+msgstr "خط تحت"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:227
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2016
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2016
+msgid "strikethrough"
+msgstr "خط مشطوب"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:240
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:297
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2059
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2059
+msgid "Change font size"
+msgstr "تغيير حجم الخط"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2037
+msgid "Remove bolding"
+msgstr "إزالة الخط العريض"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2038
+msgid "Remove italics"
+msgstr "إزالة الخط المائل"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2039
+msgid "Remove underscore"
+msgstr "إزالة الخط تحت"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2040
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2040
+msgid "Remove strikethrough"
+msgstr "إزالة الخط المشطوب"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2042
+msgid "Add bolding"
+msgstr "إضافة خط عريض"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2043
+msgid "Add italics"
+msgstr "إضافة خط مائل"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2044
+msgid "Add underscore"
+msgstr "إضافة خط تحت"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:256
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2045
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2045
+msgid "Add strikethrough"
+msgstr "إضافة خط مشطوب"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:276
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:907
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2355
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2355
+#, js-format
+msgid "Modified HTML tag: %s"
+msgstr "تم تعديل علامة HTML: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:286
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2333
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2333
+#, js-format
+msgid "Modified HTML tag: %1$s, %2$s"
+msgstr "تم تعديل علامة HTML: %1$s، %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:300
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:330
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid ""
+"Modify format:\n"
+" %s"
+msgstr ""
+"تعديل التنسيق:\n"
+" %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:303
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Change ID"
+msgstr "تغيير المعرف"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:309
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Add classes: %s"
+msgstr "إضافة فئات: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:310
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Remove classes: %s"
+msgstr "إزالة فئات: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:313
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Modify style"
+msgstr "تعديل النمط"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:323
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Remove %s"
+msgstr "إزالة %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:325
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Add %s"
+msgstr "إضافة %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:327
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Change %s"
+msgstr "تغيير %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:474
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:600
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:714
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:400
+#: includes/visual-post-compare/visual-post-compare-standalone.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.js:400
+msgid "Remove"
+msgstr "إزالة"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:702
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:410
+#: includes/visual-post-compare/visual-post-compare-standalone.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.js:410
+msgid "Add"
+msgstr "إضافة"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:960
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Add text: line break"
+msgstr "إضافة نص: فاصل سطر"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:969
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Remove text: line break"
+msgstr "إزالة نص: فاصل سطر"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1155
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "WordPress Classic Editor content conversion APIs are unavailable."
+msgstr "واجهات برمجة تحويل محتوى محرر WordPress الكلاسيكي غير متاحة."
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1897
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1897
+#, js-format
+msgid "Show previous image: %s"
+msgstr "عرض الصورة السابقة: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1450
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1898
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1898
+msgid "Show previous image"
+msgstr "عرض الصورة السابقة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:60
+#: includes/visual-post-compare/visual-post-compare-standalone.js:60
+msgid "WordPress core block definitions are unavailable on this screen."
+msgstr "تعريفات كتل WordPress الأساسية غير متاحة على هذه الشاشة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:68
+#: includes/visual-post-compare/visual-post-compare-standalone.js:68
+msgid "WordPress core blocks could not be registered for comparison."
+msgstr "لم يمكن تسجيل كتل WordPress الأساسية للمقارنة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:903
+#: includes/visual-post-compare/visual-post-compare-standalone.js:903
+msgid "Classic Editor comparison support is unavailable."
+msgstr "دعم مقارنة محرر الكلاسيكي غير متاح."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:950
+#: includes/visual-post-compare/visual-post-compare-standalone.js:950
+msgid "WordPress 7.0 block revision parser APIs are unavailable."
+msgstr "واجهات برمجة تطبيقات محلل مراجعة كتل WordPress 7.0 غير متاحة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:990
+#: includes/visual-post-compare/visual-post-compare-standalone.js:990
+msgid ""
+"The comparison was generated, but WordPress could not parse any comparison "
+"blocks."
+msgstr "تم إنشاء المقارنة، لكن لم يتمكن WordPress من تحليل أي كتل مقارنة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1125
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1125
+msgid "Select comparison post"
+msgstr "حدد منشور المقارنة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1782
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1782
+msgid "add"
+msgstr "إضافة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1397
+msgid "image"
+msgstr "صورة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1788
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1788
+msgid "remove"
+msgstr "إزالة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1629
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1629
+msgid "modify"
+msgstr "تعديل"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+msgid "text"
+msgstr "نص"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1286
+msgid "format"
+msgstr "تنسيق"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1515
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1515
+msgid "change"
+msgstr "تغيير"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1287
+msgid "link"
+msgstr "رابط"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1396
+msgid "image's attributes"
+msgstr "سمات الصورة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1420
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1420
+msgid "Table"
+msgstr "جدول"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1427
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1427
+msgid "Gallery"
+msgstr "معرض"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1430
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1430
+msgid "Paragraph"
+msgstr "فقرة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1431
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1431
+msgid "Section"
+msgstr "قسم"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1448
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1448
+msgid "Revision Restore"
+msgstr "استعادة المراجعة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1456
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1456
+msgid "added"
+msgstr "تمت الإضافة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1457
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1457
+msgid "removed"
+msgstr "تمت الإزالة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1458
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1458
+msgid "modified"
+msgstr "تم التعديل"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1461
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1461
+msgid "changed"
+msgstr "تم التغيير"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1463
+#, js-format
+msgid "This %1$s was <b>%2$s</b>%3$s"
+msgstr "هذا %1$s كان <b>%2$s</b>%3$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1475
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1475
+#, js-format
+msgid "%1$s will <b>%2$s</b> this %3$s%4$s"
+msgstr "%1$s سوف <b>%2$s</b> هذا %3$s%4$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1502
+msgid "font size"
+msgstr "حجم الخط"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1516
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1516
+msgid "formatting"
+msgstr "التنسيق"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1523
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1523
+msgid "Revision restore"
+msgstr "استعادة المراجعة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1524
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1524
+msgid "Revision publication"
+msgstr "نشر المراجعة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1526
+#, js-format
+msgid "<b>%1$s</b> %2$s"
+msgstr "<b>%1$s</b> %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1532
+#, js-format
+msgid "%1$s and %2$s"
+msgstr "%1$s و %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1533
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1533
+#, js-format
+msgid "%1$s will %2$s."
+msgstr "%1$s سوف %2$s."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1540
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1540
+msgid "line break"
+msgstr "فاصل سطر"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1561
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1561
+#, js-format
+msgid "Add %d Image"
+msgid_plural "Add %d Images"
+msgstr[0] "إضافة %d صورة"
+msgstr[1] "إضافة %d صور"
+msgstr[2] "إضافة %d صورة"
+msgstr[3] "إضافة %d صور"
+msgstr[4] "إضافة %d صورة"
+msgstr[5] "إضافة %d صور"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1564
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1564
+#, js-format
+msgid "Remove %d Image"
+msgid_plural "Remove %d Images"
+msgstr[0] "إزالة %d صورة"
+msgstr[1] "إزالة %d صور"
+msgstr[2] "إزالة %d صورة"
+msgstr[3] "إزالة %d صور"
+msgstr[4] "إزالة %d صورة"
+msgstr[5] "إزالة %d صور"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1566
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1566
+#, js-format
+msgid "Modify %d Image"
+msgid_plural "Modify %d Images"
+msgstr[0] "تعديل %d صورة"
+msgstr[1] "تعديل %d صور"
+msgstr[2] "تعديل %d صورة"
+msgstr[3] "تعديل %d صور"
+msgstr[4] "تعديل %d صورة"
+msgstr[5] "تعديل %d صور"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1587
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1587
+#, js-format
+msgid "%d Text Addition"
+msgid_plural "%d Text Additions"
+msgstr[0] "%d إضافة نص"
+msgstr[1] "%d إضافات نصية"
+msgstr[2] "%d إضافة نص"
+msgstr[3] "%d إضافات نصية"
+msgstr[4] "%d إضافة نص"
+msgstr[5] "%d إضافات نصية"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1589
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1589
+#, js-format
+msgid "%d Text Deletion"
+msgid_plural "%d Text Deletions"
+msgstr[0] "%d حذف نص|%d حذف نصوص"
+msgstr[1] "%d تغيير رابط|%d تغييرات روابط"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1593
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1593
+#, js-format
+msgid "%d Link Change"
+msgid_plural "%d Link Changes"
+msgstr[0] "أضف %d فاصل أسطر|أضف %d فواصل أسطر"
+msgstr[1] "إزالة %d فاصل أسطر|إزالة %d فواصل أسطر"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1598
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1598
+#, js-format
+msgid "Add %d Line Break"
+msgid_plural "Add %d Line Breaks"
+msgstr[0] "%d تغيير تنسيق|%d تغييرات تنسيق"
+msgstr[1] "عناصر معدلة: %s"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1599
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1599
+#, js-format
+msgid "Remove %d Line Break"
+msgid_plural "Remove %d Line Breaks"
+msgstr[0] "تعديل html"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1606
+#, js-format
+msgid "%d formatting change"
+msgid_plural "%d formatting changes"
+msgstr[0] "%1$s تم إضافة الفئة: %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1623
+#, js-format
+msgid "Modified attributes: %s"
+msgstr "%1$s تم إزالة الفئة: %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1625
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1625
+msgid "Modified html markup"
+msgstr "%s تم تعديل النمط"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2065
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2065
+#, js-format
+msgid "%1$s class added: %2$s"
+msgstr "%1$s تم تعديل السمة: %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2066
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2066
+#, js-format
+msgid "%1$s class removed: %2$s"
+msgstr "علامة html المعدلة:"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2072
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2072
+#, js-format
+msgid "%s style modified"
+msgstr "اختر كتلة متغيرة لعرض تفاصيلها."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2085
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2085
+#, js-format
+msgid "%1$s attribute modified: %2$s"
+msgstr "لا توجد تغييرات في السمات"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2182
+msgid "Modified html tag:"
+msgstr "السمات المتغيرة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2405
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2405
+msgid "Select a changed block to view its details."
+msgstr "تم الكشف عن تغييرات."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2631
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2631
+msgid "No attribute changes"
+msgstr "علامة html"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2639
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2639
+msgid "Changed attributes"
+msgstr "صورة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2448
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2448
+msgid "Changes detected."
+msgstr "رابط"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2507
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2507
+msgid "html tag"
+msgstr "معلومات"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2602
+msgid "Image"
+msgstr "سمات"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2602
+msgid "Link"
+msgstr "اختر المحتوى لعرض تفاصيله."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463
+msgid "Info"
+msgstr "مقارنة الحقول المخصصة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2624
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2624
+msgid "Attributes"
+msgstr "Revisions Pro تعرض تغييرات الحقول المنسقة بشكل نظيف لـ:"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2630
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2630
+msgid "Select content to view its details."
+msgstr "الحقول الأساسية لـ WordPress"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2658
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2658
+msgid "Compare Custom Fields"
+msgstr "العديد من الإضافات الشائعة الأخرى"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2661
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2661
+msgid "Revisions Pro displays cleanly formatted field changes for:"
+msgstr "العديد من السمات الشائعة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2665
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2665
+msgid "Core WordPress fields"
+msgstr "تحرير الحالي"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2671
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2671
+msgid "Many other popular plugins"
+msgstr "عرض الحالي"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2672
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2672
+msgid "Many popular themes"
+msgstr "إخفاء تفاصيل المشاركة الحالية"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3113
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3113
+msgid "Edit Current"
+msgstr "عرض تفاصيل المشاركة الحالية"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3149
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3149
+msgid "View Current"
+msgstr "المشاركة %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3157
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3157
+msgid "Hide current post details"
+msgstr "عرض النسخة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3157
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3157
+msgid "Show current post details"
+msgstr "النسخة السابقة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3162
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3162
+#, js-format
+msgid "Post %d"
+msgstr "إخفاء تفاصيل النسخة السابقة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3175
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3202
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3175
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3202
+msgid "View Revision"
+msgstr "عرض تفاصيل النسخة السابقة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3177
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3177
+msgid "Previous Revision"
+msgstr "النسخة %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3183
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3183
+msgid "Hide previous revision details"
+msgstr "انقر لعرض التغييرات"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3183
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3183
+msgid "Show previous revision details"
+msgstr "تغييرات الحقول المخصصة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3188
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3206
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3188
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3206
+#, js-format
+msgid "Revision %d"
+msgstr "%s: %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3234
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3234
+msgid "Click to view changes"
+msgstr ""
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3260
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3260
+msgid "Custom Field Changes"
+msgstr ""
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3268
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3268
+#, js-format
+msgid "%s: %d"
+msgstr ""
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3375
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3375
+msgid "Preview content"
+msgstr "معاينة المحتوى"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3382
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3382
+msgid "Field Changes"
+msgstr "تغييرات الحقل"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3388
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3388
+msgid "Show sidebar"
+msgstr "عرض الشريط الجانبي"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3388
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3388
+msgid "Collapse sidebar"
+msgstr "طي الشريط الجانبي"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3395
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3395
+msgid "Comparison preview"
+msgstr "معاينة المقارنة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3423
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3423
+msgid "This title was changed"
+msgstr "تم تغيير هذا العنوان"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3423
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3423
+msgid "Change Title"
+msgstr "تغيير العنوان"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3451
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3451
+msgid "Sidebar view"
+msgstr "عرض الشريط الجانبي"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463
+msgid "Block"
+msgstr "كتلة"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3527
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3527
+msgid "Unable to load this comparison."
+msgstr "تعذر تحميل هذه المقارنة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3555
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3555
+msgid "Unable to reload this comparison."
+msgstr "تعذر إعادة تحميل هذه المقارنة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3595
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3595
+msgid "Unable to approve this comparison."
+msgstr "تعذر الموافقة على هذه المقارنة."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3622
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3622
+msgid "Compare to current post"
+msgstr "قارن بالمنشور الحالي"
+
+#: admin/admin_rvy.php:336
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "المراجعات"
+
+#: admin/class-list-table-archive.php:1202
+#: admin/class-list-table_rvy.php:2374
+#: admin/post-edit_rvy.php:225
+#: admin/post-edit_rvy.php:289
+#: admin/post-edit_rvy.php:303
+msgctxt "revisions"
+msgid "Compare"
+msgstr "قارن"
+
+#: admin/class-list-table-archive.php:1224
+msgctxt "revisions"
+msgid "Diff"
+msgstr "فرق"
+
+#: admin/class-list-table_rvy.php:2386
+msgctxt "revisions"
+msgid "Approve"
+msgstr "الموافقة"
+
+#: admin/class-list-table_rvy.php:2393
+msgctxt "revisions"
+msgid "Publish"
+msgstr "نشر"
+
+#: admin/class-list-table_rvy.php:2402
+msgctxt "revisions"
+msgid "Decline"
+msgstr "رفض"
+
+#: admin/class-list-table-archive.php:1240
+#: admin/class-list-table_rvy.php:1090
+#: admin/class-list-table_rvy.php:2360
+#: admin/history_rvy.php:1515
+#: admin/post-edit_rvy.php:190
+#: admin/revision-ui_rvy.php:279
+#: admin/revision-ui_rvy.php:321
+msgctxt "verb"
+msgid "Preview"
+msgstr "معاينة"
+
+#: admin/history_rvy.php:1322
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "ج م @ ح:د"
+
+#: admin/options.php:2556
+#, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "من %s \"%s\""
+
+#: admin/revision-queue_rvy.php:147
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "من %s"
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "من \"%s\""
+
+#: admin/revision-queue_rvy.php:155
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "بواسطة %s "
+
+#: admin/revision-queue_rvy.php:161
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "في %s"
+
+#: admin/revision-ui_rvy.php:351
+#. translators: post revision: 1: when, 2: author name
+#, php-format
+msgctxt "post revision"
+msgid "%1$s by %2$s"
+msgstr "%1$s بواسطة %2$s"
+
+#: rvy_init-functions.php:707
+msgctxt "User role"
+msgid "Revisor"
+msgstr "مراجع"

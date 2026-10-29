@@ -1,23 +1,4474 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Revisions Free 4.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Report-Msgid-Bugs-To: \n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-27T21:45:50+00:00\n"
-"PO-Revision-Date: 2026-10-29 04:31+0000\n"
+"POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
+"PO-Revision-Date: 2026-10-29 20:29+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: revisionary\n"
-"Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr-FR\n"
 
+#: revisionary.php:3
+#. Plugin Name of the plugin
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#: revisionary.php:4
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#: revisionary.php:5
+#. Description of the plugin
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Maintenez le contenu publié avec travail d'équipe et précision en utilisant "
+"le modèle de Révisions pour soumettre, approuver et planifier des "
+"changements."
+
+#: revisionary.php:6
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#: revisionary.php:7
+#. Author URI of the plugin
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/action-scheduler_rvy.php:74
+#, php-format
+msgid "Migrate %d Scheduled Revision"
+msgid_plural "Migrate %d Scheduled Revisions"
+msgstr[0] "Migrer %d Révision Planifiée"
+msgstr[1] "Migrer %d Révisions Planifiées"
+
+#: admin/action-scheduler_rvy.php:90
+#: admin/action-scheduler_rvy.php:94
+msgid "Migration failed."
+msgstr "La migration a échoué."
+
+#: admin/action-scheduler_rvy.php:105
+#: admin/action-scheduler_rvy.php:282
+msgid "Permission denied."
+msgstr "Permission refusée."
+
+#: admin/action-scheduler_rvy.php:107
+msgid "Action Scheduler is unavailable."
+msgstr "Action Scheduler n'est pas disponible."
+
+#: admin/action-scheduler_rvy.php:133
+msgid "No Scheduled Revisions could be migrated."
+msgstr "Aucune Révision Planifiée n'a pu être migrée."
+
+#: admin/action-scheduler_rvy.php:139
+#, php-format
+msgid "%d Scheduled Revisions remaining."
+msgstr "%d Révisions Planifiées restantes."
+
+#: admin/action-scheduler_rvy.php:140
+msgid "Scheduled Revision migration complete."
+msgstr "Migration des Révisions Planifiées terminée."
+
+#: admin/action-scheduler_rvy.php:173
+#: admin/action-scheduler_rvy.php:174
+#: admin/admin_rvy.php:284
+#: admin/revision-queue_rvy.php:174
+#: rvy_init-functions.php:365
+#: visual-compare_rvy.php:175
+msgid "Scheduled Revisions"
+msgstr "Révisions planifiées"
+
+#: admin/action-scheduler_rvy.php:189
+msgid "Scheduling Log"
+msgstr "Journal de Planification"
+
+#: admin/action-scheduler_rvy.php:191
+#: admin/admin-posts_rvy.php:296
+#: admin/class-list-table-archive.php:584
+#: admin/post-edit-block-ui_rvy.php:165
+#: admin/post-edit_rvy.php:135
+#: rvy_init-functions.php:472
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3205
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3457
+msgid "Revision"
+msgstr "Révision"
+
+#: admin/action-scheduler_rvy.php:192
+#: admin/class-list-table_rvy.php:2201
+#: admin/history_rvy.php:1410
+#: admin/post-editor-workflow-ui_rvy.php:69
+#: admin/post-editor-workflow-ui_rvy.php:110
+#: admin/post-editor-workflow-ui_rvy.php:228
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Aperçu"
+
+#: admin/action-scheduler_rvy.php:193
+#: admin/action-scheduler_rvy.php:381
+#: admin/action-scheduler_rvy.php:438
+msgid "Hook"
+msgstr "Hook"
+
+#: admin/action-scheduler_rvy.php:194
+#: admin/class-list-table_rvy.php:820
+#: admin/options.php:1243
+msgid "Publication"
+msgstr "Publication"
+
+#: admin/action-scheduler_rvy.php:195
+#: admin/action-scheduler_rvy.php:382
+#: admin/action-scheduler_rvy.php:439
+msgid "Arguments"
+msgstr "Arguments"
+
+#: admin/action-scheduler_rvy.php:196
+#: admin/action-scheduler_rvy.php:383
+#: admin/action-scheduler_rvy.php:440
+msgid "Scheduled Date"
+msgstr "Date Planifiée"
+
+#: admin/action-scheduler_rvy.php:197
+#: admin/action-scheduler_rvy.php:392
+#: admin/action-scheduler_rvy.php:441
+msgid "Log"
+msgstr "Journal"
+
+#: admin/action-scheduler_rvy.php:205
+msgid "Search revision or hook ID"
+msgstr "Rechercher une révision ou un ID de hook"
+
+#: admin/action-scheduler_rvy.php:258
+#: admin/class-list-table_rvy.php:853
+msgid "View preview"
+msgstr "Voir l'aperçu"
+
+#: admin/action-scheduler_rvy.php:286
+#, php-format
+msgid ""
+"Note: %1$d Revision is scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgid_plural ""
+"Note: %1$d Revisions are scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgstr[0] ""
+"Remarque : %1$d Révision est planifiée pour publication future avec "
+"déclenchement hérité. %2$s pour une meilleure fiabilité.|Remarque : %1$d "
+"Révisions sont planifiées pour publication future avec déclenchement "
+"hérité. %2$s pour une meilleure fiabilité."
+
+#: admin/action-scheduler_rvy.php:292
+msgid "Migrate it to Action Scheduler"
+msgid_plural "Migrate those to Action Scheduler"
+msgstr[0] "Migrer vers Action Scheduler"
+msgstr[1] "Migrer vers Action Scheduler"
+
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:420
+msgid "Missed Schedule"
+msgstr "Horaire manqué"
+
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:423
+#: admin/action-scheduler_rvy.php:428
+#: admin/class-list-table_rvy.php:1683
+#: admin/revisions.php:75
+#: rvy_init-functions.php:366
+msgid "Scheduled"
+msgstr "Planifié"
+
+#: admin/action-scheduler_rvy.php:374
+msgid "Scheduler"
+msgstr "Planificateur"
+
+#: admin/action-scheduler_rvy.php:374
+msgid "WP-Cron"
+msgstr "WP-Cron"
+
+#: admin/action-scheduler_rvy.php:377
+msgid "Non-repeating"
+msgstr "Non répétitif"
+
+#: admin/action-scheduler_rvy.php:379
+#, php-format
+msgid "%s seconds"
+msgstr "%s secondes"
+
+#: admin/action-scheduler_rvy.php:384
+msgid "Recurrence"
+msgstr "Récurrence"
+
+#: admin/action-scheduler_rvy.php:387
+msgid "Requested Publication"
+msgstr "Publication demandée"
+
+#: admin/action-scheduler_rvy.php:389
+msgid "Event"
+msgstr "Événement"
+
+#: admin/action-scheduler_rvy.php:390
+msgid "No matching WP-Cron event was found."
+msgstr "Aucun événement WP-Cron correspondant n'a été trouvé."
+
+#: admin/action-scheduler_rvy.php:393
+msgid ""
+"WP-Cron does not retain an execution log. These details show the currently "
+"registered events only."
+msgstr ""
+"WP-Cron ne conserve pas de journal d'exécution. Ces détails montrent "
+"uniquement les événements actuellement enregistrés."
+
+#: admin/action-scheduler_rvy.php:395
+#: admin/action-scheduler_rvy.php:443
+msgid "Click to view scheduling log."
+msgstr "Cliquez pour voir le journal de planification."
+
+#: admin/action-scheduler_rvy.php:396
+#: admin/action-scheduler_rvy.php:444
+msgid "(view scheduling log)"
+msgstr "(voir le journal de planification)"
+
+#: admin/action-scheduler_rvy.php:398
+#: admin/action-scheduler_rvy.php:445
+#: admin/class-list-table-archive.php:760
+#: functions.php:482
+msgid "Scheduled Revision Publication"
+msgstr "Publication de Révision Planifiée"
+
+#: admin/admin-init_rvy.php:146
+#: admin/admin-init_rvy.php:387
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "Désolé, vous n'êtes pas autorisé à supprimer cette révision."
+
+#: admin/admin-init_rvy.php:150
+#: admin/admin-init_rvy.php:401
+msgid "Error in deleting."
+msgstr "Erreur lors de la suppression."
+
+#: admin/admin-init_rvy.php:241
+#: admin/admin-init_rvy.php:353
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "Désolé, vous n'êtes pas autorisé à approuver cette révision."
+
+#: admin/admin-init_rvy.php:278
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "Désolé, vous n'êtes pas autorisé à soumettre cette révision."
+
+#: admin/admin-init_rvy.php:318
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "Désolé, vous n'êtes pas autorisé à refuser cette révision."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "La révision a été restaurée."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "La révision a été programmée pour publication."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "La révision a été publiée."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"La capacité unfiltered_html est requise pour créer une révision de ce post. "
+"Voir %sdocumentation%s."
+
+#: admin/admin-posts_rvy.php:212
+#: rvy_init-functions.php:805
+msgid "The post already has a revision in process."
+msgstr "Le post a déjà une révision en cours."
+
+#: admin/admin-posts_rvy.php:313
+msgid "Has Revision"
+msgstr "A une Révision"
+
+#: admin/admin-posts_rvy.php:333
+#: admin/admin_rvy.php:470
+#: admin/admin_rvy.php:540
+#: admin/options.php:187
+#: admin/options.php:680
+msgid "New Revisions"
+msgstr "Nouvelles Révisions"
+
+#: admin/admin-posts_rvy.php:357
+#: admin/class-list-table_rvy.php:2320
+#: rvy_init-functions.php:266
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+#: admin/admin-posts_rvy.php:365
+#: admin/class-list-table_rvy.php:1057
+#: admin/class-list-table_rvy.php:2309
+#: admin/edit-revision-classic-ui_rvy.php:218
+#: admin/history_rvy.php:1452
+#: admin/post-editor-workflow-ui_rvy.php:115
+#: admin/post-editor-workflow-ui_rvy.php:229
+#: admin/RevisionEditSubmitMetabox.php:196
+#: front_rvy.php:583
+msgid "Edit"
+msgstr "Modifier"
+
+#: admin/admin_lib-mu_rvy.php:14
+#: admin/options.php:372
+msgid "PublishPress Revisions Network Settings"
+msgstr "Paramètres du Réseau PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:14
+msgid "Network Settings"
+msgstr "Paramètres du Réseau"
+
+#: admin/admin_lib-mu_rvy.php:25
+#: admin/options.php:374
+msgid "PublishPress Revisions Network Defaults"
+msgstr "Valeurs par défaut du Réseau PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:25
+msgid "Network Defaults"
+msgstr "Valeurs par défaut du Réseau"
+
+#: admin/admin_rvy.php:376
+#: admin/admin_rvy.php:405
+#: admin/history_rvy.php:296
+#: admin/history_rvy.php:308
+#: front-notice.php:59
+msgid "Revisions"
+msgstr "Révisions"
+
+#: admin/admin_rvy.php:479
+#: admin/admin_rvy.php:480
+#: admin/admin_rvy.php:541
+#: admin/options.php:186
+#: admin/options.php:581
+#: admin/revision-archive_rvy.php:101
+#: admin/revisions.php:239
+#: visual-compare_rvy.php:143
+msgid "Past Revisions"
+msgstr "Révisions précédentes"
+
+#: admin/admin_rvy.php:497
+#: admin/options.php:378
+msgid "PublishPress Revisions Settings"
+msgstr "Paramètres de PublishPress Revisions"
+
+#: admin/admin_rvy.php:497
+#: admin/admin_rvy.php:544
+#: admin/options.php:181
+msgid "Settings"
+msgstr "Paramètres"
+
+#: admin/admin_rvy.php:506
+#: admin/admin_rvy.php:507
+#: admin/admin_rvy.php:547
+#: admin/options.php:2115
+#: admin/options.php:2143
+#: admin/options.php:2404
+#: admin/options.php:2801
+#: includes/CoreAdmin.php:212
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2680
+msgid "Upgrade to Pro"
+msgstr "Passer à Pro"
+
+#: admin/admin_rvy.php:588
+msgid "Can edit draft Posts from other users."
+msgstr "Peut modifier les posts brouillons d'autres utilisateurs."
+
+#: admin/admin_rvy.php:589
+msgid "Can edit Revisions from other users."
+msgstr "Peut modifier les Révisions d'autres utilisateurs."
+
+#: admin/admin_rvy.php:590
+msgid "Can see New Revisions from other users."
+msgstr "Peut voir les Nouvelles Révisions d'autres utilisateurs."
+
+#: admin/admin_rvy.php:591
+msgid "Can access New Revisions."
+msgstr "Peut accéder aux Nouvelles Révisions."
+
+#: admin/admin_rvy.php:592
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Peut gérer les Révisions Non Soumises."
+
+#: admin/admin_rvy.php:593
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr ""
+"Aperçu des Révisions d'autres utilisateurs (sans avoir besoin d'accès en "
+"modification)."
+
+#: admin/admin_rvy.php:594
+msgid "Restore an archived Revision as the current revision."
+msgstr "Restaurer une Révision archivée en tant que révision actuelle."
+
+#: admin/admin_rvy.php:595
+msgid "View Past Revisions."
+msgstr "Voir les Révisions Passées."
+
+#: admin/admin_rvy.php:623
+msgid "Review PublishPress Revisions on WordPress.org"
+msgstr "Examiner les Révisions PublishPress sur WordPress.org"
+
+#: admin/admin_rvy.php:625
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Si vous aimez %1$s, merci de nous laisser une évaluation %2$s. Merci !"
+
+#: admin/admin_rvy.php:636
+msgid "About PublishPress Revisions"
+msgstr "À propos de PublishPress Revisions"
+
+#: admin/admin_rvy.php:636
+msgid "About"
+msgstr "À propos"
+
+#: admin/admin_rvy.php:638
+msgid "PublishPress Revisions Documentation"
+msgstr "Documentation de PublishPress Revisions"
+
+#: admin/admin_rvy.php:638
+msgid "Documentation"
+msgstr "Documentation"
+
+#: admin/admin_rvy.php:640
+msgid "Contact the PublishPress team"
+msgstr "Contacter l'équipe PublishPress"
+
+#: admin/admin_rvy.php:640
+msgid "Contact"
+msgstr "Contact"
+
+#: admin/admin_rvy.php:646
+msgid "Visit PublishPress"
+msgstr "Visiter PublishPress"
+
+#: admin/admin_rvy.php:694
+msgid "More information"
+msgstr "Plus d'informations"
+
+#: admin/agents_checklist_rvy.php:77
+#, php-format
+msgid "show current users (%d)"
+msgstr "afficher les utilisateurs actuels (%d)"
+
+#: admin/agents_checklist_rvy.php:79
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "afficher les utilisateurs éligibles (%d)"
+
+#: admin/agents_checklist_rvy.php:88
+msgid "filter:"
+msgstr "filtre :"
+
+#: admin/agents_checklist_rvy.php:104
+msgid "select"
+msgstr "sélectionner"
+
+#: admin/agents_checklist_rvy.php:112
+msgid "unselect"
+msgstr "désélectionner"
+
+#: admin/class-list-table-archive.php:26
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:72
+msgid "This was an update to a revision which is still in the workflow process."
+msgstr ""
+"Ceci était une mise à jour d'une révision qui est toujours en cours de "
+"traitement."
+
+#: admin/class-list-table-archive.php:28
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:73
+msgid "This was an update to a revision which was published after further editing."
+msgstr ""
+"Ceci était une mise à jour d'une révision qui a été publiée après un nouvel "
+"édit."
+
+#: admin/class-list-table-archive.php:205
+#, php-format
+msgid "Revision Author: %s"
+msgstr "Auteur de la révision : %s"
+
+#: admin/class-list-table-archive.php:224
+#, php-format
+msgid "Post Author: %s"
+msgstr "Auteur du post : %s"
+
+#: admin/class-list-table-archive.php:234
+#, php-format
+msgid "Revision Date: %s"
+msgstr "Date de la révision : %s"
+
+#: admin/class-list-table-archive.php:244
+#, php-format
+msgid "Approved by: %s"
+msgstr "Approuvé par : %s"
+
+#: admin/class-list-table-archive.php:254
+#, php-format
+msgid "Publication Date: %s"
+msgstr "Date de publication : %s"
+
+#: admin/class-list-table-archive.php:275
+#: admin/revision-queue_rvy.php:185
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Résultats de recherche pour \"%s\""
+
+#: admin/class-list-table-archive.php:544
+#: admin/class-list-table_rvy.php:1828
+#: admin/class-list-table_rvy.php:2335
+#: admin/post-edit-block-ui_rvy.php:125
+#: admin/post-edit_rvy.php:122
+#: admin/post-edit_rvy.php:128
+#: admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "Supprimer la révision"
+
+#: admin/class-list-table-archive.php:583
+msgid "Select all revisions"
+msgstr "Sélectionner toutes les révisions"
+
+#: admin/class-list-table-archive.php:585
+#: admin/class-list-table_rvy.php:796
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:586
+#: rvy_init-functions.php:473
+msgid "Revised By"
+msgstr "Révisé par"
+
+#: admin/class-list-table-archive.php:587
+#: rvy_init-functions.php:474
+msgid "Revision Date"
+msgstr "Date de révision"
+
+#: admin/class-list-table-archive.php:588
+msgid "Action"
+msgstr "Action"
+
+#: admin/class-list-table-archive.php:589
+msgid "Approved By"
+msgstr "Approuvé par"
+
+#: admin/class-list-table-archive.php:590
+msgid "Published Date"
+msgstr "Date de publication"
+
+#: admin/class-list-table-archive.php:591
+msgid "Published Author"
+msgstr "Auteur publié"
+
+#: admin/class-list-table-archive.php:620
+#: admin/class-list-table_rvy.php:1014
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:463
+msgid "just now"
+msgstr "à l'instant"
+
+#: admin/class-list-table-archive.php:625
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s minutes avant"
+
+#: admin/class-list-table-archive.php:625
+#: admin/class-list-table_rvy.php:1019
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:468
+#, php-format
+msgid "%s minute ago"
+msgstr "%s minute avant"
+
+#: admin/class-list-table-archive.php:632
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
+#, php-format
+msgid "%s hours ago"
+msgstr "%s heures avant"
+
+#: admin/class-list-table-archive.php:632
+#: admin/class-list-table_rvy.php:1026
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:475
+#, php-format
+msgid "%s hour ago"
+msgstr "%s heure avant"
+
+#: admin/class-list-table-archive.php:762
+#: functions.php:484
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1449
+msgid "Revision Publication"
+msgstr "Publication de la révision"
+
+#: admin/class-list-table-archive.php:773
+#: functions.php:495
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:393
+#, php-format
+msgid "Autosave of %s"
+msgstr "Sauvegarde automatique de %s"
+
+#: admin/class-list-table-archive.php:778
+#: functions.php:500
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:395
+#, php-format
+msgid "Edit of %s"
+msgstr "Édition de %s"
+
+#: admin/class-list-table-archive.php:787
+#: functions.php:509
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:400
+msgid "Autosave of published Revision"
+msgstr "Sauvegarde automatique de la révision publiée"
+
+#: admin/class-list-table-archive.php:792
+#: functions.php:514
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:402
+msgid "Edit of published Revision"
+msgstr "Édition de la révision publiée"
+
+#: admin/class-list-table-archive.php:797
+#: functions.php:519
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:407
+msgid "Autosave"
+msgstr "Sauvegarde automatique"
+
+#: admin/class-list-table-archive.php:799
+#: functions.php:521
+#: functions.php:585
+msgid "Direct Edit"
+msgstr "Édition directe"
+
+#: admin/class-list-table-archive.php:838
+#: admin/class-list-table_rvy.php:792
+msgid "Select revision"
+msgstr "Sélectionner la révision"
+
+#: admin/class-list-table-archive.php:856
+msgid "Filter by original post type"
+msgstr "Filtrer par type de post original"
+
+#: admin/class-list-table-archive.php:860
+#: admin/class-list-table_rvy.php:1889
+msgid "All Post Types"
+msgstr "Tous les types de post"
+
+#: admin/class-list-table-archive.php:890
+#: admin/class-list-table_rvy.php:1922
+msgid "Filter by revision author"
+msgstr "Filtrer par auteur de la révision"
+
+#: admin/class-list-table-archive.php:894
+#: admin/class-list-table_rvy.php:1926
+msgid "All Revision Authors"
+msgstr "Tous les auteurs de révisions"
+
+#: admin/class-list-table-archive.php:939
+#: admin/class-list-table_rvy.php:1956
+msgid "Filter by revision date"
+msgstr "Filtrer par date de révision"
+
+#: admin/class-list-table-archive.php:943
+#: admin/class-list-table_rvy.php:1960
+msgid "All Revision Dates"
+msgstr "Toutes les dates de révision"
+
+#: admin/class-list-table-archive.php:998
+msgid "Filter by published date"
+msgstr "Filtrer par date de publication"
+
+#: admin/class-list-table-archive.php:1002
+msgid "All Publish Dates"
+msgstr "Toutes les dates de publication"
+
+#: admin/class-list-table-archive.php:1035
+msgid "Filter by approver"
+msgstr "Filtrer par approbateur"
+
+#: admin/class-list-table-archive.php:1039
+msgid "All Approvers"
+msgstr "Tous les approbateurs"
+
+#: admin/class-list-table-archive.php:1072
+#: admin/class-list-table_rvy.php:2029
+msgid "Filter by published author"
+msgstr "Filtrer par auteur publié"
+
+#: admin/class-list-table-archive.php:1076
+#: admin/class-list-table_rvy.php:2033
+msgid "All Authors"
+msgstr "Tous les auteurs"
+
+#: admin/class-list-table-archive.php:1092
+#: admin/class-list-table-archive.php:1272
+#: admin/class-list-table_rvy.php:1072
+#: admin/class-list-table_rvy.php:2049
+msgid "Filter"
+msgstr "Filtrer"
+
+#: admin/class-list-table-archive.php:1098
+#: admin/class-list-table_rvy.php:2069
+msgid "Reset Filters"
+msgstr "Réinitialiser les filtres"
+
+#: admin/class-list-table-archive.php:1129
+#: admin/options.php:2415
+msgid "All"
+msgstr "Tout"
+
+#: admin/class-list-table-archive.php:1143
+msgid "My Revisions"
+msgstr "Mes révisions"
+
+#: admin/class-list-table-archive.php:1198
+#, php-format
+msgid "Visually compare changes in %s"
+msgstr "Comparer visuellement les changements dans %s"
+
+#: admin/class-list-table-archive.php:1219
+#, php-format
+msgid "Classic text diff for %s"
+msgstr "Différence de texte classique pour %s"
+
+#: admin/class-list-table-archive.php:1239
+#: admin/class-list-table_rvy.php:2359
+#: admin/post-editor-workflow-ui_rvy.php:69
+#: admin/post-editor-workflow-ui_rvy.php:228
+msgid "Preview Revision"
+msgstr "Aperçu de la révision"
+
+#: admin/class-list-table-archive.php:1253
+msgid "Edit parent revision"
+msgstr "Modifier la révision parente"
+
+#: admin/class-list-table-archive.php:1253
+msgid "Edit parent post"
+msgstr "Modifier le post parent"
+
+#: admin/class-list-table-archive.php:1254
+msgid "Edit Parent"
+msgstr "Modifier le parent"
+
+#: admin/class-list-table-archive.php:1271
+msgid "Filter: list revisions of this post"
+msgstr "Filtrer : lister les révisions de ce post"
+
+#: admin/class-list-table-archive.php:1284
+msgid "Delete Past Revision"
+msgstr "Supprimer la révision passée"
+
+#: admin/class-list-table-archive.php:1285
+#: admin/class-list-table_rvy.php:2342
+#: admin/post-edit_rvy.php:84
+#: admin/revision-ui_rvy.php:299
+#: admin/revision-ui_rvy.php:411
+#: classes/PublishPress/Revisions/Planner.php:116
+#: classes/PublishPress/Revisions/Planner.php:260
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:20
+#: front_rvy.php:626
+msgid "Delete"
+msgstr "Supprimer"
+
+#: admin/class-list-table-archive.php:1372
+msgid "No revisions found."
+msgstr "Aucune révision trouvée."
+
+#: admin/class-list-table_rvy.php:795
+#: admin/options.php:798
+#: admin/options.php:961
+#: admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "Statut"
+
+#: admin/class-list-table_rvy.php:816
+#: front_rvy.php:703
+#: rvy_init-functions.php:357
+msgid "Schedule"
+msgstr "Programmation"
+
+#: admin/class-list-table_rvy.php:881
+#: admin/class-list-table_rvy.php:904
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Publication programmée : %s"
+
+#: admin/class-list-table_rvy.php:897
+#: admin/history_rvy.php:1323
+#, php-format
+msgid "%s ago"
+msgstr "%s auparavant"
+
+#: admin/class-list-table_rvy.php:907
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Publication demandée : %s"
+
+#: admin/class-list-table_rvy.php:909
+msgid "This revision is not scheduled yet."
+msgstr "Cette révision n'est pas encore programmée."
+
+#: admin/class-list-table_rvy.php:920
+msgid "Missed schedule"
+msgstr "Horaire manqué"
+
+#: admin/class-list-table_rvy.php:938
+#. translators: %s: human-readable time difference, e.g. "3 days"
+#, php-format
+msgid "in %s"
+msgstr "dans %s"
+
+#: admin/class-list-table_rvy.php:982
+#: admin/history_rvy.php:1103
+msgid "No author"
+msgstr "Pas d'auteur"
+
+#: admin/class-list-table_rvy.php:1056
+#. translators: %s: post title
+msgid "Edit published post"
+msgstr "Modifier le post publié"
+
+#: admin/class-list-table_rvy.php:1071
+#. translators: %s: post title
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Afficher uniquement les révisions de %s"
+
+#: admin/class-list-table_rvy.php:1082
+msgid "View published post"
+msgstr "Voir le post publié"
+
+#: admin/class-list-table_rvy.php:1083
+msgid "View"
+msgstr "Voir"
+
+#: admin/class-list-table_rvy.php:1089
+msgid "Preview published post"
+msgstr "Aperçu du post publié"
+
+#: admin/class-list-table_rvy.php:1114
+msgid "History: compare past revisions"
+msgstr "Historique : comparer les révisions passées"
+
+#: admin/class-list-table_rvy.php:1115
+msgid "History"
+msgstr "Historique"
+
+#: admin/class-list-table_rvy.php:1143
+msgid "Show more details"
+msgstr "Afficher plus de détails"
+
+#: admin/class-list-table_rvy.php:1444
+msgid "There are no scheduled revisions at this time."
+msgstr "Il n'y a pas de révisions programmées pour le moment."
+
+#: admin/class-list-table_rvy.php:1663
+msgid "My Activity"
+msgstr "Mon activité"
+
+#: admin/class-list-table_rvy.php:1672
+#, php-format
+msgid "All %s"
+msgstr "Tous les %s"
+
+#: admin/class-list-table_rvy.php:1732
+#. translators: Hidden accessibility text.
+msgid "Select bulk action"
+msgstr "Sélectionner l'action groupée"
+
+#: admin/class-list-table_rvy.php:1735
+msgid "Bulk actions"
+msgstr "Actions groupées"
+
+#: admin/class-list-table_rvy.php:1756
+#: admin/revision-ui_rvy.php:413
+msgid "Apply"
+msgstr "Appliquer"
+
+#: admin/class-list-table_rvy.php:1811
+#: front_rvy.php:655
+#: rvy_init-functions.php:284
+#: rvy_init-functions.php:340
+msgid "Submit"
+msgstr "Soumettre"
+
+#: admin/class-list-table_rvy.php:1816
+#: admin/history_rvy.php:1408
+#: front_rvy.php:652
+#: front_rvy.php:662
+#: front_rvy.php:690
+#: front_rvy.php:724
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:427
+#: includes/visual-post-compare/visual-post-compare.php:323
+#: rvy_init-functions.php:270
+#: rvy_init-functions.php:288
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:344
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:361
+msgid "Approve"
+msgstr "Approuver"
+
+#: admin/class-list-table_rvy.php:1817
+#: front_rvy.php:694
+msgid "Decline"
+msgstr "Refuser"
+
+#: admin/class-list-table_rvy.php:1821
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:424
+msgid "Publish"
+msgstr "Publier"
+
+#: admin/class-list-table_rvy.php:1824
+#: admin/revision-ui_rvy.php:289
+msgid "Unschedule"
+msgstr "Déprogrammer"
+
+#: admin/class-list-table_rvy.php:1828
+#: admin/class-list-table_rvy.php:2331
+#: admin/class-list-table_rvy.php:2335
+#: admin/post-edit-block-ui_rvy.php:125
+#: admin/post-edit_rvy.php:128
+#: admin/RevisionEditSubmitMetabox.php:62
+#. translators: %s: post title
+msgid "Discard Revision"
+msgstr "Ignorer la révision"
+
+#: admin/class-list-table_rvy.php:1849
+msgid "Filter by category"
+msgstr "Filtrer par catégorie"
+
+#: admin/class-list-table_rvy.php:1866
+msgid "Filter by revision status"
+msgstr "Filtrer par statut de révision"
+
+#: admin/class-list-table_rvy.php:1868
+msgid "All Revision Statuses"
+msgstr "Tous les statuts de révision"
+
+#: admin/class-list-table_rvy.php:1887
+msgid "Filter by post type"
+msgstr "Filtrer par type de post"
+
+#: admin/class-list-table_rvy.php:1993
+msgid "Filter by published post"
+msgstr "Filtrer par post publié"
+
+#: admin/class-list-table_rvy.php:1997
+msgid "All Posts"
+msgstr "Tous les posts"
+
+#: admin/class-list-table_rvy.php:2124
+msgid "Select All"
+msgstr "Tout sélectionner"
+
+#: admin/class-list-table_rvy.php:2189
+msgid "(clear filter)"
+msgstr "(effacer le filtre)"
+
+#: admin/class-list-table_rvy.php:2193
+msgid "Sort ascending."
+msgstr "Trier par ordre croissant."
+
+#: admin/class-list-table_rvy.php:2193
+msgid "Sort descending."
+msgstr "Trier par ordre décroissant."
+
+#: admin/class-list-table_rvy.php:2222
+#, php-format
+msgid "Compare changes for &#8220;%s&#8221;"
+msgstr "Comparer les changements pour &#8220;%s&#8221;"
+
+#: admin/class-list-table_rvy.php:2230
+#. translators: %s: post title
+#, php-format
+msgid "&#8220;%s&#8221; (Edit)"
+msgstr "&#8220;%s&#8221; (Modifier)"
+
+#: admin/class-list-table_rvy.php:2308
+#: admin/post-editor-workflow-ui_rvy.php:229
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3114
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3114
+#. translators: %s: post title
+msgid "Edit Revision"
+msgstr "Modifier la révision"
+
+#: admin/class-list-table_rvy.php:2332
+msgid "Discard"
+msgstr "Ignorer"
+
+#: admin/class-list-table_rvy.php:2373
+msgid "Compare Changes"
+msgstr "Comparer les changements"
+
+#: admin/edit-revision-block-ui_rvy.php:23
+msgid "Enable public preview"
+msgstr "Activer l'aperçu public"
+
+#: admin/edit-revision-classic-ui_rvy.php:126
+msgid "Publish <b>on approval</b>"
+msgstr "Publier <b>sur approbation</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:157
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Révision mise à jour. %sVoir l'aperçu%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:159
+msgid "Revision updated."
+msgstr "Révision mise à jour."
+
+#: admin/edit-revision-classic-ui_rvy.php:176
+#. translators: Publish box date string. 1: Date, 2: Time. See https://www.php.net/manual/datetime.format.php
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s à %2$s"
+
+#: admin/edit-revision-classic-ui_rvy.php:185
+#: admin/RevisionEditSubmitMetabox.php:185
+#. translators: Post date information. %s: Date on which the post is currently scheduled to be published.
+#, php-format
+msgid "Scheduled for: %s"
+msgstr "Prévu pour : %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:188
+#. translators: Post date information. %s: Date on which the post was published.
+#, php-format
+msgid "Published on: %s"
+msgstr "Publié le : %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:190
+#: admin/edit-revision-classic-ui_rvy.php:204
+msgid "Publish <b>immediately</b>"
+msgstr "Publier <b>immédiatement</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:193
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Schedule for: %s"
+msgstr "Prévoir pour : %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:196
+#: admin/RevisionEditSubmitMetabox.php:188
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Publish on: %s"
+msgstr "Publier le : %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:222
+#. translators: Hidden accessibility text.
+msgid "Edit date and time"
+msgstr "Modifier la date et l'heure"
+
+#: admin/edit-revision-classic-ui_rvy.php:230
+#. translators: Hidden accessibility text.
+msgid "Date and time"
+msgstr "Date et heure"
+
+#: admin/history_rvy.php:99
+#: admin/history_rvy.php:102
+msgid "Copy"
+msgstr "Copier"
+
+#: admin/history_rvy.php:99
+#: admin/history_rvy.php:102
+msgid "Copy the above content to the clipboard."
+msgstr "Copier le contenu ci-dessus dans le presse-papiers."
+
+#: admin/history_rvy.php:109
+msgid "Copied to clipboard."
+msgstr "Copié dans le presse-papiers."
+
+#: admin/history_rvy.php:295
+#: admin/history_rvy.php:315
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Comparer %s de \"%s\""
+
+#: admin/history_rvy.php:324
+msgid "Return to editor"
+msgstr "Retour à l'éditeur"
+
+#: admin/history_rvy.php:573
+#: admin/options.php:796
+#: admin/options.php:959
+#: admin/restrict-editor-features.php:100
+msgid "Title"
+msgstr "Titre"
+
+#: admin/history_rvy.php:574
+#: admin/options.php:795
+#: admin/options.php:958
+#: admin/restrict-editor-features.php:106
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3379
+msgid "Content"
+msgstr "Contenu"
+
+#: admin/history_rvy.php:575
+#: admin/options.php:801
+#: admin/options.php:964
+#: admin/restrict-editor-features.php:159
+msgid "Excerpt"
+msgstr "Extrait"
+
+#: admin/history_rvy.php:712
+#: admin/history_rvy.php:715
+msgid "(no title)"
+msgstr "(pas de titre)"
+
+#: admin/history_rvy.php:828
+#: admin/options.php:1212
+msgid "Post Date"
+msgstr "Date de publication"
+
+#: admin/history_rvy.php:829
+msgid "Post Parent"
+msgstr "Parent de l'article"
+
+#: admin/history_rvy.php:830
+msgid "Menu Order"
+msgstr "Ordre du menu"
+
+#: admin/history_rvy.php:831
+msgid "Comment Status"
+msgstr "Statut des commentaires"
+
+#: admin/history_rvy.php:832
+msgid "Ping Status"
+msgstr "Statut de ping"
+
+#: admin/history_rvy.php:971
+msgid "Page Template"
+msgstr "Modèle de page"
+
+#: admin/history_rvy.php:974
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2664
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2664
+msgid "Featured Image"
+msgstr "Image mise en avant"
+
+#: admin/history_rvy.php:978
+msgid "Beaver Builder Data"
+msgstr "Données Beaver Builder"
+
+#: admin/history_rvy.php:979
+msgid "Beaver Builder Settings"
+msgstr "Paramètres Beaver Builder"
+
+#: admin/history_rvy.php:1058
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3436
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3436
+msgid "No changes detected."
+msgstr "Aucun changement détecté."
+
+#: admin/history_rvy.php:1250
+msgid "Scheduled for "
+msgstr "Prévu pour "
+
+#: admin/history_rvy.php:1255
+msgid "Requested for "
+msgstr "Demandé pour "
+
+#: admin/history_rvy.php:1260
+msgid "Modified "
+msgstr "Modifié "
+
+#: admin/history_rvy.php:1265
+#, php-format
+msgid "%s%s ago"
+msgstr "%s%s il y a"
+
+#: admin/history_rvy.php:1265
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s à partir de maintenant"
+
+#: admin/history_rvy.php:1408
+msgid "Preview / Approve"
+msgstr "Aperçu / Approuver"
+
+#: admin/history_rvy.php:1452
+msgid "Edit revision"
+msgstr "Modifier la révision"
+
+#: admin/history_rvy.php:1514
+msgid "Preview / Restore"
+msgstr "Aperçu / Restaurer"
+
+#: admin/history_rvy.php:1521
+msgid "Manage"
+msgstr "Gérer"
+
+#: admin/history_rvy.php:1522
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1429
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1429
+msgid "List"
+msgstr "Liste"
+
+#: admin/options.php:54
+msgid "PublishPress Capabilities"
+msgstr "Capacités PublishPress"
+
+#: admin/options.php:151
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Tous les paramètres de cet onglet sont assignés à l'échelle du réseau."
+
+#: admin/options.php:181
+msgid "Setting Scope"
+msgstr "Portée des paramètres"
+
+#: admin/options.php:185
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: admin/options.php:188
+msgid "Options"
+msgstr "Options"
+
+#: admin/options.php:189
+msgid "Integrations"
+msgstr "Intégrations"
+
+#: admin/options.php:190
+msgid "Statuses"
+msgstr "Statuts"
+
+#: admin/options.php:191
+#: admin/options.php:1245
+msgid "Notifications"
+msgstr "Notifications"
+
+#: admin/options.php:197
+msgid "Revision Submission"
+msgstr "Soumission de révision"
+
+#: admin/options.php:205
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr ""
+"Utiliser un étiquetage alternatif : \"Copie de travail\" > \"Demande de "
+"changement\" > \"Changement planifié\""
+
+#: admin/options.php:206
+msgid "New Revisions access requires role capability"
+msgstr "L'accès aux nouvelles révisions nécessite une capacité de rôle"
+
+#: admin/options.php:207
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Gérer %s nécessite une capacité de rôle"
+
+#: admin/options.php:208
+msgid "Working Copy creation requires role capability"
+msgstr "La création de copie de travail nécessite une capacité de rôle"
+
+#: admin/options.php:208
+msgid "Revision creation requires role capability"
+msgstr "La création de révision nécessite une capacité de rôle"
+
+#: admin/options.php:209
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr ""
+"Liste des articles / pages : Utilisez la légende \"Modifier\" pour le lien "
+"%s"
+
+#: admin/options.php:210
+#: admin/options.php:217
+#, php-format
+msgid "Enable %s"
+msgstr "Activer %s"
+
+#: admin/options.php:211
+msgid "Revision Limit"
+msgstr "Limite de Révision"
+
+#: admin/options.php:212
+msgid "Create Revision redirects to user's existing Unsubmitted Revision"
+msgstr ""
+"Créer une Révision redirige vers la Révision non soumise existante de "
+"l'utilisateur"
+
+#: admin/options.php:213
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr ""
+"Actualiser le drapeau \"A une Révision\" avant de supprimer Créer une "
+"Révision"
+
+#: admin/options.php:214
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr "Si le post contient du html personnalisé, exiger la capacité unfiltered_html"
+
+#: admin/options.php:215
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr ""
+"Soumettre automatiquement les révisions créées par un utilisateur avec la "
+"capacité de publication"
+
+#: admin/options.php:216
+msgid "Auto-submit revisions"
+msgstr "Soumettre automatiquement les révisions"
+
+#: admin/options.php:218
+msgid "Change Request submission require role capability"
+msgstr "La soumission de Demande de Changement nécessite une capacité de rôle"
+
+#: admin/options.php:218
+msgid "Revision submission requires role capability"
+msgstr "La soumission de Révision nécessite une capacité de rôle"
+
+#: admin/options.php:219
+msgid "Editing others' Revisions requires role capability"
+msgstr "Modifier les Révisions des autres nécessite une capacité de rôle"
+
+#: admin/options.php:220
+msgid "Listing others' Revisions requires role capability"
+msgstr "Lister les Révisions des autres nécessite une capacité de rôle"
+
+#: admin/options.php:221
+msgid "Enable javascript in visual compare"
+msgstr "Activer javascript dans la comparaison visuelle"
+
+#: admin/options.php:222
+msgid "Use visual compare for Revisions"
+msgstr "Utiliser la comparaison visuelle pour les Révisions"
+
+#: admin/options.php:223
+msgid "Include unidentified internal fields on Compare screen"
+msgstr "Inclure des champs internes non identifiés sur l'écran de comparaison"
+
+#: admin/options.php:224
+msgid "Show Submitted Revisions count in Admin menu"
+msgstr "Afficher le nombre de Révisions Soumises dans le menu Admin"
+
+#: admin/options.php:225
+msgid "Show indicator on front end if page has Revisions"
+msgstr "Afficher un indicateur sur le front-end si la page a des Révisions"
+
+#: admin/options.php:226
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Les utilisateurs peuvent toujours administrer les révisions de leurs "
+"propres posts modifiables"
+
+#: admin/options.php:227
+msgid "Also notify on Revision Update"
+msgstr "Notifier également lors de la Mise à jour de Révision"
+
+#: admin/options.php:228
+msgid "Apply API actions to mimic Post Update"
+msgstr "Appliquer des actions API pour imiter la Mise à jour de Post"
+
+#: admin/options.php:229
+msgid "Hide html tags on Compare screen"
+msgstr "Masquer les balises html sur l'écran de comparaison"
+
+#: admin/options.php:230
+msgid "Hide copy buttons on Compare screen"
+msgstr "Masquer les boutons de copie sur l'écran de comparaison"
+
+#: admin/options.php:231
+msgid "Legacy: Schedule Revisions with WP-Cron"
+msgstr "Héritage : Programmer des Révisions avec WP-Cron"
+
+#: admin/options.php:232
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "Le site utilise un déclencheur personnalisé pour les tâches WP-Cron"
+
+#: admin/options.php:233
+msgid "Asynchronous Publishing"
+msgstr "Publication Asynchrone"
+
+#: admin/options.php:234
+msgid "Editor background color"
+msgstr "Couleur de fond de l'éditeur"
+
+#: admin/options.php:235
+#: admin/options.php:236
+msgid "Update Publish Date"
+msgstr "Mettre à jour la Date de Publication"
+
+#: admin/options.php:237
+#: admin/options.php:238
+msgid "Update Modified Date"
+msgstr "Mettre à jour la Date de Modification"
+
+#: admin/options.php:241
+#: admin/options.php:242
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Utiliser %1$sNotifications du Planificateur%2$s"
+
+#: admin/options.php:244
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Envoyer un email à l'Auteur original lorsqu'un %s est soumis"
+
+#: admin/options.php:245
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Envoyer un email à l'Auteur original lorsqu'un %s est approuvé"
+
+#: admin/options.php:246
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Envoyer un email au Réviseur lorsqu'un %s est approuvé"
+
+#: admin/options.php:247
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Envoyer un email à l'Auteur original lorsqu'un %s est publié"
+
+#: admin/options.php:248
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Envoyer un email au Réviseur lorsqu'un %s est publié"
+
+#: admin/options.php:249
+msgid "Enable notification buffer"
+msgstr "Activer le tampon de notification"
+
+#: admin/options.php:250
+msgid "Revisors can create a new revision for any custom post type"
+msgstr ""
+"Les Réviseurs peuvent créer une nouvelle révision pour tout type de post "
+"personnalisé"
+
+#: admin/options.php:251
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Empêcher les Réviseurs de modifier les Posts non publiés des autres"
+
+#: admin/options.php:252
+msgid "Add database index to posts table for Revision queries"
+msgstr ""
+"Ajouter un index de base de données à la table des posts pour les requêtes "
+"de Révision"
+
+#: admin/options.php:253
+msgid "Display Hints"
+msgstr "Afficher les Indices"
+
+#: admin/options.php:254
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Supprimer les paramètres et les Révisions si le plugin est supprimé"
+
+#: admin/options.php:255
+msgid "Show Preview Links"
+msgstr "Afficher les Liens d'aperçu"
+
+#: admin/options.php:256
+msgid "Preview Link Type"
+msgstr "Type de Lien d'aperçu"
+
+#: admin/options.php:257
+msgid "Modify preview link for better theme compatibility"
+msgstr "Modifier le lien d'aperçu pour une meilleure compatibilité avec le thème"
+
+#: admin/options.php:258
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr ""
+"Compatibilité Thème : Pour l'aperçu de révision de la page d'accueil, "
+"définir le drapeau d'accueil"
+
+#: admin/options.php:259
+msgid "Approve Button on Compare screen"
+msgstr "Bouton Approuver sur l'écran de comparaison"
+
+#: admin/options.php:260
+msgid "Copy revision comments to published post"
+msgstr "Copier les commentaires de révision dans l'article publié"
+
+#: admin/options.php:261
+msgid "Compare Past Revisions ordering:"
+msgstr "Comparer l'ordre des révisions passées :"
+
+#: admin/options.php:262
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr "Lister %s pour la vue \"Mon Activité\" ou \"Révisions de Mes Articles\""
+
+#: admin/options.php:263
+msgid ""
+"Archive a copy of custom fields when a submitted or scheduled revision is "
+"published"
+msgstr ""
+"Archiver une copie des champs personnalisés lorsqu'une révision soumise ou "
+"programmée est publiée"
+
+#: admin/options.php:264
+msgid "Archive a copy of custom fields with each Past Revision"
+msgstr "Archiver une copie des champs personnalisés avec chaque Révision Passée"
+
+#: admin/options.php:265
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr ""
+"Conserver un archive des modifications de révision, même après la "
+"publication de la révision"
+
+#: admin/options.php:266
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "Lors de la publication de la Révision, supprimer les Commentaires Éditoriaux"
+
+#: admin/options.php:267
+msgid "Enable deletion queue"
+msgstr "Activer la file d'attente de suppression"
+
+#: admin/options.php:268
+msgid "Allow Past Revisions to be deleted"
+msgstr "Autoriser la suppression des Révisions Passées"
+
+#: admin/options.php:269
+msgid "Restoring a Revision requires role capability"
+msgstr "Restaurer une Révision nécessite une capacité de rôle"
+
+#: admin/options.php:270
+msgid "Compatibility Mode"
+msgstr "Mode de Compatibilité"
+
+#: admin/options.php:271
+msgid "Planner Notifications Access-Limited"
+msgstr "Accès Limité aux Notifications du Planificateur"
+
+#: admin/options.php:272
+msgid "Maximum Revisions per post"
+msgstr "Révisions Maximum par article"
+
+#: admin/options.php:273
+msgid "Apply Post Permissions to Revisions"
+msgstr "Appliquer les Autorisations de Publication aux Révisions"
+
+#: admin/options.php:274
+msgid "Enable legacy email notifications"
+msgstr "Activer les notifications par email héritées"
+
+#: admin/options.php:275
+msgid "Revision Approval requires role capability"
+msgstr "L'approbation de la Révision nécessite une capacité de rôle"
+
+#: admin/options.php:276
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr ""
+"Utiliser des légendes étendues pour le bouton Approuver dans l'Éditeur "
+"d'Article"
+
+#: admin/options.php:277
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Autoriser le champ Auteur à être modifié par Révision"
+
+#: admin/options.php:278
+msgid "Create Revision button in editor opens new tab"
+msgstr "Le bouton Créer Révision dans l'éditeur ouvre un nouvel onglet"
+
+#: admin/options.php:279
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Bloc de Boucle de Requête : Ajuster les capacités de Réviseur et de "
+"Contributeur pour permettre l'aperçu dans l'éditeur de Révision"
+
+#: admin/options.php:280
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Désactiver le panneau SEO Rank Math pour l'édition de Révision"
+
+#: admin/options.php:281
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "Autoriser les champs personnalisés (métadonnées d'article) à être révisés"
+
+#: admin/options.php:282
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr ""
+"La permission de Soumettre une Révision active également la création de "
+"Révision"
+
+#: admin/options.php:283
+msgid "Enable classic metaboxes in editor"
+msgstr "Activer les metaboxes classiques dans l'éditeur"
+
+#: admin/options.php:288
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "Envoyer un email aux Éditeurs désignés lorsqu'un %s est soumis"
+
+#: admin/options.php:289
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "Envoyer un email aux Éditeurs désignés lorsqu'un %s est publié"
+
+#: admin/options.php:290
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "Envoyer un email aux Éditeurs désignés lorsqu'un %s est approuvé"
+
+#: admin/options.php:292
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "Envoyer un email aux Éditeurs et Administrateurs lorsqu'un %s est soumis"
+
+#: admin/options.php:293
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "Envoyer un email aux Éditeurs et Administrateurs lorsqu'un %s est publié"
+
+#: admin/options.php:294
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "Envoyer un email aux Éditeurs et Administrateurs lorsqu'un %s est approuvé"
+
+#: admin/options.php:376
+msgid "PublishPress Revisions Site Settings"
+msgstr "Paramètres du Site PublishPress Revisions"
+
+#: admin/options.php:406
+msgid "These are the default settings for options which can be adjusted per-site."
+msgstr ""
+"Ce sont les paramètres par défaut pour les options qui peuvent être "
+"ajustées par site."
+
+#: admin/options.php:444
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Utilisez cet onglet pour effectuer des modifications à l'échelle du RÉSEAU "
+"sur les paramètres de PublishPress Revisions. %s"
+
+#: admin/options.php:447
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr ""
+"Vous pouvez également spécifier %1$sles valeurs par défaut pour les "
+"paramètres spécifiques au site%2$s."
+
+#: admin/options.php:450
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Ici, vous pouvez changer la valeur par défaut pour les paramètres qui sont "
+"contrôlés séparément sur chaque site."
+
+#: admin/options.php:460
+#: admin/options.php:462
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr ""
+"Notez que %1$sles paramètres à l'échelle du réseau%2$s peuvent également "
+"être disponibles."
+
+#: admin/options.php:539
+msgid "License settings"
+msgstr "Paramètres de licence"
+
+#: admin/options.php:540
+msgid "License"
+msgstr "Licence"
+
+#: admin/options.php:585
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Les révisions passées sont des versions antérieures d'un article."
+
+#: admin/options.php:635
+msgid "Past revisions post type fallback"
+msgstr "Rétrocompatibilité du type de publication des révisions passées"
+
+#: admin/options.php:642
+msgid "This post type does not support Past Revisions."
+msgstr "Ce type de publication ne prend pas en charge les révisions passées."
+
+#: admin/options.php:663
+msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
+msgstr ""
+"PRO : Revisions Pro est requis pour ce type de publication (s'ouvre dans un "
+"nouvel onglet)"
+
+#: admin/options.php:664
+msgid "PRO"
+msgstr "PRO"
+
+#: admin/options.php:684
+msgid "New Revisions are changes which are not yet published."
+msgstr ""
+"Les nouvelles révisions sont des modifications qui ne sont pas encore "
+"publiées."
+
+#: admin/options.php:733
+msgid "Navigation menu revision setting"
+msgstr "Paramètre de révision du menu de navigation"
+
+#: admin/options.php:737
+msgid "Hidden post type revision setting"
+msgstr "Paramètre de révision du type de publication caché"
+
+#: admin/options.php:743
+msgid "New revisions post type fallback"
+msgstr "Rétrocompatibilité du type de publication des nouvelles révisions"
+
+#: admin/options.php:763
+#, php-format
+msgid "%s capabilities"
+msgstr "%s capacités"
+
+#: admin/options.php:783
+msgid "Revision Fields"
+msgstr "Champs de révision"
+
+#: admin/options.php:787
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Spécifiez les champs qui peuvent être modifiés par les nouvelles révisions."
+
+#: admin/options.php:797
+#: admin/options.php:960
+#: admin/restrict-editor-features.php:112
+msgid "Date"
+msgstr "Date"
+
+#: admin/options.php:799
+#: admin/options.php:962
+#: admin/restrict-editor-features.php:141
+msgid "Parent"
+msgstr "Parent"
+
+#: admin/options.php:800
+#: admin/options.php:963
+msgid "Slug"
+msgstr "Slug"
+
+#: admin/options.php:802
+#: admin/options.php:965
+#: admin/post-edit-block-ui_rvy.php:212
+#: admin/post-edit_rvy.php:378
+#: admin/restrict-editor-features.php:147
+#: admin/revision-ui_rvy.php:391
+msgid "Author"
+msgstr "Auteur"
+
+#: admin/options.php:803
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#: admin/options.php:804
+#: admin/options.php:967
+#: admin/restrict-editor-features.php:120
+msgid "Template"
+msgstr "Modèle"
+
+#: admin/options.php:805
+#: admin/options.php:968
+#: admin/restrict-editor-features.php:127
+msgid "Categories"
+msgstr "Catégories"
+
+#: admin/options.php:806
+#: admin/options.php:969
+#: admin/restrict-editor-features.php:134
+msgid "Tags"
+msgstr "Étiquettes"
+
+#: admin/options.php:807
+#: admin/options.php:970
+#: admin/restrict-editor-features.php:166
+msgid "Taxonomies"
+msgstr "Taxonomies"
+
+#: admin/options.php:819
+msgid "Hidden revision field setting"
+msgstr "Paramètre de champ de révision caché"
+
+#: admin/options.php:825
+msgid "Revision field fallback"
+msgstr "Rétrocompatibilité du champ de révision"
+
+#: admin/options.php:851
+msgid "Duplicate Posts"
+msgstr "Articles dupliqués"
+
+#: admin/options.php:855
+msgid "Copy post directly without using the revision process."
+msgstr "Copier l'article directement sans utiliser le processus de révision."
+
+#: admin/options.php:904
+msgid "Navigation menu copy setting"
+msgstr "Paramètre de copie du menu de navigation"
+
+#: admin/options.php:907
+msgid "Hidden copied post type setting"
+msgstr "Paramètre de type de publication copiée caché"
+
+#: admin/options.php:913
+msgid "Copied post type fallback"
+msgstr "Rétrocompatibilité du type de publication copiée"
+
+#: admin/options.php:946
+msgid "Duplicate Fields"
+msgstr "Champs dupliqués"
+
+#: admin/options.php:950
+msgid "Specify fields to include when Posts are duplicated."
+msgstr "Spécifiez les champs à inclure lors de la duplication des articles."
+
+#: admin/options.php:966
+msgid "Thumnbnail"
+msgstr "Miniature"
+
+#: admin/options.php:982
+msgid "Hidden copied field setting"
+msgstr "Paramètre de champ copié caché"
+
+#: admin/options.php:988
+msgid "Copied field fallback"
+msgstr "Rétrocompatibilité du champ copié"
+
+#: admin/options.php:1012
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Remarque : Le code tiers peut rendre certains types de publication "
+"incompatibles avec PublishPress Revisions."
+
+#: admin/options.php:1022
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"Pour l'intégration des révisions dans le calendrier de contenu, l'aperçu et "
+"le tableau de contenu, veuillez mettre à jour %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1043
+msgid "Ready to enhance your revision workflow?"
+msgstr "Prêt à améliorer votre flux de travail de révision ?"
+
+#: admin/options.php:1046
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with "
+"custom revision statuses."
+msgstr ""
+"Obtenez PublishPress Statuses Pro et optimisez votre processus de révision "
+"avec des statuts de révision personnalisés."
+
+#: admin/options.php:1052
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Définissez vos propres statuts avant ou après la soumission de la révision"
+
+#: admin/options.php:1055
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "Nouveaux statuts prédéfinis : Différé, Besoin de travail, Rejeté"
+
+#: admin/options.php:1058
+msgid "Statuses can be specific to a post type"
+msgstr "Les statuts peuvent être spécifiques à un type de publication"
+
+#: admin/options.php:1061
+msgid "Control access to statuses per-role"
+msgstr "Contrôlez l'accès aux statuts par rôle"
+
+#: admin/options.php:1064
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "Le flux de travail des statuts peut être imbriqué avec des sous-statuts"
+
+#: admin/options.php:1071
+#: admin/options.php:1074
+msgid "Get PublishPress Statuses Pro"
+msgstr "Obtenez PublishPress Statuses Pro"
+
+#: admin/options.php:1077
+#: admin/options.php:1097
+msgid "Learn more about revision statuses"
+msgstr "En savoir plus sur les statuts de révision"
+
+#: admin/options.php:1080
+#: admin/options.php:1098
+#: admin/options.php:2121
+#: admin/options.php:2139
+#: admin/options.php:2767
+#: admin/options.php:2780
+#: admin/options.php:2797
+#: admin/options.php:2811
+#: admin/options.php:2821
+#: admin/options.php:2831
+msgid "Learn More"
+msgstr "En savoir plus"
+
+#: admin/options.php:1089
+msgid "Revision statuses settings preview"
+msgstr "Aperçu des paramètres des statuts de révision"
+
+#: admin/options.php:1093
+msgid "Pro Plugin"
+msgstr "Plugin Pro"
+
+#: admin/options.php:1094
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "Installez Statuses Pro pour débloquer des statuts de révision personnalisés."
+
+#: admin/options.php:1095
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Configurez pour tout type de publication et rôle afin de correspondre à "
+"votre flux de travail d'édition."
+
+#: admin/options.php:1101
+#: admin/options.php:1102
+msgid "Get Statuses Pro"
+msgstr "Obtenez Statuses Pro"
+
+#: admin/options.php:1129
+msgid "Maximum revisions per post:"
+msgstr "Révisions maximales par publication :"
+
+#: admin/options.php:1131
+msgid "(unlimited)"
+msgstr "(illimité)"
+
+#: admin/options.php:1139
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr "Notez que l'archivage peut également être désactivé par %1$sPost Type%2$s."
+
+#: admin/options.php:1180
+#: admin/options.php:1360
+#: admin/options.php:2289
+#, php-format
+msgid "%s capability"
+msgstr "%s capacité"
+
+#: admin/options.php:1185
+#: admin/options.php:1365
+#: admin/options.php:2294
+msgid "Assign capability to roles"
+msgstr "Attribuer des capacités aux rôles"
+
+#: admin/options.php:1192
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Empêcher les non-administrateurs de restaurer une révision sans le %s."
+
+#: admin/options.php:1198
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Empêcher les non-administrateurs de restaurer une révision sans la capacité "
+"restore_revisions"
+
+#: admin/options.php:1212
+msgid "Modification Date"
+msgstr "Date de modification"
+
+#: admin/options.php:1240
+msgid "Revision Creation"
+msgstr "Création de révision"
+
+#: admin/options.php:1241
+msgid "Submission"
+msgstr "Soumission"
+
+#: admin/options.php:1242
+msgid "Scheduling"
+msgstr "Planification"
+
+#: admin/options.php:1244
+msgid "Management"
+msgstr "Gestion"
+
+#: admin/options.php:1309
+msgid "Create Revision capabilities"
+msgstr "Créer des capacités de révision"
+
+#: admin/options.php:1314
+#: admin/options.php:1339
+#: admin/options.php:1503
+#: admin/options.php:1655
+msgid "Assign capabilities to roles"
+msgstr "Attribuer des capacités aux rôles"
+
+#: admin/options.php:1321
+#: admin/options.php:1510
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "Si l'utilisateur ne peut pas éditer la publication publiée, exigez %s."
+
+#: admin/options.php:1327
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"Si l'utilisateur ne peut pas éditer la publication publiée, exigez des "
+"capacités de création de révision (copy_posts, copy_others_pages, etc.)"
+
+#: admin/options.php:1335
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "Pour étendre la liste des Pages, attribuez %s."
+
+#: admin/options.php:1338
+msgid "Listing capabilities"
+msgstr "Capacités de liste"
+
+#: admin/options.php:1345
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"Pour étendre la liste des Pages, attribuez des capacités de liste "
+"(list_others_pages, list_published_posts, etc.)"
+
+#: admin/options.php:1352
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Ce plugin introduit un nouveau rôle utilisateur, \"Revisor.\""
+
+#: admin/options.php:1372
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"Une révision par un utilisateur qui n'a pas le %s entraînera la suppression "
+"de toutes les balises HTML personnalisées."
+
+#: admin/options.php:1378
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"Une révision par un utilisateur qui n'a pas la capacité unfiltered_html "
+"entraînera la suppression de toutes les balises HTML personnalisées."
+
+#: admin/options.php:1394
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr ""
+"Schéma de stockage standard pour la compatibilité la plus large avec les "
+"tiers"
+
+#: admin/options.php:1395
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "Contrôle d'accès avancé aux révisions avec les plugins PublishPress"
+
+#: admin/options.php:1409
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"En mode avancé, le statut d'une révision est stocké par le schéma standard "
+"de WordPress. Certains plugins sont incompatibles."
+
+#: admin/options.php:1425
+msgid "Allow any number of Revisions per post."
+msgstr "Autoriser un nombre quelconque de révisions par publication."
+
+#: admin/options.php:1426
+msgid "Prevent Revision creation if another was already created."
+msgstr "Empêcher la création de révisions si une autre a déjà été créée."
+
+#: admin/options.php:1427
+msgid "Prevent Revision creation if another was already submitted."
+msgstr "Empêcher la création de révisions si une autre a déjà été soumise."
+
+#: admin/options.php:1444
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Contourner les conflits des plugins de cache en réinterrogeant les "
+"révisions avant de supprimer le lien Nouvelle Révision."
+
+#: admin/options.php:1463
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Si l'utilisateur n'a pas de lien Éditer régulier, renommez le lien %s en "
+"\"Éditer.\""
+
+#: admin/options.php:1466
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"Les étiquettes par défaut sont \"Non soumis pour approbation\", \"Soumis "
+"pour approbation\", \"Révision planifiée\""
+
+#: admin/options.php:1484
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Autoriser le contenu publié à être copié, édité, soumis pour approbation et "
+"géré sur l'écran %sNouvelles Révisions%s."
+
+#: admin/options.php:1498
+msgid "Submit Revision capabilities"
+msgstr "Capacités de soumission de révision"
+
+#: admin/options.php:1516
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"Si l'utilisateur ne peut pas éditer le post publié, exigez des capacités de "
+"soumission de révision (revise_posts, revise_others_pages, etc.)"
+
+#: admin/options.php:1526
+msgid "Revision editor background color"
+msgstr "Couleur de fond de l'éditeur de révision"
+
+#: admin/options.php:1537
+msgid "Select a custom background color to show that a Revision is being edited."
+msgstr ""
+"Sélectionnez une couleur de fond personnalisée pour montrer qu'une révision "
+"est en cours d'édition."
+
+#: admin/options.php:1576
+#: admin/options.php:1610
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr ""
+"Lorsque %s est publié, mettez à jour la date de publication du post à "
+"l'heure actuelle."
+
+#: admin/options.php:1579
+#: admin/options.php:1613
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr ""
+"Lorsque %s est publié, mettez à jour la date de modification du post à "
+"l'heure actuelle."
+
+#: admin/options.php:1582
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Lorsque qu'une nouvelle révision est créée par un utilisateur autorisé à "
+"soumettre des révisions, soumettez-la automatiquement."
+
+#: admin/options.php:1585
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Soumettez automatiquement les révisions si l'utilisateur peut directement "
+"éditer le post principal."
+
+#: admin/options.php:1588
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"Cela permet une approbation immédiate dans l'écran Comparer. Si désactivé, "
+"un lien Aperçu est fourni à la place."
+
+#: admin/options.php:1604
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Si un post ou une page actuellement publié(e) est édité(e) et qu'une date "
+"future est définie, le changement ne sera pas appliqué avant la date "
+"sélectionnée."
+
+#: admin/options.php:1616
+msgid "Leave this setting disabled to use Action Scheduler (recommended)."
+msgstr ""
+"Laissez ce paramètre désactivé pour utiliser le Planificateur d'Action "
+"(recommandé)."
+
+#: admin/options.php:1621
+msgid ""
+"Support publication of existing scheduled revisions asynchronously, via a "
+"secondary http request from the server.  This is usually best since it "
+"eliminates delay, but some servers may not support it."
+msgstr ""
+"Prendre en charge la publication de révisions programmées existantes de "
+"manière asynchrone, via une requête http secondaire depuis le serveur. "
+"C'est généralement préférable car cela élimine le délai, mais certains "
+"serveurs peuvent ne pas le prendre en charge."
+
+#: admin/options.php:1626
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"Le déclencheur WP-Cron est désactivé, mais les tâches planifiées sont "
+"toujours exécutées en utilisant un déclencheur personnalisé."
+
+#: admin/options.php:1644
+msgid ""
+"Currently, users who can edit the published post can also approve Revisions "
+"to it."
+msgstr ""
+"Actuellement, les utilisateurs qui peuvent éditer le post publié peuvent "
+"également approuver les révisions à celui-ci."
+
+#: admin/options.php:1650
+msgid "Approve Revision capabilities"
+msgstr "Capacités d'approbation de révision"
+
+#: admin/options.php:1659
+#, php-format
+msgid "Control access with %s."
+msgstr "Contrôlez l'accès avec %s."
+
+#: admin/options.php:1667
+msgid ""
+"Require Approve Revision capabilities (approve_posts, approve_others_pages, "
+"etc.)"
+msgstr ""
+"Exigez des capacités d'approbation de révision (approve_posts, "
+"approve_others_pages, etc.)"
+
+#: admin/options.php:1672
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr ""
+"Nommez le bouton soit \"Approuver et Publier\" soit \"Approuver et "
+"Programmer.\""
+
+#: admin/options.php:1681
+msgid "This may improve compatibility with some plugins."
+msgstr "Cela peut améliorer la compatibilité avec certains plugins."
+
+#: admin/options.php:1703
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid "If enabled, New Revisions screen access can be configured per-role using %s."
+msgstr ""
+"Si activé, l'accès à l'écran Nouvelles Révisions peut être configuré par "
+"rôle en utilisant %s."
+
+#: admin/options.php:1710
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If enabled, access to Unsubmitted Revisions can be configured per-role "
+"using %s."
+msgstr ""
+"Si activé, l'accès aux Révisions non soumises peut être configuré par rôle "
+"en utilisant %s."
+
+#: admin/options.php:1717
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If a user cannot edit the published post, control their access to others’ "
+"Revisions using %s."
+msgstr ""
+"Si un utilisateur ne peut pas éditer le post publié, contrôlez son accès "
+"aux Révisions des autres en utilisant %s."
+
+#: admin/options.php:1724
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If a user cannot edit the published post, control their ability to list "
+"others’ Revisions using %s."
+msgstr ""
+"Si un utilisateur ne peut pas éditer le post publié, contrôlez sa capacité "
+"à lister les Révisions des autres en utilisant %s."
+
+#: admin/options.php:1729
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Contourner les restrictions ci-dessus pour les révisions des autres sur les "
+"propres posts de l'utilisateur connecté."
+
+#: admin/options.php:1740
+msgid ""
+"If revisions were created for an editable page, include a floating "
+"Revisions button in front end views."
+msgstr ""
+"Si des révisions ont été créées pour une page éditable, incluez un bouton "
+"Révisions flottant dans les vues du front-end."
+
+#: admin/options.php:1748
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Regénérer les indicateurs \"le post a une révision\""
+
+#: admin/options.php:1751
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Appliquez cette opération de maintenance si les étiquettes A Une Révision "
+"sur les écrans Posts / Pages ne correspondent pas à la liste des Nouvelles "
+"Révisions."
+
+#: admin/options.php:1775
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "Pour des notifications améliorées, installez %sPublishPress Planner%s."
+
+#: admin/options.php:1788
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "Pour des notifications améliorées, mettez à jour %sPublishPress Planner%s."
+
+#: admin/options.php:1810
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Envoyez des notifications d'action de révision en utilisant le système de "
+"notifications personnalisable %1$sPublishPress Planner Notifications%2$s."
+
+#: admin/options.php:1811
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Mettez à niveau vers Revisions Pro pour envoyer des notifications d'action "
+"de révision en utilisant le système de notifications personnalisable "
+"%1$sPublishPress Planner Notifications%2$s."
+
+#: admin/options.php:1825
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Les utilisateurs correspondant à la configuration Planificateur > "
+"Notifications reçoivent des notifications de révision uniquement s'ils "
+"peuvent éditer le post publié."
+
+#: admin/options.php:1835
+msgid "Legacy Email Notifications:"
+msgstr "Notifications par Email Legacy:"
+
+#: admin/options.php:1868
+#: admin/options.php:1891
+msgid "Never"
+msgstr "Jamais"
+
+#: admin/options.php:1868
+#: admin/options.php:1891
+msgid "By default"
+msgstr "Par défaut"
+
+#: admin/options.php:1868
+#: admin/options.php:1891
+msgid "Always"
+msgstr "Toujours"
+
+#: admin/options.php:1879
+#: admin/options.php:1927
+msgid "select recipients"
+msgstr "sélectionner les destinataires"
+
+#: admin/options.php:1941
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"Pour éviter les échecs de notification, mettez en mémoire tampon les "
+"e-mails pour un envoi différé une fois les limites de minutes, d'heures ou "
+"de jours dépassées"
+
+#: admin/options.php:1964
+msgid "Notification Buffer"
+msgstr "Journal de Notification"
+
+#: admin/options.php:1992
+msgid "Notification Log"
+msgstr "Journal de Notification"
+
+#: admin/options.php:2026
+msgid "Purge Notification Buffer"
+msgstr "Purger le Journal de Notification"
+
+#: admin/options.php:2037
+msgid "Truncate Notification Log"
+msgstr "Tronquer le Journal de Notification"
+
+#: admin/options.php:2043
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Envoyé au cours de la dernière minute : %d / %d"
+
+#: admin/options.php:2044
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Envoyé au cours de la dernière heure : %d / %d"
+
+#: admin/options.php:2045
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Envoyé au cours de la dernière journée : %d / %d"
+
+#: admin/options.php:2052
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Secondes jusqu'à la prochaine heure de traitement de la mémoire tampon : %d"
+
+#: admin/options.php:2063
+msgid "Show Notification Log / Buffer"
+msgstr "Afficher le Journal / Mémoire tampon de Notification"
+
+#: admin/options.php:2065
+msgid "Show with message content"
+msgstr "Afficher avec le contenu du message"
+
+#: admin/options.php:2087
+msgid "Ready to enhance your revision notifications?"
+msgstr "Prêt à améliorer vos notifications de révision ?"
+
+#: admin/options.php:2090
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Mettez à niveau vers Revisions Pro pour l'intégration avec notre cadre de "
+"Notifications PublishPress Planner."
+
+#: admin/options.php:2096
+msgid "Customize notification message and subject"
+msgstr "Personnalisez le message et le sujet de la notification"
+
+#: admin/options.php:2099
+msgid "Notify for a specific post type, category or term"
+msgstr "Notifier pour un type de post, une catégorie ou un terme spécifique"
+
+#: admin/options.php:2102
+msgid "Target specific roles, users, or user groups"
+msgstr "Cibler des rôles, utilisateurs ou groupes d'utilisateurs spécifiques"
+
+#: admin/options.php:2105
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "Avec PublishPress Planner Pro, envoyez des notifications à un canal Slack"
+
+#: admin/options.php:2112
+#: admin/options.php:2142
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Mettez à niveau vers Revisions Pro"
+
+#: admin/options.php:2118
+msgid "Learn more about advanced revision notifications"
+msgstr "En savoir plus sur les notifications de révision avancées"
+
+#: admin/options.php:2130
+msgid "Revision notifications settings preview"
+msgstr "Aperçu des paramètres de notifications de révision"
+
+#: admin/options.php:2134
+#: admin/options.php:2775
+#: admin/options.php:2791
+msgid "Pro Feature"
+msgstr "Fonctionnalité Pro"
+
+#: admin/options.php:2135
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr ""
+"Mettez à niveau vers Revisions Pro pour débloquer l'intégration des "
+"Notifications Planner."
+
+#: admin/options.php:2136
+msgid "Customize notification content and recipients for each notification type."
+msgstr ""
+"Personnalisez le contenu et les destinataires de la notification pour "
+"chaque type de notification."
+
+#: admin/options.php:2138
+msgid "Learn more about custom email notifications"
+msgstr "En savoir plus sur les notifications par e-mail personnalisées"
+
+#: admin/options.php:2161
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"Désactivez ce paramètre si la comparaison visuelle montre vos modifications "
+"de manière incorrecte. Certains constructeurs de pages et thèmes ne "
+"prennent pas en charge le nouveau style de révisions WordPress."
+
+#: admin/options.php:2166
+msgid "This feature is incompatible with page builder plugins."
+msgstr ""
+"Cette fonctionnalité est incompatible avec les plugins de constructeurs de "
+"pages."
+
+#: admin/options.php:2174
+#. translators: %s: page builder plugin name.
+#, php-format
+msgid "Upgrade to Pro for visual comparison with %s."
+msgstr "Mettez à niveau vers Pro pour une comparaison visuelle avec %s."
+
+#: admin/options.php:2185
+msgid ""
+"This supports the page's normal javascript behavior inside the compare "
+"window."
+msgstr ""
+"Cela prend en charge le comportement normal de javascript de la page à "
+"l'intérieur de la fenêtre de comparaison."
+
+#: admin/options.php:2188
+msgid ""
+"If enabled, Editors and Administrators can see unidentified internal fields "
+"keys in comparisons. An attempt is still made to suppress sensitive and "
+"transient fields."
+msgstr ""
+"Si activé, les Éditeurs et Administrateurs peuvent voir des clés de champs "
+"internes non identifiés dans les comparaisons. Une tentative est toujours "
+"faite pour supprimer les champs sensibles et transitoires."
+
+#: admin/options.php:2204
+msgid "Some themes may block revision preview."
+msgstr "Certains thèmes peuvent bloquer l'aperçu des révisions."
+
+#: admin/options.php:2221
+msgid "Published Post Slug"
+msgstr "Slug de Post Publié"
+
+#: admin/options.php:2222
+msgid "Revision Slug"
+msgstr "Slug de Révision"
+
+#: admin/options.php:2223
+msgid "Revision ID only"
+msgstr "ID de Révision uniquement"
+
+#: admin/options.php:2238
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Certains thèmes ou plugins peuvent nécessiter le type de lien Slug de "
+"Révision ou ID de Révision pour un chargement de modèle approprié et un "
+"affichage des champs."
+
+#: admin/options.php:2247
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr ""
+"L'argument d'aperçu de révision est configuré par définition de constante : "
+"%s"
+
+#: admin/options.php:2254
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Ajustez les liens d'aperçu pour utiliser l'argument \"rv_preview\" au lieu "
+"de \"preview\". Expérimentez pour voir ce qui fonctionne le mieux avec "
+"votre thème."
+
+#: admin/options.php:2258
+msgid "Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Certains thèmes peuvent nécessiter ce paramètre pour un affichage correct "
+"de l'aperçu de révision."
+
+#: admin/options.php:2277
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"Cela devrait généralement être activé, sauf pour contourner les conflits "
+"avec les données postmeta d'un autre plugin."
+
+#: admin/options.php:2301
+#, php-format
+msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Si l'utilisateur ne peut pas publier, exigez le %s pour éditer les Posts "
+"non publiés des autres."
+
+#: admin/options.php:2307
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to "
+"edit others' unpublished Posts."
+msgstr ""
+"Si l'utilisateur ne peut pas publier, exigez la capacité edit_others_drafts "
+"pour éditer les Posts non publiés des autres."
+
+#: admin/options.php:2313
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Si les autorisations spécifiques aux publications restreignent ou étendent "
+"l'accès à une publication, appliquez ces autorisations à ses révisions "
+"également."
+
+#: admin/options.php:2325
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr "Rank Math SEO peut empêcher la mise à jour des révisions sur certains sites."
+
+#: admin/options.php:2332
+#: includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML Gestion de la Traduction"
+
+#: admin/options.php:2337
+msgid "Sync \"Needs Update\" flags"
+msgstr "Synchroniser les drapeaux \"Besoin de mise à jour\""
+
+#: admin/options.php:2341
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Définir \"Besoin de mise à jour\" pour toute publication avec des "
+"traductions qui a été mise à jour (possiblement par approbation de "
+"révision) plus récemment que ses traductions."
+
+#: admin/options.php:2359
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr ""
+"Afficher des légendes descriptives pour les paramètres de PublishPress "
+"Revisions."
+
+#: admin/options.php:2377
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"Les paramètres du plugin, le contenu des Nouvelles Révisions et les données "
+"associées seront supprimés, mais uniquement après que la dernière copie de "
+"Revisions / Revisions Pro soit supprimée."
+
+#: admin/options.php:2399
+msgid "Unlock Pro Integrations"
+msgstr "Déverrouiller les intégrations Pro"
+
+#: admin/options.php:2400
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Mettez à niveau vers la version Pro pour une compatibilité optimale et un "
+"support professionnel rapide."
+
+#: admin/options.php:2413
+msgid "Filter integrations by category"
+msgstr "Filtrer les intégrations par catégorie"
+
+#: admin/options.php:2418
+#: admin/options.php:2699
+msgid "Builder"
+msgstr "Constructeur"
+
+#: admin/options.php:2421
+#: admin/options.php:2700
+msgid "Blocks"
+msgstr "Blocs"
+
+#: admin/options.php:2424
+#: admin/options.php:2701
+msgid "Cache"
+msgstr "Cache"
+
+#: admin/options.php:2427
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#: admin/options.php:2430
+#: admin/options.php:2703
+msgid "Fields"
+msgstr "Champs"
+
+#: admin/options.php:2433
+#: admin/options.php:2708
+msgid "Themes"
+msgstr "Thèmes"
+
+#: admin/options.php:2437
+msgid "Multilingual"
+msgstr "Multilingue"
+
+#: admin/options.php:2441
+#: admin/options.php:2706
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2444
+#: admin/options.php:2709
+msgid "Workflow"
+msgstr "Flux de travail"
+
+#: admin/options.php:2546
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Spécifiez quels paramètres de PublishPress Revisions contrôler à l'échelle "
+"du réseau. Les paramètres non sélectionnés sont contrôlés séparément sur "
+"chaque site."
+
+#: admin/options.php:2592
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "contrôle à l'échelle du réseau de \"%s\""
+
+#: admin/options.php:2619
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: admin/options.php:2620
+msgid "Revert to Defaults"
+msgstr "Revenir aux paramètres par défaut"
+
+#: admin/options.php:2622
+msgid ""
+"All settings in this form (including those on unselected tabs) will be "
+"reset to DEFAULTS.  Are you sure?"
+msgstr ""
+"Tous les paramètres de ce formulaire (y compris ceux sur les onglets non "
+"sélectionnés) seront réinitialisés aux PARAMÈTRES PAR DÉFAUT. Êtes-vous sûr "
+"?"
+
+#: admin/options.php:2702
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2704
+msgid "Form"
+msgstr "Formulaire"
+
+#: admin/options.php:2705
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2707
+msgid "Slider"
+msgstr "Curseur"
+
+#: admin/options.php:2724
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2728
+msgid "Active"
+msgstr "Actif"
+
+#: admin/options.php:2740
+msgid "Supported by PublishPress Revisions"
+msgstr "Pris en charge par PublishPress Revisions"
+
+#: admin/options.php:2742
+msgid "Supported by Revisions Pro"
+msgstr "Pris en charge par Revisions Pro"
+
+#: admin/options.php:2755
+msgid "Integration Config Issue"
+msgstr "Problème de configuration d'intégration"
+
+#: admin/options.php:2755
+msgid "Integration Active"
+msgstr "Intégration active"
+
+#: admin/options.php:2763
+#: admin/options.php:2818
+msgid "Supported plugin integration"
+msgstr "Intégration de plugin prise en charge"
+
+#: admin/options.php:2776
+msgid ""
+"Unlock PublishPress Statuses Pro integration to enhance your revisions "
+"solution."
+msgstr ""
+"Déverrouillez l'intégration PublishPress Statuses Pro pour améliorer votre "
+"solution de révisions."
+
+#: admin/options.php:2784
+msgid "Upgrade to Statuses Pro"
+msgstr "Mettez à niveau vers Statuses Pro"
+
+#: admin/options.php:2792
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "Déverrouillez l'intégration %s pour améliorer votre solution de révisions."
+
+#: admin/options.php:2808
+msgid "Active Plugin"
+msgstr "Plugin actif"
+
+#: admin/options.php:2808
+msgid "Active Plugin Integration"
+msgstr "Intégration de plugin actif"
+
+#: admin/options.php:2828
+msgid "Supported Plugin"
+msgstr "Plugin pris en charge"
+
+#: admin/options.php:2879
+msgid "Color setting"
+msgstr "Paramètre de couleur"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Maintenant"
+
+#: admin/post-edit-block-ui_rvy.php:238
+#: admin/post-edit_rvy.php:403
+msgid "Author saved."
+msgstr "Auteur enregistré."
+
+#: admin/post-edit-block-ui_rvy.php:243
+#: admin/post-edit_rvy.php:408
+msgid "The author could not be saved."
+msgstr "L'auteur n'a pas pu être enregistré."
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(en attente d'approbation)"
+
+#: admin/post-editor-workflow-ui_rvy.php:36
+msgid ""
+"The revision could not be updated. Resolve any save or validation errors "
+"and try again."
+msgstr ""
+"La révision n'a pas pu être mise à jour. Résolvez les erreurs de sauvegarde "
+"ou de validation et réessayez."
+
+#: admin/post-editor-workflow-ui_rvy.php:71
+msgid "View / Publish"
+msgstr "Voir / Publier"
+
+#: admin/post-editor-workflow-ui_rvy.php:71
+msgid "View / Approve"
+msgstr "Voir / Approuver"
+
+#: admin/post-editor-workflow-ui_rvy.php:74
+msgid "View / Moderate saved revision"
+msgstr "Voir / Modérer la révision enregistrée"
+
+#: admin/post-editor-workflow-ui_rvy.php:76
+msgid "Preview / Submit"
+msgstr "Aperçu / Soumettre"
+
+#: admin/post-editor-workflow-ui_rvy.php:76
+msgid "View / Submit"
+msgstr "Voir / Soumettre"
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+msgid "View / Submit saved revision"
+msgstr "Voir / Soumettre la révision enregistrée"
+
+#: admin/post-editor-workflow-ui_rvy.php:86
+msgid "View unsaved changes"
+msgstr "Voir les changements non enregistrés"
+
+#: admin/post-editor-workflow-ui_rvy.php:90
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Édition de révision|%s%s Éditions de révision"
+
+#: admin/post-editor-workflow-ui_rvy.php:101
+msgid "Revision Submission Error"
+msgstr "Erreur de soumission de révision"
+
+#: admin/post-editor-workflow-ui_rvy.php:110
+msgid "Preview this Revision"
+msgstr "Aperçu de cette révision"
+
+#: admin/post-editor-workflow-ui_rvy.php:124
+msgid "Approve and Publish"
+msgstr "Approuver et publier"
+
+#: admin/post-editor-workflow-ui_rvy.php:129
+#: rvy_init-functions.php:285
+#: rvy_init-functions.php:304
+#: rvy_init-functions.php:341
+#: rvy_init-functions.php:358
+msgid "Update in progress..."
+msgstr "Mise à jour en cours..."
+
+#: admin/post-editor-workflow-ui_rvy.php:133
+msgid "Approve and Schedule"
+msgstr "Approuver et planifier"
+
+#: admin/post-editor-workflow-ui_rvy.php:165
+msgid "Decline Revision"
+msgstr "Décliner la révision"
+
+#: admin/post-editor-workflow-ui_rvy.php:169
+#: rvy_init-functions.php:274
+#: rvy_init-functions.php:292
+#: rvy_init-functions.php:310
+#: rvy_init-functions.php:330
+#: rvy_init-functions.php:347
+#: rvy_init-functions.php:364
+#: rvy_init-functions.php:477
+msgid "Update Revision"
+msgstr "Mettre à jour la révision"
+
+#: admin/post-editor-workflow-ui_rvy.php:235
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Mettez à jour le post avant de créer %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:242
+msgid "Error Creating Revision"
+msgstr "Erreur de création de révision"
+
+#: admin/post-editor-workflow-ui_rvy.php:244
+#: admin/post-editor-workflow-ui_rvy.php:264
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: admin/post-editor-workflow-ui_rvy.php:258
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "Pour les changements de champ personnalisé, éditez un %s programmé."
+
+#: admin/post-editor-workflow-ui_rvy.php:296
+msgid "The revision could not be verified as saved."
+msgstr "La révision n'a pas pu être vérifiée comme enregistrée."
+
+#: admin/post-edit_rvy.php:31
+#: admin/post-edit_rvy.php:175
+msgid "Current Time"
+msgstr "Heure actuelle"
+
+#: admin/post-edit_rvy.php:84
+#: admin/post-edit_rvy.php:124
+msgid "Delete revision"
+msgstr "Supprimer la révision"
+
+#: admin/post-edit_rvy.php:123
+msgid ""
+"Delete this revision and leave the editor? Any unsaved changes to this "
+"revision will be discarded."
+msgstr ""
+"Supprimer cette révision et quitter l'éditeur ? Les changements non "
+"enregistrés de cette révision seront perdus."
+
+#: admin/post-edit_rvy.php:125
+msgid "Continue editing revision"
+msgstr "Continuer à modifier la révision"
+
+#: admin/post-edit_rvy.php:202
+msgid "View revision in progress"
+msgstr "Voir la révision en cours"
+
+#: admin/post-edit_rvy.php:226
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "Comparer cette révision à la copie publiée ou à d'autres révisions"
+
+#: admin/post-edit_rvy.php:258
+msgid "View Saved Revision"
+msgstr "Voir la révision enregistrée"
+
+#: admin/post-edit_rvy.php:261
+msgid "View / moderate saved revision"
+msgstr "Voir / modérer la révision enregistrée"
+
+#: admin/post-edit_rvy.php:264
+msgid "View saved revision"
+msgstr "Voir la révision enregistrée"
+
+#: admin/restrict-editor-features.php:117
+msgid "Status & visibility"
+msgstr "Statut & visibilité"
+
+#: admin/restrict-editor-features.php:124
+msgid "Permalink"
+msgstr "Permalien"
+
+#: admin/restrict-editor-features.php:153
+msgid "Featured image"
+msgstr "Image à la une"
+
+#: admin/revision-action_rvy.php:568
+#: admin/revision-action_rvy.php:654
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Avis d'approbation de révision"
+
+#: admin/revision-action_rvy.php:569
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "Une révision de la %1$s \"%2$s\" a été approuvée."
+
+#: admin/revision-action_rvy.php:573
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "Le soumetteur était %1$s."
+
+#: admin/revision-action_rvy.php:577
+#: admin/revision-action_rvy.php:663
+#, php-format
+msgid "It will be published on %s"
+msgstr "Elle sera publiée le %s"
+
+#: admin/revision-action_rvy.php:581
+#: admin/revision-action_rvy.php:667
+msgid "Preview it here: "
+msgstr "Aperçu ici : "
+
+#: admin/revision-action_rvy.php:584
+#: admin/revision-action_rvy.php:670
+msgid "Editor: "
+msgstr "Éditeur : "
+
+#: admin/revision-action_rvy.php:586
+#: admin/revision-action_rvy.php:672
+#: admin/revision-action_rvy.php:1718
+#: admin/revision-action_rvy.php:1749
+#: admin/revision-action_rvy.php:1815
+msgid "View it online: "
+msgstr "Voir en ligne : "
+
+#: admin/revision-action_rvy.php:655
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "La révision que vous avez soumise pour la %1$s \"%2$s\" a été approuvée."
+
+#: admin/revision-action_rvy.php:1054
+msgid "The revision could not be published."
+msgstr "La révision n'a pas pu être publiée."
+
+#: admin/revision-action_rvy.php:1710
+#: admin/revision-action_rvy.php:1738
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s Avis de Publication"
+
+#: admin/revision-action_rvy.php:1711
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr ""
+"La révision programmée que vous avez soumise pour la %1$s \"%2$s\" a été "
+"publiée."
+
+#: admin/revision-action_rvy.php:1739
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "Une révision programmée de votre %1$s \"%2$s\" a été publiée."
+
+#: admin/revision-action_rvy.php:1746
+#: admin/revision-action_rvy.php:1812
+#, php-format
+msgid "It was submitted by %1$s."
+msgstr "Elle a été soumise par %1$s."
+
+#: admin/revision-action_rvy.php:1803
+#, php-format
+msgid "[%s] %s Publication"
+msgstr "[%s] %s Publication"
+
+#: admin/revision-action_rvy.php:1805
+#, php-format
+msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
+msgstr "Une révision programmée de la %1$s \"%2$s\" a été publiée."
+
+#: admin/revision-archive_rvy.php:15
+msgid "Revision for:"
+msgstr "Révision pour :"
+
+#: admin/revision-archive_rvy.php:48
+#: admin/revision-queue_rvy.php:98
+#, php-format
+msgid "%s revision permanently deleted."
+msgid_plural "%s revisions permanently deleted."
+msgstr[0] "%s révision définitivement supprimée.|"
+msgstr[1] "%s révisions définitivement supprimées."
+
+#: admin/revision-archive_rvy.php:78
+#: admin/revision-queue_rvy.php:217
+msgid "Undo"
+msgstr "Annuler"
+
+#: admin/revision-archive_rvy.php:110
+#: admin/revision-queue_rvy.php:325
+msgid "Search Revisions"
+msgstr "Rechercher des Révisions"
+
+#: admin/revision-archive_rvy.php:133
+msgid "About Past Revisions"
+msgstr "À propos des Révisions Passées"
+
+#: admin/revision-archive_rvy.php:135
+msgid ""
+"Every time you edit a post or page, WordPress can save a backup copy for "
+"you, so you'll always have a history of your changes."
+msgstr ""
+"Chaque fois que vous modifiez un article ou une page, WordPress peut "
+"enregistrer une copie de sauvegarde pour vous, afin que vous ayez toujours "
+"un historique de vos modifications."
+
+#: admin/revision-archive_rvy.php:139
+#, php-format
+msgid "Visit %s to adjust which post types keep Past Revisions."
+msgstr ""
+"Visitez %s pour ajuster quels types de publications conservent les "
+"Révisions Passées."
+
+#: admin/revision-archive_rvy.php:140
+msgid "Revisions > Settings"
+msgstr "Révisions > Paramètres"
+
+#: admin/revision-archive_rvy.php:147
+#, php-format
+msgid "Revisions Pro is %s in Past Revisions."
+msgstr "Revisions Pro est %s dans les Révisions Passées."
+
+#: admin/revision-archive_rvy.php:148
+msgid "configured to save custom fields"
+msgstr "configuré pour enregistrer des champs personnalisés"
+
+#: admin/revision-archive_rvy.php:152
+#, php-format
+msgid "To save custom fields in Past Revisions, see %s."
+msgstr ""
+"Pour enregistrer des champs personnalisés dans les Révisions Passées, voir "
+"%s."
+
+#: admin/revision-archive_rvy.php:153
+msgid "Revisions > Settings > Past Revisions"
+msgstr "Révisions > Paramètres > Révisions Passées"
+
+#: admin/revision-archive_rvy.php:157
+msgid ""
+"PublishPress Revisions Pro can also save your custom fields in Past "
+"Revisions, so nothing gets left behind."
+msgstr ""
+"PublishPress Revisions Pro peut également enregistrer vos champs "
+"personnalisés dans les Révisions Passées, afin que rien ne soit laissé de "
+"côté."
+
+#: admin/revision-queue_rvy.php:13
+#: admin/revision-queue_rvy.php:25
+msgid "You are not allowed to manage revisions."
+msgstr "Vous n'êtes pas autorisé à gérer les révisions."
+
+#: admin/revision-queue_rvy.php:17
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s et %s sont tous deux désactivés. Voir Révisions > Paramètres."
+
+#: admin/revision-queue_rvy.php:93
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s révision soumise.|"
+msgstr[1] "%s révisions soumises."
+
+#: admin/revision-queue_rvy.php:94
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s révision refusée.|"
+msgstr[1] "%s révisions refusées."
+
+#: admin/revision-queue_rvy.php:95
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s révision approuvée.|"
+msgstr[1] "%s révisions approuvées."
+
+#: admin/revision-queue_rvy.php:96
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s révision non programmée.|"
+msgstr[1] "%s révisions non programmées."
+
+#: admin/revision-queue_rvy.php:97
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s révision publiée.|"
+msgstr[1] "%s révisions publiées."
+
+#: admin/revision-queue_rvy.php:167
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Auteur de l'article : %s)"
+
+#: admin/revision-queue_rvy.php:178
+#, php-format
+msgid "New Revisions %s"
+msgstr "Nouvelles Révisions %s"
+
+#: admin/revision-queue_rvy.php:346
+msgid "About Scheduled Revisions"
+msgstr "À propos des Révisions Programmées"
+
+#: admin/revision-queue_rvy.php:348
+msgid ""
+"The Scheduled Revisions feature allows you to choose a date and time to "
+"publish content updates."
+msgstr ""
+"La fonctionnalité Révisions Programmées vous permet de choisir une date et "
+"une heure pour publier des mises à jour de contenu."
+
+#: admin/revision-queue_rvy.php:350
+#: admin/revision-queue_rvy.php:364
+msgid "Click \"Create Revision\"."
+msgstr "Cliquez sur \"Créer une Révision\"."
+
+#: admin/revision-queue_rvy.php:351
+#: admin/revision-queue_rvy.php:365
+msgid "Make your changes to the post."
+msgstr "Apportez vos modifications à l'article."
+
+#: admin/revision-queue_rvy.php:352
+msgid "Select a publishing date in the future."
+msgstr "Sélectionnez une date de publication dans le futur."
+
+#: admin/revision-queue_rvy.php:353
+msgid "Click the \"Schedule Revision\" button."
+msgstr "Cliquez sur le bouton \"Planifier la révision\"."
+
+#: admin/revision-queue_rvy.php:360
+msgid "About New Revisions"
+msgstr "À propos des nouvelles révisions"
+
+#: admin/revision-queue_rvy.php:362
+msgid "The New Revisions feature gives you a safe space to work on content updates."
+msgstr ""
+"La fonctionnalité Nouvelles révisions vous offre un espace sûr pour "
+"travailler sur les mises à jour de contenu."
+
+#: admin/revision-queue_rvy.php:366
+msgid "Save your revision."
+msgstr "Enregistrez votre révision."
+
+#: admin/revision-queue_rvy.php:367
+msgid ""
+"When you're happy with it, click \"Submit Revision\". You can then share "
+"the revision with other users, or publish the update."
+msgstr ""
+"Lorsque vous en êtes satisfait, cliquez sur \"Soumettre la révision\". Vous "
+"pouvez ensuite partager la révision avec d'autres utilisateurs, ou publier "
+"la mise à jour."
+
+#: admin/revision-ui_rvy.php:49
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "Les éditeurs seront notifiés (mais ne peuvent pas être sélectionnés ici)."
+
+#: admin/revision-ui_rvy.php:51
+msgid "No email notifications will be sent."
+msgstr "Aucune notification par e-mail ne sera envoyée."
+
+#: admin/revision-ui_rvy.php:103
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (Actuel)"
+
+#: admin/revision-ui_rvy.php:107
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Enregistrement automatique)"
+
+#: admin/revision-ui_rvy.php:118
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Date de publication : %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:120
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Publication demandée : %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:125
+#, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: admin/revision-ui_rvy.php:279
+#, php-format
+msgid "Preview &#8220;%s&#8221;"
+msgstr "Aperçu &#8220;%s&#8221;"
+
+#: admin/revision-ui_rvy.php:295
+msgid "The revision will be deleted. Are you sure?"
+msgstr "La révision sera supprimée. Êtes-vous sûr ?"
+
+#: admin/revision-ui_rvy.php:332
+msgid "Select revision for deletion"
+msgstr "Sélectionnez la révision à supprimer"
+
+#: admin/revision-ui_rvy.php:388
+msgid "Modified Date"
+msgstr "Date modifiée"
+
+#: admin/revision-ui_rvy.php:392
+msgid "Actions"
+msgstr "Actions"
+
+#: admin/revision-ui_rvy.php:410
+msgid "Bulk Actions"
+msgstr "Actions en masse"
+
+#: admin/RevisionEditSubmitMetabox.php:64
+msgid "Move to Trash"
+msgstr "Déplacer vers la corbeille"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "Aperçu de la révision en cours"
+
+#: admin/RevisionEditSubmitMetabox.php:147
+msgid "Status:"
+msgstr "Statut :"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Publier %son approbation%s"
+
+#: admin/revisions.php:21
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Remarque:</strong> Pour l'affichage visuel des révisions, ajoutez "
+"le code suivant à foliopress-wysiwyg.php :<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:62
+msgid "Revision of this post is not allowed."
+msgstr "La révision de ce post n'est pas autorisée."
+
+#: admin/revisions.php:65
+msgid "No revision specified."
+msgstr "Aucune révision spécifiée."
+
+#: admin/revisions.php:73
+msgid "Past"
+msgstr "Passé"
+
+#: admin/revisions.php:74
+msgid "Pending"
+msgstr "En attente"
+
+#: admin/revisions.php:136
+#, php-format
+msgid "Revisions of %s"
+msgstr "Révisions de %s"
+
+#: admin/revisions.php:166
+msgid "The requested revision does not exist."
+msgstr "La révision demandée n'existe pas."
+
+#: admin/revisions.php:255
+#, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:276
+#, php-format
+msgid "no %s revisions available."
+msgstr "aucune révision %s disponible."
+
+#: builder-schema_rvy.php:7
+msgid ""
+"Page Builder integration requires Revisions Pro to be set to standard "
+"storage schema."
+msgstr ""
+"L'intégration de Page Builder nécessite que Revisions Pro soit configuré "
+"sur le schéma de stockage standard."
+
+#: builder-schema_rvy.php:10
+#, php-format
+msgid "Page Builder integration requires Revisions Pro to be set to %s."
+msgstr ""
+"L'intégration de Page Builder nécessite que Revisions Pro soit configuré "
+"sur %s."
+
+#: builder-schema_rvy.php:12
+msgid "standard storage schema"
+msgstr "schéma de stockage standard"
+
+#: classes/PublishPress/IntegrationCards.php:59
+#: classes/PublishPress/IntegrationCards.php:62
+#: classes/PublishPress/IntegrationCards.php:65
+#: classes/PublishPress/IntegrationCards.php:471
+#: classes/PublishPress/Revisionary.php:249
+#: classes/PublishPress/Revisionary.php:279
+msgid "Revise custom fields and display changes"
+msgstr "Réviser les champs personnalisés et afficher les changements"
+
+#: classes/PublishPress/IntegrationCards.php:140
+msgid "Integration with Divi 4/5 editor and blocks"
+msgstr "Intégration avec l'éditeur Divi 4/5 et les blocs"
+
+#: classes/PublishPress/IntegrationCards.php:142
+#, php-format
+msgid "Integration with %s's editor and blocks."
+msgstr "Intégration avec l'éditeur et les blocs de %s."
+
+#: classes/PublishPress/IntegrationCards.php:158
+msgid "PublishPress Statuses"
+msgstr "Statuts PublishPress"
+
+#: classes/PublishPress/IntegrationCards.php:159
+msgid "PublishPress Statuses Pro integration."
+msgstr "Intégration de PublishPress Statuses Pro."
+
+#: classes/PublishPress/IntegrationCards.php:163
+msgid "Define custom statuses for revisions"
+msgstr "Définir des statuts personnalisés pour les révisions"
+
+#: classes/PublishPress/IntegrationCards.php:164
+msgid "Control editing access for each revision status"
+msgstr "Contrôler l'accès à l'édition pour chaque statut de révision"
+
+#: classes/PublishPress/IntegrationCards.php:293
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:385
+#: classes/PublishPress/IntegrationCards.php:388
+#: classes/PublishPress/IntegrationCards.php:390
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:144
+#: classes/PublishPress/Revisionary.php:160
+#: classes/PublishPress/Revisionary.php:176
+#: classes/PublishPress/Revisionary.php:203
+msgid "Revise and compare custom fields"
+msgstr "Réviser et comparer des champs personnalisés"
+
+#: classes/PublishPress/IntegrationCards.php:294
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:204
+msgid "Display custom field changes"
+msgstr "Afficher les modifications des champs personnalisés"
+
+#: classes/PublishPress/IntegrationCards.php:295
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:205
+msgid "Update custom fields on revision publication"
+msgstr "Mettre à jour les champs personnalisés lors de la publication de la révision"
+
+#: classes/PublishPress/IntegrationCards.php:308
+#, php-format
+msgid "Compatibility with %s theme custom fields."
+msgstr "Compatibilité avec les champs personnalisés du thème %s."
+
+#: classes/PublishPress/IntegrationCards.php:309
+#, php-format
+msgid "Compatibility with %s custom fields."
+msgstr "Compatibilité avec les champs personnalisés %s."
+
+#: classes/PublishPress/IntegrationCards.php:336
+#, php-format
+msgid "Compatibility with %s."
+msgstr "Compatibilité avec %s."
+
+#: classes/PublishPress/IntegrationCards.php:337
+#, php-format
+msgid "Compatibility with %s cache."
+msgstr "Compatibilité avec le cache %s."
+
+#: classes/PublishPress/IntegrationCards.php:347
+#: classes/PublishPress/Revisionary.php:189
+msgid "Clear cache on revision publication"
+msgstr "Vider le cache lors de la publication de la révision"
+
+#: classes/PublishPress/IntegrationCards.php:348
+#: classes/PublishPress/Revisionary.php:190
+msgid "Support immediate and scheduled publication"
+msgstr "Support pour la publication immédiate et programmée"
+
+#: classes/PublishPress/IntegrationCards.php:366
+msgid "Avada Builder"
+msgstr "Avada Builder"
+
+#: classes/PublishPress/IntegrationCards.php:367
+msgid "WPBakery Page Builder"
+msgstr "WPBakery Page Builder"
+
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:416
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:173
+msgid "Frontend revision editing, submission"
+msgstr "Édition et soumission de révisions en frontend"
+
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:379
+#: classes/PublishPress/IntegrationCards.php:417
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:174
+msgid "Visually compare changes"
+msgstr "Comparer visuellement les modifications"
+
+#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:418
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:159
+#: classes/PublishPress/Revisionary.php:175
+msgid "Revision preview with builder styling"
+msgstr "Aperçu de la révision avec le style du constructeur"
+
+#: classes/PublishPress/IntegrationCards.php:368
+msgid "SiteOrigin Page Builder"
+msgstr "SiteOrigin Page Builder"
+
+#: classes/PublishPress/IntegrationCards.php:369
+msgid "SeedProd"
+msgstr "SeedProd"
+
+#: classes/PublishPress/IntegrationCards.php:370
+msgid "Breakdance"
+msgstr "Breakdance"
+
+#: classes/PublishPress/IntegrationCards.php:371
+msgid "Bricks"
+msgstr "Bricks"
+
+#: classes/PublishPress/IntegrationCards.php:378
+msgid "Submit revisions to blocks"
+msgstr "Soumettre des révisions aux blocs"
+
+#: classes/PublishPress/IntegrationCards.php:380
+msgid "Revision preview with block styling"
+msgstr "Aperçu de la révision avec le style des blocs"
+
+#: classes/PublishPress/IntegrationCards.php:384
+msgid "Kadence Blocks"
+msgstr "Kadence Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:385
+msgid "Spectra Legacy"
+msgstr "Spectra Legacy"
+
+#: classes/PublishPress/IntegrationCards.php:386
+msgid "Otter Blocks"
+msgstr "Otter Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:387
+msgid "Essential Blocks"
+msgstr "Essential Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:388
+msgid "Stackable"
+msgstr "Stackable"
+
+#: classes/PublishPress/IntegrationCards.php:389
+msgid "Ultimate Blocks"
+msgstr "Ultimate Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:390
+msgid "PublishPress Blocks"
+msgstr "PublishPress Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:411
+#, php-format
+msgid "Integration with %s."
+msgstr "Intégration avec %s."
+
+#: classes/PublishPress/IntegrationCards.php:431
+msgid "LiteSpeed Cache"
+msgstr "LiteSpeed Cache"
+
+#: classes/PublishPress/IntegrationCards.php:432
+msgid "WP Fastest Cache"
+msgstr "WP Fastest Cache"
+
+#: classes/PublishPress/IntegrationCards.php:433
+msgid "WP Super Cache"
+msgstr "WP Super Cache"
+
+#: classes/PublishPress/IntegrationCards.php:434
+msgid "WP-Optimize"
+msgstr "WP-Optimize"
+
+#: classes/PublishPress/IntegrationCards.php:435
+msgid "W3 Total Cache"
+msgstr "W3 Total Cache"
+
+#: classes/PublishPress/IntegrationCards.php:436
+msgid "Breeze"
+msgstr "Breeze"
+
+#: classes/PublishPress/IntegrationCards.php:437
+msgid "SpeedyCache"
+msgstr "SpeedyCache"
+
+#: classes/PublishPress/IntegrationCards.php:462
+msgid "PublishPress Cart"
+msgstr "PublishPress Cart"
+
+#: classes/PublishPress/IntegrationCards.php:467
+#: classes/PublishPress/Revisionary.php:242
+msgid "Revision submission and approval for products."
+msgstr "Soumission et approbation des révisions pour les produits."
+
+#: classes/PublishPress/IntegrationCards.php:469
+#: classes/PublishPress/Revisionary.php:246
+msgid "Product revisions"
+msgstr "Révisions de produits"
+
+#: classes/PublishPress/IntegrationCards.php:470
+#: classes/PublishPress/Revisionary.php:248
+msgid "Priority on ongoing compatibility"
+msgstr "Priorité sur la compatibilité en cours"
+
+#: classes/PublishPress/Revisionary.php:107
+#: includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "Compatibilité avec les champs personnalisés ACF."
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Étendu"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "Support du modèle de données ACFE."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "Support du type de données single_meta ACFE"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "Affichage correct des champs sur l'écran de comparaison"
+
+#: classes/PublishPress/Revisionary.php:136
+#: includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Intégration avec l'éditeur frontend de Beaver Builder."
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:153
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Intégration avec Divi Builder et le thème Divi."
+
+#: classes/PublishPress/Revisionary.php:168
+#: includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:169
+msgid "Integration with Elementor's front end editor."
+msgstr "Intégration avec l'éditeur frontend d'Elementor."
+
+#: classes/PublishPress/Revisionary.php:184
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:185
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Compatibilité avec la mise en cache Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:198
+#: includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:199
+msgid "Compatibility with Pods custom fields."
+msgstr "Compatibilité avec les champs personnalisés Pods."
+
+#: classes/PublishPress/Revisionary.php:213
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:214
+msgid "Compatibility with Polylang translation."
+msgstr "Compatibilité avec la traduction Polylang."
+
+#: classes/PublishPress/Revisionary.php:218
+msgid "Revisions carry over Polylang data"
+msgstr "Les révisions conservent les données Polylang"
+
+#: classes/PublishPress/Revisionary.php:219
+msgid "Translation retained on Revision approval"
+msgstr "Traduction conservée lors de l'approbation de la révision"
+
+#: classes/PublishPress/Revisionary.php:227
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:228
+msgid "PublishPress Planner Integration."
+msgstr "Intégration de PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:232
+msgid "Planner Notifications for revision actions"
+msgstr "Notifications du Planner pour les actions de révision"
+
+#: classes/PublishPress/Revisionary.php:233
+msgid "Revision schedule shown in Calendar"
+msgstr "Calendrier des révisions affiché dans le calendrier"
+
+#: classes/PublishPress/Revisionary.php:241
+#: includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:247
+msgid "Compatible with Product Variations"
+msgstr "Compatible avec les variations de produit"
+
+#: classes/PublishPress/Revisionary.php:257
+#: includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Multilingual revisioning with WPML."
+msgstr "Révisions multilingues avec WPML."
+
+#: classes/PublishPress/Revisionary.php:262
+msgid "Language-specific revisions"
+msgstr "Révisions spécifiques à la langue"
+
+#: classes/PublishPress/Revisionary.php:263
+msgid "Translation Management integration"
+msgstr "Intégration de la gestion des traductions"
+
+#: classes/PublishPress/Revisionary.php:271
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:276
+msgid "Prevent indexing of revisions"
+msgstr "Prévenir l'indexation des révisions"
+
+#: classes/PublishPress/Revisionary.php:277
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Compatibilité pour Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:278
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Comparer les révisions avec les champs Yoast SEO"
+
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+msgid ""
+"PublishPress Revisions could not create the required Action Scheduler "
+"database tables. Check the database error log and the database user's "
+"CREATE and ALTER permissions."
+msgstr ""
+"PublishPress Revisions n'a pas pu créer les tables de base de données "
+"Action Scheduler requises. Vérifiez le journal des erreurs de base de "
+"données et les permissions CREATE et ALTER de l'utilisateur de la base de "
+"données."
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "Statut de la révision"
+
+#: front-notice.php:179
+#, php-format
+msgid "This %s has new revisions. Click the button below to review them."
+msgstr ""
+"Cette %s a de nouvelles révisions. Cliquez sur le bouton ci-dessous pour "
+"les examiner."
+
+#: front-notice.php:188
+msgid "Dismiss notice"
+msgstr "Ignorer l'avis"
+
+#: front_rvy.php:534
+#, php-format
+msgid "%sManage%s"
+msgstr "%sGérer%s"
+
+#: front_rvy.php:545
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sComparer%s%sVoir l'article publié%s"
+
+#: front_rvy.php:557
+#: front_rvy.php:572
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sVoir l'article publié%s"
+
+#: front_rvy.php:668
+#: front_rvy.php:674
+#: front_rvy.php:730
+#: front_rvy.php:736
+#, php-format
+msgid "This Revision is Submitted for Approval. %s %s %s"
+msgstr "Cette révision a été soumise pour approbation. %s %s %s"
+
+#: front_rvy.php:670
+#: front_rvy.php:676
+#: front_rvy.php:732
+#: front_rvy.php:738
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Ceci est un %s. %s %s %s"
+
+#: front_rvy.php:679
+#: front_rvy.php:741
+#, php-format
+msgid "%s."
+msgstr "%s."
+
+#: front_rvy.php:708
+#: front_rvy.php:710
+#: front_rvy.php:763
+#: front_rvy.php:765
+#, php-format
+msgid "This is a %s (for %s). %s %s %s"
+msgstr "Ceci est un %s (pour %s). %s %s %s"
+
+#: front_rvy.php:712
+#: front_rvy.php:767
+#, php-format
+msgid "%1$s (for %2$s)."
+msgstr "%1$s (pour %2$s)."
+
+#: front_rvy.php:715
+#: front_rvy.php:717
+#, php-format
+msgid "Revision status: %s (for %s) %s %s %s"
+msgstr "Statut de la révision : %s (pour %s) %s %s %s"
+
+#: front_rvy.php:719
+#, php-format
+msgid "Revision status: %1$s (for %2$s)"
+msgstr "Statut de la révision : %1$s (pour %2$s)"
+
+#: front_rvy.php:744
+#: front_rvy.php:746
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Statut de la révision : %s %s %s %s"
+
+#: front_rvy.php:748
+#, php-format
+msgid "Revision status: %s"
+msgstr "Statut de la révision : %s"
+
+#: front_rvy.php:760
+#: rvy_init-functions.php:447
+msgid "Publish Now"
+msgstr "Publier maintenant"
+
+#: front_rvy.php:784
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "La révision a été approuvée et est maintenant en ligne sur le site. %s"
+
+#: front_rvy.php:785
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Ceci est la révision actuelle. %s"
+
+#: front_rvy.php:793
+msgid "Revision approved and live."
+msgstr "Révision approuvée et en ligne."
+
+#: front_rvy.php:794
+msgid "Current Revision."
+msgstr "Révision actuelle."
+
+#: front_rvy.php:805
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:348
+#: visual-compare_rvy.php:101
+msgid "Restore"
+msgstr "Restaurer"
+
+#: front_rvy.php:809
+#: front_rvy.php:811
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Ceci est une révision passée (de %s). %s %s"
+
+#: front_rvy.php:813
+#, php-format
+msgid "Past Revision (from %s)."
+msgstr "Révision passée (de %s)."
+
+#: front_rvy.php:825
+msgid "More revision actions"
+msgstr "Plus d'actions de révision"
+
+#: functions.php:569
+msgid "Scheduled Rev."
+msgstr "Rév. programmée."
+
+#: functions.php:574
+#: functions.php:579
+msgid "Submitted Rev."
+msgstr "Rév. soumise."
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"Vous utilisez PublishPress Revisions Free. La version Pro a plus de "
+"fonctionnalités et de support. %sPasser à Pro%s"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Passez à PublishPress Revisions Pro pour une intégration avec les "
+"fonctionnalités clés de ces plugins :"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner : Notifications personnalisées"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "Détails de l'intégration du plugin"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "Besoin de support pour les révisions ?"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr ""
+"Si vous avez besoin d'aide ou si vous avez une nouvelle demande de "
+"fonctionnalité, faites-le nous savoir."
+
+#: includes/CoreAdmin.php:225
+msgid "Request support for PublishPress Revisions"
+msgstr "Demander du support pour PublishPress Revisions"
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "Demander du support"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Une documentation détaillée est également disponible sur le site du plugin."
+
+#: includes/CoreAdmin.php:236
+msgid "View PublishPress Revisions knowledge base"
+msgstr "Voir la base de connaissances de PublishPress Revisions"
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "Voir la base de connaissances"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
+msgid "Modified: "
+msgstr "Modifié : "
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
+#: includes/visual-post-compare/visual-post-compare.php:135
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3135
+msgid "Post Date: "
+msgstr "Date de publication : "
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:210
+#, php-format
+msgid "Author: %s"
+msgstr "Auteur : %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:211
+#, php-format
+msgid "Status: %s"
+msgstr "Statut : %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
+#, php-format
+msgid "Action: %s"
+msgstr "Action : %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:213
+msgid "Current"
+msgstr "Actuel"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
+#. translators: %s: revision approver display name.
+#, php-format
+msgid "(approved by %s)"
+msgstr "(approuvé par %s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#. translators: %s: direct editor display name.
+#, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
+msgid "Comparison legend"
+msgstr "Légende de comparaison"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
+msgid "Added"
+msgstr "Ajouté"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
+msgid "Removed"
+msgstr "Supprimé"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
+msgid "Modified"
+msgstr "Modifié"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
+msgid "Loading comparison..."
+msgstr "Chargement de la comparaison..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
+msgid "The target post content has been replaced with the approved content."
+msgstr "Le contenu de l'article cible a été remplacé par le contenu approuvé."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3473
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3473
+msgid "Classic compare screen"
+msgstr "Écran de comparaison classique"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:226
+msgid "Visual comparison settings"
+msgstr "Paramètres de comparaison visuelle"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:314
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:315
+msgid "Past Revision"
+msgstr "Révision passée"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:349
+msgid "Restoring"
+msgstr "Restauration"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:381
+msgid "Published by Scheduled Revision"
+msgstr "Publié par Révision programmée"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:383
+msgid "Published by Revision"
+msgstr "Publié par Révision"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:409
+msgid "Published by Direct Edit"
+msgstr "Publié par Édition directe"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
+msgid "Publishing"
+msgstr "Publication"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
+msgid "Approving"
+msgstr "Approbation"
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:75
+msgid "You are not allowed to view the revisions."
+msgstr "Vous n'êtes pas autorisé à voir les révisions."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:88
+#: includes/visual-post-compare/visual-post-compare.php:63
+#: includes/visual-post-compare/visual-post-compare.php:258
+msgid "You are not allowed to view the revision."
+msgstr "Vous n'êtes pas autorisé à voir la révision."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:107
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:114
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:181
+#: includes/visual-post-compare/visual-post-compare.php:53
+#: includes/visual-post-compare/visual-post-compare.php:239
+msgid "Invalid revision ID."
+msgstr "ID de révision invalide."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:131
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:142
+msgid "You are not allowed to approve the revision."
+msgstr "Vous n'êtes pas autorisé à approuver la révision."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:162
+msgid "The revision could not be approved."
+msgstr "La révision n'a pas pu être approuvée."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:174
+msgid "The revision has been approved and scheduled for publication."
+msgstr "La révision a été approuvée et programmée pour publication."
+
+#: includes/visual-post-compare/visual-post-compare.php:252
+#: includes/visual-post-compare/visual-post-compare.php:258
+#: includes/visual-post-compare/visual-post-compare.php:263
+#: includes/visual-post-compare/visual-post-compare.php:271
+#: includes/visual-post-compare/visual-post-compare.php:316
+#: includes/visual-post-compare/visual-post-compare.php:415
 #: visual-compare_rvy.php:12
 #: visual-compare_rvy.php:13
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3606
 msgid "Compare Revisions"
 msgstr "Comparer les révisions"
+
+#: includes/visual-post-compare/visual-post-compare.php:263
+msgid "You are not allowed to view this comparison."
+msgstr "Vous n'êtes pas autorisé à voir cette comparaison."
+
+#: includes/visual-post-compare/visual-post-compare.php:416
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3532
+msgid "Loading comparison…"
+msgstr "Chargement de la comparaison…"
+
+#: lib/debug.php:99
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s requêtes en %2$s secondes. %3$s Mo utilisés."
+
+#: revision-creation_rvy.php:183
+msgid "Could not insert post into the database"
+msgstr "Impossible d'insérer l'article dans la base de données"
+
+#: revision-creation_rvy.php:437
+msgid "Could not insert revision into the database"
+msgstr "Impossible d'insérer la révision dans la base de données"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s Mis à jour"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr ""
+"%1$s a soumis des modifications au %2$s \"%3$s\" . Vous pouvez examiner les "
+"modifications pour une publication possible :"
+
+#: revision-workflow_rvy.php:174
+#, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s a soumis des modifications au %2$s \"%3$s\". Vous pouvez examiner les "
+"modifications pour une publication possible :"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "Aperçu et approbation : "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "Nouvelles révisions : "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "Modifier %s : "
+
+#: revisionary.php:122
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Ce plugin peut être supprimé.</strong>"
+
+#: revisionary_main.php:208
+msgid "Visual compare is not enabled."
+msgstr "La comparaison visuelle n'est pas activée."
+
+#: rvy_init-functions.php:84
+msgid "Every 2 Minutes"
+msgstr "Toutes les 2 minutes"
+
+#: rvy_init-functions.php:264
+#: rvy_init-functions.php:276
+msgid "Working Copy"
+msgstr "Copie de travail"
+
+#: rvy_init-functions.php:265
+msgid "Create Working Copy"
+msgstr "Créer une copie de travail"
+
+#: rvy_init-functions.php:267
+msgid "Creating Working Copy..."
+msgstr "Création de la copie de travail..."
+
+#: rvy_init-functions.php:268
+msgid "Working Copy ready"
+msgstr "Copie de travail prête"
+
+#: rvy_init-functions.php:269
+#: rvy_init-functions.php:287
+msgid "Approve Changes"
+msgstr "Approuver les modifications"
+
+#: rvy_init-functions.php:271
+#: rvy_init-functions.php:289
+msgid "Approving Changes..."
+msgstr "Approbation des modifications..."
+
+#: rvy_init-functions.php:272
+#: rvy_init-functions.php:290
+#: rvy_init-functions.php:308
+msgid "Publish Changes"
+msgstr "Publier les modifications"
+
+#: rvy_init-functions.php:273
+#: rvy_init-functions.php:291
+#: rvy_init-functions.php:309
+#: rvy_init-functions.php:329
+#: rvy_init-functions.php:346
+#: rvy_init-functions.php:363
+msgid "Save Revision"
+msgstr "Sauvegarder la révision"
+
+#: rvy_init-functions.php:275
+msgid "Working Copies"
+msgstr "Copies de travail"
+
+#: rvy_init-functions.php:277
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Copies de travail <span class=\"count\">(%d)</span>"
+msgstr[1] "Copies de travail <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:282
+#: rvy_init-functions.php:294
+msgid "Change Request"
+msgstr "Demande de modification"
+
+#: rvy_init-functions.php:283
+msgid "Submit Change Request"
+msgstr "Soumettre une demande de modification"
+
+#: rvy_init-functions.php:286
+msgid "Changes Submitted"
+msgstr "Modifications soumises"
+
+#: rvy_init-functions.php:293
+msgid "Change Requests"
+msgstr "Demandes de modification"
+
+#: rvy_init-functions.php:295
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Demandes de modification <span class=\"count\">(%d)</span>"
+msgstr[1] "Demandes de modification <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:296
+msgid "Enable Change Requests"
+msgstr "Activer les demandes de modification"
+
+#: rvy_init-functions.php:301
+#: rvy_init-functions.php:312
+msgid "Scheduled Change"
+msgstr "Modification programmée"
+
+#: rvy_init-functions.php:302
+#: rvy_init-functions.php:303
+#: rvy_init-functions.php:306
+#: rvy_init-functions.php:307
+msgid "Schedule Changes"
+msgstr "Planifier des modifications"
+
+#: rvy_init-functions.php:305
+msgid "Changes are Scheduled."
+msgstr "Les modifications sont programmées."
+
+#: rvy_init-functions.php:311
+msgid "Scheduled Changes"
+msgstr "Modifications programmées"
+
+#: rvy_init-functions.php:313
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Programmées <span class=\"count\">(%d)</span>"
+msgstr[1] "Programmées <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:321
+msgid "Unsubmitted Revision"
+msgstr "Révision non soumise"
+
+#: rvy_init-functions.php:322
+#: rvy_init-functions.php:323
+msgid "Create Revision"
+msgstr "Créer une révision"
+
+#: rvy_init-functions.php:324
+msgid "Creating Revision..."
+msgstr "Création de la révision..."
+
+#: rvy_init-functions.php:325
+msgid "The Revision is ready to edit."
+msgstr "La révision est prête à être modifiée."
+
+#: rvy_init-functions.php:325
+msgid "Revision ready to edit."
+msgstr "Révision prête à être modifiée."
+
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:328
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:362
+msgid "Publish Revision"
+msgstr "Publier la révision"
+
+#: rvy_init-functions.php:331
+msgid "Unsubmitted Revisions"
+msgstr "Révisions non soumises"
+
+#: rvy_init-functions.php:332
+msgid "Not Submitted"
+msgstr "Non soumis"
+
+#: rvy_init-functions.php:333
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Non soumis <span class=\"count\">(%s)</span>"
+msgstr[1] "Non soumis <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:338
+msgid "Submitted Revision"
+msgstr "Révision soumise"
+
+#: rvy_init-functions.php:339
+#: rvy_init-functions.php:480
+msgid "Submit Revision"
+msgstr "Soumettre la révision"
+
+#: rvy_init-functions.php:342
+msgid "The Revision is Submitted"
+msgstr "La révision est soumise"
+
+#: rvy_init-functions.php:342
+msgid "Revision Submitted"
+msgstr "Révision soumise"
+
+#: rvy_init-functions.php:348
+#: visual-compare_rvy.php:160
+msgid "Submitted Revisions"
+msgstr "Révisions envoyées"
+
+#: rvy_init-functions.php:349
+msgid "Submitted"
+msgstr "Soumis"
+
+#: rvy_init-functions.php:350
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Soumis <span class=\"count\">(%s)</span>"
+msgstr[1] "Soumis <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:355
+msgid "Scheduled Revision"
+msgstr "Révision programmée"
+
+#: rvy_init-functions.php:356
+msgid "Schedule Revision"
+msgstr "Planifier la révision"
+
+#: rvy_init-functions.php:359
+msgid "The Revision is Scheduled"
+msgstr "La révision est programmée"
+
+#: rvy_init-functions.php:359
+msgid "Revision Scheduled"
+msgstr "Révision programmée"
+
+#: rvy_init-functions.php:367
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Programmée <span class=\"count\">(%s)</span>"
+msgstr[1] "Programmée <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:467
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sMes copies & modifications%s(%s)|%sMes copies & modifications%s(%s)"
+
+#: rvy_init-functions.php:468
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sMes Révisions%s(%s)|%sMes Révisions%s(%s)"
+
+#: rvy_init-functions.php:470
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sRévisions de Mes Articles%s(%s)</span>|%sRévisions de Mes Articles%s(%s)"
+
+#: rvy_init-functions.php:475
+msgid "Post Author"
+msgstr "Auteur de l'article"
+
+#: rvy_init-functions.php:476
+msgid "Published Post"
+msgstr "Article publié"
+
+#: rvy_init-functions.php:481
+msgid "Submit Changes"
+msgstr "Soumettre les modifications"
+
+#: rvy_init-functions.php:695
+msgid "Revisor"
+msgstr "Réviseur"
+
+#: rvy_init-functions.php:818
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post."
+msgstr ""
+"La capacité unfiltered_html est requise pour créer une révision de cet "
+"article."
+
+#: rvy_init-functions.php:1285
+msgid "Revision Workflow"
+msgstr "Flux de révision"
 
 #: visual-compare_rvy.php:85
 msgid "Compare Scheduled Revisions"
@@ -31,22 +4482,982 @@ msgstr "Comparer les nouvelles révisions"
 msgid "Compare Past Revisions"
 msgstr "Comparer les révisions précédentes"
 
-#: visual-compare_rvy.php:101
-msgid "Restore"
-msgstr "Restaurer"
-
-#: visual-compare_rvy.php:143
-msgid "Past Revisions"
-msgstr "Révisions précédentes"
-
-#: visual-compare_rvy.php:160
-msgid "Submitted Revisions"
-msgstr "Révisions envoyées"
-
-#: visual-compare_rvy.php:175
-msgid "Scheduled Revisions"
-msgstr "Révisions planifiées"
-
 #: visual-compare_rvy.php:180
 msgid "Scheduled:"
 msgstr "Planifié :"
+
+#: admin/rvy_revision-block-edit.dev.js:34
+#: admin/rvy_revision-block-edit.js:34
+msgid "Revision updated"
+msgstr "Révision mise à jour"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:108
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
+#: includes/visual-post-compare/visual-post-compare-standalone.js:194
+msgid "Add Format"
+msgstr "Ajouter un format"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:109
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:195
+#: includes/visual-post-compare/visual-post-compare-standalone.js:195
+msgid "Remove Format"
+msgstr "Supprimer le format"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:110
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:462
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:352
+#: includes/visual-post-compare/visual-post-compare-standalone.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.js:352
+msgid "Modify Format"
+msgstr "Modifier le format"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:224
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2042
+msgid "bolding"
+msgstr "gras"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:225
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2043
+msgid "italics"
+msgstr "italique"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:226
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2044
+msgid "underscore"
+msgstr "souligné"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:227
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2016
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2016
+msgid "strikethrough"
+msgstr "barré"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:240
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:297
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2059
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2059
+msgid "Change font size"
+msgstr "Changer la taille de police"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:248
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2037
+msgid "Remove bolding"
+msgstr "Supprimer le gras"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:249
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2038
+msgid "Remove italics"
+msgstr "Supprimer l'italique"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:250
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2039
+msgid "Remove underscore"
+msgstr "Supprimer le souligné"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:251
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2040
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2040
+msgid "Remove strikethrough"
+msgstr "Supprimer le barré"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2042
+msgid "Add bolding"
+msgstr "Ajouter du gras"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2043
+msgid "Add italics"
+msgstr "Ajouter de l'italique"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2044
+msgid "Add underscore"
+msgstr "Ajouter un souligné"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:256
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2045
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2045
+msgid "Add strikethrough"
+msgstr "Ajouter un barré"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:276
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:907
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2355
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2355
+#, js-format
+msgid "Modified HTML tag: %s"
+msgstr "Tag HTML modifié : %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:286
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2333
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2333
+#, js-format
+msgid "Modified HTML tag: %1$s, %2$s"
+msgstr "Tag HTML modifié : %1$s, %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:300
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:330
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid ""
+"Modify format:\n"
+" %s"
+msgstr ""
+"Modifier le format :\n"
+" %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:303
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Change ID"
+msgstr "Changer l'ID"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:309
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Add classes: %s"
+msgstr "Ajouter des classes : %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:310
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Remove classes: %s"
+msgstr "Supprimer des classes : %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:313
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Modify style"
+msgstr "Modifier le style"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:323
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Remove %s"
+msgstr "Supprimer %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:325
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Add %s"
+msgstr "Ajouter %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:327
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#, js-format
+msgid "Change %s"
+msgstr "Changer %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:474
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:600
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:714
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:400
+#: includes/visual-post-compare/visual-post-compare-standalone.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.js:400
+msgid "Remove"
+msgstr "Supprimer"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:702
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:410
+#: includes/visual-post-compare/visual-post-compare-standalone.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.js:410
+msgid "Add"
+msgstr "Ajouter"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:960
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Add text: line break"
+msgstr "Ajouter du texte : saut de ligne"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:969
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "Remove text: line break"
+msgstr "Supprimer du texte : saut de ligne"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1155
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+msgid "WordPress Classic Editor content conversion APIs are unavailable."
+msgstr ""
+"Les API de conversion de contenu de l'éditeur classique WordPress ne sont "
+"pas disponibles."
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1897
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1897
+#, js-format
+msgid "Show previous image: %s"
+msgstr "Afficher l'image précédente : %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1450
+#: includes/visual-post-compare/visual-post-compare-classic.js:97
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1898
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1898
+msgid "Show previous image"
+msgstr "Afficher l'image précédente"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:60
+#: includes/visual-post-compare/visual-post-compare-standalone.js:60
+msgid "WordPress core block definitions are unavailable on this screen."
+msgstr ""
+"Les définitions de blocs de base de WordPress ne sont pas disponibles sur "
+"cet écran."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:68
+#: includes/visual-post-compare/visual-post-compare-standalone.js:68
+msgid "WordPress core blocks could not be registered for comparison."
+msgstr ""
+"Les blocs de base de WordPress n'ont pas pu être enregistrés pour "
+"comparaison."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:903
+#: includes/visual-post-compare/visual-post-compare-standalone.js:903
+msgid "Classic Editor comparison support is unavailable."
+msgstr "Le support de comparaison de l'éditeur classique n'est pas disponible."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:950
+#: includes/visual-post-compare/visual-post-compare-standalone.js:950
+msgid "WordPress 7.0 block revision parser APIs are unavailable."
+msgstr ""
+"Les API de parseur de révisions de blocs WordPress 7.0 ne sont pas "
+"disponibles."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:990
+#: includes/visual-post-compare/visual-post-compare-standalone.js:990
+msgid ""
+"The comparison was generated, but WordPress could not parse any comparison "
+"blocks."
+msgstr ""
+"La comparaison a été générée, mais WordPress n'a pu analyser aucun bloc de "
+"comparaison."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1125
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1125
+msgid "Select comparison post"
+msgstr "Sélectionner le post de comparaison"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1782
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1782
+msgid "add"
+msgstr "ajouter"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1397
+msgid "image"
+msgstr "image"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1788
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1788
+msgid "remove"
+msgstr "supprimer"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1629
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1629
+msgid "modify"
+msgstr "modifier"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+msgid "text"
+msgstr "texte"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1286
+msgid "format"
+msgstr "format"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1515
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1515
+msgid "change"
+msgstr "changer"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1287
+msgid "link"
+msgstr "lien"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1396
+msgid "image's attributes"
+msgstr "attributs de l'image"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1420
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1420
+msgid "Table"
+msgstr "Table"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1427
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1427
+msgid "Gallery"
+msgstr "Galerie"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1430
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1430
+msgid "Paragraph"
+msgstr "Paragraphe"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1431
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1431
+msgid "Section"
+msgstr "Section"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1448
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1448
+msgid "Revision Restore"
+msgstr "Restauration de révision"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1456
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1456
+msgid "added"
+msgstr "ajouté"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1457
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1457
+msgid "removed"
+msgstr "supprimé"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1458
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1458
+msgid "modified"
+msgstr "modifié"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1461
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1461
+msgid "changed"
+msgstr "changé"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1463
+#, js-format
+msgid "This %1$s was <b>%2$s</b>%3$s"
+msgstr "Ce %1$s était <b>%2$s</b>%3$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1475
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1475
+#, js-format
+msgid "%1$s will <b>%2$s</b> this %3$s%4$s"
+msgstr "%1$s va <b>%2$s</b> ce %3$s%4$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1502
+msgid "font size"
+msgstr "taille de police"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1516
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1516
+msgid "formatting"
+msgstr "mise en forme"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1523
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1523
+msgid "Revision restore"
+msgstr "Restauration de révision"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1524
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1524
+msgid "Revision publication"
+msgstr "Publication de révision"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1526
+#, js-format
+msgid "<b>%1$s</b> %2$s"
+msgstr "<b>%1$s</b> %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1532
+#, js-format
+msgid "%1$s and %2$s"
+msgstr "%1$s et %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1533
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1533
+#, js-format
+msgid "%1$s will %2$s."
+msgstr "%1$s va %2$s."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1540
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1540
+msgid "line break"
+msgstr "retour à la ligne"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1561
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1561
+#, js-format
+msgid "Add %d Image"
+msgid_plural "Add %d Images"
+msgstr[0] "Ajouter %d Image"
+msgstr[1] "Ajouter %d Images"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1564
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1564
+#, js-format
+msgid "Remove %d Image"
+msgid_plural "Remove %d Images"
+msgstr[0] "Supprimer %d Image"
+msgstr[1] "Supprimer %d Images"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1566
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1566
+#, js-format
+msgid "Modify %d Image"
+msgid_plural "Modify %d Images"
+msgstr[0] "Modifier %d Image"
+msgstr[1] "Modifier %d Images"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1587
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1587
+#, js-format
+msgid "%d Text Addition"
+msgid_plural "%d Text Additions"
+msgstr[0] "%d Ajout de Texte"
+msgstr[1] "%d Ajouts de Texte"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1589
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1589
+#, js-format
+msgid "%d Text Deletion"
+msgid_plural "%d Text Deletions"
+msgstr[0] "%d Suppression de texte"
+msgstr[1] "%d Suppressions de texte"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1593
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1593
+#, js-format
+msgid "%d Link Change"
+msgid_plural "%d Link Changes"
+msgstr[0] "%d Changement de lien"
+msgstr[1] "%d Changements de lien"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1598
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1598
+#, js-format
+msgid "Add %d Line Break"
+msgid_plural "Add %d Line Breaks"
+msgstr[0] "Ajouter %d Saut de ligne"
+msgstr[1] "Ajouter %d Sauts de ligne"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1599
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1599
+#, js-format
+msgid "Remove %d Line Break"
+msgid_plural "Remove %d Line Breaks"
+msgstr[0] "Supprimer %d Saut de ligne"
+msgstr[1] "Supprimer %d Sauts de ligne"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1606
+#, js-format
+msgid "%d formatting change"
+msgid_plural "%d formatting changes"
+msgstr[0] "%d changement de formatage"
+msgstr[1] "%d changements de formatage"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1623
+#, js-format
+msgid "Modified attributes: %s"
+msgstr "Attributs modifiés : %s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1625
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1625
+msgid "Modified html markup"
+msgstr "Balise html modifiée"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2065
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2065
+#, js-format
+msgid "%1$s class added: %2$s"
+msgstr "%1$s classe ajoutée : %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2066
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2066
+#, js-format
+msgid "%1$s class removed: %2$s"
+msgstr "%1$s classe supprimée : %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2072
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2072
+#, js-format
+msgid "%s style modified"
+msgstr "%s style modifié"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2085
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2085
+#, js-format
+msgid "%1$s attribute modified: %2$s"
+msgstr "%1$s attribut modifié : %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2182
+msgid "Modified html tag:"
+msgstr "Balise html modifiée :"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2405
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2405
+msgid "Select a changed block to view its details."
+msgstr "Sélectionnez un bloc modifié pour voir ses détails."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2631
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2631
+msgid "No attribute changes"
+msgstr "Aucun changement d'attribut"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2639
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2639
+msgid "Changed attributes"
+msgstr "Attributs modifiés"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2448
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2448
+msgid "Changes detected."
+msgstr "Changements détectés."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2507
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2507
+msgid "html tag"
+msgstr "balise html"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2602
+msgid "Image"
+msgstr "Image"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2602
+msgid "Link"
+msgstr "Lien"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463
+msgid "Info"
+msgstr "Info"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2624
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2624
+msgid "Attributes"
+msgstr "Attributs"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2630
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2630
+msgid "Select content to view its details."
+msgstr "Sélectionnez le contenu pour voir ses détails."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2658
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2658
+msgid "Compare Custom Fields"
+msgstr "Comparer les custom fields"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2661
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2661
+msgid "Revisions Pro displays cleanly formatted field changes for:"
+msgstr "Revisions Pro affiche les changements de champ formatés proprement pour :"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2665
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2665
+msgid "Core WordPress fields"
+msgstr "Champs WordPress principaux"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2671
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2671
+msgid "Many other popular plugins"
+msgstr "De nombreux autres plugins populaires"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2672
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2672
+msgid "Many popular themes"
+msgstr "De nombreux thèmes populaires"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3113
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3113
+msgid "Edit Current"
+msgstr "Modifier actuel"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3149
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3149
+msgid "View Current"
+msgstr "Voir actuel"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3157
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3157
+msgid "Hide current post details"
+msgstr "Cacher les détails du post actuel"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3157
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3157
+msgid "Show current post details"
+msgstr "Afficher les détails du post actuel"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3162
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3162
+#, js-format
+msgid "Post %d"
+msgstr "Poste %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3175
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3202
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3175
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3202
+msgid "View Revision"
+msgstr "Voir la révision"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3177
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3177
+msgid "Previous Revision"
+msgstr "Révision précédente"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3183
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3183
+msgid "Hide previous revision details"
+msgstr "Cacher les détails de la révision précédente"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3183
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3183
+msgid "Show previous revision details"
+msgstr "Afficher les détails de la révision précédente"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3188
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3206
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3188
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3206
+#, js-format
+msgid "Revision %d"
+msgstr "Révision %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3234
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3234
+msgid "Click to view changes"
+msgstr "Cliquez pour voir les changements"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3260
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3260
+msgid "Custom Field Changes"
+msgstr "Changements de custom field"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3268
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3268
+#, js-format
+msgid "%s: %d"
+msgstr "%s : %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3375
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3375
+msgid "Preview content"
+msgstr "Aperçu du contenu"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3382
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3382
+msgid "Field Changes"
+msgstr "Modifications de champ"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3388
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3388
+msgid "Show sidebar"
+msgstr "Afficher la barre latérale"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3388
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3388
+msgid "Collapse sidebar"
+msgstr "Réduire la barre latérale"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3395
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3395
+msgid "Comparison preview"
+msgstr "Aperçu de la comparaison"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3423
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3423
+msgid "This title was changed"
+msgstr "Ce titre a été modifié"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3423
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3423
+msgid "Change Title"
+msgstr "Modifier le titre"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3451
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3451
+msgid "Sidebar view"
+msgstr "Vue de la barre latérale"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463
+msgid "Block"
+msgstr "Bloc"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3527
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3527
+msgid "Unable to load this comparison."
+msgstr "Impossible de charger cette comparaison."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3555
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3555
+msgid "Unable to reload this comparison."
+msgstr "Impossible de recharger cette comparaison."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3595
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3595
+msgid "Unable to approve this comparison."
+msgstr "Impossible d'approuver cette comparaison."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3622
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3622
+msgid "Compare to current post"
+msgstr "Comparer avec le post actuel"
+
+#: admin/admin_rvy.php:336
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Révisions"
+
+#: admin/class-list-table-archive.php:1202
+#: admin/class-list-table_rvy.php:2374
+#: admin/post-edit_rvy.php:225
+#: admin/post-edit_rvy.php:289
+#: admin/post-edit_rvy.php:303
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Comparer"
+
+#: admin/class-list-table-archive.php:1224
+msgctxt "revisions"
+msgid "Diff"
+msgstr "Diff"
+
+#: admin/class-list-table_rvy.php:2386
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Approuver"
+
+#: admin/class-list-table_rvy.php:2393
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Publier"
+
+#: admin/class-list-table_rvy.php:2402
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Décliner"
+
+#: admin/class-list-table-archive.php:1240
+#: admin/class-list-table_rvy.php:1090
+#: admin/class-list-table_rvy.php:2360
+#: admin/history_rvy.php:1515
+#: admin/post-edit_rvy.php:190
+#: admin/revision-ui_rvy.php:279
+#: admin/revision-ui_rvy.php:321
+msgctxt "verb"
+msgid "Preview"
+msgstr "Aperçu"
+
+#: admin/history_rvy.php:1322
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/options.php:2556
+#, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "de %s \"%s\""
+
+#: admin/revision-queue_rvy.php:147
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "de %s"
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "de \"%s\""
+
+#: admin/revision-queue_rvy.php:155
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "par %s "
+
+#: admin/revision-queue_rvy.php:161
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "le %s"
+
+#: admin/revision-ui_rvy.php:351
+#. translators: post revision: 1: when, 2: author name
+#, php-format
+msgctxt "post revision"
+msgid "%1$s by %2$s"
+msgstr "%1$s par %2$s"
+
+#: rvy_init-functions.php:707
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Réviseur"
