@@ -196,7 +196,7 @@ msgstr "Naplánováno"
 msgid "Scheduler"
 msgstr "Plánovač"
 
-#: admin/action-scheduler_rvy.php:374
+#: admin/action-scheduler_rvy.php:374, fuzzy
 msgid "WP-Cron"
 msgstr "WP-Cron"
 
@@ -496,27 +496,27 @@ msgid "This was an update to a revision which was published after further editin
 msgstr "Toto byla aktualizace revize, která byla publikována po dalším úpravě."
 
 #: admin/class-list-table-archive.php:205
-#, php-format
+#, fuzzy, php-format
 msgid "Revision Author: %s"
 msgstr "Revision Author: %s"
 
 #: admin/class-list-table-archive.php:224
-#, php-format
+#, fuzzy, php-format
 msgid "Post Author: %s"
 msgstr "Post Author: %s"
 
 #: admin/class-list-table-archive.php:234
-#, php-format
+#, fuzzy, php-format
 msgid "Revision Date: %s"
 msgstr "Revision Date: %s"
 
 #: admin/class-list-table-archive.php:244
-#, php-format
+#, fuzzy, php-format
 msgid "Approved by: %s"
 msgstr "Approved by: %s"
 
 #: admin/class-list-table-archive.php:254
-#, php-format
+#, fuzzy, php-format
 msgid "Publication Date: %s"
 msgstr "Publication Date: %s"
 
@@ -546,12 +546,12 @@ msgid "Post Type"
 msgstr "Post Type"
 
 #: admin/class-list-table-archive.php:586
-#: rvy_init-functions.php:473
+#: rvy_init-functions.php:473, fuzzy
 msgid "Revised By"
 msgstr "Revised By"
 
 #: admin/class-list-table-archive.php:587
-#: rvy_init-functions.php:474
+#: rvy_init-functions.php:474, fuzzy
 msgid "Revision Date"
 msgstr "Revision Date"
 
@@ -559,7 +559,7 @@ msgstr "Revision Date"
 msgid "Action"
 msgstr "Akce"
 
-#: admin/class-list-table-archive.php:589
+#: admin/class-list-table-archive.php:589, fuzzy
 msgid "Approved By"
 msgstr "Approved By"
 
@@ -608,7 +608,7 @@ msgstr "%s hodinou zpět"
 #: admin/class-list-table-archive.php:762
 #: functions.php:484
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
-#: includes/visual-post-compare/visual-post-compare-standalone.js:1449
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1449, fuzzy
 msgid "Revision Publication"
 msgstr "Revision Publication"
 
@@ -1677,7 +1677,7 @@ msgstr ""
 "PRO: Revisions Pro je vyžadován pro tento typ příspěvku (otevře se v novém "
 "okně)"
 
-#: admin/options.php:664
+#: admin/options.php:664, fuzzy
 msgid "PRO"
 msgstr "PRO"
 
@@ -1723,7 +1723,7 @@ msgid "Parent"
 msgstr "Nadřazený"
 
 #: admin/options.php:800
-#: admin/options.php:963
+#: admin/options.php:963, fuzzy
 msgid "Slug"
 msgstr "Slug"
 
@@ -1888,7 +1888,7 @@ msgstr "Zjistit více"
 msgid "Revision statuses settings preview"
 msgstr "Náhled nastavení stavů revizí"
 
-#: admin/options.php:1093
+#: admin/options.php:1093, fuzzy
 msgid "Pro Plugin"
 msgstr "Pro Plugin"
 
@@ -2630,7 +2630,7 @@ msgstr "Bloky"
 msgid "Cache"
 msgstr "Mezipaměť"
 
-#: admin/options.php:2427
+#: admin/options.php:2427, fuzzy
 msgid "E-Commerce"
 msgstr "E-Commerce"
 
@@ -2649,7 +2649,7 @@ msgid "Multilingual"
 msgstr "Vícejazyčný"
 
 #: admin/options.php:2441
-#: admin/options.php:2706
+#: admin/options.php:2706, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
@@ -2703,7 +2703,7 @@ msgstr "Vícejazyčný"
 msgid "Slider"
 msgstr "Posuvník"
 
-#: admin/options.php:2724
+#: admin/options.php:2724, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
@@ -2823,7 +2823,8 @@ msgstr "Zobrazit neuložené změny"
 #, php-format
 msgid "%s%s Revision Edit"
 msgid_plural "%s%s Revision Edits"
-msgstr[0] "%s%s Úprava revize|%s%s Úpravy revize"
+msgstr[0] "%s%s Úprava revize"
+msgstr[1] "%s%s Úpravy revize"
 
 #: admin/post-editor-workflow-ui_rvy.php:101
 msgid "Revision Submission Error"
@@ -2969,7 +2970,7 @@ msgid "Preview it here: "
 msgstr "Náhled zde: "
 
 #: admin/revision-action_rvy.php:584
-#: admin/revision-action_rvy.php:670
+#: admin/revision-action_rvy.php:670, fuzzy
 msgid "Editor: "
 msgstr "Editor: "
 
@@ -3035,7 +3036,8 @@ msgstr "Revize pro:"
 #, php-format
 msgid "%s revision permanently deleted."
 msgid_plural "%s revisions permanently deleted."
-msgstr[0] "%s revize byly trvale smazány.|%s revize byly trvale smazány."
+msgstr[0] "%s revize byly trvale smazány."
+msgstr[1] "%s revize byly trvale smazány."
 
 #: admin/revision-archive_rvy.php:78
 #: admin/revision-queue_rvy.php:217
@@ -3108,31 +3110,36 @@ msgstr "%s a %s jsou oba zakázány. Viz Revize > Nastavení."
 #, php-format
 msgid "%s revision submitted."
 msgid_plural "%s revisions submitted."
-msgstr[0] "%s revize odeslána.|%s revize odeslány."
+msgstr[0] "%s revize odeslána."
+msgstr[1] "%s revize odeslány."
 
 #: admin/revision-queue_rvy.php:94
 #, php-format
 msgid "%s revision declined."
 msgid_plural "%s revisions declined."
-msgstr[0] "%s revize byla zamítnuta.|%s revize byly zamítnuty."
+msgstr[0] "%s revize byla zamítnuta."
+msgstr[1] "%s revize byly zamítnuty."
 
 #: admin/revision-queue_rvy.php:95
 #, php-format
 msgid "%s revision approved."
 msgid_plural "%s revisions approved."
-msgstr[0] "%s revize byla schválena.|%s revize byly schváleny."
+msgstr[0] "%s revize byla schválena."
+msgstr[1] "%s revize byly schváleny."
 
 #: admin/revision-queue_rvy.php:96
 #, php-format
 msgid "%s revision unscheduled."
 msgid_plural "%s revisions unscheduled."
-msgstr[0] "%s revize byla zrušena.|%s revize byly zrušeny."
+msgstr[0] "%s revize byla zrušena."
+msgstr[1] "%s revize byly zrušeny."
 
 #: admin/revision-queue_rvy.php:97
 #, php-format
 msgid "%s revision published."
 msgid_plural "%s revisions published."
-msgstr[0] "%s revize publikována.|%s revize publikovány."
+msgstr[0] "%s revize publikována."
+msgstr[1] "%s revize publikovány."
 
 #: admin/revision-queue_rvy.php:167
 #, php-format
@@ -3225,7 +3232,7 @@ msgid "%1$s <span>(Requested publication: %2$s)</span>"
 msgstr "%1$s <span>(Požadovaná publikace: %2$s)</span>"
 
 #: admin/revision-ui_rvy.php:125
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s"
 msgstr "%1$s"
 
@@ -3307,7 +3314,7 @@ msgid "The requested revision does not exist."
 msgstr "Požadovaná revize neexistuje."
 
 #: admin/revisions.php:255
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s %2$s (%3$s)%4$s"
 msgstr "%1$s %2$s (%3$s)%4$s"
 
@@ -3423,11 +3430,11 @@ msgstr "Vymazat cache při publikaci revize"
 msgid "Support immediate and scheduled publication"
 msgstr "Podpora okamžitého a naplánovaného publikování"
 
-#: classes/PublishPress/IntegrationCards.php:366
+#: classes/PublishPress/IntegrationCards.php:366, fuzzy
 msgid "Avada Builder"
 msgstr "Avada Builder"
 
-#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:367, fuzzy
 msgid "WPBakery Page Builder"
 msgstr "WPBakery Page Builder"
 
@@ -3459,19 +3466,19 @@ msgstr "Vizualizujte srovnání změn"
 msgid "Revision preview with builder styling"
 msgstr "Náhled revize s stylingem builderu"
 
-#: classes/PublishPress/IntegrationCards.php:368
+#: classes/PublishPress/IntegrationCards.php:368, fuzzy
 msgid "SiteOrigin Page Builder"
 msgstr "SiteOrigin Page Builder"
 
-#: classes/PublishPress/IntegrationCards.php:369
+#: classes/PublishPress/IntegrationCards.php:369, fuzzy
 msgid "SeedProd"
 msgstr "SeedProd"
 
-#: classes/PublishPress/IntegrationCards.php:370
+#: classes/PublishPress/IntegrationCards.php:370, fuzzy
 msgid "Breakdance"
 msgstr "Breakdance"
 
-#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:371, fuzzy
 msgid "Bricks"
 msgstr "Bricks"
 
@@ -3483,31 +3490,31 @@ msgstr "Odesílat revize do bloků"
 msgid "Revision preview with block styling"
 msgstr "Náhled revize s stylingem bloku"
 
-#: classes/PublishPress/IntegrationCards.php:384
+#: classes/PublishPress/IntegrationCards.php:384, fuzzy
 msgid "Kadence Blocks"
 msgstr "Kadence Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:385
+#: classes/PublishPress/IntegrationCards.php:385, fuzzy
 msgid "Spectra Legacy"
 msgstr "Spectra Legacy"
 
-#: classes/PublishPress/IntegrationCards.php:386
+#: classes/PublishPress/IntegrationCards.php:386, fuzzy
 msgid "Otter Blocks"
 msgstr "Otter Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:387
+#: classes/PublishPress/IntegrationCards.php:387, fuzzy
 msgid "Essential Blocks"
 msgstr "Essential Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:388
+#: classes/PublishPress/IntegrationCards.php:388, fuzzy
 msgid "Stackable"
 msgstr "Stackable"
 
-#: classes/PublishPress/IntegrationCards.php:389
+#: classes/PublishPress/IntegrationCards.php:389, fuzzy
 msgid "Ultimate Blocks"
 msgstr "Ultimate Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:390
+#: classes/PublishPress/IntegrationCards.php:390, fuzzy
 msgid "PublishPress Blocks"
 msgstr "PublishPress Blocks"
 
@@ -3516,35 +3523,35 @@ msgstr "PublishPress Blocks"
 msgid "Integration with %s."
 msgstr "Integrace s %s."
 
-#: classes/PublishPress/IntegrationCards.php:431
+#: classes/PublishPress/IntegrationCards.php:431, fuzzy
 msgid "LiteSpeed Cache"
 msgstr "LiteSpeed Cache"
 
-#: classes/PublishPress/IntegrationCards.php:432
+#: classes/PublishPress/IntegrationCards.php:432, fuzzy
 msgid "WP Fastest Cache"
 msgstr "WP Fastest Cache"
 
-#: classes/PublishPress/IntegrationCards.php:433
+#: classes/PublishPress/IntegrationCards.php:433, fuzzy
 msgid "WP Super Cache"
 msgstr "WP Super Cache"
 
-#: classes/PublishPress/IntegrationCards.php:434
+#: classes/PublishPress/IntegrationCards.php:434, fuzzy
 msgid "WP-Optimize"
 msgstr "WP-Optimize"
 
-#: classes/PublishPress/IntegrationCards.php:435
+#: classes/PublishPress/IntegrationCards.php:435, fuzzy
 msgid "W3 Total Cache"
 msgstr "W3 Total Cache"
 
-#: classes/PublishPress/IntegrationCards.php:436
+#: classes/PublishPress/IntegrationCards.php:436, fuzzy
 msgid "Breeze"
 msgstr "Breeze"
 
-#: classes/PublishPress/IntegrationCards.php:437
+#: classes/PublishPress/IntegrationCards.php:437, fuzzy
 msgid "SpeedyCache"
 msgstr "SpeedyCache"
 
-#: classes/PublishPress/IntegrationCards.php:462
+#: classes/PublishPress/IntegrationCards.php:462, fuzzy
 msgid "PublishPress Cart"
 msgstr "PublishPress Cart"
 
@@ -3564,7 +3571,7 @@ msgid "Priority on ongoing compatibility"
 msgstr "Priorita na pokračující kompatibilitě"
 
 #: classes/PublishPress/Revisionary.php:107
-#: includes/CoreAdmin.php:201
+#: includes/CoreAdmin.php:201, fuzzy
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
@@ -3572,7 +3579,7 @@ msgstr "Advanced Custom Fields"
 msgid "Compatibility with ACF custom fields."
 msgstr "Kompatibilita s ACF vlastními poli."
 
-#: classes/PublishPress/Revisionary.php:122
+#: classes/PublishPress/Revisionary.php:122, fuzzy
 msgid "ACF Extended"
 msgstr "ACF Extended"
 
@@ -3589,7 +3596,7 @@ msgid "Correct field display on Compare screen"
 msgstr "Správné zobrazení pole na obrazovce Porovnat"
 
 #: classes/PublishPress/Revisionary.php:136
-#: includes/CoreAdmin.php:200
+#: includes/CoreAdmin.php:200, fuzzy
 msgid "Beaver Builder"
 msgstr "Beaver Builder"
 
@@ -3597,7 +3604,7 @@ msgstr "Beaver Builder"
 msgid "Integration with Beaver Builder's front end editor."
 msgstr "Integrace s frontendovým editorem Beaver Builder'u."
 
-#: classes/PublishPress/Revisionary.php:152
+#: classes/PublishPress/Revisionary.php:152, fuzzy
 msgid "Divi"
 msgstr "Divi"
 
@@ -3606,7 +3613,7 @@ msgid "Integration with Divi Builder and Divi Theme."
 msgstr "Integrace s Divi Builder a Divi Theme."
 
 #: classes/PublishPress/Revisionary.php:168
-#: includes/CoreAdmin.php:198
+#: includes/CoreAdmin.php:198, fuzzy
 msgid "Elementor"
 msgstr "Elementor"
 
@@ -3614,7 +3621,7 @@ msgstr "Elementor"
 msgid "Integration with Elementor's front end editor."
 msgstr "Integrace s frontendovým editorem Elementoru."
 
-#: classes/PublishPress/Revisionary.php:184
+#: classes/PublishPress/Revisionary.php:184, fuzzy
 msgid "Nitro Pack"
 msgstr "Nitro Pack"
 
@@ -3623,7 +3630,7 @@ msgid "Compatibility with Nitro Pack cache."
 msgstr "Kompatibilita s Nitro Pack cache."
 
 #: classes/PublishPress/Revisionary.php:198
-#: includes/CoreAdmin.php:202
+#: includes/CoreAdmin.php:202, fuzzy
 msgid "Pods"
 msgstr "Pods"
 
@@ -3631,7 +3638,7 @@ msgstr "Pods"
 msgid "Compatibility with Pods custom fields."
 msgstr "Kompatibilita s Pods vlastními poli."
 
-#: classes/PublishPress/Revisionary.php:213
+#: classes/PublishPress/Revisionary.php:213, fuzzy
 msgid "Polylang"
 msgstr "Polylang"
 
@@ -3647,7 +3654,7 @@ msgstr "Revize přenášejí data Polylang"
 msgid "Translation retained on Revision approval"
 msgstr "Překlad zachován při schválení revize"
 
-#: classes/PublishPress/Revisionary.php:227
+#: classes/PublishPress/Revisionary.php:227, fuzzy
 msgid "PublishPress Planner"
 msgstr "PublishPress Planner"
 
@@ -3673,7 +3680,7 @@ msgid "Compatible with Product Variations"
 msgstr "Kompatibilní s variantami produktů"
 
 #: classes/PublishPress/Revisionary.php:257
-#: includes/CoreAdmin.php:204
+#: includes/CoreAdmin.php:204, fuzzy
 msgid "WPML"
 msgstr "WPML"
 
@@ -3689,11 +3696,11 @@ msgstr "Revize specifické pro jazyk"
 msgid "Translation Management integration"
 msgstr "Integrace správy překladů"
 
-#: classes/PublishPress/Revisionary.php:271
+#: classes/PublishPress/Revisionary.php:271, fuzzy
 msgid "Yoast SEO"
 msgstr "Yoast SEO"
 
-#: classes/PublishPress/Revisionary.php:272
+#: classes/PublishPress/Revisionary.php:272, fuzzy
 msgid "."
 msgstr "."
 
@@ -3766,7 +3773,7 @@ msgstr "Toto je %s. %s %s %s"
 
 #: front_rvy.php:679
 #: front_rvy.php:741
-#, php-format
+#, fuzzy, php-format
 msgid "%s."
 msgstr "%s."
 
@@ -3876,7 +3883,7 @@ msgstr ""
 "Přejděte na PublishPress Revisions Pro pro integraci s klíčovými funkcemi "
 "těchto pluginů:"
 
-#: includes/CoreAdmin.php:199
+#: includes/CoreAdmin.php:199, fuzzy
 msgid "Divi Builder"
 msgstr "Divi Builder"
 
@@ -3954,7 +3961,7 @@ msgstr "(schváleno %s)"
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
 #. translators: %s: direct editor display name.
-#, php-format
+#, fuzzy, php-format
 msgid "(%s)"
 msgstr "(%s)"
 
@@ -4099,7 +4106,7 @@ msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
 msgstr "%1$s aktualizoval %2$s %3$s \"%4$s\"."
 
 #: revision-workflow_rvy.php:174
-#, php-format
+#, fuzzy, php-format
 msgid "[%s] %s"
 msgstr "[%s] %s"
 
@@ -4187,15 +4194,9 @@ msgstr "Pracovní kopie"
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
-msgstr[0] ""
-"Pracovní kopie <span class=\"count\">(%d)</span>|Pracovní kopie <span "
-"class=\"count\">(%d)</span>"
-msgstr[1] ""
-"Pracovní kopie <span class=\"count\">(%d)</span>|Pracovní kopie <span "
-"class=\"count\">(%d)</span>"
+msgstr[0] "Pracovní kopie <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Pracovní kopie <span class=\\\"count\\\">(%d)</span>"
 msgstr[2] ""
-"Pracovní kopie <span class=\"count\">(%d)</span>|Pracovní kopie <span "
-"class=\"count\">(%d)</span>"
 
 #: rvy_init-functions.php:282
 #: rvy_init-functions.php:294
@@ -4218,15 +4219,9 @@ msgstr "Žádosti o změnu"
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
-msgstr[0] ""
-"Žádosti o změnu <span class=\"count\">(%d)</span>|Žádosti o změnu <span "
-"class=\"count\">(%d)</span>"
-msgstr[1] ""
-"Žádosti o změnu <span class=\"count\">(%d)</span>|Žádosti o změnu <span "
-"class=\"count\">(%d)</span>"
+msgstr[0] "Žádosti o změnu <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Žádosti o změnu <span class=\\\"count\\\">(%d)</span>"
 msgstr[2] ""
-"Žádosti o změnu <span class=\"count\">(%d)</span>|Žádosti o změnu <span "
-"class=\"count\">(%d)</span>"
 
 #: rvy_init-functions.php:296
 msgid "Enable Change Requests"
@@ -4256,15 +4251,9 @@ msgstr "Naplánované změny"
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
-msgstr[0] ""
-"Naplánováno <span class=\"count\">(%d)</span>|Naplánováno <span "
-"class=\"count\">(%d)</span>"
-msgstr[1] ""
-"Naplánováno <span class=\"count\">(%d)</span>|Naplánováno <span "
-"class=\"count\">(%d)</span>"
+msgstr[0] "Naplánováno <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Naplánováno <span class=\\\"count\\\">(%d)</span>"
 msgstr[2] ""
-"Naplánováno <span class=\"count\">(%d)</span>|Naplánováno <span "
-"class=\"count\">(%d)</span>"
 
 #: rvy_init-functions.php:321
 msgid "Unsubmitted Revision"
@@ -4308,15 +4297,9 @@ msgstr "Nepodáno"
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-"Nepodáno <span class=\"count\">(%s)</span>|Nepodáno <span "
-"class=\"count\">(%s)</span>"
-msgstr[1] ""
-"Nepodáno <span class=\"count\">(%s)</span>|Nepodáno <span "
-"class=\"count\">(%s)</span>"
+msgstr[0] "Nepodáno <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Nepodáno <span class=\\\"count\\\">(%s)</span>"
 msgstr[2] ""
-"Nepodáno <span class=\"count\">(%s)</span>|Nepodáno <span "
-"class=\"count\">(%s)</span>"
 
 #: rvy_init-functions.php:338
 msgid "Submitted Revision"
@@ -4348,15 +4331,9 @@ msgstr "Odesláno"
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-"Odesláno <span class=\"count\">(%s)</span>|Odesláno <span "
-"class=\"count\">(%s)</span>"
-msgstr[1] ""
-"Odesláno <span class=\"count\">(%s)</span>|Odesláno <span "
-"class=\"count\">(%s)</span>"
+msgstr[0] "Odesláno <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Odesláno <span class=\\\"count\\\">(%s)</span>"
 msgstr[2] ""
-"Odesláno <span class=\"count\">(%s)</span>|Odesláno <span "
-"class=\"count\">(%s)</span>"
 
 #: rvy_init-functions.php:355
 msgid "Scheduled Revision"
@@ -4378,33 +4355,30 @@ msgstr "Revize naplánována"
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-"Naplánováno <span class=\"count\">(%s)</span>|Naplánováno <span "
-"class=\"count\">(%s)</span>"
-msgstr[1] ""
-"Naplánováno <span class=\"count\">(%s)</span>|Naplánováno <span "
-"class=\"count\">(%s)</span>"
+msgstr[0] "Naplánováno <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Naplánováno <span class=\\\"count\\\">(%s)</span>"
 msgstr[2] ""
-"Naplánováno <span class=\"count\">(%s)</span>|Naplánováno <span "
-"class=\"count\">(%s)</span>"
 
 #: rvy_init-functions.php:467
 #, php-format
 msgid "%sMy Copies & Changes%s(%s)"
 msgid_plural "%sMy Copies & Changes%s(%s)"
-msgstr[0] "%sMoje kopie & změny%s(%s)|%sMoje kopie & změny%s(%s)"
+msgstr[0] "%sMoje kopie & změny%s(%s)"
+msgstr[1] "%sMoje kopie & změny%s(%s)"
 
 #: rvy_init-functions.php:468
 #, php-format
 msgid "%sMy Revisions%s(%s)"
 msgid_plural "%sMy Revisions%s(%s)"
-msgstr[0] "%sMoje revize%s(%s)|%sMoje revize%s(%s)"
+msgstr[0] "%sMoje revize%s(%s)"
+msgstr[1] "%sMoje revize%s(%s)"
 
 #: rvy_init-functions.php:470
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
-msgstr[0] "%sRevize mých příspěvků%s(%s)</span>|%sRevize mých příspěvků%s(%s)"
+msgstr[0] "%sRevize mých příspěvků%s(%s)</span>"
+msgstr[1] "%sRevize mých příspěvků%s(%s)"
 
 #: rvy_init-functions.php:475
 msgid "Post Author"
@@ -4418,7 +4392,7 @@ msgstr "Publikovaný příspěvek"
 msgid "Submit Changes"
 msgstr "Odeslat změny"
 
-#: rvy_init-functions.php:695
+#: rvy_init-functions.php:695, fuzzy
 msgid "Revisor"
 msgstr "Revisor"
 
@@ -4842,7 +4816,7 @@ msgstr "upravit"
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1284
-#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285, fuzzy
 msgid "text"
 msgstr "text"
 
@@ -4951,7 +4925,7 @@ msgstr "Publikace revize"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1526
-#, js-format
+#, fuzzy, js-format
 msgid "<b>%1$s</b> %2$s"
 msgstr "<b>%1$s</b> %2$s"
 
@@ -5137,7 +5111,7 @@ msgstr "Odkaz"
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2618
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
 #: includes/visual-post-compare/visual-post-compare-standalone.js:2618
-#: includes/visual-post-compare/visual-post-compare-standalone.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463, fuzzy
 msgid "Info"
 msgstr "Info"
 
@@ -5252,7 +5226,7 @@ msgstr "Změny vlastního pole"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3268
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3268
-#, js-format
+#, fuzzy, js-format
 msgid "%s: %d"
 msgstr "%s: %d"
 
@@ -5374,13 +5348,13 @@ msgctxt "verb"
 msgid "Preview"
 msgstr "Náhled"
 
-#: admin/history_rvy.php:1322
+#: admin/history_rvy.php:1322, fuzzy
 msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
 #: admin/options.php:2556
-#, php-format
+#, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
 msgstr "%1$s%2$s%3$s (%4$s)"

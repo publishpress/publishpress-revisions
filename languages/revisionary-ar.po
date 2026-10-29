@@ -13,11 +13,11 @@ msgstr ""
 "PO-Revision-Date: 2026-10-29 20:01+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
-"Plural-Forms: nplurals=6; plural=(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n "
 "% 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5);\n"
 "% 100 >= 3 && n % 100 <= 10 ? 3: n % 100 >= 11 ? 4 : 5);\n"
 "Language: ar\n"
 "&& n%100<=10 ? 3: n%100>=11 ? 4 : 5);\n"
+"Plural-Forms: nplurals=6; plural=(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5);\n"
 
 #: revisionary.php:3
 #. Plugin Name of the plugin
@@ -52,7 +52,12 @@ msgstr "https://publishpress.com"
 #, php-format
 msgid "Migrate %d Scheduled Revision"
 msgid_plural "Migrate %d Scheduled Revisions"
-msgstr[0] "%d مراجعة مجدولة|%d مراجعات مجدولة"
+msgstr[0] "%d مراجعة مجدولة"
+msgstr[1] "%d مراجعات مجدولة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: admin/action-scheduler_rvy.php:90
 #: admin/action-scheduler_rvy.php:94
@@ -164,6 +169,12 @@ msgid ""
 "Note: %1$d Revision is scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
 msgid_plural ""
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 "Note: %1$d Revisions are scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
 msgstr[0] ""
@@ -174,7 +185,12 @@ msgstr[0] ""
 #: admin/action-scheduler_rvy.php:292
 msgid "Migrate it to Action Scheduler"
 msgid_plural "Migrate those to Action Scheduler"
-msgstr[0] "ترحيلها إلى جدول الإجراءات|ترحيل تلك إلى جدول الإجراءات"
+msgstr[0] "ترحيلها إلى جدول الإجراءات"
+msgstr[1] "ترحيل تلك إلى جدول الإجراءات"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: admin/action-scheduler_rvy.php:371
 #: admin/action-scheduler_rvy.php:420
@@ -194,7 +210,7 @@ msgstr "مجدوَل"
 msgid "Scheduler"
 msgstr "جدولة"
 
-#: admin/action-scheduler_rvy.php:374
+#: admin/action-scheduler_rvy.php:374, fuzzy
 msgid "WP-Cron"
 msgstr "WP-Cron"
 
@@ -1659,7 +1675,7 @@ msgstr "هذا النوع من المشاركات لا يدعم الإصدارا
 msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
 msgstr "PRO: مطلوب Revisions Pro لهذا النوع من المشاركات (يفتح في علامة تبويب جديدة)"
 
-#: admin/options.php:664
+#: admin/options.php:664, fuzzy
 msgid "PRO"
 msgstr "PRO"
 
@@ -2654,7 +2670,7 @@ msgstr "متعدد اللغات"
 msgid "Slider"
 msgstr "شريط التمرير"
 
-#: admin/options.php:2724
+#: admin/options.php:2724, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
@@ -2772,7 +2788,12 @@ msgstr "عرض التغييرات غير المحفوظة"
 #, php-format
 msgid "%s%s Revision Edit"
 msgid_plural "%s%s Revision Edits"
-msgstr[0] "%s%s تحرير المراجعة|%s%s تحريرات المراجعة"
+msgstr[0] "%s%s تحرير المراجعة"
+msgstr[1] "%s%s تحريرات المراجعة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: admin/post-editor-workflow-ui_rvy.php:101
 msgid "Revision Submission Error"
@@ -2982,8 +3003,8 @@ msgstr "مراجعة لـ:"
 #, php-format
 msgid "%s revision permanently deleted."
 msgid_plural "%s revisions permanently deleted."
-msgstr[0] "تم حذف %s مراجعة بشكل دائم.|"
-msgstr[1] "تم حذف %s مراجعات بشكل دائم."
+msgstr[0] "تم حذف %s مراجعة بشكل دائم."
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -3060,8 +3081,8 @@ msgstr "%s و %s كلاهما معطّلان. راجع المراجعات > ال
 #, php-format
 msgid "%s revision submitted."
 msgid_plural "%s revisions submitted."
-msgstr[0] "تم تقديم %s مراجعة.|"
-msgstr[1] "تم تقديم %s مراجعات."
+msgstr[0] "تم تقديم %s مراجعة."
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -3071,8 +3092,8 @@ msgstr[5] ""
 #, php-format
 msgid "%s revision declined."
 msgid_plural "%s revisions declined."
-msgstr[0] "تم رفض %s مراجعة.|"
-msgstr[1] "تم رفض %s مراجعات."
+msgstr[0] "تم رفض %s مراجعة."
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -3082,8 +3103,8 @@ msgstr[5] ""
 #, php-format
 msgid "%s revision approved."
 msgid_plural "%s revisions approved."
-msgstr[0] "تمت الموافقة على %s مراجعة.|"
-msgstr[1] "تمت الموافقة على %s مراجعات."
+msgstr[0] "تمت الموافقة على %s مراجعة."
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -3093,8 +3114,8 @@ msgstr[5] ""
 #, php-format
 msgid "%s revision unscheduled."
 msgid_plural "%s revisions unscheduled."
-msgstr[0] "تم إلغاء جدولة %s مراجعة.|"
-msgstr[1] "تم إلغاء جدولة %s مراجعات."
+msgstr[0] "تم إلغاء جدولة %s مراجعة."
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -3104,8 +3125,8 @@ msgstr[5] ""
 #, php-format
 msgid "%s revision published."
 msgid_plural "%s revisions published."
-msgstr[0] "تم نشر %s مراجعة.|"
-msgstr[1] "تم نشر %s مراجعات."
+msgstr[0] "تم نشر %s مراجعة."
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -3198,7 +3219,7 @@ msgid "%1$s <span>(Requested publication: %2$s)</span>"
 msgstr "%1$s <span>(الطلب للنشر: %2$s)</span>"
 
 #: admin/revision-ui_rvy.php:125
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s"
 msgstr "%1$s"
 
@@ -3280,7 +3301,7 @@ msgid "The requested revision does not exist."
 msgstr "المراجعة المطلوبة غير موجودة."
 
 #: admin/revisions.php:255
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s %2$s (%3$s)%4$s"
 msgstr "%1$s %2$s (%3$s)%4$s"
 
@@ -3394,11 +3415,11 @@ msgstr "مسح الذاكرة المؤقتة عند نشر المراجعة"
 msgid "Support immediate and scheduled publication"
 msgstr "دعم النشر الفوري والمجدول"
 
-#: classes/PublishPress/IntegrationCards.php:366
+#: classes/PublishPress/IntegrationCards.php:366, fuzzy
 msgid "Avada Builder"
 msgstr "Avada Builder"
 
-#: classes/PublishPress/IntegrationCards.php:367
+#: classes/PublishPress/IntegrationCards.php:367, fuzzy
 msgid "WPBakery Page Builder"
 msgstr "WPBakery Page Builder"
 
@@ -3430,19 +3451,19 @@ msgstr "مقارنة التغييرات بصريًا"
 msgid "Revision preview with builder styling"
 msgstr "معاينة المراجعة مع تنسيق الباني"
 
-#: classes/PublishPress/IntegrationCards.php:368
+#: classes/PublishPress/IntegrationCards.php:368, fuzzy
 msgid "SiteOrigin Page Builder"
 msgstr "SiteOrigin Page Builder"
 
-#: classes/PublishPress/IntegrationCards.php:369
+#: classes/PublishPress/IntegrationCards.php:369, fuzzy
 msgid "SeedProd"
 msgstr "SeedProd"
 
-#: classes/PublishPress/IntegrationCards.php:370
+#: classes/PublishPress/IntegrationCards.php:370, fuzzy
 msgid "Breakdance"
 msgstr "Breakdance"
 
-#: classes/PublishPress/IntegrationCards.php:371
+#: classes/PublishPress/IntegrationCards.php:371, fuzzy
 msgid "Bricks"
 msgstr "Bricks"
 
@@ -3454,31 +3475,31 @@ msgstr "تقديم المراجعات إلى الكتل"
 msgid "Revision preview with block styling"
 msgstr "معاينة المراجعة مع تنسيق الكتل"
 
-#: classes/PublishPress/IntegrationCards.php:384
+#: classes/PublishPress/IntegrationCards.php:384, fuzzy
 msgid "Kadence Blocks"
 msgstr "Kadence Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:385
+#: classes/PublishPress/IntegrationCards.php:385, fuzzy
 msgid "Spectra Legacy"
 msgstr "Spectra Legacy"
 
-#: classes/PublishPress/IntegrationCards.php:386
+#: classes/PublishPress/IntegrationCards.php:386, fuzzy
 msgid "Otter Blocks"
 msgstr "Otter Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:387
+#: classes/PublishPress/IntegrationCards.php:387, fuzzy
 msgid "Essential Blocks"
 msgstr "Essential Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:388
+#: classes/PublishPress/IntegrationCards.php:388, fuzzy
 msgid "Stackable"
 msgstr "Stackable"
 
-#: classes/PublishPress/IntegrationCards.php:389
+#: classes/PublishPress/IntegrationCards.php:389, fuzzy
 msgid "Ultimate Blocks"
 msgstr "Ultimate Blocks"
 
-#: classes/PublishPress/IntegrationCards.php:390
+#: classes/PublishPress/IntegrationCards.php:390, fuzzy
 msgid "PublishPress Blocks"
 msgstr "PublishPress Blocks"
 
@@ -3487,35 +3508,35 @@ msgstr "PublishPress Blocks"
 msgid "Integration with %s."
 msgstr "التكامل مع %s."
 
-#: classes/PublishPress/IntegrationCards.php:431
+#: classes/PublishPress/IntegrationCards.php:431, fuzzy
 msgid "LiteSpeed Cache"
 msgstr "LiteSpeed Cache"
 
-#: classes/PublishPress/IntegrationCards.php:432
+#: classes/PublishPress/IntegrationCards.php:432, fuzzy
 msgid "WP Fastest Cache"
 msgstr "WP Fastest Cache"
 
-#: classes/PublishPress/IntegrationCards.php:433
+#: classes/PublishPress/IntegrationCards.php:433, fuzzy
 msgid "WP Super Cache"
 msgstr "WP Super Cache"
 
-#: classes/PublishPress/IntegrationCards.php:434
+#: classes/PublishPress/IntegrationCards.php:434, fuzzy
 msgid "WP-Optimize"
 msgstr "WP-Optimize"
 
-#: classes/PublishPress/IntegrationCards.php:435
+#: classes/PublishPress/IntegrationCards.php:435, fuzzy
 msgid "W3 Total Cache"
 msgstr "W3 Total Cache"
 
-#: classes/PublishPress/IntegrationCards.php:436
+#: classes/PublishPress/IntegrationCards.php:436, fuzzy
 msgid "Breeze"
 msgstr "Breeze"
 
-#: classes/PublishPress/IntegrationCards.php:437
+#: classes/PublishPress/IntegrationCards.php:437, fuzzy
 msgid "SpeedyCache"
 msgstr "SpeedyCache"
 
-#: classes/PublishPress/IntegrationCards.php:462
+#: classes/PublishPress/IntegrationCards.php:462, fuzzy
 msgid "PublishPress Cart"
 msgstr "PublishPress Cart"
 
@@ -3535,7 +3556,7 @@ msgid "Priority on ongoing compatibility"
 msgstr "الأولوية في التوافق المستمر"
 
 #: classes/PublishPress/Revisionary.php:107
-#: includes/CoreAdmin.php:201
+#: includes/CoreAdmin.php:201, fuzzy
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
@@ -3543,7 +3564,7 @@ msgstr "Advanced Custom Fields"
 msgid "Compatibility with ACF custom fields."
 msgstr "التوافق مع حقول ACF المخصصة."
 
-#: classes/PublishPress/Revisionary.php:122
+#: classes/PublishPress/Revisionary.php:122, fuzzy
 msgid "ACF Extended"
 msgstr "ACF Extended"
 
@@ -3560,7 +3581,7 @@ msgid "Correct field display on Compare screen"
 msgstr "تصحيح عرض الحقل في شاشة المقارنة"
 
 #: classes/PublishPress/Revisionary.php:136
-#: includes/CoreAdmin.php:200
+#: includes/CoreAdmin.php:200, fuzzy
 msgid "Beaver Builder"
 msgstr "Beaver Builder"
 
@@ -3568,7 +3589,7 @@ msgstr "Beaver Builder"
 msgid "Integration with Beaver Builder's front end editor."
 msgstr "التكامل مع محرر الواجهة الأمامية لـ Beaver Builder."
 
-#: classes/PublishPress/Revisionary.php:152
+#: classes/PublishPress/Revisionary.php:152, fuzzy
 msgid "Divi"
 msgstr "Divi"
 
@@ -3577,7 +3598,7 @@ msgid "Integration with Divi Builder and Divi Theme."
 msgstr "التكامل مع Divi Builder وDivi Theme."
 
 #: classes/PublishPress/Revisionary.php:168
-#: includes/CoreAdmin.php:198
+#: includes/CoreAdmin.php:198, fuzzy
 msgid "Elementor"
 msgstr "Elementor"
 
@@ -3585,7 +3606,7 @@ msgstr "Elementor"
 msgid "Integration with Elementor's front end editor."
 msgstr "التكامل مع محرر الواجهة الأمامية لـ Elementor."
 
-#: classes/PublishPress/Revisionary.php:184
+#: classes/PublishPress/Revisionary.php:184, fuzzy
 msgid "Nitro Pack"
 msgstr "Nitro Pack"
 
@@ -3594,7 +3615,7 @@ msgid "Compatibility with Nitro Pack cache."
 msgstr "التوافق مع ذاكرة التخزين المؤقت Nitro Pack."
 
 #: classes/PublishPress/Revisionary.php:198
-#: includes/CoreAdmin.php:202
+#: includes/CoreAdmin.php:202, fuzzy
 msgid "Pods"
 msgstr "Pods"
 
@@ -3602,7 +3623,7 @@ msgstr "Pods"
 msgid "Compatibility with Pods custom fields."
 msgstr "التوافق مع حقول Pods المخصصة."
 
-#: classes/PublishPress/Revisionary.php:213
+#: classes/PublishPress/Revisionary.php:213, fuzzy
 msgid "Polylang"
 msgstr "Polylang"
 
@@ -3618,7 +3639,7 @@ msgstr "تقوم التعديلات بنقل بيانات Polylang"
 msgid "Translation retained on Revision approval"
 msgstr "تُحتفظ الترجمة عند الموافقة على التعديل"
 
-#: classes/PublishPress/Revisionary.php:227
+#: classes/PublishPress/Revisionary.php:227, fuzzy
 msgid "PublishPress Planner"
 msgstr "PublishPress Planner"
 
@@ -3644,7 +3665,7 @@ msgid "Compatible with Product Variations"
 msgstr "متوافق مع Variations المنتجات"
 
 #: classes/PublishPress/Revisionary.php:257
-#: includes/CoreAdmin.php:204
+#: includes/CoreAdmin.php:204, fuzzy
 msgid "WPML"
 msgstr "WPML"
 
@@ -3660,11 +3681,11 @@ msgstr "تعديلات خاصة باللغة"
 msgid "Translation Management integration"
 msgstr "تكامل إدارة الترجمة"
 
-#: classes/PublishPress/Revisionary.php:271
+#: classes/PublishPress/Revisionary.php:271, fuzzy
 msgid "Yoast SEO"
 msgstr "Yoast SEO"
 
-#: classes/PublishPress/Revisionary.php:272
+#: classes/PublishPress/Revisionary.php:272, fuzzy
 msgid "."
 msgstr "."
 
@@ -3737,7 +3758,7 @@ msgstr "هذا هو %s. %s %s %s"
 
 #: front_rvy.php:679
 #: front_rvy.php:741
-#, php-format
+#, fuzzy, php-format
 msgid "%s."
 msgstr "%s."
 
@@ -3847,7 +3868,7 @@ msgstr ""
 "ترقية إلى PublishPress Revisions Pro من أجل التكامل مع الميزات الرئيسية "
 "لهذه المكونات الإضافية:"
 
-#: includes/CoreAdmin.php:199
+#: includes/CoreAdmin.php:199, fuzzy
 msgid "Divi Builder"
 msgstr "Divi Builder"
 
@@ -3925,7 +3946,7 @@ msgstr "(تمت الموافقة من قبل %s)"
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
 #. translators: %s: direct editor display name.
-#, php-format
+#, fuzzy, php-format
 msgid "(%s)"
 msgstr "(%s)"
 
@@ -4070,7 +4091,7 @@ msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
 msgstr "%1$s قام بتحديث %2$s من %3$s \"%4$s\"."
 
 #: revision-workflow_rvy.php:174
-#, php-format
+#, fuzzy, php-format
 msgid "[%s] %s"
 msgstr "[%s] %s"
 
@@ -4156,9 +4177,12 @@ msgstr "نسخ العمل"
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
-msgstr[0] ""
-"نسخ العمل <span class=\"count\">(%d)</span>|نسخ العمل <span "
-"class=\"count\">(%d)</span>"
+msgstr[0] "نسخ العمل <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "نسخ العمل <span class=\\\"count\\\">(%d)</span>"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:282
 #: rvy_init-functions.php:294
@@ -4181,9 +4205,12 @@ msgstr "طلبات التغيير"
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
-msgstr[0] ""
-"طلبات التغيير <span class=\"count\">(%d)</span>|طلبات التغيير <span "
-"class=\"count\">(%d)</span>"
+msgstr[0] "طلبات التغيير <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "طلبات التغيير <span class=\\\"count\\\">(%d)</span>"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:296
 msgid "Enable Change Requests"
@@ -4213,9 +4240,12 @@ msgstr "التغييرات المجدولة"
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
-msgstr[0] ""
-"مجدول <span class=\"count\">(%d)</span>|مجدول <span "
-"class=\"count\">(%d)</span>"
+msgstr[0] "مجدول <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "مجدول <span class=\\\"count\\\">(%d)</span>"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:321
 msgid "Unsubmitted Revision"
@@ -4259,9 +4289,12 @@ msgstr "لم يتم تقديمها"
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-"لم يتم تقديمها <span class=\"count\">(%s)</span>|لم يتم تقديمها <span "
-"class=\"count\">(%s)</span>"
+msgstr[0] "لم يتم تقديمها <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "لم يتم تقديمها <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:338
 msgid "Submitted Revision"
@@ -4293,9 +4326,12 @@ msgstr "تم تقديمها"
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-"تم تقديمها <span class=\"count\">(%s)</span>|تم تقديمها <span "
-"class=\"count\">(%s)</span>"
+msgstr[0] "تم تقديمها <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "تم تقديمها <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:355
 msgid "Scheduled Revision"
@@ -4317,27 +4353,45 @@ msgstr "تم جدولة المراجعة"
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-"مجدول <span class=\"count\">(%s)</span>|مجدول <span "
-"class=\"count\">(%s)</span>"
+msgstr[0] "مجدول <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "مجدول <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:467
 #, php-format
 msgid "%sMy Copies & Changes%s(%s)"
 msgid_plural "%sMy Copies & Changes%s(%s)"
-msgstr[0] "%sنسخي وتغييراتي%s(%s)|%sنسخي وتغييراتي%s(%s)"
+msgstr[0] "%sنسخي وتغييراتي%s(%s)"
+msgstr[1] "%sنسخي وتغييراتي%s(%s)"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:468
 #, php-format
 msgid "%sMy Revisions%s(%s)"
 msgid_plural "%sMy Revisions%s(%s)"
-msgstr[0] "%sمراجعاتي%s(%s)|%sمراجعاتي%s(%s)"
+msgstr[0] "%sمراجعاتي%s(%s)"
+msgstr[1] "%sمراجعاتي%s(%s)"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:470
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
-msgstr[0] "%sمراجعات لمشاركاتي%s(%s)</span>|%sمراجعات لمشاركاتي%s(%s)"
+msgstr[0] "%sمراجعات لمشاركاتي%s(%s)</span>"
+msgstr[1] "%sمراجعات لمشاركاتي%s(%s)"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: rvy_init-functions.php:475
 msgid "Post Author"
@@ -4880,7 +4934,7 @@ msgstr "نشر المراجعة"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1526
-#, js-format
+#, fuzzy, js-format
 msgid "<b>%1$s</b> %2$s"
 msgstr "<b>%1$s</b> %2$s"
 
@@ -4954,8 +5008,8 @@ msgstr[5] "%d إضافات نصية"
 #, js-format
 msgid "%d Text Deletion"
 msgid_plural "%d Text Deletions"
-msgstr[0] "%d حذف نص|%d حذف نصوص"
-msgstr[1] "%d تغيير رابط|%d تغييرات روابط"
+msgstr[0] "%d حذف نص"
+msgstr[1] "%d حذف نصوص"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -4966,8 +5020,8 @@ msgstr[5] ""
 #, js-format
 msgid "%d Link Change"
 msgid_plural "%d Link Changes"
-msgstr[0] "أضف %d فاصل أسطر|أضف %d فواصل أسطر"
-msgstr[1] "إزالة %d فاصل أسطر|إزالة %d فواصل أسطر"
+msgstr[0] "أضف %d فاصل أسطر"
+msgstr[1] "أضف %d فواصل أسطر"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -4978,8 +5032,8 @@ msgstr[5] ""
 #, js-format
 msgid "Add %d Line Break"
 msgid_plural "Add %d Line Breaks"
-msgstr[0] "%d تغيير تنسيق|%d تغييرات تنسيق"
-msgstr[1] "عناصر معدلة: %s"
+msgstr[0] "%d تغيير تنسيق"
+msgstr[1] "%d تغييرات تنسيق"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -4991,6 +5045,11 @@ msgstr[5] ""
 msgid "Remove %d Line Break"
 msgid_plural "Remove %d Line Breaks"
 msgstr[0] "تعديل html"
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1606
@@ -4998,6 +5057,11 @@ msgstr[0] "تعديل html"
 msgid "%d formatting change"
 msgid_plural "%d formatting changes"
 msgstr[0] "%1$s تم إضافة الفئة: %2$s"
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1623
@@ -5326,7 +5390,7 @@ msgid "j M @ H:i"
 msgstr "ج م @ ح:د"
 
 #: admin/options.php:2556
-#, php-format
+#, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
 msgstr "%1$s%2$s%3$s (%4$s)"
