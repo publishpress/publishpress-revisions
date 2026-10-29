@@ -2317,7 +2317,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy$redirect_arg");
-				$actions['copy_revision'] = "<a href='$url'>" . esc_html__('Copy', 'revisionary') . '</a>';
+				$actions['copy_revision'] = "<a href='$url'>" . esc_html__('Duplicate', 'revisionary') . '</a>';
 			}
 		}
 
