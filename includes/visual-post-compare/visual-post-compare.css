@@ -1355,6 +1355,27 @@ li.visual-post-compare-fields__array-item > dl:not(.visual-post-compare-fields__
 .visual-post-compare-revision__canvas--builder iframe { flex: 1 1 0; min-height: 0; max-width: none !important; width: 100% !important; }
 
 .visual-post-compare-revision__no-attribute-changes { font-size: 13px; }
+
+/* Tooltip-derived block details use a semantic, visibly indented list. */
+ul#visual-post-compare-revision__block-details-caption,
+#visual-post-compare-revision__block-details-caption ul {
+    list-style: disc outside;
+    padding-inline-start: 1.5em;
+    margin-block: 0.75em;
+}
+#visual-post-compare-revision__block-details-caption li {
+    display: list-item;
+    list-style-type: disc;
+    margin-block: 0.25em;
+}
+
+#visual-post-compare-revision__block-details-caption > .visual-post-compare-revision__block-details-caption-heading {
+    margin: 0;
+}
+#visual-post-compare-revision__block-details-caption > ul {
+    margin-block-start: 4px;
+}
+
 /* Keep the preview mounted while reclaiming the sidebar's canvas width. */
 .visual-post-compare-revision__body.is-sidebar-collapsed { grid-template-columns:minmax(0,1fr); }
 .visual-post-compare-revision__sidebar[hidden] { display:none; }
