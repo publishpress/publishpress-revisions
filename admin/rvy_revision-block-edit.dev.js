@@ -17,6 +17,29 @@ jQuery(document).ready(function ($) {
 		return !!document.querySelector('.editor-revisions-header');
 	};
 
+	// Temporary workaround pending Gutenberg #77014 / Core #65024.
+	// This asset is loaded only for workflow revision editing. Replace only
+	// the native successful draft-save notice, preserving its ID and actions.
+	if (window.wp && wp.data && wp.i18n) {
+		var rvyUpdatingSaveNotice = false;
+		wp.data.subscribe(function () {
+			if (rvyUpdatingSaveNotice || RvyIsNativeRevisionComparison()) return;
+			var store = wp.data.select('core/notices');
+			if (!store || !store.getNotices) return;
+			var draftSaved = wp.i18n.__('Draft saved.');
+			store.getNotices().forEach(function (notice) {
+				if (notice.status !== 'success' || notice.content !== draftSaved) return;
+				rvyUpdatingSaveNotice = true;
+				try {
+					wp.data.dispatch('core/notices').createNotice('success', wp.i18n.__('Revision updated', 'revisionary'), {
+						id: notice.id, type: notice.type, isDismissible: notice.isDismissible,
+						actions: notice.actions, speak: notice.speak
+					});
+				} finally { rvyUpdatingSaveNotice = false; }
+			});
+		});
+	}
+
 	// Initialization operations to perform once React loads the relevant elements
     var RvyInitializeBlockEditorModifications = function () {
         if (($('button.editor-post-publish-button').length || $('button.editor-post-publish-panel__toggle').length) && ($('button.editor-post-switch-to-draft').length || $('button.editor-post-save-draft').length)) {
@@ -401,10 +424,10 @@ jQuery(document).ready(function ($) {
             rvyTransitionBusy = false;
             $('button.revision-approve, button.revision-schedule').prop('disabled', false);
             $('div.revision-approving, div.revision-submitting').hide();
-                });
-		return false;
-	});
-	
+        });
+        return false;
+    });
+
     function rvySubmitCopy() {
         var revisionaryCreateDone = function () {
             $('.revision-approve').hide();
