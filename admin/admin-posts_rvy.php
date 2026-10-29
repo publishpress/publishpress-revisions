@@ -354,7 +354,7 @@ class RevisionaryAdminPosts {
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy{$referer_arg}$redirect_arg");
 				
 				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);
-				$actions['copy_post'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Copy', 'revisionary') . '</a>';
+				$actions['copy_post'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Duplicate', 'revisionary') . '</a>';
 			}
 
 			if (rvy_is_supported_post_type($post->post_type) && current_user_can('copy_post', $post->ID) && rvy_get_option('pending_revisions') && !$revision_blocked) {
