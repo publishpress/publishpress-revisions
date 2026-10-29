@@ -263,7 +263,7 @@ function rvy_status_registrations() {
 			'draft-revision' => [
 				'name' => esc_html__('Working Copy', 'revisionary'),
 				'submit' => esc_html__('Create Working Copy', 'revisionary'),
-				'submit_short' => esc_html__('Copy', 'revisionary'),
+				'submit_short' => esc_html__('Duplicate', 'revisionary'),
 				'submitting' => esc_html__('Creating Working Copy...', 'revisionary'),
 				'submitted' => esc_html__('Working Copy ready', 'revisionary'),
 				'approve' => esc_html__('Approve Changes', 'revisionary'), 
