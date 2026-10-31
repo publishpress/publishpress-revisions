@@ -946,3 +946,4 @@ function rvy_has_revisor_capabilities($caps) {
     }
     return false;
 }
+require_once __DIR__ . '/admin/duplicate-capabilities_rvy.php';
