@@ -16,6 +16,7 @@ function rvy_default_options_sitewide() {
 	$def = array(
 		'revision_queue_capability' => true,
 		'manage_unsubmitted_capability' => true,
+		'duplicate_posts_capability' => true,
 		'copy_posts_capability' => true,
 		'revision_statuses_noun_labels' => true,
 		'caption_copy_as_edit' => true,
@@ -104,6 +105,7 @@ function rvy_default_options() {
 	$def = array(
 		'revision_queue_capability' => 0,
 		'manage_unsubmitted_capability' => 0,
+		'duplicate_posts_capability' => 0,
 		'copy_posts_capability' => 0,
 		'revision_statuses_noun_labels' => 0,
 		'caption_copy_as_edit' => 0,

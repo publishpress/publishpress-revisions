@@ -205,6 +205,7 @@ $this->option_captions = apply_filters('revisionary_option_captions',
 	'revision_statuses_noun_labels' =>			esc_html__('Use alternate labeling: "Working Copy" > "Change Request" > "Scheduled Change"', 'revisionary'),
 	'revision_queue_capability' =>				esc_html__("New Revisions access requires role capability", 'revisionary'),
 	'manage_unsubmitted_capability' =>			sprintf(esc_html__('Managing %s requires role capability', 'revisionary'), pp_revisions_status_label('draft-revision', 'plural')),
+	'duplicate_posts_capability' =>             esc_html__('Post Duplication requires role capability', 'revisionary'),
 	'copy_posts_capability' =>					rvy_get_option('revision_statuses_noun_labels') ? esc_html__("Working Copy creation requires role capability", 'revisionary') : esc_html__("Revision creation requires role capability", 'revisionary'),
 	'caption_copy_as_edit' =>					sprintf(esc_html__('Posts / Pages list: Use "Edit" caption for %s link', 'revisionary'), pp_revisions_status_label('draft-revision', 'submit_short')),
 	'pending_revisions' => 						sprintf(esc_html__('Enable %s', 'revisionary'), $pending_revision_plural),
@@ -300,7 +301,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'post_types' =>			 ['enabled_post_types', 'enabled_fields', 'enabled_post_types_archive', 'enabled_post_types_copy', 'enabled_fields_copy'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'archive_postmeta_on_edit', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
-	'working_copy' =>		 ['copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'create_revision_reuse_unsubmitted', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_capability', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_menu_pending_count_icon', 'front_end_indicator', 'admin_revisions_to_own_posts', 'view_filters_include_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
+	'working_copy' =>		 ['duplicate_posts_capability', 'copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'create_revision_reuse_unsubmitted', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_capability', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_menu_pending_count_icon', 'front_end_indicator', 'admin_revisions_to_own_posts', 'view_filters_include_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
 	'revisions'		=>		 ['visual_compare', 'visual_compare_javascript', 'rvy_compare_other_internal_fields', 'revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
@@ -1300,6 +1301,21 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	<?php
 
 	$this->setSubsection('revision-creation');
+
+    $duplicate_checkbox_args = [];
+    if (defined('PUBLISHPRESS_CAPS_VERSION')) {
+        $duplicate_url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=duplicate');
+        $duplicate_caption = esc_html__('Duplicate Post capabilities', 'revisionary');
+        $duplicate_link = rvy_get_option('duplicate_posts_capability')
+            ? '<a href="' . esc_url($duplicate_url) . '">' . $duplicate_caption . '</a>'
+            : $duplicate_caption;
+        $duplicate_hint = sprintf(esc_html__("If the user can't edit the published post, require %s", 'revisionary'), $duplicate_link);
+        $duplicate_checkbox_args['no_escape'] = true;
+    } else {
+        $duplicate_hint = sprintf(esc_html__('If enabled, Post Duplication access can be controlled per-role using %s', 'revisionary'), $this->capabilities_settings_link('duplicate_posts_capability'));
+        $duplicate_checkbox_args['no_escape'] = true;
+    }
+    $this->option_checkbox('duplicate_posts_capability', $tab, $section, $duplicate_hint, '', $duplicate_checkbox_args);
 
 	$checkbox_args = [];
 
