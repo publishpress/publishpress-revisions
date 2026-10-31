@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class PostEditorWorkflowUI {
     public static function revisionLinkParams($args = []) {
         $defaults = ['post' => false, 'do_pending_revisions' => true, 'do_scheduled_revisions' => true];
@@ -279,7 +281,7 @@ class PostEditorWorkflowUI {
 
 // Native Classic form save completion; all edit_post() hooks have run here.
 add_filter('redirect_post_location', static function ($location, $post_id) {
-    if ((empty($_POST['_rvy_editor_transition']) && empty($_POST['_rvy_editor_save_verify'])) || 'editpost' !== ($_POST['action'] ?? '')
+    if ((empty($_POST['_rvy_editor_transition']) && empty($_POST['_rvy_editor_save_verify'])) || !isset($_POST['action']) || 'editpost' !== (sanitize_key(wp_unslash($_POST['action'])) ?? '')
         || (int) $post_id !== absint($_POST['post_ID'] ?? 0)
         || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_rvy_editor_transition_nonce'] ?? '')), 'rvy-editor-transition:' . $post_id)
         || !current_user_can('edit_post', $post_id)) { return $location; }

@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 class RevisionaryHistory
 {
     private $published_post_ids = [];

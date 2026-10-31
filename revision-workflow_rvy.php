@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 
 class Rvy_Revision_Workflow_UI {
     public static function default_notification_recipients($object_id, $args = []) {

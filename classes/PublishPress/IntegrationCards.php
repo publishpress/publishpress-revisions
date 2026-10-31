@@ -1,6 +1,7 @@
 <?php
-
 namespace PublishPress;
+
+\defined('ABSPATH') || exit;
 
 /**
  * Adds Pro integration cards to the Integrations settings screen catalog.

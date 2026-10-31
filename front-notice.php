@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class FrontNotice {
     var $post_id = 0;
 

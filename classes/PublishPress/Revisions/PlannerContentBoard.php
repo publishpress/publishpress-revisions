@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class PlannerContentBoard {
     private $plannerCompat;
 

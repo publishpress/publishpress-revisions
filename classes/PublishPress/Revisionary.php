@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress;
 
+\defined('ABSPATH') || exit;
+
 class Revisions {
 	private static $instance = null;
 

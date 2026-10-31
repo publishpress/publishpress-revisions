@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined('ABSPATH') || exit;
 
 /** Whether scheduled revision publication should use WP-Cron for this site. */
 if ( ! function_exists( 'rvy_use_wp_cron_for_revision_publication' ) ) {

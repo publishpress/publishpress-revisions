@@ -1,8 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 function rvy_mu_site_menu() {
 	if ( ! current_user_can( 'manage_options' ) )

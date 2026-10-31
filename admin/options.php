@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 do_action('revisionary_load_options_ui');
 
@@ -1418,7 +1416,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		}
 		echo '</select>&nbsp;';
         if (rvy_get_option('permissions_compat_mode')) {
-            echo '<div class="notice notice-warning inline rvy-builder-schema-warning"><p>' . esc_html(rvy_builder_schema_message(false)) . '</p></div>';
+            echo '<div class="notice notice-warning inline rvy-builder-schema-warning"><p>';
+			rvy_print_builder_schema_message(false);
+			echo '</p></div>';
         }
 
 		if (revisionary()->getOption('display_hints')) :?>

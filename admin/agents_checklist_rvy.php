@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 define ('CURRENT_ITEMS_RVY', 'current');
 define ('ELIGIBLE_ITEMS_RVY', 'eligible');
