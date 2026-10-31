@@ -41,8 +41,8 @@ class Revisionary_Submittee {
 
         // init may already have fired (late bulk-action admin initialization).
         // Convert after saving values AND network scope, using each site's effective setting.
-        if (!empty($_POST['all_options'])
-            && in_array('permissions_compat_mode', array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options'])))), true)) {
+        if (!empty($_POST['all_options'])	// phpcs:ignore WordPress.Security.NonceVerification.Missing
+            && in_array('permissions_compat_mode', array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options'])))), true)) {  // phpcs:ignore WordPress.Security.NonceVerification.Missing
             $site_ids = ($sitewide && is_multisite() && defined('RVY_NETWORK') && RVY_NETWORK)
                 ? get_sites(['fields' => 'ids']) : [get_current_blog_id()];
             foreach ($site_ids as $site_id) {

@@ -2,15 +2,16 @@
 /** Storage-schema requirements shared by Revisions Free and Pro. */
 defined('ABSPATH') || exit;
 
-function rvy_builder_schema_message($with_link = true) {
+function rvy_print_builder_schema_message($with_link = true) {
     if (!$with_link) {
-        return __('Page Builder integration requires Revisions Pro to be set to standard storage schema.', 'revisionary');
+        _e('Page Builder integration requires Revisions Pro to be set to standard storage schema.', 'revisionary');
+    } else {
+        printf(
+            esc_html__('Page Builder integration requires Revisions Pro to be set to %s.', 'revisionary'),
+            '<a href="' . esc_url(admin_url('admin.php?page=revisionary-settings&ppr_tab=working_copy#ppr-tab-working_copy')) . '">'
+                . esc_html__('standard storage schema', 'revisionary') . '</a>'
+        );
     }
-    return sprintf(
-        esc_html__('Page Builder integration requires Revisions Pro to be set to %s.', 'revisionary'),
-        '<a href="' . esc_url(admin_url('admin.php?page=revisionary-settings&ppr_tab=working_copy#ppr-tab-working_copy')) . '">'
-            . esc_html__('standard storage schema', 'revisionary') . '</a>'
-    );
 }
 
 /** Detect actual builder documents, without loading any Pro workflow code. */
@@ -34,8 +35,9 @@ function rvy_builder_schema_blocked($post) {
 
 function rvy_builder_schema_notice($dismissible = true) {
     if (!rvy_get_option('permissions_compat_mode')) { return; }
-    echo '<div class="notice notice-warning rvy-builder-schema-notice' . ($dismissible ? ' is-dismissible' : ' inline') . '"><p>'
-        . rvy_builder_schema_message() . '</p></div>';
+    echo '<div class="notice notice-warning rvy-builder-schema-notice' . ($dismissible ? ' is-dismissible' : ' inline') . '"><p>';
+    rvy_print_builder_schema_message();
+    echo '</p></div>';
 }
 /** Settings render their own inline messages; WordPress hooks pass an empty argument. */
 function rvy_builder_schema_admin_notice() {

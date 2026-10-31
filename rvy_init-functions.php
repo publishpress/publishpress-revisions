@@ -772,7 +772,7 @@ function rvy_post_revision_blocked($post, $args = []) {
 	static $unfiltered_html;
 
 	if (rvy_builder_schema_blocked($post)) {
-		return ['code' => 'builder_storage_schema', 'description' => rvy_builder_schema_message(false)];
+		return ['code' => 'builder_storage_schema', 'description' => __('Page Builder integration requires Revisions Pro to be set to standard storage schema.', 'revisionary')];
 	}
 
 	$revision_unfiltered_html_check = rvy_get_option('revision_unfiltered_html_check');

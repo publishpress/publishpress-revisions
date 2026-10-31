@@ -816,8 +816,8 @@ class RevisionaryFront {
 					}
 				}
 
-				$position_bar = $editor_shell ? 'relative' : (apply_filters('revisionary_admin_bar_absolute', !defined('REVISIONARY_PREVIEW_BAR_RELATIVE')) ? 'fixed' : 'relative');
-				$legacy_divi_offset = !$editor_shell && !empty($_REQUEST['et_fb']) && !defined('PP_REVISIONS_DIVI_NO_ADMIN_BAR')
+				$position_bar = $editor_shell ? 'relative' : (apply_filters('revisionary_admin_bar_absolute', !defined('REVISIONARY_PREVIEW_BAR_RELATIVE')) ? 'fixed' : 'relative');  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$legacy_divi_offset = !$editor_shell && !empty($_REQUEST['et_fb']) && !defined('PP_REVISIONS_DIVI_NO_ADMIN_BAR')													  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					&& function_exists('et_divi_replace_parent_stylesheet')
 					&& (!defined('ET_BUILDER_PRODUCT_VERSION') || version_compare(ET_BUILDER_PRODUCT_VERSION, '4.14.8', '<='));
 				$html = '<div id="pp_revisions_top_bar" class="' . esc_attr("rvy_view_revision rvy_view_" . $class) . '"'

@@ -255,7 +255,7 @@ class RevisionCreation {
 
         $published_post = get_post($main_post_id);
         if (rvy_builder_schema_blocked($published_post)) {
-            return new \WP_Error('builder_storage_schema', rvy_builder_schema_message(false));
+            return new \WP_Error('builder_storage_schema', __('Page Builder integration requires Revisions Pro to be set to standard storage schema.', 'revisionary'));
         }
 
 		if (rvy_get_option('create_revision_reuse_unsubmitted') && !$is_revision && !empty($args['reuse_unsubmitted']) && 'future-revision' !== $revision_status) {
