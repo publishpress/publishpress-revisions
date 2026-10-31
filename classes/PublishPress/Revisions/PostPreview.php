@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class PostPreview {
     function __construct() {
 		add_filter('the_author', [$this, 'fltAuthor'], 15);

@@ -1,8 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
+defined('ABSPATH') || exit;
 
 class Revisionary_Submittee {
 

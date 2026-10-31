@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class PostEditorWorkflowUI {
     public static function revisionLinkParams($args = []) {
         $defaults = ['post' => false, 'do_pending_revisions' => true, 'do_scheduled_revisions' => true];

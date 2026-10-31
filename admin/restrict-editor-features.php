@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class Editor_Features {
     /**
      * Gutenberg Editor: Hide UI elements for Revision Editor features configured as disabled

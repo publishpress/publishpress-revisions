@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class Utils {
 	public static function isRESTurl() {
 		static $arr_url;

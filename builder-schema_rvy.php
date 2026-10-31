@@ -1,6 +1,6 @@
 <?php
 /** Storage-schema requirements shared by Revisions Free and Pro. */
-if (!defined('ABSPATH')) { exit; }
+defined('ABSPATH') || exit;
 
 function rvy_builder_schema_message($with_link = true) {
     if (!$with_link) {

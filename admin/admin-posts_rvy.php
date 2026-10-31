@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 class RevisionaryAdminPosts {
     private $post_revision_count = array();
 	private $trashed_revisions;

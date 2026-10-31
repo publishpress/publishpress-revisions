@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined('ABSPATH') || exit;
 require_once __DIR__ . '/scheduled-publication-mode_rvy.php';
 
 /** Move upcoming revisions to the selected trigger when a scheduler setting changes. */

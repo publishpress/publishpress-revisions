@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 /*
  * Post Edit UI: main post (not revision) editor filters which apply for both Gutenberg and Classic Editor

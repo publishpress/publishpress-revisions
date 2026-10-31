@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 // Decipher the ever-changing meta/advanced action names into a version-insensitive question:
 // "Has metabox drawing been initiated?"

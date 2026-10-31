@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class CoreAdmin {
     function __construct() {
         add_action('admin_print_scripts', [$this, 'setUpgradeMenuLink'], 50);

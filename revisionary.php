@@ -36,7 +36,7 @@
  *
  **/
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+defined('ABSPATH') || exit;
 
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
