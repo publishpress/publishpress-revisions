@@ -1340,7 +1340,8 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		$checkbox_args['no_escape'] = true;
 	} else {
-		$hint = esc_html__('If the user can\'t edit the published post, require Create Revision capabilities (copy_posts, copy_others_pages, etc.)', 'revisionary');
+		$hint = sprintf(esc_html__('If enabled, Revision Creation access can be controlled per-role using %s', 'revisionary'), $this->capabilities_settings_link('copy_posts_capability'));
+        $checkbox_args['no_escape'] = true;
 	}
 
 	if (defined('PRESSPERMIT_VERSION')) {
@@ -1529,7 +1530,8 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 				$checkbox_args['no_escape'] = true;
 			} else {
-				$hint = esc_html__('If the user can\'t edit the published post, require Submit Revision capabilities (revise_posts, revise_others_pages, etc.)', 'revisionary');
+				$hint = sprintf(esc_html__('If enabled, Revision Submission access can be controlled per-role using %s', 'revisionary'), $this->capabilities_settings_link('revise_posts_capability'));
+                $checkbox_args['no_escape'] = true;
 			}
 
 			$this->option_checkbox( 'revise_posts_capability', $tab, $section, $hint, '', $checkbox_args );
@@ -1679,8 +1681,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	
 			$checkbox_args['no_escape'] = true;
 
-		} elseif ($option_val) {
-			$hint = esc_html__('Require Approve Revision capabilities (approve_posts, approve_others_pages, etc.)', 'revisionary');
+		} else {
+            $hint = sprintf(esc_html__('If enabled, Revision Approval access can be controlled per-role using %s', 'revisionary'), $this->capabilities_settings_link('approve_capability'));
+            $checkbox_args['no_escape'] = true;
 		}
 
 		$this->option_checkbox('approve_capability', $tab, $section, $hint, '', $checkbox_args);
@@ -1833,7 +1836,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 
 			if (defined('PUBLISHPRESS_VERSION')) {
-				$this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
+                $this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
             }
 
 			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES') && defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
