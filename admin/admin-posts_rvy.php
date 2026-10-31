@@ -154,38 +154,29 @@ class RevisionaryAdminPosts {
 	}
 
 	public function fltGetEditPostLink($link, $post_id, $context) {
-		if (!empty($this->filtering_edit_link[$post_id])) {
-			if (defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
-				return $link;
-			}
-			
-			remove_filter('user_has_cap', [$this, 'actUserHasCap'], 10, 3);
+        if (empty($this->filtering_edit_link[$post_id])
+            || defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
+            return $link;
+        }
 
-			add_action(
-				'admin_print_footer_scripts',
-				function () use ($link) {
-					if ($ipos = strpos($link, '&')) {
-						$link = substr($link, 0, $ipos);
-					}
-				?>
-					<script type="text/javascript">
-					/* <![CDATA[ */
-					jQuery(document).ready( function($) {
-						if ($('#the-list').length) {
-							$('td.column-name a[href*="<?php echo esc_url($link);?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
-							$('td.column-title a[href*="<?php echo esc_url($link);?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
-						}
-					});
-					/* ]]> */
-					</script>
-				<?php
-				}
-			);
-		}
+        // Core may already have cached the temporary edit grant for this row.
+        // Remove the title anchor by post ID rather than matching an escaped URL.
+        add_action('admin_print_footer_scripts', function () use ($post_id) {
+            ?>
+            <script>
+            jQuery(function ($) {
+                var row = $('#post-<?php echo (int) $post_id; ?>');
+                row.find('.row-title').contents().unwrap();
+                row.find('.row-actions .edit, .row-actions .inline').remove();
+            });
+            </script>
+            <?php
+        });
 
-		return $link;
+        // Prevent an editor destination before the title markup is cleaned up.
+        return '';
 	}
-    
+
     function revision_action_notice() {
 		if ( ! empty($_GET['restored_post'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			?>
