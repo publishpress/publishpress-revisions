@@ -217,7 +217,10 @@ if (defined('WPSEO_VERSION')) {
 				}
 			}
 
-			if (is_object($indexable) && isset($indexable->object_id) && empty($indexable->object_id)) {
+			// Archive, home page, date archive and system page indexables have no object_id, so only guard object-backed types
+			if (is_object($indexable) && isset($indexable->object_id) && empty($indexable->object_id)
+			&& isset($indexable->object_type) && in_array($indexable->object_type, ['post', 'term', 'user'], true)
+			) {
 				// WordPress database error Duplicate entry '0' for key 'PRIMARY' for query INSERT INTO `wp_yoast_indexable`
 				return false;
 			}
