@@ -207,12 +207,7 @@ class RevisionCreation {
 
 
 		if (is_array($enabled_fields)) {
-			$skip_meta_keys = array_filter(
-				$enabled_fields, 
-				function($val) {
-					return is_null($val) || !$val;
-				}
-			);
+			$skip_meta_keys = revisionary_disabled_meta_keys($enabled_fields);
 		} else {
 			$skip_meta_keys = [];
 		}

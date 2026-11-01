@@ -1,5 +1,8 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[Unreleased]
+- Added: Private MCP actions for native revision workflows, settings and permissions.
+
 [4.2.0] - 15 Oct 2026
 - Added : Visual Compare extension API for page builder integrations in Revisions Pro
 - Added : Option to enable page JavaScript behavior in Visual Compare

@@ -762,29 +762,7 @@ function rvy_revision_restore() {
 
 	$published_url = get_permalink($post->ID);
 
-	global $wpdb;
-	
-	$data = array( 'post_status' => 'inherit', 'post_date' => $revision->post_modified, 'post_date_gmt' => $revision->post_modified );
-	
-	if ( class_exists('WPCom_Markdown') && ! defined( 'RVY_DISABLE_MARKDOWN_WORKAROUND' ) )
-		$data['post_content_filtered'] = $revision->post_content;
-	
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	$wpdb->update($wpdb->posts, $data, array('ID' => $revision->ID));
-	
-	wp_restore_post_revision( $revision->ID, array( 'post_content', 'post_title', 'post_date', 'post_date_gmt', 'post_modified', 'post_modified_gmt' ) );
-
-	// restore previous meta fields
-	revisionary_copy_postmeta($revision, $post->ID);
-
-	revisionary_copy_terms($revision, $post->ID);
-
-	clean_post_cache($revision->ID);
-	clean_post_cache($post->ID);
-
-	delete_metadata('post', $post->ID, '_elementor_element_cache');
-
-	rvy_format_content( $revision->post_content, $revision->post_content_filtered, $post->ID );
+	if (!rvy_restore_archived_revision($revision->ID)) { return false; }
 
 	if ( 'inherit' == $revision->post_status ) {
 		$last_arg = array( 'revision_action' => 1, 'restored_post' => $post->ID );
@@ -810,6 +788,40 @@ function rvy_revision_restore() {
 
 	wp_safe_redirect( $redirect );
 	exit;
+}
+
+
+/** Restore archived content, metadata and terms through the native lifecycle. */
+function rvy_restore_archived_revision($revision_id) {
+    $revision = wp_get_post_revision($revision_id);
+    $post = $revision ? get_post($revision->post_parent) : null;
+    if (!$post || !current_user_can('edit_post', $post->ID)) { return false; }
+	global $wpdb;
+
+	$data = array( 'post_status' => 'inherit', 'post_date' => $revision->post_modified, 'post_date_gmt' => $revision->post_modified );
+
+	if ( class_exists('WPCom_Markdown') && ! defined( 'RVY_DISABLE_MARKDOWN_WORKAROUND' ) )
+		$data['post_content_filtered'] = $revision->post_content;
+
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+	if (false === $wpdb->update($wpdb->posts, $data, array('ID' => $revision->ID))) { return false; }
+
+	if (!wp_restore_post_revision( $revision->ID, array( 'post_content', 'post_title', 'post_date', 'post_date_gmt', 'post_modified', 'post_modified_gmt' ) )) { return false; }
+
+	// restore previous meta fields
+	revisionary_copy_postmeta($revision, $post->ID);
+
+	revisionary_copy_terms($revision, $post->ID);
+
+	clean_post_cache($revision->ID);
+	clean_post_cache($post->ID);
+
+	delete_metadata('post', $post->ID, '_elementor_element_cache');
+
+	rvy_format_content( $revision->post_content, $revision->post_content_filtered, $post->ID );
+
+
+    return $post->ID;
 }
 
 function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
@@ -1070,12 +1082,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	}
 
 	if (is_array($enabled_fields)) {
-		$skip_post_meta = array_filter(
-			$enabled_fields, 
-			function($val) {
-				return is_null($val) || !$val;
-			}
-		);
+		$skip_post_meta = revisionary_disabled_meta_keys($enabled_fields);
 	} else {
 		$skip_post_meta = [];
 	}

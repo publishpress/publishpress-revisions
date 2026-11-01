@@ -425,10 +425,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 	}
 
 	function fltFixMimeTypeClause($where) {
-		$where = str_replace("-revision/%'", "-revision'", $where);
-		$where = preg_replace("#post_mime_type LIKE '([a-z0-9_\-]*)/%'#", "post_mime_type LIKE '$1'", $where);
-
-		return $where;
+		return rvy_revision_mime_where($where);
 	}
 
 	function fltScheduledOnlyWhere( $where ) {
