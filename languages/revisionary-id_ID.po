@@ -1,52 +1,5438 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Report-Msgid-Bugs-To: \n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-15T19:48:10+00:00\n"
-"PO-Revision-Date: 2026-10-29 04:31+0000\n"
+"POT-Creation-Date: 2026-10-29T21:55:33+00:00\n"
+"PO-Revision-Date: 2026-10-31 17:16+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language: id-ID\n"
 
-#: visual-compare_rvy.php:12
-#: visual-compare_rvy.php:13
-msgid "Compare Revisions"
-msgstr "Bandingkan Revisi"
+#: revisionary.php:5
+#. Plugin Name of the plugin
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
 
-#: visual-compare_rvy.php:85
-msgid "Compare Scheduled Revisions"
-msgstr "Bandingkan Revisi Terjadwal"
+#: revisionary.php:7
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
 
-#: visual-compare_rvy.php:87
-msgid "Compare New Revisions"
-msgstr "Bandingkan Revisi Baru"
+#: revisionary.php:9
+#. Description of the plugin
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Pertahankan konten yang diterbitkan dengan kerja tim dan presisi "
+"menggunakan model Revisi untuk mengajukan, menyetujui, dan menjadwalkan "
+"perubahan."
 
-#: visual-compare_rvy.php:90
-msgid "Compare Past Revisions"
-msgstr "Bandingkan Revisi Lampau"
+#: revisionary.php:11
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "PublishPress"
 
-#: visual-compare_rvy.php:101
-msgid "Restore"
-msgstr "Pulihkan"
+#: revisionary.php:13
+#. Author URI of the plugin
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
 
-#: visual-compare_rvy.php:143
-msgid "Past Revisions"
-msgstr "Revisi Lampau"
+#: admin/action-scheduler_rvy.php:74
+#, php-format
+msgid "Migrate %d Scheduled Revision"
+msgid_plural "Migrate %d Scheduled Revisions"
+msgstr[0] "Migrasi %d Revisi Terjadwal"
 
-#: visual-compare_rvy.php:160
-msgid "Submitted Revisions"
-msgstr "Revisi yang telah dikirim"
+#: admin/action-scheduler_rvy.php:90
+#: admin/action-scheduler_rvy.php:94
+msgid "Migration failed."
+msgstr "Migrasi gagal."
 
-#: visual-compare_rvy.php:175
+#: admin/action-scheduler_rvy.php:105
+#: admin/action-scheduler_rvy.php:282
+msgid "Permission denied."
+msgstr "Izin ditolak."
+
+#: admin/action-scheduler_rvy.php:107
+msgid "Action Scheduler is unavailable."
+msgstr "Action Scheduler tidak tersedia."
+
+#: admin/action-scheduler_rvy.php:133
+msgid "No Scheduled Revisions could be migrated."
+msgstr "Tidak ada Revisi Terjadwal yang dapat dimigrasi."
+
+#: admin/action-scheduler_rvy.php:139
+#, php-format
+msgid "%d Scheduled Revisions remaining."
+msgstr "%d Revisi Terjadwal tersisa."
+
+#: admin/action-scheduler_rvy.php:140
+msgid "Scheduled Revision migration complete."
+msgstr "Migrasi Revisi Terjadwal selesai."
+
+#: admin/action-scheduler_rvy.php:173
+#: admin/action-scheduler_rvy.php:174
+#: admin/admin_rvy.php:282
+#: admin/revision-queue_rvy.php:172
+#: rvy_init-functions.php:370
+#: visual-compare_rvy.php:176
 msgid "Scheduled Revisions"
 msgstr "Revisi Terjadwalkan"
 
-#: visual-compare_rvy.php:180
+#: admin/action-scheduler_rvy.php:189
+msgid "Scheduling Log"
+msgstr "Log Penjadwalan"
+
+#: admin/action-scheduler_rvy.php:191
+#: admin/admin-posts_rvy.php:289
+#: admin/class-list-table-archive.php:582
+#: admin/post-edit-block-ui_rvy.php:165
+#: admin/post-edit_rvy.php:136
+#: rvy_init-functions.php:477
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3204
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3205
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3457
+msgid "Revision"
+msgstr "Revisi"
+
+#: admin/action-scheduler_rvy.php:192
+#: admin/class-list-table_rvy.php:2199
+#: admin/history_rvy.php:1423
+#: admin/post-editor-workflow-ui_rvy.php:71
+#: admin/post-editor-workflow-ui_rvy.php:112
+#: admin/post-editor-workflow-ui_rvy.php:230
+#: admin/RevisionEditSubmitMetabox.php:125
+msgid "Preview"
+msgstr "Prabaca"
+
+#: admin/action-scheduler_rvy.php:193
+#: admin/action-scheduler_rvy.php:381
+#: admin/action-scheduler_rvy.php:438, fuzzy
+msgid "Hook"
+msgstr "Hook"
+
+#: admin/action-scheduler_rvy.php:194
+#: admin/class-list-table_rvy.php:818
+#: admin/options.php:1242
+msgid "Publication"
+msgstr "Publikasi"
+
+#: admin/action-scheduler_rvy.php:195
+#: admin/action-scheduler_rvy.php:382
+#: admin/action-scheduler_rvy.php:439
+msgid "Arguments"
+msgstr "Argumen"
+
+#: admin/action-scheduler_rvy.php:196
+#: admin/action-scheduler_rvy.php:383
+#: admin/action-scheduler_rvy.php:440
+msgid "Scheduled Date"
+msgstr "Tanggal Terjadwal"
+
+#: admin/action-scheduler_rvy.php:197
+#: admin/action-scheduler_rvy.php:392
+#: admin/action-scheduler_rvy.php:441, fuzzy
+msgid "Log"
+msgstr "Log"
+
+#: admin/action-scheduler_rvy.php:205
+msgid "Search revision or hook ID"
+msgstr "Cari revisi atau ID hook"
+
+#: admin/action-scheduler_rvy.php:258
+#: admin/class-list-table_rvy.php:851
+msgid "View preview"
+msgstr "Lihat prabaca"
+
+#: admin/action-scheduler_rvy.php:286
+#, php-format
+msgid ""
+"Note: %1$d Revision is scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgid_plural ""
+"Note: %1$d Revisions are scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgstr[0] ""
+"Catatan: %1$d Revisi dijadwalkan untuk publikasi di masa depan dengan "
+"pemicu warisan. %2$s untuk keandalan yang lebih baik.|Catatan: %1$d Revisi "
+"dijadwalkan untuk publikasi di masa depan dengan pemicu warisan. %2$s untuk "
+"keandalan yang lebih baik."
+
+#: admin/action-scheduler_rvy.php:292
+msgid "Migrate it to Action Scheduler"
+msgid_plural "Migrate those to Action Scheduler"
+msgstr[0] "Migrasikan ke Action Scheduler"
+
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:420
+msgid "Missed Schedule"
+msgstr "Jadwal Terlewat"
+
+#: admin/action-scheduler_rvy.php:371
+#: admin/action-scheduler_rvy.php:423
+#: admin/action-scheduler_rvy.php:428
+#: admin/class-list-table_rvy.php:1681
+#: admin/revisions.php:72
+#: rvy_init-functions.php:371
+msgid "Scheduled"
+msgstr "Terjadwal"
+
+#: admin/action-scheduler_rvy.php:374
+msgid "Scheduler"
+msgstr "Penjadwal"
+
+#: admin/action-scheduler_rvy.php:374, fuzzy
+msgid "WP-Cron"
+msgstr "WP-Cron"
+
+#: admin/action-scheduler_rvy.php:377
+msgid "Non-repeating"
+msgstr "Tidak berulang"
+
+#: admin/action-scheduler_rvy.php:379
+#, php-format
+msgid "%s seconds"
+msgstr "%s detik"
+
+#: admin/action-scheduler_rvy.php:384
+msgid "Recurrence"
+msgstr "Pengulangan"
+
+#: admin/action-scheduler_rvy.php:387
+msgid "Requested Publication"
+msgstr "Publikasi yang Diminta"
+
+#: admin/action-scheduler_rvy.php:389
+msgid "Event"
+msgstr "Acara"
+
+#: admin/action-scheduler_rvy.php:390
+msgid "No matching WP-Cron event was found."
+msgstr "Tidak ada acara WP-Cron yang cocok ditemukan."
+
+#: admin/action-scheduler_rvy.php:393
+msgid ""
+"WP-Cron does not retain an execution log. These details show the currently "
+"registered events only."
+msgstr ""
+"WP-Cron tidak menyimpan log eksekusi. Detail ini hanya menunjukkan acara "
+"yang saat ini terdaftar."
+
+#: admin/action-scheduler_rvy.php:395
+#: admin/action-scheduler_rvy.php:443
+msgid "Click to view scheduling log."
+msgstr "Klik untuk melihat log penjadwalan."
+
+#: admin/action-scheduler_rvy.php:396
+#: admin/action-scheduler_rvy.php:444
+msgid "(view scheduling log)"
+msgstr "(lihat log penjadwalan)"
+
+#: admin/action-scheduler_rvy.php:398
+#: admin/action-scheduler_rvy.php:445
+#: admin/class-list-table-archive.php:758
+#: functions.php:480
+msgid "Scheduled Revision Publication"
+msgstr "Publikasi Revisi Terjadwal"
+
+#: admin/admin-init_rvy.php:144
+#: admin/admin-init_rvy.php:385
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "Maaf, Anda tidak diizinkan untuk menghapus revisi ini."
+
+#: admin/admin-init_rvy.php:148
+#: admin/admin-init_rvy.php:399
+msgid "Error in deleting."
+msgstr "Kesalahan dalam menghapus."
+
+#: admin/admin-init_rvy.php:239
+#: admin/admin-init_rvy.php:351
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "Maaf, Anda tidak diizinkan untuk menyetujui revisi ini."
+
+#: admin/admin-init_rvy.php:276
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "Maaf, Anda tidak diizinkan untuk mengirimkan revisi ini."
+
+#: admin/admin-init_rvy.php:316
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "Maaf, Anda tidak diizinkan untuk menolak revisi ini."
+
+#: admin/admin-posts_rvy.php:185
+msgid "The revision was restored."
+msgstr "Revisi telah dipulihkan."
+
+#: admin/admin-posts_rvy.php:190
+msgid "The revision was scheduled for publication."
+msgstr "Revisi telah dijadwalkan untuk diterbitkan."
+
+#: admin/admin-posts_rvy.php:195
+msgid "The revision was published."
+msgstr "Revisi telah diterbitkan."
+
+#: admin/admin-posts_rvy.php:200
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"Kemampuan unfiltered_html diperlukan untuk membuat revisi dari pos ini. "
+"Lihat %s dokumentasi %s."
+
+#: admin/admin-posts_rvy.php:205
+#: rvy_init-functions.php:813
+msgid "The post already has a revision in process."
+msgstr "Pos ini sudah memiliki revisi yang sedang diproses."
+
+#: admin/admin-posts_rvy.php:306
+msgid "Has Revision"
+msgstr "Memiliki Revisi"
+
+#: admin/admin-posts_rvy.php:326
+#: admin/admin_rvy.php:468
+#: admin/admin_rvy.php:538
+#: admin/options.php:185
+#: admin/options.php:679
+msgid "New Revisions"
+msgstr "Revisi Baru"
+
+#: admin/admin-posts_rvy.php:350
+#: admin/class-list-table_rvy.php:2318
+#: admin/duplicate-capabilities_rvy.php:47
+#: rvy_init-functions.php:271
+msgid "Duplicate"
+msgstr "Duplikat"
+
+#: admin/admin-posts_rvy.php:358
+#: admin/class-list-table_rvy.php:1055
+#: admin/class-list-table_rvy.php:2307
+#: admin/edit-revision-classic-ui_rvy.php:216
+#: admin/history_rvy.php:1465
+#: admin/post-editor-workflow-ui_rvy.php:117
+#: admin/post-editor-workflow-ui_rvy.php:231
+#: admin/RevisionEditSubmitMetabox.php:198
+#: front_rvy.php:584, fuzzy
+msgid "Edit"
+msgstr "Edit"
+
+#: admin/admin_lib-mu_rvy.php:12
+#: admin/options.php:371
+msgid "PublishPress Revisions Network Settings"
+msgstr "Pengaturan Jaringan Revisi PublishPress"
+
+#: admin/admin_lib-mu_rvy.php:12
+msgid "Network Settings"
+msgstr "Pengaturan Jaringan"
+
+#: admin/admin_lib-mu_rvy.php:23
+#: admin/options.php:373
+msgid "PublishPress Revisions Network Defaults"
+msgstr "Pengaturan Default Jaringan Revisi PublishPress"
+
+#: admin/admin_lib-mu_rvy.php:23
+msgid "Network Defaults"
+msgstr "Default Jaringan"
+
+#: admin/admin_rvy.php:374
+#: admin/admin_rvy.php:403
+#: admin/history_rvy.php:298
+#: admin/history_rvy.php:310
+#: front-notice.php:61
+msgid "Revisions"
+msgstr "Revisi"
+
+#: admin/admin_rvy.php:477
+#: admin/admin_rvy.php:478
+#: admin/admin_rvy.php:539
+#: admin/options.php:184
+#: admin/options.php:580
+#: admin/revision-archive_rvy.php:99
+#: admin/revisions.php:236
+#: visual-compare_rvy.php:144
+msgid "Past Revisions"
+msgstr "Revisi Lampau"
+
+#: admin/admin_rvy.php:495
+#: admin/options.php:377
+msgid "PublishPress Revisions Settings"
+msgstr "Pengaturan Revisi PublishPress"
+
+#: admin/admin_rvy.php:495
+#: admin/admin_rvy.php:542
+#: admin/options.php:179
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: admin/admin_rvy.php:504
+#: admin/admin_rvy.php:505
+#: admin/admin_rvy.php:545
+#: admin/options.php:2134
+#: admin/options.php:2162
+#: admin/options.php:2423
+#: admin/options.php:2820
+#: includes/CoreAdmin.php:214
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2680
+msgid "Upgrade to Pro"
+msgstr "Upgrade ke Pro"
+
+#: admin/admin_rvy.php:586
+msgid "Can edit draft Posts from other users."
+msgstr "Dapat mengedit pos draf dari pengguna lain."
+
+#: admin/admin_rvy.php:587
+msgid "Can edit Revisions from other users."
+msgstr "Dapat mengedit Revisi dari pengguna lain."
+
+#: admin/admin_rvy.php:588
+msgid "Can see New Revisions from other users."
+msgstr "Dapat melihat Revisi Baru dari pengguna lain."
+
+#: admin/admin_rvy.php:589
+msgid "Can access New Revisions."
+msgstr "Dapat mengakses Revisi Baru."
+
+#: admin/admin_rvy.php:590
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Dapat mengelola Revisi yang Belum Dikirim."
+
+#: admin/admin_rvy.php:591
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr "Prabaca Revisi pengguna lain (tanpa perlu akses pengeditan)."
+
+#: admin/admin_rvy.php:592
+msgid "Restore an archived Revision as the current revision."
+msgstr "Pulihkan Revisi yang diarsipkan sebagai revisi saat ini."
+
+#: admin/admin_rvy.php:593
+msgid "View Past Revisions."
+msgstr "Lihat Revisi Masa Lalu."
+
+#: admin/admin_rvy.php:621
+msgid "Review PublishPress Revisions on WordPress.org"
+msgstr "Tinjau Revisi PublishPress di WordPress.org"
+
+#: admin/admin_rvy.php:623
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Jika Anda suka %1$s, silakan beri kami penilaian %2$s. Terima kasih!"
+
+#: admin/admin_rvy.php:634
+msgid "About PublishPress Revisions"
+msgstr "Tentang Revisi PublishPress"
+
+#: admin/admin_rvy.php:634
+msgid "About"
+msgstr "Tentang"
+
+#: admin/admin_rvy.php:636
+msgid "PublishPress Revisions Documentation"
+msgstr "Dokumentasi Revisi PublishPress"
+
+#: admin/admin_rvy.php:636
+msgid "Documentation"
+msgstr "Dokumentasi"
+
+#: admin/admin_rvy.php:638
+msgid "Contact the PublishPress team"
+msgstr "Hubungi tim PublishPress"
+
+#: admin/admin_rvy.php:638
+msgid "Contact"
+msgstr "Kontak"
+
+#: admin/admin_rvy.php:644
+msgid "Visit PublishPress"
+msgstr "Kunjungi PublishPress"
+
+#: admin/admin_rvy.php:692
+msgid "More information"
+msgstr "Informasi lebih lanjut"
+
+#: admin/agents_checklist_rvy.php:75
+#, php-format
+msgid "show current users (%d)"
+msgstr "tampilkan pengguna saat ini (%d)"
+
+#: admin/agents_checklist_rvy.php:77
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "tampilkan pengguna yang memenuhi syarat (%d)"
+
+#: admin/agents_checklist_rvy.php:86, fuzzy
+msgid "filter:"
+msgstr "filter:"
+
+#: admin/agents_checklist_rvy.php:102, fuzzy
+msgid "select"
+msgstr "select"
+
+#: admin/agents_checklist_rvy.php:110, fuzzy
+msgid "unselect"
+msgstr "unselect"
+
+#: admin/class-list-table-archive.php:24
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:70
+msgid "This was an update to a revision which is still in the workflow process."
+msgstr "Ini adalah pembaruan untuk revisi yang masih dalam proses alur kerja."
+
+#: admin/class-list-table-archive.php:26
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:71
+msgid "This was an update to a revision which was published after further editing."
+msgstr ""
+"Ini adalah pembaruan untuk revisi yang diterbitkan setelah pengeditan lebih "
+"lanjut."
+
+#: admin/class-list-table-archive.php:203
+#, fuzzy, php-format
+msgid "Revision Author: %s"
+msgstr "Revision Author: %s"
+
+#: admin/class-list-table-archive.php:222
+#, fuzzy, php-format
+msgid "Post Author: %s"
+msgstr "Post Author: %s"
+
+#: admin/class-list-table-archive.php:232
+#, fuzzy, php-format
+msgid "Revision Date: %s"
+msgstr "Revision Date: %s"
+
+#: admin/class-list-table-archive.php:242
+#, fuzzy, php-format
+msgid "Approved by: %s"
+msgstr "Approved by: %s"
+
+#: admin/class-list-table-archive.php:252
+#, fuzzy, php-format
+msgid "Publication Date: %s"
+msgstr "Publication Date: %s"
+
+#: admin/class-list-table-archive.php:273
+#: admin/revision-queue_rvy.php:183
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Hasil pencarian untuk \"%s\""
+
+#: admin/class-list-table-archive.php:542
+#: admin/class-list-table_rvy.php:1826
+#: admin/class-list-table_rvy.php:2333
+#: admin/post-edit-block-ui_rvy.php:125
+#: admin/post-edit_rvy.php:123
+#: admin/post-edit_rvy.php:129
+#: admin/RevisionEditSubmitMetabox.php:64
+msgid "Delete Revision"
+msgstr "Hapus Revisi"
+
+#: admin/class-list-table-archive.php:581
+msgid "Select all revisions"
+msgstr "Pilih semua revisi"
+
+#: admin/class-list-table-archive.php:583
+#: admin/class-list-table_rvy.php:794
+#: admin/duplicate-capabilities_rvy.php:47
+msgid "Post Type"
+msgstr "Post Type"
+
+#: admin/class-list-table-archive.php:584
+#: rvy_init-functions.php:478, fuzzy
+msgid "Revised By"
+msgstr "Revised By"
+
+#: admin/class-list-table-archive.php:585
+#: rvy_init-functions.php:479, fuzzy
+msgid "Revision Date"
+msgstr "Revision Date"
+
+#: admin/class-list-table-archive.php:586
+msgid "Action"
+msgstr "Aksi"
+
+#: admin/class-list-table-archive.php:587
+msgid "Approved By"
+msgstr "Disetujui Oleh"
+
+#: admin/class-list-table-archive.php:588
+msgid "Published Date"
+msgstr "Tanggal Terbit"
+
+#: admin/class-list-table-archive.php:589
+msgid "Published Author"
+msgstr "Penulis Terbit"
+
+#: admin/class-list-table-archive.php:618
+#: admin/class-list-table_rvy.php:1012
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:461
+msgid "just now"
+msgstr "baru saja sekarang"
+
+#: admin/class-list-table-archive.php:623
+#: admin/class-list-table_rvy.php:1017
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:466
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s menit yang lalu"
+
+#: admin/class-list-table-archive.php:623
+#: admin/class-list-table_rvy.php:1017
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:466
+#, php-format
+msgid "%s minute ago"
+msgstr "%s menit yang lalu"
+
+#: admin/class-list-table-archive.php:630
+#: admin/class-list-table_rvy.php:1024
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:473
+#, php-format
+msgid "%s hours ago"
+msgstr "%s jam yang lalu"
+
+#: admin/class-list-table-archive.php:630
+#: admin/class-list-table_rvy.php:1024
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:473
+#, php-format
+msgid "%s hour ago"
+msgstr "%s jam yang lalu"
+
+#: admin/class-list-table-archive.php:760
+#: functions.php:482
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1449
+msgid "Revision Publication"
+msgstr "Penerbitan Revisi"
+
+#: admin/class-list-table-archive.php:771
+#: functions.php:493
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:391
+#, php-format
+msgid "Autosave of %s"
+msgstr "Simpan otomatis dari %s"
+
+#: admin/class-list-table-archive.php:776
+#: functions.php:498
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:393
+#, php-format
+msgid "Edit of %s"
+msgstr "Edit dari %s"
+
+#: admin/class-list-table-archive.php:785
+#: functions.php:507
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:398
+msgid "Autosave of published Revision"
+msgstr "Simpan otomatis dari Revisi yang diterbitkan"
+
+#: admin/class-list-table-archive.php:790
+#: functions.php:512
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:400
+msgid "Edit of published Revision"
+msgstr "Edit dari Revisi yang diterbitkan"
+
+#: admin/class-list-table-archive.php:795
+#: functions.php:517
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:405
+msgid "Autosave"
+msgstr "Simpan otomatis"
+
+#: admin/class-list-table-archive.php:797
+#: functions.php:519
+#: functions.php:583
+msgid "Direct Edit"
+msgstr "Edit Langsung"
+
+#: admin/class-list-table-archive.php:836
+#: admin/class-list-table_rvy.php:790
+msgid "Select revision"
+msgstr "Pilih revisi"
+
+#: admin/class-list-table-archive.php:854
+msgid "Filter by original post type"
+msgstr "Filter berdasarkan jenis pos asli"
+
+#: admin/class-list-table-archive.php:858
+#: admin/class-list-table_rvy.php:1887
+msgid "All Post Types"
+msgstr "Semua Jenis Pos"
+
+#: admin/class-list-table-archive.php:888
+#: admin/class-list-table_rvy.php:1920
+msgid "Filter by revision author"
+msgstr "Filter berdasarkan penulis revisi"
+
+#: admin/class-list-table-archive.php:892
+#: admin/class-list-table_rvy.php:1924
+msgid "All Revision Authors"
+msgstr "Semua Penulis Revisi"
+
+#: admin/class-list-table-archive.php:937
+#: admin/class-list-table_rvy.php:1954
+msgid "Filter by revision date"
+msgstr "Filter berdasarkan tanggal revisi"
+
+#: admin/class-list-table-archive.php:941
+#: admin/class-list-table_rvy.php:1958
+msgid "All Revision Dates"
+msgstr "Semua Tanggal Revisi"
+
+#: admin/class-list-table-archive.php:996
+msgid "Filter by published date"
+msgstr "Filter berdasarkan tanggal diterbitkan"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Publish Dates"
+msgstr "Semua Tanggal Publikasi"
+
+#: admin/class-list-table-archive.php:1033
+msgid "Filter by approver"
+msgstr "Filter berdasarkan pengesah"
+
+#: admin/class-list-table-archive.php:1037
+msgid "All Approvers"
+msgstr "Semua Pengesah"
+
+#: admin/class-list-table-archive.php:1070
+#: admin/class-list-table_rvy.php:2027
+msgid "Filter by published author"
+msgstr "Filter berdasarkan penulis yang dipublikasikan"
+
+#: admin/class-list-table-archive.php:1074
+#: admin/class-list-table_rvy.php:2031
+msgid "All Authors"
+msgstr "Semua Penulis"
+
+#: admin/class-list-table-archive.php:1090
+#: admin/class-list-table-archive.php:1270
+#: admin/class-list-table_rvy.php:1070
+#: admin/class-list-table_rvy.php:2047, fuzzy
+msgid "Filter"
+msgstr "Filter"
+
+#: admin/class-list-table-archive.php:1096
+#: admin/class-list-table_rvy.php:2067
+msgid "Reset Filters"
+msgstr "Reset Filter"
+
+#: admin/class-list-table-archive.php:1127
+#: admin/options.php:2434
+msgid "All"
+msgstr "Semua"
+
+#: admin/class-list-table-archive.php:1141
+msgid "My Revisions"
+msgstr "Revisi Saya"
+
+#: admin/class-list-table-archive.php:1196
+#, php-format
+msgid "Visually compare changes in %s"
+msgstr "Bandingkan perubahan secara visual di %s"
+
+#: admin/class-list-table-archive.php:1217
+#, php-format
+msgid "Classic text diff for %s"
+msgstr "Perbedaan teks klasik untuk %s"
+
+#: admin/class-list-table-archive.php:1237
+#: admin/class-list-table_rvy.php:2357
+#: admin/post-editor-workflow-ui_rvy.php:71
+#: admin/post-editor-workflow-ui_rvy.php:230
+msgid "Preview Revision"
+msgstr "Pratampilan Revisi"
+
+#: admin/class-list-table-archive.php:1251
+msgid "Edit parent revision"
+msgstr "Edit revisi induk"
+
+#: admin/class-list-table-archive.php:1251
+msgid "Edit parent post"
+msgstr "Edit pos induk"
+
+#: admin/class-list-table-archive.php:1252
+msgid "Edit Parent"
+msgstr "Edit Induk"
+
+#: admin/class-list-table-archive.php:1269
+msgid "Filter: list revisions of this post"
+msgstr "Filter: daftar revisi pos ini"
+
+#: admin/class-list-table-archive.php:1282
+msgid "Delete Past Revision"
+msgstr "Hapus Revisi Masa Lalu"
+
+#: admin/class-list-table-archive.php:1283
+#: admin/class-list-table_rvy.php:2340
+#: admin/post-edit_rvy.php:85
+#: admin/revision-ui_rvy.php:296
+#: admin/revision-ui_rvy.php:408
+#: classes/PublishPress/Revisions/Planner.php:118
+#: classes/PublishPress/Revisions/Planner.php:262
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:22
+#: front_rvy.php:627
+msgid "Delete"
+msgstr "Hapus"
+
+#: admin/class-list-table-archive.php:1370
+msgid "No revisions found."
+msgstr "Tidak ada revisi yang ditemukan."
+
+#: admin/class-list-table_rvy.php:793
+#: admin/options.php:797
+#: admin/options.php:960
+#: admin/post-editor-workflow-ui_rvy.php:33, fuzzy
+msgid "Status"
+msgstr "Status"
+
+#: admin/class-list-table_rvy.php:814
+#: front_rvy.php:704
+#: rvy_init-functions.php:362
+msgid "Schedule"
+msgstr "Jadwal"
+
+#: admin/class-list-table_rvy.php:879
+#: admin/class-list-table_rvy.php:902
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Publikasi yang dijadwalkan: %s"
+
+#: admin/class-list-table_rvy.php:895
+#: admin/history_rvy.php:1336
+#, php-format
+msgid "%s ago"
+msgstr "%s yang lalu"
+
+#: admin/class-list-table_rvy.php:905
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Publikasi yang diminta: %s"
+
+#: admin/class-list-table_rvy.php:907
+msgid "This revision is not scheduled yet."
+msgstr "Revisi ini belum dijadwalkan."
+
+#: admin/class-list-table_rvy.php:918
+msgid "Missed schedule"
+msgstr "Jadwal terlewat"
+
+#: admin/class-list-table_rvy.php:936
+#. translators: %s: human-readable time difference, e.g. "3 days"
+#, php-format
+msgid "in %s"
+msgstr "dalam %s"
+
+#: admin/class-list-table_rvy.php:980
+#: admin/history_rvy.php:1116
+msgid "No author"
+msgstr "Tidak ada penulis"
+
+#: admin/class-list-table_rvy.php:1054
+#. translators: %s: post title
+msgid "Edit published post"
+msgstr "Edit pos yang dipublikasikan"
+
+#: admin/class-list-table_rvy.php:1069
+#. translators: %s: post title
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Hanya lihat revisi %s"
+
+#: admin/class-list-table_rvy.php:1080
+msgid "View published post"
+msgstr "Lihat pos yang dipublikasikan"
+
+#: admin/class-list-table_rvy.php:1081
+msgid "View"
+msgstr "Lihat"
+
+#: admin/class-list-table_rvy.php:1087
+msgid "Preview published post"
+msgstr "Pratampilan pos yang dipublikasikan"
+
+#: admin/class-list-table_rvy.php:1112
+msgid "History: compare past revisions"
+msgstr "Riwayat: bandingkan revisi masa lalu"
+
+#: admin/class-list-table_rvy.php:1113
+msgid "History"
+msgstr "Riwayat"
+
+#: admin/class-list-table_rvy.php:1141
+msgid "Show more details"
+msgstr "Tampilkan lebih banyak detail"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "There are no scheduled revisions at this time."
+msgstr "Saat ini tidak ada revisi yang dijadwalkan."
+
+#: admin/class-list-table_rvy.php:1661
+msgid "My Activity"
+msgstr "Aktivitas Saya"
+
+#: admin/class-list-table_rvy.php:1670
+#, php-format
+msgid "All %s"
+msgstr "Semua %s"
+
+#: admin/class-list-table_rvy.php:1730
+#. translators: Hidden accessibility text.
+msgid "Select bulk action"
+msgstr "Pilih tindakan massal"
+
+#: admin/class-list-table_rvy.php:1733
+msgid "Bulk actions"
+msgstr "Tindakan massal"
+
+#: admin/class-list-table_rvy.php:1754
+#: admin/revision-ui_rvy.php:410
+msgid "Apply"
+msgstr "Terapkan"
+
+#: admin/class-list-table_rvy.php:1809
+#: front_rvy.php:656
+#: rvy_init-functions.php:289
+#: rvy_init-functions.php:345
+msgid "Submit"
+msgstr "Kirim"
+
+#: admin/class-list-table_rvy.php:1814
+#: admin/history_rvy.php:1421
+#: front_rvy.php:653
+#: front_rvy.php:663
+#: front_rvy.php:691
+#: front_rvy.php:725
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
+#: includes/visual-post-compare/visual-post-compare.php:321
+#: rvy_init-functions.php:275
+#: rvy_init-functions.php:293
+#: rvy_init-functions.php:331
+#: rvy_init-functions.php:332
+#: rvy_init-functions.php:348
+#: rvy_init-functions.php:349
+#: rvy_init-functions.php:365
+#: rvy_init-functions.php:366
+msgid "Approve"
+msgstr "Setujui"
+
+#: admin/class-list-table_rvy.php:1815
+#: front_rvy.php:695
+msgid "Decline"
+msgstr "Tolak"
+
+#: admin/class-list-table_rvy.php:1819
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:422
+msgid "Publish"
+msgstr "Terbitkan"
+
+#: admin/class-list-table_rvy.php:1822
+#: admin/revision-ui_rvy.php:286
+msgid "Unschedule"
+msgstr "Batalkan penjadwalan"
+
+#: admin/class-list-table_rvy.php:1826
+#: admin/class-list-table_rvy.php:2329
+#: admin/class-list-table_rvy.php:2333
+#: admin/post-edit-block-ui_rvy.php:125
+#: admin/post-edit_rvy.php:129
+#: admin/RevisionEditSubmitMetabox.php:64
+#. translators: %s: post title
+msgid "Discard Revision"
+msgstr "Buang Revisi"
+
+#: admin/class-list-table_rvy.php:1847
+msgid "Filter by category"
+msgstr "Saring berdasarkan kategori"
+
+#: admin/class-list-table_rvy.php:1864
+msgid "Filter by revision status"
+msgstr "Saring berdasarkan status revisi"
+
+#: admin/class-list-table_rvy.php:1866
+msgid "All Revision Statuses"
+msgstr "Semua Status Revisi"
+
+#: admin/class-list-table_rvy.php:1885
+#: admin/duplicate-capabilities_rvy.php:44
+#: admin/duplicate-capabilities_rvy.php:45
+msgid "Filter by post type"
+msgstr "Saring berdasarkan jenis pos"
+
+#: admin/class-list-table_rvy.php:1991
+msgid "Filter by published post"
+msgstr "Saring berdasarkan pos yang diterbitkan"
+
+#: admin/class-list-table_rvy.php:1995
+msgid "All Posts"
+msgstr "Semua Pos"
+
+#: admin/class-list-table_rvy.php:2122
+msgid "Select All"
+msgstr "Pilih Semua"
+
+#: admin/class-list-table_rvy.php:2187
+msgid "(clear filter)"
+msgstr "(hapus filter)"
+
+#: admin/class-list-table_rvy.php:2191
+msgid "Sort ascending."
+msgstr "Urutkan secara ascending."
+
+#: admin/class-list-table_rvy.php:2191
+msgid "Sort descending."
+msgstr "Urutkan secara descending."
+
+#: admin/class-list-table_rvy.php:2220
+#, php-format
+msgid "Compare changes for &#8220;%s&#8221;"
+msgstr "Bandingkan perubahan untuk &#8220;%s&#8221;"
+
+#: admin/class-list-table_rvy.php:2228
+#. translators: %s: post title
+#, fuzzy, php-format
+msgid "&#8220;%s&#8221; (Edit)"
+msgstr "&#8220;%s&#8221; (Edit)"
+
+#: admin/class-list-table_rvy.php:2306
+#: admin/post-editor-workflow-ui_rvy.php:231
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3114
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3114
+#. translators: %s: post title
+msgid "Edit Revision"
+msgstr "Edit Revisi"
+
+#: admin/class-list-table_rvy.php:2330
+msgid "Discard"
+msgstr "Buang"
+
+#: admin/class-list-table_rvy.php:2371
+msgid "Compare Changes"
+msgstr "Bandingkan Perubahan"
+
+#: admin/duplicate-capabilities_rvy.php:20
+#: admin/options.php:850
+msgid "Duplicate Posts"
+msgstr "Duplikat Pos"
+
+#: admin/duplicate-capabilities_rvy.php:43
+msgid "Duplicate Posts Capabilities"
+msgstr "Kemampuan Duplikat Pos"
+
+#: admin/duplicate-capabilities_rvy.php:46
+msgid "Clear"
+msgstr "Bersihkan"
+
+#: admin/duplicate-capabilities_rvy.php:47
+msgid "Duplicate Others"
+msgstr "Duplikat Lainnya"
+
+#: admin/duplicate-capabilities_rvy.php:59
+#: admin/duplicate-capabilities_rvy.php:61
+#, php-format
+msgid "This capability is %s"
+msgstr "Kemampuan ini adalah %s"
+
+#: admin/edit-revision-block-ui_rvy.php:21
+msgid "Enable public preview"
+msgstr "Aktifkan pratinjau publik"
+
+#: admin/edit-revision-classic-ui_rvy.php:124
+msgid "Publish <b>on approval</b>"
+msgstr "Terbitkan <b>setelah disetujui</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:155
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Revisi diperbarui. %sLihat Pratinjau%s"
+
+#: admin/edit-revision-classic-ui_rvy.php:157
+msgid "Revision updated."
+msgstr "Revisi diperbarui."
+
+#: admin/edit-revision-classic-ui_rvy.php:174
+#. translators: Publish box date string. 1: Date, 2: Time. See https://www.php.net/manual/datetime.format.php
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s pada %2$s"
+
+#: admin/edit-revision-classic-ui_rvy.php:183
+#: admin/RevisionEditSubmitMetabox.php:187
+#. translators: Post date information. %s: Date on which the post is currently scheduled to be published.
+#, php-format
+msgid "Scheduled for: %s"
+msgstr "Jadwal untuk: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:186
+#. translators: Post date information. %s: Date on which the post was published.
+#, php-format
+msgid "Published on: %s"
+msgstr "Diterbitkan pada: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:188
+#: admin/edit-revision-classic-ui_rvy.php:202
+msgid "Publish <b>immediately</b>"
+msgstr "Terbitkan <b>segera</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:191
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Schedule for: %s"
+msgstr "Jadwalkan untuk: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:194
+#: admin/RevisionEditSubmitMetabox.php:190
+#. translators: Post date information. %s: Date on which the post is to be published.
+#, php-format
+msgid "Publish on: %s"
+msgstr "Terbitkan pada: %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:220
+#. translators: Hidden accessibility text.
+msgid "Edit date and time"
+msgstr "Edit tanggal dan waktu"
+
+#: admin/edit-revision-classic-ui_rvy.php:228
+#. translators: Hidden accessibility text.
+msgid "Date and time"
+msgstr "Tanggal dan waktu"
+
+#: admin/history_rvy.php:101
+#: admin/history_rvy.php:104
+msgid "Copy"
+msgstr "Salin"
+
+#: admin/history_rvy.php:101
+#: admin/history_rvy.php:104
+msgid "Copy the above content to the clipboard."
+msgstr "Salin konten di atas ke clipboard."
+
+#: admin/history_rvy.php:111
+msgid "Copied to clipboard."
+msgstr "Disalin ke clipboard."
+
+#: admin/history_rvy.php:297
+#: admin/history_rvy.php:317
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Bandingkan %s dari \"%s\""
+
+#: admin/history_rvy.php:326
+msgid "Return to editor"
+msgstr "Kembali ke editor"
+
+#: admin/history_rvy.php:575
+#: admin/options.php:795
+#: admin/options.php:958
+#: admin/restrict-editor-features.php:102
+msgid "Title"
+msgstr "Judul"
+
+#: admin/history_rvy.php:576
+#: admin/options.php:794
+#: admin/options.php:957
+#: admin/restrict-editor-features.php:108
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3379
+msgid "Content"
+msgstr "Konten"
+
+#: admin/history_rvy.php:577
+#: admin/options.php:800
+#: admin/options.php:963
+#: admin/restrict-editor-features.php:161
+msgid "Excerpt"
+msgstr "Cuplikan"
+
+#: admin/history_rvy.php:725
+#: admin/history_rvy.php:728
+msgid "(no title)"
+msgstr "(tanpa judul)"
+
+#: admin/history_rvy.php:841
+#: admin/options.php:1211
+msgid "Post Date"
+msgstr "Tanggal Post"
+
+#: admin/history_rvy.php:842
+msgid "Post Parent"
+msgstr "Induk Post"
+
+#: admin/history_rvy.php:843
+msgid "Menu Order"
+msgstr "Urutan Menu"
+
+#: admin/history_rvy.php:844
+msgid "Comment Status"
+msgstr "Status Komentar"
+
+#: admin/history_rvy.php:845
+msgid "Ping Status"
+msgstr "Status Ping"
+
+#: admin/history_rvy.php:984
+msgid "Page Template"
+msgstr "Template Halaman"
+
+#: admin/history_rvy.php:987
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2664
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2664
+msgid "Featured Image"
+msgstr "Gambar Unggulan"
+
+#: admin/history_rvy.php:991
+msgid "Beaver Builder Data"
+msgstr "Data Beaver Builder"
+
+#: admin/history_rvy.php:992
+msgid "Beaver Builder Settings"
+msgstr "Pengaturan Beaver Builder"
+
+#: admin/history_rvy.php:1071
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3436
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3436
+msgid "No changes detected."
+msgstr "Tidak ada perubahan yang terdeteksi."
+
+#: admin/history_rvy.php:1263
+msgid "Scheduled for "
+msgstr "Dijadwalkan untuk "
+
+#: admin/history_rvy.php:1268
+msgid "Requested for "
+msgstr "Diminta untuk "
+
+#: admin/history_rvy.php:1273
+msgid "Modified "
+msgstr "Dimodifikasi "
+
+#: admin/history_rvy.php:1278
+#, php-format
+msgid "%s%s ago"
+msgstr "%s%s yang lalu"
+
+#: admin/history_rvy.php:1278
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s dari sekarang"
+
+#: admin/history_rvy.php:1421
+msgid "Preview / Approve"
+msgstr "Pranala / Setujui"
+
+#: admin/history_rvy.php:1465
+msgid "Edit revision"
+msgstr "Edit revisi"
+
+#: admin/history_rvy.php:1527
+msgid "Preview / Restore"
+msgstr "Pranala / Pulihkan"
+
+#: admin/history_rvy.php:1534
+msgid "Manage"
+msgstr "Kelola"
+
+#: admin/history_rvy.php:1535
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1429
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1429
+msgid "List"
+msgstr "Daftar"
+
+#: admin/options.php:52
+msgid "PublishPress Capabilities"
+msgstr "Kemampuan PublishPress"
+
+#: admin/options.php:149
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Semua pengaturan pada tab ini ditetapkan secara jaringan."
+
+#: admin/options.php:179
+msgid "Setting Scope"
+msgstr "Lingkup Pengaturan"
+
+#: admin/options.php:183
+msgid "Features"
+msgstr "Fitur"
+
+#: admin/options.php:186
+msgid "Options"
+msgstr "Opsi"
+
+#: admin/options.php:187
+msgid "Integrations"
+msgstr "Integrasi"
+
+#: admin/options.php:188
+msgid "Statuses"
+msgstr "Status"
+
+#: admin/options.php:189
+#: admin/options.php:1244
+msgid "Notifications"
+msgstr "Notifikasi"
+
+#: admin/options.php:195
+msgid "Revision Submission"
+msgstr "Pengajuan Revisi"
+
+#: admin/options.php:203
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr ""
+"Gunakan pelabelan alternatif: \"Salinan Kerja\" > \"Permintaan Perubahan\" "
+"> \"Perubahan Terjadwal\""
+
+#: admin/options.php:204
+msgid "New Revisions access requires role capability"
+msgstr "Akses Revisi Baru memerlukan kemampuan peran"
+
+#: admin/options.php:205
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Mengelola %s memerlukan kemampuan peran"
+
+#: admin/options.php:206
+msgid "Post Duplication requires role capability"
+msgstr "Duplikasi Post memerlukan kemampuan peran"
+
+#: admin/options.php:207
+msgid "Working Copy creation requires role capability"
+msgstr "Pembuatan Salinan Kerja memerlukan kemampuan peran"
+
+#: admin/options.php:207
+msgid "Revision creation requires role capability"
+msgstr "Pembuatan Revisi memerlukan kemampuan peran"
+
+#: admin/options.php:208
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr "Daftar Post / Halaman: Gunakan keterangan \"Edit\" untuk tautan %s"
+
+#: admin/options.php:209
+#: admin/options.php:216
+#, php-format
+msgid "Enable %s"
+msgstr "Aktifkan %s"
+
+#: admin/options.php:210
+msgid "Revision Limit"
+msgstr "Batas Revisi"
+
+#: admin/options.php:211
+msgid "Create Revision redirects to user's existing Unsubmitted Revision"
+msgstr "Pembuatan Revisi mengarahkan ke Revisi yang Belum Dikirimkan milik pengguna"
+
+#: admin/options.php:212
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr "Segarkan bendera \"Memiliki Revisi\" sebelum menekan Pembuatan Revisi"
+
+#: admin/options.php:213
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr "Jika post berisi html khusus, memerlukan kemampuan unfiltered_html"
+
+#: admin/options.php:214
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr "Kirim otomatis revisi yang dibuat oleh pengguna dengan kemampuan penerbitan"
+
+#: admin/options.php:215
+msgid "Auto-submit revisions"
+msgstr "Kirim otomatis revisi"
+
+#: admin/options.php:217
+msgid "Change Request submission require role capability"
+msgstr "Pengajuan Permintaan Perubahan memerlukan kemampuan peran"
+
+#: admin/options.php:217
+msgid "Revision submission requires role capability"
+msgstr "Pengajuan Revisi memerlukan kemampuan peran"
+
+#: admin/options.php:218
+msgid "Editing others' Revisions requires role capability"
+msgstr "Mengedit Revisi orang lain memerlukan kemampuan peran"
+
+#: admin/options.php:219
+msgid "Listing others' Revisions requires role capability"
+msgstr "Mencantumkan Revisi orang lain memerlukan kemampuan peran"
+
+#: admin/options.php:220
+msgid "Enable javascript in visual compare"
+msgstr "Aktifkan javascript dalam perbandingan visual"
+
+#: admin/options.php:221
+msgid "Use visual compare for Revisions"
+msgstr "Gunakan perbandingan visual untuk Revisi"
+
+#: admin/options.php:222
+msgid "Include unidentified internal fields on Compare screen"
+msgstr "Sertakan bidang internal yang tidak teridentifikasi di layar Perbandingan"
+
+#: admin/options.php:223
+msgid "Show Submitted Revisions count in Admin menu"
+msgstr "Tampilkan hitung Revisi yang Dikirimkan di menu Admin"
+
+#: admin/options.php:224
+msgid "Show indicator on front end if page has Revisions"
+msgstr "Tampilkan indikator di frontend jika halaman memiliki Revisi"
+
+#: admin/options.php:225
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Pengguna selalu dapat mengelola revisi untuk post yang dapat diedit milik "
+"mereka sendiri"
+
+#: admin/options.php:226
+msgid "Also notify on Revision Update"
+msgstr "Juga beri tahu tentang Pembaruan Revisi"
+
+#: admin/options.php:227
+msgid "Apply API actions to mimic Post Update"
+msgstr "Terapkan tindakan API untuk meniru Pembaruan Post"
+
+#: admin/options.php:228
+msgid "Hide html tags on Compare screen"
+msgstr "Sembunyikan tag html di layar Perbandingan"
+
+#: admin/options.php:229
+msgid "Hide copy buttons on Compare screen"
+msgstr "Sembunyikan tombol salin di layar Perbandingan"
+
+#: admin/options.php:230
+msgid "Legacy: Schedule Revisions with WP-Cron"
+msgstr "Legacy: Jadwalkan Revisi dengan WP-Cron"
+
+#: admin/options.php:231
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "Situs menggunakan pemicu khusus untuk tugas WP-Cron"
+
+#: admin/options.php:232
+msgid "Asynchronous Publishing"
+msgstr "Penerbitan Asinkron"
+
+#: admin/options.php:233
+msgid "Editor background color"
+msgstr "Warna latar belakang Editor"
+
+#: admin/options.php:234
+#: admin/options.php:235
+msgid "Update Publish Date"
+msgstr "Perbarui Tanggal Publikasi"
+
+#: admin/options.php:236
+#: admin/options.php:237
+msgid "Update Modified Date"
+msgstr "Perbarui Tanggal Dimodifikasi"
+
+#: admin/options.php:240
+#: admin/options.php:241
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Gunakan %1$sNotifikasi Perencana%2$s"
+
+#: admin/options.php:243
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Kirim email kepada Penulis asli saat %s dikirimkan"
+
+#: admin/options.php:244
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Kirim email kepada Penulis asli saat %s disetujui"
+
+#: admin/options.php:245
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Kirim email kepada Revisor saat %s disetujui"
+
+#: admin/options.php:246
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Kirim email kepada Penulis asli saat %s diterbitkan"
+
+#: admin/options.php:247
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Kirim email kepada Revisor saat %s diterbitkan"
+
+#: admin/options.php:248
+msgid "Enable notification buffer"
+msgstr "Aktifkan buffer notifikasi"
+
+#: admin/options.php:249
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "Revisor dapat membuat revisi baru untuk jenis post kustom apa pun"
+
+#: admin/options.php:250
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Cegah Revisor mengedit Pos yang belum diterbitkan milik orang lain"
+
+#: admin/options.php:251
+msgid "Add database index to posts table for Revision queries"
+msgstr "Tambahkan indeks basis data ke tabel pos untuk kueri Revisi"
+
+#: admin/options.php:252
+msgid "Display Hints"
+msgstr "Tampilkan Petunjuk"
+
+#: admin/options.php:253
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Hapus pengaturan dan Revisi jika plugin dihapus"
+
+#: admin/options.php:254
+msgid "Show Preview Links"
+msgstr "Tampilkan Tautan Prabaca"
+
+#: admin/options.php:255
+msgid "Preview Link Type"
+msgstr "Jenis Tautan Prabaca"
+
+#: admin/options.php:256
+msgid "Modify preview link for better theme compatibility"
+msgstr "Modifikasi tautan prabaca untuk kompatibilitas tema yang lebih baik"
+
+#: admin/options.php:257
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr ""
+"Kompatibilitas Tema: Untuk prabaca revisi halaman depan, atur bendera "
+"beranda"
+
+#: admin/options.php:258
+msgid "Approve Button on Compare screen"
+msgstr "Tombol Setujui di layar Perbandingan"
+
+#: admin/options.php:259
+msgid "Copy revision comments to published post"
+msgstr "Salin komentar revisi ke pos yang diterbitkan"
+
+#: admin/options.php:260
+msgid "Compare Past Revisions ordering:"
+msgstr "Bandingkan urutan Revisi Masa Lalu:"
+
+#: admin/options.php:261
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr "Daftar %s untuk tampilan \"Aktivitas Saya\" atau \"Revisi untuk Pos Saya\""
+
+#: admin/options.php:262
+msgid ""
+"Archive a copy of custom fields when a submitted or scheduled revision is "
+"published"
+msgstr ""
+"Arsipkan salinan bidang kustom saat revisi yang diajukan atau dijadwalkan "
+"diterbitkan"
+
+#: admin/options.php:263
+msgid "Archive a copy of custom fields with each Past Revision"
+msgstr "Arsipkan salinan bidang kustom dengan setiap Revisi Masa Lalu"
+
+#: admin/options.php:264
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr "Simpan arsip edit revisi, bahkan setelah revisi diterbitkan"
+
+#: admin/options.php:265
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "Pada publikasi Revisi, hapus Komentar Editorial"
+
+#: admin/options.php:266
+msgid "Enable deletion queue"
+msgstr "Aktifkan antrean penghapusan"
+
+#: admin/options.php:267
+msgid "Allow Past Revisions to be deleted"
+msgstr "Izinkan Revisi Masa Lalu dihapus"
+
+#: admin/options.php:268
+msgid "Restoring a Revision requires role capability"
+msgstr "Pemulihan Revisi memerlukan kemampuan peran"
+
+#: admin/options.php:269
+msgid "Compatibility Mode"
+msgstr "Mode Kompatibilitas"
+
+#: admin/options.php:270
+msgid "Planner Notifications Access-Limited"
+msgstr "Akses Pemberitahuan Perencana Terbatas"
+
+#: admin/options.php:271
+msgid "Maximum Revisions per post"
+msgstr "Revisi Maksimum per pos"
+
+#: admin/options.php:272
+msgid "Apply Post Permissions to Revisions"
+msgstr "Terapkan Izin Pos ke Revisi"
+
+#: admin/options.php:273
+msgid "Enable legacy email notifications"
+msgstr "Aktifkan pemberitahuan email lama"
+
+#: admin/options.php:274
+msgid "Revision Approval requires role capability"
+msgstr "Persetujuan Revisi memerlukan kemampuan peran"
+
+#: admin/options.php:275
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr "Gunakan keterangan diperpanjang untuk tombol Setujui di Editor Pos"
+
+#: admin/options.php:276
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Izinkan bidang Penulis dimodifikasi oleh Revisi"
+
+#: admin/options.php:277
+msgid "Create Revision button in editor opens new tab"
+msgstr "Tombol Buat Revisi di editor membuka tab baru"
+
+#: admin/options.php:278
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Blok Query Loop: Sesuaikan kemampuan Revisor dan Kontributor untuk "
+"memungkinkan prabaca di editor Revisi"
+
+#: admin/options.php:279
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Nonaktifkan panel SEO Rank Math untuk edit Revisi"
+
+#: admin/options.php:280
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "Izinkan bidang kustom (meta pos) untuk direvisi"
+
+#: admin/options.php:281
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "Izin untuk Ajukan Revisi juga mengaktifkan pembuatan Revisi"
+
+#: admin/options.php:282
+msgid "Enable classic metaboxes in editor"
+msgstr "Aktifkan metabox klasik di editor"
+
+#: admin/options.php:287
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "Email Penerbit yang ditunjuk ketika %s diajukan"
+
+#: admin/options.php:288
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "Email Penerbit yang ditunjuk ketika %s diterbitkan"
+
+#: admin/options.php:289
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "Email Penerbit yang ditunjuk ketika %s disetujui"
+
+#: admin/options.php:291
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "Email Editor dan Administrator ketika %s diajukan"
+
+#: admin/options.php:292
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "Email Editor dan Administrator ketika %s diterbitkan"
+
+#: admin/options.php:293
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "Email Editor dan Administrator ketika %s disetujui"
+
+#: admin/options.php:375
+msgid "PublishPress Revisions Site Settings"
+msgstr "Pengaturan Situs PublishPress Revisions"
+
+#: admin/options.php:405
+msgid "These are the default settings for options which can be adjusted per-site."
+msgstr "Ini adalah pengaturan default untuk opsi yang dapat disesuaikan per situs."
+
+#: admin/options.php:443
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Gunakan tab ini untuk membuat perubahan JARINGAN secara luas pada "
+"pengaturan PublishPress Revisions. %s"
+
+#: admin/options.php:446
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr "Anda juga dapat menentukan %1$sdefault untuk pengaturan spesifik situs%2$s."
+
+#: admin/options.php:449
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Di sini Anda dapat mengubah nilai default untuk pengaturan yang "
+"dikendalikan secara terpisah di setiap situs."
+
+#: admin/options.php:459
+#: admin/options.php:461
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr "Perhatikan bahwa %1$s pengaturan jaringan%2$s mungkin juga tersedia."
+
+#: admin/options.php:538
+msgid "License settings"
+msgstr "Pengaturan Lisensi"
+
+#: admin/options.php:539
+msgid "License"
+msgstr "Lisensi"
+
+#: admin/options.php:584
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Revisi Sebelumnya adalah versi lebih awal dari sebuah pos."
+
+#: admin/options.php:634
+msgid "Past revisions post type fallback"
+msgstr "Fallback tipe pos revisi sebelumnya"
+
+#: admin/options.php:641
+msgid "This post type does not support Past Revisions."
+msgstr "Tipe pos ini tidak mendukung Revisi Sebelumnya."
+
+#: admin/options.php:662
+msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
+msgstr "PRO: Revisions Pro diperlukan untuk tipe pos ini (membuka di tab baru)"
+
+#: admin/options.php:663, fuzzy
+msgid "PRO"
+msgstr "PRO"
+
+#: admin/options.php:683
+msgid "New Revisions are changes which are not yet published."
+msgstr "Revisi Baru adalah perubahan yang belum diterbitkan."
+
+#: admin/options.php:732
+msgid "Navigation menu revision setting"
+msgstr "Pengaturan revisi menu navigasi"
+
+#: admin/options.php:736
+msgid "Hidden post type revision setting"
+msgstr "Pengaturan revisi tipe pos tersembunyi"
+
+#: admin/options.php:742
+msgid "New revisions post type fallback"
+msgstr "Fallback tipe pos revisi baru"
+
+#: admin/options.php:762
+#, php-format
+msgid "%s capabilities"
+msgstr "%s kapabilitas"
+
+#: admin/options.php:782
+msgid "Revision Fields"
+msgstr "Bidang Revisi"
+
+#: admin/options.php:786
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Tentukan bidang yang dapat dimodifikasi oleh Revisi Baru."
+
+#: admin/options.php:796
+#: admin/options.php:959
+#: admin/restrict-editor-features.php:114
+msgid "Date"
+msgstr "Tanggal"
+
+#: admin/options.php:798
+#: admin/options.php:961
+#: admin/restrict-editor-features.php:143
+msgid "Parent"
+msgstr "Induk"
+
+#: admin/options.php:799
+#: admin/options.php:962, fuzzy
+msgid "Slug"
+msgstr "Slug"
+
+#: admin/options.php:801
+#: admin/options.php:964
+#: admin/post-edit-block-ui_rvy.php:212
+#: admin/post-edit_rvy.php:379
+#: admin/restrict-editor-features.php:149
+#: admin/revision-ui_rvy.php:388
+msgid "Author"
+msgstr "Penulis"
+
+#: admin/options.php:802, fuzzy
+msgid "Thumbnail"
+msgstr "Thumbnail"
+
+#: admin/options.php:803
+#: admin/options.php:966
+#: admin/restrict-editor-features.php:122, fuzzy
+msgid "Template"
+msgstr "Template"
+
+#: admin/options.php:804
+#: admin/options.php:967
+#: admin/restrict-editor-features.php:129
+msgid "Categories"
+msgstr "Kategori"
+
+#: admin/options.php:805
+#: admin/options.php:968
+#: admin/restrict-editor-features.php:136
+msgid "Tags"
+msgstr "Tag"
+
+#: admin/options.php:806
+#: admin/options.php:969
+#: admin/restrict-editor-features.php:168
+msgid "Taxonomies"
+msgstr "taxonomies"
+
+#: admin/options.php:818
+msgid "Hidden revision field setting"
+msgstr "Pengaturan bidang revisi tersembunyi"
+
+#: admin/options.php:824
+msgid "Revision field fallback"
+msgstr "Fallback bidang revisi"
+
+#: admin/options.php:854
+msgid "Copy post directly without using the revision process."
+msgstr "Salin pos langsung tanpa menggunakan proses revisi."
+
+#: admin/options.php:903
+msgid "Navigation menu copy setting"
+msgstr "Pengaturan salinan menu navigasi"
+
+#: admin/options.php:906
+msgid "Hidden copied post type setting"
+msgstr "Pengaturan tipe pos salinan tersembunyi"
+
+#: admin/options.php:912
+msgid "Copied post type fallback"
+msgstr "Fallback tipe pos salinan"
+
+#: admin/options.php:945
+msgid "Duplicate Fields"
+msgstr "Duplikat Bidang"
+
+#: admin/options.php:949
+msgid "Specify fields to include when Posts are duplicated."
+msgstr "Tentukan bidang untuk disertakan saat Pos diduplikasi."
+
+#: admin/options.php:965
+msgid "Thumnbnail"
+msgstr "Thumbnail"
+
+#: admin/options.php:981
+msgid "Hidden copied field setting"
+msgstr "Pengaturan bidang salinan tersembunyi"
+
+#: admin/options.php:987
+msgid "Copied field fallback"
+msgstr "Fallback bidang salinan"
+
+#: admin/options.php:1011
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Catatan: Kode pihak ketiga mungkin menyebabkan beberapa tipe pos tidak "
+"kompatibel dengan PublishPress Revisions."
+
+#: admin/options.php:1021
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"Untuk integrasi Revisions pada Kalender Konten, Ikhtisar dan Papan Konten, "
+"silakan perbarui %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1042
+msgid "Ready to enhance your revision workflow?"
+msgstr "Siap untuk meningkatkan alur kerja revisi Anda?"
+
+#: admin/options.php:1045
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with "
+"custom revision statuses."
+msgstr ""
+"Dapatkan PublishPress Statuses Pro dan optimalkan proses revisi Anda dengan "
+"status revisi kustom."
+
+#: admin/options.php:1051
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Tentukan status Anda sendiri sebelum atau setelah Revisi Dikirim"
+
+#: admin/options.php:1054
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "Status yang telah ditentukan sebelumnya: Ditunda, Butuh Pekerjaan, Ditolak"
+
+#: admin/options.php:1057
+msgid "Statuses can be specific to a post type"
+msgstr "Status dapat spesifik untuk jenis pos"
+
+#: admin/options.php:1060
+msgid "Control access to statuses per-role"
+msgstr "Kontrol akses ke status per-peran"
+
+#: admin/options.php:1063
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "Alur kerja status dapat bersarang dengan sub-status"
+
+#: admin/options.php:1070
+#: admin/options.php:1073
+msgid "Get PublishPress Statuses Pro"
+msgstr "Dapatkan PublishPress Statuses Pro"
+
+#: admin/options.php:1076
+#: admin/options.php:1096
+msgid "Learn more about revision statuses"
+msgstr "Pelajari lebih lanjut tentang status revisi"
+
+#: admin/options.php:1079
+#: admin/options.php:1097
+#: admin/options.php:2140
+#: admin/options.php:2158
+#: admin/options.php:2786
+#: admin/options.php:2799
+#: admin/options.php:2816
+#: admin/options.php:2830
+#: admin/options.php:2840
+#: admin/options.php:2850
+msgid "Learn More"
+msgstr "Pelajari Lebih Lanjut"
+
+#: admin/options.php:1088
+msgid "Revision statuses settings preview"
+msgstr "Prabaca pengaturan status revisi"
+
+#: admin/options.php:1092
+msgid "Pro Plugin"
+msgstr "Plugin Pro"
+
+#: admin/options.php:1093
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "Instal Statuses Pro untuk membuka status revisi kustom."
+
+#: admin/options.php:1094
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Konfigurasikan untuk jenis pos dan peran apa pun untuk menyesuaikan alur "
+"kerja pengeditan Anda."
+
+#: admin/options.php:1100
+#: admin/options.php:1101
+msgid "Get Statuses Pro"
+msgstr "Dapatkan Statuses Pro"
+
+#: admin/options.php:1128
+msgid "Maximum revisions per post:"
+msgstr "Revisi maksimum per pos:"
+
+#: admin/options.php:1130
+msgid "(unlimited)"
+msgstr "(tidak terbatas)"
+
+#: admin/options.php:1138
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr ""
+"Perhatikan bahwa pengarsipan juga dapat dinonaktifkan oleh %1$sPost "
+"Type%2$s."
+
+#: admin/options.php:1179
+#: admin/options.php:1375
+#: admin/options.php:2308
+#, php-format
+msgid "%s capability"
+msgstr "%s kemampuan"
+
+#: admin/options.php:1184
+#: admin/options.php:1380
+#: admin/options.php:2313
+msgid "Assign capability to roles"
+msgstr "Tetapkan kemampuan kepada peran"
+
+#: admin/options.php:1191
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Cegah non-Administrator dari mengembalikan revisi tanpa %s."
+
+#: admin/options.php:1197
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Cegah non-Administrator dari mengembalikan revisi tanpa kemampuan "
+"restore_revisions"
+
+#: admin/options.php:1211
+msgid "Modification Date"
+msgstr "Tanggal Modifikasi"
+
+#: admin/options.php:1239
+msgid "Revision Creation"
+msgstr "Pembuatan Revisi"
+
+#: admin/options.php:1240
+msgid "Submission"
+msgstr "Pengiriman"
+
+#: admin/options.php:1241
+msgid "Scheduling"
+msgstr "Jadwal"
+
+#: admin/options.php:1243
+msgid "Management"
+msgstr "Manajemen"
+
+#: admin/options.php:1306
+msgid "Duplicate Post capabilities"
+msgstr "Kemampuan Duplikasi Pos"
+
+#: admin/options.php:1310
+#, php-format
+msgid "If the user can't edit the published post, require %s"
+msgstr "Jika pengguna tidak dapat mengedit pos yang diterbitkan, perlukan %s"
+
+#: admin/options.php:1313
+#, php-format
+msgid "If enabled, Post Duplication access can be controlled per-role using %s"
+msgstr ""
+"Jika diaktifkan, akses Duplikasi Pos dapat dikontrol per-peran menggunakan "
+"%s"
+
+#: admin/options.php:1323
+msgid "Create Revision capabilities"
+msgstr "Kemampuan Pembuatan Revisi"
+
+#: admin/options.php:1328
+#: admin/options.php:1354
+#: admin/options.php:1520
+#: admin/options.php:1673
+msgid "Assign capabilities to roles"
+msgstr "Tetapkan kemampuan kepada peran"
+
+#: admin/options.php:1335
+#: admin/options.php:1527
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "Jika pengguna tidak dapat mengedit pos yang diterbitkan, perlukan %s."
+
+#: admin/options.php:1341
+#, php-format
+msgid "If enabled, Revision Creation access can be controlled per-role using %s"
+msgstr ""
+"Jika diaktifkan, akses Pembuatan Revisi dapat dikontrol per-peran "
+"menggunakan %s"
+
+#: admin/options.php:1350
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "Untuk memperluas daftar Halaman, tetapkan %s."
+
+#: admin/options.php:1353
+msgid "Listing capabilities"
+msgstr "Kemampuan Listing"
+
+#: admin/options.php:1360
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"Untuk memperluas daftar Halaman, tetapkan kemampuan Listing "
+"(list_others_pages, list_published_posts, dll.)"
+
+#: admin/options.php:1367
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Plugin ini memperkenalkan peran pengguna baru, \"Revisor.\""
+
+#: admin/options.php:1387
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"Revisi oleh pengguna yang tidak memiliki %s akan menyebabkan semua tag html "
+"kustom dihapus."
+
+#: admin/options.php:1393
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"Revisi oleh pengguna yang tidak memiliki kemampuan unfiltered_html akan "
+"mengakibatkan semua tag html kustom dihapus."
+
+#: admin/options.php:1409
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr "Skema penyimpanan standar untuk kompatibilitas pihak ketiga yang paling luas"
+
+#: admin/options.php:1410
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr "Kontrol akses Revisi yang ditingkatkan dengan plugin PublishPress"
+
+#: admin/options.php:1426
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"Dalam mode ditingkatkan, status Revisi disimpan oleh skema WordPress "
+"standar. Beberapa plugin tidak kompatibel."
+
+#: admin/options.php:1442
+msgid "Allow any number of Revisions per post."
+msgstr "Izinkan jumlah Revisi yang tidak terbatas per pos."
+
+#: admin/options.php:1443
+msgid "Prevent Revision creation if another was already created."
+msgstr "Cegah pembuatan Revisi jika Revisi lain sudah dibuat."
+
+#: admin/options.php:1444
+msgid "Prevent Revision creation if another was already submitted."
+msgstr "Cegah pembuatan Revisi jika Revisi lain sudah diajukan."
+
+#: admin/options.php:1461
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Atasi konflik plugin cache dengan meminta kembali untuk revisi sebelum "
+"menyembunyikan tautan Revisi Baru."
+
+#: admin/options.php:1480
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Jika pengguna tidak memiliki tautan Edit reguler, ubah keterangan tautan %s "
+"menjadi \"Edit.\""
+
+#: admin/options.php:1483
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"Label default adalah \"Tidak Diajukan untuk Persetujuan\", \"Diajukan untuk "
+"Persetujuan\", \"Revisi Terjadwal\""
+
+#: admin/options.php:1501
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Izinkan konten yang diterbitkan untuk disalin, diedit, diajukan untuk "
+"persetujuan dan dikelola di layar %sRevisi Baru%s."
+
+#: admin/options.php:1515
+msgid "Submit Revision capabilities"
+msgstr "Kemampuan Pengajuan Revisi"
+
+#: admin/options.php:1533
+#, php-format
+msgid "If enabled, Revision Submission access can be controlled per-role using %s"
+msgstr ""
+"Jika diaktifkan, akses Pengajuan Revisi dapat dikontrol per-peran "
+"menggunakan %s"
+
+#: admin/options.php:1544
+msgid "Revision editor background color"
+msgstr "Warna latar belakang editor Revisi"
+
+#: admin/options.php:1555
+msgid "Select a custom background color to show that a Revision is being edited."
+msgstr ""
+"Pilih warna latar belakang kustom untuk menunjukkan bahwa Revisi sedang "
+"diedit."
+
+#: admin/options.php:1594
+#: admin/options.php:1628
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr "Ketika %s diterbitkan, perbarui tanggal publikasi pos ke waktu saat ini."
+
+#: admin/options.php:1597
+#: admin/options.php:1631
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr "Ketika %s diterbitkan, perbarui tanggal modifikasi pos ke waktu saat ini."
+
+#: admin/options.php:1600
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Ketika revisi baru dibuat oleh pengguna yang diizinkan untuk mengajukan "
+"revisi, ajukan secara otomatis."
+
+#: admin/options.php:1603
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Ajukan revisi secara otomatis jika pengguna dapat langsung mengedit pos "
+"utama."
+
+#: admin/options.php:1606
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"Ini memungkinkan persetujuan segera di dalam layar Banding. Jika "
+"dinonaktifkan, tautan Prabaca disediakan sebagai gantinya."
+
+#: admin/options.php:1622
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Jika pos atau halaman yang saat ini diterbitkan diedit dan tanggal masa "
+"depan ditetapkan, perubahan tidak akan diterapkan hingga tanggal yang "
+"dipilih."
+
+#: admin/options.php:1634
+msgid "Leave this setting disabled to use Action Scheduler (recommended)."
+msgstr ""
+"Biarkan pengaturan ini dinonaktifkan untuk menggunakan Penjadwal Aksi "
+"(direkomendasikan)."
+
+#: admin/options.php:1639
+msgid ""
+"Support publication of existing scheduled revisions asynchronously, via a "
+"secondary http request from the server.  This is usually best since it "
+"eliminates delay, but some servers may not support it."
+msgstr ""
+"Dukung publikasi revisi terjadwal yang ada secara asinkron, melalui "
+"permintaan http sekunder dari server. Ini biasanya yang terbaik karena "
+"menghilangkan keterlambatan, tetapi beberapa server mungkin tidak "
+"mendukungnya."
+
+#: admin/options.php:1644
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"Pemicu WP-Cron dinonaktifkan, tetapi tugas terjadwal masih dilaksanakan "
+"menggunakan pemicu kustom."
+
+#: admin/options.php:1662
+msgid ""
+"Currently, users who can edit the published post can also approve Revisions "
+"to it."
+msgstr ""
+"Saat ini, pengguna yang dapat mengedit pos yang diterbitkan juga dapat "
+"menyetujui Revisi untuk itu."
+
+#: admin/options.php:1668
+msgid "Approve Revision capabilities"
+msgstr "Kemampuan Persetujuan Revisi"
+
+#: admin/options.php:1677
+#, php-format
+msgid "Control access with %s."
+msgstr "Kontrol akses dengan %s."
+
+#: admin/options.php:1685
+#, php-format
+msgid "If enabled, Revision Approval access can be controlled per-role using %s"
+msgstr ""
+"Jika diaktifkan, akses Persetujuan Revisi dapat dikontrol per-peran "
+"menggunakan %s"
+
+#: admin/options.php:1691
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr ""
+"Ubah keterangan tombol menjadi \"Setujui dan Terbitkan\" atau \"Setujui dan "
+"Jadwalkan.\""
+
+#: admin/options.php:1700
+msgid "This may improve compatibility with some plugins."
+msgstr "Ini dapat meningkatkan kompatibilitas dengan beberapa plugin."
+
+#: admin/options.php:1722
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid "If enabled, New Revisions screen access can be configured per-role using %s."
+msgstr ""
+"Jika diaktifkan, akses layar Revisi Baru dapat dikonfigurasi per-peran "
+"menggunakan %s."
+
+#: admin/options.php:1729
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If enabled, access to Unsubmitted Revisions can be configured per-role "
+"using %s."
+msgstr ""
+"Jika diaktifkan, akses ke Revisi yang Tidak Diajukan dapat dikonfigurasi "
+"per-peran menggunakan %s."
+
+#: admin/options.php:1736
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If a user cannot edit the published post, control their access to others’ "
+"Revisions using %s."
+msgstr ""
+"Jika pengguna tidak dapat mengedit pos yang diterbitkan, kontrol akses "
+"mereka ke Revisi orang lain menggunakan %s."
+
+#: admin/options.php:1743
+#. translators: %s: PublishPress Capabilities plugin name or link.
+#, php-format
+msgid ""
+"If a user cannot edit the published post, control their ability to list "
+"others’ Revisions using %s."
+msgstr ""
+"Jika pengguna tidak dapat mengedit pos yang diterbitkan, kontrol kemampuan "
+"mereka untuk mencantumkan Revisi orang lain menggunakan %s."
+
+#: admin/options.php:1748
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Lewati pembatasan di atas untuk revisi orang lain pada pos pengguna yang "
+"sedang masuk."
+
+#: admin/options.php:1759
+msgid ""
+"If revisions were created for an editable page, include a floating "
+"Revisions button in front end views."
+msgstr ""
+"Jika revisi dibuat untuk halaman yang dapat diedit, sertakan tombol Revisi "
+"mengambang di tampilan frontend."
+
+#: admin/options.php:1767
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Regenerasi bendera \"pos memiliki revisi\""
+
+#: admin/options.php:1770
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Terapkan operasi pemeliharaan ini jika label Has Revision pada layar Pos / "
+"Halaman tidak cocok dengan daftar Revisi Baru."
+
+#: admin/options.php:1794
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr "Untuk notifikasi yang ditingkatkan, instal %sPublishPress Planner%s."
+
+#: admin/options.php:1807
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr "Untuk notifikasi yang ditingkatkan, perbarui %sPublishPress Planner%s."
+
+#: admin/options.php:1829
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Kirim notifikasi tindakan revisi menggunakan %1$sSistem Notifikasi "
+"PublishPress Planner%2$s yang dapat disesuaikan."
+
+#: admin/options.php:1830
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Upgrade ke Revisions Pro untuk mengirim notifikasi tindakan revisi "
+"menggunakan %1$sSistem Notifikasi PublishPress Planner%2$s yang dapat "
+"disesuaikan."
+
+#: admin/options.php:1844
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Pengguna yang sesuai dengan konfigurasi Planner > Notifikasi hanya "
+"mendapatkan notifikasi revisi jika mereka dapat mengedit pos yang "
+"diterbitkan."
+
+#: admin/options.php:1854
+msgid "Legacy Email Notifications:"
+msgstr "Notifikasi Email Legasi:"
+
+#: admin/options.php:1887
+#: admin/options.php:1910
+msgid "Never"
+msgstr "Tidak pernah"
+
+#: admin/options.php:1887
+#: admin/options.php:1910
+msgid "By default"
+msgstr "Secara default"
+
+#: admin/options.php:1887
+#: admin/options.php:1910
+msgid "Always"
+msgstr "Selalu"
+
+#: admin/options.php:1898
+#: admin/options.php:1946
+msgid "select recipients"
+msgstr "pilih penerima"
+
+#: admin/options.php:1960
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"Untuk menghindari kegagalan notifikasi, buffer email untuk pengiriman "
+"tertunda setelah batas menit, jam, atau hari terlampaui"
+
+#: admin/options.php:1983
+msgid "Notification Buffer"
+msgstr "Buffer Notifikasi"
+
+#: admin/options.php:2011
+msgid "Notification Log"
+msgstr "Log Notifikasi"
+
+#: admin/options.php:2045
+msgid "Purge Notification Buffer"
+msgstr "Bersihkan Buffer Notifikasi"
+
+#: admin/options.php:2056
+msgid "Truncate Notification Log"
+msgstr "Potong Log Notifikasi"
+
+#: admin/options.php:2062
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Dikirim dalam menit terakhir: %d / %d"
+
+#: admin/options.php:2063
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Dikirim dalam jam terakhir: %d / %d"
+
+#: admin/options.php:2064
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Dikirim dalam hari terakhir: %d / %d"
+
+#: admin/options.php:2071
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Detik sampai waktu pemrosesan buffer berikutnya: %d"
+
+#: admin/options.php:2082
+msgid "Show Notification Log / Buffer"
+msgstr "Tampilkan Log / Buffer Notifikasi"
+
+#: admin/options.php:2084
+msgid "Show with message content"
+msgstr "Tampilkan dengan konten pesan"
+
+#: admin/options.php:2106
+msgid "Ready to enhance your revision notifications?"
+msgstr "Siap untuk meningkatkan notifikasi revisi Anda?"
+
+#: admin/options.php:2109
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Upgrade ke Revisions Pro untuk integrasi dengan kerangka Notifikasi "
+"PublishPress Planner kami."
+
+#: admin/options.php:2115
+msgid "Customize notification message and subject"
+msgstr "Sesuaikan pesan notifikasi dan subjek"
+
+#: admin/options.php:2118
+msgid "Notify for a specific post type, category or term"
+msgstr "Beri tahu untuk jenis pos, kategori, atau istilah tertentu"
+
+#: admin/options.php:2121
+msgid "Target specific roles, users, or user groups"
+msgstr "Targetkan peran, pengguna, atau grup pengguna tertentu"
+
+#: admin/options.php:2124
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "Dengan PublishPress Planner Pro, kirim notifikasi ke saluran Slack"
+
+#: admin/options.php:2131
+#: admin/options.php:2161
+#: includes/CoreAdmin.php:192
+msgid "Upgrade to Revisions Pro"
+msgstr "Upgrade ke Revisions Pro"
+
+#: admin/options.php:2137
+msgid "Learn more about advanced revision notifications"
+msgstr "Pelajari lebih lanjut tentang notifikasi revisi lanjutan"
+
+#: admin/options.php:2149
+msgid "Revision notifications settings preview"
+msgstr "Prabaca pengaturan notifikasi revisi"
+
+#: admin/options.php:2153
+#: admin/options.php:2794
+#: admin/options.php:2810
+msgid "Pro Feature"
+msgstr "Fitur Pro"
+
+#: admin/options.php:2154
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr "Upgrade ke Revisions Pro untuk membuka kunci integrasi Notifikasi Planner."
+
+#: admin/options.php:2155
+msgid "Customize notification content and recipients for each notification type."
+msgstr "Sesuaikan konten notifikasi dan penerima untuk setiap jenis notifikasi."
+
+#: admin/options.php:2157
+msgid "Learn more about custom email notifications"
+msgstr "Pelajari lebih lanjut tentang notifikasi email kustom"
+
+#: admin/options.php:2180
+msgid ""
+"Disable this setting if visual comparison shows your changes incorrectly. "
+"Some page-builders and themes don't support the new style of WordPress "
+"revisions."
+msgstr ""
+"Nonaktifkan pengaturan ini jika perbandingan visual menunjukkan perubahan "
+"Anda tidak benar. Beberapa pembuat halaman dan tema tidak mendukung gaya "
+"baru revisi WordPress."
+
+#: admin/options.php:2185
+msgid "This feature is incompatible with page builder plugins."
+msgstr "Fitur ini tidak kompatibel dengan plugin pembuat halaman."
+
+#: admin/options.php:2193
+#. translators: %s: page builder plugin name.
+#, php-format
+msgid "Upgrade to Pro for visual comparison with %s."
+msgstr "Upgrade ke Pro untuk perbandingan visual dengan %s."
+
+#: admin/options.php:2204
+msgid ""
+"This supports the page's normal javascript behavior inside the compare "
+"window."
+msgstr ""
+"Ini mendukung perilaku javascript normal halaman di dalam jendela "
+"perbandingan."
+
+#: admin/options.php:2207
+msgid ""
+"If enabled, Editors and Administrators can see unidentified internal fields "
+"keys in comparisons. An attempt is still made to suppress sensitive and "
+"transient fields."
+msgstr ""
+"Jika diaktifkan, Editor dan Administrator dapat melihat kunci bidang "
+"internal yang tidak teridentifikasi dalam perbandingan. Usaha tetap "
+"dilakukan untuk menyembunyikan bidang sensitif dan sementara."
+
+#: admin/options.php:2223
+msgid "Some themes may block revision preview."
+msgstr "Beberapa tema mungkin memblokir pratinjau revisi."
+
+#: admin/options.php:2240
+msgid "Published Post Slug"
+msgstr "Slug Pos yang Diterbitkan"
+
+#: admin/options.php:2241
+msgid "Revision Slug"
+msgstr "Slug Revisi"
+
+#: admin/options.php:2242
+msgid "Revision ID only"
+msgstr "ID Revisi saja"
+
+#: admin/options.php:2257
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Beberapa tema atau plugin mungkin memerlukan jenis tautan Slug Revisi atau "
+"ID Revisi untuk pemuatan template yang benar dan tampilan field."
+
+#: admin/options.php:2266
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr "Argumen pratinjau revisi dikonfigurasi melalui definisi konstanta: %s"
+
+#: admin/options.php:2273
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Sesuaikan tautan pratinjau untuk menggunakan argumen \"rv_preview\" "
+"alih-alih \"preview\". Cobalah untuk melihat mana yang paling cocok dengan "
+"tema Anda."
+
+#: admin/options.php:2277
+msgid "Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Beberapa tema mungkin memerlukan pengaturan ini untuk tampilan pratinjau "
+"revisi yang benar."
+
+#: admin/options.php:2296
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"Ini biasanya harus diaktifkan, kecuali untuk mengatasi konflik dengan data "
+"postmeta plugin lain."
+
+#: admin/options.php:2320
+#, php-format
+msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Jika pengguna tidak dapat menerbitkan, memerlukan %s untuk mengedit Pos "
+"yang belum diterbitkan oleh orang lain."
+
+#: admin/options.php:2326
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to "
+"edit others' unpublished Posts."
+msgstr ""
+"Jika pengguna tidak dapat menerbitkan, memerlukan kemampuan "
+"edit_others_drafts untuk mengedit Pos yang belum diterbitkan oleh orang "
+"lain."
+
+#: admin/options.php:2332
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Jika izin spesifik pos membatasi atau memperluas akses ke sebuah pos, "
+"terapkan izin tersebut juga pada revisinya."
+
+#: admin/options.php:2344
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr "Rank Math SEO mungkin mencegah pembaruan Revisi di beberapa situs."
+
+#: admin/options.php:2351
+#: includes/CoreAdmin.php:207
+msgid "WPML Translation Management"
+msgstr "Manajemen Terjemahan WPML"
+
+#: admin/options.php:2356
+msgid "Sync \"Needs Update\" flags"
+msgstr "Sinkronkan bendera \"Butuh Pembaruan\""
+
+#: admin/options.php:2360
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Atur \"Butuh Pembaruan\" untuk pos mana pun dengan terjemahan yang telah "
+"diperbarui (mungkin melalui persetujuan revisi) lebih baru daripada "
+"terjemahannya."
+
+#: admin/options.php:2378
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "Tampilkan keterangan deskriptif untuk pengaturan PublishPress Revisions."
+
+#: admin/options.php:2396
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"Pengaturan plugin, konten Revisi Baru, dan data terkait akan dihapus, "
+"tetapi hanya setelah salinan terakhir dari Revisions / Revisions Pro "
+"dihapus."
+
+#: admin/options.php:2418
+msgid "Unlock Pro Integrations"
+msgstr "Buka Kunci Integrasi Pro"
+
+#: admin/options.php:2419
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Tingkatkan ke versi Pro untuk kompatibilitas optimal dan dukungan "
+"profesional yang cepat."
+
+#: admin/options.php:2432
+msgid "Filter integrations by category"
+msgstr "Saring integrasi berdasarkan kategori"
+
+#: admin/options.php:2437
+#: admin/options.php:2718, fuzzy
+msgid "Builder"
+msgstr "Builder"
+
+#: admin/options.php:2440
+#: admin/options.php:2719, fuzzy
+msgid "Blocks"
+msgstr "Blocks"
+
+#: admin/options.php:2443
+#: admin/options.php:2720, fuzzy
+msgid "Cache"
+msgstr "Cache"
+
+#: admin/options.php:2446, fuzzy
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#: admin/options.php:2449
+#: admin/options.php:2722, fuzzy
+msgid "Fields"
+msgstr "Fields"
+
+#: admin/options.php:2452
+#: admin/options.php:2727, fuzzy
+msgid "Themes"
+msgstr "Themes"
+
+#: admin/options.php:2456, fuzzy
+msgid "Multilingual"
+msgstr "Multilingual"
+
+#: admin/options.php:2460
+#: admin/options.php:2725, fuzzy
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2463
+#: admin/options.php:2728, fuzzy
+msgid "Workflow"
+msgstr "Workflow"
+
+#: admin/options.php:2565
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Tentukan pengaturan PublishPress Revisions mana yang akan dikendalikan "
+"secara jaringan. Pengaturan yang tidak dipilih dikendalikan secara terpisah "
+"di setiap situs."
+
+#: admin/options.php:2611
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "kontrol jaringan dari \"%s\""
+
+#: admin/options.php:2638
+msgid "Save Changes"
+msgstr "Simpan Perubahan"
+
+#: admin/options.php:2639
+msgid "Revert to Defaults"
+msgstr "Kembalikan ke Default"
+
+#: admin/options.php:2641
+msgid ""
+"All settings in this form (including those on unselected tabs) will be "
+"reset to DEFAULTS.  Are you sure?"
+msgstr ""
+"Semua pengaturan dalam formulir ini (termasuk yang ada di tab yang tidak "
+"dipilih) akan direset ke DEFAULTS. Apakah Anda yakin?"
+
+#: admin/options.php:2721, fuzzy
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2723, fuzzy
+msgid "Form"
+msgstr "Form"
+
+#: admin/options.php:2724, fuzzy
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2726, fuzzy
+msgid "Slider"
+msgstr "Slider"
+
+#: admin/options.php:2743, fuzzy
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2747
+msgid "Active"
+msgstr "Aktif"
+
+#: admin/options.php:2759
+msgid "Supported by PublishPress Revisions"
+msgstr "Didukung oleh PublishPress Revisions"
+
+#: admin/options.php:2761
+msgid "Supported by Revisions Pro"
+msgstr "Didukung oleh Revisions Pro"
+
+#: admin/options.php:2774
+msgid "Integration Config Issue"
+msgstr "Masalah Konfigurasi Integrasi"
+
+#: admin/options.php:2774
+msgid "Integration Active"
+msgstr "Integrasi Aktif"
+
+#: admin/options.php:2782
+#: admin/options.php:2837
+msgid "Supported plugin integration"
+msgstr "Integrasi plugin yang didukung"
+
+#: admin/options.php:2795
+msgid ""
+"Unlock PublishPress Statuses Pro integration to enhance your revisions "
+"solution."
+msgstr ""
+"Buka integrasi Status Pro PublishPress untuk meningkatkan solusi revisi "
+"Anda."
+
+#: admin/options.php:2803
+msgid "Upgrade to Statuses Pro"
+msgstr "Tingkatkan ke Status Pro"
+
+#: admin/options.php:2811
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "Buka integrasi %s untuk meningkatkan solusi revisi Anda."
+
+#: admin/options.php:2827
+msgid "Active Plugin"
+msgstr "Plugin Aktif"
+
+#: admin/options.php:2827
+msgid "Active Plugin Integration"
+msgstr "Integrasi Plugin Aktif"
+
+#: admin/options.php:2847
+msgid "Supported Plugin"
+msgstr "Plugin yang Didukung"
+
+#: admin/options.php:2898
+msgid "Color setting"
+msgstr "Pengaturan warna"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Sekarang"
+
+#: admin/post-edit-block-ui_rvy.php:238
+#: admin/post-edit_rvy.php:404
+msgid "Author saved."
+msgstr "Penulis disimpan."
+
+#: admin/post-edit-block-ui_rvy.php:243
+#: admin/post-edit_rvy.php:409
+msgid "The author could not be saved."
+msgstr "Penulis tidak dapat disimpan."
+
+#: admin/post-editor-workflow-ui_rvy.php:36
+msgid "(on approval)"
+msgstr "(dalam persetujuan)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid ""
+"The revision could not be updated. Resolve any save or validation errors "
+"and try again."
+msgstr ""
+"Revisi tidak dapat diperbarui. Selesaikan kesalahan penyimpanan atau "
+"validasi dan coba lagi."
+
+#: admin/post-editor-workflow-ui_rvy.php:73
+msgid "View / Publish"
+msgstr "Lihat / Terbitkan"
+
+#: admin/post-editor-workflow-ui_rvy.php:73
+msgid "View / Approve"
+msgstr "Lihat / Setujui"
+
+#: admin/post-editor-workflow-ui_rvy.php:76
+msgid "View / Moderate saved revision"
+msgstr "Lihat / Moderasi revisi yang disimpan"
+
+#: admin/post-editor-workflow-ui_rvy.php:78
+msgid "Preview / Submit"
+msgstr "Pratinjau / Kirim"
+
+#: admin/post-editor-workflow-ui_rvy.php:78
+msgid "View / Submit"
+msgstr "Lihat / Kirim"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Submit saved revision"
+msgstr "Lihat / Kirim revisi yang disimpan"
+
+#: admin/post-editor-workflow-ui_rvy.php:88
+msgid "View unsaved changes"
+msgstr "Lihat perubahan yang belum disimpan"
+
+#: admin/post-editor-workflow-ui_rvy.php:92
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Edit Revisi"
+msgstr[1] "%s%s Edit Revisi"
+
+#: admin/post-editor-workflow-ui_rvy.php:103
+msgid "Revision Submission Error"
+msgstr "Kesalahan Pengiriman Revisi"
+
+#: admin/post-editor-workflow-ui_rvy.php:112
+msgid "Preview this Revision"
+msgstr "Pratinjau Revisi ini"
+
+#: admin/post-editor-workflow-ui_rvy.php:126
+msgid "Approve and Publish"
+msgstr "Setujui dan Terbitkan"
+
+#: admin/post-editor-workflow-ui_rvy.php:131
+#: rvy_init-functions.php:290
+#: rvy_init-functions.php:309
+#: rvy_init-functions.php:346
+#: rvy_init-functions.php:363
+msgid "Update in progress..."
+msgstr "Pembaruan sedang berlangsung..."
+
+#: admin/post-editor-workflow-ui_rvy.php:135
+msgid "Approve and Schedule"
+msgstr "Setujui dan Jadwalkan"
+
+#: admin/post-editor-workflow-ui_rvy.php:167
+msgid "Decline Revision"
+msgstr "Tolak Revisi"
+
+#: admin/post-editor-workflow-ui_rvy.php:171
+#: rvy_init-functions.php:279
+#: rvy_init-functions.php:297
+#: rvy_init-functions.php:315
+#: rvy_init-functions.php:335
+#: rvy_init-functions.php:352
+#: rvy_init-functions.php:369
+#: rvy_init-functions.php:482
+msgid "Update Revision"
+msgstr "Perbarui Revisi"
+
+#: admin/post-editor-workflow-ui_rvy.php:237
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Perbarui pos sebelum membuat %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:244
+msgid "Error Creating Revision"
+msgstr "Kesalahan Membuat Revisi"
+
+#: admin/post-editor-workflow-ui_rvy.php:246
+#: admin/post-editor-workflow-ui_rvy.php:266
+msgid "Update"
+msgstr "Perbarui"
+
+#: admin/post-editor-workflow-ui_rvy.php:260
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "Untuk perubahan field kustom, edit %s yang dijadwalkan."
+
+#: admin/post-editor-workflow-ui_rvy.php:298
+msgid "The revision could not be verified as saved."
+msgstr "Revisi tidak dapat diverifikasi sebagai disimpan."
+
+#: admin/post-edit_rvy.php:32
+#: admin/post-edit_rvy.php:176
+msgid "Current Time"
+msgstr "Waktu Saat Ini"
+
+#: admin/post-edit_rvy.php:85
+#: admin/post-edit_rvy.php:125
+msgid "Delete revision"
+msgstr "Hapus revisi"
+
+#: admin/post-edit_rvy.php:124
+msgid ""
+"Delete this revision and leave the editor? Any unsaved changes to this "
+"revision will be discarded."
+msgstr ""
+"Hapus revisi ini dan tinggalkan editor? Setiap perubahan yang belum "
+"disimpan pada revisi ini akan dibuang."
+
+#: admin/post-edit_rvy.php:126
+msgid "Continue editing revision"
+msgstr "Lanjutkan mengedit revisi"
+
+#: admin/post-edit_rvy.php:203
+msgid "View revision in progress"
+msgstr "Lihat revisi yang sedang berlangsung"
+
+#: admin/post-edit_rvy.php:227
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr ""
+"Bandingkan revisi ini dengan salinan yang diterbitkan, atau dengan revisi "
+"lainnya"
+
+#: admin/post-edit_rvy.php:259
+msgid "View Saved Revision"
+msgstr "Lihat Revisi yang Disimpan"
+
+#: admin/post-edit_rvy.php:262
+msgid "View / moderate saved revision"
+msgstr "Lihat / moderasi revisi yang disimpan"
+
+#: admin/post-edit_rvy.php:265
+msgid "View saved revision"
+msgstr "Lihat revisi yang disimpan"
+
+#: admin/restrict-editor-features.php:119
+msgid "Status & visibility"
+msgstr "Status & visibilitas"
+
+#: admin/restrict-editor-features.php:126, fuzzy
+msgid "Permalink"
+msgstr "Permalink"
+
+#: admin/restrict-editor-features.php:155
+msgid "Featured image"
+msgstr "Gambar unggulan"
+
+#: admin/revision-action_rvy.php:570
+#: admin/revision-action_rvy.php:656
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Pemberitahuan Persetujuan Revisi"
+
+#: admin/revision-action_rvy.php:571
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "Revisi untuk %1$s \"%2$s\" telah disetujui."
+
+#: admin/revision-action_rvy.php:575
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "Pengirimnya adalah %1$s."
+
+#: admin/revision-action_rvy.php:579
+#: admin/revision-action_rvy.php:665
+#, php-format
+msgid "It will be published on %s"
+msgstr "Ini akan diterbitkan pada %s"
+
+#: admin/revision-action_rvy.php:583
+#: admin/revision-action_rvy.php:669
+msgid "Preview it here: "
+msgstr "Pratonton di sini: "
+
+#: admin/revision-action_rvy.php:586
+#: admin/revision-action_rvy.php:672, fuzzy
+msgid "Editor: "
+msgstr "Editor: "
+
+#: admin/revision-action_rvy.php:588
+#: admin/revision-action_rvy.php:674
+#: admin/revision-action_rvy.php:1720
+#: admin/revision-action_rvy.php:1751
+#: admin/revision-action_rvy.php:1817
+msgid "View it online: "
+msgstr "Lihat secara online: "
+
+#: admin/revision-action_rvy.php:657
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "Revisi yang Anda kirim untuk %1$s \"%2$s\" telah disetujui."
+
+#: admin/revision-action_rvy.php:1056
+msgid "The revision could not be published."
+msgstr "Revisi tidak dapat diterbitkan."
+
+#: admin/revision-action_rvy.php:1712
+#: admin/revision-action_rvy.php:1740
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] Pemberitahuan Penerbitan %s"
+
+#: admin/revision-action_rvy.php:1713
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr "Revisi terjadwal yang Anda kirim untuk %1$s \"%2$s\" telah diterbitkan."
+
+#: admin/revision-action_rvy.php:1741
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "Revisi terjadwal untuk %1$s \"%2$s\" telah diterbitkan."
+
+#: admin/revision-action_rvy.php:1748
+#: admin/revision-action_rvy.php:1814
+#, php-format
+msgid "It was submitted by %1$s."
+msgstr "Ini dikirim oleh %1$s."
+
+#: admin/revision-action_rvy.php:1805
+#, php-format
+msgid "[%s] %s Publication"
+msgstr "[%s] Penerbitan %s"
+
+#: admin/revision-action_rvy.php:1807
+#, php-format
+msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
+msgstr "Revisi terjadwal untuk %1$s \"%2$s\" telah diterbitkan."
+
+#: admin/revision-archive_rvy.php:13
+msgid "Revision for:"
+msgstr "Revisi untuk:"
+
+#: admin/revision-archive_rvy.php:46
+#: admin/revision-queue_rvy.php:96
+#, php-format
+msgid "%s revision permanently deleted."
+msgid_plural "%s revisions permanently deleted."
+msgstr[0] "%s revisi dihapus secara permanen."
+msgstr[1] "%s revisi dihapus secara permanen."
+
+#: admin/revision-archive_rvy.php:76
+#: admin/revision-queue_rvy.php:215
+msgid "Undo"
+msgstr "Batalkan"
+
+#: admin/revision-archive_rvy.php:108
+#: admin/revision-queue_rvy.php:323
+msgid "Search Revisions"
+msgstr "Cari Revisi"
+
+#: admin/revision-archive_rvy.php:131
+msgid "About Past Revisions"
+msgstr "Tentang Revisi Sebelumnya"
+
+#: admin/revision-archive_rvy.php:133
+msgid ""
+"Every time you edit a post or page, WordPress can save a backup copy for "
+"you, so you'll always have a history of your changes."
+msgstr ""
+"Setiap kali Anda mengedit sebuah pos atau halaman, WordPress dapat "
+"menyimpan salinan cadangan untuk Anda, sehingga Anda akan selalu memiliki "
+"riwayat perubahan Anda."
+
+#: admin/revision-archive_rvy.php:137
+#, php-format
+msgid "Visit %s to adjust which post types keep Past Revisions."
+msgstr ""
+"Kunjungi %s untuk menyesuaikan jenis pos mana yang menyimpan Revisi "
+"Sebelumnya."
+
+#: admin/revision-archive_rvy.php:138
+msgid "Revisions > Settings"
+msgstr "Revisi > Pengaturan"
+
+#: admin/revision-archive_rvy.php:145
+#, php-format
+msgid "Revisions Pro is %s in Past Revisions."
+msgstr "Revisions Pro adalah %s dalam Revisi Sebelumnya."
+
+#: admin/revision-archive_rvy.php:146
+msgid "configured to save custom fields"
+msgstr "dikonfigurasi untuk menyimpan bidang kustom"
+
+#: admin/revision-archive_rvy.php:150
+#, php-format
+msgid "To save custom fields in Past Revisions, see %s."
+msgstr "Untuk menyimpan bidang kustom dalam Revisi Sebelumnya, lihat %s."
+
+#: admin/revision-archive_rvy.php:151
+msgid "Revisions > Settings > Past Revisions"
+msgstr "Revisi > Pengaturan > Revisi Sebelumnya"
+
+#: admin/revision-archive_rvy.php:155
+msgid ""
+"PublishPress Revisions Pro can also save your custom fields in Past "
+"Revisions, so nothing gets left behind."
+msgstr ""
+"PublishPress Revisions Pro juga dapat menyimpan bidang kustom Anda dalam "
+"Revisi Sebelumnya, sehingga tidak ada yang tertinggal."
+
+#: admin/revision-queue_rvy.php:11
+#: admin/revision-queue_rvy.php:23
+msgid "You are not allowed to manage revisions."
+msgstr "Anda tidak diizinkan untuk mengelola revisi."
+
+#: admin/revision-queue_rvy.php:15
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s dan %s keduanya dinonaktifkan. Lihat Revisi > Pengaturan."
+
+#: admin/revision-queue_rvy.php:91
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s revisi dikirim."
+msgstr[1] "%s revisi dikirim."
+
+#: admin/revision-queue_rvy.php:92
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s revisi ditolak."
+msgstr[1] "%s revisi ditolak."
+
+#: admin/revision-queue_rvy.php:93
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s revisi disetujui."
+msgstr[1] "%s revisi disetujui."
+
+#: admin/revision-queue_rvy.php:94
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s revisi tidak terjadwal."
+
+#: admin/revision-queue_rvy.php:95
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s revisi diterbitkan."
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Penulis Pos: %s)"
+
+#: admin/revision-queue_rvy.php:176
+#, php-format
+msgid "New Revisions %s"
+msgstr "Revisi Baru %s"
+
+#: admin/revision-queue_rvy.php:344
+msgid "About Scheduled Revisions"
+msgstr "Tentang Revisi Terjadwal"
+
+#: admin/revision-queue_rvy.php:346
+msgid ""
+"The Scheduled Revisions feature allows you to choose a date and time to "
+"publish content updates."
+msgstr ""
+"Fitur Revisi Terjadwal memungkinkan Anda memilih tanggal dan waktu untuk "
+"menerbitkan pembaruan konten."
+
+#: admin/revision-queue_rvy.php:348
+#: admin/revision-queue_rvy.php:362
+msgid "Click \"Create Revision\"."
+msgstr "Klik \"Buat Revisi\"."
+
+#: admin/revision-queue_rvy.php:349
+#: admin/revision-queue_rvy.php:363
+msgid "Make your changes to the post."
+msgstr "Lakukan perubahan pada pos."
+
+#: admin/revision-queue_rvy.php:350
+msgid "Select a publishing date in the future."
+msgstr "Pilih tanggal penerbitan di masa depan."
+
+#: admin/revision-queue_rvy.php:351
+msgid "Click the \"Schedule Revision\" button."
+msgstr "Klik tombol \"Jadwalkan Revisi\"."
+
+#: admin/revision-queue_rvy.php:358
+msgid "About New Revisions"
+msgstr "Tentang Revisi Baru"
+
+#: admin/revision-queue_rvy.php:360
+msgid "The New Revisions feature gives you a safe space to work on content updates."
+msgstr ""
+"Fitur Revisi Baru memberikan Anda ruang yang aman untuk bekerja pada "
+"pembaruan konten."
+
+#: admin/revision-queue_rvy.php:364
+msgid "Save your revision."
+msgstr "Simpan revisi Anda."
+
+#: admin/revision-queue_rvy.php:365
+msgid ""
+"When you're happy with it, click \"Submit Revision\". You can then share "
+"the revision with other users, or publish the update."
+msgstr ""
+"Ketika Anda puas dengan itu, klik \"Kirim Revisi\". Anda kemudian dapat "
+"membagikan revisi tersebut dengan pengguna lain, atau menerbitkan pembaruan."
+
+#: admin/revision-ui_rvy.php:46
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "Penerbit akan diberitahu (tetapi tidak dapat dipilih di sini)."
+
+#: admin/revision-ui_rvy.php:48
+msgid "No email notifications will be sent."
+msgstr "Tidak ada pemberitahuan email yang akan dikirim."
+
+#: admin/revision-ui_rvy.php:100
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s (Saat ini)"
+
+#: admin/revision-ui_rvy.php:104
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Simpan Otomatis)"
+
+#: admin/revision-ui_rvy.php:115
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Tanggal terbit: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:117
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Permintaan publikasi: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:122
+#, fuzzy, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: admin/revision-ui_rvy.php:276
+#, php-format
+msgid "Preview &#8220;%s&#8221;"
+msgstr "Pratayang &#8220;%s&#8221;"
+
+#: admin/revision-ui_rvy.php:292
+msgid "The revision will be deleted. Are you sure?"
+msgstr "Revisi akan dihapus. Apakah Anda yakin?"
+
+#: admin/revision-ui_rvy.php:329
+msgid "Select revision for deletion"
+msgstr "Pilih revisi untuk dihapus"
+
+#: admin/revision-ui_rvy.php:385
+msgid "Modified Date"
+msgstr "Tanggal Dimodifikasi"
+
+#: admin/revision-ui_rvy.php:389
+msgid "Actions"
+msgstr "Aksi"
+
+#: admin/revision-ui_rvy.php:407
+msgid "Bulk Actions"
+msgstr "Aksi Massal"
+
+#: admin/RevisionEditSubmitMetabox.php:66
+msgid "Move to Trash"
+msgstr "Pindahkan ke Sampah"
+
+#: admin/RevisionEditSubmitMetabox.php:126
+msgid "Preview revision in progress"
+msgstr "Pratayang revisi dalam proses"
+
+#: admin/RevisionEditSubmitMetabox.php:149, fuzzy
+msgid "Status:"
+msgstr "Status:"
+
+#: admin/RevisionEditSubmitMetabox.php:193
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Terbit %son persetujuan%s"
+
+#: admin/revisions.php:18
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Catatan:</strong> Untuk tampilan visual revisi, tambahkan kode "
+"berikut ke foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:59
+msgid "Revision of this post is not allowed."
+msgstr "Revisi pos ini tidak diizinkan."
+
+#: admin/revisions.php:62
+msgid "No revision specified."
+msgstr "Tidak ada revisi yang ditentukan."
+
+#: admin/revisions.php:70
+msgid "Past"
+msgstr "Masa Lalu"
+
+#: admin/revisions.php:71
+msgid "Pending"
+msgstr "Menunggu"
+
+#: admin/revisions.php:133
+#, php-format
+msgid "Revisions of %s"
+msgstr "Revisi dari %s"
+
+#: admin/revisions.php:163
+msgid "The requested revision does not exist."
+msgstr "Revisi yang diminta tidak ada."
+
+#: admin/revisions.php:252
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:273
+#, php-format
+msgid "no %s revisions available."
+msgstr "tidak ada %s revisi yang tersedia."
+
+#: builder-schema_rvy.php:7
+#: revision-creation_rvy.php:269
+#: rvy_init-functions.php:786
+msgid ""
+"Page Builder integration requires Revisions Pro to be set to standard "
+"storage schema."
+msgstr ""
+"Integrasi Page Builder memerlukan Revisions Pro untuk disetel ke skema "
+"penyimpanan standar."
+
+#: builder-schema_rvy.php:10
+#, php-format
+msgid "Page Builder integration requires Revisions Pro to be set to %s."
+msgstr "Integrasi Page Builder memerlukan Revisions Pro untuk disetel ke %s."
+
+#: builder-schema_rvy.php:12
+msgid "standard storage schema"
+msgstr "skema penyimpanan standar"
+
+#: classes/PublishPress/IntegrationCards.php:60
+#: classes/PublishPress/IntegrationCards.php:63
+#: classes/PublishPress/IntegrationCards.php:66
+#: classes/PublishPress/IntegrationCards.php:472
+#: classes/PublishPress/Revisionary.php:251
+#: classes/PublishPress/Revisionary.php:281
+msgid "Revise custom fields and display changes"
+msgstr "Revisi custom fields dan tampilkan perubahan"
+
+#: classes/PublishPress/IntegrationCards.php:141
+msgid "Integration with Divi 4/5 editor and blocks"
+msgstr "Integrasi dengan editor dan blok Divi 4/5"
+
+#: classes/PublishPress/IntegrationCards.php:143
+#, php-format
+msgid "Integration with %s's editor and blocks."
+msgstr "Integrasi dengan editor dan blok %s."
+
+#: classes/PublishPress/IntegrationCards.php:159
+msgid "PublishPress Statuses"
+msgstr "Status PublishPress"
+
+#: classes/PublishPress/IntegrationCards.php:160
+msgid "PublishPress Statuses Pro integration."
+msgstr "Integrasi Status PublishPress Pro."
+
+#: classes/PublishPress/IntegrationCards.php:164
+msgid "Define custom statuses for revisions"
+msgstr "Tentukan status kustom untuk revisi"
+
+#: classes/PublishPress/IntegrationCards.php:165
+msgid "Control editing access for each revision status"
+msgstr "Kontrol akses pengeditan untuk setiap status revisi"
+
+#: classes/PublishPress/IntegrationCards.php:294
+#: classes/PublishPress/IntegrationCards.php:368
+#: classes/PublishPress/IntegrationCards.php:372
+#: classes/PublishPress/IntegrationCards.php:386
+#: classes/PublishPress/IntegrationCards.php:389
+#: classes/PublishPress/IntegrationCards.php:391
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:146
+#: classes/PublishPress/Revisionary.php:162
+#: classes/PublishPress/Revisionary.php:178
+#: classes/PublishPress/Revisionary.php:205
+msgid "Revise and compare custom fields"
+msgstr "Revisi dan bandingkan custom fields"
+
+#: classes/PublishPress/IntegrationCards.php:295
+#: classes/PublishPress/Revisionary.php:115
+#: classes/PublishPress/Revisionary.php:206
+msgid "Display custom field changes"
+msgstr "Tampilkan perubahan custom field"
+
+#: classes/PublishPress/IntegrationCards.php:296
+#: classes/PublishPress/Revisionary.php:116
+#: classes/PublishPress/Revisionary.php:207
+msgid "Update custom fields on revision publication"
+msgstr "Perbarui custom fields pada penerbitan revisi"
+
+#: classes/PublishPress/IntegrationCards.php:309
+#, php-format
+msgid "Compatibility with %s theme custom fields."
+msgstr "Kompatibilitas dengan custom fields tema %s."
+
+#: classes/PublishPress/IntegrationCards.php:310
+#, php-format
+msgid "Compatibility with %s custom fields."
+msgstr "Kompatibilitas dengan custom fields %s."
+
+#: classes/PublishPress/IntegrationCards.php:337
+#, php-format
+msgid "Compatibility with %s."
+msgstr "Kompatibilitas dengan %s."
+
+#: classes/PublishPress/IntegrationCards.php:338
+#, php-format
+msgid "Compatibility with %s cache."
+msgstr "Kompatibilitas dengan cache %s."
+
+#: classes/PublishPress/IntegrationCards.php:348
+#: classes/PublishPress/Revisionary.php:191
+msgid "Clear cache on revision publication"
+msgstr "Bersihkan cache pada penerbitan revisi"
+
+#: classes/PublishPress/IntegrationCards.php:349
+#: classes/PublishPress/Revisionary.php:192
+msgid "Support immediate and scheduled publication"
+msgstr "Dukung penerbitan segera dan terjadwal"
+
+#: classes/PublishPress/IntegrationCards.php:367, fuzzy
+msgid "Avada Builder"
+msgstr "Avada Builder"
+
+#: classes/PublishPress/IntegrationCards.php:368, fuzzy
+msgid "WPBakery Page Builder"
+msgstr "WPBakery Page Builder"
+
+#: classes/PublishPress/IntegrationCards.php:368
+#: classes/PublishPress/IntegrationCards.php:372
+#: classes/PublishPress/IntegrationCards.php:417
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:159
+#: classes/PublishPress/Revisionary.php:175
+msgid "Frontend revision editing, submission"
+msgstr "Pengeditan revisi frontend, pengiriman"
+
+#: classes/PublishPress/IntegrationCards.php:368
+#: classes/PublishPress/IntegrationCards.php:372
+#: classes/PublishPress/IntegrationCards.php:380
+#: classes/PublishPress/IntegrationCards.php:418
+#: classes/PublishPress/Revisionary.php:144
+#: classes/PublishPress/Revisionary.php:160
+#: classes/PublishPress/Revisionary.php:176
+msgid "Visually compare changes"
+msgstr "Bandingkan perubahan secara visual"
+
+#: classes/PublishPress/IntegrationCards.php:368
+#: classes/PublishPress/IntegrationCards.php:372
+#: classes/PublishPress/IntegrationCards.php:419
+#: classes/PublishPress/Revisionary.php:145
+#: classes/PublishPress/Revisionary.php:161
+#: classes/PublishPress/Revisionary.php:177
+msgid "Revision preview with builder styling"
+msgstr "Prabaca revisi dengan gaya builder"
+
+#: classes/PublishPress/IntegrationCards.php:369, fuzzy
+msgid "SiteOrigin Page Builder"
+msgstr "SiteOrigin Page Builder"
+
+#: classes/PublishPress/IntegrationCards.php:370, fuzzy
+msgid "SeedProd"
+msgstr "SeedProd"
+
+#: classes/PublishPress/IntegrationCards.php:371, fuzzy
+msgid "Breakdance"
+msgstr "Breakdance"
+
+#: classes/PublishPress/IntegrationCards.php:372, fuzzy
+msgid "Bricks"
+msgstr "Bricks"
+
+#: classes/PublishPress/IntegrationCards.php:379
+msgid "Submit revisions to blocks"
+msgstr "Kirim revisi ke blok"
+
+#: classes/PublishPress/IntegrationCards.php:381
+msgid "Revision preview with block styling"
+msgstr "Prabaca revisi dengan gaya blok"
+
+#: classes/PublishPress/IntegrationCards.php:385, fuzzy
+msgid "Kadence Blocks"
+msgstr "Kadence Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:386, fuzzy
+msgid "Spectra Legacy"
+msgstr "Spectra Legacy"
+
+#: classes/PublishPress/IntegrationCards.php:387, fuzzy
+msgid "Otter Blocks"
+msgstr "Otter Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:388, fuzzy
+msgid "Essential Blocks"
+msgstr "Essential Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:389, fuzzy
+msgid "Stackable"
+msgstr "Stackable"
+
+#: classes/PublishPress/IntegrationCards.php:390, fuzzy
+msgid "Ultimate Blocks"
+msgstr "Ultimate Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:391, fuzzy
+msgid "PublishPress Blocks"
+msgstr "PublishPress Blocks"
+
+#: classes/PublishPress/IntegrationCards.php:412
+#, php-format
+msgid "Integration with %s."
+msgstr "Integrasi dengan %s."
+
+#: classes/PublishPress/IntegrationCards.php:432, fuzzy
+msgid "LiteSpeed Cache"
+msgstr "LiteSpeed Cache"
+
+#: classes/PublishPress/IntegrationCards.php:433, fuzzy
+msgid "WP Fastest Cache"
+msgstr "WP Fastest Cache"
+
+#: classes/PublishPress/IntegrationCards.php:434, fuzzy
+msgid "WP Super Cache"
+msgstr "WP Super Cache"
+
+#: classes/PublishPress/IntegrationCards.php:435, fuzzy
+msgid "WP-Optimize"
+msgstr "WP-Optimize"
+
+#: classes/PublishPress/IntegrationCards.php:436, fuzzy
+msgid "W3 Total Cache"
+msgstr "W3 Total Cache"
+
+#: classes/PublishPress/IntegrationCards.php:437, fuzzy
+msgid "Breeze"
+msgstr "Breeze"
+
+#: classes/PublishPress/IntegrationCards.php:438, fuzzy
+msgid "SpeedyCache"
+msgstr "SpeedyCache"
+
+#: classes/PublishPress/IntegrationCards.php:463, fuzzy
+msgid "PublishPress Cart"
+msgstr "PublishPress Cart"
+
+#: classes/PublishPress/IntegrationCards.php:468
+#: classes/PublishPress/Revisionary.php:244
+msgid "Revision submission and approval for products."
+msgstr "Pengajuan dan persetujuan revisi untuk produk."
+
+#: classes/PublishPress/IntegrationCards.php:470
+#: classes/PublishPress/Revisionary.php:248
+msgid "Product revisions"
+msgstr "Revisi produk"
+
+#: classes/PublishPress/IntegrationCards.php:471
+#: classes/PublishPress/Revisionary.php:250
+msgid "Priority on ongoing compatibility"
+msgstr "Prioritas pada kompatibilitas yang sedang berlangsung"
+
+#: classes/PublishPress/Revisionary.php:109
+#: includes/CoreAdmin.php:203, fuzzy
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:110
+msgid "Compatibility with ACF custom fields."
+msgstr "Kompatibilitas dengan bidang kustom ACF."
+
+#: classes/PublishPress/Revisionary.php:124, fuzzy
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:125
+msgid "Support ACFE data model."
+msgstr "Dukungan model data ACFE."
+
+#: classes/PublishPress/Revisionary.php:129
+msgid "Support ACFE single_meta data type"
+msgstr "Dukungan tipe data single_meta ACFE"
+
+#: classes/PublishPress/Revisionary.php:130
+msgid "Correct field display on Compare screen"
+msgstr "Tampilan bidang yang benar di layar Perbandingan"
+
+#: classes/PublishPress/Revisionary.php:138
+#: includes/CoreAdmin.php:202, fuzzy
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:139
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Integrasi dengan editor front end Beaver Builder."
+
+#: classes/PublishPress/Revisionary.php:154, fuzzy
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:155
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Integrasi dengan Divi Builder dan Tema Divi."
+
+#: classes/PublishPress/Revisionary.php:170
+#: includes/CoreAdmin.php:200, fuzzy
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:171
+msgid "Integration with Elementor's front end editor."
+msgstr "Integrasi dengan editor front end Elementor."
+
+#: classes/PublishPress/Revisionary.php:186, fuzzy
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Kompatibilitas dengan cache Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:200
+#: includes/CoreAdmin.php:204, fuzzy
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:201
+msgid "Compatibility with Pods custom fields."
+msgstr "Kompatibilitas dengan bidang kustom Pods."
+
+#: classes/PublishPress/Revisionary.php:215, fuzzy
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Compatibility with Polylang translation."
+msgstr "Kompatibilitas dengan terjemahan Polylang."
+
+#: classes/PublishPress/Revisionary.php:220
+msgid "Revisions carry over Polylang data"
+msgstr "Revisi membawa data Polylang"
+
+#: classes/PublishPress/Revisionary.php:221
+msgid "Translation retained on Revision approval"
+msgstr "Terjemahan dipertahankan saat persetujuan Revisi"
+
+#: classes/PublishPress/Revisionary.php:229, fuzzy
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "PublishPress Planner Integration."
+msgstr "Integrasi PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:234
+msgid "Planner Notifications for revision actions"
+msgstr "Notifikasi Planner untuk tindakan revisi"
+
+#: classes/PublishPress/Revisionary.php:235
+msgid "Revision schedule shown in Calendar"
+msgstr "Jadwal revisi ditampilkan di Kalender"
+
+#: classes/PublishPress/Revisionary.php:243
+#: includes/CoreAdmin.php:205
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:249
+msgid "Compatible with Product Variations"
+msgstr "Kompatibel dengan Variasi Produk"
+
+#: classes/PublishPress/Revisionary.php:259
+#: includes/CoreAdmin.php:206, fuzzy
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:260
+msgid "Multilingual revisioning with WPML."
+msgstr "Revisian multibahasa dengan WPML."
+
+#: classes/PublishPress/Revisionary.php:264
+msgid "Language-specific revisions"
+msgstr "Revisi spesifik bahasa"
+
+#: classes/PublishPress/Revisionary.php:265
+msgid "Translation Management integration"
+msgstr "Integrasi Manajemen Terjemahan"
+
+#: classes/PublishPress/Revisionary.php:273, fuzzy
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:274, fuzzy
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:278
+msgid "Prevent indexing of revisions"
+msgstr "Cegah pengindeksan revisi"
+
+#: classes/PublishPress/Revisionary.php:279
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Kompatibilitas untuk Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:280
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Bandingkan revisi dengan bidang Yoast SEO"
+
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+msgid ""
+"PublishPress Revisions could not create the required Action Scheduler "
+"database tables. Check the database error log and the database user's "
+"CREATE and ALTER permissions."
+msgstr ""
+"PublishPress Revisions tidak dapat membuat tabel basis data Action "
+"Scheduler yang diperlukan. Periksa log kesalahan basis data dan izin CREATE "
+"dan ALTER pengguna basis data."
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:61
+msgid "Revision Status"
+msgstr "Status Revisi"
+
+#: front-notice.php:181
+#, php-format
+msgid "This %s has new revisions. Click the button below to review them."
+msgstr "%s ini memiliki revisi baru. Klik tombol di bawah untuk meninjaunya."
+
+#: front-notice.php:190
+msgid "Dismiss notice"
+msgstr "Tutup pemberitahuan"
+
+#: front_rvy.php:535
+#, php-format
+msgid "%sManage%s"
+msgstr "%sKelola%s"
+
+#: front_rvy.php:546
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sBandingkan%s%sLihat Pos yang Diterbitkan%s"
+
+#: front_rvy.php:558
+#: front_rvy.php:573
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sLihat Pos yang Diterbitkan%s"
+
+#: front_rvy.php:669
+#: front_rvy.php:675
+#: front_rvy.php:731
+#: front_rvy.php:737
+#, php-format
+msgid "This Revision is Submitted for Approval. %s %s %s"
+msgstr "Revisi ini telah Diajukan untuk Persetujuan. %s %s %s"
+
+#: front_rvy.php:671
+#: front_rvy.php:677
+#: front_rvy.php:733
+#: front_rvy.php:739
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Ini adalah %s. %s %s %s"
+
+#: front_rvy.php:680
+#: front_rvy.php:742
+#, fuzzy, php-format
+msgid "%s."
+msgstr "%s."
+
+#: front_rvy.php:709
+#: front_rvy.php:711
+#: front_rvy.php:764
+#: front_rvy.php:766
+#, php-format
+msgid "This is a %s (for %s). %s %s %s"
+msgstr "Ini adalah %s (untuk %s). %s %s %s"
+
+#: front_rvy.php:713
+#: front_rvy.php:768
+#, php-format
+msgid "%1$s (for %2$s)."
+msgstr "%1$s (untuk %2$s)."
+
+#: front_rvy.php:716
+#: front_rvy.php:718
+#, php-format
+msgid "Revision status: %s (for %s) %s %s %s"
+msgstr "Status revisi: %s (untuk %s) %s %s %s"
+
+#: front_rvy.php:720
+#, php-format
+msgid "Revision status: %1$s (for %2$s)"
+msgstr "Status revisi: %1$s (untuk %2$s)"
+
+#: front_rvy.php:745
+#: front_rvy.php:747
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Status revisi: %s %s %s %s"
+
+#: front_rvy.php:749
+#, php-format
+msgid "Revision status: %s"
+msgstr "Status revisi: %s"
+
+#: front_rvy.php:761
+#: rvy_init-functions.php:452
+msgid "Publish Now"
+msgstr "Terbitkan Sekarang"
+
+#: front_rvy.php:785
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "Revisi telah disetujui dan sekarang aktif di situs. %s"
+
+#: front_rvy.php:786
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Ini adalah Revisi Saat Ini. %s"
+
+#: front_rvy.php:794
+msgid "Revision approved and live."
+msgstr "Revisi disetujui dan aktif."
+
+#: front_rvy.php:795
+msgid "Current Revision."
+msgstr "Revisi Saat Ini."
+
+#: front_rvy.php:806
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:346
+#: visual-compare_rvy.php:102
+msgid "Restore"
+msgstr "Pulihkan"
+
+#: front_rvy.php:810
+#: front_rvy.php:812
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Ini adalah Revisi Masa Lalu (dari %s). %s %s"
+
+#: front_rvy.php:814
+#, php-format
+msgid "Past Revision (from %s)."
+msgstr "Revisi Masa Lalu (dari %s)."
+
+#: front_rvy.php:826
+msgid "More revision actions"
+msgstr "Lebih banyak tindakan revisi"
+
+#: functions.php:567
+msgid "Scheduled Rev."
+msgstr "Rev. Terjadwal."
+
+#: functions.php:572
+#: functions.php:577
+msgid "Submitted Rev."
+msgstr "Rev. Diajukan."
+
+#: functions.php:957
+msgid "A workflow revision cannot be published through a post creation request."
+msgstr "Revisi alur kerja tidak dapat diterbitkan melalui permintaan pembuatan pos."
+
+#: functions.php:964
+msgid "You are not allowed to publish this post type."
+msgstr "Anda tidak diizinkan untuk menerbitkan jenis pos ini."
+
+#: includes/CoreAdmin.php:15
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"Anda sedang menggunakan PublishPress Revisions Free. Versi Pro memiliki "
+"lebih banyak fitur dan dukungan. %sUpgrade ke Pro%s"
+
+#: includes/CoreAdmin.php:197
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Upgrade ke PublishPress Revisions Pro untuk integrasi dengan fitur kunci "
+"dari plugin ini:"
+
+#: includes/CoreAdmin.php:201, fuzzy
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:208
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: Pemberitahuan Kustom"
+
+#: includes/CoreAdmin.php:210
+msgid "Plugin integration details"
+msgstr "Detail integrasi plugin"
+
+#: includes/CoreAdmin.php:221
+msgid "Need Revisions Support?"
+msgstr "Butuh Dukungan Revisi?"
+
+#: includes/CoreAdmin.php:226
+msgid "If you need help or have a new feature request, let us know."
+msgstr ""
+"Jika Anda memerlukan bantuan atau memiliki permintaan fitur baru, beri tahu "
+"kami."
+
+#: includes/CoreAdmin.php:227
+msgid "Request support for PublishPress Revisions"
+msgstr "Minta dukungan untuk PublishPress Revisions"
+
+#: includes/CoreAdmin.php:228
+msgid "Request Support"
+msgstr "Minta Dukungan"
+
+#: includes/CoreAdmin.php:237
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Dokumentasi rinci juga tersedia di situs web plugin."
+
+#: includes/CoreAdmin.php:238
+msgid "View PublishPress Revisions knowledge base"
+msgstr "Lihat basis pengetahuan PublishPress Revisions"
+
+#: includes/CoreAdmin.php:239
+msgid "View Knowledge Base"
+msgstr "Lihat Basis Pengetahuan"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:204
+msgid "Modified: "
+msgstr "Dimodifikasi: "
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
+#: includes/visual-post-compare/visual-post-compare.php:133
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3135
+msgid "Post Date: "
+msgstr "Tanggal Pos: "
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
+#, php-format
+msgid "Author: %s"
+msgstr "Penulis: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:209
+#, fuzzy, php-format
+msgid "Status: %s"
+msgstr "Status: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:210
+#, php-format
+msgid "Action: %s"
+msgstr "Aksi: %s"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:211
+msgid "Current"
+msgstr "Saat Ini"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:213
+#. translators: %s: revision approver display name.
+#, php-format
+msgid "(approved by %s)"
+msgstr "(disetujui oleh %s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
+#. translators: %s: direct editor display name.
+#, fuzzy, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
+msgid "Comparison legend"
+msgstr "Legenda perbandingan"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+msgid "Added"
+msgstr "Ditambahkan"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
+msgid "Removed"
+msgstr "Dihapus"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
+msgid "Modified"
+msgstr "Dimodifikasi"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
+msgid "Loading comparison..."
+msgstr "Memuat perbandingan..."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
+msgid "The target post content has been replaced with the approved content."
+msgstr "Konten pos target telah diganti dengan konten yang disetujui."
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3473
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3473
+msgid "Classic compare screen"
+msgstr "Layar perbandingan klasik"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
+msgid "Visual comparison settings"
+msgstr "Pengaturan perbandingan visual"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:312
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:313
+msgid "Past Revision"
+msgstr "Revisi Sebelumnya"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:347
+msgid "Restoring"
+msgstr "Mengembalikan"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:379
+msgid "Published by Scheduled Revision"
+msgstr "Diterbitkan oleh Revisi Terjadwal"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:381
+msgid "Published by Revision"
+msgstr "Diterbitkan oleh Revisi"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:407
+msgid "Published by Direct Edit"
+msgstr "Diterbitkan oleh Edit Langsung"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:423
+msgid "Publishing"
+msgstr "Menerbitkan"
+
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:426
+msgid "Approving"
+msgstr "Menyetujui"
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:73
+msgid "You are not allowed to view the revisions."
+msgstr "Anda tidak diizinkan untuk melihat revisi-revisi tersebut."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:86
+#: includes/visual-post-compare/visual-post-compare.php:61
+#: includes/visual-post-compare/visual-post-compare.php:256
+msgid "You are not allowed to view the revision."
+msgstr "Anda tidak diizinkan untuk melihat revisi tersebut."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:105
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:112
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:179
+#: includes/visual-post-compare/visual-post-compare.php:51
+#: includes/visual-post-compare/visual-post-compare.php:237
+msgid "Invalid revision ID."
+msgstr "ID revisi tidak valid."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:129
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:140
+msgid "You are not allowed to approve the revision."
+msgstr "Anda tidak diizinkan untuk menyetujui revisi tersebut."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:160
+msgid "The revision could not be approved."
+msgstr "Revisi tidak dapat disetujui."
+
+#: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:172
+msgid "The revision has been approved and scheduled for publication."
+msgstr "Revisi telah disetujui dan dijadwalkan untuk diterbitkan."
+
+#: includes/visual-post-compare/visual-post-compare.php:250
+#: includes/visual-post-compare/visual-post-compare.php:256
+#: includes/visual-post-compare/visual-post-compare.php:261
+#: includes/visual-post-compare/visual-post-compare.php:269
+#: includes/visual-post-compare/visual-post-compare.php:314
+#: includes/visual-post-compare/visual-post-compare.php:413
+#: visual-compare_rvy.php:13
+#: visual-compare_rvy.php:14
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3606
+msgid "Compare Revisions"
+msgstr "Bandingkan Revisi"
+
+#: includes/visual-post-compare/visual-post-compare.php:261
+msgid "You are not allowed to view this comparison."
+msgstr "Anda tidak diizinkan untuk melihat perbandingan ini."
+
+#: includes/visual-post-compare/visual-post-compare.php:414
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3532
+msgid "Loading comparison…"
+msgstr "Memuat perbandingan…"
+
+#: lib/debug.php:97
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s kueri dalam %2$s detik. %3$s MB digunakan."
+
+#: revision-creation_rvy.php:190
+msgid "Could not insert post into the database"
+msgstr "Tidak dapat memasukkan pos ke dalam basis data"
+
+#: revision-creation_rvy.php:450
+msgid "Could not insert revision into the database"
+msgstr "Tidak dapat memasukkan revisi ke dalam basis data"
+
+#: revision-workflow_rvy.php:171
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s Diperbarui"
+
+#: revision-workflow_rvy.php:173
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s memperbarui %2$s dari %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:175
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:177
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s mengajukan perubahan ke %2$s \"%3$s\". Anda dapat meninjau perubahan "
+"untuk kemungkinan publikasi:"
+
+#: revision-workflow_rvy.php:185
+msgid "Preview and Approval: "
+msgstr "Prabaca dan Persetujuan: "
+
+#: revision-workflow_rvy.php:188
+msgid "New Revisions: "
+msgstr "Revisi Baru: "
+
+#: revision-workflow_rvy.php:190
+#, fuzzy, php-format
+msgid "Edit %s: "
+msgstr "Edit %s: "
+
+#: revisionary.php:122
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Plugin ini dapat dihapus.</strong>"
+
+#: revisionary_main.php:206
+msgid "Visual compare is not enabled."
+msgstr "Perbandingan visual tidak diaktifkan."
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "Setiap 2 Menit"
+
+#: rvy_init-functions.php:143
+#: rvy_init-functions.php:172
+msgid "You are not allowed to revise this post."
+msgstr "Anda tidak diizinkan untuk merevisi pos ini."
+
+#: rvy_init-functions.php:269
+#: rvy_init-functions.php:281
+msgid "Working Copy"
+msgstr "Salinan Kerja"
+
+#: rvy_init-functions.php:270
+msgid "Create Working Copy"
+msgstr "Buat Salinan Kerja"
+
+#: rvy_init-functions.php:272
+msgid "Creating Working Copy..."
+msgstr "Membuat Salinan Kerja..."
+
+#: rvy_init-functions.php:273
+msgid "Working Copy ready"
+msgstr "Salinan Kerja siap"
+
+#: rvy_init-functions.php:274
+#: rvy_init-functions.php:292
+msgid "Approve Changes"
+msgstr "Setujui Perubahan"
+
+#: rvy_init-functions.php:276
+#: rvy_init-functions.php:294
+msgid "Approving Changes..."
+msgstr "Menyetujui Perubahan..."
+
+#: rvy_init-functions.php:277
+#: rvy_init-functions.php:295
+#: rvy_init-functions.php:313
+msgid "Publish Changes"
+msgstr "Terbitkan Perubahan"
+
+#: rvy_init-functions.php:278
+#: rvy_init-functions.php:296
+#: rvy_init-functions.php:314
+#: rvy_init-functions.php:334
+#: rvy_init-functions.php:351
+#: rvy_init-functions.php:368
+msgid "Save Revision"
+msgstr "Simpan Revisi"
+
+#: rvy_init-functions.php:280
+msgid "Working Copies"
+msgstr "Salinan Kerja"
+
+#: rvy_init-functions.php:282
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Salinan Kerja <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Salinan Kerja <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:287
+#: rvy_init-functions.php:299
+msgid "Change Request"
+msgstr "Permintaan Perubahan"
+
+#: rvy_init-functions.php:288
+msgid "Submit Change Request"
+msgstr "Ajukan Permintaan Perubahan"
+
+#: rvy_init-functions.php:291
+msgid "Changes Submitted"
+msgstr "Perubahan Diajukan"
+
+#: rvy_init-functions.php:298
+msgid "Change Requests"
+msgstr "Permintaan Perubahan"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Permintaan Perubahan <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Permintaan Perubahan <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:301
+msgid "Enable Change Requests"
+msgstr "Aktifkan Permintaan Perubahan"
+
+#: rvy_init-functions.php:306
+#: rvy_init-functions.php:317
+msgid "Scheduled Change"
+msgstr "Perubahan Terjadwal"
+
+#: rvy_init-functions.php:307
+#: rvy_init-functions.php:308
+#: rvy_init-functions.php:311
+#: rvy_init-functions.php:312
+msgid "Schedule Changes"
+msgstr "Jadwalkan Perubahan"
+
+#: rvy_init-functions.php:310
+msgid "Changes are Scheduled."
+msgstr "Perubahan telah dijadwalkan."
+
+#: rvy_init-functions.php:316
+msgid "Scheduled Changes"
+msgstr "Perubahan Terjadwal"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Terjadwal <span class=\\\"count\\\">(%d)</span>"
+msgstr[1] "Terjadwal <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:326
+msgid "Unsubmitted Revision"
+msgstr "Revisi yang Belum Diajukan"
+
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:328
+msgid "Create Revision"
+msgstr "Buat Revisi"
+
+#: rvy_init-functions.php:329
+msgid "Creating Revision..."
+msgstr "Membuat Revisi..."
+
+#: rvy_init-functions.php:330
+msgid "The Revision is ready to edit."
+msgstr "Revisi siap untuk diedit."
+
+#: rvy_init-functions.php:330
+msgid "Revision ready to edit."
+msgstr "Revisi siap diedit."
+
+#: rvy_init-functions.php:331
+#: rvy_init-functions.php:333
+#: rvy_init-functions.php:348
+#: rvy_init-functions.php:350
+#: rvy_init-functions.php:365
+#: rvy_init-functions.php:367
+msgid "Publish Revision"
+msgstr "Terbitkan Revisi"
+
+#: rvy_init-functions.php:336
+msgid "Unsubmitted Revisions"
+msgstr "Revisi yang Belum Diajukan"
+
+#: rvy_init-functions.php:337
+msgid "Not Submitted"
+msgstr "Belum Diajukan"
+
+#: rvy_init-functions.php:338
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Belum Diajukan <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Belum Diajukan <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:343
+msgid "Submitted Revision"
+msgstr "Revisi Diajukan"
+
+#: rvy_init-functions.php:344
+#: rvy_init-functions.php:485
+msgid "Submit Revision"
+msgstr "Kirim Revisi"
+
+#: rvy_init-functions.php:347
+msgid "The Revision is Submitted"
+msgstr "Revisi Telah Dikirim"
+
+#: rvy_init-functions.php:347
+msgid "Revision Submitted"
+msgstr "Revisi Dikirim"
+
+#: rvy_init-functions.php:353
+#: visual-compare_rvy.php:161
+msgid "Submitted Revisions"
+msgstr "Revisi yang telah dikirim"
+
+#: rvy_init-functions.php:354
+msgid "Submitted"
+msgstr "Dikirim"
+
+#: rvy_init-functions.php:355
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Dikirim <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Dikirim <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:360
+msgid "Scheduled Revision"
+msgstr "Revisi Terjadwal"
+
+#: rvy_init-functions.php:361
+msgid "Schedule Revision"
+msgstr "Jadwalkan Revisi"
+
+#: rvy_init-functions.php:364
+msgid "The Revision is Scheduled"
+msgstr "Revisi Telah Terjadwal"
+
+#: rvy_init-functions.php:364
+msgid "Revision Scheduled"
+msgstr "Revisi Terjadwal"
+
+#: rvy_init-functions.php:372
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Terjadwal <span class=\\\"count\\\">(%s)</span>"
+msgstr[1] "Terjadwal <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:472
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sSalinan & Perubahan%s(%s)"
+msgstr[1] "%sSalinan & Perubahan%s(%s)"
+
+#: rvy_init-functions.php:473
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sRevisi Saya%s(%s)"
+msgstr[1] "%sRevisi Saya%s(%s)"
+
+#: rvy_init-functions.php:475
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sRevisi untuk Pos Saya%s(%s)</span>"
+msgstr[1] "%sRevisi untuk Pos Saya%s(%s)"
+
+#: rvy_init-functions.php:480
+msgid "Post Author"
+msgstr "Penulis Pos"
+
+#: rvy_init-functions.php:481
+msgid "Published Post"
+msgstr "Pos yang Dipublikasikan"
+
+#: rvy_init-functions.php:486
+msgid "Submit Changes"
+msgstr "Kirim Perubahan"
+
+#: rvy_init-functions.php:703, fuzzy
+msgid "Revisor"
+msgstr "Revisor"
+
+#: rvy_init-functions.php:826
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post."
+msgstr "Kemampuan unfiltered_html diperlukan untuk membuat revisi dari pos ini."
+
+#: rvy_init-functions.php:1293
+msgid "Revision Workflow"
+msgstr "Alur Kerja Revisi"
+
+#: visual-compare_rvy.php:86
+msgid "Compare Scheduled Revisions"
+msgstr "Bandingkan Revisi Terjadwal"
+
+#: visual-compare_rvy.php:88
+msgid "Compare New Revisions"
+msgstr "Bandingkan Revisi Baru"
+
+#: visual-compare_rvy.php:91
+msgid "Compare Past Revisions"
+msgstr "Bandingkan Revisi Lampau"
+
+#: visual-compare_rvy.php:181
 msgid "Scheduled:"
 msgstr "Terjadwal:"
+
+#: admin/rvy_revision-block-edit.dev.js:34
+#: admin/rvy_revision-block-edit.js:34
+msgid "Revision updated"
+msgstr "Revisi diperbarui"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:112
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:194
+#: includes/visual-post-compare/visual-post-compare-standalone.js:194
+msgid "Add Format"
+msgstr "Tambah Format"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:113
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:195
+#: includes/visual-post-compare/visual-post-compare-standalone.js:195
+msgid "Remove Format"
+msgstr "Hapus Format"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:114
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:466
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:352
+#: includes/visual-post-compare/visual-post-compare-standalone.js:196
+#: includes/visual-post-compare/visual-post-compare-standalone.js:352
+msgid "Modify Format"
+msgstr "Ubah Format"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:228
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:252
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:257
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2013
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2042
+msgid "bolding"
+msgstr "tebal"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:229
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:258
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2014
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2043
+msgid "italics"
+msgstr "miring"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:230
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:259
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2015
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2044
+msgid "underscore"
+msgstr "garis bawah"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:231
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2016
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2016
+msgid "strikethrough"
+msgstr "coret"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:244
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:301
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2059
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1501
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2029
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2059
+msgid "Change font size"
+msgstr "Ubah ukuran font"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:252
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2037
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2037
+msgid "Remove bolding"
+msgstr "Hapus tebal"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:253
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2038
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2038
+msgid "Remove italics"
+msgstr "Hapus miring"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:254
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2039
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2039
+msgid "Remove underscore"
+msgstr "Hapus garis bawah"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:255
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2040
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2040
+msgid "Remove strikethrough"
+msgstr "Hapus coret"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:257
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2042
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2042
+msgid "Add bolding"
+msgstr "Tambah tebal"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:258
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2043
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2043
+msgid "Add italics"
+msgstr "Tambah miring"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:259
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2044
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2044
+msgid "Add underscore"
+msgstr "Tambah garis bawah"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:260
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2045
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2045
+msgid "Add strikethrough"
+msgstr "Tambah coret"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:280
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:911
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2355
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2295
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2306
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2321
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2355
+#, js-format
+msgid "Modified HTML tag: %s"
+msgstr "Tag HTML yang Dimodifikasi: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:290
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2333
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2333
+#, js-format
+msgid "Modified HTML tag: %1$s, %2$s"
+msgstr "Tag HTML yang Dimodifikasi: %1$s, %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:304
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:334
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#, js-format
+msgid ""
+"Modify format:\n"
+" %s"
+msgstr ""
+"Ubah format:\n"
+" %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:307
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+msgid "Change ID"
+msgstr "Ubah ID"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:313
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#, js-format
+msgid "Add classes: %s"
+msgstr "Tambahkan kelas: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:314
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#, js-format
+msgid "Remove classes: %s"
+msgstr "Hapus kelas: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:317
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+msgid "Modify style"
+msgstr "Ubah gaya"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:327
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#, js-format
+msgid "Remove %s"
+msgstr "Hapus %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:329
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#, js-format
+msgid "Add %s"
+msgstr "Tambahkan %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:331
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#, js-format
+msgid "Change %s"
+msgstr "Ubah %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:478
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:604
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:718
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:400
+#: includes/visual-post-compare/visual-post-compare-standalone.js:192
+#: includes/visual-post-compare/visual-post-compare-standalone.js:400
+msgid "Remove"
+msgstr "Hapus"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:706
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:410
+#: includes/visual-post-compare/visual-post-compare-standalone.js:193
+#: includes/visual-post-compare/visual-post-compare-standalone.js:410
+msgid "Add"
+msgstr "Tambahkan"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:964
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+msgid "Add text: line break"
+msgstr "Tambahkan teks: pemisah baris"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:973
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+msgid "Remove text: line break"
+msgstr "Hapus teks: pemisah baris"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1159
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+msgid "WordPress Classic Editor content conversion APIs are unavailable."
+msgstr "API konversi konten WordPress Classic Editor tidak tersedia."
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1453
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1897
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1897
+#, js-format
+msgid "Show previous image: %s"
+msgstr "Tampilkan gambar sebelumnya: %s"
+
+#: includes/visual-post-compare/visual-post-compare-classic.dev.js:1454
+#: includes/visual-post-compare/visual-post-compare-classic.js:101
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1898
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1898
+msgid "Show previous image"
+msgstr "Tampilkan gambar sebelumnya"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:60
+#: includes/visual-post-compare/visual-post-compare-standalone.js:60
+msgid "WordPress core block definitions are unavailable on this screen."
+msgstr "Definisi blok inti WordPress tidak tersedia di layar ini."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:68
+#: includes/visual-post-compare/visual-post-compare-standalone.js:68
+msgid "WordPress core blocks could not be registered for comparison."
+msgstr "Blok inti WordPress tidak dapat didaftarkan untuk perbandingan."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:903
+#: includes/visual-post-compare/visual-post-compare-standalone.js:903
+msgid "Classic Editor comparison support is unavailable."
+msgstr "Dukungan perbandingan Classic Editor tidak tersedia."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:950
+#: includes/visual-post-compare/visual-post-compare-standalone.js:950
+msgid "WordPress 7.0 block revision parser APIs are unavailable."
+msgstr "API parser revisi blok WordPress 7.0 tidak tersedia."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:990
+#: includes/visual-post-compare/visual-post-compare-standalone.js:990
+msgid ""
+"The comparison was generated, but WordPress could not parse any comparison "
+"blocks."
+msgstr ""
+"Perbandingan telah dihasilkan, tetapi WordPress tidak dapat mem-parsing "
+"blok perbandingan apa pun."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1125
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1125
+msgid "Select comparison post"
+msgstr "Pilih pos perbandingan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1782
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1490
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1492
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1494
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1496
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1782
+msgid "add"
+msgstr "tambahkan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1397
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1281
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1397
+msgid "image"
+msgstr "gambar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1788
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1282
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1491
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1493
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1495
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1497
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1788
+msgid "remove"
+msgstr "hapus"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1629
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1283
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1394
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1629
+msgid "modify"
+msgstr "ubah"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1285
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1284
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1285
+msgid "text"
+msgstr "teks"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1286
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1286, fuzzy
+msgid "format"
+msgstr "format"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1515
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1515
+msgid "change"
+msgstr "ubah"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1287
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1287
+msgid "link"
+msgstr "tautan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1396
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1396
+msgid "image's attributes"
+msgstr "atribut gambar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1420
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1420
+msgid "Table"
+msgstr "Tabel"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1427
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1427
+msgid "Gallery"
+msgstr "Galeri"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1430
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1430
+msgid "Paragraph"
+msgstr "Paragraf"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1431
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1431
+msgid "Section"
+msgstr "Bagian"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1448
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1448
+msgid "Revision Restore"
+msgstr "Pemulihan Revisi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1456
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1456
+msgid "added"
+msgstr "ditambahkan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1457
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1457
+msgid "removed"
+msgstr "dihapus"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1458
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1458
+msgid "modified"
+msgstr "dimodifikasi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1461
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1459
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1461
+msgid "changed"
+msgstr "diubah"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1463
+#, js-format
+msgid "This %1$s was <b>%2$s</b>%3$s"
+msgstr "%1$s ini adalah <b>%2$s</b>%3$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1475
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1475
+#, js-format
+msgid "%1$s will <b>%2$s</b> this %3$s%4$s"
+msgstr "%1$s akan <b>%2$s</b> %3$s ini%4$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1502
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1502
+msgid "font size"
+msgstr "ukuran font"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1516
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1516, fuzzy
+msgid "formatting"
+msgstr "formatting"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1523
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1523
+msgid "Revision restore"
+msgstr "Pemulihan revisi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1524
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1524
+msgid "Revision publication"
+msgstr "Publikasi revisi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1526
+#, fuzzy, js-format
+msgid "<b>%1$s</b> %2$s"
+msgstr "<b>%1$s</b> %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1532
+#, js-format
+msgid "%1$s and %2$s"
+msgstr "%1$s dan %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1533
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1533
+#, js-format
+msgid "%1$s will %2$s."
+msgstr "%1$s akan %2$s."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1540
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1540
+msgid "line break"
+msgstr "pemutusan baris"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1561
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1561
+#, js-format
+msgid "Add %d Image"
+msgid_plural "Add %d Images"
+msgstr[0] "Tambah %d Gambar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1564
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1564
+#, js-format
+msgid "Remove %d Image"
+msgid_plural "Remove %d Images"
+msgstr[0] "Hapus %d Gambar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1566
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1566
+#, js-format
+msgid "Modify %d Image"
+msgid_plural "Modify %d Images"
+msgstr[0] "Modifikasi %d Gambar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1587
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1587
+#, js-format
+msgid "%d Text Addition"
+msgid_plural "%d Text Additions"
+msgstr[0] "%d Penambahan Teks"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1589
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1589
+#, js-format
+msgid "%d Text Deletion"
+msgid_plural "%d Text Deletions"
+msgstr[0] "%d Penghapusan Teks"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1593
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1593
+#, js-format
+msgid "%d Link Change"
+msgid_plural "%d Link Changes"
+msgstr[0] "%d Perubahan Tautan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1598
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1598
+#, js-format
+msgid "Add %d Line Break"
+msgid_plural "Add %d Line Breaks"
+msgstr[0] "Tambah %d Pemutusan Baris"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1599
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1599
+#, js-format
+msgid "Remove %d Line Break"
+msgid_plural "Remove %d Line Breaks"
+msgstr[0] "Hapus %d Pemutusan Baris"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1606
+#, js-format
+msgid "%d formatting change"
+msgid_plural "%d formatting changes"
+msgstr[0] "%d perubahan format"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1623
+#, js-format
+msgid "Modified attributes: %s"
+msgstr "Atribut yang dimodifikasi: %s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1625
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1625
+msgid "Modified html markup"
+msgstr "Markup html yang dimodifikasi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2065
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2065
+#, js-format
+msgid "%1$s class added: %2$s"
+msgstr "%1$s kelas ditambahkan: %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2066
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2066
+#, js-format
+msgid "%1$s class removed: %2$s"
+msgstr "%1$s kelas dihapus: %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2072
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2072
+#, js-format
+msgid "%s style modified"
+msgstr "%s gaya dimodifikasi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2085
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2085
+#, js-format
+msgid "%1$s attribute modified: %2$s"
+msgstr "%1$s atribut dimodifikasi: %2$s"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2182
+msgid "Modified html tag:"
+msgstr "Tag html yang dimodifikasi:"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2405
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2405
+msgid "Select a changed block to view its details."
+msgstr "Pilih blok yang diubah untuk melihat rinciannya."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2631
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2420
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2631
+msgid "No attribute changes"
+msgstr "Tidak ada perubahan atribut"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2639
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2433
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2625
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2639
+msgid "Changed attributes"
+msgstr "Atribut yang diubah"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2448
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2448
+msgid "Changes detected."
+msgstr "Perubahan terdeteksi."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2507
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2507
+msgid "html tag"
+msgstr "tag html"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2602
+msgid "Image"
+msgstr "Gambar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2602
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2602
+msgid "Link"
+msgstr "Tautan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2618
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463, fuzzy
+msgid "Info"
+msgstr "Info"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2624
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2624
+msgid "Attributes"
+msgstr "Atribut"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2630
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2630
+msgid "Select content to view its details."
+msgstr "Pilih konten untuk melihat rinciannya."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2658
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2658
+msgid "Compare Custom Fields"
+msgstr "Bandingkan Bidang Kustom"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2661
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2661
+msgid "Revisions Pro displays cleanly formatted field changes for:"
+msgstr "Revisions Pro menampilkan perubahan bidang yang diformat dengan rapi untuk:"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2665
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2665
+msgid "Core WordPress fields"
+msgstr "bidang inti WordPress"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2671
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2671
+msgid "Many other popular plugins"
+msgstr "Banyak plugin populer lainnya"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2672
+#: includes/visual-post-compare/visual-post-compare-standalone.js:2672
+msgid "Many popular themes"
+msgstr "Banyak tema populer"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3113
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3113
+msgid "Edit Current"
+msgstr "Edit Saat Ini"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3149
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3149
+msgid "View Current"
+msgstr "Lihat Saat Ini"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3157
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3157
+msgid "Hide current post details"
+msgstr "Sembunyikan detail pos saat ini"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3157
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3156
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3157
+msgid "Show current post details"
+msgstr "Tampilkan detail pos saat ini"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3162
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3162
+#, js-format
+msgid "Post %d"
+msgstr "Pos %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3175
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3202
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3175
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3202
+msgid "View Revision"
+msgstr "Lihat Revisi"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3177
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3177
+msgid "Previous Revision"
+msgstr "Revisi Sebelumnya"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3183
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3183
+msgid "Hide previous revision details"
+msgstr "Sembunyikan detail revisi sebelumnya"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3183
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3182
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3183
+msgid "Show previous revision details"
+msgstr "Tampilkan detail revisi sebelumnya"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3188
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3206
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3188
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3206
+#, js-format
+msgid "Revision %d"
+msgstr "Revisi %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3234
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3234
+msgid "Click to view changes"
+msgstr "Klik untuk melihat perubahan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3260
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3260
+msgid "Custom Field Changes"
+msgstr "Perubahan Custom Field"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3268
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3268
+#, fuzzy, js-format
+msgid "%s: %d"
+msgstr "%s: %d"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3375
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3375
+msgid "Preview content"
+msgstr "Prabaca konten"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3382
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3382
+msgid "Field Changes"
+msgstr "Perubahan Field"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3388
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3388
+msgid "Show sidebar"
+msgstr "Tampilkan sidebar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3388
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3384
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3386
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3388
+msgid "Collapse sidebar"
+msgstr "Tutup sidebar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3395
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3395
+msgid "Comparison preview"
+msgstr "Prabaca perbandingan"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3423
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3423
+msgid "This title was changed"
+msgstr "Judul ini telah diubah"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3423
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3423
+msgid "Change Title"
+msgstr "Ubah Judul"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3451
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3451
+msgid "Sidebar view"
+msgstr "Tampilan sidebar"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3463
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3463
+msgid "Block"
+msgstr "Blok"
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3527
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3527
+msgid "Unable to load this comparison."
+msgstr "Tidak dapat memuat perbandingan ini."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3555
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3555
+msgid "Unable to reload this comparison."
+msgstr "Tidak dapat memuat ulang perbandingan ini."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3595
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3595
+msgid "Unable to approve this comparison."
+msgstr "Tidak dapat menyetujui perbandingan ini."
+
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3622
+#: includes/visual-post-compare/visual-post-compare-standalone.js:3622
+msgid "Compare to current post"
+msgstr "Bandingkan dengan pos saat ini"
+
+#: admin/admin_rvy.php:334
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Revisi"
+
+#: admin/class-list-table-archive.php:1200
+#: admin/class-list-table_rvy.php:2372
+#: admin/post-edit_rvy.php:226
+#: admin/post-edit_rvy.php:290
+#: admin/post-edit_rvy.php:304
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Bandingkan"
+
+#: admin/class-list-table-archive.php:1222
+msgctxt "revisions"
+msgid "Diff"
+msgstr "Selisih"
+
+#: admin/class-list-table_rvy.php:2384
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Setujui"
+
+#: admin/class-list-table_rvy.php:2391
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Terbitkan"
+
+#: admin/class-list-table_rvy.php:2400
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Tolak"
+
+#: admin/class-list-table-archive.php:1238
+#: admin/class-list-table_rvy.php:1088
+#: admin/class-list-table_rvy.php:2358
+#: admin/history_rvy.php:1528
+#: admin/post-edit_rvy.php:191
+#: admin/revision-ui_rvy.php:276
+#: admin/revision-ui_rvy.php:318
+msgctxt "verb"
+msgid "Preview"
+msgstr "Prabaca"
+
+#: admin/history_rvy.php:1335, fuzzy
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/options.php:2575
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/revision-queue_rvy.php:142
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "dari %s \"%s\""
+
+#: admin/revision-queue_rvy.php:145
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "dari %s"
+
+#: admin/revision-queue_rvy.php:148
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "dari \"%s\""
+
+#: admin/revision-queue_rvy.php:153
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "oleh %s "
+
+#: admin/revision-queue_rvy.php:159
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "pada %s"
+
+#: admin/revision-ui_rvy.php:348
+#. translators: post revision: 1: when, 2: author name
+#, php-format
+msgctxt "post revision"
+msgid "%1$s by %2$s"
+msgstr "%1$s oleh %2$s"
+
+#: rvy_init-functions.php:715, fuzzy
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Revisor"

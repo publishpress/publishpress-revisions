@@ -138,6 +138,10 @@ function rvy_ajax_handler() {
 				
 				case 'create_revision':
 					check_ajax_referer('create_revision', '_rvynonce');
+
+                    if (!rvy_can_access_copy_source($post_id, true)) {
+                        wp_die(esc_html__('You are not allowed to revise this post.', 'revisionary'), '', ['response' => 403]);
+                    }
 					
 					if (current_user_can('copy_post', $post_id)) {
 						$time_gmt = (!empty($_REQUEST['rvy_date_selection'])) ? intval($_REQUEST['rvy_date_selection']) : '';  // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
@@ -163,6 +167,10 @@ function rvy_ajax_handler() {
 				case 'create_scheduled_revision':
 					if (!empty($_REQUEST['rvy_date_selection'])) {						// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 						check_ajax_referer('create_scheduled_revision', '_rvynonce');
+
+                        if (!rvy_can_access_copy_source($post_id, true)) {
+                            wp_die(esc_html__('You are not allowed to revise this post.', 'revisionary'), '', ['response' => 403]);
+                        }
 						
 						$time_gmt = intval($_REQUEST['rvy_date_selection']);			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
@@ -610,6 +618,9 @@ function rvy_detect_post_id() {
 	
 	if ( isset($revisionary) && $revisionary->doing_rest && $revisionary->rest->is_posts_request ) {
 		$post_id = $revisionary->rest->post_id;
+
+	} elseif (defined('REST_REQUEST') && REST_REQUEST) {
+        return 0;
 
 	} elseif ( ! empty( $_GET['post'] ) ) {			// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		$post_id = (int) $_GET['post'];				// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing

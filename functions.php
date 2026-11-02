@@ -959,7 +959,81 @@ function rvy_has_revisor_capabilities($caps) {
     }
     return false;
 }
+
+add_action('rest_api_init', function () {
+    foreach (get_post_types(['show_in_rest' => true], 'objects') as $type) {
+        add_filter('rest_pre_insert_' . $type->name, function ($prepared, $request) use ($type) {
+            if (is_wp_error($prepared)) { return $prepared; }
+            $id = absint($request->get_param('id'));
+            $alias = absint($request->get_param('post'));
+            if (!$id && $alias && rvy_in_revision_workflow($alias)) {
+                return new WP_Error('revisionary_invalid_rest_create', __('A workflow revision cannot be published through a post creation request.', 'revisionary'), ['status' => 403]);
+            }
+            if ($id && rvy_in_revision_workflow($id)) {
+                $status = isset($prepared->post_status) ? $prepared->post_status : $request->get_param('status');
+                $status_object = get_post_status_object($status);
+                if (('future' === $status || ($status_object && ($status_object->public || $status_object->private)))
+                    && !current_user_can($type->cap->publish_posts)) {
+                    return new WP_Error('revisionary_cannot_publish', __('You are not allowed to publish this post type.', 'revisionary'), ['status' => 403]);
+                }
+            }
+            return $prepared;
+        }, PHP_INT_MAX, 2);
+    }
+});
+
+/**
+ * Authorize every source, including the parent behind a workflow/native revision.
+ * A creation nonce and copy capabilities do not grant access to source content.
+ */
+function rvy_can_access_copy_source($post_id, $revise = false) {
+    $seen = [];
+    $post_id = (int) $post_id;
+
+    while ($post_id > 0 && !isset($seen[$post_id])) {
+        $seen[$post_id] = true;
+        $source = get_post($post_id);
+        if (!$source) {
+            return false;
+        }
+
+        // Duplicating workflow changes is an editing operation on the source
+        // revision, followed by a duplication permission check on its parent.
+        // Do not map duplicate_post against the revision itself.
+        if (!$revise && rvy_in_revision_workflow($source)) {
+            if (!current_user_can('edit_post', $source->ID)) {
+                return false;
+            }
+            $post_id = (int) $source->comment_count;
+            continue;
+        }
+
+        if (!current_user_can('read_post', $source->ID)) {
+            return false;
+        }
+
+        if (!$revise && !current_user_can('duplicate_post', $source->ID)) {
+            return false;
+        }
+
+        if ('revision' === $source->post_type) {
+            $post_id = (int) $source->post_parent;
+        } elseif (rvy_in_revision_workflow($source)) {
+            $post_id = (int) $source->comment_count;
+        } else {
+            // copy_post is the plugin's post-specific Create Revision capability.
+            // It includes configured copy/revise permissions and full editors,
+            // without requiring direct editing access to the published source.
+            return !$revise || current_user_can('copy_post', $source->ID);
+        }
+    }
+
+    // Missing parents and cyclic revision associations fail closed.
+    return false;
+}
+
 require_once __DIR__ . '/admin/duplicate-capabilities_rvy.php';
+
 require_once __DIR__ . '/permissions-read_rvy.php';
 
 /** Match workflow MIME statuses without a MIME subtype, as used by the native queue. */

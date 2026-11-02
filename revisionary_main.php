@@ -1664,7 +1664,12 @@ class Revisionary
 			return $wp_blogcaps;
 		}
 
-		$post_id = ( ! empty($args[2]) ) ? $args[2] : rvy_detect_post_id();
+        if (empty($args[2]) || !is_scalar($args[2])
+            || empty($args[0]) || !in_array($args[0], ['edit_post', 'edit_page', 'read_post', 'read_page', 'delete_post', 'delete_page'], true)) {
+            return $wp_blogcaps;
+        }
+    
+        $post_id = (int) $args[2];
 
 		if (!$post = get_post($post_id)) {
 			if ((-1 == $post_id) && defined('PRESSPERMIT_PRO_VERSION') && !empty(presspermit()->meta_cap_post)) {  // wp_cache_add(-1) does not work for map_meta_cap call on get-revision-diffs ajax call 
