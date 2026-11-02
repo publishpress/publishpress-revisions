@@ -54,6 +54,11 @@ class RevisionCreation {
 	function copyPost($post_id, $post_status, $args = [], $post_data = []) {
 		global $wpdb, $current_user;
 
+        // Enforce source access here, including direct API and force callers.
+        if (!rvy_can_access_copy_source($post_id)) {
+            return 0;
+        }
+
         $published_post = get_post($post_id);
 
 		$set_post_properties = [       
@@ -248,6 +253,12 @@ class RevisionCreation {
 	// If an autosave was stored for the current user prior to this creation, it will be retrieved in place of the main revision. 
 	function createRevision($post_id, $revision_status, $args = [], $revision_data = []) {
         global $wpdb, $current_user;
+
+        // Check before reading content, reusing a revision, or copying metadata.
+        if (!rvy_can_access_copy_source($post_id, true)
+            || (!empty($args['meta_post_id']) && !rvy_can_access_copy_source($args['meta_post_id'], true))) {
+            return 0;
+        }
 
 		$is_revision = rvy_in_revision_workflow($post_id);
 

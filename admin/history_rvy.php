@@ -690,6 +690,17 @@ class RevisionaryHistory
 
     // port of core wp_get_revision_ui_diff() to allow comparison of pending, future revisions (published post ID stored in comment_count instead of post_parent)
     public function getRevisionUIDiff($post, $compare_from, $compare_to) {
+        $anchor = get_post($post);
+        if (!$anchor || !current_user_can('read_post', $anchor->ID)) { return []; }
+        foreach ([$compare_from, $compare_to] as $candidate) {
+            if (!$candidate) { continue; } // Core uses zero for the empty first revision.
+            $item = get_post($candidate);
+            if (!$item || !current_user_can('read_post', $item->ID)) { return []; }
+            $parent = wp_is_post_revision($item);
+            if (!$parent && rvy_in_revision_workflow($item)) { $parent = rvy_post_id($item->ID); }
+            if ((int) $item->ID !== (int) $anchor->ID && (int) $parent !== (int) $anchor->ID) { return []; }
+        }
+
         if ( ! $post ) {
             return false;
         }

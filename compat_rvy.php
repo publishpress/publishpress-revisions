@@ -9,31 +9,6 @@ class PP_Revisions_Compat {
         add_filter('revisionary_post_revision_status', [$this, 'fltNewRevisionStatus'], 10, 3);
         add_filter('revisionary_require_base_statuses', [$this, 'fltRequireRevisionBaseStatuses']);
 
-        add_filter(
-            'user_has_cap',
-            function($wp_sitecaps, $orig_reqd_caps, $args) {
-                global $current_user;
-
-                $args = (array)$args;
-                $orig_cap = (isset($args[0])) ? sanitize_key($args[0]) : '';
-
-                if ($post_id = rvy_detect_post_id()) {
-                    if (rvy_in_revision_workflow($post_id)) {
-                        if ($type_obj = get_post_type_object(get_post_field('post_type', $post_id))) {
-                            if (!empty($type_obj->cap->publish_posts) && !empty($type_obj->cap->edit_posts)
-                            && ($orig_cap == $type_obj->cap->publish_posts) && !empty($current_user->allcaps[$type_obj->cap->edit_posts])
-                            ) {
-                                $wp_sitecaps[$orig_cap] = true;
-                            }
-                        }
-                    }
-                }
-
-                return $wp_sitecaps;
-            },
-            10, 3
-        );
-
         add_filter( 
             'map_meta_cap',
             function($caps, $cap, $user_id, $args) {
