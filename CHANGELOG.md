@@ -1,5 +1,22 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.3.1] - 3 Nov 2026
+- Added : Opt-in setting: "Create Revision redirects to user's existing Unsubmitted Revision"
+- Fixed : Action Scheduler is not loaded correctly
+- Fixed : Action Scheduler publication fails if a custom external WP-Cron trigger is configured
+- Fixed : Page could be set as own parent on Revision Restore
+- Fixed : Change remaining "Copy" captions to "Duplicate"
+- Added : Option to require Duplicate Posts capabilities, with assignment tab in PublishPress Capabilities
+- Changed : Apply PublishPress Capabilities management or installation link in caption below each Revisions Settings capability option 
+- Fixed : Revisor may see Edit link in Posts / Pages list without having editing access
+- Fixed :  Security - Contributor can publish unreviewed content (reported by trangdld)
+- Fixed :  Security - Contributor can read others' unpublished posts via copy/revise (reported by trangdld)
+- Fixed :  Security - Subscriber can read others' unpublished posts via revision comparison (reported by trangdld)
+- Changed : Make Visual Compare sidebar collapsible
+- Changed : Visual Compare - improve formatting of block tab change description
+- Changed : Modify the "Draft saved" message after Revision update
+- Changed : Require PHP 8.2
+
 [4.2.0] - 15 Oct 2026
 - Added : Visual Compare extension API for page builder integrations in Revisions Pro
 - Added : Option to enable page JavaScript behavior in Visual Compare
