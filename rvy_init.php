@@ -217,9 +217,17 @@ if (defined('WPSEO_VERSION')) {
 				}
 			}
 
-			if (is_object($indexable) && isset($indexable->object_id) && empty($indexable->object_id)) {
-				// WordPress database error Duplicate entry '0' for key 'PRIMARY' for query INSERT INTO `wp_yoast_indexable`
-				return false;
+			// Only post indexables require a post ID. Archives, the home page and
+			// system pages legitimately have no object_id (including Yoast Local archives).
+			if (is_object($indexable) && isset($indexable->object_type) && ('post' === $indexable->object_type)) {
+				if (empty($indexable->object_id)) {
+				    return false;
+				}
+
+				// Background indexing may have no revision ID in the request.
+				if (rvy_in_revision_workflow($indexable->object_id) || wp_is_post_revision($indexable->object_id)) {
+					return false;
+				}
 			}
 
 			return $intend_to_save;
