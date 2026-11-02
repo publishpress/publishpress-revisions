@@ -7,9 +7,7 @@ namespace PublishPress;
  * Loaded lazily only when the current REST URL targets this plugin namespace.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+\defined('ABSPATH') || exit;
 
 final class Visual_Post_Compare_Dedicated_REST_Handler {
 	public static function register_routes() {

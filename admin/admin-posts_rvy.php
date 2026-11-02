@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 class RevisionaryAdminPosts {
     private $post_revision_count = array();
 	private $trashed_revisions;
@@ -154,38 +156,29 @@ class RevisionaryAdminPosts {
 	}
 
 	public function fltGetEditPostLink($link, $post_id, $context) {
-		if (!empty($this->filtering_edit_link[$post_id])) {
-			if (defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
-				return $link;
-			}
-			
-			remove_filter('user_has_cap', [$this, 'actUserHasCap'], 10, 3);
+        if (empty($this->filtering_edit_link[$post_id])
+            || defined('REVISIONARY_NO_REVISOR_POSTS_CAPS_WORKAROUND')) {
+            return $link;
+        }
 
-			add_action(
-				'admin_print_footer_scripts',
-				function () use ($link) {
-					if ($ipos = strpos($link, '&')) {
-						$link = substr($link, 0, $ipos);
-					}
-				?>
-					<script type="text/javascript">
-					/* <![CDATA[ */
-					jQuery(document).ready( function($) {
-						if ($('#the-list').length) {
-							$('td.column-name a[href*="<?php echo esc_url($link);?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
-							$('td.column-title a[href*="<?php echo esc_url($link);?>"]').contents().unwrap().closest('div.row-actions').find('span.edit,span.inline,span.trash').hide().closest('tr').find('.check-column input[type="checkbox"]').hide();
-						}
-					});
-					/* ]]> */
-					</script>
-				<?php
-				}
-			);
-		}
+        // Core may already have cached the temporary edit grant for this row.
+        // Remove the title anchor by post ID rather than matching an escaped URL.
+        add_action('admin_print_footer_scripts', function () use ($post_id) {
+            ?>
+            <script>
+            jQuery(function ($) {
+                var row = $('#post-<?php echo (int) $post_id; ?>');
+                row.find('.row-title').contents().unwrap();
+                row.find('.row-actions .edit, .row-actions .inline').remove();
+            });
+            </script>
+            <?php
+        });
 
-		return $link;
+        // Prevent an editor destination before the title markup is cleaned up.
+        return '';
 	}
-    
+
     function revision_action_notice() {
 		if ( ! empty($_GET['restored_post'] ) ) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			?>
@@ -319,6 +312,15 @@ class RevisionaryAdminPosts {
 	function revisions_row_action_link($actions = array()) {
 		global $post, $revisionary;
 
+		// fltPostsResults() temporarily restores missing edit capabilities so
+		// the Posts table can render Revisor-visible content without warnings.
+		// That compatibility grant also makes core add nonfunctional Edit and
+		// Quick Edit links. Remove those links server-side for posts detected as
+		// non-editable before the temporary capability filter was installed.
+		if (!empty($this->filtering_edit_link[$post->ID])) {
+			unset($actions['edit'], $actions['inline hide-if-no-js'], $actions['inline'], $actions['quick_edit']);
+		}
+
 		if (!empty($this->post_revision_count[$post->ID])) {
 			if ( 'trash' != $post->post_status && wp_check_post_lock( $post->ID ) === false ) {
 				$actions['revision_queue'] = "<a href='admin.php?page=revisionary-q&published_post={$post->ID}&all=1'>" . esc_html__('New Revisions', 'revisionary') . '</a>';
@@ -345,7 +347,7 @@ class RevisionaryAdminPosts {
 				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy{$referer_arg}$redirect_arg");
 				
 				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);
-				$actions['copy_post'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Copy', 'revisionary') . '</a>';
+				$actions['copy_post'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Duplicate', 'revisionary') . '</a>';
 			}
 
 			if (rvy_is_supported_post_type($post->post_type) && current_user_can('copy_post', $post->ID) && rvy_get_option('pending_revisions') && !$revision_blocked) {

@@ -55,6 +55,10 @@
 			width: 100% !important;
 			height: 100% !important;
 			max-width: none !important;
+			max-height: none !important;
+			margin: 0 !important;
+			transform: none !important;
+			pointer-events: none !important;
 			opacity: 0.4;
 			object-fit: contain;
 		}

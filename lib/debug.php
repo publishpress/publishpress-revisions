@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 /**
  * @phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_error_log, WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
@@ -10,8 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @phpcs:disable WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_is_writable
  */
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename(esc_url_raw(wp_unslash($_SERVER['SCRIPT_FILENAME']))) )
-	die();
+defined('ABSPATH') || exit;
 	
 	
 if ( ! function_exists('d_echo') ) {

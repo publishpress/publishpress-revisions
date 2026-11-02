@@ -8,9 +8,7 @@ namespace PublishPress;
  * Generator: ChatGPT 5.6
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+\defined('ABSPATH') || exit;
 
 final class Visual_Post_Compare {
 	const PAGE_SLUG       = 'rvy-visual-compare';

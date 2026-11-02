@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 
 // base class to be extended and implemented by external plugin
 class RevisionaryContentRoles {

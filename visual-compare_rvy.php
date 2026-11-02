@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 
 class RevisionaryVisualCompare {
     private $compare_page_hook = '';

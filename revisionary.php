@@ -5,11 +5,11 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 4.2.0
+ * Version: 4.3.1
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Requires at least: 5.5
- * Requires PHP: 7.2.5
+ * Requires PHP: 8.2
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * 
@@ -36,16 +36,16 @@
  *
  **/
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+defined('ABSPATH') || exit;
 
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '4.2.0';
+$pp_revisions_version = '4.3.1';
 
 global $wp_version;
 
-$min_php_version = '7.2.5';
+$min_php_version = '8.2';
 $min_wp_version  = '5.5';
 
 $invalid_php_version = version_compare(phpversion(), $min_php_version, '<');
@@ -170,8 +170,6 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
     ) {
         require_once REVISIONS_INTERNAL_VENDORPATH . '/autoload.php';
 	}
-	
-	include_once REVISIONS_INTERNAL_VENDORPATH . '/woocommerce/action-scheduler/action-scheduler.php';
 
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
     
@@ -192,6 +190,31 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
 			$bundledTranslations->init();
 		}
 	}, 10);
+}
+
+if (!defined('REVISIONARY_FILE')) {
+	$vendor_path = (defined('REVISIONS_PRO_INTERNAL_VENDORPATH')) ? REVISIONS_PRO_INTERNAL_VENDORPATH : REVISIONS_INTERNAL_VENDORPATH;
+	include_once( dirname(__FILE__).'/classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php');
+
+	if (class_exists('PublishPress\Revisions\ActionSchedulerFallbackInitializer')) {
+		add_filter('query', [PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'filterSchemaCharset']);
+		/**
+		 * Ensure Action Scheduler is initialized.
+		 */
+		add_action(
+			'plugins_loaded',
+			[PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'ensureInitialized'],
+			2
+		);
+
+		add_action('init', [PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'ensureTablesOnPluginsScreen'], 2);
+
+		include_once $vendor_path . '/woocommerce/action-scheduler/action-scheduler.php';
+
+		if (did_action('plugins_loaded')) {
+			PublishPress\Revisions\ActionSchedulerFallbackInitializer::ensureInitialized();
+		}
+	}
 }
 
 if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_loaded_by_pro)) {
@@ -222,6 +245,9 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 
 			pp_revisions_plugin_updated($pp_revisions_version);
 			pp_revisions_plugin_activation();
+
+			PublishPress\Revisions\ActionSchedulerFallbackInitializer::ensureInitialized();
+			PublishPress\Revisions\ActionSchedulerFallbackInitializer::ensureTables();
 		}
 	);
 
@@ -241,7 +267,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 	function revisionary_load() {
 		global $pp_revisions_version;
 		
-		define('PUBLISHPRESS_REVISIONS_VERSION', '4.2.0');
+		define('PUBLISHPRESS_REVISIONS_VERSION', '4.3.1');
 
 		if ( ! defined( 'RVY_VERSION' ) ) {
 			define( 'RVY_VERSION', PUBLISHPRESS_REVISIONS_VERSION );  // back compat

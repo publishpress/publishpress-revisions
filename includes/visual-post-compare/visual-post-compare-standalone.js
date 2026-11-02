@@ -1,1 +1,3682 @@
-!function(){"use strict";const e=window.VisualPostCompareStandalone;if(!e||!window.wp)return;const{apiFetch:t,blockEditor:i,blockLibrary:r,blockSerializationDefaultParser:o,blocks:s,components:a,element:n,hooks:l,i18n:c,privateApis:d,richText:u}=wp,{__experimentalUseBlockPreview:m,BlockIcon:p}=i,{Button:v,Notice:f,Spinner:h}=a,{createElement:g,useEffect:y,useMemo:b,useRef:_,useState:k}=n,{__:C,_n:N,sprintf:A}=c,{RichTextData:S,applyFormat:w,concat:L,create:E,getFormatType:x,registerFormatType:T,slice:P}=u,M=window.VisualPostCompareClassicDiff||null;let B=null;try{const{unlock:e}=d.__dangerousOptInToUnstableAPIsOnlyForCoreModules("I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.","@wordpress/editor"),t=e(s.privateApis);B=t&&t.parseRawBlock}catch(e){console.error("Visual Post Compare: Unable to unlock parseRawBlock().",e)}const R=o&&o.parse;let D=!1;function q(e){return String(e||"").match(/(?:[a-z][a-z\d+.-]*:|\/\/)[^\s<>"']+|www\.[^\s<>"']+|\s+|[\p{L}\p{N}_]+|[^\s\p{L}\p{N}_]+/giu)||[]}function H(e,t){const i=e.length+1,r=t.length+1,o=Array.from({length:i},()=>new Uint32Array(r));for(let i=e.length-1;i>=0;i--)for(let r=t.length-1;r>=0;r--)o[i][r]=e[i]===t[r]?o[i+1][r+1]+1:Math.max(o[i+1][r],o[i][r+1]);const s=[];let a=0,n=0;const l=(e,t)=>{if(!t)return;const i=s[s.length-1];i&&i.type===e?i.value+=t:s.push({type:e,value:t})};for(;a<e.length||n<t.length;)a<e.length&&n<t.length&&e[a]===t[n]?(l("unchanged",t[n]),a++,n++):n<t.length&&(a>=e.length||o[a][n+1]>o[a+1][n])?l("added",t[n++]):a<e.length&&l("removed",e[a++]);return function(e,t){const i=[];let r="",o="";const s=()=>{r&&i.push({type:"removed",value:r}),o&&i.push({type:"added",value:o}),r="",o=""};return e.forEach((a,n)=>{a.type!==t?"removed"===a.type?r+=a.value:o+=a.value:!a.value.trim()&&(r||o)&&e[n+1]&&e[n+1].type!==t?(r+=a.value,o+=a.value):(s(),i.push(a))}),s(),i}(s,"unchanged")}function I(e,t,i=!1){if(!i)return H(q(e),q(t));const r=[];return e&&e!==t&&r.push({type:"removed",value:e}),t&&r.push({type:e===t?"unchanged":"added",value:t}),r}function F(e){return/(?:url|href|src|link)\s*:?$/i.test(String(e||""))}function j(e){return Array.isArray(e)?e.map(j):e&&"object"==typeof e?Object.keys(e).sort().reduce((t,i)=>(t[i]=j(e[i]),t),{}):e}function U(e,t){const i=(e&&Array.isArray(e.formats)&&Array.isArray(e.formats[t])?e.formats[t]:[]).filter(e=>e&&"string"==typeof e.type&&!e.type.startsWith("revision/diff-")).map(e=>JSON.stringify(j(e))).sort();return JSON.stringify(i)}function O(t,i,r=!1,o=null){const s=r&&"string"==typeof t.text?t.text:t.toPlainText(),a=H(q(r&&"string"==typeof i.text?i.text:i.toPlainText()),q(s));let n=E({text:""}),l=0,c=0;return a.forEach(s=>{const a=s.value.length;if(r&&/^\s+$/u.test(s.value))"added"===s.type?(n=L(n,P(t,l,l+a)),l+=a):("removed"===s.type||(n=L(n,P(t,l,l+a)),l+=a),c+=a);else if("removed"===s.type){const e=P(i,c,c+a);n=L(n,w(e,{type:"revision/diff-removed",attributes:{title:C("Remove","revisionary")}},0,a)),c+=a,r&&o&&(o.hasGranularDiff=!0)}else if("added"===s.type){const e=P(t,l,l+a);n=L(n,w(e,{type:"revision/diff-added",attributes:{title:C("Add","revisionary")}},0,a)),l+=a,r&&o&&(o.hasGranularDiff=!0)}else n=L(n,r&&o&&e.htmlAttributeChanges?function(e,t,i,r,o,s){let a=P(e,i,i+o),n=null;for(let l=0;l<=o;l++){const c=l<o&&U(e,i+l)!==U(t,r+l);c&&null===n?n=l:c||null===n||(a=w(a,{type:"revision/diff-format-changed",attributes:{title:C("Modify Format","revisionary")}},n,l),n=null,s.hasGranularDiff=!0)}return a}(t,i,l,c,a,o):P(t,l,l+a)),l+=a,c+=a}),new S(n)}function $(e){if(Array.isArray(e))return e.map($);if(e&&"object"==typeof e)return Object.keys(e).sort().reduce((t,i)=>(t[i]=$(e[i]),t),{});if("string"!=typeof e)return e;const t=document.createElement("template");t.innerHTML=e;const i=document.createTreeWalker(t.content,NodeFilter.SHOW_TEXT);for(;i.nextNode();)i.currentNode.nodeValue=i.currentNode.nodeValue.replace(/[\t\r\n \u00a0]+/g,"");return t.innerHTML}function z(e,t=!1){const i=t?$(e.attrs):e.attrs;return JSON.stringify({name:e.blockName,attrs:i,html:(e.innerContent||[]).filter(e=>null!==e&&""!==String(e).trim()).map(e=>t?$(e):e)})}function W(e){if(!e||e.blockName&&"core/paragraph"!==e.blockName)return!1;const t=document.createElement("template");return t.innerHTML=e.innerHTML||"",!t.content.querySelector("div, section, article, aside, table, ul, ol, li, figure, blockquote")&&(!t.content.querySelector("br, img, hr, audio, video, iframe, object, embed, svg, canvas")&&!(t.content.textContent||"").replace(/\u00a0/g," ").trim())}function V(e){const t=document.createElement("div");return t.innerHTML=e&&e.innerHTML?e.innerHTML:"",t.textContent||""}function G(e,t){if(!e&&!t)return 1;if(!e||!t)return 0;const i=q(e).filter(e=>/[\p{L}\p{N}]/u.test(e)),r=q(t).filter(e=>/[\p{L}\p{N}]/u.test(e));if(!i.length&&!r.length)return 1;const o=new Set(i);let s=0;return r.forEach(e=>{o.has(e)&&s++}),s/Math.max(i.length,r.length,1)}function J(e,t){const i=document.createElement("template"),r=document.createElement("template");i.innerHTML=e.innerHTML||"",r.innerHTML=t.innerHTML||"";const o=i.content.firstElementChild,s=r.content.firstElementChild;if(!o||!s||1!==i.content.children.length||1!==r.content.children.length)return!1;const a=Me(o),n=Me(s);if(!a||a!==n||o.tagName===s.tagName)return!1;const l=new Set(["p","span","b","strong","i","em","ins","del","small","big","large","sup","sub","pre","q","h1","h2","h3","h4","h5","h6"]);return l.has(o.tagName.toLowerCase())||l.has(s.tagName.toLowerCase())}function X(e,t=!1){const i=[],r=[];if(e.forEach((e,t)=>{const o=e.__revisionDiffStatus&&e.__revisionDiffStatus.status;"removed"===o&&i.push({block:e,index:t}),"added"===o&&r.push({block:e,index:t})}),!i.length||!r.length)return e;const o=new Set,s=new Set,a=new Map;return i.forEach(n=>{let l=null,c=-1;const d=r.filter(e=>!s.has(e.index)&&(e.block.blockName===n.block.blockName||J(e.block,n.block))),u=i.filter(e=>e.block.blockName===n.block.blockName||J(e.block,n.block));if(d.forEach(i=>{if(!function(e,t){const i=document.createElement("div"),r=document.createElement("div");i.innerHTML=e.innerHTML||"",r.innerHTML=t.innerHTML||"";const o=(e,t)=>"core/paragraph"===e.blockName||!e.blockName&&1===t.children.length&&"P"===t.firstElementChild.tagName;if(!o(e,i)||!o(t,r))return!0;const s=(r.textContent||"").replace(/\s+/g," ").trim(),a=(i.textContent||"").replace(/\s+/g," ").trim();if(s===a)return!0;if(G(s,a)<.5)return!1;const n=H(q(s),q(a)).filter(e=>"unchanged"!==e.type),l=n.reduce((e,t)=>e+Array.from(t.value.trim()).length,0),c=n.reduce((e,t)=>e+q(t.value).filter(e=>/[\p{L}\p{N}]/u.test(e)).length,0);return l<=50&&c<=10}(i.block,n.block))return;const r=Math.min(i.index,n.index),o=Math.max(i.index,n.index);if(e.slice(r+1,o).some(e=>!e.__revisionDiffStatus))return;const s=J(i.block,n.block);let a=!1;if(t&&M&&(a=M.canBlendStructure(i.block,n.block),!a&&!s))return;const m=G(V(n.block),V(i.block));(1===d.length&&1===u.length||m>=.5||a||s)&&m>c&&(l=i,c=m)}),l){o.add(n.index),s.add(l.index);const e=t&&M?M.markHtmlFormattingChanges(l.block,n.block,(e,t)=>H(q(e),q(t))):null,i=t&&M&&M.hasImageOnlyDifference(l.block,n.block),r=e?{...l.block,innerHTML:e.html,innerContent:[e.html]}:l.block,c={status:"modified"};c.currentHtml=l.block.innerHTML||"",c.previousHtml=n.block.innerHTML||"",e&&(c.hasGranularDiff=!0,c.hasUnrepresentedAttributeDiff=!e.complete,c.htmlDiffComplete=Boolean(e.complete),c.forceContainerModified=Boolean(e.forceContainerModified)),i&&(c.hasGranularImageDiff=!0),a.set(l.index,{...r,__revisionDiffStatus:c,__previousRawBlock:n.block})}}),e.map((e,t)=>a.has(t)?a.get(t):o.has(t)||s.has(t)?null:e).filter(Boolean)}function Y(e,t,i=!1){const r=e.map(e=>z(e,i)),o=t.map(e=>z(e,i)),s=t.length+1,a=e.length+1,n=Array.from({length:s},()=>new Uint32Array(a));for(let i=t.length-1;i>=0;i--)for(let t=e.length-1;t>=0;t--)n[i][t]=o[i]===r[t]?n[i+1][t+1]+1:Math.max(n[i+1][t],n[i][t+1]);const l=[];let c=0,d=0;for(;c<t.length||d<e.length;)if(c<t.length&&d<e.length&&o[c]===r[d]){const r=e[d++],o=t[c++];l.push({...r,innerBlocks:Y(r.innerBlocks||[],o.innerBlocks||[],i)})}else d<e.length&&(c>=t.length||n[c][d+1]>n[c+1][d])?l.push({...e[d++],__revisionDiffStatus:{status:"added"}}):c<t.length&&l.push({...t[c++],__revisionDiffStatus:{status:"removed"}});return X(l,i)}function K(e){if(null==e)return"";if("string"==typeof e)return e;try{return JSON.stringify(e,null,2)}catch(t){return String(e)}}function Q(e){return null==e||""===e||"object"==typeof e&&Object.values(e).every(Q)}function Z(e,t){return!Q(e)||!Q(t)}function ee(e){const t=e=>{try{const t=JSON.parse(e);return t&&"object"==typeof t?t:e}catch(t){return e}};return{previous:t(e.filter(e=>"added"!==e.type).map(e=>e.value).join("")),current:t(e.filter(e=>"removed"!==e.type).map(e=>e.value).join(""))}}function te(e,t,i=!1,r=0){if(r<3&&(e&&"object"==typeof e||t&&"object"==typeof t)){const o=e&&"object"==typeof e?e:{},s=t&&"object"==typeof t?t:{};return g("dl",{className:"visual-post-compare-revision__attribute-array"},...Array.from(new Set([...Object.keys(s),...Object.keys(o)])).filter(e=>Z(o[e],s[e])).flatMap(a=>[g("dt",{key:"key-"+a},g(Q(o[a])&&!Q(s[a])?"del":"span",{className:Q(o[a])&&!Q(s[a])?"editor-revision-fields-diff__removed":""},Array.isArray(e)||Array.isArray(t)?"["+a+"]":a)),g("dd",{key:"value-"+a},te(o[a],s[a],i,r+1))]))}const o=e=>"object"==typeof e?JSON.stringify(e):String(e),s=i||K(e)===K(t);return g("span",null,s||Q(t)?null:g("del",{className:"editor-revision-fields-diff__removed"},o(t)),Q(e)?null:g(s?"span":"ins",{className:s?"":"editor-revision-fields-diff__added"},o(e)))}function ie(e,t){const i=ee(t);if(i.current&&"object"==typeof i.current||i.previous&&"object"==typeof i.previous)return[te(i.current,i.previous)];const r=t.filter(e=>"added"!==e.type).map(e=>e.value).join(""),o=t.filter(e=>"removed"!==e.type).map(e=>e.value).join(""),s=e=>/^https?:\/\/[^\s]+$/i.test(e);if(F(e)){const e=[];if(r&&r!==o&&e.push(g("del",{key:"previous",className:"editor-revision-fields-diff__removed"},s(r)?g("a",{href:r,target:"_blank",rel:"noopener noreferrer"},r):r)),o){const t=r!==o?"ins":"span",i=r!==o?{key:"current",className:"editor-revision-fields-diff__added"}:{key:"current"};e.push(g(t,i,s(o)?g("a",{href:o,target:"_blank",rel:"noopener noreferrer"},o):o))}return e}return t.map((e,t)=>"added"===e.type?g("ins",{key:t,className:"editor-revision-fields-diff__added"},e.value):"removed"===e.type?g("del",{key:t,className:"editor-revision-fields-diff__removed"},e.value):g("span",{key:t},e.value))}function re(e,t,i=!1){if(t.__revisionDiffStatus){if("modified"===t.__revisionDiffStatus.status&&t.__previousRawBlock){const r=B(t.__previousRawBlock);r&&function(e,t,i,r=!1){const o=s.getBlockType(e.name);if(!o||!o.attributes)return;if(r&&i.htmlDiffComplete)return;let a=!1;const n={};Object.entries(o.attributes).forEach(([o,s])=>{const l=e.attributes[o],c=t.attributes[o];if(s&&"rich-text"===s.source?l instanceof S&&c instanceof S&&(e.attributes[o]=O(l,c,r,i)):r&&M&&s&&"query"===s.source&&(e.attributes[o]=M.applyNestedAttributeDiff(l,c,s,i,O)),!(r||s&&"rich-text"===s.source)){const e=K(l),t=K(c);e!==t&&(n[o]=I(t,e,F(o)))}r&&M&&M.hasUnrepresentedAttributeDifference(l,c,s)&&(a=!0)}),!r&&Object.keys(n).length&&(i.changedAttributes=n),!r&&"core/image"===e.name&&e.attributes.url&&t.attributes.url&&e.attributes.url!==t.attributes.url&&(i.previousImageUrl=t.attributes.url),r&&(i.hasUnrepresentedAttributeDiff=Boolean(i.hasUnrepresentedAttributeDiff||a))}(e,r,t.__revisionDiffStatus,i)}e.__revisionDiffStatus=t.__revisionDiffStatus,e.attributes=e.attributes||{},e.attributes.__revisionDiffStatus=t.__revisionDiffStatus}if(e.innerBlocks&&t.innerBlocks)for(let r=0;r<e.innerBlocks.length;r++)e.innerBlocks[r]&&t.innerBlocks[r]&&re(e.innerBlocks[r],t.innerBlocks[r],i)}function oe(e){return/<!--\s+\/?wp:[a-z0-9_-]+(?:\/[a-z0-9_-]+)?(?:\s|-->)/i.test(e||"")}function se(e){const t=String(e||"");if(!t.trim()||oe(t))return t;if(!M||"function"!=typeof M.prepareContentForDiff)throw new Error(C("Classic Editor comparison support is unavailable.","revisionary"));return M.prepareContentForDiff(t)}function ae(e){return(e||[]).flatMap(e=>{const t=ae(e.innerBlocks||[]);if("core/paragraph"!==e.blockName||t.length)return[{...e,innerBlocks:t}];const i=document.createElement("template");i.innerHTML=e.innerHTML||"";const r=Array.from(i.content.children),o=r.length>1&&r.every(e=>"p"===e.tagName.toLowerCase())&&Array.from(i.content.childNodes).every(e=>e.nodeType===Node.ELEMENT_NODE||e.nodeType===Node.TEXT_NODE&&!(e.nodeValue||"").trim());return o?r.map(t=>{const i=t.outerHTML;return{...e,attrs:{...e.attrs||{}},innerBlocks:[],innerHTML:i,innerContent:[i]}}):[{...e,innerBlocks:t}]})}function ne(e,t){if("function"!=typeof R||"function"!=typeof B)throw new Error(C("WordPress 7.0 block revision parser APIs are unavailable.","revisionary"));!function(){if(D||s.getBlockType("core/paragraph"))D=!0;else{if(!r||"function"!=typeof r.registerCoreBlocks)throw new Error(C("WordPress core block definitions are unavailable on this screen.","revisionary"));if(r.registerCoreBlocks(),!s.getBlockType("core/paragraph"))throw new Error(C("WordPress core blocks could not be registered for comparison.","revisionary"));D=!0}}();const i=Boolean(M)&&(!oe(e)||!oe(t));let o=R(se(e)),a=R(se(t));i?(o=o.filter(e=>!W(e)),a=a.filter(e=>!W(e))):(o=ae(o),a=ae(a));const n=Y(o,a,i),l=n.map(e=>{if(!e.blockName&&!(e.innerHTML||"").trim())return null;const t=B(e);return t&&re(t,e,i),t}).filter(Boolean);if(n.some(e=>e.blockName)&&0===l.length)throw new Error(C("The comparison was generated, but WordPress could not parse any comparison blocks.","revisionary"));return l}function le(e,t){if(!e||!t||"undefined"==typeof CSSStyleSheet)return"";let i;try{i=new CSSStyleSheet,i.replaceSync(e)}catch(e){return console.warn("Visual Post Compare: Unable to scope editor CSS.",e),""}const r=e=>Array.from(e).map(e=>{if(e.type===CSSRule.STYLE_RULE){const i=e.selectorText.split(",").map(e=>(e=e.trim())?":root"===e||"html"===e||"body"===e||".editor-styles-wrapper"===e?t:0===(e=e.replace(/^:root(?=\s|>|\+|~|\.|#|:|\[|$)/,t).replace(/^html(?=\s|>|\+|~|\.|#|:|\[|$)/,t).replace(/^body(?=\s|>|\+|~|\.|#|:|\[|$)/,t).replace(/^\.editor-styles-wrapper(?=\s|>|\+|~|\.|#|:|\[|$)/,t)).indexOf(t)?e:t+" "+e:"").filter(Boolean).join(", ");return i?i+"{"+e.style.cssText+"}":""}if(e.type===CSSRule.MEDIA_RULE||e.type===CSSRule.SUPPORTS_RULE||e.type===CSSRule.LAYER_BLOCK_RULE){const t=r(e.cssRules);if(!t)return"";return e.cssText.slice(0,e.cssText.indexOf("{")).trim()+"{"+t+"}"}return e.type===CSSRule.FONT_FACE_RULE||e.type===CSSRule.KEYFRAMES_RULE?e.cssText:""}).join("\n");return r(i.cssRules)}function ce({comparison:e,onSelect:t}){const i=e.presentation||{},r=Array.isArray(e.posts)?e.posts:[];if(r.length<2)return null;const o=Number(e.selectedId||e.revision&&e.revision.id),s=r.findIndex(e=>Number(e.id)===o),a=s>=0?s:0,n=r.length,l=!0===i.sliderPostDate,[c,d]=k(!1),u=e=>l?e.sliderPostDateLabel||e.postDateLabel||e.postDate:e.sliderModifiedLabel||e.modifiedLabel||e.modified,m=r.length>1?a/(r.length-1)*100:50,p=0===a?"translateX(0)":a===r.length-1?"translateX(-100%)":"translateX(-50%)",v=0===a?"8px":a===r.length-1?"calc(100% - 8px)":"50%",f=r[a]||null;return g("div",{className:"visual-post-compare-revision__selector",style:{"--vpc-slider-count":n}},g("div",{className:"visual-post-compare-revision__range-wrap",style:{"--vpc-slider-intervals":Math.max(r.length-1,1)}},g("div",{className:"visual-post-compare-revision__segmented-track","aria-hidden":!0},...Array.from({length:Math.max(r.length-1,1)},(e,t)=>g("span",{key:"track-segment-"+t,className:["visual-post-compare-revision__track-segment",t<a?"is-filled":""].filter(Boolean).join(" ")}))),g("input",{type:"range",className:"visual-post-compare-revision__range",min:0,max:r.length-1,step:1,value:a,"aria-label":C("Select comparison post","revisionary"),"aria-valuetext":f?String(u(f)||""):void 0,onFocus:()=>d(!0),onBlur:()=>d(!1),onChange:e=>{const i=r[Number(e.target.value)];i&&t(i)}}),c&&f?g("div",{className:"visual-post-compare-revision__slider-tooltip",role:"tooltip",style:{left:m+"%",transform:p,"--vpc-tooltip-arrow-left":v}},u(f)):null))}function de(e){return!e||!e.isContainerDiff||Number.isFinite(e.top)&&e.top>0}l.addFilter("editor.BlockListBlock","visual-post-compare/revision-diff-classes",function(e){return function(t){const i=t.block&&t.block.__revisionDiffStatus,r=i&&i.status;let o="";return"added"===r?o="is-revision-added":"removed"===r?o="is-revision-removed":"modified"!==r||!i.forceContainerModified&&(i.hasGranularImageDiff||i.hasGranularDiff&&!i.hasUnrepresentedAttributeDiff)||(o="is-revision-modified"),g(e,{...t,className:[t.className,o].filter(Boolean).join(" ")})}}),[["revision/diff-removed",C("Remove","revisionary"),"del","revision-diff-removed"],["revision/diff-added",C("Add","revisionary"),"ins","revision-diff-added"],["revision/diff-format-added",C("Add Format","revisionary"),"span","revision-diff-format-added"],["revision/diff-format-removed",C("Remove Format","revisionary"),"span","revision-diff-format-removed"],["revision/diff-format-changed",C("Modify Format","revisionary"),"span","revision-diff-format-changed"]].forEach(([e,t,i,r])=>{if(!x||!x(e))try{T(e,{title:t,tagName:i,className:r,attributes:{title:"title"},edit:()=>null})}catch(e){}}),window.RevisionaryCompareAttributes={visible:Z,renderRow:function(e,t,i,r=!1,o=e){if(!Z(t,i))return null;const s=Q(t)&&!Q(i);return g("div",{key:o,className:"visual-post-compare-revision__attribute-row"},g(s?"del":"span",{className:"visual-post-compare-revision__attribute-label"+(s?" editor-revision-fields-diff__removed":"")},e),g("div",{className:"editor-revision-fields-diff__value"},te(t,i,r)))}};const ue=[["image-added",".visual-post-compare-image-diff--added",C("add","revisionary"),C("image","revisionary")],["image-removed",".visual-post-compare-image-diff--removed",C("remove","revisionary"),C("image","revisionary")],["image-modified",".visual-post-compare-image-diff--modified",C("modify","revisionary"),C("image","revisionary")],["text-added",".revision-diff-added",C("add","revisionary"),C("text","revisionary")],["text-removed",".revision-diff-removed",C("remove","revisionary"),C("text","revisionary")],["text-modified",".revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed",C("modify","revisionary"),C("format","revisionary")],["link-modified",".revision-diff-link-changed",C("change","revisionary"),C("link","revisionary")]];let me=null,pe=null;function ve(){if(!e.tooltipsEnabled||!e.tooltipTemplate)return null;if(me&&me.isConnected)return me;const t=document.createElement("template");return t.innerHTML=e.tooltipTemplate,me=t.content.firstElementChild,me?(me.classList.add("visual-post-compare-diff-tooltip","click"),me.setAttribute("aria-hidden","true"),me.addEventListener("mouseenter",he),me.addEventListener("mouseleave",()=>ge()),document.body.appendChild(me),me):null}let fe=null;function he(){fe&&(window.clearTimeout(fe),fe=null)}function ge(){he(),fe=window.setTimeout(()=>{fe=null,ye()},300)}function ye(){he(),pe&&pe.classList.remove("is-diff-tooltip-active");const e=ve();e&&(e.classList.remove("is-active"),e.setAttribute("aria-hidden","true")),pe=null}function be(){const e=ve();if(!e||!pe||!pe.isConnected)return void ye();const t=pe.getBoundingClientRect();e.style.position="fixed",e.style.left=t.left+t.width/2+"px",e.style.top=Math.max(8,t.top)+"px",e.style.zIndex="1000000";const i=e.querySelector(".tooltip-text");if(!i)return;const r=Math.max(document.documentElement.clientWidth||0,window.innerWidth||0),o=function(e,t,i=8){return e.left<i?i-e.left:e.right>t-i?t-i-e.right:0}(i.getBoundingClientRect(),r);o&&(e.style.left=parseFloat(e.style.left)+o+"px")}function _e(e,t){he();const i=ve();if(!i||!e||!t)return;pe&&pe!==e&&pe.classList.remove("is-diff-tooltip-active");const r=i.querySelector(".tooltip-text > span");r&&(r.innerHTML=t,r.style.whiteSpace="pre-line"),pe=e,e.classList.add("is-diff-tooltip-active"),i.classList.add("is-active"),i.setAttribute("aria-hidden","false"),be()}function ke(e,t){const i=function(e,t){if(!t)return"";const i=e.closest("[data-block]"),r=i&&t.get(i.getAttribute("data-block"));if(!r||!r.name)return"";const o=s.getBlockType(r.name);return o&&o.title?o.title:(r.name.split("/").pop()||"").replace(/[-_]+/g," ").replace(/\b\w/g,e=>e.toUpperCase())}(e,t);if(i)return i;if(e.matches("table, .wp-block-table")||e.querySelector("table"))return C("Table","revisionary");return"gallery"===e.dataset.visualPostCompareContainerType||(e=>e&&/(?:^|\s)(?:gallery|tiled-gallery)(?:\s|$)/i.test(e.className||""))(e)||e.querySelector('[data-visual-post-compare-container-type="gallery"]')?C("Gallery","revisionary"):e.matches("ul, ol, .wp-block-list")?C("List","revisionary"):e.matches("p, .wp-block-paragraph")?C("Paragraph","revisionary"):C("Section","revisionary")}function Ce(e){const t=document.createElement("span");return t.textContent=String(e||""),t.innerHTML}function Ne(e,t,i,r=[],o=!1){const s=r.length>0;if(o){const i={add:C("added","revisionary"),remove:C("removed","revisionary"),modify:C("modified","revisionary"),change:C("changed","revisionary")}[String(e||"").toLowerCase()]||C("changed","revisionary");return A(C("This %1$s was <b>%2$s</b>%3$s","revisionary"),Ce(t),Ce(i),s?":":".")+(s?'<span class="visual-post-compare-tooltip-details">'+r.map(e=>"• "+Ce(e)).join("<br>")+"</span>":"")}const a=A(C("%1$s will <b>%2$s</b> this %3$s%4$s","revisionary"),Ce(function(e){return C(e?"Revision Restore":"Revision Publication","revisionary")}(i)),Ce(e),Ce(t),s?":":".");return a+(s?'<span class="visual-post-compare-tooltip-details">'+r.map(e=>"• "+Ce(e)).join("<br>")+"</span>":"")}function Ae(e){const t=[[C("Add bolding","revisionary"),C("add","revisionary"),C("bolding","revisionary")],[C("Remove bolding","revisionary"),C("remove","revisionary"),C("bolding","revisionary")],[C("Add italics","revisionary"),C("add","revisionary"),C("italics","revisionary")],[C("Remove italics","revisionary"),C("remove","revisionary"),C("italics","revisionary")],[C("Add underscore","revisionary"),C("add","revisionary"),C("underscore","revisionary")],[C("Remove underscore","revisionary"),C("remove","revisionary"),C("underscore","revisionary")],[C("Add strikethrough","revisionary"),C("add","revisionary"),C("strikethrough","revisionary")],[C("Remove strikethrough","revisionary"),C("remove","revisionary"),C("strikethrough","revisionary")]],i=String(e||"").split(/\r?\n/).map(e=>e.trim()).filter(Boolean).map(e=>{if(e===C("Change font size","revisionary"))return{action:C("change","revisionary"),subject:C("font size","revisionary")};const i=t.find(([t])=>e===t);return i?{action:i[1],subject:i[2]}:null});return i.length&&i.every(Boolean)?i:[]}function Se(e,t,i,r=!1){let o=t[3];const s=[];if(e.classList.contains("visual-post-compare-line-break-diff")&&(o=C("line break","revisionary")),"text-modified"===t[0]&&e.dataset.visualPostCompareFormatSummary){const t=function(e,t,i=!1){const r=Ae(e);if(!r.length)return"";if(i)return Ne(C("change","revisionary"),C("formatting","revisionary"),t,String(e||"").split(/\r?\n/).map(e=>e.trim()).filter(Boolean),!0);const o=C(t?"Revision restore":"Revision publication","revisionary"),s=r.map(e=>A(C("<b>%1$s</b> %2$s","revisionary"),Ce(e.action),Ce(e.subject))),a=1===s.length?s[0]:A(C("%1$s and %2$s","revisionary"),s.slice(0,-1).join(", "),s[s.length-1]);return A(C("%1$s will %2$s.","revisionary"),Ce(o),a)}(e.dataset.visualPostCompareFormatSummary,i,r);if(t)return t;const o=e.dataset.visualPostCompareFormatSummary.split(/\r?\n/).map(e=>e.trim()).filter(Boolean);o.length&&/:$/.test(o[0])&&o.shift(),s.push(...o)}return Ne(t[2],o,i,s,r)}function we(e,t,i,r=!1){const o=[];let s=0,a=0,n=0;ue.forEach(([t,i])=>{const r=Array.from(e.querySelectorAll(i)).filter(e=>!e.querySelector(i));"text-added"===t&&(a=r.filter(e=>e.classList.contains("visual-post-compare-line-break-diff")).length),"text-removed"===t&&(n=r.filter(e=>e.classList.contains("visual-post-compare-line-break-diff")).length);const l=r.filter(e=>!e.classList.contains("visual-post-compare-line-break-diff")).length;e.classList.toggle(t,r.length>0),l&&"text-added"===t?o.push(A(N("%d Text Addition","%d Text Additions",l,"revisionary"),l)):l&&"text-removed"===t?o.push(A(N("%d Text Deletion","%d Text Deletions",l,"revisionary"),l)):l&&"text-modified"===t?s=l:l&&"link-modified"===t?o.push(A(N("%d Link Change","%d Link Changes",l,"revisionary"),l)):l&&o.push(((e,t)=>A("image-added"===e?N("Add %d Image","Add %d Images",t,"revisionary"):"image-removed"===e?N("Remove %d Image","Remove %d Images",t,"revisionary"):N("Modify %d Image","Modify %d Images",t,"revisionary"),t))(t,l))}),a&&o.push(A(N("Add %d Line Break","Add %d Line Breaks",a,"revisionary"),a)),n&&o.push(A(N("Remove %d Line Break","Remove %d Line Breaks",n,"revisionary"),n));const l=e.closest("[data-block]")||e,c=Number(l.dataset.visualPostCompareUnrepresentedFormattingCount||0),d=s+c;if(d&&o.push(A(N("%d formatting change","%d formatting changes",d,"revisionary"),d)),l.dataset.visualPostCompareUnrepresentedChanges)try{o.push(...JSON.parse(l.dataset.visualPostCompareUnrepresentedChanges).filter(e=>!Ve(e)))}catch(e){}if(!o.length&&t){const i=e.closest("[data-block]"),r=i&&t.get(i.getAttribute("data-block")),s=r&&r.attributes&&r.attributes.__revisionDiffStatus,a=s&&Object.keys(s.changedAttributes||{});a&&a.length?o.push(A(C("Modified attributes: %s","revisionary"),a.join(", "))):s&&s.currentHtml!==s.previousHtml&&o.push(C("Modified html markup","revisionary"))}return Ne(C("modify","revisionary"),ke(e,t),i,o,r)}function Le(e,t,i,r,o=!1){return Ne(t,ke(e,i),r,[],o)}function Ee(t,i,r,o=!1){if(!t)return;!function(e){Array.from(e.querySelectorAll(".is-revision-added, .is-revision-removed")).forEach(e=>{[e,...e.querySelectorAll(".is-revision-modified, .is-revision-changed")].forEach(e=>{e.classList.remove("is-revision-modified","is-revision-changed","is-diff-border-active","is-diff-tooltip-active"),delete e.dataset.visualPostCompareContainerDiff,delete e.dataset.visualPostCompareTooltip})})}(t),function(e){e&&Array.from(e.querySelectorAll("a")).forEach(e=>{if(e.dataset.visualPostCompareLinkAttributes)return;const t=e.closest(".revision-diff-removed, .is-revision-removed"),i=e.closest(".revision-diff-added, .is-revision-added");if(!t&&!i)return;const r=e.getAttribute("href")||"";e.dataset.visualPostCompareLinkAttributes=JSON.stringify([{label:"url:",current:i?r:"",previous:t?r:""}])})}(t);const s=ue.map(e=>e[1]).join(", ");e.htmlAttributeChanges||Array.from(t.querySelectorAll(".is-revision-modified")).forEach(e=>{const t=e.closest("[data-block]")||e,i=e.matches(s)||Boolean(e.querySelector(s)),r=Boolean(Number(t.dataset.visualPostCompareUnrepresentedFormattingCount||0)||t.dataset.visualPostCompareUnrepresentedChanges);i||r||(e.classList.remove("is-revision-modified","is-revision-changed"),delete e.dataset.visualPostCompareContainerDiff,delete e.dataset.visualPostCompareTooltip)}),Array.from(t.querySelectorAll(s)).forEach(t=>{if(t.closest(".visual-post-compare-revision__post-title"))return;const i=function(e){return e.classList.contains("visual-post-compare-image-diff--added")?ue[0]:e.classList.contains("visual-post-compare-image-diff--removed")?ue[1]:e.classList.contains("visual-post-compare-image-diff--modified")?["image-modified",".visual-post-compare-image-diff--modified",C("modify","revisionary"),"true"===e.dataset.visualPostCompareImageAttributesOnly?C("image's attributes","revisionary"):C("image","revisionary")]:e.classList.contains("revision-diff-added")?ue[3]:e.classList.contains("revision-diff-removed")?ue[4]:e.classList.contains("revision-diff-link-changed")?ue[6]:e.matches(".revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed")?ue[5]:null}(t);i&&(t.dataset.visualPostCompareTooltip=Se(t,i,r,o),e.tooltipsEnabled&&t.removeAttribute("title"))}),Array.from(t.querySelectorAll(".is-revision-modified")).forEach(e=>{e.matches(".visual-post-compare-revision__post-title")||(e.dataset.visualPostCompareContainerDiff="true",e.dataset.visualPostCompareTooltip=we(e,i,r,o))}),Array.from(t.querySelectorAll(".is-revision-added")).forEach(e=>{e.dataset.visualPostCompareContainerDiff="true",e.dataset.visualPostCompareTooltip=Le(e,C("add","revisionary"),i,r,o)}),Array.from(t.querySelectorAll(".is-revision-removed")).forEach(e=>{e.dataset.visualPostCompareContainerDiff="true",e.dataset.visualPostCompareTooltip=Le(e,C("remove","revisionary"),i,r,o)})}function xe(e,t=new Map){return(e||[]).forEach(e=>{e&&(e.clientId&&t.set(e.clientId,e),xe(e.innerBlocks,t))}),t}function Te(e,t){if(!e||!t)return null;const i=e.closest("[data-block]");return i&&t.get(i.getAttribute("data-block"))||null}document.addEventListener("keydown",e=>{"Escape"===e.key&&pe&&(he(),ye())});const Pe=new Set(["b","strong","i","em","ins","del","small","big","large","sup","sub","pre","q","h1","h2","h3","h4","h5","h6"]);function Me(e){return(e&&e.textContent||"").replace(/\s+/g," ").trim()}function Be(e){const t=document.createElement("template");return t.innerHTML=String(e||""),t}function Re(e){return JSON.stringify(Array.from(e.attributes).filter(e=>"id"!==e.name).map(e=>[e.name,e.value]).sort(([e],[t])=>e<t?-1:e>t?1:0))}function De(e,t,i){const r=t.getAttribute("src")||"",o=Array.from(e.querySelectorAll("img:not(.visual-post-compare-image-diff__previous)")).filter(e=>!i.has(e)),s=o.find(e=>(e.getAttribute("src")||"")===r)||o[0]||null;return s&&i.add(s),s}function qe(e,t){if(!e||!t||e.closest(".visual-post-compare-image-diff--modified"))return!1;const i=document.createElement("span");i.className="visual-post-compare-image-diff--modified visual-post-compare-block-image-diff",i.tabIndex=0,i.setAttribute("role","button");const r=e.getAttribute("alt")||"";i.setAttribute("aria-label",r?A(C("Show previous image: %s","revisionary"),r):C("Show previous image","revisionary")),i.setAttribute("aria-pressed","false");const o=t.cloneNode(!0);o.removeAttribute("id"),e.classList.add("visual-post-compare-image-diff__current"),o.className="visual-post-compare-image-diff__previous",o.setAttribute("aria-hidden","true");const s=document.createElement("span");s.className="dashicons dashicons-backup visual-post-compare-image-diff__backup",s.setAttribute("aria-hidden","true"),e.parentNode.insertBefore(i,e),i.append(e,o,s);const a=()=>{i.classList.add("is-showing-previous"),i.setAttribute("aria-pressed","true")},n=()=>{i.classList.remove("is-showing-previous"),i.setAttribute("aria-pressed","false")};return i.addEventListener("mouseenter",a),i.addEventListener("mouseleave",n),i.addEventListener("click",e=>{e.preventDefault(),e.target===o||i.classList.contains("is-showing-previous")?n():a()}),i.addEventListener("keydown",e=>{"Enter"!==e.key&&" "!==e.key||(e.preventDefault(),i.classList.contains("is-showing-previous")?n():a())}),!0}function He(e){return Array.from(e.querySelectorAll("*")).filter(e=>{const t=e.tagName.toLowerCase();return Pe.has(t)||"span"===t&&e.hasAttribute("style")})}function Ie(e){if(!e)return"";const t=e.tagName.toLowerCase();return"b"===t||"strong"===t?C("bolding","revisionary"):"i"===t||"em"===t?C("italics","revisionary"):"u"===t||"ins"===t?C("underscore","revisionary"):"s"===t||"strike"===t||"del"===t?C("strikethrough","revisionary"):""}function Fe(e){if(!e)return!1;const t=e.tagName.toLowerCase();return["small","big","large","h1","h2","h3","h4","h5","h6"].includes(t)||Boolean(e.style&&e.style.getPropertyValue("font-size"))}function je(e,t){if(Fe(e)||Fe(t))return[C("Change font size","revisionary")];const i=Ie(e),r=Ie(t);if(i&&i===r)return[];const o=[],s=(e,t)=>"remove"===e?t===C("bolding","revisionary")?C("Remove bolding","revisionary"):t===C("italics","revisionary")?C("Remove italics","revisionary"):t===C("underscore","revisionary")?C("Remove underscore","revisionary"):C("Remove strikethrough","revisionary"):t===C("bolding","revisionary")?C("Add bolding","revisionary"):t===C("italics","revisionary")?C("Add italics","revisionary"):t===C("underscore","revisionary")?C("Add underscore","revisionary"):C("Add strikethrough","revisionary");return r&&o.push(s("remove",r)),i&&o.push(s("add",i)),o}function Ue(t,i){if(!t||!i)return"";const r=[],o=t.tagName.toLowerCase();if((t.style&&t.style.getPropertyValue("font-size"))!==(i.style&&i.style.getPropertyValue("font-size"))&&r.push(C("Change font size","revisionary")),!e.htmlAttributeChanges)return r.join("\n");const s=new Set((t.getAttribute("class")||"").split(/\s+/).filter(Boolean)),a=new Set((i.getAttribute("class")||"").split(/\s+/).filter(Boolean)),n=Array.from(s).filter(e=>!a.has(e)),l=Array.from(a).filter(e=>!s.has(e));if(n.length&&r.push(A(C("%1$s class added: %2$s","revisionary"),o,n.join(", "))),l.length&&r.push(A(C("%1$s class removed: %2$s","revisionary"),o,l.join(", "))),(t.getAttribute("style")||"")!==(i.getAttribute("style")||"")){const e=t.getAttribute("style")||"",s=i.getAttribute("style")||"";e.replace(/font-size\s*:[^;]+;?/gi,"")!==s.replace(/font-size\s*:[^;]+;?/gi,"")&&r.push(A(C("%s style modified","revisionary"),o))}const c=new Set(["class","style","href"]),d=new Map(Array.from(t.attributes).map(e=>[e.name,e.value])),u=new Map(Array.from(i.attributes).map(e=>[e.name,e.value]));return new Set([...d.keys(),...u.keys()]).forEach(e=>{c.has(e)||e.startsWith("data-visual-post-compare-")||d.get(e)!==u.get(e)&&r.push(A(C("%1$s attribute modified: %2$s","revisionary"),o,e))}),r.join("\n")}function Oe(e,t,i){const r=t.tagName.toLowerCase(),o=Me(t),s=Array.from(e.querySelectorAll(r)).filter(e=>!i.has(e)&&Me(e)===o),a=s[0]||null;return a&&i.add(a),a}function $e(e,t,i){if(!t)return!1;const r=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);for(;r.nextNode();){const e=r.currentNode;if(!e.parentElement)continue;const o=e.nodeValue.indexOf(t);if(o<0)continue;const s=e.parentElement.closest(".revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed");if(s)return s.dataset.visualPostCompareFormatSummary=i,!0;const a=document.createElement("span");a.className="revision-diff-format-changed",a.dataset.visualPostCompareFormatSummary=i;const n=e.splitText(o);return n.splitText(t.length),n.parentNode.insertBefore(a,n),a.appendChild(n),!0}return!1}function ze(e,t){if(!e)return!1;const i=e.closest(".revision-diff-format-changed")||e;return i.classList.add("revision-diff-format-changed"),t&&(i.dataset.visualPostCompareFormatSummary=t),!0}function We(e){if(!e)return;const t=e.closest(".revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed");t&&!t.dataset.visualPostCompareFormatSummary&&Me(t)===Me(e)&&t.classList.remove("revision-diff-format-added","revision-diff-format-removed","revision-diff-format-changed")}function Ve(e){const t=C("Modified html tag:","revisionary");return String(e||"").split(/\r?\n/).some(e=>e.trim().startsWith(t))}function Ge(t,i){if(!i.currentHtml&&!i.previousHtml)return;const r=Be(i.currentHtml),o=Be(i.previousHtml),s=He(r.content),a=He(o.content),n=new Set,l=new Set,c=[];let d=0;const u=e=>{Ve(e)||(Ae(e).length?d++:c.push(e))},m=Array.from(r.content.querySelectorAll("a")),p=Array.from(o.content.querySelectorAll("a")),v=Array.from(t.querySelectorAll("a")),f=e=>{const t=e&&e.querySelector("img");return t&&t.getAttribute("src")||""},h=new Set,g=new Set;m.forEach((e,t)=>{const i=Me(e),r=f(e);let o=p.findIndex((e,t)=>!h.has(t)&&(r?f(e)===r:Me(e)===i));if(!r&&o<0&&p[t]&&!h.has(t)&&(o=t),o<0)return;h.add(o);const s=function(e,t){if(!e||!t)return[];const i=new Map(Array.from(e.attributes).map(e=>[e.name,e.value])),r=new Map(Array.from(t.attributes).map(e=>[e.name,e.value]));return Array.from(new Set([...i.keys(),...r.keys()])).filter(e=>!e.startsWith("data-visual-post-compare-")).filter(e=>i.get(e)!==r.get(e)).map(e=>({label:"href"===e?"url:":e,current:i.get(e)||"",previous:r.get(e)||""}))}(e,p[o]);if(!s.length)return;const a=e.getAttribute("href")||"",n=v.find(e=>!g.has(e)&&r&&f(e)===r)||v.find(e=>!g.has(e)&&(e.getAttribute("href")||"")===a&&Me(e)===i)||v.find(e=>!g.has(e)&&(e.getAttribute("href")||"")===a)||v.find(e=>!g.has(e)&&Me(e)===i)||v[t];n&&g.add(n),function(e,t=[]){if(!e)return!1;const i=e.closest(".revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed");i&&!i.dataset.visualPostCompareFormatSummary&&i.classList.remove("revision-diff-format-added","revision-diff-format-removed","revision-diff-format-changed"),e.classList.add("revision-diff-link-changed"),t.length&&(e.dataset.visualPostCompareLinkAttributes=JSON.stringify(t))}(n,s)}),s.forEach(i=>{const r=Me(i);let o=a.findIndex((e,t)=>!n.has(t)&&e.tagName===i.tagName&&Me(e)===r);if(o<0){const e=Ie(i);o=a.findIndex((t,r)=>!n.has(r)&&(t.tagName===i.tagName||e&&e===Ie(t)||Fe(i)&&Fe(t)))}if(o>=0){n.add(o);const e=Ue(i,a[o]),r=Oe(t,i,l);return e?void(ze(r,e)||u(e)):void We(r)}o=a.findIndex((e,t)=>!n.has(t)&&Me(e)===r);const s=[i.tagName.toLowerCase()];let c=null;o>=0&&(n.add(o),c=a[o],s.unshift(c.tagName.toLowerCase()));const d=je(i,c);if(!d.length&&c&&Ie(i)===Ie(c))return;if(!d.length&&!e.htmlAttributeChanges){return void We(Oe(t,i,l))}const m=d.length?d.join("\n"):A(C("Modified HTML tag: %s","revisionary"),Array.from(new Set(s)).join(", "));ze(Oe(t,i,l),m)||u(m)}),a.forEach((i,r)=>{if(n.has(r))return;const o=je(null,i);if(!o.length&&!e.htmlAttributeChanges)return;const s=o.length?o.join("\n"):A(C("Modified HTML tag: %s","revisionary"),i.tagName.toLowerCase());$e(t,Me(i),s)||u(s)});const y=Array.from(r.content.querySelectorAll("*:not(img)")),b=Array.from(o.content.querySelectorAll("*:not(img)")),_=new Set(s),k=new Set(a);y.forEach((i,r)=>{const o=b[r];if(_.has(i)||o&&k.has(o))return;if(!o){if(!e.htmlAttributeChanges)return;const r=A(C("Modified HTML tag: %s","revisionary"),i.tagName.toLowerCase());return void(ze(Oe(t,i,l),r)||u(r))}if(i.tagName!==o.tagName){const r=je(i,o);if(!r.length&&Ie(i)===Ie(o))return;if(!r.length&&!e.htmlAttributeChanges)return;const s=r.length?r.join("\n"):A(C("Modified HTML tag: %1$s, %2$s","revisionary"),o.tagName.toLowerCase(),i.tagName.toLowerCase());return void(ze(Oe(t,i,l),s)||u(s))}const s=Ue(i,o),a=Oe(t,i,l)||Array.from(t.querySelectorAll(i.tagName.toLowerCase())).find(e=>Me(e)===Me(i));s?ze(a,s)||u(s):We(a)}),b.slice(y.length).forEach(i=>{if(k.has(i))return;if(!e.htmlAttributeChanges)return;const r=A(C("Modified HTML tag: %s","revisionary"),i.tagName.toLowerCase());$e(t,Me(i),r)||u(r)}),d&&(t.dataset.visualPostCompareUnrepresentedFormattingCount=String(d)),c.length&&(t.dataset.visualPostCompareUnrepresentedChanges=JSON.stringify(Array.from(new Set(c))))}function Je(e,t,i=!0){e&&t&&Array.from(e.querySelectorAll("[data-block]")).forEach(e=>{const r=t.get(e.getAttribute("data-block")),o=r&&r.attributes&&r.attributes.__revisionDiffStatus;if(r&&o)if("added"!==o.status&&"removed"!==o.status){if("modified"===o.status&&("true"!==e.dataset.visualPostCompareHtmlDecorated&&(e.dataset.visualPostCompareHtmlDecorated="true",i&&function(e,t){if(!t.currentHtml&&!t.previousHtml)return;const i=Be(t.currentHtml),r=Be(t.previousHtml),o=Array.from(i.content.querySelectorAll("img")),s=Array.from(r.content.querySelectorAll("img"));if(!o.length&&!s.length)return;const a=new Set,n=new Set,l=[];o.forEach((e,t)=>{const i=Re(e),r=s.findIndex((e,t)=>!n.has(t)&&Re(e)===i);r<0||(a.add(t),n.add(r),l.push([t,r]))});const c=o.map((e,t)=>({image:e,index:t})).filter(e=>!a.has(e.index)),d=s.map((e,t)=>({image:e,index:t})).filter(e=>!n.has(e.index)),u=e.matches('.wp-block-gallery, [class~="gallery"], [class~="tiled-gallery"]')||e.querySelector('.wp-block-gallery, [class~="gallery"], [class~="tiled-gallery"]'),m=[],p=new Set,v=new Set;c.forEach((e,t)=>{let i=-1;if(u||c.length!==d.length){const t=e.image.getAttribute("alt")||"";i=d.findIndex((e,i)=>!v.has(i)&&t&&t===(e.image.getAttribute("alt")||""))}else i=t;i<0||v.has(i)||(p.add(t),v.add(i),m.push([e,d[i]]))});const f=new Set;l.forEach(([t])=>{De(e,o[t],f)}),m.forEach(([i,r])=>{qe(De(e,i.image,f),r.image)&&(t.hasGranularImageDiff=!0)}),c.filter((e,t)=>!p.has(t)).forEach(({image:i})=>{const r=De(e,i,f);r&&(r.classList.add("visual-post-compare-image-diff--added"),r.dataset.visualPostCompareImageDiff="added",t.hasGranularImageDiff=!0)}),d.filter((e,t)=>!v.has(t)).forEach(({image:i})=>{const r=i.cloneNode(!0);r.removeAttribute("id"),r.classList.add("visual-post-compare-image-diff--removed"),r.dataset.visualPostCompareImageDiff="removed",r.dataset.visualPostCompareSynthesized="removed",e.appendChild(r),t.hasGranularImageDiff=!0})}(e,o),Ge(e,o)),i&&"core/image"===r.name&&o.previousImageUrl)){const t=e.querySelector("img:not(.visual-post-compare-image-diff__previous)");if(!t||t.closest(".visual-post-compare-image-diff--modified"))return;const i=t.cloneNode(!0);i.src=o.previousImageUrl,i.removeAttribute("srcset"),i.removeAttribute("sizes"),qe(t,i)}}else i&&Array.from(e.querySelectorAll("img")).forEach(e=>{const t=o.status;e.classList.add("visual-post-compare-image-diff--"+t),e.dataset.visualPostCompareImageDiff=t})})}function Xe({block:e,tooltip:t,historicalComparison:i=!1}){if(!e)return g("p",{className:"visual-post-compare-revision__block-empty"},C("Select a changed block to view its details.","revisionary"));const r=s.getBlockType(e.name),o=e.attributes&&e.attributes.__revisionDiffStatus,a=o&&o.changedAttributes,n=Object.entries(a||{}).filter(([,e])=>{const t=ee(e);return Z(t.current,t.previous)}),l=Boolean(o&&(o.status&&"unchanged"!==o.status||o.hasGranularDiff||o.hasGranularImageDiff||o.hasUnrepresentedAttributeDiff||o.forceContainerModified||o.currentHtml!==o.previousHtml));return l?g("div",{className:"visual-post-compare-revision__block-details"},g("div",{className:"visual-post-compare-revision__block-identity"},p&&r?g(p,{icon:r.icon,showColors:!0}):null,g("strong",null,r&&r.title||e.name)),i&&t?g("div",{className:"visual-post-compare-revision__classic-info-text",dangerouslySetInnerHTML:{__html:t}}):null,n.length?g("div",{className:"visual-post-compare-revision__changed-attributes"},g("h2",null,C("Changed attributes","revisionary")),...n.map(([e,t])=>g("div",{className:"visual-post-compare-revision__attribute-row",key:e},g(Q(ee(t).current)?"del":"span",{className:"visual-post-compare-revision__attribute-label"+(Q(ee(t).current)?" editor-revision-fields-diff__removed":"")},e),g("div",{className:"editor-revision-fields-diff__value"},...ie(e,t))))):!i&&t?g("div",{className:"visual-post-compare-revision__classic-info-text",dangerouslySetInnerHTML:{__html:t}}):l?g("p",{className:"visual-post-compare-revision__block-empty"},C("Changes detected.","revisionary")):null):g("div",{className:"visual-post-compare-revision__block-details"},g("strong",null,r&&r.title||e.name),g("h2",{className:"visual-post-compare-revision__no-attribute-changes"},C("No attribute changes","revisionary")))}function Ye(e,t){if(!e)return"";const i=t&&t.closest&&t.closest("[data-visual-post-compare-tooltip]");if(i&&e.contains(i))return i.dataset.visualPostCompareTooltip||"";if(e.dataset.visualPostCompareTooltip)return e.dataset.visualPostCompareTooltip;const r=e.querySelector('[data-visual-post-compare-container-diff="true"][data-visual-post-compare-tooltip]');if(r)return r.dataset.visualPostCompareTooltip||"";const o=e.querySelector("[data-visual-post-compare-tooltip]");return o&&o.dataset.visualPostCompareTooltip||""}function Ke(e,t){if(!e||!t)return null;const i=e.closest&&e.closest('[data-visual-post-compare-container-diff="true"]');if(i&&t.contains(i))return i;const r=["[data-visual-post-compare-container-type]","table","figure","blockquote","ul","ol","p","section","article","div"].join(", ");let o=e.closest&&e.closest(r);for(;o&&o!==t&&(o.classList.contains("visual-post-compare-revision__live-preview")||o.classList.contains("visual-post-compare-revision__block-preview")||o.hasAttribute("data-visual-post-compare-shortcode-sentinel-only"));)o=o.parentElement&&o.parentElement.closest(r);return o&&t.contains(o)?o:null}function Qe(e,t){if(!e)return[];const i=function(e){if(!e)return[];if(e.dataset.visualPostCompareImageAttributes)try{return JSON.parse(e.dataset.visualPostCompareImageAttributes).map(e=>({label:e.label,parts:I(e.previous,e.current,F(e.label))}))}catch(e){return[]}const t=[e,...e.querySelectorAll("[data-visual-post-compare-format-summary]")],i=[],r=new Set;return t.forEach(e=>String(e.dataset.visualPostCompareFormatSummary||"").split(/\r?\n/).map(e=>e.trim()).filter(Boolean).forEach(e=>{let t=e.match(/^Modified html tag:\s*(.+)$/i);if(t){const e="html tag|"+t[1];return r.has(e)||i.push({label:C("html tag","revisionary"),value:t[1]}),void r.add(e)}if(t=e.match(/^(.*?)\s+(attribute modified|class added|class removed):\s*(.+)$/i),!t)return;const o=(t[1]+" "+t[2]).toLowerCase(),s=o+"|"+t[3];r.has(s)||i.push({label:o,value:t[3]}),r.add(s)})),[e,...e.querySelectorAll("[data-visual-post-compare-link-attributes]")].filter(e=>e.dataset.visualPostCompareLinkAttributes).forEach(e=>{try{JSON.parse(e.dataset.visualPostCompareLinkAttributes).forEach(e=>{const t="link|"+e.label+"|"+e.previous+"|"+e.current;r.has(t)||(i.push({label:e.label,parts:I(e.previous,e.current,F(e.label))}),r.add(t))})}catch(e){}}),i}(e),r=[...i],o=new Set(r.map(e=>e.label)),s=(e,t)=>{t&&!o.has(e)&&(r.push({label:e,value:t}),o.add(e))};if("image"===t){const t=e.matches&&e.matches("img")?e:e.querySelector(".visual-post-compare-image-diff__current, img:not(.visual-post-compare-image-diff__previous), .visual-post-compare-image-diff__previous"),i=t&&t.closest("a")||e.closest&&e.closest("a");t&&(s("image url:",t.getAttribute("src")||""),["title","description","aria-description"].forEach(e=>s(e,t.getAttribute(e)||""))),i&&(s("link url:",i.getAttribute("href")||""),["title","description","aria-description"].forEach(e=>s(e,i.getAttribute(e)||"")))}else"link"===t&&(s("url:",e.getAttribute("href")||""),["title","description","aria-description"].forEach(t=>s(t,e.getAttribute(t)||"")));return r}function Ze(e){if(!e)return"";const t=e.dataset.visualPostCompareTooltip||"";if(!t)return"";const i=document.createElement("template");i.innerHTML=t;const r=i.content.querySelector(".visual-post-compare-tooltip-details");if(r){const e=r.innerHTML.split(/<br\s*\/?\s*>/i).filter(e=>!(/modified html tag/i.test(e)||/attribute modified/i.test(e)||/class (?:added|removed)/i.test(e)));e.length?r.innerHTML=e.join("<br>"):r.remove()}let o=i.innerHTML.trim();return i.content.querySelector(".visual-post-compare-tooltip-details")||(o=o.replace(/:\s*$/,".")),o}function et(e,t){if(!e||!t)return null;const i=e.closest&&e.closest(".visual-post-compare-image-diff--added, .visual-post-compare-image-diff--removed, .visual-post-compare-image-diff--modified"),r=i||e.closest&&e.closest("img"),o=e.closest&&e.closest("a"),s=e.closest&&e.closest(".revision-diff-added, .revision-diff-removed, .revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed");let a=r||o||e,n=r?C("Image","revisionary"):o?C("Link","revisionary"):"";!s||r||o||(a=Ke(s,t)||s),r||o||(a=a.matches&&a.matches('[data-visual-post-compare-container-diff="true"]')?a:Ke(a,t)||a,n=ke(a,null));const l=Boolean(r&&r.matches(".visual-post-compare-image-diff--added, .visual-post-compare-image-diff--removed")||a.closest(".is-revision-added, .is-revision-removed")),c=!r&&!o&&a.matches(".is-revision-added, .is-revision-removed");return{unchanged:!(l||s||i||a.closest(".is-revision-modified")||a.querySelector(".revision-diff-added,.revision-diff-removed,.is-revision-added,.is-revision-removed,.is-revision-modified,[data-visual-post-compare-tooltip]")),title:n||C("Info","revisionary"),tooltip:Ze(a),attributes:c?[]:Qe(a,r?"image":o?"link":"container"),attributeCaption:l||r&&!r.matches(".visual-post-compare-image-diff--modified")?C("Attributes","revisionary"):C("Changed attributes","revisionary")}}function tt({info:e}){if(!e)return g("p",{className:"visual-post-compare-revision__block-empty"},C("Select content to view its details.","revisionary"));if(e.unchanged)return g("div",{className:"visual-post-compare-revision__block-details"},g("strong",null,e.title),g("h2",{className:"visual-post-compare-revision__no-attribute-changes"},C("No attribute changes","revisionary")));const t=e.attributes.filter(e=>{const t=ee(e.parts||[{type:"unchanged",value:e.value}]);return Z(t.current,t.previous)});return g("div",{className:"visual-post-compare-revision__block-details"},g("div",{className:"visual-post-compare-revision__block-identity"},g("strong",null,e.title)),e.tooltip?g("div",{className:"visual-post-compare-revision__classic-info-text",dangerouslySetInnerHTML:{__html:e.tooltip}}):null,t.length?g("div",{className:"visual-post-compare-revision__changed-attributes"},g("h2",null,e.attributeCaption||C("Changed attributes","revisionary")),...t.map((e,t)=>g("div",{className:"visual-post-compare-revision__attribute-row",key:t},g(Q(ee(e.parts||[{type:"unchanged",value:e.value}]).current)?"del":"span",{className:"visual-post-compare-revision__attribute-label"},e.label),g("div",{className:"editor-revision-fields-diff__value"},...ie(e.label,e.parts||[{type:"unchanged",value:e.value}]))))):null)}function it({promo:e}){return e?g("section",{className:"visual-post-compare-fields"},g("div",{className:"visual-post-compare-fields__promo pp-revisions-pro-promo-right-sidebar"},g("div",{className:"postbox-container"},g("div",{className:"meta-box-sortables"},g("div",{className:"advertisement-box-content postbox"},g("div",{className:"postbox-header"},g("h3",{className:"advertisement-box-header hndle is-non-sortable"},C("Compare Custom Fields","revisionary"))),g("div",{className:"inside"},g("p",null,C("Revisions Pro displays cleanly formatted field changes for:","revisionary")),g("ul",null,...[{label:C("Featured Image","revisionary")},{label:C("Core WordPress fields","revisionary")},{label:"Advanced Custom Fields"},{label:"Pods"},{label:"PublishPress Cart"},{label:"WooCommerce"},{label:"Yoast SEO"},{label:C("Many other popular plugins","revisionary"),integrationLink:!0},{label:C("Many popular themes","revisionary"),integrationLink:!0}].map(t=>g("li",{key:t.label},t.integrationLink&&e.integrationUrl?g("a",{className:"visual-post-compare-fields__integration-link",href:e.integrationUrl,target:"_blank",rel:"noopener noreferrer"},t.label):t.label))),g("div",{className:"pp-pro-badge-banner"},g("a",{className:"pp-upgrade-btn",href:e.url,target:"_blank",rel:"noopener noreferrer"},C("Upgrade to Pro","revisionary"))))))))):null}function rt({comparison:t,onApprove:i,isApproving:r}){const o=_(null),[s,a]=k([]),[n,c]=k(!1),[d,u]=k(null),[p,h]=k("revision"),[N,S]=k("content"),[w,L]=k(!1),[E,x]=k(!1),[T,P]=k(null),[B,R]=k(""),[D,q]=k(null),H=Number(t.revision.id)===Number(t.current.id),I=Boolean(H&&t.isCurrentSelectionComparison),F=H&&!I,j=H?t.current:t.revision,U=Boolean(t.isPastComparison&&!1===t.compareToCurrent),O=Boolean(U&&!1===t.hasPreviousRevision),$=O?j:t.comparisonBase||t.current,z=Boolean(U&&!1!==t.hasPreviousRevision),W=String(j.title||""),V=String($.title||""),G=!F&&W!==V,J=b(()=>{try{const e=l.applyFilters("visual_post_compare.content_pair",{current:j.content||"",previous:$.content||""},j,$);return{isBlockEditorComparison:oe(e.current)&&oe(e.previous),blocks:ne(e.current,e.previous),error:null}}catch(e){return console.error("Visual Post Compare: Unable to build revision diff.",e),{blocks:[],error:e}}},[t]),X=Boolean(J.isBlockEditorComparison),Y=b(()=>xe(J.blocks),[J.blocks]),K=b(()=>{const e=t=>Boolean(t&&(t.__revisionDiffStatus||t.attributes&&t.attributes.__revisionDiffStatus||(t.innerBlocks||[]).some(e)));return wp.hooks.applyFilters("visual_post_compare.has_content_changes",J.blocks.some(e),t)},[J.blocks]),Q=window.RevisionaryVisualCompareFields,Z=Boolean(Q&&"function"==typeof Q.hasChanges&&Q.hasChanges(t)),ee=Z&&"function"==typeof Q.getSummary?Q.getSummary(t):[],te=Z?N:"content",ie=!(F||O||J.error||G||K||Z);y(()=>{h("revision"),P(null),R(""),q(null),x(!1)},[t.revision.id]);const re=m({blocks:J.blocks,props:{className:"visual-post-compare-revision__block-preview"}});y(()=>{const i=o.current;if(!i)return void a([]);let r=null,s=null,n=null,l=null,d=null;const m=".is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed",p=()=>{d&&d.classList.remove("is-diff-border-active"),d=null},v=e=>{d!==e&&(p(),d=e,d&&d.classList.add("is-diff-border-active"))},f=e=>Array.from(i.querySelectorAll("[data-visual-post-compare-tooltip]")).filter(t=>{const i=t.getBoundingClientRect();return i.width>0&&i.height>0&&e.clientX>=i.left&&e.clientX<i.right&&e.clientY>=i.top&&e.clientY<i.bottom}).sort((e,t)=>{const i=e.getBoundingClientRect(),r=t.getBoundingClientRect();return i.width*i.height-r.width*r.height})[0]||null,g=e=>{const t=f(e);t?_e(t,t.dataset.visualPostCompareTooltip):ye()},y=e=>{const t=f(e);t?_e(t,t.dataset.visualPostCompareTooltip):ye()},b=e=>{const t=e.target.closest&&e.target.closest(m);t&&i.contains(t)?v(t):p()},_=e=>{const t=e.detail&&e.detail.target;t&&i.contains(t)&&t.matches(m)&&v(t)},k=e=>{e.target.closest&&e.target.closest(".visual-post-compare-revision__diff-marker")||d&&!d.contains(e.target)&&p()},C=e=>{const t=e.relatedTarget;t&&t.closest&&t.closest(".visual-post-compare-revision__diff-marker")||ye()},N=e=>{const t=ve();t&&t.contains(e.target)?ye():i.contains(e.target)||e.target.closest&&e.target.closest(".visual-post-compare-revision__diff-marker")||ye()},A=e=>{if(!X)return;const t=i.querySelector(".visual-post-compare-revision__live-preview"),r=e.target.closest&&e.target.closest("[data-block]"),o=t&&r&&t.contains(r)&&Y.get(r.getAttribute("data-block"))||null;P(o),R(o?Ye(r,e.target):""),o&&h("block")},S=e=>{if(X||!e.target.closest)return;const t=i.querySelector(".visual-post-compare-revision__live-preview");if(!t||!t.contains(e.target))return;const r=et(e.target,t);r&&(q(r),h("block"))},w=e=>{if(!e.target.closest)return;const t=e.target.closest('a[data-visual-post-compare-link-inert="true"]');t&&i.contains(t)&&e.preventDefault()};i.addEventListener("click",A),i.addEventListener("click",S),i.addEventListener("click",b),i.addEventListener("click",w,!0),i.addEventListener("visual-post-compare:activate-container-border",_),document.addEventListener("click",k),e.tooltipsEnabled&&(i.addEventListener("mousemove",g),i.addEventListener("mouseleave",C),i.addEventListener("click",y),i.addEventListener("scroll",be),window.addEventListener("resize",be),document.addEventListener("click",N));const L=()=>{null!==r&&cancelAnimationFrame(r),r=requestAnimationFrame(()=>{r=null;const o=Math.max(0,i.getBoundingClientRect().top),s=`${Math.max(160,Math.floor(window.innerHeight-o-16))}px`;i.style.getPropertyValue("--visual-post-compare-canvas-height")!==s&&i.style.setProperty("--visual-post-compare-canvas-height",s);const n=i.querySelector(".visual-post-compare-revision__live-preview"),d=i.scrollHeight>i.clientHeight+1;if(c(d),n&&function(e){Array.from(e.querySelectorAll(".block-editor-warning")).forEach(e=>{const t=e.closest("[data-block]"),i=e.parentElement&&"initial"===e.parentElement.style.all?e.parentElement:e;i.hidden=!0,i.setAttribute("aria-hidden","true"),t&&t.classList.remove("has-warning")})}(n),n&&function(e){const t=(e,t)=>{if("true"===e.dataset.visualPostCompareCommentRestored)return;const i=document.createComment(t),r=e.parentElement;if(r&&!(r.textContent||"").trim()&&Array.from(r.children).every(t=>t===e||t.hidden||"br"===t.tagName.toLowerCase())&&r.parentNode){const t=r.closest(".is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed");return r.insertBefore(i,e),e.dataset.visualPostCompareCommentRestored="true",r.dataset.visualPostCompareShortcodeSentinelOnly="true",void(!t||(t.textContent||"").trim()||t.querySelector("img")||t.classList.remove("is-revision-added","is-revision-removed","is-revision-modified","is-revision-changed"))}e.parentNode.insertBefore(i,e),e.dataset.visualPostCompareCommentRestored="true"};Array.from(e.querySelectorAll("[data-visual-post-compare-shortcode-start]")).forEach(e=>{const i=e.getAttribute("data-visual-post-compare-shortcode-start")||"";t(e," visual-post-compare-shortcode:"+i+" ")}),Array.from(e.querySelectorAll("[data-visual-post-compare-shortcode-end]")).forEach(e=>{const i=e.getAttribute("data-visual-post-compare-shortcode-end")||"";t(e," /visual-post-compare-shortcode:"+i+" ")})}(n),n&&function(e){e&&Array.from(e.querySelectorAll("[inert]")).forEach(e=>{((e.textContent||"").trim()||e.querySelector("img, a, [data-visual-post-compare-tooltip]"))&&(e.removeAttribute("inert"),e.setAttribute("data-visual-post-compare-text-selectable","true"),e.hasAttribute("tabindex")&&e.setAttribute("tabindex","-1"))})}(n),n&&X&&function(e){e&&Array.from(e.querySelectorAll("[data-block]")).forEach(e=>{e.removeAttribute("inert"),e.setAttribute("data-visual-post-compare-block-selectable","true"),e.hasAttribute("tabindex")&&e.setAttribute("tabindex","-1")})}(n),n&&function(e){e&&Array.from(e.querySelectorAll("a")).forEach(e=>{e.dataset.visualPostCompareLinkInert="true",e.setAttribute("aria-disabled","true"),e.setAttribute("tabindex","-1")})}(n),n&&M&&!F&&(l=n,M.decorateImageDiffs(n,t.revision.content||"",$.content||"")),n&&!F&&(Je(n,Y,X),function(e){const t=e.querySelector(".visual-post-compare-revision__block-preview")||e,i=e=>{let i=e;for(;i&&i.parentElement&&i.parentElement!==t;)i=i.parentElement;return i};Array.from(e.querySelectorAll("[data-visual-post-compare-shortcode-start]")).forEach(t=>{const r=t.getAttribute("data-visual-post-compare-shortcode-start")||"",o=Array.from(e.querySelectorAll("[data-visual-post-compare-shortcode-end]")).find(e=>(e.getAttribute("data-visual-post-compare-shortcode-end")||"")===r);if(!o)return;const s=i(t),a=i(o);if(!s||!a||s.parentElement!==a.parentElement)return;const n=[];for(let e=s.nextElementSibling;e&&e!==a;e=e.nextElementSibling)e.matches('[data-visual-post-compare-shortcode-sentinel-only="true"]')||n.push(e);n.forEach(e=>{const t=[".revision-diff-format-added",".revision-diff-format-removed",".revision-diff-format-changed",".revision-diff-link-changed",".revision-diff-added",".revision-diff-removed",".visual-post-compare-image-diff--added",".visual-post-compare-image-diff--removed",".visual-post-compare-image-diff--modified",".is-revision-added",".is-revision-removed",".is-revision-modified"].join(", "),i=Array.from(e.querySelectorAll(t));if(e.matches(t)&&i.unshift(e),!i.length)return;const r=Array.from(e.querySelectorAll("[class]")).find(e=>(e=>e&&/(?:^|\s)(?:gallery|tiled-gallery)(?:\s|$)/i.test(e.className||""))(e)&&i.some(t=>e.contains(t))),o=i[0],s=r||o.closest('table, figure, [class*="gallery"], section, article, div')||e,a=e.contains(s)?s:e,n=a.closest(".is-revision-added, .is-revision-removed");if(n&&e.contains(n))return n.classList.add("is-shortcode-diff-container"),void(r&&(n.dataset.visualPostCompareContainerType="gallery"));a!==e&&e.classList.contains("is-revision-modified")&&(e.classList.remove("is-revision-modified","is-revision-changed"),delete e.dataset.visualPostCompareContainerDiff,delete e.dataset.visualPostCompareTooltip),r&&(a.dataset.visualPostCompareContainerType="gallery"),a.classList.add("is-revision-modified","is-shortcode-diff-container")})})}(n),Ee(n,X?Y:null,Boolean(t.revision.isPastRevision),z)),F)return a([]),void u(null);if(!n||!d)return a([]),void u(null);const m=[".is-revision-added",".is-revision-removed",".is-revision-modified",".revision-diff-added",".revision-diff-removed",".revision-diff-format-added",".revision-diff-format-removed",".revision-diff-format-changed",".revision-diff-link-changed",".visual-post-compare-image-diff--added",".visual-post-compare-image-diff--removed",".visual-post-compare-image-diff--modified"].join(", "),p=".is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed",v=Array.from(n.querySelectorAll(m)).filter(t=>{if(t.closest(".visual-post-compare-revision__post-title"))return!1;if(e.extraMarkers)return!!t.matches(p)||!t.querySelector(m);return!(t.parentElement?t.parentElement.closest(p):null)&&(!!t.matches(p)||!t.querySelector(m))}),f=e.extraMarkers?function(e,t){const i=[];return e.forEach(e=>{if(!e.matches(t))return void i.push(e);const r=e.getBoundingClientRect(),o=r.top+r.height/2,s=i.findIndex(i=>{if(!i.matches(t))return!1;if(!i.contains(e)&&!e.contains(i))return!1;const r=i.getBoundingClientRect(),s=r.top+r.height/2;return Math.abs(s-o)<1});s<0?i.push(e):i[s].contains(e)&&(i[s]=e)}),i}(v,p):v,h=function(e,t){const i=new WeakSet,r=new Set(t),o=document.createTreeWalker(e,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_COMMENT);let s=0;for(;o.nextNode();){const t=o.currentNode;if(t.nodeType===Node.COMMENT_NODE){const o=(t.nodeValue||"").trim();if(/^\/visual-post-compare-shortcode:/.test(o))s=Math.max(0,s-1);else if(/^visual-post-compare-shortcode:/.test(o)){s++;let o=t.parentElement;for(;o&&o!==e;)r.has(o)&&i.add(o),o=o.parentElement}}else s>0&&r.has(t)&&i.add(t)}return i}(n,f),g=function(e){const t=new WeakSet,i=new WeakMap;return e.forEach(e=>{const r=e.parentElement?e.parentElement.closest(".is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed"):null;if(!r)return;const o=i.get(r)||0;o>0&&t.add(e),i.set(r,o+1)}),t}(f),y=i.getBoundingClientRect(),b=i.parentElement.getBoundingClientRect();u({top:y.top-b.top,height:i.clientHeight});const _=Math.max(i.scrollHeight,i.clientHeight,1);a(f.map((e,t)=>{const r=e.getBoundingClientRect(),o=i.scrollTop+r.top-y.top,s=o+r.height/2,a=Math.max(0,Math.min(100,s/_*100)),n=Math.max(.8,Math.min(100-a,r.height/_*100)),l=Math.max(0,o-Math.max(0,(i.clientHeight-r.height)/2)),c=function(e){return e.closest(".is-revision-added")||e.classList.contains("revision-diff-added")||e.classList.contains("visual-post-compare-image-diff--added")?"added":e.closest(".is-revision-removed")||e.classList.contains("revision-diff-removed")||e.classList.contains("visual-post-compare-image-diff--removed")?"removed":"modified"}(e);return{key:c+"-"+t,node:e,status:c,top:a,height:n,scrollTop:l,isSecondaryDiff:g.has(e),isShortcodeDiff:h.has(e),isContainerDiff:e.matches(p),block:X?Te(e,Y):null}}).filter(de))})};if(L(),window.addEventListener("resize",L),"undefined"!=typeof ResizeObserver){s=new ResizeObserver(L),s.observe(i),s.observe(i.parentElement);const e=i.querySelector(".visual-post-compare-revision__live-preview");e&&s.observe(e)}return"undefined"!=typeof MutationObserver&&(n=new MutationObserver(L),n.observe(i,{childList:!0,subtree:!0})),()=>{i.removeEventListener("click",A),i.removeEventListener("click",S),i.removeEventListener("click",b),i.removeEventListener("click",w,!0),i.removeEventListener("visual-post-compare:activate-container-border",_),document.removeEventListener("click",k),p(),window.removeEventListener("resize",L),s&&s.disconnect(),n&&n.disconnect(),null!==r&&cancelAnimationFrame(r),e.tooltipsEnabled&&(i.removeEventListener("mousemove",g),i.removeEventListener("mouseleave",C),i.removeEventListener("click",y),i.removeEventListener("scroll",be),window.removeEventListener("resize",be),document.removeEventListener("click",N),ye())}},[t,J.blocks,X,Y,z]);const se=e=>C("added"===e?"Add Block":"removed"===e?"Remove Block":"Modify Block","visual-post-compare"),ae=(Array.isArray(e.styles)?e.styles:[]).map((e,t)=>{if(!e||!e.css)return null;const i=le(e.css,".visual-post-compare-revision__live-preview");return i?g("style",{key:"vpc-editor-style-"+t},i):null}).filter(Boolean),ce=t.presentation||{},ue=e=>({"aria-description":e,"data-visual-post-compare-tooltip":e,onMouseEnter:t=>_e(t.currentTarget,e),onMouseLeave:()=>ge(),onFocus:t=>_e(t.currentTarget,e),onBlur:()=>ye()}),me=e=>ce.mimeTypeStatus?e.mimeTypeStatusLabel:e.statusLabel,pe=(e,i,r,o)=>g("div",{className:"visual-post-compare-revision__date-row "+o},g("span",{className:"visual-post-compare-revision__date-prefix"},i),e.canEdit&&!e.isPastRevision?((e,i)=>{const r=Number(e.id)===Number(t.current.id)?C("Edit Current","revisionary"):C("Edit Revision","revisionary");return g("a",{href:e.url||"#",className:"visual-post-compare-revision__date-link",target:"_blank",...ue(r)},i)})(e,r):g("span",{className:"visual-post-compare-revision__date-value"},r)),fe=e=>e.authorName?g("div",{className:"visual-post-compare-revision__author"},A(ce.authorName,e.authorName)):null,he=e=>[ce.showPostDate?pe(e,Number(e.id)!==Number(t.current.id)?ce.postDatePrefix:C("Post Date: ","revisionary"),e.postDateLabel||e.postDate,"is-post-date"):null,!1!==ce.showModified?pe(e,ce.modifiedPrefix,e.modifiedLabel||e.modified,"is-modified-date"):null,!1!==ce.showAuthor?fe(e):null,Number(e.id)!==Number(t.current.id)&&e.revision_action?g("div",{className:"visual-post-compare-revision__author visual-post-compare-revision__action"},e.revision_action):null,Number(e.id)!==Number(t.current.id)&&e.revision_published?pe(e,ce.approvedDatePrefix,e.revision_published,"is-approved-date"):null,Number(e.id)!==Number(t.current.id)&&e.approver?g("div",{className:"visual-post-compare-revision__author"},A(e.direct_edit?ce.directEditByCaption:ce.approvedByCaption,e.approver)):null].filter(Boolean),ke=H||w,Ce=g("div",{key:"current",className:H?"is-current-selected":""},g("span",{className:"visual-post-compare-revision__status"},g("a",{href:t.current.viewURL||"#",className:"visual-post-compare-view-link",target:"_blank",...ue(C("View Current","revisionary"))},ce.currentCaption),g("button",{type:"button",className:"visual-post-compare-revision__current-details-toggle",disabled:H,"aria-expanded":ke,"aria-label":C(ke?"Hide current post details":"Show current post details","revisionary"),title:C(ke?"Hide current post details":"Show current post details","revisionary"),onClick:()=>L(!w)},g("svg",{className:"components-panel__arrow",width:24,height:24,viewBox:"0 0 24 24","aria-hidden":!0,focusable:"false"},g("path",{d:ke?"M6.5 12 12 7l5.5 5-1 1.1L12 9l-4.5 4.1L6.5 12z":"M6.5 8 12 13l5.5-5-1-1.1L12 11 7.5 6.9 6.5 8z"})))),ke?g("strong",null,t.current.title||A(C("Post %d","revisionary"),t.current.id)):null,g("div",{className:"visual-post-compare-revision__author visual-post-compare-revision__current-status"},A(ce.currentStatusCaption,t.current.statusLabel)),...ke?he(t.current):[]),Ne=he($),Ae=Ne.find(e=>e&&e.props&&/(?:^|\s)is-modified-date(?:\s|$)/.test(e.props.className||"")),Se=z?g("div",{key:"previous-revision"},g("span",{className:"visual-post-compare-revision__status"},g("a",{href:$.previewURL||$.viewURL||"#",className:"visual-post-compare-view-link",target:"_blank",...ue(C("View Revision","revisionary"))},C("Previous Revision","revisionary")),g("button",{type:"button",className:"visual-post-compare-revision__current-details-toggle","aria-expanded":E,"aria-label":C(E?"Hide previous revision details":"Show previous revision details","revisionary"),title:C(E?"Hide previous revision details":"Show previous revision details","revisionary"),onClick:()=>x(!E)},g("svg",{className:"components-panel__arrow",width:24,height:24,viewBox:"0 0 24 24","aria-hidden":!0,focusable:"false"},g("path",{d:E?"M6.5 12 12 7l5.5 5-1 1.1L12 9l-4.5 4.1L6.5 12z":"M6.5 8 12 13l5.5-5-1-1.1L12 11 7.5 6.9 6.5 8z"})))),E?g("strong",null,$.title||A(C("Revision %d","revisionary"),$.id)):null,...E?Ne:[Ae].filter(Boolean)):null,we=H?g("div",{},""):g("div",{key:"revision"},!1!==ce.showRightStatus?g("span",{className:"visual-post-compare-revision__status"},(t.revision.isPastRevision?t.revision.previewURL:t.revision.viewURL)?g("a",{href:t.revision.isPastRevision?t.revision.previewURL:t.revision.viewURL,className:"visual-post-compare-view-link",target:"_blank",...ue(C("View Revision","revisionary"))},me(t.revision)||C("Revision","revisionary")):me(t.revision)||C("Revision","revisionary")):null,g("strong",null,t.revision.title||A(C("Revision %d","revisionary"),t.revision.id)),...he(t.revision),t.revision.canApprove?g(v,{variant:"primary",className:"visual-post-compare-revision__approve",onClick:i,isBusy:r,disabled:r},r?t.revision.approvingCaption:t.revision.approveCaption):null),Le=g("div",{className:"visual-post-settings"},ce.settingsCaption?g("a",{href:ce.settingsURL||"#",className:"visual-post-settings-link dashicons dashicons-admin-generic",target:"_blank","aria-label":ce.settingsCaption,title:ce.settingsCaption},g("span",{className:"screen-reader-text"},ce.settingsCaption)):null),Pe=(t.presentation||{}).fieldsPromo,Me=Q&&"function"==typeof Q.getSidebarNotice?Q.getSidebarNotice(t):null,Be=Z&&"function"==typeof Q.render?Q.render(t,_e,ye):null,Re=C("Click to view changes","revisionary"),De={"data-visual-post-compare-tooltip":Re,onMouseEnter:e=>_e(e.currentTarget,Re),onMouseLeave:()=>ge(),onFocus:e=>_e(e.currentTarget,Re),onBlur:()=>ye()},qe=e=>{S("fields"),window.requestAnimationFrame(()=>window.requestAnimationFrame(()=>{const t=o.current,i=e&&t?t.querySelector("#visual-post-compare-fields-provider-"+e):null;i&&t?t.scrollTo({top:i.offsetTop,behavior:"smooth"}):t&&t.scrollTo({top:0,behavior:"smooth"})}))},He=Z?g("div",{className:"visual-post-compare-fields__summary"},g("span",{className:"visual-post-compare-revision__status visual-post-compare-fields__summary-headline"},g("a",{href:"#visual-post-compare-fields",className:"visual-post-compare-view-link",...De,onClick:e=>{e.preventDefault(),qe()}},C("Custom Field Changes","revisionary"))),g("ul",{className:"visual-post-compare-fields__summary-list"},...ee.map(e=>g("li",{key:e.id},g("a",{href:"#visual-post-compare-fields-provider-"+e.id,className:"visual-post-compare-fields__summary-link",...De,onClick:t=>{t.preventDefault(),qe(e.id)}},A(C("%s: %d","revisionary"),e.label,e.count)))))):null,Ie=F?[Ce,we]:U?[Se,I?Ce:we]:!1===e.currentPostFirst?[we,Ce]:[Ce,we],Fe=g("div",{className:"visual-post-compare-revision__revision-tab-content"},Le,Ie[0],Ie[1],Pe?g(it,{promo:Pe}):Me||He),je=n&&d&&s.length?g("nav",{className:"visual-post-compare-revision__diff-markers","aria-label":C("Document changes","visual-post-compare"),style:{top:d.top+"px",height:d.height+"px",bottom:"auto"}},...s.filter(de).map(t=>g("button",{key:t.key,type:"button",className:["visual-post-compare-revision__diff-marker","is-"+t.status,t.isSecondaryDiff?"is-secondary-diff":"",t.isShortcodeDiff?"is-shortcode-diff":"",t.isContainerDiff?"is-container-diff":""].filter(Boolean).join(" "),title:e.tooltipsEnabled?void 0:se(t.status),"aria-label":se(t.status),style:{top:t.top+"%","--vpc-marker-height":t.height+"%"},onMouseEnter:()=>_e(t.node,t.node.dataset.visualPostCompareTooltip||se(t.status)),onMouseLeave:()=>ye(),onClick:()=>{const e=o.current;if(e&&t.node){if(e.scrollTo({top:t.scrollTop,behavior:"smooth"}),P(null),R(""),t.block){P(t.block);const e=t.node.closest&&t.node.closest("[data-block]");R(Ye(e,t.node)),h("block")}else if(!X){const i=e.querySelector(".visual-post-compare-revision__live-preview"),r=i?et(t.node,i):null;r&&(q(r),h("block"))}t.isContainerDiff&&e.dispatchEvent(new CustomEvent("visual-post-compare:activate-container-border",{detail:{target:t.node}})),_e(t.node,t.node.dataset.visualPostCompareTooltip||se(t.status))}}}))):null;return g("section",{className:["visual-post-compare-revision",e.tooltipsEnabled?"has-diff-tooltips":""].filter(Boolean).join(" ")},g("div",{className:"visual-post-compare-revision__legend","aria-label":ce.legendCaption},g("span",{className:"is-added"},ce.addedCaption),g("span",{className:"is-removed"},ce.removedCaption),g("span",{className:"is-modified"},ce.modifiedCaption)),g("div",{className:"visual-post-compare-revision__body"},J.error?g(f,{status:"error",isDismissible:!1},J.error.message):g("div",{className:"visual-post-compare-revision__canvas-shell"},Z?g("div",{className:"visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs",role:"group","aria-label":C("Preview content","revisionary")},g("button",{type:"button",className:"content"===te?"is-active":"","aria-pressed":"content"===te,onClick:()=>S("content")},C("Content","revisionary")),g("button",{type:"button",className:"fields"===te?"is-active":"","aria-pressed":"fields"===te,onClick:()=>S("fields")},C("Field Changes","revisionary"))):null,g("div",{className:"visual-post-compare-revision__canvas",ref:o,tabIndex:0,role:"region","aria-label":C("Comparison preview","revisionary")},"fields"===te?Be:[...ae,g("style",null,'\n\t\t.is-revision-added {\n\t\t\tbox-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 5%, #00a32a 15%), 0 0 0 3px color-mix(in srgb, currentColor 5%, #00a32a 15%);\n\t\t\toutline: 3px solid #00a32a;\n\t\t\toutline-offset: 6px;\n\t\t}\n\t\t.is-revision-removed,\n\t\t.revision-diff-removed {\n\t\t\ttext-decoration: line-through;\n\t\t\tfilter: url(#revision-removed-filter);\n\t\t}\n\t\t.is-revision-removed {\n\t\t\toutline: 3px dashed #d63638;\n\t\t\toutline-offset: 6px;\n\t\t}\n\t\t.is-revision-modified {\n\t\t\toutline: 3px dotted #9a7000 !important;\n\t\t\toutline-offset: 6px;\n\t\t}\n\t\t.is-revision-changed {\n\t\t\toutline-offset: 6px;\n\t\t}\n\t\t.is-shortcode-diff-container[data-visual-post-compare-container-type="gallery"],\n\t\t.is-shortcode-diff-container.gallery,\n\t\t.is-shortcode-diff-container.tiled-gallery {\n\t\t\tdisplay: flow-root;\n\t\t}\n\t\t.revision-diff-added {\n\t\t\tbackground-color: color-mix(in srgb, currentColor 5%, #00a32a 15%);\n\t\t\ttext-decoration: underline;\n\t\t\ttext-decoration-thickness: 2px;\n\t\t\ttext-underline-offset: 2px;\n\t\t}\n\t\t.revision-diff-format-added,\n\t\t.revision-diff-format-removed,\n\t\t.revision-diff-format-changed {\n\t\t\tborder-bottom: 3px dotted #3c434a;\n\t\t\ttext-decoration: none;\n\t\t\tbox-decoration-break: clone;\n\t\t\t-webkit-box-decoration-break: clone;\n\t\t}\n\t\t.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"],\n\t\t.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"] {\n\t\t\toutline-color: transparent !important;\n\t\t}\n\t\t.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,\n\t\t.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,\n\t\t.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-border-active,\n\t\t.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-border-active {\n\t\t\toutline-color: #9a7000 !important;\n\t\t}\n\t\t.is-revision-added.is-diff-border-active,\n\t\t.is-revision-removed.is-diff-border-active,\n\t\t.is-revision-modified.is-diff-border-active,\n\t\t.is-revision-changed.is-diff-border-active {\n\t\t\toutline-width: 4px !important;\n\t\t}\n\t'+(M?M.styles:"")),g("div",{className:"visual-post-compare-revision__svg-filters","aria-hidden":!0,dangerouslySetInnerHTML:{__html:'\n\t\t<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0"\n\t\t\tfocusable="false" role="none" aria-hidden="true"\n\t\t\tstyle="visibility:hidden;position:absolute;left:-9999px;overflow:hidden">\n\t\t\t<defs>\n\t\t\t\t<filter id="revision-removed-filter" x="0" y="0" width="100%" height="100%">\n\t\t\t\t\t<feColorMatrix type="matrix"\n\t\t\t\t\t\tvalues="0.5 0.3 0.2 0 0.15\n\t\t\t\t\t\t        0.2 0.2 0.1 0 0\n\t\t\t\t\t\t        0.2 0.2 0.1 0 0\n\t\t\t\t\t\t        0   0   0   0.8 0"/>\n\t\t\t\t</filter>\n\t\t\t</defs>\n\t\t</svg>'}}),g("div",{key:"visual-post-compare-preview-"+j.id,className:["editor-styles-wrapper is-root-container is-layout-constrained visual-post-compare-revision__live-preview",F?"is-current-post-reference":""].filter(Boolean).join(" ")},W||G||ie?g("div",{className:"visual-post-compare-revision__title-row"},W||G?g("h1",{className:["wp-block-post-title visual-post-compare-revision__post-title",G?"is-revision-modified":""].filter(Boolean).join(" "),"data-visual-post-compare-tooltip":G?C(z?"This title was changed":"Change Title","revisionary"):void 0},G&&V?g("del",{className:"revision-diff-removed"},V):null,G&&W?g("ins",{className:"revision-diff-added"},W):G?null:W):null,ie&&wp.hooks.applyFilters("visual_post_compare.show_no_changes_notice",!0,t)?g("div",{className:"notice notice-info inline visual-post-compare-revision__no-changes",role:"status"},g("p",null,C("No changes detected.","revisionary"))):null):null,wp.hooks.applyFilters("visual_post_compare.render_content",g("div",re),t,{displayedPost:j,comparisonBase:$,isCurrentReference:F,lacksPreviousRevision:O}))]),"content"===te?wp.hooks.applyFilters("visual_post_compare.render_markers",je,t):null),g("aside",{className:e.currentPostFirst?"visual-post-compare-revision__sidebar visual-post-compare-current-post-first":"visual-post-compare-revision__sidebar"},g("div",{className:"visual-post-compare-revision__sidebar-tabs",role:"group","aria-label":C("Sidebar view","revisionary")},g("button",{type:"button",className:"revision"===p?"is-active":"","aria-pressed":"revision"===p,onClick:()=>h("revision")},C("Revision","revisionary")),g("button",{type:"button",className:"block"===p?"is-active":"","aria-pressed":"block"===p,onClick:()=>h("block")},X?C("Block","revisionary"):D?D.title:C("Info","revisionary"))),"revision"===p?Fe:wp.hooks.applyFilters("visual_post_compare.render_content_details",X?g(Xe,{block:T,tooltip:B,historicalComparison:z}):g(tt,{info:D}),t),Number(t.revision.id)!==Number(t.current.id)&&t.revision.classicCompareURL?g("div",{className:"visual-post-compare-classic"},g("a",{href:t.revision.classicCompareURL,className:"visual-post-compare-classic-link",target:"_blank",rel:"noopener noreferrer"},(t.presentation||{}).classicCompareCaption||C("Classic compare screen","revisionary"),g("span",{className:"dashicons dashicons-external","aria-hidden":!0}))):null)))}function ot(t){if(!t||!Array.isArray(t.posts)||!t.current)return t;const i=Number(t.current.id);if(!t.posts.some(e=>Number(e.id)===i))return t;const r=t.posts.filter(e=>Number(e.id)!==i),o=t.current,s=!1===e.currentPostFirst?[...r,o]:[o,...r];return{...t,posts:s}}const st=document.getElementById("visual-post-compare-root");st&&n.createRoot(st).render(g(function(){const[i,r]=k(null),[o,s]=k(null),[a,n]=k(!1),[l,c]=k(!1),[d,u]=k(null),m=_(0),p=_(null);if(y(()=>{t({path:e.restPath+"?revision="+encodeURIComponent(e.revision)}).then(e=>r(ot(e))).catch(s)},[]),y(()=>()=>{p.current&&clearTimeout(p.current)},[]),o)return g(f,{status:"error",isDismissible:!1},o&&o.message||C("Unable to load this comparison.","revisionary"));if(!i)return g("div",{className:"visual-post-compare-loading",role:"status"},g(h),e.loadingComparisonCaption||C("Loading comparison…","revisionary"));const v=async(i,o={},s=0)=>{const a=s||++m.current;c(!0),u(null);try{const s=await t({path:o.path||e.restPath+"?revision="+encodeURIComponent(i),method:o.method||"GET",data:o.data});if(a!==m.current)return;r(ot(s))}catch(e){if(a!==m.current)return;r(e=>({...e,selectedId:Number(e.revision.id)})),u({status:"error",message:e&&e.message||C("Unable to reload this comparison.","revisionary")})}finally{a===m.current&&c(!1)}};return g("div",{className:"visual-post-compare-screen"},g("header",{className:"visual-post-compare-screen__header"},g("h1",null,e.headline||C("Compare Revisions","revisionary")),g("div",{className:"visual-post-compare-revision__comparison-mode"},g("label",null,g("input",{type:"checkbox",checked:!i.isPastComparison||!1!==i.compareToCurrent,disabled:!i.isPastComparison||l,onChange:t=>v(i.revision.id,{path:e.comparisonModeRestPath,method:"POST",data:{revision:Number(i.authorizationRevisionId||i.revision.id),compare_to_current:t.target.checked}})}),C("Compare to current post","revisionary")))),d?g(f,{status:d.status,isDismissible:!0,onRemove:()=>u(null)},d.message):null,g(ce,{comparison:i,onSelect:t=>{if(u(null),Number(t.id)!==Number(i.current.id))if(i.isPastComparison&&!1===i.compareToCurrent){p.current&&clearTimeout(p.current);const e=++m.current;c(!0),r({...i,selectedId:Number(t.id)}),p.current=setTimeout(()=>{p.current=null,v(t.id,{},e)},200)}else r({...i,revision:t,selectedId:Number(t.id)});else if(p.current&&(clearTimeout(p.current),p.current=null),i.isPastComparison&&!1===i.compareToCurrent){const t=++m.current,o=Number(i.authorizationRevisionId||i.comparisonBase&&i.comparisonBase.id||e.revision);c(!0),r({...i,selectedId:Number(i.current.id)}),p.current=setTimeout(()=>{p.current=null,v(o,{path:e.restPath+"?revision="+encodeURIComponent(o)+"&select_current=1"},t)},200)}else m.current++,c(!1),r({...i,revision:i.current,selectedId:Number(i.current.id)})}}),g(rt,{comparison:i,onApprove:async()=>{if(!a&&i.revision.canApprove&&Number(i.revision.id)!==Number(i.current.id)){n(!0),u(null);try{const o=await t({path:e.approveRestPath+"?revision="+encodeURIComponent(i.revision.id),method:"POST"});o.selectCurrentPost&&(o.compareToCurrent=!0,o.isPastComparison=!1,o.comparisonBase=o.current,o.posts=[o.current]);const s=ot(o);o.selectCurrentPost&&(s.revision=s.current,s.selectedId=Number(s.current.id)),r(s);const a=i.presentation||{};u({status:"success",message:o.approvalMessage||a.revisionApplied})}catch(e){u({status:"error",message:e&&e.message||C("Unable to approve this comparison.","revisionary")})}finally{n(!1)}}},isApproving:a}))}))}();
+(function () {
+	'use strict';
+
+	const config = window.VisualPostCompareStandalone;
+	if (!config || !window.wp) {
+		return;
+	}
+
+	const {
+		apiFetch,
+		blockEditor,
+		blockLibrary,
+		blockSerializationDefaultParser,
+		blocks,
+		components,
+		element,
+		hooks,
+		i18n,
+		privateApis,
+		richText,
+	} = wp;
+	const { __experimentalUseBlockPreview: useBlockPreview, BlockIcon } = blockEditor;
+	const { Button, Notice, Spinner } = components;
+	const { createElement: el, useEffect, useMemo, useRef, useState } = element;
+	const { __, _n, sprintf } = i18n;
+	const { RichTextData, applyFormat, concat, create, getFormatType, registerFormatType, slice } = richText;
+	const classicDiff = window.VisualPostCompareClassicDiff || null;
+
+	const CONSENT = 'I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.';
+	let parseRawBlock = null;
+
+	try {
+		const { unlock } = privateApis.__dangerousOptInToUnstableAPIsOnlyForCoreModules(
+			CONSENT,
+			'@wordpress/editor'
+		);
+		const unlockedBlocks = unlock(blocks.privateApis);
+		parseRawBlock = unlockedBlocks && unlockedBlocks.parseRawBlock;
+	} catch (error) {
+		console.error('Visual Post Compare: Unable to unlock parseRawBlock().', error);
+	}
+
+	const grammarParse = blockSerializationDefaultParser && blockSerializationDefaultParser.parse;
+	let coreBlocksRegistered = false;
+
+	/**
+	 * The block-library script exposes block definitions, but loading that script on
+	 * a custom wp-admin screen does not register the definitions with @wordpress/blocks.
+	 * parseRawBlock() returns undefined for an unknown block type, which previously
+	 * caused diffRevisionContent() to filter every block out of the result.
+	 */
+	function ensureCoreBlocksRegistered() {
+		if (coreBlocksRegistered || blocks.getBlockType('core/paragraph')) {
+			coreBlocksRegistered = true;
+			return;
+		}
+
+		if (!blockLibrary || typeof blockLibrary.registerCoreBlocks !== 'function') {
+			throw new Error(
+				__('WordPress core block definitions are unavailable on this screen.', 'revisionary')
+			);
+		}
+
+		blockLibrary.registerCoreBlocks();
+
+		if (!blocks.getBlockType('core/paragraph')) {
+			throw new Error(
+				__('WordPress core blocks could not be registered for comparison.', 'revisionary')
+			);
+		}
+
+		coreBlocksRegistered = true;
+	}
+
+
+	const REVISION_REMOVED_FILTER_SVG = `
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0"
+			focusable="false" role="none" aria-hidden="true"
+			style="visibility:hidden;position:absolute;left:-9999px;overflow:hidden">
+			<defs>
+				<filter id="revision-removed-filter" x="0" y="0" width="100%" height="100%">
+					<feColorMatrix type="matrix"
+						values="0.5 0.3 0.2 0 0.15
+						        0.2 0.2 0.1 0 0
+						        0.2 0.2 0.1 0 0
+						        0   0   0   0.8 0"/>
+				</filter>
+			</defs>
+		</svg>`;
+
+	// Keep these selectors identical to WordPress 7.0's RevisionsCanvas.
+	const REVISION_DIFF_STYLES = `
+		.is-revision-added {
+			box-shadow: inset 0 0 0 9999px color-mix(in srgb, currentColor 5%, #00a32a 15%), 0 0 0 3px color-mix(in srgb, currentColor 5%, #00a32a 15%);
+			outline: 3px solid #00a32a;
+			outline-offset: 6px;
+		}
+		.is-revision-removed,
+		.revision-diff-removed {
+			text-decoration: line-through;
+			filter: url(#revision-removed-filter);
+		}
+		.is-revision-removed {
+			outline: 3px dashed #d63638;
+			outline-offset: 6px;
+		}
+		.is-revision-modified {
+			outline: 3px dotted #9a7000 !important;
+			outline-offset: 6px;
+		}
+		.is-revision-changed {
+			outline-offset: 6px;
+		}
+		.is-shortcode-diff-container[data-visual-post-compare-container-type="gallery"],
+		.is-shortcode-diff-container.gallery,
+		.is-shortcode-diff-container.tiled-gallery {
+			display: flow-root;
+		}
+		.revision-diff-added {
+			background-color: color-mix(in srgb, currentColor 5%, #00a32a 15%);
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 2px;
+		}
+		.revision-diff-format-added,
+		.revision-diff-format-removed,
+		.revision-diff-format-changed {
+			border-bottom: 3px dotted #3c434a;
+			text-decoration: none;
+			box-decoration-break: clone;
+			-webkit-box-decoration-break: clone;
+		}
+		.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"],
+		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"] {
+			outline-color: transparent !important;
+		}
+		.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,
+		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-tooltip-active,
+		.has-diff-tooltips .is-revision-modified[data-visual-post-compare-container-diff="true"].is-diff-border-active,
+		.has-diff-tooltips .is-revision-changed[data-visual-post-compare-container-diff="true"].is-diff-border-active {
+			outline-color: #9a7000 !important;
+		}
+		.is-revision-added.is-diff-border-active,
+		.is-revision-removed.is-diff-border-active,
+		.is-revision-modified.is-diff-border-active,
+		.is-revision-changed.is-diff-border-active {
+			outline-width: 4px !important;
+		}
+	`;
+
+	function withRevisionDiffClasses(BlockListBlock) {
+		return function RevisionDiffBlockListBlock(props) {
+			const diffStatus = props.block && props.block.__revisionDiffStatus;
+			const status = diffStatus && diffStatus.status;
+			let revisionClass = '';
+
+			if (status === 'added') {
+				revisionClass = 'is-revision-added';
+			} else if (status === 'removed') {
+				revisionClass = 'is-revision-removed';
+			} else if (
+				status === 'modified'
+				&& (
+					diffStatus.forceContainerModified
+					|| !(
+						diffStatus.hasGranularImageDiff
+						|| (
+							diffStatus.hasGranularDiff
+							&& !diffStatus.hasUnrepresentedAttributeDiff
+						)
+					)
+				)
+			) {
+				revisionClass = 'is-revision-modified';
+			}
+
+			return el(BlockListBlock, {
+				...props,
+				className: [props.className, revisionClass].filter(Boolean).join(' '),
+			});
+		};
+	}
+
+	hooks.addFilter(
+		'editor.BlockListBlock',
+		'visual-post-compare/revision-diff-classes',
+		withRevisionDiffClasses
+	);
+
+	function ensureRevisionFormats() {
+		[
+			['revision/diff-removed', __('Remove', 'revisionary'), 'del', 'revision-diff-removed'],
+			['revision/diff-added', __('Add', 'revisionary'), 'ins', 'revision-diff-added'],
+			['revision/diff-format-added', __('Add Format', 'revisionary'), 'span', 'revision-diff-format-added'],
+			['revision/diff-format-removed', __('Remove Format', 'revisionary'), 'span', 'revision-diff-format-removed'],
+			['revision/diff-format-changed', __('Modify Format', 'revisionary'), 'span', 'revision-diff-format-changed'],
+		].forEach(([name, title, tagName, className]) => {
+			if (getFormatType && getFormatType(name)) {
+				return;
+			}
+			try {
+				registerFormatType(name, {
+					title,
+					tagName,
+					className,
+					attributes: { title: 'title' },
+					edit: () => null,
+				});
+			} catch (error) {
+				// Core or another module may already have registered the format.
+			}
+		});
+	}
+
+	ensureRevisionFormats();
+
+	function tokenize(value) {
+		// Keep web URLs atomic so a changed URL is presented as one removed value
+		// and one added value instead of highlighting fragments of the address.
+		return String(value || '').match(/(?:[a-z][a-z\d+.-]*:|\/\/)[^\s<>"']+|www\.[^\s<>"']+|\s+|[\p{L}\p{N}_]+|[^\s\p{L}\p{N}_]+/giu) || [];
+	}
+
+
+    function groupTextChanges(parts, unchanged) {
+        const result = [];
+        let removed = '', added = '';
+        const flush = () => {
+            if (removed) result.push({ type: 'removed', value: removed });
+            if (added) result.push({ type: 'added', value: added });
+            removed = ''; added = '';
+        };
+        parts.forEach((part, index) => {
+            if (part.type !== unchanged) {
+                if (part.type === 'removed') removed += part.value;
+                else added += part.value;
+            } else if (!part.value.trim() && (removed || added) && parts[index + 1] && parts[index + 1].type !== unchanged) {
+                removed += part.value; added += part.value;
+            } else { flush(); result.push(part); }
+        });
+        flush();
+        return result;
+    }
+
+	function diffTokens(previousTokens, currentTokens) {
+		const rows = previousTokens.length + 1;
+		const cols = currentTokens.length + 1;
+		const table = Array.from({ length: rows }, () => new Uint32Array(cols));
+
+		for (let i = previousTokens.length - 1; i >= 0; i--) {
+			for (let j = currentTokens.length - 1; j >= 0; j--) {
+				table[i][j] = previousTokens[i] === currentTokens[j]
+					? table[i + 1][j + 1] + 1
+					: Math.max(table[i + 1][j], table[i][j + 1]);
+			}
+		}
+
+		const parts = [];
+		let i = 0;
+		let j = 0;
+		const push = (type, value) => {
+			if (!value) return;
+			const last = parts[parts.length - 1];
+			if (last && last.type === type) {
+				last.value += value;
+			} else {
+				parts.push({ type, value });
+			}
+		};
+
+		while (i < previousTokens.length || j < currentTokens.length) {
+			if (i < previousTokens.length && j < currentTokens.length && previousTokens[i] === currentTokens[j]) {
+				push('unchanged', currentTokens[j]);
+				i++;
+				j++;
+			// Prefer consuming the previous value when both LCS paths are equal.
+			// This keeps a replacement's removed content before its added content.
+			} else if (j < currentTokens.length && (i >= previousTokens.length || table[i][j + 1] > table[i + 1][j])) {
+				push('added', currentTokens[j++]);
+			} else if (i < previousTokens.length) {
+				push('removed', previousTokens[i++]);
+			}
+		}
+
+		return groupTextChanges(parts, 'unchanged');
+	}
+
+	function diffValues(previousValue, currentValue, compareWholeValue = false) {
+		if (!compareWholeValue) {
+			return diffTokens(tokenize(previousValue), tokenize(currentValue));
+		}
+		const parts = [];
+		if (previousValue && previousValue !== currentValue) {
+			parts.push({ type: 'removed', value: previousValue });
+		}
+		if (currentValue) {
+			parts.push({ type: previousValue === currentValue ? 'unchanged' : 'added', value: currentValue });
+		}
+		return parts;
+	}
+
+	function isUrlAttributeName(attributeName) {
+		return /(?:url|href|src|link)\s*:?$/i.test(String(attributeName || ''));
+	}
+
+	function stableDiffValue(value) {
+		if (Array.isArray(value)) {
+			return value.map(stableDiffValue);
+		}
+		if (value && typeof value === 'object') {
+			return Object.keys(value).sort().reduce((result, key) => {
+				result[key] = stableDiffValue(value[key]);
+				return result;
+			}, {});
+		}
+		return value;
+	}
+
+	function formatSignatureAt(richTextValue, index) {
+		const formats = richTextValue
+			&& Array.isArray(richTextValue.formats)
+			&& Array.isArray(richTextValue.formats[index])
+			? richTextValue.formats[index]
+			: [];
+		const signatures = formats
+			.filter((format) => format && typeof format.type === 'string' && !format.type.startsWith('revision/diff-'))
+			.map((format) => JSON.stringify(stableDiffValue(format)))
+			.sort();
+		return JSON.stringify(signatures);
+	}
+
+	function applyFormattingDiff(
+		currentRichText,
+		previousRichText,
+		currentStart,
+		previousStart,
+		length,
+		diffStatus
+	) {
+		let value = slice(currentRichText, currentStart, currentStart + length);
+		let rangeStart = null;
+
+		for (let offset = 0; offset <= length; offset++) {
+			const differs = offset < length && formatSignatureAt(currentRichText, currentStart + offset)
+				!== formatSignatureAt(previousRichText, previousStart + offset);
+
+			if (differs && rangeStart === null) {
+				rangeStart = offset;
+			} else if (!differs && rangeStart !== null) {
+				value = applyFormat(value, {
+					type: 'revision/diff-format-changed',
+					attributes: {
+						title: __('Modify Format', 'revisionary'),
+					},
+				}, rangeStart, offset);
+				rangeStart = null;
+				diffStatus.hasGranularDiff = true;
+			}
+		}
+
+		return value;
+	}
+
+	function applyRichTextDiff(currentRichText, previousRichText, preserveObjects = false, diffStatus = null) {
+		// RichText's internal text includes an object-replacement character for
+		// inline images. toPlainText() removes it, which shifts every subsequent
+		// slice offset and makes an image-only removal impossible to highlight.
+		// Keep the previous behavior for block-editor content, but retain those
+		// placeholders while diffing normalized Classic Editor HTML.
+		const currentText = preserveObjects && typeof currentRichText.text === 'string'
+			? currentRichText.text
+			: currentRichText.toPlainText();
+		const previousText = preserveObjects && typeof previousRichText.text === 'string'
+			? previousRichText.text
+			: previousRichText.toPlainText();
+		const textDiff = diffTokens(tokenize(previousText), tokenize(currentText));
+		let result = create({ text: '' });
+		let currentIndex = 0;
+		let previousIndex = 0;
+
+		textDiff.forEach((part) => {
+			const length = part.value.length;
+			if (preserveObjects && /^\s+$/u.test(part.value)) {
+				if (part.type === 'added') {
+					result = concat(result, slice(currentRichText, currentIndex, currentIndex + length));
+					currentIndex += length;
+				} else if (part.type === 'removed') {
+					previousIndex += length;
+				} else {
+					result = concat(result, slice(currentRichText, currentIndex, currentIndex + length));
+					currentIndex += length;
+					previousIndex += length;
+				}
+				return;
+			}
+			if (part.type === 'removed') {
+				const removed = slice(previousRichText, previousIndex, previousIndex + length);
+				result = concat(result, applyFormat(removed, {
+					type: 'revision/diff-removed',
+					attributes: {
+						title: __('Remove', 'revisionary'),
+					},
+				}, 0, length));
+				previousIndex += length;
+				if (preserveObjects && diffStatus) diffStatus.hasGranularDiff = true;
+			} else if (part.type === 'added') {
+				const added = slice(currentRichText, currentIndex, currentIndex + length);
+				result = concat(result, applyFormat(added, {
+					type: 'revision/diff-added',
+					attributes: {
+						title: __('Add', 'revisionary'),
+					},
+				}, 0, length));
+				currentIndex += length;
+				if (preserveObjects && diffStatus) diffStatus.hasGranularDiff = true;
+			} else {
+				result = concat(
+					result,
+					preserveObjects && diffStatus && config.htmlAttributeChanges
+						? applyFormattingDiff(
+							currentRichText,
+							previousRichText,
+							currentIndex,
+							previousIndex,
+							length,
+							diffStatus
+						)
+						: slice(currentRichText, currentIndex, currentIndex + length)
+				);
+				currentIndex += length;
+				previousIndex += length;
+			}
+		});
+
+		return new RichTextData(result);
+	}
+
+	function normalizeClassicSignatureValue(value) {
+		if (Array.isArray(value)) return value.map(normalizeClassicSignatureValue);
+		if (value && typeof value === 'object') {
+			return Object.keys(value).sort().reduce((result, key) => {
+				result[key] = normalizeClassicSignatureValue(value[key]);
+				return result;
+			}, {});
+		}
+		if (typeof value !== 'string') return value;
+		const template = document.createElement('template');
+		template.innerHTML = value;
+		const walker = document.createTreeWalker(template.content, NodeFilter.SHOW_TEXT);
+		while (walker.nextNode()) {
+			walker.currentNode.nodeValue = walker.currentNode.nodeValue.replace(/[\t\r\n \u00a0]+/g, '');
+		}
+		return template.innerHTML;
+	}
+
+	function rawSignature(rawBlock, normalizeClassicWhitespace = false) {
+		const attributes = normalizeClassicWhitespace
+			? normalizeClassicSignatureValue(rawBlock.attrs)
+			: rawBlock.attrs;
+		return JSON.stringify({
+			name: rawBlock.blockName,
+			attrs: attributes,
+			html: (rawBlock.innerContent || []).filter(
+				(value) => value !== null && String(value).trim() !== ''
+			).map((value) => normalizeClassicWhitespace ? normalizeClassicSignatureValue(value) : value),
+		});
+	}
+
+	function isIgnorableClassicRawBlock(rawBlock) {
+		if (!rawBlock || (rawBlock.blockName && rawBlock.blockName !== 'core/paragraph')) return false;
+		const template = document.createElement('template');
+		template.innerHTML = rawBlock.innerHTML || '';
+		if (template.content.querySelector('div, section, article, aside, table, ul, ol, li, figure, blockquote')) return false;
+		if (template.content.querySelector('br, img, hr, audio, video, iframe, object, embed, svg, canvas')) return false;
+		return !(template.content.textContent || '').replace(/\u00a0/g, ' ').trim();
+	}
+
+	function plainTextFromRaw(rawBlock) {
+		const node = document.createElement('div');
+		node.innerHTML = rawBlock && rawBlock.innerHTML ? rawBlock.innerHTML : '';
+		return node.textContent || '';
+	}
+
+	function textSimilarity(a, b) {
+		if (!a && !b) return 1;
+		if (!a || !b) return 0;
+		const aWords = tokenize(a).filter((token) => /[\p{L}\p{N}]/u.test(token));
+		const bWords = tokenize(b).filter((token) => /[\p{L}\p{N}]/u.test(token));
+		if (!aWords.length && !bWords.length) return 1;
+		const set = new Set(aWords);
+		let matches = 0;
+		bWords.forEach((word) => {
+			if (set.has(word)) matches++;
+		});
+		return matches / Math.max(aWords.length, bWords.length, 1);
+	}
+
+	function isFormattingRootReplacement(currentBlock, previousBlock) {
+		const currentTemplate = document.createElement('template');
+		const previousTemplate = document.createElement('template');
+		currentTemplate.innerHTML = currentBlock.innerHTML || '';
+		previousTemplate.innerHTML = previousBlock.innerHTML || '';
+		const currentRoot = currentTemplate.content.firstElementChild;
+		const previousRoot = previousTemplate.content.firstElementChild;
+		if (!currentRoot || !previousRoot || currentTemplate.content.children.length !== 1
+			|| previousTemplate.content.children.length !== 1) return false;
+		const currentText = normalizedElementText(currentRoot);
+		const previousText = normalizedElementText(previousRoot);
+		if (!currentText || currentText !== previousText || currentRoot.tagName === previousRoot.tagName) return false;
+		const formatRoots = new Set([
+			'p', 'span', 'b', 'strong', 'i', 'em', 'ins', 'del', 'small', 'big', 'large',
+			'sup', 'sub', 'pre', 'q', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+		]);
+		return formatRoots.has(currentRoot.tagName.toLowerCase())
+			|| formatRoots.has(previousRoot.tagName.toLowerCase());
+	}
+
+    function canPairParagraphs(currentBlock, previousBlock) {
+        const current = document.createElement('div');
+        const previous = document.createElement('div');
+        current.innerHTML = currentBlock.innerHTML || '';
+        previous.innerHTML = previousBlock.innerHTML || '';
+        const isParagraph = (block, node) => block.blockName === 'core/paragraph'
+            || (!block.blockName && node.children.length === 1 && node.firstElementChild.tagName === 'P');
+        if (!isParagraph(currentBlock, current) || !isParagraph(previousBlock, previous)) return true;
+        const before = (previous.textContent || '').replace(/\s+/g, ' ').trim();
+        const after = (current.textContent || '').replace(/\s+/g, ' ').trim();
+        if (before === after) return true; // Preserve formatting-only and image changes.
+        if (textSimilarity(before, after) < 0.5) return false;
+        const changed = diffTokens(tokenize(before), tokenize(after)).filter((part) => part.type !== 'unchanged');
+        const chars = changed.reduce((total, part) => total + Array.from(part.value.trim()).length, 0);
+        const words = changed.reduce((total, part) => total + tokenize(part.value).filter((word) => /[\p{L}\p{N}]/u.test(word)).length, 0);
+        return chars <= 50 && words <= 10;
+    }
+
+	function pairSimilarBlocks(rawBlocks, enableClassicGranularDiff = false) {
+		const removed = [];
+		const added = [];
+		rawBlocks.forEach((block, index) => {
+			const status = block.__revisionDiffStatus && block.__revisionDiffStatus.status;
+			if (status === 'removed') removed.push({ block, index });
+			if (status === 'added') added.push({ block, index });
+		});
+
+		if (!removed.length || !added.length) return rawBlocks;
+
+		const usedRemoved = new Set();
+		const usedAdded = new Set();
+		const replacements = new Map();
+
+		removed.forEach((rem) => {
+			let best = null;
+			let bestScore = -1;
+			const sameTypeAdded = added.filter((candidate) =>
+				!usedAdded.has(candidate.index)
+				&& (
+					candidate.block.blockName === rem.block.blockName
+					|| isFormattingRootReplacement(candidate.block, rem.block)
+				)
+			);
+			const sameTypeRemoved = removed.filter((candidate) =>
+				candidate.block.blockName === rem.block.blockName
+				|| isFormattingRootReplacement(candidate.block, rem.block)
+			);
+
+			sameTypeAdded.forEach((candidate) => {
+                if (!canPairParagraphs(candidate.block, rem.block)) return;
+                // Never pair changes across an intervening unchanged block.
+                const start = Math.min(candidate.index, rem.index);
+                const end = Math.max(candidate.index, rem.index);
+                if (rawBlocks.slice(start + 1, end).some((block) => !block.__revisionDiffStatus)) return;
+				const formattingRootReplacement = isFormattingRootReplacement(candidate.block, rem.block);
+				let canBlend = false;
+				if (
+					enableClassicGranularDiff
+					&& classicDiff
+				) {
+					canBlend = classicDiff.canBlendStructure(candidate.block, rem.block);
+					if (!canBlend && !formattingRootReplacement) return;
+				}
+				const score = textSimilarity(plainTextFromRaw(rem.block), plainTextFromRaw(candidate.block));
+				const unambiguous = sameTypeAdded.length === 1 && sameTypeRemoved.length === 1;
+				if ((unambiguous || score >= 0.5 || canBlend || formattingRootReplacement) && score > bestScore) {
+					best = candidate;
+					bestScore = score;
+				}
+			});
+
+			if (best) {
+				usedRemoved.add(rem.index);
+				usedAdded.add(best.index);
+				const formattingDiff = enableClassicGranularDiff && classicDiff
+					? classicDiff.markHtmlFormattingChanges(
+						best.block,
+						rem.block,
+						(previousText, currentText) => diffTokens(tokenize(previousText), tokenize(currentText))
+					)
+					: null;
+				const imageOnlyDiff = enableClassicGranularDiff && classicDiff
+					&& classicDiff.hasImageOnlyDifference(best.block, rem.block);
+				const replacementBlock = formattingDiff
+					? {
+						...best.block,
+						innerHTML: formattingDiff.html,
+						innerContent: [formattingDiff.html],
+					}
+					: best.block;
+				const diffStatus = { status: 'modified' };
+				diffStatus.currentHtml = best.block.innerHTML || '';
+				diffStatus.previousHtml = rem.block.innerHTML || '';
+				if (formattingDiff) {
+					diffStatus.hasGranularDiff = true;
+					diffStatus.hasUnrepresentedAttributeDiff = !formattingDiff.complete;
+					diffStatus.htmlDiffComplete = Boolean(formattingDiff.complete);
+					diffStatus.forceContainerModified = Boolean(formattingDiff.forceContainerModified);
+				}
+				if (imageOnlyDiff) {
+					diffStatus.hasGranularImageDiff = true;
+				}
+				replacements.set(best.index, {
+					...replacementBlock,
+					__revisionDiffStatus: diffStatus,
+					__previousRawBlock: rem.block,
+				});
+			}
+		});
+
+		return rawBlocks.map((block, index) => {
+			if (replacements.has(index)) return replacements.get(index);
+			if (usedRemoved.has(index) || usedAdded.has(index)) return null;
+			return block;
+		}).filter(Boolean);
+	}
+
+	function diffRawBlocks(currentRaw, previousRaw, enableClassicGranularDiff = false) {
+		const currentSignatures = currentRaw.map(
+			(rawBlock) => rawSignature(rawBlock, enableClassicGranularDiff)
+		);
+		const previousSignatures = previousRaw.map(
+			(rawBlock) => rawSignature(rawBlock, enableClassicGranularDiff)
+		);
+		const rows = previousRaw.length + 1;
+		const cols = currentRaw.length + 1;
+		const table = Array.from({ length: rows }, () => new Uint32Array(cols));
+
+		for (let i = previousRaw.length - 1; i >= 0; i--) {
+			for (let j = currentRaw.length - 1; j >= 0; j--) {
+				table[i][j] = previousSignatures[i] === currentSignatures[j]
+					? table[i + 1][j + 1] + 1
+					: Math.max(table[i + 1][j], table[i][j + 1]);
+			}
+		}
+
+		const result = [];
+		let i = 0;
+		let j = 0;
+		while (i < previousRaw.length || j < currentRaw.length) {
+			if (i < previousRaw.length && j < currentRaw.length && previousSignatures[i] === currentSignatures[j]) {
+				const current = currentRaw[j++];
+				const previous = previousRaw[i++];
+				result.push({
+					...current,
+					innerBlocks: diffRawBlocks(
+						current.innerBlocks || [],
+						previous.innerBlocks || [],
+						enableClassicGranularDiff
+					),
+				});
+			} else if (j < currentRaw.length && (i >= previousRaw.length || table[i][j + 1] > table[i + 1][j])) {
+				result.push({ ...currentRaw[j++], __revisionDiffStatus: { status: 'added' } });
+			} else if (i < previousRaw.length) {
+				result.push({ ...previousRaw[i++], __revisionDiffStatus: { status: 'removed' } });
+			}
+		}
+
+		return pairSimilarBlocks(result, enableClassicGranularDiff);
+	}
+
+	function applyDiffToBlock(currentBlock, previousBlock, diffStatus, diffNestedAttributes = false) {
+		const blockType = blocks.getBlockType(currentBlock.name);
+		if (!blockType || !blockType.attributes) return;
+		if (diffNestedAttributes && diffStatus.htmlDiffComplete) return;
+		let hasUnrepresentedAttributeDiff = false;
+		const changedAttributes = {};
+
+		Object.entries(blockType.attributes).forEach(([attributeName, definition]) => {
+			const currentValue = currentBlock.attributes[attributeName];
+			const previousValue = previousBlock.attributes[attributeName];
+
+			if (definition && definition.source === 'rich-text') {
+				if (currentValue instanceof RichTextData && previousValue instanceof RichTextData) {
+					currentBlock.attributes[attributeName] = applyRichTextDiff(
+						currentValue,
+						previousValue,
+						diffNestedAttributes,
+						diffStatus
+					);
+				}
+			} else if (diffNestedAttributes && classicDiff && definition && definition.source === 'query') {
+				currentBlock.attributes[attributeName] = classicDiff.applyNestedAttributeDiff(
+					currentValue,
+					previousValue,
+					definition,
+					diffStatus,
+					applyRichTextDiff
+				);
+			}
+			if (!diffNestedAttributes && (!definition || definition.source !== 'rich-text')) {
+				const currentString = stringifyAttributeValue(currentValue);
+				const previousString = stringifyAttributeValue(previousValue);
+				if (currentString !== previousString) {
+					changedAttributes[attributeName] = diffValues(
+						previousString,
+						currentString,
+						isUrlAttributeName(attributeName)
+					);
+				}
+			}
+
+			if (
+				diffNestedAttributes
+				&& classicDiff
+				&& classicDiff.hasUnrepresentedAttributeDifference(currentValue, previousValue, definition)
+			) {
+				hasUnrepresentedAttributeDiff = true;
+			}
+		});
+
+		if (!diffNestedAttributes && Object.keys(changedAttributes).length) {
+			diffStatus.changedAttributes = changedAttributes;
+		}
+		if (
+			!diffNestedAttributes
+			&& currentBlock.name === 'core/image'
+			&& currentBlock.attributes.url
+			&& previousBlock.attributes.url
+			&& currentBlock.attributes.url !== previousBlock.attributes.url
+		) {
+			diffStatus.previousImageUrl = previousBlock.attributes.url;
+		}
+
+		if (diffNestedAttributes) {
+			diffStatus.hasUnrepresentedAttributeDiff = Boolean(
+				diffStatus.hasUnrepresentedAttributeDiff || hasUnrepresentedAttributeDiff
+			);
+		}
+	}
+
+	function stringifyAttributeValue(value) {
+		if (value === null || value === undefined) return '';
+		if (typeof value === 'string') return value;
+		try {
+			return JSON.stringify(value, null, 2);
+		} catch (error) {
+			return String(value);
+		}
+	}
+
+
+    function attributeEmpty(value) {
+        return value === undefined || value === null || value === '' ||
+            (typeof value === 'object' && Object.values(value).every(attributeEmpty));
+    }
+    function attributeVisible(current, previous) { return !attributeEmpty(current) || !attributeEmpty(previous); }
+    function attributePartsValues(parts) {
+        const decode = (value) => {
+            try { const parsed = JSON.parse(value); return parsed && typeof parsed === 'object' ? parsed : value; } catch (error) { return value; }
+        };
+        return {
+            previous: decode(parts.filter((part) => part.type !== 'added').map((part) => part.value).join('')),
+            current: decode(parts.filter((part) => part.type !== 'removed').map((part) => part.value).join('')),
+        };
+    }
+    function renderAttributeValues(current, previous, unchanged = false, depth = 0) {
+        if (depth < 3 && ((current && typeof current === 'object') || (previous && typeof previous === 'object'))) {
+            const a = current && typeof current === 'object' ? current : {};
+            const b = previous && typeof previous === 'object' ? previous : {};
+            return el('dl', { className: 'visual-post-compare-revision__attribute-array' },
+                ...Array.from(new Set([...Object.keys(b), ...Object.keys(a)])).filter((key) => attributeVisible(a[key], b[key])).flatMap((key) => [
+                    el('dt', { key: 'key-' + key }, el(attributeEmpty(a[key]) && !attributeEmpty(b[key]) ? 'del' : 'span', { className: attributeEmpty(a[key]) && !attributeEmpty(b[key]) ? 'editor-revision-fields-diff__removed' : '' }, Array.isArray(current) || Array.isArray(previous) ? '[' + key + ']' : key)),
+                    el('dd', { key: 'value-' + key }, renderAttributeValues(a[key], b[key], unchanged, depth + 1)),
+                ]));
+        }
+        const show = (value) => typeof value === 'object' ? JSON.stringify(value) : String(value);
+        const same = unchanged || stringifyAttributeValue(current) === stringifyAttributeValue(previous);
+        return el('span', null,
+            !same && !attributeEmpty(previous) ? el('del', { className: 'editor-revision-fields-diff__removed' }, show(previous)) : null,
+            !attributeEmpty(current) ? el(same ? 'span' : 'ins', { className: same ? '' : 'editor-revision-fields-diff__added' }, show(current)) : null);
+    }
+    function renderAttributeRow(label, current, previous, unchanged = false, key = label) {
+        if (!attributeVisible(current, previous)) return null;
+        const removed = attributeEmpty(current) && !attributeEmpty(previous);
+        return el('div', { key, className: 'visual-post-compare-revision__attribute-row' },
+            el(removed ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' + (removed ? ' editor-revision-fields-diff__removed' : '') }, label),
+            el('div', { className: 'editor-revision-fields-diff__value' }, renderAttributeValues(current, previous, unchanged)));
+    }
+    window.RevisionaryCompareAttributes = { visible: attributeVisible, renderRow: renderAttributeRow };
+
+	function renderBlockAttributeValue(attributeName, parts) {
+        const structured = attributePartsValues(parts);
+        if ((structured.current && typeof structured.current === 'object') || (structured.previous && typeof structured.previous === 'object')) return [renderAttributeValues(structured.current, structured.previous)];
+		const previousValue = parts.filter((part) => part.type !== 'added').map((part) => part.value).join('');
+		const currentValue = parts.filter((part) => part.type !== 'removed').map((part) => part.value).join('');
+		const isWebUrl = (value) => /^https?:\/\/[^\s]+$/i.test(value);
+		const urlAttribute = isUrlAttributeName(attributeName);
+
+		if (urlAttribute) {
+			const values = [];
+			if (previousValue && previousValue !== currentValue) {
+				values.push(el('del', { key: 'previous', className: 'editor-revision-fields-diff__removed' },
+					isWebUrl(previousValue)
+						? el('a', { href: previousValue, target: '_blank', rel: 'noopener noreferrer' }, previousValue)
+						: previousValue
+				));
+			}
+			if (currentValue) {
+				const wrapper = previousValue !== currentValue ? 'ins' : 'span';
+				const props = previousValue !== currentValue
+					? { key: 'current', className: 'editor-revision-fields-diff__added' }
+					: { key: 'current' };
+				values.push(el(wrapper, props,
+					isWebUrl(currentValue)
+						? el('a', { href: currentValue, target: '_blank', rel: 'noopener noreferrer' }, currentValue)
+						: currentValue
+				));
+			}
+			return values;
+		}
+
+		return parts.map((part, index) => part.type === 'added'
+			? el('ins', { key: index, className: 'editor-revision-fields-diff__added' }, part.value)
+			: part.type === 'removed'
+				? el('del', { key: index, className: 'editor-revision-fields-diff__removed' }, part.value)
+				: el('span', { key: index }, part.value)
+		);
+	}
+
+	function applyDiffRecursively(parsedBlock, rawBlock, diffNestedAttributes = false) {
+		if (rawBlock.__revisionDiffStatus) {
+			if (rawBlock.__revisionDiffStatus.status === 'modified' && rawBlock.__previousRawBlock) {
+				const previousParsed = parseRawBlock(rawBlock.__previousRawBlock);
+				if (previousParsed) {
+					applyDiffToBlock(
+						parsedBlock,
+						previousParsed,
+						rawBlock.__revisionDiffStatus,
+						diffNestedAttributes
+					);
+				}
+			}
+			parsedBlock.__revisionDiffStatus = rawBlock.__revisionDiffStatus;
+			parsedBlock.attributes = parsedBlock.attributes || {};
+			parsedBlock.attributes.__revisionDiffStatus = rawBlock.__revisionDiffStatus;
+		}
+
+		if (parsedBlock.innerBlocks && rawBlock.innerBlocks) {
+			for (let index = 0; index < parsedBlock.innerBlocks.length; index++) {
+				if (parsedBlock.innerBlocks[index] && rawBlock.innerBlocks[index]) {
+					applyDiffRecursively(
+						parsedBlock.innerBlocks[index],
+						rawBlock.innerBlocks[index],
+						diffNestedAttributes
+					);
+				}
+			}
+		}
+	}
+
+	function containsSerializedBlocks(content) {
+		return /<!--\s+\/?wp:[a-z0-9_-]+(?:\/[a-z0-9_-]+)?(?:\s|-->)/i.test(content || '');
+	}
+
+	/**
+	 * Canonicalize differences introduced by TinyMCE, KSES, or HTML
+	 * serialization without hiding meaningful markup changes.
+	 *
+	 * Parsing and serializing through the browser normalizes entity spelling,
+	 * tag/attribute whitespace, tag case, and void-element syntax. CSSOM does
+	 * the same for insignificant whitespace and trailing semicolons in inline
+	 * styles while retaining property names, values, priorities, and order.
+	 * Attribute order and repeated whitespace in token-list attributes have no
+	 * rendering significance, so those are canonicalized explicitly.
+	 */
+	/**
+	 * Convert Classic Editor HTML into the same block-shaped input used by the
+	 * visual revisions diff. The block grammar parser intentionally returns
+	 * un-delimited HTML as one freeform block, which makes an entire Classic
+	 * Editor post appear changed when only a word or image was edited.
+	 *
+	 * rawHandler() applies WordPress core's HTML-to-block transforms, separating
+	 * paragraphs, headings, lists, images, and other supported elements. Once
+	 * serialized, the existing block diff can pair those elements and apply its
+	 * existing rich-text substring highlighting. Serialized block-editor content
+	 * is returned byte-for-byte so that its comparison behavior is unchanged.
+	 */
+	function prepareContentForDiff(content) {
+		const value = String(content || '');
+		if (!value.trim() || containsSerializedBlocks(value)) {
+			return value;
+		}
+
+		if (!classicDiff || typeof classicDiff.prepareContentForDiff !== 'function') {
+			throw new Error(
+				__('Classic Editor comparison support is unavailable.', 'revisionary')
+			);
+		}
+
+		return classicDiff.prepareContentForDiff(value);
+	}
+
+	function normalizeBlockEditorRawBlocks(rawBlocks) {
+		return (rawBlocks || []).flatMap((rawBlock) => {
+			const normalizedInnerBlocks = normalizeBlockEditorRawBlocks(rawBlock.innerBlocks || []);
+			if ('core/paragraph' !== rawBlock.blockName || normalizedInnerBlocks.length) {
+				return [{ ...rawBlock, innerBlocks: normalizedInnerBlocks }];
+			}
+
+			const template = document.createElement('template');
+			template.innerHTML = rawBlock.innerHTML || '';
+			const elements = Array.from(template.content.children);
+			const onlyParagraphElements = elements.length > 1
+				&& elements.every((element) => 'p' === element.tagName.toLowerCase())
+				&& Array.from(template.content.childNodes).every((node) =>
+					node.nodeType === Node.ELEMENT_NODE
+					|| (node.nodeType === Node.TEXT_NODE && !(node.nodeValue || '').trim())
+				);
+			if (!onlyParagraphElements) {
+				return [{ ...rawBlock, innerBlocks: normalizedInnerBlocks }];
+			}
+
+			// Invalid serialized paragraph blocks can contain several sibling <p>
+			// elements. Rendering those through core/paragraph nests them inside a
+			// generated <p>, causing the browser to move content outside the block
+			// wrapper. Split them before diffing so every paragraph remains visible
+			// and receives its own block-level status.
+			return elements.map((element) => {
+				const html = element.outerHTML;
+				return {
+					...rawBlock,
+					attrs: { ...(rawBlock.attrs || {}) },
+					innerBlocks: [],
+					innerHTML: html,
+					innerContent: [html],
+				};
+			});
+		});
+	}
+
+	function diffRevisionContent(currentContent, previousContent) {
+		if (typeof grammarParse !== 'function' || typeof parseRawBlock !== 'function') {
+			throw new Error(__('WordPress 7.0 block revision parser APIs are unavailable.', 'revisionary'));
+		}
+
+		// A custom wp-admin page does not run the normal post-editor bootstrap.
+		// Register the core block types before parseRawBlock() is asked to resolve
+		// core/paragraph, core/heading, core/list, etc.
+		ensureCoreBlocksRegistered();
+		const isClassicComparison = Boolean(classicDiff) && (
+			!containsSerializedBlocks(currentContent)
+			|| !containsSerializedBlocks(previousContent)
+		);
+
+		let currentRaw = grammarParse(prepareContentForDiff(currentContent));
+		let previousRaw = grammarParse(prepareContentForDiff(previousContent));
+		if (isClassicComparison) {
+			currentRaw = currentRaw.filter((rawBlock) => !isIgnorableClassicRawBlock(rawBlock));
+			previousRaw = previousRaw.filter((rawBlock) => !isIgnorableClassicRawBlock(rawBlock));
+		} else {
+			currentRaw = normalizeBlockEditorRawBlocks(currentRaw);
+			previousRaw = normalizeBlockEditorRawBlocks(previousRaw);
+		}
+		const mergedRaw = diffRawBlocks(currentRaw, previousRaw, isClassicComparison);
+
+		const parsedBlocks = mergedRaw.map((rawBlock) => {
+			// The grammar parser can emit whitespace-only freeform entries between
+			// blocks. Core normally drops these; do the same here rather than turning
+			// them into a missing/freeform block on the standalone screen.
+			if (!rawBlock.blockName && !(rawBlock.innerHTML || '').trim()) {
+				return null;
+			}
+
+			const parsed = parseRawBlock(rawBlock);
+			if (parsed) {
+				applyDiffRecursively(parsed, rawBlock, isClassicComparison);
+			}
+			return parsed;
+		}).filter(Boolean);
+
+		if (mergedRaw.some((rawBlock) => rawBlock.blockName) && parsedBlocks.length === 0) {
+			throw new Error(
+				__('The comparison was generated, but WordPress could not parse any comparison blocks.', 'revisionary')
+			);
+		}
+
+		return parsedBlocks;
+	}
+
+
+	function scopeEditorCss(cssText, scopeSelector) {
+		if (!cssText || !scopeSelector || typeof CSSStyleSheet === 'undefined') {
+			return '';
+		}
+
+		let sheet;
+		try {
+			sheet = new CSSStyleSheet();
+			sheet.replaceSync(cssText);
+		} catch (error) {
+			console.warn('Visual Post Compare: Unable to scope editor CSS.', error);
+			return '';
+		}
+
+		const scopeSelectorList = (selectorText) => selectorText
+			.split(',')
+			.map((selector) => {
+				selector = selector.trim();
+				if (!selector) {
+					return '';
+				}
+
+				if (selector === ':root' || selector === 'html' || selector === 'body' || selector === '.editor-styles-wrapper') {
+					return scopeSelector;
+				}
+
+				selector = selector
+					.replace(/^:root(?=\s|>|\+|~|\.|#|:|\[|$)/, scopeSelector)
+					.replace(/^html(?=\s|>|\+|~|\.|#|:|\[|$)/, scopeSelector)
+					.replace(/^body(?=\s|>|\+|~|\.|#|:|\[|$)/, scopeSelector)
+					.replace(/^\.editor-styles-wrapper(?=\s|>|\+|~|\.|#|:|\[|$)/, scopeSelector);
+
+				if (selector.indexOf(scopeSelector) === 0) {
+					return selector;
+				}
+
+				return scopeSelector + ' ' + selector;
+			})
+			.filter(Boolean)
+			.join(', ');
+
+		const serializeRules = (rules) => Array.from(rules).map((rule) => {
+			if (rule.type === CSSRule.STYLE_RULE) {
+				const selectors = scopeSelectorList(rule.selectorText);
+				return selectors ? selectors + '{' + rule.style.cssText + '}' : '';
+			}
+
+			if (rule.type === CSSRule.MEDIA_RULE || rule.type === CSSRule.SUPPORTS_RULE || rule.type === CSSRule.LAYER_BLOCK_RULE) {
+				const inner = serializeRules(rule.cssRules);
+				if (!inner) {
+					return '';
+				}
+				const prefix = rule.cssText.slice(0, rule.cssText.indexOf('{')).trim();
+				return prefix + '{' + inner + '}';
+			}
+
+			// @font-face and @keyframes are namespaced by identifiers rather than
+			// selectors, so retaining them cannot restyle the surrounding admin UI.
+			if (rule.type === CSSRule.FONT_FACE_RULE || rule.type === CSSRule.KEYFRAMES_RULE) {
+				return rule.cssText;
+			}
+
+			return '';
+		}).join('\n');
+
+		return serializeRules(sheet.cssRules);
+	}
+
+
+	function ComparisonSlider({ comparison, onSelect }) {
+		const presentation = comparison.presentation || {};
+		const posts = Array.isArray(comparison.posts) ? comparison.posts : [];
+		if (posts.length < 2) {
+			return null;
+		}
+
+		const selectedId = Number(comparison.selectedId || (comparison.revision && comparison.revision.id));
+		const foundIndex = posts.findIndex((post) => Number(post.id) === selectedId);
+		const selectedIndex = foundIndex >= 0 ? foundIndex : 0;
+		const count = posts.length;
+		const usePostDate = presentation.sliderPostDate === true;
+		const [hasFocus, setHasFocus] = useState(false);
+
+		const sliderDateLabel = (post) => usePostDate
+			? (post.sliderPostDateLabel || post.postDateLabel || post.postDate)
+			: (post.sliderModifiedLabel || post.modifiedLabel || post.modified);
+
+		const tooltipPosition = posts.length > 1
+			? (selectedIndex / (posts.length - 1)) * 100
+			: 50;
+		const tooltipTransform = selectedIndex === 0
+			? 'translateX(0)'
+			: (selectedIndex === posts.length - 1 ? 'translateX(-100%)' : 'translateX(-50%)');
+		const tooltipArrowLeft = selectedIndex === 0
+			? '8px'
+			: (selectedIndex === posts.length - 1 ? 'calc(100% - 8px)' : '50%');
+		const selectedPost = posts[selectedIndex] || null;
+
+		return el(
+			'div',
+			{ className: 'visual-post-compare-revision__selector', style: { '--vpc-slider-count': count } },
+			el(
+				'div',
+				{
+					className: 'visual-post-compare-revision__range-wrap',
+					style: { '--vpc-slider-intervals': Math.max(posts.length - 1, 1) },
+				},
+				el(
+					'div',
+					{ className: 'visual-post-compare-revision__segmented-track', 'aria-hidden': true },
+					...Array.from({ length: Math.max(posts.length - 1, 1) }, (_, index) =>
+						el('span', {
+							key: 'track-segment-' + index,
+							className: [
+								'visual-post-compare-revision__track-segment',
+								index < selectedIndex ? 'is-filled' : '',
+							].filter(Boolean).join(' '),
+						})
+					)
+				),
+				el('input', {
+					type: 'range',
+					className: 'visual-post-compare-revision__range',
+					min: 0,
+					max: posts.length - 1,
+					step: 1,
+					value: selectedIndex,
+					'aria-label': __('Select comparison post', 'revisionary'),
+					'aria-valuetext': selectedPost ? String(sliderDateLabel(selectedPost) || '') : undefined,
+					onFocus: () => setHasFocus(true),
+					onBlur: () => setHasFocus(false),
+					onChange: (event) => {
+						const post = posts[Number(event.target.value)];
+						if (post) {
+							onSelect(post);
+						}
+					},
+				}),
+				hasFocus && selectedPost
+					? el(
+						'div',
+						{
+							className: 'visual-post-compare-revision__slider-tooltip',
+							role: 'tooltip',
+							style: {
+								left: tooltipPosition + '%',
+								transform: tooltipTransform,
+								'--vpc-tooltip-arrow-left': tooltipArrowLeft,
+							},
+						},
+						sliderDateLabel(selectedPost)
+					)
+					: null
+			)
+		);
+	}
+
+	function findSecondaryDiffNodes(nodes) {
+		const secondaryNodes = new WeakSet();
+		const containerCounts = new WeakMap();
+		nodes.forEach((node) => {
+			const diffContainer = node.parentElement
+				? node.parentElement.closest(
+					'.is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed'
+				)
+				: null;
+			if (!diffContainer) return;
+			const count = containerCounts.get(diffContainer) || 0;
+			if (count > 0) secondaryNodes.add(node);
+			containerCounts.set(diffContainer, count + 1);
+		});
+		return secondaryNodes;
+	}
+
+	function deduplicateCoincidentContainerNodes(nodes, containerSelector) {
+		const result = [];
+		nodes.forEach((node) => {
+			if (!node.matches(containerSelector)) {
+				result.push(node);
+				return;
+			}
+			const rect = node.getBoundingClientRect();
+			const center = rect.top + rect.height / 2;
+			const duplicateIndex = result.findIndex((candidate) => {
+				if (!candidate.matches(containerSelector)) return false;
+				if (!candidate.contains(node) && !node.contains(candidate)) return false;
+				const candidateRect = candidate.getBoundingClientRect();
+				const candidateCenter = candidateRect.top + candidateRect.height / 2;
+				return Math.abs(candidateCenter - center) < 1;
+			});
+			if (duplicateIndex < 0) {
+				result.push(node);
+			} else if (result[duplicateIndex].contains(node)) {
+				// Prefer the immediate highlighted container over a coincident wrapper.
+				result[duplicateIndex] = node;
+			}
+		});
+		return result;
+	}
+
+	function hasRenderableMarkerTop(marker) {
+		if (!marker || !marker.isContainerDiff) return true;
+		return Number.isFinite(marker.top) && marker.top > 0;
+	}
+
+	function restoreShortcodeContextComments(preview) {
+		const replaceMarker = (marker, commentText) => {
+			if (marker.dataset.visualPostCompareCommentRestored === 'true') return;
+			const comment = document.createComment(commentText);
+			const parent = marker.parentElement;
+			const sentinelOnlyContainer = parent
+				&& !(parent.textContent || '').trim()
+				&& Array.from(parent.children).every((child) =>
+					child === marker || child.hidden || child.tagName.toLowerCase() === 'br'
+				);
+			if (sentinelOnlyContainer && parent.parentNode) {
+				const diffContainer = parent.closest(
+					'.is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed'
+				);
+				parent.insertBefore(comment, marker);
+				marker.dataset.visualPostCompareCommentRestored = 'true';
+				parent.dataset.visualPostCompareShortcodeSentinelOnly = 'true';
+				if (diffContainer && !(diffContainer.textContent || '').trim() && !diffContainer.querySelector('img')) {
+					diffContainer.classList.remove(
+						'is-revision-added', 'is-revision-removed', 'is-revision-modified', 'is-revision-changed'
+					);
+				}
+				return;
+			}
+			marker.parentNode.insertBefore(comment, marker);
+			marker.dataset.visualPostCompareCommentRestored = 'true';
+		};
+		Array.from(preview.querySelectorAll('[data-visual-post-compare-shortcode-start]')).forEach((marker) => {
+			const key = marker.getAttribute('data-visual-post-compare-shortcode-start') || '';
+			replaceMarker(marker, ' visual-post-compare-shortcode:' + key + ' ');
+		});
+		Array.from(preview.querySelectorAll('[data-visual-post-compare-shortcode-end]')).forEach((marker) => {
+			const key = marker.getAttribute('data-visual-post-compare-shortcode-end') || '';
+			replaceMarker(marker, ' /visual-post-compare-shortcode:' + key + ' ');
+		});
+	}
+
+	function suppressBlockEditorWarnings(preview) {
+		Array.from(preview.querySelectorAll('.block-editor-warning')).forEach((warning) => {
+			const block = warning.closest('[data-block]');
+			const warningShell = warning.parentElement && warning.parentElement.style.all === 'initial'
+				? warning.parentElement
+				: warning;
+			warningShell.hidden = true;
+			warningShell.setAttribute('aria-hidden', 'true');
+			if (block) block.classList.remove('has-warning');
+		});
+	}
+
+	function enablePreviewTextSelection(preview) {
+		if (!preview) return;
+		Array.from(preview.querySelectorAll('[inert]')).forEach((element) => {
+			if (!(element.textContent || '').trim() && !element.querySelector('img, a, [data-visual-post-compare-tooltip]')) return;
+			element.removeAttribute('inert');
+			element.setAttribute('data-visual-post-compare-text-selectable', 'true');
+			if (element.hasAttribute('tabindex')) element.setAttribute('tabindex', '-1');
+		});
+	}
+
+	function enablePreviewBlockSelection(preview) {
+		if (!preview) return;
+		Array.from(preview.querySelectorAll('[data-block]')).forEach((block) => {
+			block.removeAttribute('inert');
+			block.setAttribute('data-visual-post-compare-block-selectable', 'true');
+			if (block.hasAttribute('tabindex')) block.setAttribute('tabindex', '-1');
+		});
+	}
+
+	function disablePreviewLinks(preview) {
+		if (!preview) return;
+		Array.from(preview.querySelectorAll('a')).forEach((link) => {
+			link.dataset.visualPostCompareLinkInert = 'true';
+			link.setAttribute('aria-disabled', 'true');
+			link.setAttribute('tabindex', '-1');
+		});
+	}
+
+	const DIFF_TYPE_DEFINITIONS = [
+		['image-added', '.visual-post-compare-image-diff--added', __('add', 'revisionary'), __('image', 'revisionary')],
+		['image-removed', '.visual-post-compare-image-diff--removed', __('remove', 'revisionary'), __('image', 'revisionary')],
+		['image-modified', '.visual-post-compare-image-diff--modified', __('modify', 'revisionary'), __('image', 'revisionary')],
+		['text-added', '.revision-diff-added', __('add', 'revisionary'), __('text', 'revisionary')],
+		['text-removed', '.revision-diff-removed', __('remove', 'revisionary'), __('text', 'revisionary')],
+		['text-modified', '.revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed', __('modify', 'revisionary'), __('format', 'revisionary')],
+		['link-modified', '.revision-diff-link-changed', __('change', 'revisionary'), __('link', 'revisionary')],
+	];
+	let tooltipElement = null;
+	let tooltipTarget = null;
+
+	function ensureTooltipElement() {
+		if (!config.tooltipsEnabled || !config.tooltipTemplate) return null;
+		if (tooltipElement && tooltipElement.isConnected) return tooltipElement;
+		const template = document.createElement('template');
+		template.innerHTML = config.tooltipTemplate;
+		tooltipElement = template.content.firstElementChild;
+		if (!tooltipElement) return null;
+		tooltipElement.classList.add('visual-post-compare-diff-tooltip', 'click');
+		tooltipElement.setAttribute('aria-hidden', 'true');
+		// Keep the tooltip open while the pointer is over it (WCAG 1.4.13)
+		tooltipElement.addEventListener('mouseenter', cancelHideDiffTooltip);
+		tooltipElement.addEventListener('mouseleave', () => scheduleHideDiffTooltip());
+		document.body.appendChild(tooltipElement);
+		return tooltipElement;
+	}
+
+	let tooltipHideTimer = null;
+
+	function cancelHideDiffTooltip() {
+		if (tooltipHideTimer) {
+			window.clearTimeout(tooltipHideTimer);
+			tooltipHideTimer = null;
+		}
+	}
+
+	function scheduleHideDiffTooltip() {
+		cancelHideDiffTooltip();
+		tooltipHideTimer = window.setTimeout(() => {
+			tooltipHideTimer = null;
+			hideDiffTooltip();
+		}, 300);
+	}
+
+	// Escape dismisses the diff tooltip (WCAG 1.4.13)
+	document.addEventListener('keydown', (event) => {
+		if ('Escape' === event.key && tooltipTarget) {
+			cancelHideDiffTooltip();
+			hideDiffTooltip();
+		}
+	});
+
+	function hideDiffTooltip() {
+		cancelHideDiffTooltip();
+		if (tooltipTarget) tooltipTarget.classList.remove('is-diff-tooltip-active');
+		const tooltip = ensureTooltipElement();
+		if (tooltip) {
+			tooltip.classList.remove('is-active');
+			tooltip.setAttribute('aria-hidden', 'true');
+		}
+		tooltipTarget = null;
+	}
+
+	function tooltipHorizontalCorrection(rect, viewportWidth, margin = 8) {
+		if (rect.left < margin) return margin - rect.left;
+		if (rect.right > viewportWidth - margin) return viewportWidth - margin - rect.right;
+		return 0;
+	}
+
+	function positionDiffTooltip() {
+		const tooltip = ensureTooltipElement();
+		if (!tooltip || !tooltipTarget || !tooltipTarget.isConnected) {
+			hideDiffTooltip(true);
+			return;
+		}
+		const rect = tooltipTarget.getBoundingClientRect();
+		tooltip.style.position = 'fixed';
+		tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+		tooltip.style.top = Math.max(8, rect.top) + 'px';
+		tooltip.style.zIndex = '1000000';
+		const tooltipText = tooltip.querySelector('.tooltip-text');
+		if (!tooltipText) return;
+		const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+		const correction = tooltipHorizontalCorrection(
+			tooltipText.getBoundingClientRect(),
+			viewportWidth
+		);
+		if (correction) tooltip.style.left = (parseFloat(tooltip.style.left) + correction) + 'px';
+	}
+
+	function showDiffTooltip(target, caption) {
+		cancelHideDiffTooltip();
+		const tooltip = ensureTooltipElement();
+		if (!tooltip || !target || !caption) return;
+		if (tooltipTarget && tooltipTarget !== target) {
+			tooltipTarget.classList.remove('is-diff-tooltip-active');
+		}
+		const text = tooltip.querySelector('.tooltip-text > span');
+		if (text) {
+			text.innerHTML = caption;
+			text.style.whiteSpace = 'pre-line';
+		}
+		tooltipTarget = target;
+		target.classList.add('is-diff-tooltip-active');
+		tooltip.classList.add('is-active');
+		tooltip.setAttribute('aria-hidden', 'false');
+		positionDiffTooltip();
+	}
+
+	function classifyDiffNode(node) {
+		if (node.classList.contains('visual-post-compare-image-diff--added')) return DIFF_TYPE_DEFINITIONS[0];
+		if (node.classList.contains('visual-post-compare-image-diff--removed')) return DIFF_TYPE_DEFINITIONS[1];
+		if (node.classList.contains('visual-post-compare-image-diff--modified')) {
+			return ['image-modified', '.visual-post-compare-image-diff--modified', __('modify', 'revisionary'),
+				node.dataset.visualPostCompareImageAttributesOnly === 'true'
+					? __("image's attributes", 'revisionary')
+					: __('image', 'revisionary')];
+		}
+		if (node.classList.contains('revision-diff-added')) return DIFF_TYPE_DEFINITIONS[3];
+		if (node.classList.contains('revision-diff-removed')) return DIFF_TYPE_DEFINITIONS[4];
+		if (node.classList.contains('revision-diff-link-changed')) return DIFF_TYPE_DEFINITIONS[6];
+		if (node.matches('.revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed')) return DIFF_TYPE_DEFINITIONS[5];
+		return null;
+	}
+
+	function blockContainerType(container, blockIndex) {
+		if (!blockIndex) return '';
+		const wrapper = container.closest('[data-block]');
+		const block = wrapper && blockIndex.get(wrapper.getAttribute('data-block'));
+		if (!block || !block.name) return '';
+		const blockType = blocks.getBlockType(block.name);
+		if (blockType && blockType.title) return blockType.title;
+		const slug = block.name.split('/').pop() || '';
+		return slug.replace(/[-_]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+	}
+
+	function containerType(container, blockIndex) {
+		const blockType = blockContainerType(container, blockIndex);
+		if (blockType) return blockType;
+		if (container.matches('table, .wp-block-table') || container.querySelector('table')) return __('Table', 'revisionary');
+		const galleryClass = (element) => element && /(?:^|\s)(?:gallery|tiled-gallery)(?:\s|$)/i.test(element.className || '');
+		if (
+			container.dataset.visualPostCompareContainerType === 'gallery'
+			|| galleryClass(container)
+			|| container.querySelector('[data-visual-post-compare-container-type="gallery"]')
+		) {
+			return __('Gallery', 'revisionary');
+		}
+		if (container.matches('ul, ol, .wp-block-list')) return __('List', 'revisionary');
+		if (container.matches('p, .wp-block-paragraph')) return __('Paragraph', 'revisionary');
+		return __('Section', 'revisionary');
+	}
+
+	function countLeafDiffs(container, selector) {
+		return Array.from(container.querySelectorAll(selector)).filter(
+			(node) => !node.querySelector(selector)
+		).length;
+	}
+
+	function escapeTooltipText(value) {
+		const element = document.createElement('span');
+		element.textContent = String(value || '');
+		return element.innerHTML;
+	}
+
+	function tooltipContext(isPastRevision) {
+		return isPastRevision
+			? __('Revision Restore', 'revisionary')
+			: __('Revision Publication', 'revisionary');
+	}
+
+	function tooltipCaption(action, subject, isPastRevision, details = [], historicalComparison = false) {
+		const hasDetails = details.length > 0;
+		if (historicalComparison) {
+			const historicalActions = {
+				add: __('added', 'revisionary'),
+				remove: __('removed', 'revisionary'),
+				modify: __('modified', 'revisionary'),
+				change: __('changed', 'revisionary'),
+			};
+			const historicalAction = historicalActions[String(action || '').toLowerCase()] || __('changed', 'revisionary');
+			const historicalLead = sprintf(
+				__('This %1$s was <b>%2$s</b>%3$s', 'revisionary'),
+				escapeTooltipText(subject),
+				escapeTooltipText(historicalAction),
+				hasDetails ? ':' : '.'
+			);
+			return historicalLead + (hasDetails
+				? '<span class="visual-post-compare-tooltip-details">'
+					+ details.map((detail) => '• ' + escapeTooltipText(detail)).join('<br>')
+					+ '</span>'
+				: '');
+		}
+		const lead = sprintf(
+			__('%1$s will <b>%2$s</b> this %3$s%4$s', 'revisionary'),
+			escapeTooltipText(tooltipContext(isPastRevision)),
+			escapeTooltipText(action),
+			escapeTooltipText(subject),
+			hasDetails ? ':' : '.'
+		);
+		return lead + (hasDetails
+			? '<span class="visual-post-compare-tooltip-details">'
+				+ details.map((detail) => '• ' + escapeTooltipText(detail)).join('<br>')
+				+ '</span>'
+			: '');
+	}
+
+	function semanticFormatParts(summary) {
+		const definitions = [
+			[__('Add bolding', 'revisionary'), __('add', 'revisionary'), __('bolding', 'revisionary')],
+			[__('Remove bolding', 'revisionary'), __('remove', 'revisionary'), __('bolding', 'revisionary')],
+			[__('Add italics', 'revisionary'), __('add', 'revisionary'), __('italics', 'revisionary')],
+			[__('Remove italics', 'revisionary'), __('remove', 'revisionary'), __('italics', 'revisionary')],
+			[__('Add underscore', 'revisionary'), __('add', 'revisionary'), __('underscore', 'revisionary')],
+			[__('Remove underscore', 'revisionary'), __('remove', 'revisionary'), __('underscore', 'revisionary')],
+			[__('Add strikethrough', 'revisionary'), __('add', 'revisionary'), __('strikethrough', 'revisionary')],
+			[__('Remove strikethrough', 'revisionary'), __('remove', 'revisionary'), __('strikethrough', 'revisionary')],
+		];
+		const lines = String(summary || '').split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+		const parts = lines.map((line) => {
+			if (line === __('Change font size', 'revisionary')) {
+				return { action: __('change', 'revisionary'), subject: __('font size', 'revisionary') };
+			}
+			const match = definitions.find(([caption]) => line === caption);
+			return match ? { action: match[1], subject: match[2] } : null;
+		});
+		return parts.length && parts.every(Boolean) ? parts : [];
+	}
+
+	function semanticFormatTooltip(summary, isPastRevision, historicalComparison = false) {
+		const parts = semanticFormatParts(summary);
+		if (!parts.length) return '';
+		if (historicalComparison) {
+			return tooltipCaption(
+				__('change', 'revisionary'),
+				__('formatting', 'revisionary'),
+				isPastRevision,
+				String(summary || '').split(/\r?\n/).map((line) => line.trim()).filter(Boolean),
+				true
+			);
+		}
+		const context = isPastRevision
+			? __('Revision restore', 'revisionary')
+			: __('Revision publication', 'revisionary');
+		const changes = parts.map((part) => sprintf(
+			__('<b>%1$s</b> %2$s', 'revisionary'),
+			escapeTooltipText(part.action),
+			escapeTooltipText(part.subject)
+		));
+		const changeList = changes.length === 1
+			? changes[0]
+			: sprintf(__('%1$s and %2$s', 'revisionary'), changes.slice(0, -1).join(', '), changes[changes.length - 1]);
+		return sprintf(__('%1$s will %2$s.', 'revisionary'), escapeTooltipText(context), changeList);
+	}
+
+	function individualDiffTooltip(node, definition, isPastRevision, historicalComparison = false) {
+		let subject = definition[3];
+		const details = [];
+		if (node.classList.contains('visual-post-compare-line-break-diff')) {
+			subject = __('line break', 'revisionary');
+		}
+		if (definition[0] === 'text-modified' && node.dataset.visualPostCompareFormatSummary) {
+			const semanticTooltip = semanticFormatTooltip(
+				node.dataset.visualPostCompareFormatSummary,
+				isPastRevision,
+				historicalComparison
+			);
+			if (semanticTooltip) return semanticTooltip;
+			const summaryLines = node.dataset.visualPostCompareFormatSummary.split(/\r?\n/)
+				.map((line) => line.trim())
+				.filter(Boolean);
+			if (summaryLines.length && /:$/.test(summaryLines[0])) summaryLines.shift();
+			details.push(...summaryLines);
+		}
+		return tooltipCaption(definition[2], subject, isPastRevision, details, historicalComparison);
+	}
+
+	function modifiedContainerSummary(container, blockIndex, isPastRevision, historicalComparison = false) {
+		const imageChangeLabel = (type, count) => {
+			if (type === 'image-added') {
+				return sprintf(_n('Add %d Image', 'Add %d Images', count, 'revisionary'), count);
+			}
+			if (type === 'image-removed') {
+				return sprintf(_n('Remove %d Image', 'Remove %d Images', count, 'revisionary'), count);
+			}
+			return sprintf(_n('Modify %d Image', 'Modify %d Images', count, 'revisionary'), count);
+		};
+		const lines = [];
+		let visibleFormattingChanges = 0;
+		let addedLineBreaks = 0;
+		let removedLineBreaks = 0;
+		DIFF_TYPE_DEFINITIONS.forEach(([type, selector]) => {
+			const leafNodes = Array.from(container.querySelectorAll(selector)).filter(
+				(node) => !node.querySelector(selector)
+			);
+			if (type === 'text-added') {
+				addedLineBreaks = leafNodes.filter((node) => node.classList.contains('visual-post-compare-line-break-diff')).length;
+			}
+			if (type === 'text-removed') {
+				removedLineBreaks = leafNodes.filter((node) => node.classList.contains('visual-post-compare-line-break-diff')).length;
+			}
+			const count = leafNodes.filter(
+				(node) => !node.classList.contains('visual-post-compare-line-break-diff')
+			).length;
+			container.classList.toggle(type, leafNodes.length > 0);
+			if (count && type === 'text-added') {
+				lines.push(sprintf(_n('%d Text Addition', '%d Text Additions', count, 'revisionary'), count));
+			} else if (count && type === 'text-removed') {
+				lines.push(sprintf(_n('%d Text Deletion', '%d Text Deletions', count, 'revisionary'), count));
+			} else if (count && type === 'text-modified') {
+				visibleFormattingChanges = count;
+			} else if (count && type === 'link-modified') {
+				lines.push(sprintf(_n('%d Link Change', '%d Link Changes', count, 'revisionary'), count));
+			} else if (count) {
+				lines.push(imageChangeLabel(type, count));
+			}
+		});
+		if (addedLineBreaks) lines.push(sprintf(_n('Add %d Line Break', 'Add %d Line Breaks', addedLineBreaks, 'revisionary'), addedLineBreaks));
+		if (removedLineBreaks) lines.push(sprintf(_n('Remove %d Line Break', 'Remove %d Line Breaks', removedLineBreaks, 'revisionary'), removedLineBreaks));
+		const blockWrapper = container.closest('[data-block]') || container;
+		const unrepresentedFormattingChanges = Number(
+			blockWrapper.dataset.visualPostCompareUnrepresentedFormattingCount || 0
+		);
+		const formattingChangeCount = visibleFormattingChanges + unrepresentedFormattingChanges;
+		if (formattingChangeCount) {
+			lines.push(sprintf(_n('%d formatting change', '%d formatting changes', formattingChangeCount, 'revisionary'), formattingChangeCount));
+		}
+		if (blockWrapper.dataset.visualPostCompareUnrepresentedChanges) {
+			try {
+				lines.push(...JSON.parse(blockWrapper.dataset.visualPostCompareUnrepresentedChanges).filter(
+					(summary) => !isModifiedHtmlTagSummary(summary)
+				));
+			} catch (error) {
+				// Ignore malformed transient metadata rather than suppressing the tooltip.
+			}
+		}
+		if (!lines.length && blockIndex) {
+			const wrapper = container.closest('[data-block]');
+			const block = wrapper && blockIndex.get(wrapper.getAttribute('data-block'));
+			const status = block && block.attributes && block.attributes.__revisionDiffStatus;
+			const attributes = status && Object.keys(status.changedAttributes || {});
+			if (attributes && attributes.length) {
+				lines.push(sprintf(__('Modified attributes: %s', 'revisionary'), attributes.join(', ')));
+			} else if (status && status.currentHtml !== status.previousHtml) {
+				lines.push(__('Modified html markup', 'revisionary'));
+			}
+		}
+		return tooltipCaption(
+			__('modify', 'revisionary'),
+			containerType(container, blockIndex),
+			isPastRevision,
+			lines,
+			historicalComparison
+		);
+	}
+
+	function addedOrRemovedContainerSummary(container, action, blockIndex, isPastRevision, historicalComparison = false) {
+		return tooltipCaption(action, containerType(container, blockIndex), isPastRevision, [], historicalComparison);
+	}
+
+	function highlightShortcodeFormatContainers(preview) {
+		const contentRoot = preview.querySelector('.visual-post-compare-revision__block-preview') || preview;
+		const topLevelUnit = (node) => {
+			let unit = node;
+			while (unit && unit.parentElement && unit.parentElement !== contentRoot) unit = unit.parentElement;
+			return unit;
+		};
+		Array.from(preview.querySelectorAll('[data-visual-post-compare-shortcode-start]')).forEach((start) => {
+			const key = start.getAttribute('data-visual-post-compare-shortcode-start') || '';
+			const end = Array.from(preview.querySelectorAll('[data-visual-post-compare-shortcode-end]')).find(
+				(marker) => (marker.getAttribute('data-visual-post-compare-shortcode-end') || '') === key
+			);
+			if (!end) return;
+			const startUnit = topLevelUnit(start);
+			const endUnit = topLevelUnit(end);
+			if (!startUnit || !endUnit || startUnit.parentElement !== endUnit.parentElement) return;
+			const expandedUnits = [];
+			for (let unit = startUnit.nextElementSibling; unit && unit !== endUnit; unit = unit.nextElementSibling) {
+				if (!unit.matches('[data-visual-post-compare-shortcode-sentinel-only="true"]')) expandedUnits.push(unit);
+			}
+			expandedUnits.forEach((unit) => {
+				const changeSelector = [
+					'.revision-diff-format-added',
+					'.revision-diff-format-removed',
+					'.revision-diff-format-changed',
+					'.revision-diff-link-changed',
+					'.revision-diff-added',
+					'.revision-diff-removed',
+					'.visual-post-compare-image-diff--added',
+					'.visual-post-compare-image-diff--removed',
+					'.visual-post-compare-image-diff--modified',
+					'.is-revision-added',
+					'.is-revision-removed',
+					'.is-revision-modified',
+				].join(', ');
+				const changeNodes = Array.from(unit.querySelectorAll(changeSelector));
+				if (unit.matches(changeSelector)) changeNodes.unshift(unit);
+				if (!changeNodes.length) return;
+				const galleryClass = (element) => element
+					&& /(?:^|\s)(?:gallery|tiled-gallery)(?:\s|$)/i.test(element.className || '');
+				const gallery = Array.from(unit.querySelectorAll('[class]')).find((candidate) =>
+					galleryClass(candidate) && changeNodes.some((node) => candidate.contains(node))
+				);
+				const source = changeNodes[0];
+				const container = gallery || source.closest(
+					'table, figure, [class*="gallery"], section, article, div'
+				) || unit;
+				const target = unit.contains(container) ? container : unit;
+				const addedOrRemovedContainer = target.closest('.is-revision-added, .is-revision-removed');
+				if (addedOrRemovedContainer && unit.contains(addedOrRemovedContainer)) {
+					addedOrRemovedContainer.classList.add('is-shortcode-diff-container');
+					if (gallery) addedOrRemovedContainer.dataset.visualPostCompareContainerType = 'gallery';
+					return;
+				}
+				if (target !== unit && unit.classList.contains('is-revision-modified')) {
+					unit.classList.remove('is-revision-modified', 'is-revision-changed');
+					delete unit.dataset.visualPostCompareContainerDiff;
+					delete unit.dataset.visualPostCompareTooltip;
+				}
+				if (gallery) target.dataset.visualPostCompareContainerType = 'gallery';
+				target.classList.add('is-revision-modified', 'is-shortcode-diff-container');
+			});
+		});
+	}
+
+	function normalizeContainerDiffStatuses(preview) {
+		Array.from(preview.querySelectorAll('.is-revision-added, .is-revision-removed')).forEach((container) => {
+			const overlappingModified = [container, ...container.querySelectorAll(
+				'.is-revision-modified, .is-revision-changed'
+			)];
+			overlappingModified.forEach((modified) => {
+				modified.classList.remove(
+					'is-revision-modified',
+					'is-revision-changed',
+					'is-diff-border-active',
+					'is-diff-tooltip-active'
+				);
+				delete modified.dataset.visualPostCompareContainerDiff;
+				delete modified.dataset.visualPostCompareTooltip;
+			});
+		});
+	}
+
+	function applyAddedRemovedLinkMetadata(preview) {
+		if (!preview) return;
+		Array.from(preview.querySelectorAll('a')).forEach((link) => {
+			if (link.dataset.visualPostCompareLinkAttributes) return;
+			const removed = link.closest('.revision-diff-removed, .is-revision-removed');
+			const added = link.closest('.revision-diff-added, .is-revision-added');
+			if (!removed && !added) return;
+			const url = link.getAttribute('href') || '';
+			link.dataset.visualPostCompareLinkAttributes = JSON.stringify([{
+				label: 'url:',
+				current: added ? url : '',
+				previous: removed ? url : '',
+			}]);
+		});
+	}
+
+	function applyDiffMetadata(preview, blockIndex, isPastRevision, historicalComparison = false) {
+		if (!preview) return;
+		normalizeContainerDiffStatuses(preview);
+		applyAddedRemovedLinkMetadata(preview);
+		const individualSelector = DIFF_TYPE_DEFINITIONS.map((definition) => definition[1]).join(', ');
+		if (!config.htmlAttributeChanges) {
+			Array.from(preview.querySelectorAll('.is-revision-modified')).forEach((container) => {
+				const blockWrapper = container.closest('[data-block]') || container;
+				const hasIndividualChange = container.matches(individualSelector)
+					|| Boolean(container.querySelector(individualSelector));
+				const hasUnrepresentedChange = Boolean(
+					Number(blockWrapper.dataset.visualPostCompareUnrepresentedFormattingCount || 0)
+					|| blockWrapper.dataset.visualPostCompareUnrepresentedChanges
+				);
+				if (!hasIndividualChange && !hasUnrepresentedChange) {
+					container.classList.remove('is-revision-modified', 'is-revision-changed');
+					delete container.dataset.visualPostCompareContainerDiff;
+					delete container.dataset.visualPostCompareTooltip;
+				}
+			});
+		}
+		Array.from(preview.querySelectorAll(individualSelector)).forEach((node) => {
+			if (node.closest('.visual-post-compare-revision__post-title')) return;
+			const definition = classifyDiffNode(node);
+			if (definition) {
+				node.dataset.visualPostCompareTooltip = individualDiffTooltip(
+					node,
+					definition,
+					isPastRevision,
+					historicalComparison
+				);
+				if (config.tooltipsEnabled) node.removeAttribute('title');
+			}
+		});
+		Array.from(preview.querySelectorAll('.is-revision-modified')).forEach((container) => {
+			if (container.matches('.visual-post-compare-revision__post-title')) return;
+			container.dataset.visualPostCompareContainerDiff = 'true';
+			container.dataset.visualPostCompareTooltip = modifiedContainerSummary(container, blockIndex, isPastRevision, historicalComparison);
+		});
+		Array.from(preview.querySelectorAll('.is-revision-added')).forEach((container) => {
+			container.dataset.visualPostCompareContainerDiff = 'true';
+			container.dataset.visualPostCompareTooltip = addedOrRemovedContainerSummary(
+				container, __('add', 'revisionary'), blockIndex, isPastRevision, historicalComparison
+			);
+		});
+		Array.from(preview.querySelectorAll('.is-revision-removed')).forEach((container) => {
+			container.dataset.visualPostCompareContainerDiff = 'true';
+			container.dataset.visualPostCompareTooltip = addedOrRemovedContainerSummary(
+				container, __('remove', 'revisionary'), blockIndex, isPastRevision, historicalComparison
+			);
+		});
+	}
+
+	function findShortcodeDiffNodes(preview, nodes) {
+		const shortcodeNodes = new WeakSet();
+		const diffNodeSet = new Set(nodes);
+		const walker = document.createTreeWalker(
+			preview,
+			NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT
+		);
+		let shortcodeDepth = 0;
+		while (walker.nextNode()) {
+			const candidate = walker.currentNode;
+			if (candidate.nodeType === Node.COMMENT_NODE) {
+				const comment = (candidate.nodeValue || '').trim();
+				if (/^\/visual-post-compare-shortcode:/.test(comment)) {
+					shortcodeDepth = Math.max(0, shortcodeDepth - 1);
+				} else if (/^visual-post-compare-shortcode:/.test(comment)) {
+					shortcodeDepth++;
+					let ancestor = candidate.parentElement;
+					while (ancestor && ancestor !== preview) {
+						if (diffNodeSet.has(ancestor)) shortcodeNodes.add(ancestor);
+						ancestor = ancestor.parentElement;
+					}
+				}
+			} else if (shortcodeDepth > 0 && diffNodeSet.has(candidate)) {
+				shortcodeNodes.add(candidate);
+			}
+		}
+		return shortcodeNodes;
+	}
+
+	function getDiffMarkerStatus(node) {
+		if (
+			node.closest('.is-revision-added')
+			|| node.classList.contains('revision-diff-added')
+			|| node.classList.contains('visual-post-compare-image-diff--added')
+		) {
+			return 'added';
+		}
+		if (
+			node.closest('.is-revision-removed')
+			|| node.classList.contains('revision-diff-removed')
+			|| node.classList.contains('visual-post-compare-image-diff--removed')
+		) {
+			return 'removed';
+		}
+		return 'modified';
+	}
+
+	function indexBlocksByClientId(blockList, index = new Map()) {
+		(blockList || []).forEach((block) => {
+			if (!block) return;
+			if (block.clientId) index.set(block.clientId, block);
+			indexBlocksByClientId(block.innerBlocks, index);
+		});
+		return index;
+	}
+
+	function blockForDiffNode(node, blockIndex) {
+		if (!node || !blockIndex) return null;
+		const wrapper = node.closest('[data-block]');
+		return wrapper ? blockIndex.get(wrapper.getAttribute('data-block')) || null : null;
+	}
+
+	const VISUAL_FORMAT_TAGS = new Set([
+		'b', 'strong', 'i', 'em', 'ins', 'del', 'small', 'big', 'large', 'sup', 'sub',
+		'pre', 'q', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+	]);
+
+	function normalizedElementText(element) {
+		return (element && element.textContent || '').replace(/\s+/g, ' ').trim();
+	}
+
+	function parseHtmlFragment(html) {
+		const template = document.createElement('template');
+		template.innerHTML = String(html || '');
+		return template;
+	}
+
+	function rawImageSignature(image) {
+		return JSON.stringify(Array.from(image.attributes)
+			.filter((attribute) => attribute.name !== 'id')
+			.map((attribute) => [attribute.name, attribute.value])
+			.sort(([a], [b]) => (a < b ? -1 : (a > b ? 1 : 0))));
+	}
+
+	function findRenderedImage(blockWrapper, sourceImage, usedImages) {
+		const source = sourceImage.getAttribute('src') || '';
+		const candidates = Array.from(blockWrapper.querySelectorAll(
+			'img:not(.visual-post-compare-image-diff__previous)'
+		)).filter((image) => !usedImages.has(image));
+		const match = candidates.find((image) => (image.getAttribute('src') || '') === source)
+			|| candidates[0]
+			|| null;
+		if (match) usedImages.add(match);
+		return match;
+	}
+
+	function wrapModifiedImage(currentImage, previousImage) {
+		if (!currentImage || !previousImage || currentImage.closest('.visual-post-compare-image-diff--modified')) return false;
+		const swap = document.createElement('span');
+		swap.className = 'visual-post-compare-image-diff--modified visual-post-compare-block-image-diff';
+		swap.tabIndex = 0;
+		swap.setAttribute('role', 'button');
+		const imageAlt = currentImage.getAttribute('alt') || '';
+		swap.setAttribute('aria-label', imageAlt
+			? sprintf(__('Show previous image: %s', 'revisionary'), imageAlt)
+			: __('Show previous image', 'revisionary'));
+		swap.setAttribute('aria-pressed', 'false');
+		const previous = previousImage.cloneNode(true);
+		previous.removeAttribute('id');
+		currentImage.classList.add('visual-post-compare-image-diff__current');
+		previous.className = 'visual-post-compare-image-diff__previous';
+		previous.setAttribute('aria-hidden', 'true');
+		const backup = document.createElement('span');
+		backup.className = 'dashicons dashicons-backup visual-post-compare-image-diff__backup';
+		backup.setAttribute('aria-hidden', 'true');
+		currentImage.parentNode.insertBefore(swap, currentImage);
+		swap.append(currentImage, previous, backup);
+		const showPrevious = () => { swap.classList.add('is-showing-previous'); swap.setAttribute('aria-pressed', 'true'); };
+		const showCurrent = () => { swap.classList.remove('is-showing-previous'); swap.setAttribute('aria-pressed', 'false'); };
+		swap.addEventListener('mouseenter', showPrevious);
+		swap.addEventListener('mouseleave', showCurrent);
+		swap.addEventListener('click', (event) => {
+			event.preventDefault();
+			if (event.target === previous || swap.classList.contains('is-showing-previous')) showCurrent();
+			else showPrevious();
+		});
+		swap.addEventListener('keydown', (event) => {
+			if (event.key !== 'Enter' && event.key !== ' ') return;
+			event.preventDefault();
+			if (swap.classList.contains('is-showing-previous')) showCurrent();
+			else showPrevious();
+		});
+		return true;
+	}
+
+	function decorateExplicitHtmlImages(blockWrapper, diffStatus) {
+		if (!diffStatus.currentHtml && !diffStatus.previousHtml) return;
+		const currentTemplate = parseHtmlFragment(diffStatus.currentHtml);
+		const previousTemplate = parseHtmlFragment(diffStatus.previousHtml);
+		const currentImages = Array.from(currentTemplate.content.querySelectorAll('img'));
+		const previousImages = Array.from(previousTemplate.content.querySelectorAll('img'));
+		if (!currentImages.length && !previousImages.length) return;
+
+		const usedCurrent = new Set();
+		const usedPrevious = new Set();
+		const unchangedPairs = [];
+		currentImages.forEach((currentImage, currentIndex) => {
+			const signature = rawImageSignature(currentImage);
+			const previousIndex = previousImages.findIndex((previousImage, index) =>
+				!usedPrevious.has(index) && rawImageSignature(previousImage) === signature
+			);
+			if (previousIndex < 0) return;
+			usedCurrent.add(currentIndex);
+			usedPrevious.add(previousIndex);
+			unchangedPairs.push([currentIndex, previousIndex]);
+		});
+		const remainingCurrent = currentImages.map((image, index) => ({ image, index }))
+			.filter((item) => !usedCurrent.has(item.index));
+		const remainingPrevious = previousImages.map((image, index) => ({ image, index }))
+			.filter((item) => !usedPrevious.has(item.index));
+		const galleryContainer = blockWrapper.matches('.wp-block-gallery, [class~="gallery"], [class~="tiled-gallery"]')
+			|| blockWrapper.querySelector('.wp-block-gallery, [class~="gallery"], [class~="tiled-gallery"]');
+		const modifiedPairs = [];
+		const pairedCurrent = new Set();
+		const pairedPrevious = new Set();
+		remainingCurrent.forEach((current, currentIndex) => {
+			let previousIndex = -1;
+			if (!galleryContainer && remainingCurrent.length === remainingPrevious.length) {
+				previousIndex = currentIndex;
+			} else {
+				const alt = current.image.getAttribute('alt') || '';
+				previousIndex = remainingPrevious.findIndex((previous, index) =>
+					!pairedPrevious.has(index)
+					&& alt
+					&& alt === (previous.image.getAttribute('alt') || '')
+				);
+			}
+			if (previousIndex < 0 || pairedPrevious.has(previousIndex)) return;
+			pairedCurrent.add(currentIndex);
+			pairedPrevious.add(previousIndex);
+			modifiedPairs.push([current, remainingPrevious[previousIndex]]);
+		});
+		const renderedUsed = new Set();
+		unchangedPairs.forEach(([currentIndex]) => {
+			findRenderedImage(blockWrapper, currentImages[currentIndex], renderedUsed);
+		});
+		modifiedPairs.forEach(([current, previous]) => {
+			const rendered = findRenderedImage(blockWrapper, current.image, renderedUsed);
+			if (wrapModifiedImage(rendered, previous.image)) {
+				diffStatus.hasGranularImageDiff = true;
+			}
+		});
+		remainingCurrent.filter((item, index) => !pairedCurrent.has(index)).forEach(({ image }) => {
+			const rendered = findRenderedImage(blockWrapper, image, renderedUsed);
+			if (!rendered) return;
+			rendered.classList.add('visual-post-compare-image-diff--added');
+			rendered.dataset.visualPostCompareImageDiff = 'added';
+			diffStatus.hasGranularImageDiff = true;
+		});
+		remainingPrevious.filter((item, index) => !pairedPrevious.has(index)).forEach(({ image }) => {
+			const removed = image.cloneNode(true);
+			removed.removeAttribute('id');
+			removed.classList.add('visual-post-compare-image-diff--removed');
+			removed.dataset.visualPostCompareImageDiff = 'removed';
+			removed.dataset.visualPostCompareSynthesized = 'removed';
+			blockWrapper.appendChild(removed);
+			diffStatus.hasGranularImageDiff = true;
+		});
+	}
+
+	function visualFormatElements(root) {
+		return Array.from(root.querySelectorAll('*')).filter((element) => {
+			const tag = element.tagName.toLowerCase();
+			return VISUAL_FORMAT_TAGS.has(tag) || (tag === 'span' && element.hasAttribute('style'));
+		});
+	}
+
+	function semanticFormatName(element) {
+		if (!element) return '';
+		const tag = element.tagName.toLowerCase();
+		if (tag === 'b' || tag === 'strong') return __('bolding', 'revisionary');
+		if (tag === 'i' || tag === 'em') return __('italics', 'revisionary');
+		if (tag === 'u' || tag === 'ins') return __('underscore', 'revisionary');
+		if (tag === 's' || tag === 'strike' || tag === 'del') return __('strikethrough', 'revisionary');
+		return '';
+	}
+
+	function isFontSizeFormat(element) {
+		if (!element) return false;
+		const tag = element.tagName.toLowerCase();
+		return ['small', 'big', 'large', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)
+			|| Boolean(element.style && element.style.getPropertyValue('font-size'));
+	}
+
+	function semanticFormatChangeSummaries(current, previous) {
+		if (isFontSizeFormat(current) || isFontSizeFormat(previous)) {
+			return [__('Change font size', 'revisionary')];
+		}
+		const currentFormat = semanticFormatName(current);
+		const previousFormat = semanticFormatName(previous);
+		if (currentFormat && currentFormat === previousFormat) return [];
+		const summaries = [];
+		const caption = (action, format) => {
+			if (action === 'remove') {
+				if (format === __('bolding', 'revisionary')) return __('Remove bolding', 'revisionary');
+				if (format === __('italics', 'revisionary')) return __('Remove italics', 'revisionary');
+				if (format === __('underscore', 'revisionary')) return __('Remove underscore', 'revisionary');
+				return __('Remove strikethrough', 'revisionary');
+			}
+			if (format === __('bolding', 'revisionary')) return __('Add bolding', 'revisionary');
+			if (format === __('italics', 'revisionary')) return __('Add italics', 'revisionary');
+			if (format === __('underscore', 'revisionary')) return __('Add underscore', 'revisionary');
+			return __('Add strikethrough', 'revisionary');
+		};
+		if (previousFormat) summaries.push(caption('remove', previousFormat));
+		if (currentFormat) summaries.push(caption('add', currentFormat));
+		return summaries;
+	}
+
+	function formatElementSummary(current, previous) {
+		if (!current || !previous) return '';
+		const details = [];
+		const tag = current.tagName.toLowerCase();
+		const label = tag;
+		const currentFontSize = current.style && current.style.getPropertyValue('font-size');
+		const previousFontSize = previous.style && previous.style.getPropertyValue('font-size');
+		if (currentFontSize !== previousFontSize) details.push(__('Change font size', 'revisionary'));
+		if (!config.htmlAttributeChanges) return details.join('\n');
+		const currentClasses = new Set((current.getAttribute('class') || '').split(/\s+/).filter(Boolean));
+		const previousClasses = new Set((previous.getAttribute('class') || '').split(/\s+/).filter(Boolean));
+		const addedClasses = Array.from(currentClasses).filter((name) => !previousClasses.has(name));
+		const removedClasses = Array.from(previousClasses).filter((name) => !currentClasses.has(name));
+		if (addedClasses.length) details.push(sprintf(__('%1$s class added: %2$s', 'revisionary'), label, addedClasses.join(', ')));
+		if (removedClasses.length) details.push(sprintf(__('%1$s class removed: %2$s', 'revisionary'), label, removedClasses.join(', ')));
+		if ((current.getAttribute('style') || '') !== (previous.getAttribute('style') || '')) {
+			const currentStyle = current.getAttribute('style') || '';
+			const previousStyle = previous.getAttribute('style') || '';
+			if (currentStyle.replace(/font-size\s*:[^;]+;?/gi, '')
+				!== previousStyle.replace(/font-size\s*:[^;]+;?/gi, '')) {
+				details.push(sprintf(__('%s style modified', 'revisionary'), label));
+			}
+		}
+		const excludedAttributes = new Set(['class', 'style', 'href']);
+		const currentAttributes = new Map(Array.from(current.attributes).map(
+			(attribute) => [attribute.name, attribute.value]
+		));
+		const previousAttributes = new Map(Array.from(previous.attributes).map(
+			(attribute) => [attribute.name, attribute.value]
+		));
+		new Set([...currentAttributes.keys(), ...previousAttributes.keys()]).forEach((name) => {
+			if (excludedAttributes.has(name) || name.startsWith('data-visual-post-compare-')) return;
+			if (currentAttributes.get(name) === previousAttributes.get(name)) return;
+			details.push(sprintf(__('%1$s attribute modified: %2$s', 'revisionary'), label, name));
+		});
+		return details.join('\n');
+	}
+
+	function findRenderedFormatElement(blockWrapper, sourceElement, usedElements) {
+		const tag = sourceElement.tagName.toLowerCase();
+		const text = normalizedElementText(sourceElement);
+		const candidates = Array.from(blockWrapper.querySelectorAll(tag)).filter(
+			(element) => !usedElements.has(element) && normalizedElementText(element) === text
+		);
+		const match = candidates[0] || null;
+		if (match) usedElements.add(match);
+		return match;
+	}
+
+	function markRenderedTextFormat(blockWrapper, text, summary) {
+		if (!text) return false;
+		const walker = document.createTreeWalker(blockWrapper, NodeFilter.SHOW_TEXT);
+		while (walker.nextNode()) {
+			const node = walker.currentNode;
+			if (!node.parentElement) continue;
+			const offset = node.nodeValue.indexOf(text);
+			if (offset < 0) continue;
+			const existingMarker = node.parentElement.closest(
+				'.revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed'
+			);
+			if (existingMarker) {
+				existingMarker.dataset.visualPostCompareFormatSummary = summary;
+				return true;
+			}
+			const marker = document.createElement('span');
+			marker.className = 'revision-diff-format-changed';
+			marker.dataset.visualPostCompareFormatSummary = summary;
+			const tail = node.splitText(offset);
+			tail.splitText(text.length);
+			tail.parentNode.insertBefore(marker, tail);
+			marker.appendChild(tail);
+			return true;
+		}
+		return false;
+	}
+
+	function markFormatElement(element, summary) {
+		if (!element) return false;
+		const target = element.closest('.revision-diff-format-changed') || element;
+		target.classList.add('revision-diff-format-changed');
+		if (summary) target.dataset.visualPostCompareFormatSummary = summary;
+		return true;
+	}
+
+	function linkAttributeChanges(current, previous) {
+		if (!current || !previous) return [];
+		const currentAttributes = new Map(Array.from(current.attributes).map((attribute) => [attribute.name, attribute.value]));
+		const previousAttributes = new Map(Array.from(previous.attributes).map((attribute) => [attribute.name, attribute.value]));
+		return Array.from(new Set([...currentAttributes.keys(), ...previousAttributes.keys()]))
+			.filter((name) => !name.startsWith('data-visual-post-compare-'))
+			.filter((name) => currentAttributes.get(name) !== previousAttributes.get(name))
+			.map((name) => ({
+				label: 'href' === name ? 'url:' : name,
+				current: currentAttributes.get(name) || '',
+				previous: previousAttributes.get(name) || '',
+			}));
+	}
+
+	function markLinkElement(element, changes = []) {
+		if (!element) return false;
+		const formatMarker = element.closest(
+			'.revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed'
+		);
+		if (formatMarker && !formatMarker.dataset.visualPostCompareFormatSummary) {
+			formatMarker.classList.remove(
+				'revision-diff-format-added',
+				'revision-diff-format-removed',
+				'revision-diff-format-changed'
+			);
+		}
+		element.classList.add('revision-diff-link-changed');
+		if (changes.length) element.dataset.visualPostCompareLinkAttributes = JSON.stringify(changes);
+		return true;
+	}
+
+	function clearUnreportedFormatMarker(element) {
+		if (!element) return;
+		const marker = element.closest(
+			'.revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed'
+		);
+		if (!marker || marker.dataset.visualPostCompareFormatSummary) return;
+		if (normalizedElementText(marker) !== normalizedElementText(element)) return;
+		marker.classList.remove(
+			'revision-diff-format-added',
+			'revision-diff-format-removed',
+			'revision-diff-format-changed'
+		);
+	}
+
+	function isModifiedHtmlTagSummary(summary) {
+		const prefix = __('Modified html tag:', 'revisionary');
+		return String(summary || '').split(/\r?\n/).some(
+			(line) => line.trim().startsWith(prefix)
+		);
+	}
+
+	function decorateHtmlFormattingDiffs(blockWrapper, diffStatus) {
+		if (!diffStatus.currentHtml && !diffStatus.previousHtml) return;
+		const currentTemplate = parseHtmlFragment(diffStatus.currentHtml);
+		const previousTemplate = parseHtmlFragment(diffStatus.previousHtml);
+		const currentFormats = visualFormatElements(currentTemplate.content);
+		const previousFormats = visualFormatElements(previousTemplate.content);
+		const usedPrevious = new Set();
+		const usedRendered = new Set();
+		const unrepresented = [];
+		let unrepresentedFormattingCount = 0;
+		const recordUnrepresented = (summary) => {
+			if (isModifiedHtmlTagSummary(summary)) return;
+			if (semanticFormatParts(summary).length) unrepresentedFormattingCount++;
+			else unrepresented.push(summary);
+		};
+
+		const currentLinks = Array.from(currentTemplate.content.querySelectorAll('a'));
+		const previousLinks = Array.from(previousTemplate.content.querySelectorAll('a'));
+		const renderedLinks = Array.from(blockWrapper.querySelectorAll('a'));
+		const linkedImageUrl = (link) => {
+			const image = link && link.querySelector('img');
+			return image ? image.getAttribute('src') || '' : '';
+		};
+		const usedPreviousLinks = new Set();
+		const usedRenderedLinks = new Set();
+		currentLinks.forEach((current, currentIndex) => {
+			const text = normalizedElementText(current);
+			const imageUrl = linkedImageUrl(current);
+			let previousIndex = previousLinks.findIndex((previous, index) =>
+				!usedPreviousLinks.has(index)
+				&& (imageUrl
+					? linkedImageUrl(previous) === imageUrl
+					: normalizedElementText(previous) === text)
+			);
+			if (!imageUrl && previousIndex < 0 && previousLinks[currentIndex] && !usedPreviousLinks.has(currentIndex)) {
+				previousIndex = currentIndex;
+			}
+			if (previousIndex < 0) return;
+			usedPreviousLinks.add(previousIndex);
+			const changedAttributes = linkAttributeChanges(current, previousLinks[previousIndex]);
+			if (!changedAttributes.length) return;
+			const currentHref = current.getAttribute('href') || '';
+			const rendered = renderedLinks.find((link) =>
+				!usedRenderedLinks.has(link)
+				&& imageUrl
+				&& linkedImageUrl(link) === imageUrl
+			) || renderedLinks.find((link) =>
+				!usedRenderedLinks.has(link)
+				&& (link.getAttribute('href') || '') === currentHref
+				&& normalizedElementText(link) === text
+			) || renderedLinks.find((link) =>
+				!usedRenderedLinks.has(link) && (link.getAttribute('href') || '') === currentHref
+			) || renderedLinks.find((link) =>
+				!usedRenderedLinks.has(link) && normalizedElementText(link) === text
+			) || renderedLinks[currentIndex];
+			if (rendered) usedRenderedLinks.add(rendered);
+			markLinkElement(rendered, changedAttributes);
+		});
+
+		currentFormats.forEach((current) => {
+			const text = normalizedElementText(current);
+			let previousIndex = previousFormats.findIndex((previous, index) =>
+				!usedPrevious.has(index)
+				&& previous.tagName === current.tagName
+				&& normalizedElementText(previous) === text
+			);
+			if (previousIndex < 0) {
+				const currentSemantic = semanticFormatName(current);
+				previousIndex = previousFormats.findIndex((previous, index) =>
+					!usedPrevious.has(index)
+					&& (
+						previous.tagName === current.tagName
+						|| (currentSemantic && currentSemantic === semanticFormatName(previous))
+						|| (isFontSizeFormat(current) && isFontSizeFormat(previous))
+					)
+				);
+			}
+			if (previousIndex >= 0) {
+				usedPrevious.add(previousIndex);
+				const attributeSummary = formatElementSummary(current, previousFormats[previousIndex]);
+				const rendered = findRenderedFormatElement(blockWrapper, current, usedRendered);
+				if (!attributeSummary) {
+					clearUnreportedFormatMarker(rendered);
+					return;
+				}
+				if (!markFormatElement(rendered, attributeSummary)) recordUnrepresented(attributeSummary);
+				return;
+			}
+			previousIndex = previousFormats.findIndex((previous, index) =>
+				!usedPrevious.has(index) && normalizedElementText(previous) === text
+			);
+			const changedTags = [current.tagName.toLowerCase()];
+			let previous = null;
+			if (previousIndex >= 0) {
+				usedPrevious.add(previousIndex);
+				previous = previousFormats[previousIndex];
+				changedTags.unshift(previous.tagName.toLowerCase());
+			}
+			const semanticSummaries = semanticFormatChangeSummaries(current, previous);
+			if (!semanticSummaries.length && previous && semanticFormatName(current) === semanticFormatName(previous)) return;
+			if (!semanticSummaries.length && !config.htmlAttributeChanges) {
+				const rendered = findRenderedFormatElement(blockWrapper, current, usedRendered);
+				clearUnreportedFormatMarker(rendered);
+				return;
+			}
+			const summary = semanticSummaries.length
+				? semanticSummaries.join('\n')
+				: sprintf(__('Modified HTML tag: %s', 'revisionary'), Array.from(new Set(changedTags)).join(', '));
+			const rendered = findRenderedFormatElement(blockWrapper, current, usedRendered);
+			if (!markFormatElement(rendered, summary)) recordUnrepresented(summary);
+		});
+
+		previousFormats.forEach((previous, index) => {
+			if (usedPrevious.has(index)) return;
+			const semanticSummaries = semanticFormatChangeSummaries(null, previous);
+			if (!semanticSummaries.length && !config.htmlAttributeChanges) return;
+			const summary = semanticSummaries.length
+				? semanticSummaries.join('\n')
+				: sprintf(__('Modified HTML tag: %s', 'revisionary'), previous.tagName.toLowerCase());
+			if (!markRenderedTextFormat(blockWrapper, normalizedElementText(previous), summary)) {
+				recordUnrepresented(summary);
+			}
+		});
+
+		const currentElements = Array.from(currentTemplate.content.querySelectorAll('*:not(img)'));
+		const previousElements = Array.from(previousTemplate.content.querySelectorAll('*:not(img)'));
+		const currentFormatSet = new Set(currentFormats);
+		const previousFormatSet = new Set(previousFormats);
+		currentElements.forEach((current, index) => {
+			const previous = previousElements[index];
+			if (currentFormatSet.has(current) || (previous && previousFormatSet.has(previous))) return;
+			if (!previous) {
+				if (!config.htmlAttributeChanges) return;
+				const summary = sprintf(__('Modified HTML tag: %s', 'revisionary'), current.tagName.toLowerCase());
+				const rendered = findRenderedFormatElement(blockWrapper, current, usedRendered);
+				if (!markFormatElement(rendered, summary)) recordUnrepresented(summary);
+				return;
+			}
+			if (current.tagName !== previous.tagName) {
+				const semanticSummaries = semanticFormatChangeSummaries(current, previous);
+				if (!semanticSummaries.length && semanticFormatName(current) === semanticFormatName(previous)) return;
+				if (!semanticSummaries.length && !config.htmlAttributeChanges) return;
+				const summary = semanticSummaries.length
+					? semanticSummaries.join('\n')
+					: sprintf(
+						__('Modified HTML tag: %1$s, %2$s', 'revisionary'),
+						previous.tagName.toLowerCase(),
+						current.tagName.toLowerCase()
+					);
+				const rendered = findRenderedFormatElement(blockWrapper, current, usedRendered);
+				if (!markFormatElement(rendered, summary)) recordUnrepresented(summary);
+				return;
+			}
+			const summary = formatElementSummary(current, previous);
+			const rendered = findRenderedFormatElement(blockWrapper, current, usedRendered)
+				|| Array.from(blockWrapper.querySelectorAll(current.tagName.toLowerCase())).find(
+					(element) => normalizedElementText(element) === normalizedElementText(current)
+				);
+			if (!summary) {
+				clearUnreportedFormatMarker(rendered);
+				return;
+			}
+			if (!markFormatElement(rendered, summary)) recordUnrepresented(summary);
+		});
+		previousElements.slice(currentElements.length).forEach((previous) => {
+			if (previousFormatSet.has(previous)) return;
+			if (!config.htmlAttributeChanges) return;
+			const summary = sprintf(__('Modified HTML tag: %s', 'revisionary'), previous.tagName.toLowerCase());
+			if (!markRenderedTextFormat(blockWrapper, normalizedElementText(previous), summary)) {
+				recordUnrepresented(summary);
+			}
+		});
+		if (unrepresentedFormattingCount) {
+			blockWrapper.dataset.visualPostCompareUnrepresentedFormattingCount = String(
+				unrepresentedFormattingCount
+			);
+		}
+		if (unrepresented.length) {
+			blockWrapper.dataset.visualPostCompareUnrepresentedChanges = JSON.stringify(Array.from(new Set(unrepresented)));
+		}
+	}
+
+	function decorateBlockImageDiffs(preview, blockIndex, includeImageDiffs = true) {
+		if (!preview || !blockIndex) return;
+		Array.from(preview.querySelectorAll('[data-block]')).forEach((blockWrapper) => {
+			const block = blockIndex.get(blockWrapper.getAttribute('data-block'));
+			const diffStatus = block && block.attributes && block.attributes.__revisionDiffStatus;
+			if (!block || !diffStatus) return;
+			if (diffStatus.status === 'added' || diffStatus.status === 'removed') {
+				if (includeImageDiffs) Array.from(blockWrapper.querySelectorAll('img')).forEach((image) => {
+					const status = diffStatus.status;
+					image.classList.add('visual-post-compare-image-diff--' + status);
+					image.dataset.visualPostCompareImageDiff = status;
+				});
+				return;
+			}
+			if (diffStatus.status !== 'modified') return;
+			if (blockWrapper.dataset.visualPostCompareHtmlDecorated !== 'true') {
+				blockWrapper.dataset.visualPostCompareHtmlDecorated = 'true';
+				if (includeImageDiffs) decorateExplicitHtmlImages(blockWrapper, diffStatus);
+				decorateHtmlFormattingDiffs(blockWrapper, diffStatus);
+			}
+			if (includeImageDiffs && block.name === 'core/image' && diffStatus.previousImageUrl) {
+				const currentImage = blockWrapper.querySelector('img:not(.visual-post-compare-image-diff__previous)');
+				if (!currentImage || currentImage.closest('.visual-post-compare-image-diff--modified')) return;
+				const previousImage = currentImage.cloneNode(true);
+				previousImage.src = diffStatus.previousImageUrl;
+				previousImage.removeAttribute('srcset');
+				previousImage.removeAttribute('sizes');
+				wrapModifiedImage(currentImage, previousImage);
+			}
+		});
+	}
+
+	function BlockDiffSidebar({ block, tooltip, historicalComparison = false }) {
+		if (!block) {
+			return el('p', { className: 'visual-post-compare-revision__block-empty' },
+				__('Select a changed block to view its details.', 'revisionary')
+			);
+		}
+		const blockType = blocks.getBlockType(block.name);
+		const diffStatus = block.attributes && block.attributes.__revisionDiffStatus;
+		const changedAttributes = diffStatus && diffStatus.changedAttributes;
+		const changedAttributeEntries = Object.entries(changedAttributes || {}).filter(([, parts]) => { const values = attributePartsValues(parts); return attributeVisible(values.current, values.previous); });
+		const hasChanges = Boolean(diffStatus && (
+			(diffStatus.status && diffStatus.status !== 'unchanged')
+			|| diffStatus.hasGranularDiff
+			|| diffStatus.hasGranularImageDiff
+			|| diffStatus.hasUnrepresentedAttributeDiff
+			|| diffStatus.forceContainerModified
+			|| diffStatus.currentHtml !== diffStatus.previousHtml
+		));
+        if (!hasChanges) return el('div', { className: 'visual-post-compare-revision__block-details' }, el('strong', null, (blockType && blockType.title) || block.name), el('h2', { className: 'visual-post-compare-revision__no-attribute-changes' }, __('No attribute changes', 'revisionary')));
+		return el(
+			'div',
+			{ className: 'visual-post-compare-revision__block-details' },
+			el('div', { className: 'visual-post-compare-revision__block-identity' },
+				BlockIcon && blockType ? el(BlockIcon, { icon: blockType.icon, showColors: true }) : null,
+				el('strong', null, (blockType && blockType.title) || block.name)
+			),
+			historicalComparison && tooltip ? el('div', {
+				className: 'visual-post-compare-revision__classic-info-text',
+				dangerouslySetInnerHTML: { __html: tooltip },
+			}) : null,
+			changedAttributeEntries.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
+				el('h2', null, __('Changed attributes', 'revisionary')),
+				...changedAttributeEntries.map(([attributeName, parts]) => el(
+					'div',
+					{ className: 'visual-post-compare-revision__attribute-row', key: attributeName },
+					el(attributeEmpty(attributePartsValues(parts).current) ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' + (attributeEmpty(attributePartsValues(parts).current) ? ' editor-revision-fields-diff__removed' : '') }, attributeName),
+					el('div', { className: 'editor-revision-fields-diff__value' },
+						...renderBlockAttributeValue(attributeName, parts)
+					)
+				))
+			) : (!historicalComparison && tooltip
+				? el('div', {
+					className: 'visual-post-compare-revision__classic-info-text',
+					dangerouslySetInnerHTML: { __html: tooltip },
+				})
+				: (hasChanges
+					? el('p', { className: 'visual-post-compare-revision__block-empty' }, __('Changes detected.', 'revisionary'))
+					: null))
+		);
+	}
+
+	function blockTooltipForSelection(blockWrapper, target) {
+		if (!blockWrapper) return '';
+		const closest = target && target.closest && target.closest('[data-visual-post-compare-tooltip]');
+		if (closest && blockWrapper.contains(closest)) return closest.dataset.visualPostCompareTooltip || '';
+		if (blockWrapper.dataset.visualPostCompareTooltip) return blockWrapper.dataset.visualPostCompareTooltip;
+		const container = blockWrapper.querySelector(
+			'[data-visual-post-compare-container-diff="true"][data-visual-post-compare-tooltip]'
+		);
+		if (container) return container.dataset.visualPostCompareTooltip || '';
+		const changedItem = blockWrapper.querySelector('[data-visual-post-compare-tooltip]');
+		return changedItem ? changedItem.dataset.visualPostCompareTooltip || '' : '';
+	}
+
+	function classicStructuralContainer(node, preview) {
+		if (!node || !preview) return null;
+		const changedContainer = node.closest && node.closest('[data-visual-post-compare-container-diff="true"]');
+		if (changedContainer && preview.contains(changedContainer)) return changedContainer;
+		const selector = [
+			'[data-visual-post-compare-container-type]',
+			'table', 'figure', 'blockquote', 'ul', 'ol', 'p', 'section', 'article', 'div'
+		].join(', ');
+		let container = node.closest && node.closest(selector);
+		while (container && container !== preview && (
+			container.classList.contains('visual-post-compare-revision__live-preview')
+			|| container.classList.contains('visual-post-compare-revision__block-preview')
+			|| container.hasAttribute('data-visual-post-compare-shortcode-sentinel-only')
+		)) container = container.parentElement && container.parentElement.closest(selector);
+		return container && preview.contains(container) ? container : null;
+	}
+
+	function classicAttributeDetails(root) {
+		if (!root) return [];
+		if (root.dataset.visualPostCompareImageAttributes) {
+			try {
+				return JSON.parse(root.dataset.visualPostCompareImageAttributes).map((attribute) => ({
+					label: attribute.label,
+					parts: diffValues(
+						attribute.previous,
+						attribute.current,
+						isUrlAttributeName(attribute.label)
+					),
+				}));
+			} catch (error) {
+				return [];
+			}
+		}
+		const nodes = [root, ...root.querySelectorAll('[data-visual-post-compare-format-summary]')];
+		const rows = [];
+		const seen = new Set();
+		nodes.forEach((node) => String(node.dataset.visualPostCompareFormatSummary || '')
+			.split(/\r?\n/).map((line) => line.trim()).filter(Boolean).forEach((line) => {
+				let match = line.match(/^Modified html tag:\s*(.+)$/i);
+				if (match) {
+					const key = 'html tag|' + match[1];
+					if (!seen.has(key)) rows.push({ label: __('html tag', 'revisionary'), value: match[1] });
+					seen.add(key);
+					return;
+				}
+				match = line.match(/^(.*?)\s+(attribute modified|class added|class removed):\s*(.+)$/i);
+				if (!match) return;
+				const label = (match[1] + ' ' + match[2]).toLowerCase();
+				const key = label + '|' + match[3];
+				if (!seen.has(key)) rows.push({ label, value: match[3] });
+				seen.add(key);
+			}));
+		const linkNodes = [root, ...root.querySelectorAll('[data-visual-post-compare-link-attributes]')]
+			.filter((node) => node.dataset.visualPostCompareLinkAttributes);
+		linkNodes.forEach((node) => {
+			try {
+				JSON.parse(node.dataset.visualPostCompareLinkAttributes).forEach((attribute) => {
+					const key = 'link|' + attribute.label + '|' + attribute.previous + '|' + attribute.current;
+					if (seen.has(key)) return;
+					rows.push({
+						label: attribute.label,
+						parts: diffValues(
+							attribute.previous,
+							attribute.current,
+							isUrlAttributeName(attribute.label)
+						),
+					});
+					seen.add(key);
+				});
+			} catch (error) {
+				// Ignore malformed transient metadata without suppressing other details.
+			}
+		});
+		return rows;
+	}
+
+	function itemAttributeDetails(target, type) {
+		if (!target) return [];
+		const changed = classicAttributeDetails(target);
+		const rows = [...changed];
+		const labels = new Set(rows.map((row) => row.label));
+		const addValue = (label, value) => {
+			if (!value || labels.has(label)) return;
+			rows.push({ label, value });
+			labels.add(label);
+		};
+		if ('image' === type) {
+			const image = target.matches && target.matches('img')
+				? target
+				: target.querySelector('.visual-post-compare-image-diff__current, img:not(.visual-post-compare-image-diff__previous), .visual-post-compare-image-diff__previous');
+			const link = (image && image.closest('a')) || (target.closest && target.closest('a'));
+			if (image) {
+				addValue('image url:', image.getAttribute('src') || '');
+				['title', 'description', 'aria-description'].forEach((name) => addValue(name, image.getAttribute(name) || ''));
+			}
+			if (link) {
+				addValue('link url:', link.getAttribute('href') || '');
+				['title', 'description', 'aria-description'].forEach((name) => addValue(name, link.getAttribute(name) || ''));
+			}
+		} else if ('link' === type) {
+			addValue('url:', target.getAttribute('href') || '');
+			['title', 'description', 'aria-description'].forEach((name) => addValue(name, target.getAttribute(name) || ''));
+		}
+		return rows;
+	}
+
+	function classicInfoTooltip(root) {
+		if (!root) return '';
+		const html = root.dataset.visualPostCompareTooltip || '';
+		if (!html) return '';
+		const template = document.createElement('template');
+		template.innerHTML = html;
+		const details = template.content.querySelector('.visual-post-compare-tooltip-details');
+		if (details) {
+			const retained = details.innerHTML.split(/<br\s*\/?\s*>/i).filter((item) => !(
+				/modified html tag/i.test(item)
+				|| /attribute modified/i.test(item)
+				|| /class (?:added|removed)/i.test(item)
+			));
+			if (retained.length) details.innerHTML = retained.join('<br>');
+			else details.remove();
+		}
+		let result = template.innerHTML.trim();
+		if (!template.content.querySelector('.visual-post-compare-tooltip-details')) {
+			result = result.replace(/:\s*$/, '.');
+		}
+		return result;
+	}
+
+	function classicInfoForNode(node, preview) {
+		if (!node || !preview) return null;
+		const imageDiff = node.closest && node.closest('.visual-post-compare-image-diff--added, .visual-post-compare-image-diff--removed, .visual-post-compare-image-diff--modified');
+		const image = imageDiff || (node.closest && node.closest('img'));
+		const link = node.closest && node.closest('a');
+		const textChange = node.closest && node.closest('.revision-diff-added, .revision-diff-removed, .revision-diff-format-added, .revision-diff-format-removed, .revision-diff-format-changed');
+		let target = image || link || node;
+		let title = image ? __('Image', 'revisionary') : (link ? __('Link', 'revisionary') : '');
+		if (textChange && !image && !link) target = classicStructuralContainer(textChange, preview) || textChange;
+		if (!image && !link) {
+			target = target.matches && target.matches('[data-visual-post-compare-container-diff="true"]')
+				? target
+				: (classicStructuralContainer(target, preview) || target);
+			title = containerType(target, null);
+		}
+		const isAddedOrRemovedItem = Boolean(
+			(image && image.matches('.visual-post-compare-image-diff--added, .visual-post-compare-image-diff--removed'))
+			|| target.closest('.is-revision-added, .is-revision-removed')
+		);
+		const isAddedOrRemovedContainer = !image && !link
+			&& target.matches('.is-revision-added, .is-revision-removed');
+		return {
+			unchanged: !isAddedOrRemovedItem && !textChange && !imageDiff && !target.closest('.is-revision-modified') && !target.querySelector('.revision-diff-added,.revision-diff-removed,.is-revision-added,.is-revision-removed,.is-revision-modified,[data-visual-post-compare-tooltip]'),
+			title: title || __('Info', 'revisionary'),
+			tooltip: classicInfoTooltip(target),
+			attributes: isAddedOrRemovedContainer
+				? []
+				: itemAttributeDetails(target, image ? 'image' : (link ? 'link' : 'container')),
+			attributeCaption: isAddedOrRemovedItem || (image && !image.matches('.visual-post-compare-image-diff--modified'))
+				? __('Attributes', 'revisionary')
+				: __('Changed attributes', 'revisionary'),
+		};
+	}
+
+	function ClassicInfoSidebar({ info }) {
+		if (!info) return el('p', { className: 'visual-post-compare-revision__block-empty' }, __('Select content to view its details.', 'revisionary'));
+        if (info.unchanged) return el('div', { className: 'visual-post-compare-revision__block-details' }, el('strong', null, info.title), el('h2', { className: 'visual-post-compare-revision__no-attribute-changes' }, __('No attribute changes', 'revisionary')));
+		const attributes = info.attributes.filter((attribute) => { const values = attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]); return attributeVisible(values.current, values.previous); });
+		return el('div', { className: 'visual-post-compare-revision__block-details' },
+			el('div', { className: 'visual-post-compare-revision__block-identity' }, el('strong', null, info.title)),
+			info.tooltip
+				? el('div', { className: 'visual-post-compare-revision__classic-info-text', dangerouslySetInnerHTML: { __html: info.tooltip } })
+				: null,
+			attributes.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
+				el('h2', null, info.attributeCaption || __('Changed attributes', 'revisionary')),
+				...attributes.map((attribute, index) => el('div', { className: 'visual-post-compare-revision__attribute-row', key: index },
+					el(attributeEmpty(attributePartsValues(attribute.parts || [{type: 'unchanged', value: attribute.value}]).current) ? 'del' : 'span', { className: 'visual-post-compare-revision__attribute-label' }, attribute.label),
+					el('div', { className: 'editor-revision-fields-diff__value' },
+						...renderBlockAttributeValue(attribute.label, attribute.parts || [{ type: 'unchanged', value: attribute.value }])
+					)
+				))
+			) : null
+		);
+	}
+
+	function FieldsPromo({ promo }) {
+		if (!promo) return null;
+		return el('section', { className: 'visual-post-compare-fields' },
+			el('div', { className: 'visual-post-compare-fields__promo pp-revisions-pro-promo-right-sidebar' },
+				el('div', { className: 'postbox-container' },
+					el('div', { className: 'meta-box-sortables' },
+						el('div', { className: 'advertisement-box-content postbox' },
+							el('div', { className: 'postbox-header' },
+								el('h3', { className: 'advertisement-box-header hndle is-non-sortable' }, __('Compare Custom Fields', 'revisionary'))
+							),
+							el('div', { className: 'inside' },
+								el('p', null, __('Revisions Pro displays cleanly formatted field changes for:', 'revisionary')),
+								el('ul', null,
+									...[
+										{ label: __('Featured Image', 'revisionary') },
+										{ label: __('Core WordPress fields', 'revisionary') },
+										{ label: 'Advanced Custom Fields' },
+										{ label: 'Pods' },
+										{ label: 'PublishPress Cart' },
+										{ label: 'WooCommerce' },
+										{ label: 'Yoast SEO' },
+										{ label: __('Many other popular plugins', 'revisionary'), integrationLink: true },
+										{ label: __('Many popular themes', 'revisionary'), integrationLink: true },
+									].map((item) => el('li', { key: item.label },
+										item.integrationLink && promo.integrationUrl
+											? el('a', { className: 'visual-post-compare-fields__integration-link', href: promo.integrationUrl, target: '_blank', rel: 'noopener noreferrer' }, item.label)
+											: item.label
+									))
+								),
+								el('div', { className: 'pp-pro-badge-banner' },
+									el('a', { className: 'pp-upgrade-btn', href: promo.url, target: '_blank', rel: 'noopener noreferrer' }, __('Upgrade to Pro', 'revisionary'))
+								)
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+
+	function RevisionPreview({ comparison, onApprove, isApproving }) {
+		const canvasRef = useRef(null);
+		const [diffMarkers, setDiffMarkers] = useState([]);
+		const [hasCanvasOverflow, setHasCanvasOverflow] = useState(false);
+		const [markerTrack, setMarkerTrack] = useState(null);
+		const [sidebarTab, setSidebarTab] = useState('revision');
+		const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+		const [canvasTab, setCanvasTab] = useState('content');
+		const [showCurrentDetails, setShowCurrentDetails] = useState(false);
+		const [showPreviousDetails, setShowPreviousDetails] = useState(false);
+		const [selectedBlock, setSelectedBlock] = useState(null);
+		const [selectedBlockTooltip, setSelectedBlockTooltip] = useState('');
+		const [classicInfo, setClassicInfo] = useState(null);
+		const isCurrentSelected = Number(comparison.revision.id) === Number(comparison.current.id);
+		const isCurrentSelectionComparison = Boolean(isCurrentSelected && comparison.isCurrentSelectionComparison);
+		const isCurrentReference = isCurrentSelected && !isCurrentSelectionComparison;
+		const displayedPost = isCurrentSelected ? comparison.current : comparison.revision;
+		const historicalMode = Boolean(
+			comparison.isPastComparison
+			&& comparison.compareToCurrent === false
+		);
+		const lacksPreviousRevision = Boolean(
+			historicalMode
+			&& comparison.hasPreviousRevision === false
+		);
+		const comparisonBase = lacksPreviousRevision ? displayedPost : (comparison.comparisonBase || comparison.current);
+		const historicalComparison = Boolean(
+			historicalMode
+			&& comparison.hasPreviousRevision !== false
+		);
+		const displayedTitle = String(displayedPost.title || '');
+		const currentTitle = String(comparisonBase.title || '');
+		const titleChanged = !isCurrentReference && displayedTitle !== currentTitle;
+		const diffResult = useMemo(() => {
+			try {
+				const pair = hooks.applyFilters('visual_post_compare.content_pair', { current: displayedPost.content || '', previous: comparisonBase.content || '' }, displayedPost, comparisonBase);
+				return {
+					isBlockEditorComparison: containsSerializedBlocks(pair.current) && containsSerializedBlocks(pair.previous),
+					blocks: diffRevisionContent(pair.current, pair.previous),
+					error: null,
+				};
+			} catch (error) {
+				console.error('Visual Post Compare: Unable to build revision diff.', error);
+				return { blocks: [], error };
+			}
+		}, [comparison]);
+		const isBlockEditorComparison = Boolean(diffResult.isBlockEditorComparison);
+		const blockIndex = useMemo(() => indexBlocksByClientId(diffResult.blocks), [diffResult.blocks]);
+		const hasContentChanges = useMemo(() => {
+			const changed = (block) => Boolean(
+				block && (
+					block.__revisionDiffStatus
+					|| (block.attributes && block.attributes.__revisionDiffStatus)
+					|| (block.innerBlocks || []).some(changed)
+				)
+			);
+			return wp.hooks.applyFilters('visual_post_compare.has_content_changes', diffResult.blocks.some(changed), comparison);
+		}, [diffResult.blocks]);
+		const proFields = window.RevisionaryVisualCompareFields;
+		const hasCustomFieldChanges = Boolean(
+			proFields && typeof proFields.hasChanges === 'function' && proFields.hasChanges(comparison)
+		);
+		const fieldSummary = hasCustomFieldChanges && typeof proFields.getSummary === 'function'
+			? proFields.getSummary(comparison)
+			: [];
+		const activeCanvasTab = hasCustomFieldChanges ? canvasTab : 'content';
+		const noChangesDetected = !isCurrentReference && !lacksPreviousRevision && !diffResult.error && !titleChanged && !hasContentChanges && !hasCustomFieldChanges;
+
+		useEffect(() => {
+			setSidebarTab('revision');
+			setSelectedBlock(null);
+			setSelectedBlockTooltip('');
+			setClassicInfo(null);
+			setShowPreviousDetails(false);
+		}, [comparison.revision.id]);
+
+		// WordPress 7.0 exports this hook as __experimentalUseBlockPreview. It renders the block list in this document
+		// instead of an auto-sized iframe. That matches the editor revisions canvas
+		// more closely and prevents unchanged blocks from disappearing in width=0
+		// preview iframes.
+		const previewProps = useBlockPreview({
+			blocks: diffResult.blocks,
+			props: {
+				className: 'visual-post-compare-revision__block-preview',
+			},
+		});
+
+		useEffect(() => {
+			const canvas = canvasRef.current;
+			if (!canvas) {
+				setDiffMarkers([]);
+				return undefined;
+			}
+
+			let frame = null;
+			let resizeObserver = null;
+			let mutationObserver = null;
+			let decoratedPreview = null;
+			let activeBorderTarget = null;
+			const changedContainerSelector = '.is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed';
+			const clearActiveBorder = () => {
+				if (activeBorderTarget) activeBorderTarget.classList.remove('is-diff-border-active');
+				activeBorderTarget = null;
+			};
+			const activateBorder = (target) => {
+				if (activeBorderTarget === target) return;
+				clearActiveBorder();
+				activeBorderTarget = target;
+				if (activeBorderTarget) activeBorderTarget.classList.add('is-diff-border-active');
+			};
+			const tooltipTargetAtPoint = (event) => Array.from(
+				canvas.querySelectorAll('[data-visual-post-compare-tooltip]')
+			).filter((target) => {
+				const rect = target.getBoundingClientRect();
+				return rect.width > 0 && rect.height > 0
+					&& event.clientX >= rect.left && event.clientX < rect.right
+					&& event.clientY >= rect.top && event.clientY < rect.bottom;
+			}).sort((a, b) => {
+				const aRect = a.getBoundingClientRect();
+				const bRect = b.getBoundingClientRect();
+				return (aRect.width * aRect.height) - (bRect.width * bRect.height);
+			})[0] || null;
+			const tooltipMove = (event) => {
+				const target = tooltipTargetAtPoint(event);
+				if (target) showDiffTooltip(target, target.dataset.visualPostCompareTooltip);
+				else hideDiffTooltip();
+			};
+			const tooltipClick = (event) => {
+				const target = tooltipTargetAtPoint(event);
+				if (target) showDiffTooltip(target, target.dataset.visualPostCompareTooltip);
+				else hideDiffTooltip(true);
+			};
+			const borderClick = (event) => {
+				const target = event.target.closest && event.target.closest(changedContainerSelector);
+				if (target && canvas.contains(target)) activateBorder(target);
+				else clearActiveBorder();
+			};
+			const markerBorderActivate = (event) => {
+				const target = event.detail && event.detail.target;
+				if (target && canvas.contains(target) && target.matches(changedContainerSelector)) {
+					activateBorder(target);
+				}
+			};
+			const outsideBorderClick = (event) => {
+				if (event.target.closest && event.target.closest('.visual-post-compare-revision__diff-marker')) return;
+				if (activeBorderTarget && !activeBorderTarget.contains(event.target)) clearActiveBorder();
+			};
+			const tooltipLeave = (event) => {
+				const relatedTarget = event.relatedTarget;
+				if (
+					relatedTarget
+					&& relatedTarget.closest
+					&& relatedTarget.closest('.visual-post-compare-revision__diff-marker')
+				) return;
+				hideDiffTooltip();
+			};
+			const outsideTooltipClick = (event) => {
+				const tooltip = ensureTooltipElement();
+				if (tooltip && tooltip.contains(event.target)) {
+					hideDiffTooltip(true);
+					return;
+				}
+				if (!canvas.contains(event.target)
+					&& !(event.target.closest && event.target.closest('.visual-post-compare-revision__diff-marker'))) {
+					hideDiffTooltip(true);
+				}
+			};
+			const blockSelectionClick = (event) => {
+				if (!isBlockEditorComparison) return;
+				const preview = canvas.querySelector('.visual-post-compare-revision__live-preview');
+				const blockWrapper = event.target.closest && event.target.closest('[data-block]');
+				const selected = preview && blockWrapper && preview.contains(blockWrapper)
+					? blockIndex.get(blockWrapper.getAttribute('data-block')) || null
+					: null;
+				setSelectedBlock(selected);
+				setSelectedBlockTooltip(selected ? blockTooltipForSelection(blockWrapper, event.target) : '');
+				if (selected) setSidebarTab('block');
+			};
+			const classicSelectionClick = (event) => {
+				if (isBlockEditorComparison || !event.target.closest) return;
+				const preview = canvas.querySelector('.visual-post-compare-revision__live-preview');
+				if (!preview || !preview.contains(event.target)) return;
+				const info = classicInfoForNode(event.target, preview);
+				if (info) {
+					setClassicInfo(info);
+					setSidebarTab('block');
+				}
+			};
+			const preventPreviewLinkActivation = (event) => {
+				if (!event.target.closest) return;
+				const link = event.target.closest('a[data-visual-post-compare-link-inert="true"]');
+				if (link && canvas.contains(link)) event.preventDefault();
+			};
+			canvas.addEventListener('click', blockSelectionClick);
+			canvas.addEventListener('click', classicSelectionClick);
+			canvas.addEventListener('click', borderClick);
+			canvas.addEventListener('click', preventPreviewLinkActivation, true);
+			canvas.addEventListener('visual-post-compare:activate-container-border', markerBorderActivate);
+			document.addEventListener('click', outsideBorderClick);
+			if (config.tooltipsEnabled) {
+				canvas.addEventListener('mousemove', tooltipMove);
+				canvas.addEventListener('mouseleave', tooltipLeave);
+				canvas.addEventListener('click', tooltipClick);
+				canvas.addEventListener('scroll', positionDiffTooltip);
+				window.addEventListener('resize', positionDiffTooltip);
+				document.addEventListener('click', outsideTooltipClick);
+			}
+
+			const scheduleUpdate = () => {
+				if (frame !== null) {
+					cancelAnimationFrame(frame);
+				}
+
+				frame = requestAnimationFrame(() => {
+					frame = null;
+					// Fit the canvas to the remaining viewport rather than relying on a
+					// content-dependent page height. This calculation intentionally does
+					// not distinguish a revision from the current-post reference view.
+					const canvasTop = Math.max(0, canvas.getBoundingClientRect().top);
+					const availableCanvasHeight = Math.max(
+						160,
+						Math.floor(window.innerHeight - canvasTop - 16)
+					);
+					const canvasHeightValue = `${availableCanvasHeight}px`;
+					if (canvas.style.getPropertyValue('--visual-post-compare-canvas-height') !== canvasHeightValue) {
+						canvas.style.setProperty('--visual-post-compare-canvas-height', canvasHeightValue);
+					}
+					const preview = canvas.querySelector('.visual-post-compare-revision__live-preview');
+					const hasOverflow = canvas.scrollHeight > canvas.clientHeight + 1;
+					setHasCanvasOverflow(hasOverflow);
+					if (preview) suppressBlockEditorWarnings(preview);
+					if (preview) restoreShortcodeContextComments(preview);
+					if (preview) enablePreviewTextSelection(preview);
+					if (preview && isBlockEditorComparison) enablePreviewBlockSelection(preview);
+					if (preview) disablePreviewLinks(preview);
+
+					if (preview && classicDiff && !isCurrentReference) {
+						decoratedPreview = preview;
+						classicDiff.decorateImageDiffs(
+							preview,
+							comparison.revision.content || '',
+							comparisonBase.content || ''
+						);
+					}
+					if (preview && !isCurrentReference) {
+						decorateBlockImageDiffs(preview, blockIndex, isBlockEditorComparison);
+						highlightShortcodeFormatContainers(preview);
+						applyDiffMetadata(
+							preview,
+							isBlockEditorComparison ? blockIndex : null,
+							Boolean(comparison.revision.isPastRevision),
+							historicalComparison
+						);
+					}
+
+					if (isCurrentReference) {
+						setDiffMarkers([]);
+						setMarkerTrack(null);
+						return;
+					}
+
+					if (!preview || !hasOverflow) {
+						setDiffMarkers([]);
+						setMarkerTrack(null);
+						return;
+					}
+
+					const selector = [
+						'.is-revision-added',
+						'.is-revision-removed',
+						'.is-revision-modified',
+						'.revision-diff-added',
+						'.revision-diff-removed',
+						'.revision-diff-format-added',
+						'.revision-diff-format-removed',
+						'.revision-diff-format-changed',
+						'.revision-diff-link-changed',
+						'.visual-post-compare-image-diff--added',
+						'.visual-post-compare-image-diff--removed',
+						'.visual-post-compare-image-diff--modified',
+					].join(', ');
+					const containerSelector = '.is-revision-added, .is-revision-removed, .is-revision-modified, .is-revision-changed';
+					const candidateNodes = Array.from(preview.querySelectorAll(selector)).filter((node) => {
+						if (node.closest('.visual-post-compare-revision__post-title')) return false;
+						if (config.extraMarkers) {
+							if (node.matches(containerSelector)) return true;
+							return !node.querySelector(selector);
+						}
+						const parentContainer = node.parentElement
+							? node.parentElement.closest(containerSelector)
+							: null;
+						if (parentContainer) return false;
+						if (node.matches(containerSelector)) return true;
+						return !node.querySelector(selector);
+					});
+					const nodes = config.extraMarkers
+						? deduplicateCoincidentContainerNodes(candidateNodes, containerSelector)
+						: candidateNodes;
+					const shortcodeDiffNodes = findShortcodeDiffNodes(preview, nodes);
+					const secondaryDiffNodes = findSecondaryDiffNodes(nodes);
+					const canvasRect = canvas.getBoundingClientRect();
+					const shellRect = canvas.parentElement.getBoundingClientRect();
+					setMarkerTrack({
+						top: canvasRect.top - shellRect.top,
+						height: canvas.clientHeight,
+					});
+					const canvasHeight = Math.max(canvas.scrollHeight, canvas.clientHeight, 1);
+
+					setDiffMarkers(nodes.map((node, index) => {
+						const rect = node.getBoundingClientRect();
+						const nodeTop = canvas.scrollTop + rect.top - canvasRect.top;
+						const nodeCenter = nodeTop + rect.height / 2;
+						const top = Math.max(0, Math.min(100, (nodeCenter / canvasHeight) * 100));
+						const height = Math.max(0.8, Math.min(100 - top, (rect.height / canvasHeight) * 100));
+						const scrollTop = Math.max(
+							0,
+							nodeTop - Math.max(0, (canvas.clientHeight - rect.height) / 2)
+						);
+						const status = getDiffMarkerStatus(node);
+						return {
+							key: status + '-' + index,
+							node,
+							status,
+							top,
+							height,
+							scrollTop,
+							isSecondaryDiff: secondaryDiffNodes.has(node),
+							isShortcodeDiff: shortcodeDiffNodes.has(node),
+							isContainerDiff: node.matches(containerSelector),
+							block: isBlockEditorComparison ? blockForDiffNode(node, blockIndex) : null,
+						};
+					}).filter(hasRenderableMarkerTop));
+				});
+			};
+
+			scheduleUpdate();
+			window.addEventListener('resize', scheduleUpdate);
+
+			if (typeof ResizeObserver !== 'undefined') {
+				resizeObserver = new ResizeObserver(scheduleUpdate);
+				resizeObserver.observe(canvas);
+				resizeObserver.observe(canvas.parentElement);
+				const preview = canvas.querySelector('.visual-post-compare-revision__live-preview');
+				if (preview) {
+					resizeObserver.observe(preview);
+				}
+			}
+
+			if (typeof MutationObserver !== 'undefined') {
+				mutationObserver = new MutationObserver(scheduleUpdate);
+				mutationObserver.observe(canvas, { childList: true, subtree: true });
+			}
+
+			return () => {
+				canvas.removeEventListener('click', blockSelectionClick);
+				canvas.removeEventListener('click', classicSelectionClick);
+				canvas.removeEventListener('click', borderClick);
+				canvas.removeEventListener('click', preventPreviewLinkActivation, true);
+				canvas.removeEventListener('visual-post-compare:activate-container-border', markerBorderActivate);
+				document.removeEventListener('click', outsideBorderClick);
+				clearActiveBorder();
+				window.removeEventListener('resize', scheduleUpdate);
+				if (resizeObserver) {
+					resizeObserver.disconnect();
+				}
+				if (mutationObserver) {
+					mutationObserver.disconnect();
+				}
+				if (frame !== null) {
+					cancelAnimationFrame(frame);
+				}
+				// The keyed preview is discarded as one React-owned subtree. Avoid
+				// structurally mutating its decorated descendants during teardown.
+				if (config.tooltipsEnabled) {
+					canvas.removeEventListener('mousemove', tooltipMove);
+					canvas.removeEventListener('mouseleave', tooltipLeave);
+					canvas.removeEventListener('click', tooltipClick);
+					canvas.removeEventListener('scroll', positionDiffTooltip);
+					window.removeEventListener('resize', positionDiffTooltip);
+					document.removeEventListener('click', outsideTooltipClick);
+					hideDiffTooltip(true);
+				}
+			};
+		}, [comparison, diffResult.blocks, isBlockEditorComparison, blockIndex, historicalComparison]);
+
+		const markerLabel = (status) => {
+			if (status === 'added') {
+				return __('Add Block', 'visual-post-compare');
+			}
+			if (status === 'removed') {
+				return __('Remove Block', 'visual-post-compare');
+			}
+			return __('Modify Block', 'visual-post-compare');
+		};
+
+		const editorStyleElements = (Array.isArray(config.styles) ? config.styles : [])
+			.map((style, index) => {
+				if (!style || !style.css) {
+					return null;
+				}
+
+				const scopedCss = scopeEditorCss(
+					style.css,
+					'.visual-post-compare-revision__live-preview'
+				);
+
+				return scopedCss
+					? el('style', { key: 'vpc-editor-style-' + index }, scopedCss)
+					: null;
+			})
+			.filter(Boolean);
+
+		const presentation = comparison.presentation || {};
+		const formattedTooltipProps = (caption) => ({
+			'aria-description': caption,
+			'data-visual-post-compare-tooltip': caption,
+			onMouseEnter: (event) => showDiffTooltip(event.currentTarget, caption),
+			onMouseLeave: () => scheduleHideDiffTooltip(),
+			onFocus: (event) => showDiffTooltip(event.currentTarget, caption),
+			onBlur: () => hideDiffTooltip(),
+		});
+		const linkedValue = (post, value) => {
+			const editCaption = Number(post.id) === Number(comparison.current.id)
+				? __('Edit Current', 'revisionary')
+				: __('Edit Revision', 'revisionary');
+
+			return el(
+			'a',
+			{ href: post.url || '#', className: 'visual-post-compare-revision__date-link', target: '_blank', ...formattedTooltipProps(editCaption) },
+			value
+			);
+		};
+		const statusCaption = (post) => presentation.mimeTypeStatus ? post.mimeTypeStatusLabel : post.statusLabel;
+		const dateLine = (post, prefix, value, className) => el(
+			'div',
+			{ className: 'visual-post-compare-revision__date-row ' + className },
+			el('span', { className: 'visual-post-compare-revision__date-prefix' }, prefix),
+			post.canEdit && !post.isPastRevision
+				? linkedValue(post, value)
+				: el('span', { className: 'visual-post-compare-revision__date-value' }, value)
+		);
+		const authorLine = (post) => post.authorName
+			? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(presentation.authorName, post.authorName))
+			: null;
+		const details = (post) => [
+			presentation.showPostDate ? dateLine(post, Number(post.id) !== Number(comparison.current.id) ? presentation.postDatePrefix : __('Post Date: ', 'revisionary'), post.postDateLabel || post.postDate, 'is-post-date') : null,
+			presentation.showModified !== false ? dateLine(post, presentation.modifiedPrefix, post.modifiedLabel || post.modified, 'is-modified-date') : null,
+			presentation.showAuthor !== false ? authorLine(post) : null,
+			Number(post.id) !== Number(comparison.current.id) && post.revision_action ? el('div', { className: 'visual-post-compare-revision__author visual-post-compare-revision__action' }, post.revision_action) : null,
+			Number(post.id) !== Number(comparison.current.id) && post.revision_published ? dateLine(post, presentation.approvedDatePrefix, post.revision_published, 'is-approved-date') : null,
+			Number(post.id) !== Number(comparison.current.id) && post.approver ? el('div', { className: 'visual-post-compare-revision__author' }, sprintf(post.direct_edit ? presentation.directEditByCaption : presentation.approvedByCaption, post.approver)) : null,
+			
+			// @todo: current post status, revision type, approved by
+
+		].filter(Boolean);
+		const currentDetailsVisible = isCurrentSelected || showCurrentDetails;
+		const currentMeta = el('div', { key: 'current', className: isCurrentSelected ? 'is-current-selected' : '' },
+			el('span', { className: 'visual-post-compare-revision__status' }, el(
+				'a',
+			{ href: comparison.current.viewURL || '#', className: 'visual-post-compare-view-link', target: '_blank', ...formattedTooltipProps(__('View Current', 'revisionary')) },
+				presentation.currentCaption
+			), el('button', {
+				type: 'button',
+				className: 'visual-post-compare-revision__current-details-toggle',
+				disabled: isCurrentSelected,
+				'aria-expanded': currentDetailsVisible,
+				'aria-label': currentDetailsVisible ? __('Hide current post details', 'revisionary') : __('Show current post details', 'revisionary'),
+				title: currentDetailsVisible ? __('Hide current post details', 'revisionary') : __('Show current post details', 'revisionary'),
+				onClick: () => setShowCurrentDetails(!showCurrentDetails),
+			}, el('svg', { className: 'components-panel__arrow', width: 24, height: 24, viewBox: '0 0 24 24', 'aria-hidden': true, focusable: 'false' },
+				el('path', { d: currentDetailsVisible ? 'M6.5 12 12 7l5.5 5-1 1.1L12 9l-4.5 4.1L6.5 12z' : 'M6.5 8 12 13l5.5-5-1-1.1L12 11 7.5 6.9 6.5 8z' })
+			))),
+			currentDetailsVisible ? el('strong', null, comparison.current.title || sprintf(__('Post %d', 'revisionary'), comparison.current.id)) : null,
+			el('div', { className: 'visual-post-compare-revision__author visual-post-compare-revision__current-status' }, sprintf(presentation.currentStatusCaption, comparison.current.statusLabel)),
+			...(currentDetailsVisible ? details(comparison.current) : [])
+		);
+		const previousDetails = details(comparisonBase);
+		const previousModified = previousDetails.find((item) => item && item.props && /(?:^|\s)is-modified-date(?:\s|$)/.test(item.props.className || ''));
+		const previousMeta = historicalComparison ? el('div', { key: 'previous-revision' },
+			el('span', { className: 'visual-post-compare-revision__status' }, el(
+				'a',
+				{
+					href: comparisonBase.previewURL || comparisonBase.viewURL || '#',
+					className: 'visual-post-compare-view-link',
+					target: '_blank',
+					...formattedTooltipProps(__('View Revision', 'revisionary')),
+				},
+				__('Previous Revision', 'revisionary')
+			), el('button', {
+				type: 'button',
+				className: 'visual-post-compare-revision__current-details-toggle',
+				'aria-expanded': showPreviousDetails,
+				'aria-label': showPreviousDetails ? __('Hide previous revision details', 'revisionary') : __('Show previous revision details', 'revisionary'),
+				title: showPreviousDetails ? __('Hide previous revision details', 'revisionary') : __('Show previous revision details', 'revisionary'),
+				onClick: () => setShowPreviousDetails(!showPreviousDetails),
+			}, el('svg', { className: 'components-panel__arrow', width: 24, height: 24, viewBox: '0 0 24 24', 'aria-hidden': true, focusable: 'false' },
+				el('path', { d: showPreviousDetails ? 'M6.5 12 12 7l5.5 5-1 1.1L12 9l-4.5 4.1L6.5 12z' : 'M6.5 8 12 13l5.5-5-1-1.1L12 11 7.5 6.9 6.5 8z' })
+			))),
+			showPreviousDetails ? el('strong', null, comparisonBase.title || sprintf(__('Revision %d', 'revisionary'), comparisonBase.id)) : null,
+			...(showPreviousDetails ? previousDetails : [previousModified].filter(Boolean))
+		) : null;
+		const revisionMeta = isCurrentSelected ? el('div', {}, '') : el('div', { key: 'revision' },
+			presentation.showRightStatus !== false ? el('span', { className: 'visual-post-compare-revision__status' }, 
+			(comparison.revision.isPastRevision ? comparison.revision.previewURL : comparison.revision.viewURL) ? 
+			el(
+				'a',
+				{
+					href: comparison.revision.isPastRevision
+						? comparison.revision.previewURL
+						: comparison.revision.viewURL,
+					className: 'visual-post-compare-view-link',
+					target: '_blank',
+					...formattedTooltipProps(__('View Revision', 'revisionary')),
+				},
+				statusCaption(comparison.revision) || __('Revision', 'revisionary')
+			) : statusCaption(comparison.revision) || __('Revision', 'revisionary')) : null,
+			el('strong', null, comparison.revision.title || sprintf(__('Revision %d', 'revisionary'), comparison.revision.id)),
+			...details(comparison.revision),
+			comparison.revision.canApprove
+				? el(Button, {
+					variant: 'primary',
+					className: 'visual-post-compare-revision__approve',
+					onClick: onApprove,
+					isBusy: isApproving,
+					disabled: isApproving,
+				}, isApproving ? comparison.revision.approvingCaption : comparison.revision.approveCaption)
+				: null
+		);
+
+		const settingsLink = el('div', { className: 'visual-post-settings' },
+		presentation.settingsCaption ? el(
+			'a',
+			{ href: presentation.settingsURL || '#', className: 'visual-post-settings-link dashicons dashicons-admin-generic', target: '_blank', 'aria-label': presentation.settingsCaption, title: presentation.settingsCaption },
+			el('span', { className: 'screen-reader-text' }, presentation.settingsCaption)
+		) : null
+		);
+
+		const fieldsPromo = (comparison.presentation || {}).fieldsPromo;
+		const fieldsArchiveNotice = proFields && typeof proFields.getSidebarNotice === 'function'
+			? proFields.getSidebarNotice(comparison)
+			: null;
+		const fieldsSection = hasCustomFieldChanges && typeof proFields.render === 'function'
+			? proFields.render(comparison, showDiffTooltip, hideDiffTooltip)
+			: null;
+		const viewChangesTooltip = __('Click to view changes', 'revisionary');
+		const viewChangesTooltipProps = {
+			'data-visual-post-compare-tooltip': viewChangesTooltip,
+			onMouseEnter: (event) => showDiffTooltip(event.currentTarget, viewChangesTooltip),
+			onMouseLeave: () => scheduleHideDiffTooltip(),
+			onFocus: (event) => showDiffTooltip(event.currentTarget, viewChangesTooltip),
+			onBlur: () => hideDiffTooltip(),
+		};
+		const selectFields = (providerId) => {
+			setCanvasTab('fields');
+			window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+				const canvas = canvasRef.current;
+				const provider = providerId && canvas
+					? canvas.querySelector('#visual-post-compare-fields-provider-' + providerId)
+					: null;
+				if (provider && canvas) {
+					canvas.scrollTo({ top: provider.offsetTop, behavior: 'smooth' });
+				} else if (canvas) {
+					canvas.scrollTo({ top: 0, behavior: 'smooth' });
+				}
+			}));
+		};
+		const fieldSummarySection = hasCustomFieldChanges ? el(
+			'div',
+			{ className: 'visual-post-compare-fields__summary' },
+			el('span', { className: 'visual-post-compare-revision__status visual-post-compare-fields__summary-headline' },
+				el('a', { href: '#visual-post-compare-fields', className: 'visual-post-compare-view-link', ...viewChangesTooltipProps, onClick: (event) => { event.preventDefault(); selectFields(); } }, __('Custom Field Changes', 'revisionary'))
+			),
+			el('ul', { className: 'visual-post-compare-fields__summary-list' },
+				...fieldSummary.map((provider) => el('li', { key: provider.id }, el('a', {
+					href: '#visual-post-compare-fields-provider-' + provider.id,
+					className: 'visual-post-compare-fields__summary-link',
+					...viewChangesTooltipProps,
+					onClick: (event) => { event.preventDefault(); selectFields(provider.id); },
+				}, sprintf(__('%s: %d', 'revisionary'), provider.label, provider.count))))
+			)
+		) : null;
+		const metaColumns = isCurrentReference
+			? [currentMeta, revisionMeta]
+			: (historicalMode
+				? [previousMeta, isCurrentSelectionComparison ? currentMeta : revisionMeta]
+				: (config.currentPostFirst === false ? [revisionMeta, currentMeta] : [currentMeta, revisionMeta]));
+		const revisionSidebarContent = el(
+			'div',
+			{ className: 'visual-post-compare-revision__revision-tab-content' },
+			settingsLink, metaColumns[0], metaColumns[1], fieldsPromo
+				? el(FieldsPromo, { promo: fieldsPromo })
+				: (fieldsArchiveNotice || fieldSummarySection)
+		);
+
+		const diffMarkerNav = hasCanvasOverflow && markerTrack && diffMarkers.length
+			? el(
+				'nav',
+				{
+					className: 'visual-post-compare-revision__diff-markers',
+					'aria-label': __('Document changes', 'visual-post-compare'),
+					style: {
+						top: markerTrack.top + 'px',
+						height: markerTrack.height + 'px',
+						bottom: 'auto',
+					},
+				},
+				...diffMarkers.filter(hasRenderableMarkerTop).map((marker) => el('button', {
+					key: marker.key,
+					type: 'button',
+					className: [
+						'visual-post-compare-revision__diff-marker',
+						'is-' + marker.status,
+						marker.isSecondaryDiff ? 'is-secondary-diff' : '',
+						marker.isShortcodeDiff ? 'is-shortcode-diff' : '',
+						marker.isContainerDiff ? 'is-container-diff' : '',
+					].filter(Boolean).join(' '),
+					title: config.tooltipsEnabled ? undefined : markerLabel(marker.status),
+					'aria-label': markerLabel(marker.status),
+					style: { top: marker.top + '%', '--vpc-marker-height': marker.height + '%' },
+					onMouseEnter: () => showDiffTooltip(
+						marker.node,
+						marker.node.dataset.visualPostCompareTooltip || markerLabel(marker.status)
+					),
+					onMouseLeave: () => hideDiffTooltip(),
+					onClick: () => {
+						const canvas = canvasRef.current;
+						if (!canvas || !marker.node) {
+							return;
+						}
+						canvas.scrollTo({ top: marker.scrollTop, behavior: 'smooth' });
+						setSelectedBlock(null);
+						setSelectedBlockTooltip('');
+						if (marker.block) {
+							setSelectedBlock(marker.block);
+							const blockWrapper = marker.node.closest && marker.node.closest('[data-block]');
+							setSelectedBlockTooltip(blockTooltipForSelection(blockWrapper, marker.node));
+							setSidebarTab('block');
+						} else if (!isBlockEditorComparison) {
+							const preview = canvas.querySelector('.visual-post-compare-revision__live-preview');
+							const info = preview ? classicInfoForNode(marker.node, preview) : null;
+							if (info) {
+								setClassicInfo(info);
+								setSidebarTab('block');
+							}
+						}
+						if (marker.isContainerDiff) {
+							canvas.dispatchEvent(new CustomEvent('visual-post-compare:activate-container-border', {
+								detail: { target: marker.node },
+							}));
+						}
+						showDiffTooltip(
+							marker.node,
+							marker.node.dataset.visualPostCompareTooltip || markerLabel(marker.status)
+						);
+					},
+				}))
+			)
+			: null;
+
+		return el(
+			'section',
+			{
+				className: [
+					'visual-post-compare-revision',
+					config.tooltipsEnabled ? 'has-diff-tooltips' : '',
+				].filter(Boolean).join(' '),
+			},
+			el(
+				'div',
+				{ className: 'visual-post-compare-revision__legend', 'aria-label': presentation.legendCaption },
+				el('span', { className: 'is-added' }, presentation.addedCaption),
+				el('span', { className: 'is-removed' }, presentation.removedCaption),
+				el('span', { className: 'is-modified' }, presentation.modifiedCaption)
+			),
+			el(
+				'div',
+				{ className: sidebarCollapsed ? 'visual-post-compare-revision__body is-sidebar-collapsed' : 'visual-post-compare-revision__body' },
+				diffResult.error
+					? el(Notice, { status: 'error', isDismissible: false }, diffResult.error.message)
+					: el(
+						'div',
+						{ className: 'visual-post-compare-revision__canvas-shell' },
+						el('div', {
+                            id: 'visual-post-compare-revision__canvas-tabs',
+                            className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs',
+                            role: 'group', 'aria-label': __('Preview content', 'revisionary'),
+                        },
+                            el('button', { type: 'button', className: activeCanvasTab === 'content' ? 'is-active' : '',
+                                'aria-pressed': activeCanvasTab === 'content', onClick: () => setCanvasTab('content'),
+                            }, __('Content', 'revisionary')),
+                            hasCustomFieldChanges ? el('button', { type: 'button', className: activeCanvasTab === 'fields' ? 'is-active' : '',
+                                'aria-pressed': activeCanvasTab === 'fields', onClick: () => setCanvasTab('fields'),
+                            }, __('Field Changes', 'revisionary')) : null,
+                            el('button', { type: 'button', className: 'visual-post-compare-revision__sidebar-toggle',
+                                'aria-label': sidebarCollapsed ? __('Show sidebar', 'revisionary') : __('Collapse sidebar', 'revisionary'),
+                                'aria-expanded': !sidebarCollapsed, 'aria-controls': 'visual-post-compare-sidebar',
+                                onMouseEnter: (event) => showDiffTooltip(event.currentTarget, escapeTooltipText(sidebarCollapsed ? __('Show sidebar', 'revisionary') : __('Collapse sidebar', 'revisionary'))),
+                                onMouseLeave: () => scheduleHideDiffTooltip(),
+                                onFocus: (event) => showDiffTooltip(event.currentTarget, escapeTooltipText(sidebarCollapsed ? __('Show sidebar', 'revisionary') : __('Collapse sidebar', 'revisionary'))),
+                                onBlur: () => hideDiffTooltip(),
+                                onClick: () => { hideDiffTooltip(); setSidebarCollapsed(!sidebarCollapsed); },
+                            }, el('span', { className: 'collapse-button-icon', 'aria-hidden': true }))
+                        ),
+						el(
+							'div',
+							{ className: 'visual-post-compare-revision__canvas', ref: canvasRef, tabIndex: 0, role: 'region', 'aria-label': __('Comparison preview', 'revisionary') },
+							activeCanvasTab === 'fields' ? fieldsSection : [
+							...editorStyleElements,
+						el('style', null, REVISION_DIFF_STYLES + (classicDiff ? classicDiff.styles : '')),
+							el('div', {
+								className: 'visual-post-compare-revision__svg-filters',
+								'aria-hidden': true,
+								dangerouslySetInnerHTML: { __html: REVISION_REMOVED_FILTER_SVG },
+							}),
+							el(
+							'div',
+							{
+								key: 'visual-post-compare-preview-' + displayedPost.id,
+								className: [
+									'editor-styles-wrapper is-root-container is-layout-constrained visual-post-compare-revision__live-preview',
+									isCurrentReference ? 'is-current-post-reference' : '',
+								].filter(Boolean).join(' '),
+							},
+							displayedTitle || titleChanged || noChangesDetected
+								? el('div', { className: 'visual-post-compare-revision__title-row' },
+									(displayedTitle || titleChanged) ? el(
+									'h1',
+									{
+										className: [
+											'wp-block-post-title visual-post-compare-revision__post-title',
+											titleChanged ? 'is-revision-modified' : '',
+										].filter(Boolean).join(' '),
+										'data-visual-post-compare-tooltip': titleChanged
+											? (historicalComparison ? __('This title was changed', 'revisionary') : __('Change Title', 'revisionary'))
+											: undefined,
+									},
+									titleChanged && currentTitle
+										? el('del', { className: 'revision-diff-removed' }, currentTitle)
+										: null,
+									titleChanged && displayedTitle
+										? el('ins', { className: 'revision-diff-added' }, displayedTitle)
+										: (!titleChanged ? displayedTitle : null)
+									) : null,
+									noChangesDetected && wp.hooks.applyFilters('visual_post_compare.show_no_changes_notice', true, comparison) ? el(
+										'div',
+										{ className: 'notice notice-info inline visual-post-compare-revision__no-changes', role: 'status' },
+										el('p', null, __('No changes detected.', 'revisionary'))
+									) : null
+								)
+								: null,
+							wp.hooks.applyFilters('visual_post_compare.render_content', el('div', previewProps), comparison, { displayedPost, comparisonBase, isCurrentReference, lacksPreviousRevision })
+						),
+							]
+						),
+						activeCanvasTab === 'content' ? wp.hooks.applyFilters('visual_post_compare.render_markers', diffMarkerNav, comparison) : null
+					),
+				el(
+					'aside',
+					{ id: 'visual-post-compare-sidebar', hidden: sidebarCollapsed, className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
+					el(
+						'div',
+						{ className: 'visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Sidebar view', 'revisionary') },
+						el('button', {
+							type: 'button',
+							className: sidebarTab === 'revision' ? 'is-active' : '',
+							'aria-pressed': sidebarTab === 'revision',
+							onClick: () => setSidebarTab('revision'),
+						}, __('Revision', 'revisionary')),
+						el('button', {
+							type: 'button',
+							className: sidebarTab === 'block' ? 'is-active' : '',
+							'aria-pressed': sidebarTab === 'block',
+							onClick: () => setSidebarTab('block'),
+						}, isBlockEditorComparison ? __('Block', 'revisionary') : (classicInfo ? classicInfo.title : __('Info', 'revisionary')))
+					),
+					sidebarTab === 'revision'
+						? revisionSidebarContent
+						: wp.hooks.applyFilters('visual_post_compare.render_content_details', isBlockEditorComparison
+							? el(BlockDiffSidebar, { block: selectedBlock, tooltip: selectedBlockTooltip, historicalComparison })
+							: el(ClassicInfoSidebar, { info: classicInfo }), comparison),
+					Number(comparison.revision.id) !== Number(comparison.current.id) && comparison.revision.classicCompareURL
+						? el('div', { className: 'visual-post-compare-classic' },
+							el('a', { href: comparison.revision.classicCompareURL, className: 'visual-post-compare-classic-link', target: '_blank', rel: 'noopener noreferrer' },
+								(comparison.presentation || {}).classicCompareCaption || __('Classic compare screen', 'revisionary'),
+								el('span', { className: 'dashicons dashicons-external', 'aria-hidden': true })
+							)
+						) : null
+				)
+			)
+		);
+	}
+
+	function normalizeCurrentPostPlacement(comparison) {
+		if (!comparison || !Array.isArray(comparison.posts) || !comparison.current) {
+			return comparison;
+		}
+
+		const currentId = Number(comparison.current.id);
+		const hasCurrentPost = comparison.posts.some((post) => Number(post.id) === currentId);
+		if (!hasCurrentPost) {
+			return comparison;
+		}
+
+		const otherPosts = comparison.posts.filter((post) => Number(post.id) !== currentId);
+		const currentPost = comparison.current;
+		const posts = config.currentPostFirst === false
+			? [...otherPosts, currentPost]
+			: [currentPost, ...otherPosts];
+
+		return { ...comparison, posts };
+	}
+
+	function App() {
+		const [comparison, setComparison] = useState(null);
+		const [error, setError] = useState(null);
+		const [isApproving, setIsApproving] = useState(false);
+		const [isReloadingComparison, setIsReloadingComparison] = useState(false);
+		const [approvalNotice, setApprovalNotice] = useState(null);
+		const comparisonRequestSequence = useRef(0);
+		const selectionTimer = useRef(null);
+
+		useEffect(() => {
+			apiFetch({
+				path: config.restPath + '?revision=' + encodeURIComponent(config.revision),
+			})
+				.then((loadedComparison) => setComparison(normalizeCurrentPostPlacement(loadedComparison)))
+				.catch(setError);
+		}, []);
+
+		useEffect(() => () => {
+			if (selectionTimer.current) {
+				clearTimeout(selectionTimer.current);
+			}
+		}, []);
+
+		if (error) {
+			return el(Notice, { status: 'error', isDismissible: false },
+				(error && error.message) || __('Unable to load this comparison.', 'revisionary')
+			);
+		}
+
+		if (!comparison) {
+			return el('div', { className: 'visual-post-compare-loading', role: 'status' }, el(Spinner), config.loadingComparisonCaption || __('Loading comparison…', 'revisionary'));
+		}
+
+		const reloadComparison = async (revisionId, request = {}, queuedRequestId = 0) => {
+			const requestId = queuedRequestId || ++comparisonRequestSequence.current;
+			setIsReloadingComparison(true);
+			setApprovalNotice(null);
+			try {
+				const loadedComparison = await apiFetch({
+					path: request.path || (config.restPath + '?revision=' + encodeURIComponent(revisionId)),
+					method: request.method || 'GET',
+					data: request.data,
+				});
+				if (requestId !== comparisonRequestSequence.current) return;
+				setComparison(normalizeCurrentPostPlacement(loadedComparison));
+			} catch (reloadError) {
+				if (requestId !== comparisonRequestSequence.current) return;
+				setComparison((currentComparison) => ({
+					...currentComparison,
+					selectedId: Number(currentComparison.revision.id),
+				}));
+				setApprovalNotice({
+					status: 'error',
+					message: (reloadError && reloadError.message) || __('Unable to reload this comparison.', 'revisionary'),
+				});
+			} finally {
+				if (requestId === comparisonRequestSequence.current) {
+					setIsReloadingComparison(false);
+				}
+			}
+		};
+
+		const approve = async () => {
+			if (isApproving || !comparison.revision.canApprove || Number(comparison.revision.id) === Number(comparison.current.id)) {
+				return;
+			}
+
+			setIsApproving(true);
+			setApprovalNotice(null);
+			try {
+				const updatedComparison = await apiFetch({
+					path: config.approveRestPath + '?revision=' + encodeURIComponent(comparison.revision.id),
+					method: 'POST',
+				});
+				if (updatedComparison.selectCurrentPost) {
+					updatedComparison.compareToCurrent = true;
+					updatedComparison.isPastComparison = false;
+					updatedComparison.comparisonBase = updatedComparison.current;
+					updatedComparison.posts = [updatedComparison.current];
+				}
+				const normalizedComparison = normalizeCurrentPostPlacement(updatedComparison);
+				if (updatedComparison.selectCurrentPost) {
+					normalizedComparison.revision = normalizedComparison.current;
+					normalizedComparison.selectedId = Number(normalizedComparison.current.id);
+				}
+				setComparison(normalizedComparison);
+
+				const presentation = comparison.presentation || {};
+
+				setApprovalNotice({ status: 'success', message: updatedComparison.approvalMessage || presentation.revisionApplied });
+			} catch (approveError) {
+				setApprovalNotice({
+					status: 'error',
+					message: (approveError && approveError.message) || __('Unable to approve this comparison.', 'revisionary'),
+				});
+			} finally {
+				setIsApproving(false);
+			}
+		};
+
+		return el(
+			'div',
+			{ className: 'visual-post-compare-screen' },
+			el('header', { className: 'visual-post-compare-screen__header' },
+				el('h1', null, config.headline || __('Compare Revisions', 'revisionary')),
+				el('div', { className: 'visual-post-compare-revision__comparison-mode' },
+					el('label', null,
+						el('input', {
+							type: 'checkbox',
+							checked: comparison.isPastComparison ? comparison.compareToCurrent !== false : true,
+							disabled: !comparison.isPastComparison || isReloadingComparison,
+							onChange: (event) => reloadComparison(comparison.revision.id, {
+								path: config.comparisonModeRestPath,
+								method: 'POST',
+								data: {
+									revision: Number(comparison.authorizationRevisionId || comparison.revision.id),
+									compare_to_current: event.target.checked,
+								},
+							}),
+						}),
+						__('Compare to current post', 'revisionary')
+					)
+				)
+			),
+			approvalNotice ? el(Notice, { status: approvalNotice.status, isDismissible: true, onRemove: () => setApprovalNotice(null) }, approvalNotice.message) : null,
+			el(ComparisonSlider, {
+				comparison,
+				onSelect: (post) => {
+					setApprovalNotice(null);
+					if (Number(post.id) === Number(comparison.current.id)) {
+						if (selectionTimer.current) {
+							clearTimeout(selectionTimer.current);
+							selectionTimer.current = null;
+						}
+						if (comparison.isPastComparison && comparison.compareToCurrent === false) {
+							const requestId = ++comparisonRequestSequence.current;
+							const authorizationRevisionId = Number(comparison.authorizationRevisionId || (comparison.comparisonBase && comparison.comparisonBase.id) || config.revision);
+							setIsReloadingComparison(true);
+							setComparison({ ...comparison, selectedId: Number(comparison.current.id) });
+							selectionTimer.current = setTimeout(() => {
+								selectionTimer.current = null;
+								reloadComparison(authorizationRevisionId, {
+									path: config.restPath + '?revision=' + encodeURIComponent(authorizationRevisionId) + '&select_current=1',
+								}, requestId);
+							}, 200);
+						} else {
+							comparisonRequestSequence.current++;
+							setIsReloadingComparison(false);
+							setComparison({
+								...comparison,
+								revision: comparison.current,
+								selectedId: Number(comparison.current.id),
+							});
+						}
+						return;
+					}
+					if (comparison.isPastComparison && comparison.compareToCurrent === false) {
+						if (selectionTimer.current) {
+							clearTimeout(selectionTimer.current);
+						}
+						const requestId = ++comparisonRequestSequence.current;
+						setIsReloadingComparison(true);
+						setComparison({ ...comparison, selectedId: Number(post.id) });
+						selectionTimer.current = setTimeout(() => {
+							selectionTimer.current = null;
+							reloadComparison(post.id, {}, requestId);
+						}, 200);
+					} else {
+						setComparison({ ...comparison, revision: post, selectedId: Number(post.id) });
+					}
+				},
+			}),
+			el(RevisionPreview, { comparison, onApprove: approve, isApproving })
+		);
+	}
+
+	const root = document.getElementById('visual-post-compare-root');
+	if (root) {
+		element.createRoot(root).render(el(App));
+	}
+})();

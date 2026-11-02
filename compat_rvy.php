@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 
 class PP_Revisions_Compat {
     function __construct() {

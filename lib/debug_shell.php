@@ -1,7 +1,5 @@
 <?php // avoid bombing out if the actual debug file is not loaded
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 if ( ! function_exists('d_echo') ) {
 function d_echo($str) {

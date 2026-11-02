@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 class RevisionaryDashboard {
 	public function __construct() {
 	}

@@ -2693,6 +2693,7 @@
 		const [hasCanvasOverflow, setHasCanvasOverflow] = useState(false);
 		const [markerTrack, setMarkerTrack] = useState(null);
 		const [sidebarTab, setSidebarTab] = useState('revision');
+		const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 		const [canvasTab, setCanvasTab] = useState('content');
 		const [showCurrentDetails, setShowCurrentDetails] = useState(false);
 		const [showPreviousDetails, setShowPreviousDetails] = useState(false);
@@ -3362,28 +3363,33 @@
 			),
 			el(
 				'div',
-				{ className: 'visual-post-compare-revision__body' },
+				{ className: sidebarCollapsed ? 'visual-post-compare-revision__body is-sidebar-collapsed' : 'visual-post-compare-revision__body' },
 				diffResult.error
 					? el(Notice, { status: 'error', isDismissible: false }, diffResult.error.message)
 					: el(
 						'div',
 						{ className: 'visual-post-compare-revision__canvas-shell' },
-						hasCustomFieldChanges ? el(
-							'div',
-							{ className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Preview content', 'revisionary') },
-							el('button', {
-								type: 'button',
-								className: activeCanvasTab === 'content' ? 'is-active' : '',
-								'aria-pressed': activeCanvasTab === 'content',
-								onClick: () => setCanvasTab('content'),
-							}, __('Content', 'revisionary')),
-							el('button', {
-								type: 'button',
-								className: activeCanvasTab === 'fields' ? 'is-active' : '',
-								'aria-pressed': activeCanvasTab === 'fields',
-								onClick: () => setCanvasTab('fields'),
-							}, __('Field Changes', 'revisionary'))
-						) : null,
+						el('div', {
+                            id: 'visual-post-compare-revision__canvas-tabs',
+                            className: 'visual-post-compare-revision__canvas-tabs visual-post-compare-revision__sidebar-tabs',
+                            role: 'group', 'aria-label': __('Preview content', 'revisionary'),
+                        },
+                            el('button', { type: 'button', className: activeCanvasTab === 'content' ? 'is-active' : '',
+                                'aria-pressed': activeCanvasTab === 'content', onClick: () => setCanvasTab('content'),
+                            }, __('Content', 'revisionary')),
+                            hasCustomFieldChanges ? el('button', { type: 'button', className: activeCanvasTab === 'fields' ? 'is-active' : '',
+                                'aria-pressed': activeCanvasTab === 'fields', onClick: () => setCanvasTab('fields'),
+                            }, __('Field Changes', 'revisionary')) : null,
+                            el('button', { type: 'button', className: 'visual-post-compare-revision__sidebar-toggle',
+                                'aria-label': sidebarCollapsed ? __('Show sidebar', 'revisionary') : __('Collapse sidebar', 'revisionary'),
+                                'aria-expanded': !sidebarCollapsed, 'aria-controls': 'visual-post-compare-sidebar',
+                                onMouseEnter: (event) => showDiffTooltip(event.currentTarget, escapeTooltipText(sidebarCollapsed ? __('Show sidebar', 'revisionary') : __('Collapse sidebar', 'revisionary'))),
+                                onMouseLeave: () => scheduleHideDiffTooltip(),
+                                onFocus: (event) => showDiffTooltip(event.currentTarget, escapeTooltipText(sidebarCollapsed ? __('Show sidebar', 'revisionary') : __('Collapse sidebar', 'revisionary'))),
+                                onBlur: () => hideDiffTooltip(),
+                                onClick: () => { hideDiffTooltip(); setSidebarCollapsed(!sidebarCollapsed); },
+                            }, el('span', { className: 'collapse-button-icon', 'aria-hidden': true }))
+                        ),
 						el(
 							'div',
 							{ className: 'visual-post-compare-revision__canvas', ref: canvasRef, tabIndex: 0, role: 'region', 'aria-label': __('Comparison preview', 'revisionary') },
@@ -3439,7 +3445,7 @@
 					),
 				el(
 					'aside',
-					{ className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
+					{ id: 'visual-post-compare-sidebar', hidden: sidebarCollapsed, className: config.currentPostFirst ? 'visual-post-compare-revision__sidebar visual-post-compare-current-post-first' : 'visual-post-compare-revision__sidebar' },
 					el(
 						'div',
 						{ className: 'visual-post-compare-revision__sidebar-tabs', role: 'group', 'aria-label': __('Sidebar view', 'revisionary') },

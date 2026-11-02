@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 class RvyError {
 	private $notices = array();
 

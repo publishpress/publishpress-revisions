@@ -1,8 +1,5 @@
 <?php
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 /**
  * Save a custom field with the post authors' name. Add compatibility to

@@ -1,7 +1,7 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
+
+require_once __DIR__ . '/scheduled-publication-mode_rvy.php';
 
 add_action( '_wp_put_post_revision', 'rvy_review_revision' );
 
@@ -962,6 +962,12 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 				$disabled_fields
 			);
 		}
+	}
+
+	// Prevent a revision from making the published post its own parent. This
+	// must run before wp_update_post()/rvy_update_post() writes post_parent.
+	if (isset($update['post_parent']) && ((int) $published->ID === (int) $update['post_parent'])) {
+		$update['post_parent'] = 0;
 	}
 
 	if (defined('REVISIONARY_APPLY_REVISION_WP_UPDATE')) {
@@ -1944,7 +1950,7 @@ function rvy_reschedule_revision_publication( $revision_id, $post_date_gmt = '' 
 
 	rvy_clear_revision_publication_events( $revision_id );
 
-	if ( rvy_get_option( 'scheduled_publish_cron' ) ) {
+	if ( rvy_use_wp_cron_for_revision_publication() ) {
 		return wp_schedule_single_event( $timestamp, 'publish_revision_rvy', [$revision_id] );
 	}
 

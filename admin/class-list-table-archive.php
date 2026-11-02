@@ -1,7 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined('ABSPATH') || exit;
 
 require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 

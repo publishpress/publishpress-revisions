@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+defined('ABSPATH') || exit; // Exit if accessed directly
 
 class Revisionary_REST {
 	var $request = '';

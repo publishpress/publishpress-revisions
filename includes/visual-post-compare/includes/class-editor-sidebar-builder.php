@@ -8,9 +8,7 @@ namespace PublishPress;
  * rendered exclusively by the dedicated comparison screen.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+\defined('ABSPATH') || exit;
 
 final class Visual_Post_Compare_Editor_Sidebar_Builder {
 	/**

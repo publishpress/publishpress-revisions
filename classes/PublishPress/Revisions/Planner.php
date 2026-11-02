@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Revisions;
 
+\defined('ABSPATH') || exit;
+
 class Planner {
 	private $show_revisions;
 	private $usermeta_key;

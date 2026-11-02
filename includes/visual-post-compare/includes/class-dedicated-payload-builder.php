@@ -7,9 +7,7 @@ namespace PublishPress;
  * Loaded lazily only for Visual Post Compare REST requests.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+\defined('ABSPATH') || exit;
 
 final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	const PAST_COMPARE_USER_OPTION = 'rvy_visual_compare_to_current';

@@ -24,10 +24,14 @@ To moderate or schedule changes to published posts, just install PublishPress Re
 * Works with site-wide WordPress Roles, or in conjunction with <a href="https://publishpress.com/presspermit/">PressPermit Pro</a> for page-specific or category-specific permissions.
 
 ### Additional Features in the Pro Version
-* Advanced Custom Fields integration
-* BeaverBuilder integration
+* Submit and clearly compare changes to your Advanced Custom Fields
+* Submit and clearly compare changes to your Pods fields
+* Clearly compare changes to fields stored by dozens of popular plugins and themes
+* Frontend revision editing and submission with Elementor, Divi, Beaver Builder
+* Visually compare changes to content and block attributes from page builders including Elementor, Divi, Beaver Builder and Spectra Legacy
 * The Events Calendar compatibility
 * WooCommerce compatibility
+* PublishPress Cart compatibility
 * WPML integration
 
 ## Documentation

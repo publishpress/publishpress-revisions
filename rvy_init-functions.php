@@ -1,8 +1,7 @@
 <?php
+defined('ABSPATH') || exit;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+require_once __DIR__ . '/builder-schema_rvy.php';
 
 require_once( dirname(__FILE__).'/lib/agapetry_wp_core_lib.php');
 
@@ -261,7 +260,7 @@ function rvy_status_registrations() {
 			'draft-revision' => [
 				'name' => esc_html__('Working Copy', 'revisionary'),
 				'submit' => esc_html__('Create Working Copy', 'revisionary'),
-				'submit_short' => esc_html__('Copy', 'revisionary'),
+				'submit_short' => esc_html__('Duplicate', 'revisionary'),
 				'submitting' => esc_html__('Creating Working Copy...', 'revisionary'),
 				'submitted' => esc_html__('Working Copy ready', 'revisionary'),
 				'approve' => esc_html__('Approve Changes', 'revisionary'), 
@@ -771,6 +770,10 @@ function rvy_post_revision_supported($post, $args = []) {
 function rvy_post_revision_blocked($post, $args = []) {
 	global $wpdb;
 	static $unfiltered_html;
+
+	if (rvy_builder_schema_blocked($post)) {
+		return ['code' => 'builder_storage_schema', 'description' => __('Page Builder integration requires Revisions Pro to be set to standard storage schema.', 'revisionary')];
+	}
 
 	$revision_unfiltered_html_check = rvy_get_option('revision_unfiltered_html_check');
 
@@ -1347,7 +1350,12 @@ function rvy_init() {
 			rvy_admin_init();
 		} else {
 			// bulk approval fails on some sites due to post types not registered early enough
-			add_action('wp_loaded', 'rvy_admin_init');
+			// Defer until post types are registered, then let the workflow action
+			// added by rvy_admin_init run later on this same wp_loaded pass.
+			// Using the default priority here registers both callbacks at 10, after
+			// that priority's iteration has begun, so single-item submit/approve
+			// actions can fall through without being applied.
+			add_action('wp_loaded', 'rvy_admin_init', 0);
 		}
 	} else {		// @todo: fix links instead
 		// fill in the missing args for Pending / Scheduled revision preview link from Edit Posts / Pages
