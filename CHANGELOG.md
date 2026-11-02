@@ -1,5 +1,8 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[Unreleased]
+- Added: Private MCP actions for native revision workflows, settings and permissions.
+
 [4.3.1] - 3 Nov 2026
 - Added : Opt-in setting: "Create Revision redirects to user's existing Unsubmitted Revision"
 - Fixed : Action Scheduler is not loaded correctly

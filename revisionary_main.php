@@ -579,7 +579,8 @@ class Revisionary
 	}
 
     /** Shared first-install policy. Saved checkbox values and integration filters still take precedence. */
-    private function defaultPostTypes() {
+    /** Native default post types, shared by initialization and settings discovery. */
+    public function defaultPostTypes() {
         $registered = get_post_types([], 'objects');
         $enabled = array_fill_keys(['post', 'page'], true);
         $hidden = $this->getHiddenPostTypes();

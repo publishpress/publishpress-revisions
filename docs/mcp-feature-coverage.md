@@ -1,0 +1,23 @@
+# Revisions MCP feature coverage
+
+All actions use the `publishpress-revisions/` namespace. PublishPress Hub owns the connection and action selection; Revisions enforces native operation permissions. Use `get-content-choices` for separate revision, archive and duplication post types. Supplying `post_id` includes source-specific creation/duplication permissions, theme templates and taxonomy assignment availability.
+
+| Native area | MCP operations | Access and behavior |
+| --- | --- | --- |
+| Revision Queue | `list-revisions`, `get-revision`, `transition-revisions` | Source and revision read permission, configured queue capability and restrictions on other users' unsubmitted revisions. Working workflows must be enabled. |
+| New Revisions | `get-source-post`, `create-revision` | Native copy permission, enabled post type, revision limits and builder storage compatibility. Creation produces an unsubmitted copy; submission is explicit. |
+| Revision editor | `update-revision` | Native edit permission, enabled fields, editor locks, author/term/attachment permissions and valid theme templates. Scheduled-copy edits also require approval authority. |
+| Review and scheduling | `transition-revisions` | Submit, decline, approve, publish now and unschedule use native transitions. Approval honors the saved date. Publishing an unpublished Pro source requires its publication capability. |
+| Past Revisions | `list-revisions` with `archive`, `get-revision`, restore/delete transitions | Archive browsing has its own native access policy. Direct archive reads also require archive-view authority or editing permission on the source. Restore requires source editing and the configured restore capability. Deletion requires its enabled policy and source deletion permission. Unavailable historical fields are omitted. |
+| Comparison | `compare-revision` | Compare against the current source or an explicit `compare_to` revision of the same source. Both revisions require read permission. Missing historical fields are not interpreted as cleared. |
+| Trash | `list-revisions` with `trash`, trash/untrash/delete transitions | Native per-record edit/deletion checks. Permanent removal of a working copy requires prior trash. Restoring a scheduled copy also requires approval and a current source token. |
+| Duplicate Posts | `duplicate-post` | Native duplicate permission and duplication-specific post-type/field settings. A duplication-only source remains discoverable even if revision creation is disabled. |
+| Settings | `get-plugin-settings`, `update-plugin-settings` | Native captions, defaults, sanitizers and exact JSON types. Partial maps preserve omitted entries. Network-controlled changes require network permission. Privileged capabilities cannot be introduced through custom-type settings. |
+| Pro deletion requests | `get-deletion-request`, `get-deletion-requests`, `manage-deletion-requests` | Enabled Pro queue, native post access and request/deletion capabilities. Approval permanently removes an existing requested post. Pagination includes only readable requests; queues above 1,000 stored requests use native administration. |
+| Pro comparison fields | `get-comparison-fields` | Authorized native providers and sensitive-field filtering. Optional `compare_to` requires the same readable source. |
+| Pro field preferences | Get/update comparison preferences | Ignored fields belong to the authenticated user. Site-wide suppressed fields require settings permission. Empty lists clear the selected preference. |
+| Integration cards and builder comparison options | Content/settings discovery | Native dependency availability and edition gates. Available builder comparison settings use the same native definitions as the browser form. Integrations run through their native lifecycle. |
+
+Write operations provide previews and revision tokens. A stale object or source is a conflict: read it again rather than reconnecting the AI client. Bulk operations validate every target before writes and report confirmed targets on partial failures; they are not transactional. Generic post/user lookup comes from Hub's WordPress tools or another authorized client tool. Revisions actions accept explicit source IDs.
+
+Licensing, database index maintenance, storage-schema migrations and network policy/default administration use native administration. Arbitrary custom-field writes, builder-document editing, signed browser previews and third-party account credentials are not exposed. Native cloning, publication and archive restoration retain supported integration behavior, but this does not provide a general editor API for each third-party plugin.

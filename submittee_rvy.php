@@ -63,6 +63,13 @@ class Revisionary_Submittee {
 		}
 	}
 	
+    /** Sanitize one unslashed native setting independently of form transport. */
+    public function sanitizeSettingValue($name, $value) {
+        if (is_array($value)) { return array_map('sanitize_key', $value); }
+        if ($name === 'revision_editor_bg_color') { return sanitize_hex_color($value); }
+        return is_numeric($value) ? intval($value) : sanitize_key($value);
+    }
+
 	function update_options( $sitewide = false, $customize_defaults = false ) {
 		global $wpdb, $rvy_options_sitewide;
 		
@@ -74,21 +81,7 @@ class Revisionary_Submittee {
 			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options']))));
 
 			foreach ( $reviewed_options as $option_basename ) {
-				if (isset($_POST[$option_basename])) {
-					if (is_array($_POST[$option_basename])) {
-						$value = array_map('sanitize_key', wp_unslash($_POST[$option_basename]));
-					} else {
-						if ('revision_editor_bg_color' == $option_basename) {
-							$value = sanitize_hex_color(wp_unslash($_POST[$option_basename]));
-						} elseif (is_numeric($_POST[$option_basename])) {
-							$value = intval($_POST[$option_basename]);
-						} else {
-							$value = sanitize_key($_POST[$option_basename]);
-						}
-					}
-				} else {
-					$value = '';
-				}
+				$value = $this->sanitizeSettingValue($option_basename, isset($_POST[$option_basename]) ? wp_unslash($_POST[$option_basename]) : '');
 
 				rvy_update_option( $default_prefix . $option_basename, $value, $sitewide );
 			}

@@ -72,15 +72,23 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
             return;
         }
 
+        $taxonomy_type = $from_post->post_type;
+        if ($taxonomy_type === 'revision') {
+            // Core archives do not record taxonomy snapshots. Workflow archives retain their source marker.
+            $source = get_post($from_post->post_parent);
+            if (!$source || !get_post_meta($from_post->ID, '_rvy_base_post_id', true)) { return; }
+            $taxonomy_type = $source->post_type;
+        }
+
         // Clear default category (added by wp_insert_post).
         if (!$empty_target_only || !wp_get_object_terms($target_id, 'category', ['fields' => 'ids'])) {
             wp_set_object_terms( $target_id, null, 'category' );
         }
 
-        $post_taxonomies = get_object_taxonomies( $from_post->post_type );
+        $post_taxonomies = get_object_taxonomies( $taxonomy_type );
         
         // Several plugins just add support to post-formats but don't register post_format taxonomy.
-        if (!in_array('post_format', $post_taxonomies, true) && post_type_supports($from_post->post_type, 'post-formats')) {
+        if (!in_array('post_format', $post_taxonomies, true) && post_type_supports($taxonomy_type, 'post-formats')) {
             $post_taxonomies[] = 'post_format';
         }
 
@@ -220,7 +228,12 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
     if (!$empty_target_only && !empty($target_meta_keys) && is_array($target_meta_keys)) {
         if ($delete_meta_keys = array_diff($target_meta_keys, $meta_keys, $skip_meta_keys, revisionary_unrevisioned_postmeta())) {
-            $deletable_keys = apply_filters('revisionary_deletable_postmeta_keys', ['_links_to', '_links_to_target']);
+            $deletable_keys = ['_links_to', '_links_to_target'];
+            if ($from_post->post_type !== 'revision' && rvy_in_revision_workflow($from_post)) {
+                // A working copy contains the image snapshot; its native editor clears images by deleting this key.
+                $deletable_keys[] = '_thumbnail_id';
+            }
+            $deletable_keys = apply_filters('revisionary_deletable_postmeta_keys', $deletable_keys);
         }
         
         foreach($delete_meta_keys as $meta_key) {
@@ -1022,3 +1035,31 @@ function rvy_can_access_copy_source($post_id, $revise = false) {
 require_once __DIR__ . '/admin/duplicate-capabilities_rvy.php';
 
 require_once __DIR__ . '/permissions-read_rvy.php';
+
+/** Match workflow MIME statuses without a MIME subtype, as used by the native queue. */
+function rvy_revision_mime_where($where) {
+    $where = str_replace("-revision/%'", "-revision'", $where);
+    return preg_replace("#post_mime_type LIKE '([a-z0-9_\\-]*)/%'#", "post_mime_type LIKE '$1'", $where);
+}
+
+/** Save the post-author choice independently of the working copy's revision owner. */
+function rvy_set_revision_author($revision_id, $author_id) {
+    $revision = get_post($revision_id);
+    $type = $revision ? get_post_type_object($revision->post_type) : null;
+    if (!$revision || !rvy_in_revision_workflow($revision) || !rvy_get_option('allow_post_author_revision') || !$type
+        || !current_user_can('edit_post', $revision_id) || !is_user_member_of_blog($author_id)
+        || !user_can($author_id, $type->cap->edit_posts)) { return false; }
+    update_post_meta($revision_id, '_rvy_author_selection', (int) $author_id);
+    return (int) get_post_meta($revision_id, '_rvy_author_selection', true) === (int) $author_id;
+}
+
+/** Convert native disabled field switches into the metadata key list expected by copying. */
+function revisionary_disabled_meta_keys($fields) {
+    if (!is_array($fields)) { return []; }
+    $keys = array_keys(array_filter($fields, static fn($enabled) => !$enabled));
+    return array_values(array_unique(array_map(static fn($key) => match ($key) {
+        'post_thumbnail' => '_thumbnail_id',
+        'post_template' => '_wp_page_template',
+        default => $key,
+    }, $keys)));
+}

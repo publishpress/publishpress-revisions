@@ -5,14 +5,14 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 4.3.1
+ * Version: 4.4.0-beta.1
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Requires at least: 5.5
  * Requires PHP: 8.2
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * 
+ *
  * Copyright (c) 2026 PublishPress
  *
  * GNU General Public License, Free Software Foundation <https://www.gnu.org/licenses/gpl-3.0.html>
@@ -41,7 +41,7 @@ defined('ABSPATH') || exit;
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '4.3.1';
+$pp_revisions_version = '4.4.0-beta.1';
 
 global $wp_version;
 
@@ -172,7 +172,7 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
 	}
 
 	include_once REVISIONS_INTERNAL_VENDORPATH . '/publishpress/wordpress-version-notices/src/include.php';
-    
+
 	// Load bundled-translations library
 	$bundledTranslationsPath = '/publishpress/bundled-translations/core/include.php';
 	if (file_exists(REVISIONS_INTERNAL_VENDORPATH . $bundledTranslationsPath)) {
@@ -221,7 +221,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 	define('REVISIONARY_FILE', __FILE__);
 
 	add_action(
-		'init', 
+		'init',
 		function() {
 			global $pp_revisions_version;
 
@@ -235,7 +235,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 	);
 
 	// register these functions before any early exits so normal activation/deactivation can still run with RS_DEBUG
-	register_activation_hook(__FILE__, function() 
+	register_activation_hook(__FILE__, function()
 		{
 			global $pp_revisions_version;
 
@@ -266,8 +266,8 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 	// negative priority to precede any default WP action handlers
 	function revisionary_load() {
 		global $pp_revisions_version;
-		
-		define('PUBLISHPRESS_REVISIONS_VERSION', '4.3.1');
+
+		define('PUBLISHPRESS_REVISIONS_VERSION', '4.4.0-beta.1');
 
 		if ( ! defined( 'RVY_VERSION' ) ) {
 			define( 'RVY_VERSION', PUBLISHPRESS_REVISIONS_VERSION );  // back compat
@@ -293,7 +293,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 
 		if ( is_admin() || defined('XMLRPC_REQUEST') ) {
 			require_once( dirname(__FILE__).'/lib/agapetry_wp_admin_lib.php');
-				
+
 			// skip WP version check and init operations when a WP plugin auto-update is in progress
 			if (isset($_SERVER['SCRIPT_NAME']) && false !== strpos(esc_url_raw(wp_unslash($_SERVER['SCRIPT_NAME'])), 'update.php') )
 				return;
@@ -327,6 +327,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 		add_action('init', 'rvy_configuration_late_init', PHP_INT_MAX - 1);
 
 		revisionary();
+        require_once __DIR__ . '/includes/Mcp/bootstrap.php';
 	}
 
 	// negative priority to precede any default WP action handlers
