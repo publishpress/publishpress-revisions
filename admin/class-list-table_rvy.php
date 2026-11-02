@@ -2310,7 +2310,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 			if ($main_post_id 
 			&& in_array($post->post_status, array_merge(['draft', 'pending'], rvy_revision_statuses()), true)
-			&& current_user_can('copy_post', $main_post_id)
+			&& rvy_can_access_copy_source($post->ID)
 			) {
 				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
