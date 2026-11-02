@@ -24,7 +24,9 @@ function rvy_post_copy($post_id = 0, $args = []) {
 		}
 	}
 
-	if (!empty($args['force']) || current_user_can('duplicate_post', $post_id)) {
+    if (!rvy_can_access_copy_source($post_id)) { return 0; }
+
+	if (rvy_in_revision_workflow($post_id) || !empty($args['force']) || current_user_can('duplicate_post', $post_id)) {
 		require_once( dirname(REVISIONARY_FILE).'/revision-creation_rvy.php' );
 		$rvy_creation = new PublishPress\Revisions\RevisionCreation();
 
@@ -45,6 +47,8 @@ function rvy_revision_create($post_id = 0, $args = []) {
 			return;
 		}
 	}
+
+    if (!rvy_can_access_copy_source($post_id, true)) { return 0; }
 
 	if (!rvy_post_revision_supported($post_id)) {
 		return;
