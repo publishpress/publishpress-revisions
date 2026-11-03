@@ -52,6 +52,16 @@ class ActionSchedulerFallbackInitializer
      */
     public static function ensureInitialized(): void
     {
+        global $wp_filter;
+
+        // Let Action Scheduler register versions at priority 0 and select one at 1.
+        // did_action() is already true while plugins_loaded is still running.
+        if (!did_action('plugins_loaded')
+            || (doing_action('plugins_loaded') && $wp_filter['plugins_loaded']->current_priority() < 2)
+        ) {
+            return;
+        }
+
         if (function_exists('as_get_scheduled_actions')) {
             return;
         }
