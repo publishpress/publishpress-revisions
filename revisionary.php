@@ -193,11 +193,16 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
 }
 
 if (!defined('REVISIONARY_FILE')) {
+    // Apply the compatibility query filter only when either WordPress database charset or collation setting is missing, empty or set incorrectly
+    if (!defined('DB_CHARSET') || ('WORDPRESS_DB_CHARSET' == constant('DB_CHARSET')) || !defined('DB_COLLATE') || ('WORDPRESS_DB_COLLATE' == constant('DB_COLLATE'))) {
+        include_once dirname(__FILE__).'/classes/PublishPress/Revisions/DatabaseSchemaCompatibility.php';
+        add_filter('query', [PublishPress\Revisions\DatabaseSchemaCompatibility::class, 'filterSchemaCharset']);
+    }
+    
 	$vendor_path = (defined('REVISIONS_PRO_INTERNAL_VENDORPATH')) ? REVISIONS_PRO_INTERNAL_VENDORPATH : REVISIONS_INTERNAL_VENDORPATH;
 	include_once( dirname(__FILE__).'/classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php');
 
 	if (class_exists('PublishPress\Revisions\ActionSchedulerFallbackInitializer')) {
-		add_filter('query', [PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'filterSchemaCharset']);
 		/**
 		 * Ensure Action Scheduler is initialized.
 		 */

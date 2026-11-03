@@ -77,32 +77,6 @@ class ActionSchedulerFallbackInitializer
     }
 
     /**
-     * Use database defaults for unresolved hosting placeholders in our schema SQL.
-     *
-     * @param string $query SQL submitted through wpdb.
-     * @return string SQL with only the known placeholder options removed.
-     */
-    public static function filterSchemaCharset(string $query): string
-    {
-        global $wpdb;
-
-        $prefix = preg_quote($wpdb->prefix, '/');
-
-        if (!preg_match('/^\s*CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?`?'
-            . $prefix . 'actionscheduler_(?:actions|claims|groups|logs)`?\s*\(/i', $query)) {
-            return $query;
-        }
-
-        // Anchor to the table-options suffix so column definitions and data are untouched.
-        return preg_replace_callback('/(\)\s*)([^)]*)$/s',
-            static function ($matches) {
-                $options = preg_replace('/\b(?:DEFAULT\s+)?CHARACTER\s+SET\s+WORDPRESS_DB_CHARSET\b/i', '', $matches[2]);
-                $options = preg_replace('/\bCOLLATE\s+WORDPRESS_DB_COLLATE\b/i', '', $options);
-                return $matches[1] . $options;
-            }, $query);
-    }
-
-    /**
      * Repair missing tables before wp_loaded migration queries on the Plugins screen.
      */
     public static function ensureTablesOnPluginsScreen(): void
