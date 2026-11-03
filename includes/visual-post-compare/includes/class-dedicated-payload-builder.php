@@ -75,7 +75,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 
 		foreach ( $listed as $post_item ) {
 			$post = $post_item instanceof \WP_Post ? $post_item : get_post( absint( $post_item ) );
-			if ( ! $post || isset( $seen[ $post->ID ] ) || ! current_user_can( 'read_post', $post->ID ) ) {
+			if ( ! $post || isset( $seen[ $post->ID ] ) || ! Visual_Post_Compare::can_access_comparison_post( $post ) ) {
 				continue;
 			}
 			$post_parent = wp_is_post_revision( $post ) ?: ( rvy_in_revision_workflow( $post ) ? rvy_post_id( $post ) : 0 );
@@ -147,7 +147,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			)
 		);
 
-		if ( ! $revision_id || ! current_user_can( 'read_post', (int) $revision_id ) ) {
+		if ( ! $revision_id || ! Visual_Post_Compare::can_access_revision( (int) $revision_id ) ) {
 			return null;
 		}
 
@@ -175,7 +175,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			)
 		);
 
-		if ( ! $previous_id || ! current_user_can( 'read_post', (int) $previous_id ) ) {
+		if ( ! $previous_id || ! Visual_Post_Compare::can_access_revision( (int) $previous_id ) ) {
 			return null;
 		}
 

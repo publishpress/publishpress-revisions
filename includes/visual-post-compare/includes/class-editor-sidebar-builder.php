@@ -70,7 +70,7 @@ final class Visual_Post_Compare_Editor_Sidebar_Builder {
 		$posts = array();
 
 		foreach ( $definition['posts'] as $post ) {
-			if ( (int) $post->ID === (int) $current_post_id || ! current_user_can( 'read_post', $post->ID ) ) {
+			if ( (int) $post->ID === (int) $current_post_id || ! Visual_Post_Compare::can_access_comparison_post( $post ) ) {
 				continue;
 			}
 			$parent_id = wp_is_post_revision( $post ) ?: ( rvy_in_revision_workflow( $post ) ? rvy_post_id( $post ) : 0 );
