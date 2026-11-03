@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
-"PO-Revision-Date: 2026-10-31 17:22+0000\n"
+"PO-Revision-Date: 2026-11-03 14:41+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "&& (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
@@ -19,17 +19,17 @@ msgstr ""
 "(n%100<10 || n%100>=20) ? 1: 2);\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
 
-#: revisionary.php:5
+#: revisionary.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7
+#: revisionary.php:4
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
 
-#: revisionary.php:9
+#: revisionary.php:5
 #. Description of the plugin
 msgid ""
 "Maintain published content with teamwork and precision using the Revisions "
@@ -38,12 +38,12 @@ msgstr ""
 "Zarządzaj opublikowaną treścią z zespołem i precyzją, korzystając z modelu "
 "Revisions do przesyłania, zatwierdzania i planowania zmian."
 
-#: revisionary.php:11
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13
+#: revisionary.php:7
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
@@ -172,12 +172,14 @@ msgstr[2] ""
 "Note: %1$d Revisions are scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
 msgstr[0] ""
-"Uwaga: %1$d rewizja jest zaplanowana na przyszłą publikację z tradycyjnym "
-"wyzwalaniem. %2$s dla lepszej niezawodności."
+"Uwaga: %1$d rewizja jest zaplanowana na przyszłą publikację z wyzwalaniem "
+"klasycznym. %2$s dla lepszej niezawodności."
 msgstr[1] ""
-"Uwaga: %1$d rewizje są zaplanowane na przyszłą publikację z tradycyjnym "
-"wyzwalaniem. %2$s dla lepszej niezawodności."
+"Uwaga: %1$d rewizje są zaplanowane na przyszłą publikację z wyzwalaniem "
+"klasycznym. %2$s dla lepszej niezawodności."
 msgstr[2] ""
+"Uwaga: %1$d rewizje są zaplanowane na przyszłe publikacje z wyzwalaniem "
+"klasycznym. %2$s dla lepszej niezawodności."
 
 #: admin/action-scheduler_rvy.php:292
 msgid "Migrate it to Action Scheduler"
@@ -921,7 +923,7 @@ msgstr "Wyślij"
 #: front_rvy.php:691
 #: front_rvy.php:725
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
-#: includes/visual-post-compare/visual-post-compare.php:321
+#: includes/visual-post-compare/visual-post-compare.php:361
 #: rvy_init-functions.php:275
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:331
@@ -3789,7 +3791,7 @@ msgstr "Zgodność dla Yoast SEO + Elementor"
 msgid "Compare revisions to Yoast SEO fields"
 msgstr "Porównaj rewizje z polami Yoast SEO"
 
-#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:149
 msgid ""
 "PublishPress Revisions could not create the required Action Scheduler "
 "database tables. Check the database error log and the database user's "
@@ -4013,7 +4015,7 @@ msgid "Modified: "
 msgstr "Zmodyfikowano: "
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
-#: includes/visual-post-compare/visual-post-compare.php:133
+#: includes/visual-post-compare/visual-post-compare.php:173
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135
 msgid "Post Date: "
@@ -4119,7 +4121,7 @@ msgstr "Nie masz uprawnień do przeglądania rewizji."
 
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:86
 #: includes/visual-post-compare/visual-post-compare.php:61
-#: includes/visual-post-compare/visual-post-compare.php:256
+#: includes/visual-post-compare/visual-post-compare.php:296
 msgid "You are not allowed to view the revision."
 msgstr "Nie masz uprawnień do przeglądania rewizji."
 
@@ -4127,7 +4129,7 @@ msgstr "Nie masz uprawnień do przeglądania rewizji."
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:112
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:179
 #: includes/visual-post-compare/visual-post-compare.php:51
-#: includes/visual-post-compare/visual-post-compare.php:237
+#: includes/visual-post-compare/visual-post-compare.php:277
 msgid "Invalid revision ID."
 msgstr "Nieprawidłowe ID rewizji."
 
@@ -4144,12 +4146,12 @@ msgstr "Rewizja nie mogła zostać zatwierdzona."
 msgid "The revision has been approved and scheduled for publication."
 msgstr "Rewizja została zatwierdzona i zaplanowana do publikacji."
 
-#: includes/visual-post-compare/visual-post-compare.php:250
-#: includes/visual-post-compare/visual-post-compare.php:256
-#: includes/visual-post-compare/visual-post-compare.php:261
-#: includes/visual-post-compare/visual-post-compare.php:269
-#: includes/visual-post-compare/visual-post-compare.php:314
-#: includes/visual-post-compare/visual-post-compare.php:413
+#: includes/visual-post-compare/visual-post-compare.php:290
+#: includes/visual-post-compare/visual-post-compare.php:296
+#: includes/visual-post-compare/visual-post-compare.php:301
+#: includes/visual-post-compare/visual-post-compare.php:309
+#: includes/visual-post-compare/visual-post-compare.php:354
+#: includes/visual-post-compare/visual-post-compare.php:453
 #: visual-compare_rvy.php:13
 #: visual-compare_rvy.php:14
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
@@ -4157,17 +4159,17 @@ msgstr "Rewizja została zatwierdzona i zaplanowana do publikacji."
 msgid "Compare Revisions"
 msgstr "Porównaj wersje"
 
-#: includes/visual-post-compare/visual-post-compare.php:261
+#: includes/visual-post-compare/visual-post-compare.php:301
 msgid "You are not allowed to view this comparison."
 msgstr "Nie masz uprawnień do przeglądania tego porównania."
 
-#: includes/visual-post-compare/visual-post-compare.php:414
+#: includes/visual-post-compare/visual-post-compare.php:454
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3532
 msgid "Loading comparison…"
 msgstr "Ładowanie porównania…"
 
-#: lib/debug.php:97
+#: lib/debug.php:96
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s zapytań w %2$s sekund. Użyto %3$s MB."

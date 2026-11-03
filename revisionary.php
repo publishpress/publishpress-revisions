@@ -5,7 +5,7 @@
  * Description: Maintain published content with teamwork and precision using the Revisions model to submit, approve and schedule changes.
  * Author: PublishPress
  * Author URI: https://publishpress.com
- * Version: 4.3.1
+ * Version: 4.3.2
  * Text Domain: revisionary
  * Domain Path: /languages/
  * Requires at least: 5.5
@@ -41,7 +41,7 @@ defined('ABSPATH') || exit;
 // Temporary usage within this module only; avoids multiple instances of version string
 global $pp_revisions_version;
 
-$pp_revisions_version = '4.3.1';
+$pp_revisions_version = '4.3.2';
 
 global $wp_version;
 
@@ -193,11 +193,16 @@ if (!defined('REVISIONARY_FILE') && !$revisionary_loaded_by_pro) {
 }
 
 if (!defined('REVISIONARY_FILE')) {
+    // Apply the compatibility query filter only when either WordPress database charset or collation setting is missing, empty or set incorrectly
+    if (!defined('DB_CHARSET') || ('WORDPRESS_DB_CHARSET' == constant('DB_CHARSET')) || !defined('DB_COLLATE') || ('WORDPRESS_DB_COLLATE' == constant('DB_COLLATE'))) {
+        include_once dirname(__FILE__).'/classes/PublishPress/Revisions/DatabaseSchemaCompatibility.php';
+        add_filter('query', [PublishPress\Revisions\DatabaseSchemaCompatibility::class, 'filterSchemaCharset']);
+    }
+    
 	$vendor_path = (defined('REVISIONS_PRO_INTERNAL_VENDORPATH')) ? REVISIONS_PRO_INTERNAL_VENDORPATH : REVISIONS_INTERNAL_VENDORPATH;
 	include_once( dirname(__FILE__).'/classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php');
 
 	if (class_exists('PublishPress\Revisions\ActionSchedulerFallbackInitializer')) {
-		add_filter('query', [PublishPress\Revisions\ActionSchedulerFallbackInitializer::class, 'filterSchemaCharset']);
 		/**
 		 * Ensure Action Scheduler is initialized.
 		 */
@@ -267,7 +272,7 @@ if (!defined('REVISIONARY_FILE') && (!$revisionary_pro_active || $revisionary_lo
 	function revisionary_load() {
 		global $pp_revisions_version;
 		
-		define('PUBLISHPRESS_REVISIONS_VERSION', '4.3.1');
+		define('PUBLISHPRESS_REVISIONS_VERSION', '4.3.2');
 
 		if ( ! defined( 'RVY_VERSION' ) ) {
 			define( 'RVY_VERSION', PUBLISHPRESS_REVISIONS_VERSION );  // back compat

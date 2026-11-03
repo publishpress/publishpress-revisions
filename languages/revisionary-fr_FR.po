@@ -10,23 +10,23 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
-"PO-Revision-Date: 2026-10-31 17:08+0000\n"
+"PO-Revision-Date: 2026-11-03 14:41+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: revisionary\n"
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: revisionary.php:5
+#: revisionary.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7
+#: revisionary.php:4
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
 
-#: revisionary.php:9
+#: revisionary.php:5
 #. Description of the plugin
 msgid ""
 "Maintain published content with teamwork and precision using the Revisions "
@@ -36,12 +36,12 @@ msgstr ""
 "utilisant le modèle de révisions pour envoyer, approuver et planifier les "
 "modifications."
 
-#: revisionary.php:11
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13
+#: revisionary.php:7
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
@@ -168,10 +168,10 @@ msgstr[1] ""
 "Note: %1$d Revisions are scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
 msgstr[0] ""
-"Remarque : %1$d Révision est planifiée pour publication future avec "
+"Remarque : la révision %1$d est prévue pour une publication future avec "
 "déclenchement hérité. %2$s pour une meilleure fiabilité."
 msgstr[1] ""
-"Remarque : %1$d Révisions sont planifiées pour publication future avec "
+"Remarque : les révisions %1$d sont prévues pour une publication future avec "
 "déclenchement hérité. %2$s pour une meilleure fiabilité."
 
 #: admin/action-scheduler_rvy.php:292
@@ -921,7 +921,7 @@ msgstr "Envoyer"
 #: front_rvy.php:691
 #: front_rvy.php:725
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
-#: includes/visual-post-compare/visual-post-compare.php:321
+#: includes/visual-post-compare/visual-post-compare.php:361
 #: rvy_init-functions.php:275
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:331
@@ -3864,7 +3864,7 @@ msgstr "Compatibilité avec Yoast SEO + Elementor"
 msgid "Compare revisions to Yoast SEO fields"
 msgstr "Comparer les révisions vers les champs Yoast SEO"
 
-#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:149
 msgid ""
 "PublishPress Revisions could not create the required Action Scheduler "
 "database tables. Check the database error log and the database user's "
@@ -4093,7 +4093,7 @@ msgid "Modified: "
 msgstr "Modifié : "
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
-#: includes/visual-post-compare/visual-post-compare.php:133
+#: includes/visual-post-compare/visual-post-compare.php:173
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135
 msgid "Post Date: "
@@ -4199,7 +4199,7 @@ msgstr "Vous n'êtes pas autorisé à voir les révisions."
 
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:86
 #: includes/visual-post-compare/visual-post-compare.php:61
-#: includes/visual-post-compare/visual-post-compare.php:256
+#: includes/visual-post-compare/visual-post-compare.php:296
 msgid "You are not allowed to view the revision."
 msgstr "Vous n'êtes pas autorisé à voir la révision."
 
@@ -4207,7 +4207,7 @@ msgstr "Vous n'êtes pas autorisé à voir la révision."
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:112
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:179
 #: includes/visual-post-compare/visual-post-compare.php:51
-#: includes/visual-post-compare/visual-post-compare.php:237
+#: includes/visual-post-compare/visual-post-compare.php:277
 msgid "Invalid revision ID."
 msgstr "ID de révision invalide."
 
@@ -4224,12 +4224,12 @@ msgstr "La révision n'a pas pu être approuvée."
 msgid "The revision has been approved and scheduled for publication."
 msgstr "La révision a été approuvée et programmée pour publication."
 
-#: includes/visual-post-compare/visual-post-compare.php:250
-#: includes/visual-post-compare/visual-post-compare.php:256
-#: includes/visual-post-compare/visual-post-compare.php:261
-#: includes/visual-post-compare/visual-post-compare.php:269
-#: includes/visual-post-compare/visual-post-compare.php:314
-#: includes/visual-post-compare/visual-post-compare.php:413
+#: includes/visual-post-compare/visual-post-compare.php:290
+#: includes/visual-post-compare/visual-post-compare.php:296
+#: includes/visual-post-compare/visual-post-compare.php:301
+#: includes/visual-post-compare/visual-post-compare.php:309
+#: includes/visual-post-compare/visual-post-compare.php:354
+#: includes/visual-post-compare/visual-post-compare.php:453
 #: visual-compare_rvy.php:13
 #: visual-compare_rvy.php:14
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
@@ -4237,17 +4237,17 @@ msgstr "La révision a été approuvée et programmée pour publication."
 msgid "Compare Revisions"
 msgstr "Comparer les révisions"
 
-#: includes/visual-post-compare/visual-post-compare.php:261
+#: includes/visual-post-compare/visual-post-compare.php:301
 msgid "You are not allowed to view this comparison."
 msgstr "Vous n'êtes pas autorisé à voir cette comparaison."
 
-#: includes/visual-post-compare/visual-post-compare.php:414
+#: includes/visual-post-compare/visual-post-compare.php:454
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3532
 msgid "Loading comparison…"
 msgstr "Chargement de la comparaison…"
 
-#: lib/debug.php:97
+#: lib/debug.php:96
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s requêtes en %2$s secondes. %3$s Mo utilisé."

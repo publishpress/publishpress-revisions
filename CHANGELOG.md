@@ -1,5 +1,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.3.2] - 4 Nov 2026
+- Fixed : Compat - Yoast SEO filter blocks updates to archive / home page indexables
+- Fixed : Compat - PublishPress Permissions - Revisors blocked from revision comparison
+- Fixed : Compat - Improved compatibility with other plugins using Action Scheduler by avoiding early initialization
+- Fixed : Compat - Improve server compatibility by removing unresolved charset and collation variable placeholders from CREATE TABLE statements
+- Fixed : Missing spacing for a new settings checkbox
+
 [4.3.1] - 3 Nov 2026
 - Added : Opt-in setting: "Create Revision redirects to user's existing Unsubmitted Revision"
 - Fixed : Action Scheduler is not loaded correctly

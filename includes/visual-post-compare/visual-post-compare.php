@@ -57,11 +57,51 @@ final class Visual_Post_Compare {
 		}
 		$current_post = $current_post_id ? get_post( $current_post_id ) : null;
 
-		if ( ! $current_post || ! current_user_can( 'read_post', $revision->ID ) || ! current_user_can( 'read_post', $current_post->ID ) ) {
+		if ( ! $current_post || ! self::can_access_revision( $revision ) || ! current_user_can( 'read_post', $current_post->ID ) ) {
 			return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
 		}
 
 		return array( 'revision' => $revision, 'current_post' => $current_post );
+	}
+
+	/**
+	 * Checks revision read access, with an edit fallback when Permissions is active.
+	 *
+	 * @param int|WP_Post $revision Revision object or ID.
+	 * @return bool
+	 */
+	public static function can_access_revision( $revision ) {
+		$revision = $revision instanceof \WP_Post ? $revision : get_post( absint( $revision ) );
+		if ( ! $revision ) {
+			return false;
+		}
+
+		$parent_id = wp_is_post_revision( $revision );
+		if ( ! $parent_id && rvy_in_revision_workflow( $revision ) ) {
+			$parent_id = rvy_post_id( $revision );
+		}
+
+		return $parent_id && (
+			current_user_can( 'read_post', $revision->ID )
+			|| ( function_exists( 'presspermit' ) && current_user_can( 'edit_post', $revision->ID ) )
+		);
+	}
+
+	/**
+	 * Checks access to a post or revision used in a comparison.
+	 *
+	 * @param int|WP_Post $post Post object or ID.
+	 * @return bool
+	 */
+	public static function can_access_comparison_post( $post ) {
+		$post = $post instanceof \WP_Post ? $post : get_post( absint( $post ) );
+		if ( ! $post ) {
+			return false;
+		}
+
+		return ( wp_is_post_revision( $post ) || rvy_in_revision_workflow( $post ) )
+			? self::can_access_revision( $post )
+			: current_user_can( 'read_post', $post->ID );
 	}
 
 	/**
@@ -303,7 +343,7 @@ final class Visual_Post_Compare {
 			}
 		}
 
-		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) || ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
+		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) || ! self::can_access_revision( $compare_ids['revision'] ) ) {
 			return;
 		}
 

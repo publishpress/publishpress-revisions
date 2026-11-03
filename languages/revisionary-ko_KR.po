@@ -10,35 +10,35 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
-"PO-Revision-Date: 2026-10-31 17:19+0000\n"
+"PO-Revision-Date: 2026-11-03 14:41+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: revisionary.php:5
+#: revisionary.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7
+#: revisionary.php:4
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
 
-#: revisionary.php:9
+#: revisionary.php:5
 #. Description of the plugin
 msgid ""
 "Maintain published content with teamwork and precision using the Revisions "
 "model to submit, approve and schedule changes."
 msgstr "Revisions 모델을 사용하여 팀워크와 정밀성을 통해 게시된 콘텐츠를 유지하고, 변경 사항을 제출, 승인 및 예약합니다."
 
-#: revisionary.php:11
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13
+#: revisionary.php:7
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
@@ -162,7 +162,9 @@ msgid_plural ""
 msgstr[0] ""
 "Note: %1$d Revisions are scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
-msgstr[0] "참고: %1$d 수정 사항이 레거시 트리거링으로 인해 향후 게시를 위해 예약되었습니다. 더 나은 신뢰성을 위해 %2$s를 사용하세요."
+msgstr[0] ""
+"Note: %1$d Revisions are scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
 
 #: admin/action-scheduler_rvy.php:292
 msgid "Migrate it to Action Scheduler"
@@ -898,7 +900,7 @@ msgstr "제출"
 #: front_rvy.php:691
 #: front_rvy.php:725
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
-#: includes/visual-post-compare/visual-post-compare.php:321
+#: includes/visual-post-compare/visual-post-compare.php:361
 #: rvy_init-functions.php:275
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:331
@@ -3603,7 +3605,7 @@ msgstr "Yoast SEO + 엘리멘터를 위한 호환성"
 msgid "Compare revisions to Yoast SEO fields"
 msgstr "Yoast SEO 필드와 개정 비교"
 
-#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:149
 msgid ""
 "PublishPress Revisions could not create the required Action Scheduler "
 "database tables. Check the database error log and the database user's "
@@ -3820,7 +3822,7 @@ msgid "Modified: "
 msgstr "수정됨: "
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
-#: includes/visual-post-compare/visual-post-compare.php:133
+#: includes/visual-post-compare/visual-post-compare.php:173
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135
 msgid "Post Date: "
@@ -3926,7 +3928,7 @@ msgstr "수정을 볼 수 있는 권한이 없습니다."
 
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:86
 #: includes/visual-post-compare/visual-post-compare.php:61
-#: includes/visual-post-compare/visual-post-compare.php:256
+#: includes/visual-post-compare/visual-post-compare.php:296
 msgid "You are not allowed to view the revision."
 msgstr "수정을 볼 수 있는 권한이 없습니다."
 
@@ -3934,7 +3936,7 @@ msgstr "수정을 볼 수 있는 권한이 없습니다."
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:112
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:179
 #: includes/visual-post-compare/visual-post-compare.php:51
-#: includes/visual-post-compare/visual-post-compare.php:237
+#: includes/visual-post-compare/visual-post-compare.php:277
 msgid "Invalid revision ID."
 msgstr "유효하지 않은 수정 ID입니다."
 
@@ -3951,12 +3953,12 @@ msgstr "수정을 승인할 수 없습니다."
 msgid "The revision has been approved and scheduled for publication."
 msgstr "수정이 승인되었으며 게시를 위해 예약되었습니다."
 
-#: includes/visual-post-compare/visual-post-compare.php:250
-#: includes/visual-post-compare/visual-post-compare.php:256
-#: includes/visual-post-compare/visual-post-compare.php:261
-#: includes/visual-post-compare/visual-post-compare.php:269
-#: includes/visual-post-compare/visual-post-compare.php:314
-#: includes/visual-post-compare/visual-post-compare.php:413
+#: includes/visual-post-compare/visual-post-compare.php:290
+#: includes/visual-post-compare/visual-post-compare.php:296
+#: includes/visual-post-compare/visual-post-compare.php:301
+#: includes/visual-post-compare/visual-post-compare.php:309
+#: includes/visual-post-compare/visual-post-compare.php:354
+#: includes/visual-post-compare/visual-post-compare.php:453
 #: visual-compare_rvy.php:13
 #: visual-compare_rvy.php:14
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
@@ -3964,17 +3966,17 @@ msgstr "수정이 승인되었으며 게시를 위해 예약되었습니다."
 msgid "Compare Revisions"
 msgstr "수정 사항 비교"
 
-#: includes/visual-post-compare/visual-post-compare.php:261
+#: includes/visual-post-compare/visual-post-compare.php:301
 msgid "You are not allowed to view this comparison."
 msgstr "이 비교를 볼 수 있는 권한이 없습니다."
 
-#: includes/visual-post-compare/visual-post-compare.php:414
+#: includes/visual-post-compare/visual-post-compare.php:454
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3532
 msgid "Loading comparison…"
 msgstr "비교 로딩 중…"
 
-#: lib/debug.php:97
+#: lib/debug.php:96
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s 쿼리, %2$s 초 소요. %3$s MB 사용됨."

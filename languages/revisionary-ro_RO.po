@@ -3,31 +3,31 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-29T21:55:33+00:00\n"
-"PO-Revision-Date: 2026-10-31 17:29+0000\n"
+"POT-Creation-Date: 2026-10-31T16:21:32+00:00\n"
+"PO-Revision-Date: 2026-11-03 14:41+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "Language: ro-RO\n"
 
-#: revisionary.php:5
+#: revisionary.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7
+#: revisionary.php:4
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
 
-#: revisionary.php:9
+#: revisionary.php:5
 #. Description of the plugin
 msgid ""
 "Maintain published content with teamwork and precision using the Revisions "
@@ -36,12 +36,12 @@ msgstr ""
 "Mențineți conținutul publicat cu muncă în echipă și precizie folosind "
 "modelul Revisions pentru a trimite, aproba și programa modificări."
 
-#: revisionary.php:11
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13
+#: revisionary.php:7
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
@@ -171,6 +171,8 @@ msgstr[0] ""
 "legacy. %2$s pentru o fiabilitate mai bună.|Notă: %1$d Revizii sunt "
 "programate pentru publicare viitoare cu declanșare legacy. %2$s pentru o "
 "fiabilitate mai bună."
+msgstr[1] ""
+msgstr[2] ""
 
 #: admin/action-scheduler_rvy.php:292
 msgid "Migrate it to Action Scheduler"
@@ -918,7 +920,7 @@ msgstr "Trimite"
 #: front_rvy.php:691
 #: front_rvy.php:725
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
-#: includes/visual-post-compare/visual-post-compare.php:321
+#: includes/visual-post-compare/visual-post-compare.php:361
 #: rvy_init-functions.php:275
 #: rvy_init-functions.php:293
 #: rvy_init-functions.php:331
@@ -2905,6 +2907,7 @@ msgid "%s%s Revision Edit"
 msgid_plural "%s%s Revision Edits"
 msgstr[0] "%s%s Revizie Edit"
 msgstr[1] "%s%s Revizii Edite"
+msgstr[2] ""
 
 #: admin/post-editor-workflow-ui_rvy.php:103
 msgid "Revision Submission Error"
@@ -3118,6 +3121,7 @@ msgid "%s revision permanently deleted."
 msgid_plural "%s revisions permanently deleted."
 msgstr[0] "%s revizie ștearsă permanent."
 msgstr[1] "%s revizii șterse permanent."
+msgstr[2] ""
 
 #: admin/revision-archive_rvy.php:76
 #: admin/revision-queue_rvy.php:215
@@ -3195,6 +3199,7 @@ msgid "%s revision submitted."
 msgid_plural "%s revisions submitted."
 msgstr[0] "%s revizie trimisă."
 msgstr[1] "%s revizii trimise."
+msgstr[2] ""
 
 #: admin/revision-queue_rvy.php:92
 #, php-format
@@ -3202,6 +3207,7 @@ msgid "%s revision declined."
 msgid_plural "%s revisions declined."
 msgstr[0] "%s revizie refuzată."
 msgstr[1] "%s revizii refuzate."
+msgstr[2] ""
 
 #: admin/revision-queue_rvy.php:93
 #, php-format
@@ -3209,6 +3215,7 @@ msgid "%s revision approved."
 msgid_plural "%s revisions approved."
 msgstr[0] "%s revizie aprobată."
 msgstr[1] "%s revizii aprobate."
+msgstr[2] ""
 
 #: admin/revision-queue_rvy.php:94
 #, php-format
@@ -3224,6 +3231,7 @@ msgid "%s revision published."
 msgid_plural "%s revisions published."
 msgstr[0] "%s revizie publicată."
 msgstr[1] "%s revizii publicate."
+msgstr[2] ""
 
 #: admin/revision-queue_rvy.php:165
 #, php-format
@@ -3802,7 +3810,7 @@ msgstr "Compatibilitate pentru Yoast SEO + Elementor"
 msgid "Compare revisions to Yoast SEO fields"
 msgstr "Compară reviziile cu câmpurile Yoast SEO"
 
-#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:165
+#: classes/PublishPress/Revisions/ActionSchedulerFallbackInitializer.php:149
 msgid ""
 "PublishPress Revisions could not create the required Action Scheduler "
 "database tables. Check the database error log and the database user's "
@@ -4026,7 +4034,7 @@ msgid "Modified: "
 msgstr "Modificat: "
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
-#: includes/visual-post-compare/visual-post-compare.php:133
+#: includes/visual-post-compare/visual-post-compare.php:173
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135
 msgid "Post Date: "
@@ -4132,7 +4140,7 @@ msgstr "Nu aveți permisiunea de a vizualiza revizuirile."
 
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:86
 #: includes/visual-post-compare/visual-post-compare.php:61
-#: includes/visual-post-compare/visual-post-compare.php:256
+#: includes/visual-post-compare/visual-post-compare.php:296
 msgid "You are not allowed to view the revision."
 msgstr "Nu aveți permisiunea de a vizualiza revizuirea."
 
@@ -4140,7 +4148,7 @@ msgstr "Nu aveți permisiunea de a vizualiza revizuirea."
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:112
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:179
 #: includes/visual-post-compare/visual-post-compare.php:51
-#: includes/visual-post-compare/visual-post-compare.php:237
+#: includes/visual-post-compare/visual-post-compare.php:277
 msgid "Invalid revision ID."
 msgstr "ID-ul revizuirii este invalid."
 
@@ -4157,12 +4165,12 @@ msgstr "Revizuirea nu a putut fi aprobată."
 msgid "The revision has been approved and scheduled for publication."
 msgstr "Revizuirea a fost aprobată și programată pentru publicare."
 
-#: includes/visual-post-compare/visual-post-compare.php:250
-#: includes/visual-post-compare/visual-post-compare.php:256
-#: includes/visual-post-compare/visual-post-compare.php:261
-#: includes/visual-post-compare/visual-post-compare.php:269
-#: includes/visual-post-compare/visual-post-compare.php:314
-#: includes/visual-post-compare/visual-post-compare.php:413
+#: includes/visual-post-compare/visual-post-compare.php:290
+#: includes/visual-post-compare/visual-post-compare.php:296
+#: includes/visual-post-compare/visual-post-compare.php:301
+#: includes/visual-post-compare/visual-post-compare.php:309
+#: includes/visual-post-compare/visual-post-compare.php:354
+#: includes/visual-post-compare/visual-post-compare.php:453
 #: visual-compare_rvy.php:13
 #: visual-compare_rvy.php:14
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
@@ -4170,17 +4178,17 @@ msgstr "Revizuirea a fost aprobată și programată pentru publicare."
 msgid "Compare Revisions"
 msgstr "Comparați Reviziile"
 
-#: includes/visual-post-compare/visual-post-compare.php:261
+#: includes/visual-post-compare/visual-post-compare.php:301
 msgid "You are not allowed to view this comparison."
 msgstr "Nu aveți permisiunea de a vizualiza această comparație."
 
-#: includes/visual-post-compare/visual-post-compare.php:414
+#: includes/visual-post-compare/visual-post-compare.php:454
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3532
 msgid "Loading comparison…"
 msgstr "Se încarcă comparația…"
 
-#: lib/debug.php:97
+#: lib/debug.php:96
 #, php-format
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s interogări în %2$s secunde. %3$s MB folosit."
@@ -4299,6 +4307,7 @@ msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
 msgstr[0] "Copia de Lucru <span class=\\\"count\\\">(%d)</span>"
 msgstr[1] "Copia de Lucru <span class=\\\"count\\\">(%d)</span>"
+msgstr[2] ""
 
 #: rvy_init-functions.php:287
 #: rvy_init-functions.php:299
@@ -4323,6 +4332,7 @@ msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
 msgstr[0] "Cereri de Modificare <span class=\\\"count\\\">(%d)</span>"
 msgstr[1] "Cereri de Modificare <span class=\\\"count\\\">(%d)</span>"
+msgstr[2] ""
 
 #: rvy_init-functions.php:301
 msgid "Enable Change Requests"
@@ -4354,6 +4364,7 @@ msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
 msgstr[0] "Programate <span class=\\\"count\\\">(%d)</span>"
 msgstr[1] "Programate <span class=\\\"count\\\">(%d)</span>"
+msgstr[2] ""
 
 #: rvy_init-functions.php:326
 msgid "Unsubmitted Revision"
@@ -4399,6 +4410,7 @@ msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "NeTrimis <span class=\\\"count\\\">(%s)</span>"
 msgstr[1] "NeTrimis <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
 
 #: rvy_init-functions.php:343
 msgid "Submitted Revision"
@@ -4432,6 +4444,7 @@ msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "Trimis <span class=\\\"count\\\">(%s)</span>"
 msgstr[1] "Trimis <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
 
 #: rvy_init-functions.php:360
 msgid "Scheduled Revision"
@@ -4455,6 +4468,7 @@ msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
 msgstr[0] "Programat <span class=\\\"count\\\">(%s)</span>"
 msgstr[1] "Programat <span class=\\\"count\\\">(%s)</span>"
+msgstr[2] ""
 
 #: rvy_init-functions.php:472
 #, php-format
@@ -4462,6 +4476,7 @@ msgid "%sMy Copies & Changes%s(%s)"
 msgid_plural "%sMy Copies & Changes%s(%s)"
 msgstr[0] "%sCopiile și Modificările Mele%s(%s)"
 msgstr[1] "%sCopiile și Modificările Mele%s(%s)"
+msgstr[2] ""
 
 #: rvy_init-functions.php:473
 #, php-format
@@ -4469,6 +4484,7 @@ msgid "%sMy Revisions%s(%s)"
 msgid_plural "%sMy Revisions%s(%s)"
 msgstr[0] "%sReviziile Mele%s(%s)"
 msgstr[1] "%sReviziile Mele%s(%s)"
+msgstr[2] ""
 
 #: rvy_init-functions.php:475
 #, php-format
@@ -4476,6 +4492,7 @@ msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
 msgstr[0] "%sReviziile la Postările Mele%s(%s)</span>"
 msgstr[1] "%sReviziile la Postările Mele%s(%s)"
+msgstr[2] ""
 
 #: rvy_init-functions.php:480
 msgid "Post Author"
@@ -5026,7 +5043,7 @@ msgstr "Publicare revizie"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1526
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1526
-#, fuzzy, js-format
+#, fuzzy
 msgid "<b>%1$s</b> %2$s"
 msgstr "<b>%1$s</b> %2$s"
 
@@ -5054,6 +5071,7 @@ msgid "Add %d Image"
 msgid_plural "Add %d Images"
 msgstr[0] "Adaugă %d Imagine"
 msgstr[1] "Adaugă %d Imagini"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1564
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1564
@@ -5062,6 +5080,7 @@ msgid "Remove %d Image"
 msgid_plural "Remove %d Images"
 msgstr[0] "Elimină %d Imagine"
 msgstr[1] "Elimină %d Imagini"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1566
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1566
@@ -5070,6 +5089,7 @@ msgid "Modify %d Image"
 msgid_plural "Modify %d Images"
 msgstr[0] "Modifică %d Imagine"
 msgstr[1] "Modifică %d Imagini"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1587
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1587
@@ -5078,6 +5098,7 @@ msgid "%d Text Addition"
 msgid_plural "%d Text Additions"
 msgstr[0] "%d Adăugare text"
 msgstr[1] "%d Adăugări text"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1589
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1589
@@ -5086,6 +5107,7 @@ msgid "%d Text Deletion"
 msgid_plural "%d Text Deletions"
 msgstr[0] "%d Ștergere text"
 msgstr[1] "%d Ștergeri text"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1593
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1593
@@ -5094,6 +5116,7 @@ msgid "%d Link Change"
 msgid_plural "%d Link Changes"
 msgstr[0] "%d Schimbare link"
 msgstr[1] "%d Schimbări link"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1598
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1598
@@ -5102,6 +5125,7 @@ msgid "Add %d Line Break"
 msgid_plural "Add %d Line Breaks"
 msgstr[0] "Adaugă %d Întrerupere de linie"
 msgstr[1] "Adaugă %d Întreruperi de linie"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1599
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1599
@@ -5110,6 +5134,7 @@ msgid "Remove %d Line Break"
 msgid_plural "Remove %d Line Breaks"
 msgstr[0] "Elimină %d Întrerupere de linie"
 msgstr[1] "Elimină %d Întreruperi de linie"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1606
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1606
@@ -5118,6 +5143,7 @@ msgid "%d formatting change"
 msgid_plural "%d formatting changes"
 msgstr[0] "%d schimbare de formatare"
 msgstr[1] "%d schimbări de formatare"
+msgstr[2] ""
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1623
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1623
@@ -5268,7 +5294,7 @@ msgstr "Arată detaliile postării curente"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3162
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3162
-#, fuzzy, js-format
+#, fuzzy
 msgid "Post %d"
 msgstr "Post %d"
 
@@ -5318,7 +5344,7 @@ msgstr "Modificări câmp personalizat"
 
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3268
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3268
-#, fuzzy, js-format
+#, fuzzy
 msgid "%s: %d"
 msgstr "%s: %d"
 
