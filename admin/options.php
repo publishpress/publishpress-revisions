@@ -1449,13 +1449,13 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			echo "\n\t<option value='" . esc_attr($key) . "' " . esc_attr($selected) . ">" . esc_html($captions[$key]) . "</option>";
 		}
 		echo '</select>&nbsp;';
-
-		$this->option_checkbox( 'create_revision_reuse_unsubmitted', $tab, $section, '', '' );
 	}
 
 	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'], true)) {
 		echo '<br><br>';
 	}
+
+    $this->option_checkbox( 'create_revision_reuse_unsubmitted', $tab, $section, '', '' );
 
 	$hide = empty(rvy_get_option('revision_limit_per_post'));
 	$hint = esc_html__('Work around cache plugin conflicts by requerying for revisions before suppressing the New Revision link.', 'revisionary');
