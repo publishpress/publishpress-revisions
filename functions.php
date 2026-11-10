@@ -310,6 +310,12 @@ function rvy_in_revision_workflow($post, $args = []) {
 		return false;
 	}
 
+    // A stale MIME flag must never turn a live post's comment count into an ID.
+    // Permissions Compat Mode uses the dedicated revision statuses instead.
+    if (in_array($post->post_status, ['publish', 'private', 'future'], true)) {
+        return false;
+    }
+
     return rvy_is_revision_status($post->post_mime_type) ? $post->post_mime_type : false;
 }
 
@@ -356,43 +362,53 @@ function rvy_post_id($revision_id) {
             return $_post->post_parent;
 
         } else {
-            if (!$_post->comment_count) {
-                static $busy;
-
-                if (!empty($busy)) {
-                    return;
+            // Keep the guard active through metadata reads and legacy repairs.
+            static $resolving = [];
+            if (!empty($resolving[$_post->ID])) {
+                return 0;
+            }
+            $resolving[$_post->ID] = true;
+            try {
+                $meta_id = (int) get_post_meta($_post->ID, '_rvy_base_post_id', true);
+                $count_id = (int) $_post->comment_count;
+                if ($meta_id && $count_id && ($meta_id !== $count_id)) {
+                    return 0;
                 }
                 
-                $busy = true;
-                $published_id = rvy_get_post_meta( $revision_id, '_rvy_base_post_id', true );
-                $busy = false;
+                $published_id = $count_id ?: $meta_id;
+                $base_post = $published_id ? get_post($published_id) : null;
+                $repair_meta = false;
 
-                if ('revision' == get_post_field('post_type', $published_id)) {
-                    if ('inherit' == get_post_field('post_status', $published_id)) {
-                        $_published_id = get_post_field('post_parent', $published_id);
-            
-                        if ($_published_id != $revision_id) {
-					      $published_id = $_published_id;  
+                // Legacy metadata can reference a native revision of the base post.
+                // Preserve recovery only when comment_count has not supplied an ID.
+                if (!$count_id && $base_post && ('revision' === $base_post->post_type)
+                    && ('inherit' === $base_post->post_status)
+                ) {
+                    $published_id = (int) $base_post->post_parent;
+                    $base_post = $published_id ? get_post($published_id) : null;
+                    $repair_meta = true;
 					    }
             
-                        $post_type = get_post_field('post_type', $published_id);
-                
-                        if (!$post_type || ('revision' == $post_type)) {
+                if (!$base_post || ($published_id == $_post->ID)
+                    || ($base_post->post_type !== $_post->post_type)
+                    || rvy_in_revision_workflow($base_post)
+                ) {
                             return 0;
                         }
 
-                        rvy_update_post_meta($revision_id, '_rvy_base_post_id', $published_id);
-                    }
+                // Repair only after the final parent has passed every check.
+                if (!$count_id) {
+                    if ($repair_meta) {
+                        rvy_update_post_meta($_post->ID, '_rvy_base_post_id', $published_id);
                 }
 
-                if ($published_id && ($published_id != $revision_id)) {
                     global $wpdb;
-
                     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-                    $wpdb->update($wpdb->posts, ['comment_count' => $published_id], ['ID' => $revision_id]);
+                    $wpdb->update($wpdb->posts, ['comment_count' => $published_id], ['ID' => $_post->ID]);
+                    clean_post_cache($_post->ID);
                 }
-            } else {
-                $published_id = $_post->comment_count;
+            } finally {
+                unset($resolving[$_post->ID]);
             }
         }
     }
