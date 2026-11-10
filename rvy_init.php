@@ -219,7 +219,7 @@ if (defined('WPSEO_VERSION')) {
 
 			// Only post indexables require a post ID. Archives, the home page and
 			// system pages legitimately have no object_id (including Yoast Local archives).
-			if (is_object($indexable) && isset($indexable->object_type) && ('post' === $indexable->object_type)) {
+			if (is_object($indexable) && isset($indexable->object_type) && in_array($indexable->object_type, ['post', 'term', 'user'], true)) {
 				if (empty($indexable->object_id)) {
 				    return false;
 				}
