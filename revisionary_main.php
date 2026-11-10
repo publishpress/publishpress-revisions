@@ -573,7 +573,7 @@ class Revisionary
         $args['src_table'] = $src_table;
 
 		$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
-		$clauses['where'] .= " AND $src_table.post_mime_type NOT IN ('$revision_status_csv')";
+		$clauses['where'] .= " AND ($src_table.post_mime_type NOT IN ('$revision_status_csv') OR $src_table.post_status IN ('publish', 'private', 'future'))";
 
 		return $clauses;
 	}
@@ -1743,6 +1743,20 @@ class Revisionary
 
 	function fltRemoveInvalidPostDataKeys($data, $postarr) {
 		unset($data['filter']);
+
+        // Copy/import/API updates can retain revision MIME data without base metadata.
+        // Enforce the live-post invariant after status regulation and editor filters.
+        if (in_array($data['post_status'], ['publish', 'private', 'future'], true)
+            && !empty($data['post_mime_type'])
+            && rvy_is_revision_status($data['post_mime_type'])
+        ) {
+            $data['post_mime_type'] = '';
+            if (empty($postarr['ID'])) {
+                // A new normal post has no comments; a copied base ID is not a count.
+                $data['comment_count'] = 0;
+            }
+        }
+
 		return $data;
 	}
 
