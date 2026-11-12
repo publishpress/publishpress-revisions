@@ -451,6 +451,8 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		}
 	}
 
+    if (!rvy_revision_metadata_is_safe($revision_id)) return false;
+
 	$published_url = get_permalink($post->ID);
 
 	$type_obj = get_post_type_object($post->post_type);
@@ -534,6 +536,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 			$scheduled = $revision->post_date;
 
 			update_post_meta($revision->ID, '_rvy_approved_by', $current_user->ID);
+            update_post_meta($revision->ID, '_rvy_approval_digest', rvy_revision_approval_digest($revision->ID));
 		}
 
 		clean_post_cache($revision->ID);
@@ -758,11 +761,14 @@ function rvy_revision_restore() {
 		return false;
 	}
 
-	if (!current_user_can('edit_post', $revision->post_parent)) {
+	if (!current_user_can('edit_post', $revision->post_parent)
+        || (rvy_get_option('revision_restore_require_cap') && !is_content_administrator_rvy() && !current_user_can('restore_revisions'))) {
 		return false;
 	}
 
 	check_admin_referer( "restore-post_{$post->ID}|$revision->ID" );
+
+    if (!rvy_revision_metadata_is_safe($revision_id)) return false;
 
 	$published_url = get_permalink($post->ID);
 
@@ -822,6 +828,23 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	if ( ! $revision = get_post( $revision_id ) ) {
 		return $revision;
 	}
+
+    if ('future-revision' === $revision->post_mime_type) {
+        $approved_digest = get_post_meta($revision_id, '_rvy_approval_digest', true);
+        if (!$approved_digest || !hash_equals($approved_digest, rvy_revision_approval_digest($revision_id))) {
+            // Existing schedules without provenance also require fresh review.
+            rvy_clear_revision_publication_events($revision_id);
+            delete_post_meta($revision_id, '_rvy_approved_by');
+            delete_post_meta($revision_id, '_rvy_approval_digest');
+            $wpdb->update($wpdb->posts, ['post_mime_type' => 'pending-revision', 'post_status' => rvy_get_option('rvy_permissions_compat_mode') ? 'pending-revision' : 'pending'], ['ID' => $revision_id]); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Direct workflow update is followed immediately by clean_post_cache.
+            clean_post_cache($revision_id);
+            return new WP_Error('revisionary_approval_changed', __('The revision changed after approval and requires review again.', 'revisionary'));
+		}
+	}
+	
+    if (!rvy_revision_metadata_is_safe($revision_id)) {
+        return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
+    }
 
 	$original_revision_status = $revision->post_mime_type;
 
@@ -1046,7 +1069,8 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 	if ($author_selection = get_post_meta($revision_id, '_rvy_author_selection', true)) {
 		$user = get_user_by('ID', $author_selection);
 
-		if (is_a($user, 'WP_User')) {
+		if (is_a($user, 'WP_User') && rvy_can_select_revision_author($revision_id, $author_selection, (int) get_post_meta($revision_id, '_rvy_author_selector', true))
+            && get_post_meta($revision_id, '_rvy_author_selector', true)) {
 			$update_fields['post_author'] = $author_selection;
 		}
 	}
@@ -1406,6 +1430,10 @@ function rvy_revision_delete() {
 		if ( ! $post = get_post( $revision->post_parent ) )
 		return false;
 
+		if (!get_post_type_object($post->post_type)) {
+			return false;
+		}
+
 		if (!is_content_administrator_rvy()) {
 			if ($type_obj = get_post_type_object( $post->post_type ) ) {
 				if ('revision' == $post->post_type) {
@@ -1492,16 +1520,15 @@ function rvy_revision_bulk_delete() {
 					continue;
 			}
 
-			if ( $post = get_post( $revision->post_parent ) ) {
-				$post_ids []= $revision->post_parent;
+            // Missing parents and unregistered types cannot establish delete authority.
+            $post = get_post($revision->post_parent);
+            $type_obj = $post ? get_post_type_object($post->post_type) : null;
+            if (!$type_obj || empty($type_obj->cap->delete_post)
+                || !current_user_can($type_obj->cap->delete_post, $post->ID)) {
+                continue;
+            }
+            $post_ids[] = $post->ID;
 
-				if ( $type_obj = get_post_type_object( $post->post_type ) ) {
-					if ( ! current_user_can( $type_obj->cap->delete_post, $revision->post_parent ) ) {
-						continue;
-					}
-				}
-			}
-	
 			clean_post_cache(rvy_post_id($revision_id));
 
 			// before deleting the revision, note its status for redirect

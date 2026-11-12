@@ -40,9 +40,12 @@ class RevisionaryAdminPosts {
 				)) {
 					$_post = get_post($deleted_id);
 
-					if (!$_post || (('trash' == $_post->post_status) && in_array($_post->post_mime_type, rvy_revision_statuses(), true))) {
+					if ($_post && 'trash' === $_post->post_status
+                        && $_post->post_type === $post_type
+                        && in_array($_post->post_mime_type, rvy_revision_statuses(), true)
+                        && current_user_can('delete_post', $deleted_id)) {
 						if (apply_filters('revisionary_deletion_redirect_to_queue', true, $deleted_id, $post_type)) {
-							$url = wp_nonce_url(admin_url("admin.php?page=revisionary-q&pp_revisions_deleted={$deleted_id}"), 'revisions-deleted');
+							$url = wp_nonce_url(admin_url("admin.php?page=revisionary-q&pp_revisions_deleted={$deleted_id}"), 'revisions-deleted-' . $deleted_id);
 							
 							if (!empty($_SERVER['REQUEST_URI']) && false === strpos(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])), $url)) {
 								wp_safe_redirect($url);
@@ -338,22 +341,20 @@ class RevisionaryAdminPosts {
 			}
 
 			$uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '';
-			$referer_arg = '&referer=' . $uri;
+			$creation_args = ['referer' => $uri];
 
 			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
+			$creation_args['rvy_redirect'] = !empty($_REQUEST['rvy_redirect']) ? esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
 
 			if (!empty($revisionary->enabled_post_types_copy[$post->post_type]) && current_user_can('duplicate_post', $post->ID)) {
-				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy{$referer_arg}$redirect_arg");
+				$url = rvy_creation_action_url($post->ID, 'copy', $creation_args);
 				
-				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);
 				$actions['copy_post'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Duplicate', 'revisionary') . '</a>';
 			}
 
 			if (rvy_is_supported_post_type($post->post_type) && current_user_can('copy_post', $post->ID) && rvy_get_option('pending_revisions') && !$revision_blocked) {
-				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=revise{$referer_arg}$redirect_arg");
+				$url = rvy_creation_action_url($post->ID, 'revise', $creation_args);
 				
-				$url = remove_query_arg(['post_status', 'action', 'cat', 'seo-filter', 'schema-filter', 'paged', 'action2'], $url);
 
 				$caption = (isset($actions['edit']) || !rvy_get_option('caption_copy_as_edit')) ? pp_revisions_status_label('draft-revision', 'submit') : esc_html__('Edit', 'revisionary');
 				$caption = str_replace(' ', '&nbsp;', $caption);

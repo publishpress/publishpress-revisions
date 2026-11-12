@@ -1,6 +1,26 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.3.3] - 11 Nov 2026
+
+- Fixed : Published post with a revision post_mime_type is treated as a revision, and its real revisions disappear from the queue #2642
+- Fixed : Compat - Yoast SEO: allow saving archive / home page indexables with no object_id #2621
+- Fixed : Revisions removes Action Scheduler from Tools submenu on all admin pages #2645
+- Fixed : Permissions integration: Support Limited page editing Permissions #2651
+- Fixed : Post can be inappropriately converted to a revision under some conditions #2654
+- Security : Hardened REST authorization for revision status changes.
+- Security : Hardened REST authorization for revision-related post queries.
+- Security : Fixed a cross-site scripting issue in revision metadata submission.
+- Security : Enforce revision visibility restrictions when option to hide other user's revisions is enabled.
+- Security : Restricted unauthorized changes to author setting in revision submissions.
+- Security : Restricted revision queue listing and bounded related scheduler loading.
+- Security : Restricted revision archive listing to authorized data.
+- Security : Added CSRF protection for revision creation and post duplication.
+- Security : Hardened authorization and CSRF protection for revision deletion.
+- Security : Enforced restore_revisions for archived revision restore.
+- Security : Administrators could inject SQL on plugin settings update.
+
 [4.3.2] - 4 Nov 2026
+
 - Fixed : Compat - Yoast SEO filter blocks updates to archive / home page indexables
 - Fixed : Compat - PublishPress Permissions - Revisors blocked from revision comparison
 - Fixed : Compat - Improved compatibility with other plugins using Action Scheduler by avoiding early initialization
@@ -8,6 +28,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Missing spacing for a new settings checkbox
 
 [4.3.1] - 3 Nov 2026
+
 - Added : Opt-in setting: "Create Revision redirects to user's existing Unsubmitted Revision"
 - Fixed : Action Scheduler is not loaded correctly
 - Fixed : Action Scheduler publication fails if a custom external WP-Cron trigger is configured
@@ -25,6 +46,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Require PHP 8.2
 
 [4.2.0] - 15 Oct 2026
+
 - Added : Visual Compare extension API for page builder integrations in Revisions Pro
 - Added : Option to enable page JavaScript behavior in Visual Compare
 - Changed : Rename Copy Posts actions and settings to Duplicate Posts
@@ -60,6 +82,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : GitHub Actions workflow to build plugin ZIP packages from branches and pull requests
 
 [4.1.0] - 1 Oct 2026
+
 - Fixed : Visual Compare display of Classic Editor content changes
 - Changed : Visual Compare enhancements
 - Added : Action Scheduler integration for more reliable scheduled revision publication
@@ -79,6 +102,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Accessibility attributes for images, plugin UI elements
 
 [4.0.2] - 2 Sep 2026
+
 - Changed : Changed revision comparison query arguments for better clarity
 - Changed : Simplified and clarified revision comparison permission checks
 - Changed : Security hardening for phpcs compliance
@@ -96,9 +120,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : When comparing Scheduled Revisions, current post's date is labeled as "Scheduled"
 
 [4.0.1] - 28 Aug 2026
+
 - Changed : Styling improvements on Compare Revisions screen
 
 [4.0.0] - 27 Aug 2026
+
 - Added : Editor sidebar metaboxes link last ten Past Revisions, New Revisions and Scheduled Revisions for quick visual compare
 - Added : Dedicated visual compare screen for New Revisions and Past Revisions (available without editor access)
 - Fixed : Broken Edit Revision button after creating revision in editor sidebar
@@ -107,11 +133,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Classic Editor buttons lose white background if custom color enabled for Revision editor
 
 [3.9.2] - 28 Jul 2026
+
 - Changed : Editor sidebar button from "Approve Revision" to "Publish Revision"
 - Changed : Editor sidebar shows "Decline Revision" button only when Revisions status is not Unsubmitted
 - Fixed : Lang - button caption "View Saved Revision" was untranslated
 
 [3.9.1] - 24 Jul 2026
+
 - Changed : Styling of Revisions buttons in Revision Editor sidebar
 - Fixed : Compare Revisions may show blank or unmodified field values
 - Fixed : PHP Warnings on Compare Revisions screen
@@ -125,6 +153,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Plugin setting to require Approve Revision capabilities
 
 [3.9.0] - 8 Jul 2026
+
 - Added : Decline button in sidebar of Edit Revision screen
 - Added : Redirect to Past Revisions screen on first plugin activation
 - Added : Support WooCommerce Past Revisions, with custom field archiving
@@ -138,12 +167,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Revision submenu item had redundant counter
 
 [3.8.3] - 17 Jun 2026
+
 - Fixed : Submit Revision button hidden from Administrators, Editors
 - Fixed : Revision Editor: Submit / Approve buttons may be hidden or shown inappropriately 
 - Fixed : Button styling issues in Classic Editor with WP 7.0
 - Changed : Differentiate Revision Editing from Normal Editing
 
 [3.8.2] - 9 Jun 2026
+
 - Added : Copy Post feature
 - Added : Specify post fields available for Revisions
 - Added : Specify post fields included in Post Copy
@@ -161,6 +192,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Security : Revision Comparison request lists Pending Revisions to unauthorized Revisors
 
 [3.8.1] - 30 Apr 2026
+
 - Fixed : Revisions failed to publish under some conditions
 - Fixed : Compat - Elementor - Revision previews were not formatted correctly under some conditions
 - Fixed : Compat - PublishPress Permissions - Create Revision Permissions also granted editing access under some configurations (also requires Permissions 4.8.2)
@@ -169,6 +201,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Lang : Additional languages (Potomatic)
 
 [3.8.0] - 20 Apr 2026
+
 - Feature : More view filters on Past Revisions screen
 - Feature : More view filters on New Revisions screen
 - Feature : Option to add index to posts table for Revision queries
@@ -187,6 +220,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Lang : Some captions were not translated
 
 [3.7.24] - 18 Feb 2026
+
 - Added : Preview link icon in New Revisions table
 - Added : Confirmation message after Revision publication
 - Fixed : Revision could be applied to wrong post under some conditions
@@ -196,6 +230,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Security hardening, PHP Code Sniffer compliance
 
 [3.7.23] - 2 Feb 2026
+
 - Fixed : Submit and Approve / Schedule buttons in Revision Editor jump around after tab change or update
 - Fixed : Revisions inflate Pending post count on Posts screen in WP 6.9
 - Fixed : Nonces were not enforced for some revision management operations
@@ -207,6 +242,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - ES, FR, IT
 
 [3.7.22] - 7 Jan 2026
+
 - Fixed : Create Revision link was displayed on Category Archive screen
 - Fixed : Multisite - Super admins were unable to perform some revision management operations without an Administrator role on the site
 - Changed : Compat - PublishPress Permissions - Revision approval was not allowed based on post-specific editing Permissions
@@ -215,6 +251,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - Work around a conflict with corrupt "wpas" postmeta
 
 [3.7.21] - 17 Nov 2025
+
 - Fixed : Recaption "New Revision" to "Create Revision" to disambiguate from "New Revisions"
 - Fixed : Scheduled Revisions did not work correctly if "Site uses custom trigger" option is enabled
 - Fixed : Scheduled Revision preview top bar did not have a distinct color
@@ -226,6 +263,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : PHP Warnings on Edit Posts screen under some conditions
 
 [3.7.20] - 12 Nov 2025
+
 - Changed : Relabel Revision Queue as New Revisions
 - Changed : Relabel Revision Archive as Past Revisions
 - Fixed : Fatal error on New Revisions screen for non-Administrators
@@ -235,6 +273,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - ES, FR, IT translations
 
 [3.7.19] - 30 Oct 2025
+
 - Fixed : Post Editor - Captioning of New Revision / Schedule Revision button based on time selection did not factor in time zone difference
 - Fixed : Revision Editor - When editing a revision that's already scheduled, Publish Now button was mislabeled as Schedule
 - Fixed : Extra caption shown after clicking Submit / Approve Revision button
@@ -245,11 +284,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Some post types were inappropriately enabled by default until Revision Settings are updated
 
 [3.7.18] - 9 Oct 2025
+
 - Fixed : Revision editor did not redisplay submit, approve buttons after update
 - Fixed : Submit Revision button did not work if Status, Schedule elements hidden by another plugin
 - Changed : Compat - Advanced Custom Fields - Custom post type revisions could not be updated under some configurations
 
 [3.7.17] - 2 Oct 2025
+
 - Fixed : Submit / Approve Revision button was disabled until page reload under some revision editing conditions
 - Fixed : Classic Editor: Update Revision button changes to Save Draft after being clicked
 - Changed : Compat - Revisions of Custom Posts cannot be updated under some conditions
@@ -258,6 +299,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - ES, FR, IT translations
 
 [3.7.16] - 25 Sep 2025
+
 - Fixed : Plugin defines DOING_CRON prior to publishing scheduled revisions
 - Fixed : Revision metaboxes on Post edit screen output duplicate column label for Actions
 - Fixed : Captioning of Approve / Schedule button based on time selection did not apply time zone offset correctly 
@@ -268,6 +310,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Copy button for content on Compare Revisions screen
 
 [3.7.15] - 18 Sep 2025
+
 - Changed : Compat - PublishPress Permissions - Non-revisions were listed in Revision Queue under some configurations
 - Fixed : Edit link on Posts / Pages screen is suppressed on some sites
 - Fixed : Admin notice for disabled WP Cron had invalid plugin settings link
@@ -283,23 +326,28 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Multisite - Plugin setting tabs were blank until a tab is clicked
 
 [3.7.14] - 11 Sep 2025
+
 - Fixed : New Revision button in editor did not work unless configured to open a new tab
 
 [3.7.13] - 9 Sep 2025
+
 - Added : Option for New Revision in editor to open a new tab
 - Fixed : Misspelling in caption on Revisions > Settings
 - Changed : Compat - Rank Math panel was not displayed when editing a revision
 - Changed : Lang - Some plugin strings had wrong text domain
 
 [3.7.12] - 3 Sep 2025
+
 - Fixed : Legacy Notifications could not be enabled if Revisions Pro is active without PublishPress Planner
 - Changed : Clarify tool tip text for revisions submitted for a future publication date
 - Changed : Re-order post type checkboxes in Revisions > Settings > Features
 
 [3.7.11] - 2 Sep 2025
+
 - Fixed : Plugin checkboxes were all displayed as unchecked, and updating plugin settings caused unchecked selections to be stored
 
 [3.7.10] - 28 Aug 2025
+
 - Changed : Compat - Rank Math SEO - Revision update failed under some conditions
 - Changed : Display a spinner during revision creation when editing a post in Classic Editor
 - Changed : Change Settings tab promos to text-based
@@ -311,6 +359,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API -  New function rvy_create_revision()
 
 [3.7.9] - 14 Aug 2025
+
 - Changed : Compat - PublishPress Permissions - Permissions assigned directly to revisions were not applied (also requires Permissions 4.4.3)
 - Changed : Compat - PublishPress Permissions - Option for Post Permissions to be applied to revisions (also requires Permissions 4.4.3)
 - Fixed : Posts listing did not show Has Revision caption if Revisions compatibility mode set to Enhanced Revision access control
@@ -322,16 +371,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Display Pro Settings tabs last
 
 [3.7.8] - 31 Jul 2025
+
 - Changed : Improvements to Settings > Integration tab contents
 - Changed : Settings screen includes more descriptive contextual promo nudges for Pro plugin
 
 [3.7.7] - 29 Jul 2025
+
 - Changed : Settings > Integration tab detailing active or available third party plugin compatibility
 
 [3.7.6] - 24 Jul 2025
+
 - Fixed : Scheduled Revisions publication failed if asynchronous setting enabled
 
 [3.7.5] - 21 Jul 2025
+
 - Fixed : Scheduled Revision publication failed under some configurations
 - Fixed : Revision Preview of Current Revision had an extra trailing bullet after Edit link
 - Fixed : Unnecessary database queries on Edit Tags screen
@@ -339,25 +392,30 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Edit Revision - Don't disable submission buttons prior to post save if Divi plugin is active
 
 [3.7.4] - 8 Jul 2025
+
 - Changed : Compat - WooCommerce - Edit links on Products screen (and other Woo post types) were hidden under some conditions
 - Changed : Compat - Various third party plugins - invalid data output on posts listing screen for custom post type
 
 [3.7.3] - 7 Jul 2025
+
 - Changed : Compat - WooCommerce - Administrators and Editors did not have Edit links on Products screen
 - Changed : Compat - CMS Tree Page View - JSON output on Page Tree View screen
 
 [3.7.2] - 3 Jul 2025
+
 - Changed : Compat - Better support for custom post types registered as non-public
 - Fixed : PHP Warnings on Edit Posts screen for Revisors and other roles which cannot edit published posts
 - Changed : Revisions > Settings > Compare tab removed, options moved to other tabs
 - Changed : wordpress-version-notices 2.1.4
 
 [3.7.1] - 23 Jun 2025
+
 - Added : Setting to control maximum Past Revisions per post
 - Added : Setting to disable Archive by post type
 - Changed : Improve styling of Features tab tool tips
 
 [3.7.0] - 19 Jun 2025
+
 - Changed : Rearranged Settings to highlight distinction between Past Revisions and New Revisions
 - Changed : Settings - Clarify captions for capability requirement settings
 - Changed : Settings - Improve mobile styling
@@ -369,9 +427,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Revision Archive menu and screen were displayed to Subscribers
 
 [3.6.8] - 4 May 2025
+
 - Added : API -  Improve support or Pro plugin's Planner Notifications integration
 
 [3.6.7] - 1 May 2025
+
 - Fixed : Submit Revision button caption was missing for Revisors
 - Added : Revision Archive - option to archive past updates of Pending / Scheduled Revisions, even after publication
 - Added : Archive - Include action link "Edit Parent"
@@ -388,6 +448,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - Prevent PHP Notice if another plugin calls wp_schedule_event() too early
 
 [3.6.6] - 15 Apr 2025
+
 - Fixed : Updating a post caused post status to be cleared if some prior revisioning operations were performed. This may have only occurred on WPML sites.
 - Fixed : Revision Preview showed "Approve" button if Revision is already scheduled
 - Changed : When editing a Revision, recaption "Approve" button to "Schedule" if a future date is selected
@@ -395,13 +456,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API - Adjust implementation of "revisionary_unrevisioned_postmeta" filter to prevent third party code from accidentally forcing invalid fields back into comparison display
 
 [3.6.5] - unreleased =
+
 - Pro : PublishPress Planner - default Notifications for Post creation / update were triggered by Revision creation / update
 - Pro : PublishPress Planner - support Notification validation safeguards in Planner 4.7.2
 
 [3.6.4] - 18 Mar 2025
+
 - Changed : Compat - PublishPress Planner 3.7.0] - Revisions Pro prevented Planner from creating its standard default Notification Workflows
 
 [3.6.3] - 14 Mar 2025
+
 - Added : Option to clear Plugin data on plugin deletion
 - Fixed : After Revision creation in editor, Edit link goes to Queue
 - Fixed : Revision bulk deletion failed with fatal error
@@ -409,9 +473,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Revisions > Settings - Minor changes and clarifications to captions on Revision, Queue, Preview tabs
 
 [3.6.2] - 24 Feb 2025
+
 - Fixed : Revisions listed on main Posts / Pages screen under some configurations
 
 [3.6.1] - 20 Feb 2025
+
 - Added : Support view-only Revision Queue through 'preview_others_revisions' capability (Permissions plugin compatibility requires v4.1.2)
 - Fixed : Previews of home page revisions did not display correctly
 - Fixed : Compare Revisions: Slider movement did not reload comparison correctly
@@ -422,6 +488,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - W3 Total Cache: Clean cache after revision publication
 
 [3.6.0] - 29 Jan 2025
+
 - Changed : Compat - PublishPress Planner - Fix Revision Status display and selection in Calendar, Content Board, Overview (requires Planner 4.6)
 - Changed : Compat - PublishPress Statuses Pro (Custom Revision Statuses)
 - Changed : Compat - PublishPress Permissions Pro - Option for Access Circle restrictions to apply to Revisions
@@ -432,21 +499,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Revision Archive - Option to store custom fields from submitted, scheduled revisions
 
 [3.5.16] - 19 Nov 2024
+
 - Security : Under some plugin configurations, Revisors could view other users' revisions (draft, submitted or scheduled) inappropriately
 - Fixed : Revision read capabilities did not limit slider positions on Compare Revisions screen
 - Fixed : WP 6.7 - Avoid early loading of plugin textdomain under some conditions
 
 [3.5.15] - 8 Oct 2024
+
 - Fixed : Editing a post did not refresh its "Has Revisions" flag
 - Changed : Setting to work around cache plugin conflicts by refreshing "Has Revisions" flag before suppressing a "New Revision" link on Posts / Pages screen
 - Changed : Hardened security within wp-admin by adding a few missing nonce checks and output escapes
 - Changed : PHP Code Sniffer rule compliance - flagged false positives for meaningful pre-release scans
 
 [3.5.14] - 26 Sep 2024
+
 - Fixed : New Revision link on Posts screen failed due to plugin conflict on some sites
 - Changed : New setting (with disclaimer) to disable new unfiltered_html check. Useful on sites where any custom html is unintended and can be stripped out.
 
 [3.5.13] - 26 Sep 2024
+
 - Fixed : Revision creation by a user with default Revisor capabilities caused custom html tags to be stripped out of post content. Now prevent revision, requiring unfiltered_html capability. 
 - Fixed : Classic Editor - Revisors editing a revision could not select a future date
 - Fixed : Revision approval in "Publish by Revision" mode caused page to be published without a URL
@@ -456,15 +527,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : When user clicks into a custom field in Post / Revision editor, disable Submit / Approve / Schedule Revision button until changes are saved 
 
 [3.5.12] - unreleased =
+
 - Fixed : Classic Editor - Schedule Revision / New Revision button captioning did not account for time zone difference between server and site
 - Fixed : Notifications were not sent for auto-submitted revisions
 - Fixed : Fatal error if function rvy_revision_statuses() or rvy_revision_base_statuses() is called with non-standard arguments by third party code
 
 [3.5.11] - 26 Jun 2024
+
 - Changed : Compat - PublishPress Permissions - Revision Queue listed some editable posts without edit link
 - Changed : API -  Filter revisionary_mail supports headers customization
 
 [3.5.10] - 18 Jun 2024
+
 - Fixed : With plugin option to limit to one revision per post, revision submission could be inappropriately blocked under some conditions
 - Fixed : Edit Revision screen - Delete Revision button functions incorrectly after toggling from Block panel back to publishing panel
 - Fixed : Non-Administrators could not decline revisions
@@ -479,6 +553,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Removed obsolete German translation, which caused errors on some pages
 
 [3.5.9] - 7 May 2024
+
 - Fixed : After new revision creation in post editor, View / Edit links fail with PHP warnings on some installations
 - Fixed : Classic Editor - When editing a published post, future date selection followed by "Schedule Revision" button click failed to schedule revision
 - Fixed : Classic Editor (Revision) - Changing Category, Tag, Featured Image or other Meta box did not disable Approve button
@@ -490,6 +565,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Various plugin settings captions and one error message were not translated
 
 [3.5.8.2] - 25 Apr 2024
+
 - Fixed : Nonce failure on revision decline attempts
 - Fixed : Saving with a future date in Classic Editor saves post as Published instead of Scheduled, under some conditions
 - Fixed : With Limit to One Revision option enabled, approving a revision caused a fatal error, under some conditions
@@ -498,9 +574,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - Nested Pages - Fatal error on bulk deletion of revisions
 
 [3.5.8.1] - 16 Apr 2024
+
 - Fixed :  If limiting to one active revision per post, deleting a revision before saving it did not restore creation ability on some sites
 
 [3.5.8] - 12 Apr 2024
+
 - Fixed : Revision Editor hid category selection checkboxes
 - Fixed : New Revision button was missing from Revision Editor sidebar
 - Fixed : Revision Editor did not display Preview Revision button
@@ -511,6 +589,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : New revisions could become orphaned from main post on WordPress VIP
 
 [3.5.7] - 4 Apr 2024
+
 - Changed : Compat - WordPress 6.5 - Revision editor sidebar did not display date, template UI
 - Added : Decline link in Revision Queue row, Revision Preview top bar
 - Fixed : Preview of front page revision was not displayed correctly
@@ -523,12 +602,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API -  New filter "revisionary_preview_link_type"
 
 [3.5.6] - 4 Jan 2024
+
 - Added : New setting Revisions > Settings > Preview > "Modify preview link for better theme compatibility". Some themes require one setting, some require the other.
 - Fixed : ACF - Revision update, preview fails if ACF plugin is active
 - Fixed : Edit Revision - Approve, Submit buttons missing in Gutenberg 17
 - Fixed : PHP 8.2: Warning for dynamic property declaration
 
 [3.5.5] - 12 Dec 2023
+
 - Changed : Compat - Advanced Custom Fields - Prevent invalid filtering of revision ID
 - Fixed : Front page template was not loaded for revision previews of front page
 - Fixed : Revision previews were not loaded correctly on some sites
@@ -540,6 +621,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Classic Editor - Separate buttons to Preview changes in progress, View / Approve Saved Revision
 
 [3.5.4] - 17 Oct 2023
+
 - Fixed : Past Revision previews did not display (since 3.5.3)
 - Fixed : Scheduled Revisions were not published under some configurations
 - Fixed : Custom fields with multiple values stored to the same key were not revisioned correctly
@@ -548,21 +630,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - PublishPress Authors - Default author setting overrides actual revision author
 
 [3.5.3] - 30 Aug 2023
+
 - Added : Option to enable deletion of revisions in Revision Archive 
 - Fixed : Category / taxonomy changes were cleared by revision preview, not applied at revision approval
 - Fixed : Revision Archive included autosaves
 - Fixed : PHP 8.1 - Warning for dynamic property creation in revision preview
 
 [3.5.2] - 17 Aug 2023
+
 - Fixed : Pro - Fatal error on activation if plugin settings were not previously saved (packaging error reverted fix in 3.5.1)
 - Fixed : Revision Edit - No progress caption was shown after Submit button click
 - Fixed : Options screen - html markup error (missing closing div tag)
 - Changed : Lang - Updated Spanish, French, Italian translations
 
 [3.5.1] - 11 Aug 2023
+
 - Fixed : Bedrock - Unable to activate plugin due to three internal libraries missing from GitHub commit
 
 [3.5] - 10 Aug 2023
+
 - Fixed : Unscheduling a revision using bulk edit in Revision Queue caused it to become inaccessible
 - Changed : Compat - Permalink Manager plugin - Suppress permalink modification in Revision edit
 - Changed : Change revision deletion captions to clarify that only the revision is deleted
@@ -570,12 +656,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Free plugin is loaded through internal vendor library
 
 [3.4.1] - 29 Jun 2023
+
 - Fixed : Incorrect admin menu item display if revision submission is disabled for all post types
 
 [3.4] - 29 Jun 2023
+
 - Added : Revision Archive screen
 
 [3.3] - 19 Jun 2023
+
 - Added : Revisions > Settings > Revision Creation > "Limit to one active revision per post"
 - Fixed : Plugin compat - dashboard_glance_items was improperly filtered
 - Fixed : Revisions were incorrectly attributed to original page author under some conditions
@@ -590,11 +679,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Update vendor libraries based on revised PHP version support, using new internal-vendor structure
 
 [3.1.13] - 30 Mar 2023
+
 - Fixed : Posts screen - Has Revision caption was not displayed unless "Revision Submission for Unpublished Posts" setting is enabled  
 - Fixed : Settings > Notifications > "Show Notification Log / Buffer" link did not redirect back to Notifications tab
 - Changed : Minimum PHP version 7.2.5
 
 [3.1.12] - 23 Mar 2023
+
 - Fixed : Posts were left with invalid "Has Revision" links after publication or deletion of all their revisions
 - Fixed : If Revision Submission for Unpublished Posts is disabled but revisions of draft posts were previously created, those caused a "Has Revisions" label without displaying the revisions in Queue
 - Fixed : Links to Revision Queue for a specific published post (including "Has Revision" links from Posts listing) failed to list unsubmitted revisions
@@ -603,16 +694,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Request Deletion link was displayed even if revisions are not enabled for post type
 
 [3.1.11] - 9 Feb 2023
+
 - Fixed : Revision preview failure under some conditions
 - Fixed : Avoid PHP Warning on Revision Preview if requested revision cannot be loaded
 - Fixed : On Network-wide multisite activations, Settings screen displayed an unrendered html tag 
 - Changed : Lang - Update Spanish, French, Italian translations
 
 [3.1.10] - 22 Dec 2022
+
 - Perf : Improve performance of post revision count, dropdown pages queries
 - Fixed : Revisions were not correctly declined on some cached sites
 
 [3.1.9] - 15 Dec 2022
+
 - Fixed : Scheduled Revisions missed by WP-Cron were not rescheduled. To disable auto-reschedule, define constant REVISIONARY_DISABLE_WP_CRON_RESTORATION
 - Fixed : Revisions Queue table was missing a "check all" box
 - Fixed : Fatal error on revision approval on some sites
@@ -621,11 +715,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API -  Classic Editor revision editor supports filter revisionary_submit_revision_metabox_classic
 
 [3.1.8] - 3 Nov 2022
+
 - Fixed : PHP 8 - Unresponsive elements in post editor due to Javascript loading failure
 - Fixed : Avoid fatal error on plugin activation if loading sequence is non-standard
 - Changed : Compat - WP Buddy Rich Snippets - PHP error "The script tried to modify a property on an incomplete object" on revision creation
 
 [3.1.7] - 12 Oct 2022
+
 - Added : Revision submission and approval handles author selection
 - Fixed : Plugin review request dismissal was not applied
 - Fixed : Gutenberg Editor - for non-English locales, future date selection did not enable Scheduled Revision creation
@@ -634,14 +730,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Update Spanish, French, Italian translations
 
 [3.1.6] - 31 Aug 2022
+
 - Changed : Support detection / indication of custom WP-Cron implementations when DISABLE_WP_CRON is set true
 
 [3.1.5] - 30 Aug 2022
+
 - Fixed : Revision Submission from Gutenberg editor failed on some sites
 - Fixed : Bulk-deleted revisions were not removed from revision count
 - Fixed : PHP Warning for invalid regex if post type's REST registration or request has an invalid route string
 
 [3.1.4] - 17 Aug 2022
+
 - Fixed : Approve Revision button in Gutenberg editor did not work
 - Fixed : Submit Revision button in Gutenberg editor failed under some conditions
 - Fixed : Detection of DISABLE_WP_CRON constant
@@ -653,6 +752,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Update Spanish, Italian translations
 
 [3.1.2] - 7 Jul 2022
+
 - Fixed : Filter 'use_block_editor_for_post' was not recognized in detecting block editor disable
 - Fixed : Revision Edit in Gutenberg: Enable non-Editors to set requested publish date
 - Fixed : Scheduled revisions were not published on some installations
@@ -664,9 +764,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Pro promo sidebar on settings screen
 
 [3.1.1] - 8 Jun 2022
+
 - Fixed : Revision scheduling left a future date selection in editor. If the post is updated again without reloading the editor, it is unpublished until the selected date
 
 [3.1] - 1 Jun 2022
+
 - Added : Revision Edit - Administrators and editors have approval button for unsubmitted revisions
 - Added : Revision Queue - Bulk Edit includes "Decline" action to return "Submitted" revisions back to "Not Submitted"
 - Added : Revision Queue - New "Copy" row action
@@ -681,17 +783,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Revision Queue - checkbox column did not have a "select all" box
 
 [3.0.16] - 20 Apr 2022
+
 - Fixed : Post Editor - New Revision button was not displayed 
 - Changed : Lang - Some translations did not load
 - Fixed : Edit Revision with Classic Editor - submit button not displayed for some custom post types
 
 [3.0.15] - 31 Mar 2022
+
 - Fixed : Scheduled Revisions failed on WP 5.9 if WP Cron scheduling was disabled in Revisions settings
 
 [3.0.14] - 30 Mar 2022
+
 - Fixed : Output variable escaping, other coding standard improvements
 
 [3.0.13] - 21 Mar 2022
+
 - Fixed : Revision submission in Classic Editor caused "Undefined" link next to "Preview" link
 - Fixed : New revisions created with "Auto-submit" option had wrong date (and listing order) in Revision Queue
 - Fixed : PHP error on revision approval under some configurations
@@ -703,6 +809,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API - New filters pp_revisions_option_pending_revision_update_post_date, ​pp_revisions_option_pending_revision_update_modified_date, ​pp_revisions_option_scheduled_revision_update_post_date​, ​pp_revisions_option_scheduled_revision_update_modified_date
 
 [3.0.12] - 3 Mar 2022
+
 - Added : Edit link in post editor after revision creation / scheduling
 - Changed : Option to auto-submit revisions created by users who can publish the main post
 - Changed : Option to publish scheduled revisions using WP-Cron
@@ -713,17 +820,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Revision Queue - column headers (to set sort field) had a bad link
 
 [3.0.10] - 10 Feb 2022
+
 - Fixed : WordPress 5.9 - When editing a submitted revision, Save button was hidden
 - Fixed : Revision Compare did not load on some sites
 - Fixed : Option "Editing others' revisions requires role capability" was not applied
 
 [3.0.9] - 27 Jan 2022
+
 - Changed : Compat - WordPress 5.9 - Revisions could not be updated using Gutenberg editor
 
 [3.0.8] - 26 Jan 2022
+
 - Changed : Compat - WordPress 5.9 - Fatal error adding / editing posts (work around WP hooking late-defined function _disable_block_editor_for_navigation_post_type)
 
 [3.0.7] - 5 Jan 2022
+
 - Fixed : Revision status changes not updated on sites running an object cache
 - Fixed : Revision deletion from within editor left an inaccessible trashed revision and redirected to Edit Posts. Now deletes revision and redirects to Revision Queue.
 - Fixed : manage_unsubmitted_revisions capability was required without any hint in plugin settings; Now not required unless configured in Revisions > Settings
@@ -740,22 +851,27 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Revision Queue: PHP error on bulk action under some site configurations
 
 [3.0.6] - 29 Nov 2021
+
 - Fixed : Edit Revision - revisions could not be updated unless SCRIPT_DEBUG is enabled on the site
 - Fixed : Revisions could not be scheduled if Settings > Revisions > Revision Submission is disabled
 
 [3.0.5] - 23 Nov 2021
+
 - Fixed : Published custom post types not listed to Revisors under some configurations (Permissions integration requires Permissions 3.6.4)
 - Fixed : Multisite - network-wide settings screens were non-functional
 
 [3.0.4] - 19 Nov 2021
+
 - Fixed : New Revision button not displayed in Admin Bar
 - Fixed : Revision Queue: revisions not listed in My Activity view
 
 [3.0.3] - 18 Nov 2021
+
 - Fixed : Revisions Queue empty on sites with a large number of published posts
 - Changed : Compat - WooCommerce - Hide Product Variations, Linked Products tabs when editing a Product Revision
 
 [3.0.2] - 15 Nov 2021
+
 - Changed : Compat - PublishPress Permissions - Revisions Submission permissions did not correctly adjust Edit Posts / Pages listing in some configurations (also requires Permissions 3.6.3)
 - Changed : Compat - The Events Calendar - Revisions could not be submitted in Classic Editor
 - Fixed : Classic Editor - Schedule button was incorrectly displayed (leading to failed scheduling attempt) if a single time element is changed followed by OK button
@@ -768,6 +884,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Revisions Settings - clarify some captions
 
 [3.0.1] - 10 Nov 2021
+
 - Fixed : Revisions created using Revisions 2.x were not listed in Revision Queue until plugin de/re-activation
 - Fixed : Front Page setting was cleared at revision submission on some sites
 - Fixed : Front Page setting dropdown in Settings > Reading included revisions
@@ -777,6 +894,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API - Allow redirect to be disabled on revision creation
 
 [3.0] - 9 Nov 2021
+
 - Added : New revision submission mechanism: create an unsubmitted revision first instead of editing existing post. Edit revision directly, then submit for scheduling or publication.
 - Changed : Revisions UI in Post / Revision editor
 - Added : Admin Bar includes "New Revision" button
@@ -785,13 +903,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Include upload_files capability in the Revisor role
 
 [2.6.3] - 11 Oct 2021
+
 - Fixed : Classic Editor - Error submitting a pending or scheduled revision
 
 [2.6.2] - 7 Oct 2021
+
 - Changed : Maintenance queries run at plugin activation to convert version 3.0 revisions back to 2.6 encoding
 - Added : API -  Support for WPML Translation Management support in Pro version
 
 [2.6.1] - 15 Jul 2021
+
 - Fixed : Pending / Scheduled Revisions could become disassociated from main post due to third party plugin interactions
 - Changed : Compat - Permissions - Specific Permissions were not applied for editing / approval of custom post types under some conditions 
 - Fixed : Revision Update triggered redirect back to Revision Queue even if "Confirmation redirect on Revision Update" setting disabled
@@ -803,6 +924,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Revision Queue - Remove sample English translation "My Revisionz"
 
 [2.6] - 23 Jun 2021
+
 - Fixed : Background fatal error on some sites on revision scheduling
 - Fixed : Scheduled Page Revisions - If published page has a non-default template which was not changed in the revision, the Compare and Edit Revision screens indicated a change to default template. This change was not actually applied unless the stored revision was updated prior to publication.   
 - Added : Option to send notifications on Revision Update
@@ -811,25 +933,30 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API -  New filters allow submission confirmation message to be customized: revisionary_submit_message_links, revisionary_submit_message, revisionary_schedule_message_links, revisionary_schedule_message
 
 [2.5.5] - 26 May 2021
+
 - Changed : Compat - Google Web Stories - Loss of story data due to clearance of post_content_filtered column
 - Fixed : Fatal error in post editor on sites that apply filter "rest_{$post_type}_collection_params" incorrectly (Uncaught ArgumentCountError: Too few arguments to function)
 - Fixed : PHP Warning on rvy_is_full_editor() call under some configurations
 - Changed : Revision Queue - Standard link coloring (like Edit Posts)
 
 [2.5.4] - 6 May 2021
+
 - Fixed : Database error on Revision approval - Unknown column 'filter' in 'field list' for query UPDATE `wp_posts` SET `post_author` = 
 - Changed : Compat - TablePress - Tables could not be updated by non-Administrators
 
 [2.5.3] - 6 Apr 2021
+
 - Changed : Compat - WP Rest Cache - Revision submission from Gutenberg failed
 - Changed : Compat - PublishPress Permissions - Edit Category / Term: Permissions metaboxes were not displayed
 - Changed : Compat - PublishPress Permissions - Pending Revision Monitors group ineffective; notifications were sent to all Editors and Administrators (also requires PublishPress Permissions 3.5.1)
 - Changed : Compat - Enable revisioning of non-public post types if they have type-specific capabilities defined
 
 [2.5.2] - 30 Mar 2021
+
 - Fixed : Fatal error due to incorrect vendor library load request
 
 [2.5.1] - 30 Mar 2021
+
 - Fixed : Revisors could not preview other users' pending revisions, even if they are listed in Revision Queue (Permissions integration requires 3.5.1)
 - Fixed : Post Title changes were not applied at revision publication
 - Fixed : Database error on revision publication, on some installations
@@ -840,6 +967,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - Kinsta object cache - Revision submission clears Featured Image from published post
 
 [2.5] - 4 Mar 2021
+
 - Fixed : After a Pending Revision is published, Compare Revisions screen for past revisions did not order it correctly
 - Fixed : Revisors could not access Compare Revisions screen unless PublishPress Permissions was active
 - Fixed : Some attachment fields implemented by third party plugins were not saved to Pending Revisions
@@ -854,6 +982,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Add Swedish translation
 
 [2.4.9] - 14 Jan 2021
+
 - Fixed : Compat - REST API Cache - REST caching failed for attachments
 - Fixed : Non-public post types displayed ineffective preview link. Now suppress link or link to Compare Revisions screen instead.
 - Fixed : Error loading Revisions > Settings page if nullstring license key is stored, on some installations
@@ -862,18 +991,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Enable Compare Revisions link (for past revisions) in page editor for Revisor
 
 [2.4.8] - 17 Dec 2020
+
 - Fixed : Compat - WPML - Revision Queue was not filtered by WPML language selector
 - Fixed : Compat - WPML - Hide non-revisionable Languages settings in Revision editor
 - Fixed : Compat - TablePress - Tables could not be updated by non-Administrators
 - Fixed : Revision Queue - PHP Notice if no revisions listed
 
 [2.4.7] - 15 Dec 2020
+
 - Fixed : WP 5.6 - Pending Revision submission failed (since 2.4.6)
 - Fixed : Compare Pending Revisions always credited assigned post author for Current Revision, now shows user who created the last published update. To revert to previous behavior, define constant RVY_LEGACY_COMPARE_REVISIONS_AUTHOR_DISPLAY.
 - Changed : Clarify captions for permissions-related checkboxes in Revisions > Settings > Revision Queue
 - Changed : Compat - PublishPress Capabilities - organize Revisions capabilities into own area
 
 [2.4.6] - 8 Dec 2020
+
 - Changed : Lang - Include a .pot file (translation template)
 - Fixed : If no revisions are accessible to user, all revisions were listed in Revision Queue
 - Fixed : Post deletion triggered revision submission redirect under some conditions
@@ -881,6 +1013,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - PublishPress Authors - revision submission failed under some conditions
 
 [2.4.5] - 30 Nov 2020
+
 - Changed : Compat - WP Engine, Kinsta object cache - "Pending Revision" checkbox was ineffective
 - Changed : Compat - PublishPress Permissions - Revision editing or deletion was improperly blocked under some configurations
 - Fixed : Revision submission by Administrator or Editor caused corruption of published block content (by slash removal) on some installations
@@ -893,16 +1026,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : API -  New filter 'revisionary_notify_publisher_default_ids' to modify default "Publishers to Notify" when Email Notification is optional
 
 [2.4.4] - 18 Nov 2020
+
 - Fixed : Revision submission caused Post Thumbnail to be cleared from the published post
 - Fixed : Revision submission by a Revisor caused corruption of published block content (by slash removal) on some installations
 - Fixed : Compare Past Revisions - Editors did have "Preview / Restore" or "Manage" buttons
 
 [2.4.3] - 5 Nov 2020
+
 - Fixed : Compat - Polylang - language settings were not stored to revision (Fix also applies to other plugins using hidden taxonomies)
 - Fixed : Compat - Project Nami (Microsoft SQL Server / ODBC) - No confirmation redirect on revision submission
 - Changed : Lang - Added .pot file
 
 [2.4.2] - 26 Oct 2020
+
 - Fixed : Compat - PublishPress Permissions - Users assigned Revise permissions for specific pages or categories could not compare Pending Revisions
 - Fixed : Compat - PublishPress Permissions Pro - With Status Control module active, Edit Revision screen had invalid "Workflow" button (also requires Permissions Pro 3.3.8)
 - Fixed : Compat - Public Post Preview - Author selector was hidden in post editor
@@ -917,11 +1053,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : New filters "revisionary_do_submission_redirect", "revisionary_do_schedule_redirect"
 
 [2.4.1] - 9 Oct 2020
+
 - Fixed : Compat - PublishPress Permissions - On new post creation, Revisors get a Publish button instead of a Submit button. Publishing fails; the only way to submit successfully is Save Draft, then Submit for Review.
 - Fixed : Compat - PublishPress Permissions - Revisions were not listed in Queue under some configurations with PublishPress Permissions active
 - Fixed : With pre-Publish checks enabled in Gutenberg, after first save "Pending Revision" checkbox was moved off of pre-Publish Panel
 
 [2.4] - 1 Oct 2020
+
 - Fixed : Revisors and other limited editors had editor elements hidden when adding a new post, under some site configurations
 - Fixed : Revision publication always set post publish date to current time. Now does only with enabled setting Revisions > Settings > Pending Revisions > Update Publish Date
 - Fixed : Classic Editor - after Preview Changes is clicked, limited editors see "Submit Revision" button recaptioned to "Update"
@@ -929,12 +1067,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - Gutenberg Ramp - Revision submission UI did not load for post types that have Gutenberg enabled
 
 [2.3.12] - 27 Aug 2020
+
 - Fixed : WP 5.5 - Post previews did not display correctly for Revisors
 - Fixed : Pending, Scheduled revisions not listed in Revision Queue following mirroring of posts database table from another installation (or possibly under other conditions) 
 - Fixed : Editorial Comments added on "Edit Revision" screen did not trigger email notification to post author or revision author
 - Added : Option to copy revision's editorial comments over to published post (at revision publication)
 
 [2.3.11] - 13 Aug 2020
+
 - Fixed : Compat - WP 5.5 - "Pending Revision" checkbox sometimes ineffective
 - Fixed : Compat - WP 5.5 - Posts with pending or scheduled revisions stored had misplaced links in Gutenberg editor sidebar
 - Fixed : Compat - WP 5.5 - With Classic Editor, javascript errors in post editor
@@ -946,10 +1086,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : In some conditions, fatal error on Plugins screen
 
 [2.3.10] - 10 Aug 2020
+
 - Fixed : Revisions submitted without modifying tags had tags removed
 - Added : Edit Posts screen - display "Has Revision" as a post state after post title
 
 [2.3.9] - 6 Aug 2020
+
 - Fixed : Featured Image was removed from pending revision at creation
 - Fixed : Scheduled revision publication failed under some conditions, caused post to be unpublished
 - Fixed : Scheduled revisions could not be published ahead of schedule using "Publish Now" link on preview (since 2.3.4)
@@ -957,6 +1099,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API -  New filter 'revisionary_apply_revision_data' to adjust standard revision fields prior to publication
 
 [2.3.8] - 30 Jul 2020
+
 - Added : Revision Queue - new bulk action to Unschedule selected revisions
 - Changed : Lang - Add Spanish translation
 - Fixed : Revisors could not preview changes prior to submitting a pending revision
@@ -965,14 +1108,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Compat - Public Post Preview - support preview link generation on Edit Revision screen
 
 [2.3.6] - 10 Jun 2020
+
 - Fixed : After revision submission, preview link was not always to latest revision
 - Fixed : Preview button on editor screen loaded preview with invalid thumbnail under some conditions
 - Fixed : When network-activated, Network Settings menu item loaded site-specific settings screen
 
 [2.3.5] - 29 May 2020
+
 - Fixed : Compare link on Editor screen linked to Edit Posts screen instead of Compare Revisions 
 
 [2.3.4] - 29 May 2020
+
 - Fixed : Duplicate email notifications to users who have more than one WordPress role
 - Changed : Suppress email notification when an Administrator or Editor creates a pending revision, if constant REVISIONARY_LIMIT_ADMIN_NOTIFICATIONS is defined
 - Fixed : Compat - Relevanssi - Scheduled revisions were not published with Relevanssi active
@@ -982,9 +1128,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Revision Queue link in Edit Posts / Edit Pages row was not removed after post's last pending or scheduled revision published or deleted
 
 [2.3.3] - 14 May 2020
+
 - Fixed : Compat - PublishPress Permissions - Fatal error on post creation
 
 [2.3.2] - 12 May 2020
+
 - Fixed : Post meta flag "_rvy_has_revisions" was not cleared after last remaining pending / scheduled revision was published or deleted, affecting Revision Queue performance
 - Fixed : Revision Queue listed uneditable revisions under some conditions
 - Fixed : My Published Posts count was wrong under some conditions
@@ -993,12 +1141,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Published post content cleared on pending revisions submission, on a minority of installations
 
 [2.2.4] - 6 Apr 2020
+
 - Fixed : Possible fatal error loading Revisions screen on a small percentage of installations
 
 [2.2.3] - 3 Apr 2020
+
 - Fixed : Classic Editor - Category and Post Tag revisions were not applied
 
 [2.2.2] - 2 Apr 2020
+
 - Added : Option to disable revision preview links for non-Administrators (to work around themes that force a 404 Not Found response) 
 - Fixed : Inline styles were stripped or modifield on scheduled revision publication
 - Fixed : Possible fatal error loading Revisions screen on a small percentage of installations
@@ -1008,6 +1159,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - CMS Tree Page View - Suppress Pending Revisions and Scheduled Revisions from Page Tree View
 
 [2.2.1] - 16 Mar 2020
+
 - Fixed : Page Template was cleared on revision submission in some installations
 - Fixed : Revision Queue - "Filter" link was ineffective in showing only revisions of the selected published post. This also applies to "View Revision Queue" link after revision creation.
 - Fixed : Edit Revision - Move to Trash button did not work (and created new pending revision)
@@ -1020,6 +1172,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Compat - On revision publication, trigger 'transition_post_status' action, for plugins that use it
 
 [2.2] - 12 Feb 2020
+
 - Added : Email Notification - option to notify Editors and Administrators when a Pending Revision is approved
 - Fixed : Block Editor - Custom Taxonomies, if unchanged, were not saved to revision. Publication of revision cleared custom taxonomies for published post.
 - Fixed : Block Editor - Error setting Featured Image
@@ -1036,6 +1189,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Apply possible workaround for Revision Queue capability issues on some sites
 
 [2.1.8] - 15 Jan 2020
+
 - Fixed : Custom Post Types did not have Pending Revisions or Scheduled Revisions available (since 2.1.7)
 - Changed : Lang - Correct textdomain on numerous translation calls
 - Changed : Lang - Improve translation string construction
@@ -1043,18 +1197,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Lang - Updated language files
 
 [2.1.7] - 13 Jan 2020
+
 - Fixed : Excessive resource usage with some caching solutions
 - Fixed : Multisite - Super Administrators without a site role could not access Revision Queue 
 - Fixed : Classic Editor - After updating a revision, "View Post" message linked to published post instead of revision preview
 - Added : New filter 'revisionary_enabled_post_types', unset post types by key to disable PP Revisions involvement
 
 [2.1.6] - 23 Dec 2019
+
 - Fixed : Edit Revision - Classic Editor "Approve" button ineffective
 - Fixed : Edit Revision - Classic Editor "View / Approve" button loaded live preview (of unsaved changes) instead
 - Changed : Compat - By default, prevent third party post query filtering on Revision Queue (to avoid non-display of Revisions)
 - Fixed : Compat - PressPermit Pro - Updating a saved revision caused it to be changed to a regular pending post
 
 [2.1.5] - 11 Dec 2019
+
 - Fixed : Compat - PressPermit Pro - Pending revision previews could be viewed by any user (including anonymous) if "Prevent Revisors from viewing others' revisions" disabled (since 2.1.4)
 - Fixed : Contributors had other users' uneditable, unreadable revisions listed in Revision Queue
 - Fixed : Revision Preview - Under some configurations, users with read-only access to revisions had no top bar in revision preview display
@@ -1062,10 +1219,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : PHP warning for undefined index 'preview'
 
 [2.1.4] - 10 Dec 2019
+
 - Fixed : Revision previews were not displayed to Editors under some configurations
 - Added : Separate settings for "Prevent Revisors from editing others'" and "Prevent Revisors from viewing others'"
 
 [2.1.3] - 6 Dec 2019
+
 - Fixed : Compat - Classic Editor plugin - View / Approve buttons missing on Edit Revision screen if Classic Editor active but settings default to Block Editor
 - Fixed : Compat - Classic Editor plugin - Javascript errors on Edit Post / Edit Revision screen if Classic Editor active but currently using Block Editor
 - Fixed : Compat - Thin Out Revisions plugin broke Preview / Approval buttons on Compare Pending Revisions screen
@@ -1075,6 +1234,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Preview Top Bar blocks admin bar dropdown menu if another fixed-position element on the page (other than #wpadminbar) has a z-index of 99999 or higher
 
 [2.1.2] - 4 Dec 2019
+
 - Fixed : Scheduled Revisions were not published (since 2.1)
 - Fixed : Edit Revision - Preview of unsaved revision did not work from Gutenberg
 - Changed : Edit Revision - Display "View / Approve" button if editor is unchanged from saved revision, otherwise "Preview" button for unsaved changes
@@ -1088,9 +1248,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Compat - JReviews plugin
 
 [2.1.1] - 26 Nov 2019
+
 - Fixed : Compat - Multiple Authors - Fatal error on revision creation (since 2.1)
 
 [2.1] - 26 Nov 2019
+
 - Added : Bulk Approval / Publishing in Revision Queue
 - Added : Revision Edit: Approve Button on Editor screen
 - Added : Option for Approve, Edit buttons on Compare Revisions screen (instead of Preview button)
@@ -1122,14 +1284,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Revision Queue - recaption "My Posts" to "My Published Posts"
 
 [2.0.12] - 29 Oct 2019
+
 - Fixed : Fatal error on Post Preview
 
 [2.0.11] - 28 Oct 2019
+
 - Fixed : Classic Editor - Post Preview showed last stored copy, not unsaved changes
 - Fixed : Revision Preview top bar covered admin menu dropdown
 - Fixed : Revision Edit - live preview showed revision author instead of published author (if Multiple Authors plugin not active)
 
 [2.0.10] - 25 Oct 2019
+
 - Fixed : Post Preview showed last stored copy, not unsaved changes
 - Fixed : Post Preview (to view unsaved changes) was not available when editing a revision
 - Fixed : Revision Preview - Buttons were not clickable with some themes
@@ -1138,9 +1303,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - PressPermit - Database error on Revision Queue screen under some configurations
 
 [2.0.9] - 18 Oct 2019
+
 - Fixed : Compare Pending Revisions screen - link redirected to Edit Posts screen for some post types
 
 [2.0.8] - 18 Oct 2019
+
 - Changed : PostMeta Failsafe: to avoid the possibility of accidental clearance, Featured Image removal is not revisioned, until further testing. API filter available for experimental usage with specified meta keys.
 - Fixed : Featured Image, Page Template revisioning failed under some conditions
 - Fixed : Scheduled Revisions created with Gutenberg stored selected terms to published post, previous terms to revision
@@ -1150,14 +1317,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Settings - If Pending Revisions disabled, Revisor could still edit published posts
 
 [2.0.7] - 17 Oct 2019
+
 - Fixed : Scheduled Revisions - published post tags and categories were stripped out on scheduled revision publication
 - Fixed : Scheduled Revisions - manually publishing prior to scheduled time caused published post status to be set to Future (unpublished)
 
 [2.0.6] - 17 Oct 2019
+
 - Fixed : Featured Image and Page Template revisions were not applied (but did work in PublishPress Revisions Pro)
 - Fixed : Publishing a revision imported from Revisionary 1.x caused tags and categories to be stripped out
 
 [2.0.5] - 16 Oct 2019
+
 - Fixed : Import script for Revisionary 1.x revisions did not run on plugin activation 
 - Fixed : Administrators, Editors and Authors were blocked from Quick Edit
 - Added : Compat - Multiple Authors plugin
@@ -1168,6 +1338,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : PHP notices on Revision Queue screen
 
 [2.0.4] - 9 Oct 2019
+
 - Changed : On installation over Revisionary 1.x, display a "heads up" notice about plugin name change, admin menu and Revision Queue
 - Fixed : Classic Editor - Revision Preview did not always include top bar (for Edit / Compare / Publish) if PressPermit Pro active
 - Fixed : Revision Preview - Edit url did not work on installations with non-conventional admin paths, due to hardcoded /wp-admin
@@ -1175,6 +1346,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : On Revision Edit, recaption Preview button to "View" to clarify that it's a preview of the saved revision, not unsaved changes. (Future release will make it a true preview).
 
 [2.0.3] - 3 Oct 2019
+
 - Fixed : Revisionary settings could not be changed
 - Fixed : Pending / Scheduled Revisions were listed in Revision Queue even if feature disabled in Revisions > Settings 
 - Fixed : On post edit for revision, Revisors could not see the current or newly selected Featured Image
@@ -1186,12 +1358,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Revision Queue headline indicates when results are being filtered by post type, revision status, revision author or post author
 
 [2.0.2] - 2 Oct 2019
+
 - Fixed : On post date change in Gutenberg editor, Publish button was recaptioned to "Schedule Revision" even on a past date selection (unless SCRIPT_DEBUG enabled)
 
 [2.0.1] - 2 Oct 2019
+
 - Fixed : Fatal error if another copy of Revisionary already active
 
 [2.0.0] - 1 Oct 2019
+
 - Added : Submit revisions to Categories, Tags, Custom Terms, Page Parent, Featured Image, Page Template
 - Added : Revisions editable in Gutenberg, Classic Editor
 - Added : Voluntary pending revision submission by unrestricted editors in Gutenberg
@@ -1206,35 +1381,43 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : "Update Publish Date" setting for Pending Revisions (defaults to disabled)
 
 [1.3.8] - 30 Aug 2019
+
 - Fixed : Revisors could Quick Edit published posts (changing post title, slug, author, date, parent or template) since version 1.3. This could be used to unpublish (but not publish) posts. Sites also running PressPermit Pro were not affected.
 - Fixed : Compat - PressPermit Pro - Under some configurations, Revisors were not allowed appropriate access (due to publish capability check)
 
 [1.3.7] - 24 May 2019
+
 - Added : Filter 'revisionary_default_pending_revision', return true to select "Send to Approval Queue" in Classic Editor by default
 
 [1.3.6] - 30 Apr 2019
+
 - Fixed : Scheduled Revision publication updated post date even if "Update Publish Date" option disabled
 - Fixed : Gutenberg: Pending, Scheduled Revisions did not work for post types with show_in_rest property set false 
 - Fixed : PHP Notice if REST Posts query executed without a corresponding rest_base property set for post type 
 - Fixed : Better hiding of non-applicable sidebar metaboxes when post is being edited for Pending Revision
 
 [1.3.5] - 3 Apr 2019
+
 - Fixed : With Classic Editor, Revision submission reset Page Template
 
 [1.3.4] - 2 Apr 2019
+
 - Fixed : Pending Revision Notifications were not sent from Gutenberg editor if configured to send "by default" (selectable recipients)
 
 [1.3.3] - 2 Apr 2019
+
 - Fixed : Scheduled Revision preview: "Publish Now" link failed with a fatal error
 - Changed : Settings link in Plugins Row
 
 [1.3.2] - 29 Mar 2019
+
 - Fixed : Email notifications were missing "Post" / "Page" caption
 - Fixed : PHP notices with Classic Editor
 - Fixed : With Classic Editor, revision approval from preview did not redirect back to Edit Posts / Pages screen
 - Fixed : In Classic Editor, setting a future date did not recaption Publish button to "Schedule Revision" if post has private visibility
 
 [1.3.1] - 29 Mar 2019
+
 - Fixed : Scheduled Revision publication stripped out categories and tags, if "Update Publish Date" setting enabled
 - Fixed : Publish button was not recaptioned to Submit Revision under some conditions
 - Changed : With Gutenberg active, revision approval defaults to front end preview
@@ -1244,6 +1427,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Dismissable welcome message: To allow a user to submit Revisions to your published posts, set their role to "Revisor" 
 
 [1.3.0] - 28 Mar 2019
+
 - Added : Gutenberg editor compatibility for Pending Revision, Scheduled Revision creation
 - Added : By default, Scheduled Revisions also update publish date. New checkbox on Revisions > Settings to restore previous behavior of leaving publish date unchanged.
 - Added : List Scheduled Revisions of any post type on Publishing Soon list in Activity dashboard widget
@@ -1257,6 +1441,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Pending Revision lists show requested publication date if applicable 
 
 [1.2.7] - 13 Mar 2019
+
 - Fixed : Pending Revision Notification on Multisite installations. Due to failure to apply settings, e-mail notifications defaulted to "By default" option, which failed for Pending Revisions prior to version 1.2.6.  
 - Fixed : Multisite - If network-activated, Revisionary settings screens unavailable. Last stored network-wide settings (or hardcoded defaults) applied instead.
 - Fixed : Multisite - If not network-activated, Revisionary settings screen was ineffective. Site-specific settings were stored, but network-wide settings or defaults applied instead.
@@ -1264,37 +1449,45 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Improved settings captions
 
 [1.2.6] - 13 Mar 2019
+
 - Fixed : "Publishers to Notify" checkboxes were not displayed, and notifications not sent, if Email notification for Pending Revisions set to "By default"
 - Fixed : Revision previews - PHP Warning and failure to output "Publish Now" header
 - Changed : Improved styling in "Publishers to Notify" metabox
 
 [1.2.5] - 25 Feb 2019
+
 - Changed : Compat - TinyMCE Advanced - Failed to display editor on revision management screen
 - Changed : Compat - Multisite - Incorrect site switching, prevents Yoast SEO from saving post meta 
 
 [1.2.4] - 20 Feb 2019
+
 - Changed : Compat - PublishPress - publish button was hidden
 - Changed : Capitalize "Save as Pending Revision" checkbox caption
 - Changed : Lang - Update .po file
 
 [1.2.3] - 19 Feb 2019
+
 - Fixed : Scheduled revision publication failure, massive redundant email notifications (since 1.2)
 
 [1.2.2] - 19 Feb 2019
+
 - Fixed : Temporarily disable scheduled revision publication emails, due to recently reported issue
 - Changed : Compat - PHP / coding standards - removed needless byref variable assignments
 - Fixed : PHP notices when viewing revision differences
 
 [1.2.1] - 14 Feb 2019
+
 - Changed : Compat - Fatal error when another plugin hooks into 'user_has_cap' filter
 
 [1.2] - 13 Feb 2019
+
 - Added : Compat - PHP 7.2
 - Added : Compat - WordPress 5.0.3
 - Fixed : Revision approval reset page template setting to default
 - Team : Revisionary is now owned and developed by PublishPress. The original author (Kevin Behrens) is excited to join forces in building and supporting effective tools for publishing teams.
 
 [1.1.13] - 13 May 2015
+
 - Fixed : Previewing a Page revision from Revisions Manager screen caused fatal error / white screen
 - Fixed : When Previewing a revision, Publish Now link was not formatted properly on TwentyFifteen theme
 - Fixed : Pending Revision counts, links were not displayed in Dashboard At a Glance if PP Collaborative Editing plugin is not active
@@ -1302,6 +1495,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - various caching plugins - post cache was not cleared after publishing a revision
 
 [1.1.12] - 23 Dec 2013
+
 - Fixed : WP 3.8 - Fixed Revisionary > Settings styling
 - Fixed : Email notifications were not sent on Pending Revision submission under some configurations
 - Fixed : Email notifications were not sent upon Scheduled Revision publishing unless Press Permit / Role Scoper active and Scheduled Revision Monitors group populated
@@ -1321,6 +1515,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - Duplicate Right Now links on dashboard if Role Scoper or Press Permit active
 
 [1.1.11] - 18 Aug 2013
+
 - Fixed : WP 3.6 - Revisors could not submit revisions
 - Fixed : WP 3.6 - Don't modify native WP revision links
 - Fixed : WP 3.6 - In Publish metabox, re-caption Revisions as "Publication History" to distinguish from Pending Revisions (prevent this by defining constant RVY_PREVENT_PUBHIST_CAPTION)
@@ -1335,6 +1530,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - Edit Flow - don't offer to revise EF Metadata
 
 [1.1.10] - 29 May 2013
+
 - SECURITY FIX : Revisions could be viewed by any registered user
 - Added : Option to prevent Revisors from viewing other user's drafts and regular pending posts (imposes edit_others_drafts cap requirement)
 - Fixed : Other users' revisions were viewable in Revisions Manager even if option to prevent is enabled
@@ -1352,11 +1548,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Compat - CForms (and possibly other plugins) - tinyMCE buttons were suppressed
 
 [1.1.9] - 18 Jan 2012
+
 - Fixed : Compat - Press Permit - PP roles were not applied under some configurations
 - Fixed : Compat - Role Scoper - RS roles were not applied under some configurations (related fixes in RS 1.3.52)
 - Fixed: PHP Warning for mysql_get_server_info()
 
 [1.1.8] - 20 Dec 2011
+
 - Changed : Compat - Role Scoper - duplicate Pending counts in Dashboard Right Now
 - Added : API -  new filter - rvy_hidden_meta_boxes
 - Added : API -  new action: - rvy-revisions_sidebar
@@ -1365,6 +1563,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : API -  new action - post_revision_update
 
 [1.1.7] - 11 Nov 2011
+
 - Fixed : Compat - WP 3.3 - Revision Editor displayed redundantly, didn't work
 - Added : Compat - Press Permit integration
 - Added : By default, Revisor role does not enable editing other users' revisions (option to re-enable)
@@ -1374,6 +1573,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Various PHP Notices
 
 [1.1.6] - 7 Sep 2011
+
 - Fixed : Quick Edit was not disabled for Page Revisions, usage resulted in invalid revision data
 - Fixed : Revisionary Options were not available when plugin activatated per-site on a Multisite installation
 - Fixed : For Multisite installation, Revisionary Options on Sites menu caused a fatal error
@@ -1382,6 +1582,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed : Various PHP Notices
 
 [1.1.5] - 29 June 2011
+
 - Fixed : Markup error in Revisions Manager for Administrators / Editors, especially noticeable in WP 3.2
 - Fixed : "save as pending revision" checkbox in Publish metabox caused formatting error with IE9
 - Fixed : Previews did not display post thumbnail or other meta data
@@ -1396,6 +1597,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : jQuery syntax change for forward compatibility
 
 [1.1.4] - 5 Apr 2011
+
 - Fixed : Role Options, Role Defaults menu items were not available on 3.1 multisite
 - Fixed : Pending / Scheduled Revisions could not be previewed by Revisors
 - Fixed : "Submit Revision" button caption changed to "Update" or "Schedule" following publish date selection
@@ -1403,33 +1605,40 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Hide Preview button from Revisors when editing for pending revision submission
 
 [1.1.3] - 3 Dec 2010
+
 - Fixed : Autosave error message displayed while a revisor edits a published post prior to submitting a pending revision
 - Fixed : Email notifications failed on some servers if Asynchronous option enabled
 - Fixed : Compat - Role Scoper - With RS 1.3 to 1.3.12, if another plugin (Events Manager) triggers a secondary edit_posts cap check when a Revisor attempts to edit another user's unpublished post, a pending revision is generated instead of just updating the unpublished post
 
 [1.1.2] - 29 Nov 2010
+
 - Fixed : Compat - Role Scoper - Post-assigned Revisor role was not honored to update another users' revision with RS 1.3+
 - Fixed : While in Revisions Manager, invalid "Revisions" submenu link was displayed in Settings menu
 
 [1.1.1] - 5 Nov 2010
+
 - Fixed : Fatal Error if theme displays post edit link on front end
 - Fixed : Did not observe capability definitions for custom post types (assumed capability_type = post_type)
 - Fixed : Compat - Event Calendar Pro - revisions of sp_events were not included in Edit Posts listing due to postmeta clause applied by ECP
 
 [1.1] - 2 Nov 2010
+
 - Fixed : Revision Approval notices were not sent if "always send" option enabled
 - Added : "save as pending revision" option when logged user has full editing capabilities in Edit Post/Page form
 
 [1.1.RC3] - 29 Oct 2010
+
 - Fixed : Revision preview link returned 404 (since 1.1.RC)
 - Fixed : Revision Approval emails were not sent reliably with "Asynchronous Email" option enabled (since 1.0)
 - Fixed : Custom taxonomy selection UI was not hidden when submitting a revision
 - Fixed : In Quick Edit form, Published option sometimes displayed inappropriately
 
 [1.1.RC.2] - 11 Oct 2010
+
 - Fixed : Listed revisions in Revision Editor were not linked for viewing / editing (since 1.1.RC)
 
 [1.1.RC] - 8 Oct 2010
+
 - Added : Support Custom Post Types
 - Changed : Better internal support for custom statuses
 - Fixed : On Options page, links to "Pending Revision Monitors" and "Scheduled Revision Monitors" were reversed
@@ -1437,25 +1646,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : Raise minimum WP version to 3.0
 
 [1.0.7] - 21 June 2010
+
 - Fixed : Revisionary prevented the normal scheduling of drafts for first-time publishing
 
 [1.0.6] - 18 June 2010
+
 - Fixed : Compat - CForms conflict broke TinyMCE edit form in Revisions Manager 
 
 [1.0.5] - 7 May 2010
+
 - Fixed : Compat - WP 3.0 Multisite menu items had invalid link
 
 [1.0.4] - 6 May 2010
+
 - Fixed : Pending Revision Approval email used invalid permalink if permalink structure changed since original post storage
 - Fixed : Schedule Revision Publication email used invalid permalink if permalink structure changed since original post storage
 
 [1.0.3] - 6 May 2010
+
 - Fixed : Compat - WP 3.0 elimination of page.php, edit-pages.php, page-new.php broke many aspects of page filtering
 - Fixed : Trash link did not work for revisions in Edit Posts/Pages listing
 - Changed : Administrators and Editors now retain Quick Edit link for non-revisions in Edit Pages, Edit Posts listing
 - Fixed : "Publishers to Notify" metabox was included even if no eligible recipients are designated
 
 [1.0.2] - 11 Mar 2010
+
 - Fixed : Email notification caused error if Role Scoper was not activated
 - Fixed : Database error message (nuisance) in non-MU installations (SELECT meta_key, meta_value FROM WHERE site_id...)
 - Fixed : Publish Now link on Scheduled Revision preview did not work
@@ -1465,6 +1680,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added : Compat - WMPL plugin
 
 [1.0.1] - 6 Feb 2010
+
 - Fixed : 	Submitting a Pending Revision to a published Post failed with Fatal Error
 - Fixed : 	PHP short tag caused Parse Error on servers which were not configured to support it
 - Added : Compat -  Support TinyMCE Advanced and WP Super Edit for custom editor buttons on Revision Management form
@@ -1473,6 +1689,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Changed : 	Use https link for Revisionary css and js files if ssl is being used / forced for the current uri
 
 [1.0] - 30 Dec 2009
+
 - Added : Use Blog Title and Admin Email as from address in revision notices, instead of "WordPress <wordpress@>"
 - Fixed : Revision Approval / Publication Notices used p=ID link instead of normal post permalink
 - Changed : Compat - Display workaround instructions for FolioPress conflict with visual revision display

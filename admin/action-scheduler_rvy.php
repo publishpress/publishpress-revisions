@@ -335,28 +335,34 @@ function rvy_load_scheduled_revisions() {
 function rvy_render_scheduled_revisions() {
 	global $rvy_scheduled_revisions_mode;
 	$rvy_scheduled_revisions_mode = true;
+    echo '<div class="notice notice-info"><p>' . esc_html__('Scheduler details show up to 100 accessible scheduled revisions and their 10 most recent actions. Historical logs are omitted from this view.', 'revisionary') . '</p></div>';
 	require dirname( __FILE__ ) . '/revision-queue_rvy.php';
 }
 
-function rvy_scheduled_revision_action_rows() {
-	static $rows;
-	if ( isset( $rows ) ) return $rows;
+function rvy_scheduled_revision_action_rows($revision_ids = []) {
 	$rows = [];
+    $revision_ids = array_slice(array_unique(array_map('absint', $revision_ids)), 0, 100);
 	if ( ! class_exists( 'ActionScheduler' ) ) return $rows;
 
 	$store = ActionScheduler::store();
 	$logger = ActionScheduler::logger();
 	$labels = $store->get_status_labels();
-	try {
-		$action_ids = $store->query_actions( [
-			'hook' => 'publish_revision_rvy_action_scheduler',
-			'per_page' => -1,
-			'orderby' => 'date',
-			'order' => 'DESC',
-		] );
-	} catch ( Exception $e ) {
-		return $rows;
-	}
+    $action_ids = [];
+    foreach ($revision_ids as $revision_id) {
+        $revision = get_post($revision_id);
+        $parent_id = $revision ? rvy_post_id($revision_id) : 0;
+        if (!$revision || !$parent_id || !rvy_can_read_post($revision_id) || !rvy_can_read_post($parent_id)) continue;
+        if (rvy_get_option('revisor_hide_others_revisions') && !rvy_is_post_author($revision) && !rvy_is_full_editor($parent_id)
+            && !current_user_can('list_others_revisions') && !current_user_can('preview_others_revisions')) continue;
+        try {
+            $action_ids = array_merge($action_ids, $store->query_actions([
+                'hook' => 'publish_revision_rvy_action_scheduler',
+                'args' => [$revision_id],
+                'per_page' => 10,
+                'orderby' => 'date', 'order' => 'DESC',
+            ]));
+        } catch (Exception $e) { continue; }
+    }
 
 	foreach ( $action_ids as $action_id ) {
 		try {
@@ -375,7 +381,8 @@ function rvy_scheduled_revision_action_rows() {
 			'status_name' => $status,
 			'status' => isset( $labels[$status] ) ? $labels[$status] : $status,
 			'args' => $args,
-			'log_entries' => $logger->get_logs( $action_id ),
+			// Do not hydrate unbounded log histories while listing the queue.
+            'log_entries' => [],
 			'schedule' => $action->get_schedule(),
 		];
 	}

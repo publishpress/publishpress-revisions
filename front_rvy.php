@@ -3,6 +3,9 @@ defined('ABSPATH') || exit;
 
 class RevisionaryFront {
 
+    private $preview_parents = [];
+    private $preview_inheritance_busy = false;
+
 	function __construct() {
 		global $revisionary;
 
@@ -22,6 +25,7 @@ class RevisionaryFront {
 		add_filter('body_class', [$this, 'fltBodyClass'], 20, 2);
 
 		add_filter('acf/load_value', [$this, 'fltACFLoadValue'], 10, 3);
+        add_filter('get_object_terms', [$this, 'inheritPreviewTerms'], 10, 4);
 		add_filter('get_post_metadata', [$this, 'fltGetPostMeta'], 10, 5);
 		add_action('revisionary_preview_load', [$this, 'setPreviewTemplateContext'], 10, 2);
 
@@ -70,10 +74,15 @@ class RevisionaryFront {
 		global $wp_query;
 		$revision = get_post($revision_id);
 		$published = get_post($published_post_id);
-		if (!$revision || !$published || !$wp_query || ($revision_id == $published_post_id)
-			|| (!rvy_can_read_post($revision_id) && !current_user_can('edit_post', $published_post_id))) {
+		if (!$revision || !$published || ($revision_id == $published_post_id)
+			|| !rvy_can_read_revision_and_parent($revision_id)) {
 			return;
 		}
+        // Inheritance is enabled only by an authorized preview initialization.
+        $this->preview_parents[(int) $revision_id] = (int) $published_post_id;
+        if (!$wp_query) {
+            return;
+        }
 		// Keep the revision ID/content, but select the original post type's
 		// template hierarchy. Do not alter the stored revision or loop object.
 		$queried = clone $revision;
@@ -93,60 +102,108 @@ class RevisionaryFront {
 		$wp_query->is_singular = true;
 	}
 
-	function fltGetPostMeta($meta_val, $object_id, $meta_key, $single, $meta_type) {
-		static $busy;
+    private function previewParentId($revision_id) {
+        $revision_id = (int) $revision_id;
+        if (empty($this->preview_parents[$revision_id])
+            || $this->preview_parents[$revision_id] !== (int) rvy_post_id($revision_id)
+            || !rvy_can_read_revision_and_parent($revision_id)) {
+            return 0;
+        }
+        $parent_id = $this->preview_parents[$revision_id];
+        // Do not follow malformed or cyclic revision-to-revision associations.
+        return $parent_id !== $revision_id && get_post($parent_id)
+            && !rvy_in_revision_workflow($parent_id) && !wp_is_post_revision($parent_id)
+            ? $parent_id : 0;
+    }
 
-		if (!empty($busy) || ('post' != $meta_type)) {
-			return $meta_val;
-		}
+    private function previewMetaKeyAllowed($key) {
+        if (!$key || defined('REVISIONARY_PREVIEW_NO_META_MIRROR') || class_exists('CWS_PageLinksTo')) {
+            return false;
+        }
+        foreach (revisionary_unrevisioned_postmeta() as $excluded) {
+            $pattern = '/^' . str_replace('\\*', '.*', preg_quote($excluded, '/')) . '$/D';
+            if (preg_match($pattern, $key)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-		$busy = true;
-		try {
-			// Missing template metadata inherits the original template. An explicitly
-			// stored default/empty template is a deliberate revision setting.
-			if ('_wp_page_template' === $meta_key && !metadata_exists('post', $object_id, $meta_key)
-				&& (rvy_in_revision_workflow($object_id) || wp_is_post_revision($object_id))) {
-				$parent_id = rvy_post_id($object_id);
-				if ($parent_id && ($parent_id != $object_id)) {
-					return get_post_meta($parent_id, $meta_key, $single);
-				}
-			}
+    function inheritPreviewTerms($terms, $object_ids, $taxonomies, $args) {
+        if ($this->preview_inheritance_busy || defined('REVISIONARY_PREVIEW_NO_TERM_MIRROR')
+            || is_wp_error($terms) || $terms || count((array) $object_ids) !== 1
+            || count((array) $taxonomies) !== 1) {
+            return $terms;
+        }
+        $object_ids = (array) $object_ids;
+        $taxonomies = (array) $taxonomies;
+        $revision_id = (int) reset($object_ids);
+        $taxonomy = reset($taxonomies);
+        if (in_array($taxonomy, (array) apply_filters('revisionary_skip_taxonomies', []), true)
+            || ('author' === $taxonomy && defined('REVISIONARY_DISABLE_MA_PREVIEW_CORRECTION'))) {
+            return $terms;
+        }
+        $this->preview_inheritance_busy = true;
+        try {
+            if (!($parent_id = $this->previewParentId($revision_id))) {
+                return $terms;
+            }
+            // An empty constrained query must not override a revision's own terms.
+            $stored = wp_get_object_terms($revision_id, $taxonomies, ['fields' => 'ids', 'number' => 1]);
+            if (is_wp_error($stored) || $stored) {
+                return $terms;
+            }
+            $inherited = wp_get_object_terms($parent_id, $taxonomies, $args);
+            if (is_array($inherited) && 'all_with_object_id' === ($args['fields'] ?? 'all')) {
+                foreach ($inherited as $key => $term) {
+                    if (is_object($term)) {
+                        $inherited[$key] = clone $term;
+                        $inherited[$key]->object_id = $revision_id;
+                    }
+                }
+            }
+            return $inherited;
+        } finally {
+            $this->preview_inheritance_busy = false;
+        }
+    }
 
-			if (wp_is_post_revision($object_id)) {
-				$unfiltered_meta_val = get_post_meta($object_id, $meta_key, $single);
-	
-				if (in_array($unfiltered_meta_val, [null, []], true)) {
-					if ($published_post_id = get_post_field('post_parent', $object_id)) {
-						$published_meta_val = get_post_meta($published_post_id, $meta_key, $single);
-	
-						if (null !== $published_meta_val) {
-							$meta_val = $published_meta_val;
-						}
-					}
-				}
-			}
-		} finally {
-			$busy = false;
-		}
+    function fltGetPostMeta($meta_val, $object_id, $meta_key, $single, $meta_type) {
+        if ($this->preview_inheritance_busy || null !== $meta_val || 'post' !== $meta_type
+            || !$this->previewMetaKeyAllowed($meta_key)) {
+            return $meta_val;
+        }
+        $this->preview_inheritance_busy = true;
+        try {
+            if (!($parent_id = $this->previewParentId($object_id))
+                || metadata_exists('post', $object_id, $meta_key)) {
+                return $meta_val;
+            }
+            $value = get_post_meta($parent_id, $meta_key, $single);
+            // get_metadata_raw() unwraps array filter results for single reads.
+            return $single ? [$value] : $value;
+        } finally {
+            $this->preview_inheritance_busy = false;
+        }
+    }
 
-		return $meta_val;
-	}
-
-	function fltACFLoadValue($value, $post_id, $field) {
-		if ((null === $value) 
-		&& (rvy_in_revision_workflow($post_id) || wp_is_post_revision($post_id))
-		&& function_exists('acf_get_value')
-		) {
-			if ($published_post_id = rvy_post_id($post_id)) {
-
-				if (($published_post_id != $post_id) && !rvy_in_revision_workflow($published_post_id)) {
-					return acf_get_value($published_post_id, $field);
-				}
-			}
-		}
-
-		return $value;
-	}
+    function fltACFLoadValue($value, $post_id, $field) {
+        $key = is_array($field) && isset($field['name']) ? $field['name'] : '';
+        if ($this->preview_inheritance_busy || null !== $value || !is_numeric($post_id)
+            || !function_exists('acf_get_value') || !$this->previewMetaKeyAllowed($key)) {
+            return $value;
+        }
+        $this->preview_inheritance_busy = true;
+        try {
+            if (!($parent_id = $this->previewParentId($post_id))
+                || metadata_exists('post', $post_id, $key)) {
+                return $value;
+            }
+            return acf_get_value($parent_id, $field);
+        } finally {
+            $this->preview_inheritance_busy = false;
+        }
+    }
 
 	function fltOptionPageOnFront($front_page_id) {
 		global $post;
@@ -331,7 +388,7 @@ class RevisionaryFront {
 			if($revision && ('revision' == $revision->post_type)) {
 				if ($pub_post = get_post($revision->post_parent)) {
 					if ( $type_obj = get_post_type_object( $pub_post->post_type ) ) {
-						if (rvy_can_read_post($revision_id ) || current_user_can('edit_post', $revision_id)) {
+						if (rvy_can_read_revision_and_parent($revision_id)) {
 							$request = str_replace( "post_type = 'post'", "post_type = 'revision'", $request );
 							$request = str_replace( "post_type = '{$pub_post->post_type}'", "post_type = 'revision'", $request );
 						}
@@ -391,6 +448,10 @@ class RevisionaryFront {
 			}
 		}
 
+        if ((rvy_in_revision_workflow($revision_id) || wp_is_post_revision($revision_id)) && !rvy_can_read_revision_and_parent($revision_id)) {
+            wp_die(esc_html__('You are not allowed to view this revision.', 'revisionary'), '', ['response' => 403]);
+        }
+
 		do_action('revisionary_front', $revision_id);
 
 		global $wpdb;
@@ -423,47 +484,16 @@ class RevisionaryFront {
 			} else {
 				$published_post_id = rvy_post_id($revision_id);
 
-				if (!rvy_can_read_post($revision_id) && !current_user_can('edit_post', $published_post_id)) {
-					return;
+				if (!rvy_can_read_revision_and_parent($revision_id)) {
+                    wp_die(esc_html__('You are not allowed to view this revision.', 'revisionary'), '', ['response' => 403]);
 				}
 
 				do_action('revisionary_preview_load', $revision_id, $published_post_id);
 
-				if (!defined('REVISIONARY_PREVIEW_NO_META_MIRROR') && !class_exists('CWS_PageLinksTo')) {
-					// For display integrity, copy any missing keys from published post. Note: Any fields missing from revision are left unmodified at revision approval.
-					revisionary_copy_postmeta($published_post_id, $revision_id, ['empty_target_only' => true]);
-				}
+                // Preview is read-only: missing metadata inherits through fltGetPostMeta().
 
-				if (!defined('REVISIONARY_PREVIEW_NO_TERM_MIRROR')) {
-					revisionary_copy_terms($published_post_id, $revision_id, ['empty_target_only' => true]);
-				}
+                // Multiple Authors terms inherit through the read-only term filter too.
 
-				if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION') && !defined('REVISIONARY_DISABLE_MA_PREVIEW_CORRECTION') 
-				&& (rvy_in_revision_workflow($post) || wp_is_post_revision($post))
-				) {
-					$_authors = get_multiple_authors($revision_id);
-
-					if (count($_authors) == 1) {
-						$_author = reset($_authors);
-
-						if ($_author && empty($_author->ID)) { // @todo: is this still necessary?
-							$_author = MultipleAuthors\Classes\Objects\Author::get_by_term_id($_author->term_id);
-						}
-					}
-
-					// If revision does not have valid multiple authors stored, correct to published post values
-					if (empty($_authors) || (!empty($_author) && $_author->ID == $post->post_author)) {
-						if (!$published_authors = wp_get_object_terms($published_post_id, 'author')) {
-							if ($published_post = get_post($published_post_id)) {
-								if ($author = MultipleAuthors\Classes\Objects\Author::get_by_user_id((int) $published_post->post_author)) {
-									$published_authors = [$author];
-								}
-							}
-						}
-
-						rvy_set_ma_post_authors($revision_id, $published_authors);
-					}
-				}
 			}
 
 			if (empty($post)) {
@@ -496,7 +526,7 @@ class RevisionaryFront {
 	/** Standard preview markup, without preview initialization or metadata writes. */
 	public static function previewBarHtml($post, $published_post_id, $editor_shell = false) {
 		$revision_id = $post->ID;
-		if (!rvy_can_read_post($revision_id) && !current_user_can('edit_post', $published_post_id)) { return ''; }
+		if (!rvy_can_read_revision_and_parent($revision_id)) { return ''; }
 				$datef = get_option('date_format') . ' ' . get_option('time_format');
 			$date = agp_date_i18n( $datef, strtotime( $post->post_date ) );
 
