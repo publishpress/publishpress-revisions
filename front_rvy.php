@@ -71,7 +71,7 @@ class RevisionaryFront {
 		$revision = get_post($revision_id);
 		$published = get_post($published_post_id);
 		if (!$revision || !$published || !$wp_query || ($revision_id == $published_post_id)
-			|| (!current_user_can('read_post', $revision_id) && !current_user_can('edit_post', $published_post_id))) {
+			|| (!rvy_can_read_post($revision_id) && !current_user_can('edit_post', $published_post_id))) {
 			return;
 		}
 		// Keep the revision ID/content, but select the original post type's
@@ -192,7 +192,7 @@ class RevisionaryFront {
 
 		$parent = get_post($revision->post_parent);
 		$authorized = $parent && is_user_logged_in()
-			&& (current_user_can('read_post', $revision_id) || current_user_can('edit_post', $parent->ID));
+			&& (rvy_can_read_post($revision_id) || current_user_can('edit_post', $parent->ID));
 		if (!$authorized) {
 			// Prevent an explicit status query from exposing archives to guests.
 			$query->set('p', 0);
@@ -331,7 +331,7 @@ class RevisionaryFront {
 			if($revision && ('revision' == $revision->post_type)) {
 				if ($pub_post = get_post($revision->post_parent)) {
 					if ( $type_obj = get_post_type_object( $pub_post->post_type ) ) {
-						if (current_user_can('read_post', $revision_id ) || current_user_can('edit_post', $revision_id)) {
+						if (rvy_can_read_post($revision_id ) || current_user_can('edit_post', $revision_id)) {
 							$request = str_replace( "post_type = 'post'", "post_type = 'revision'", $request );
 							$request = str_replace( "post_type = '{$pub_post->post_type}'", "post_type = 'revision'", $request );
 						}
@@ -423,7 +423,7 @@ class RevisionaryFront {
 			} else {
 				$published_post_id = rvy_post_id($revision_id);
 
-				if (!current_user_can('read_post', $revision_id) && !current_user_can('edit_post', $published_post_id)) {
+				if (!rvy_can_read_post($revision_id) && !current_user_can('edit_post', $published_post_id)) {
 					return;
 				}
 
@@ -496,7 +496,7 @@ class RevisionaryFront {
 	/** Standard preview markup, without preview initialization or metadata writes. */
 	public static function previewBarHtml($post, $published_post_id, $editor_shell = false) {
 		$revision_id = $post->ID;
-		if (!current_user_can('read_post', $revision_id) && !current_user_can('edit_post', $published_post_id)) { return ''; }
+		if (!rvy_can_read_post($revision_id) && !current_user_can('edit_post', $published_post_id)) { return ''; }
 				$datef = get_option('date_format') . ' ' . get_option('time_format');
 			$date = agp_date_i18n( $datef, strtotime( $post->post_date ) );
 
@@ -527,7 +527,7 @@ class RevisionaryFront {
 				rvy_admin_url( $queue_page )
 			);
 
-			if (((!rvy_get_option('revisor_hide_others_revisions') || current_user_can('list_others_revisions')) && !empty($type_obj) && current_user_can($type_obj->cap->edit_posts)) || current_user_can('read_post', $revision_id)) {
+			if (((!rvy_get_option('revisor_hide_others_revisions') || current_user_can('list_others_revisions')) && !empty($type_obj) && current_user_can($type_obj->cap->edit_posts)) || rvy_can_read_post($revision_id)) {
 				if ($published_url) {
 					$view_published = sprintf(
 						apply_filters(

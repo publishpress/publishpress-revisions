@@ -59,7 +59,7 @@ class RvyPostEdit {
                 var rvyDeleteURL = {};
                 <?php
                 foreach ($revisions as $revision) {
-                    if (!current_user_can('read_post', $revision->ID) || wp_is_post_autosave($revision)) {
+                    if (!rvy_can_read_post($revision->ID) || wp_is_post_autosave($revision)) {
                         continue;
                     }
 

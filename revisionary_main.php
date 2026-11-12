@@ -1873,19 +1873,39 @@ class Revisionary
 		return $count;
 	}
 
+	private function isWorkflowPreviewRequest() {
+        // Gutenberg's preview and post-save links omit RVY_PREVIEW_ARG.
+        // Classify the request only; Permissions and the preview loader still
+        // authorize access to both the revision and its parent. Do not call
+        // current_user_can() here: Permissions invokes this during cap queries.
+        if (is_admin() || !is_user_logged_in()
+            || (defined('REST_REQUEST') && REST_REQUEST)
+            || (defined('DOING_AJAX') && DOING_AJAX)
+            || 'GET' !== strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET')) {
+            return false;
+        }
+        $id = $_GET['page_id'] ?? ($_GET['p'] ?? ($_GET['preview_id'] ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Request classification, not authorization.
+        if (!is_scalar($id) || !ctype_digit((string) $id) || !(int) $id) {
+            return false;
+        }
+        $post = get_post((int) $id);
+        return $post && rvy_in_revision_workflow($post)
+            && !in_array($post->post_status, ['publish', 'private', 'future', 'trash', 'inherit'], true);
+    }
+
 	function fltIsPreview($is_preview) {
         if (defined('RVY_PREVIEW_ARG') && RVY_PREVIEW_ARG && !empty($_REQUEST[RVY_PREVIEW_ARG])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $is_preview = true;
         }
 
-        return $is_preview;
+        return $is_preview || $this->isWorkflowPreviewRequest();
     }
 
 	/*
 	 * PublishPress Permissions: Make query filtering allow for revision previews
 	 */  
 	function fltQueryPostStatuses($statuses, $args) {
-        if (((defined('RVY_PREVIEW_ARG') && RVY_PREVIEW_ARG && !empty($_REQUEST[RVY_PREVIEW_ARG])))	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (((defined('RVY_PREVIEW_ARG') && RVY_PREVIEW_ARG && !empty($_REQUEST[RVY_PREVIEW_ARG])) || $this->isWorkflowPreviewRequest()) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         && !empty($args['required_operation']) 
 		&& ('edit' == $args['required_operation']) 
 		&& function_exists('rvy_revision_base_statuses')

@@ -2286,7 +2286,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$post_type_object = get_post_type_object( $post->post_type );
 
-		$can_read_post = current_user_can('read_post', $post->ID);
+		$can_read_post = rvy_can_read_post($post->ID);
 		$can_edit_post    = current_user_can( 'edit_post', $post->ID );
 		$can_read_post = $can_read_post || $can_edit_post; // @todo
 
