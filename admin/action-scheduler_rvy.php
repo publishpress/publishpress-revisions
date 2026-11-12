@@ -143,7 +143,27 @@ function rvy_ajax_migrate_scheduled_revisions() {
 add_action( 'wp_ajax_rvy_migrate_scheduled_revisions', 'rvy_ajax_migrate_scheduled_revisions' );
 
 function rvy_remove_action_scheduler_tools_menu() {
-	remove_submenu_page( 'tools.php', 'action-scheduler' );
+	// Inspect every loaded bootstrap, not just the version selected by AS.
+	// Another plugin can load an older copy while Revisions' copy wins selection.
+	$plugin_root = defined('REVISIONARY_PRO_ABSPATH') ? REVISIONARY_PRO_ABSPATH : dirname(__DIR__);
+	$plugin_root = trailingslashit(wp_normalize_path(realpath($plugin_root) ?: $plugin_root));
+	$external = false;
+	$files = get_included_files();
+	if (class_exists('ActionScheduler', false)) {
+		$source = (new ReflectionClass('ActionScheduler'))->getFileName();
+		if ($source) { $files[] = $source; }
+	}
+	foreach ($files as $file) {
+		if (!in_array(basename($file), ['action-scheduler.php', 'ActionScheduler.php'], true)) { continue; }
+		$file = wp_normalize_path(realpath($file) ?: $file);
+		if (0 !== strpos($file, $plugin_root)) {
+			$external = true;
+			break;
+		}
+	}
+	if (apply_filters('revisionary_hide_action_scheduler_menu', !$external)) {
+		remove_submenu_page( 'tools.php', 'action-scheduler' );
+	}
 }
 add_action( 'admin_menu', 'rvy_remove_action_scheduler_tools_menu', 999 );
 
