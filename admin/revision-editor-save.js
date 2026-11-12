@@ -62,6 +62,15 @@
             if ((window.rvyObjEdit.postID && Number(editor.getCurrentPostId()) !== Number(window.rvyObjEdit.postID))
                 || !editor.isEditedPostSaveable() || (editor.isPostSavingLocked && editor.isPostSavingLocked())) throw new Error(message());
             monitorMetaBoxes();
+            // Status integrations can leave a publication status in the editor.
+            // This is a content save of an existing workflow revision; the
+            // separately authorized workflow action performs the transition.
+            // Do not infer the core status from the revision's MIME status.
+            var status = window.rvyObjEdit.revisionSaveStatus;
+            if ((status === 'draft' || status === 'pending')
+                && editor.getEditedPostAttribute('status') !== status) {
+                window.wp.data.dispatch('core/editor').editPost({status:status});
+            }
             var tracker = {started:0, finished:0, failed:false};
             metaRequest = tracker;
             var request;
