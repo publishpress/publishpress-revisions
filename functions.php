@@ -1011,7 +1011,7 @@ function rvy_can_access_copy_source($post_id, $revise = false) {
             continue;
         }
 
-        if (!current_user_can('read_post', $source->ID)) {
+        if (!rvy_can_read_post($source->ID)) {
             return false;
         }
 
@@ -1038,3 +1038,15 @@ function rvy_can_access_copy_source($post_id, $revise = false) {
 require_once __DIR__ . '/admin/duplicate-capabilities_rvy.php';
 
 require_once __DIR__ . '/permissions-read_rvy.php';
+/** Reading a revision may use its existing edit permission; source posts keep normal read checks. */
+function rvy_can_read_post($post_id) {
+    if (rvy_can_read_post($post_id)) { return true; }
+    $post = get_post($post_id);
+    if (!$post) { return false; }
+    $workflow = rvy_in_revision_workflow($post);
+    $parent_id = wp_is_post_revision($post) ?: ($workflow ? rvy_post_id($post->ID) : 0);
+    return $parent_id && (int) $parent_id !== (int) $post->ID
+        && (!$workflow || rvy_can_view_workflow_revision($post))
+        && current_user_can('edit_post', $post_id)
+        && rvy_can_read_post($parent_id);
+}

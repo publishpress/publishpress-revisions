@@ -253,7 +253,7 @@ class RevisionaryHistory
                     }
                 }
 
-                if ((!current_user_can('read_post', $revision->ID) && !current_user_can('edit_post', $revision->ID))) {
+                if ((!rvy_can_read_post($revision->ID) && !current_user_can('edit_post', $revision->ID))) {
                     return;
                 }
 
@@ -453,7 +453,7 @@ class RevisionaryHistory
             return;
         }
 
-        if ( ! current_user_can( 'read_post', $post->ID ) ) {
+        if ( ! rvy_can_read_post( $post->ID ) ) {
             return;
         }
 
@@ -488,10 +488,10 @@ class RevisionaryHistory
             }
 
             $rvy_revisions = array_filter($rvy_revisions, function($rev) {
-                return current_user_can('read_post', $rev->ID) || current_user_can('edit_post', $rev->ID);
+                return rvy_can_read_post($rev->ID) || current_user_can('edit_post', $rev->ID);
             });
 
-            if (!current_user_can('edit_post', $revision_id) && !current_user_can('read_post', $revision_id)) {
+            if (!current_user_can('edit_post', $revision_id) && !rvy_can_read_post($revision_id)) {
                 return;
             }
 
@@ -691,11 +691,11 @@ class RevisionaryHistory
     // port of core wp_get_revision_ui_diff() to allow comparison of pending, future revisions (published post ID stored in comment_count instead of post_parent)
     public function getRevisionUIDiff($post, $compare_from, $compare_to) {
         $anchor = get_post($post);
-        if (!$anchor || !current_user_can('read_post', $anchor->ID)) { return []; }
+        if (!$anchor || !rvy_can_read_post($anchor->ID)) { return []; }
         foreach ([$compare_from, $compare_to] as $candidate) {
             if (!$candidate) { continue; } // Core uses zero for the empty first revision.
             $item = get_post($candidate);
-            if (!$item || !current_user_can('read_post', $item->ID)) { return []; }
+            if (!$item || !rvy_can_read_post($item->ID)) { return []; }
             $parent = wp_is_post_revision($item);
             if (!$parent && rvy_in_revision_workflow($item)) { $parent = rvy_post_id($item->ID); }
             if ((int) $item->ID !== (int) $anchor->ID && (int) $parent !== (int) $anchor->ID) { return []; }
@@ -1177,7 +1177,7 @@ class RevisionaryHistory
         $is_administrator = is_content_administrator_rvy();
 
         foreach ( $revisions as $k => $revision ) {
-            if (!$is_administrator && !current_user_can('edit_post', $revision->ID) && !current_user_can('read_post', $revision->ID)) {
+            if (!$is_administrator && !current_user_can('edit_post', $revision->ID) && !rvy_can_read_post($revision->ID)) {
                 unset($revisions[$k]);
                 continue;
             }
