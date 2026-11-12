@@ -39,18 +39,62 @@ function rvy_builder_schema_notice($dismissible = true) {
     rvy_print_builder_schema_message();
     echo '</p></div>';
 }
+
+/** True when a page builder supported by the Pro integrations is active. */
+function rvy_builder_schema_builder_active() {
+    $active = defined('ELEMENTOR_VERSION')
+        || defined('FL_BUILDER_VERSION')
+        || defined('ET_BUILDER_VERSION') || defined('ET_BUILDER_PLUGIN_VERSION') || function_exists('et_divi_replace_parent_stylesheet')
+        || defined('WPB_VC_VERSION')
+        || defined('SITEORIGIN_PANELS_VERSION') || class_exists('SiteOrigin_Panels')
+        || defined('SEEDPROD_VERSION') || defined('SEEDPROD_PRO_VERSION') || defined('SEEDPROD_PLUGIN_PATH')
+        || defined('__BREAKDANCE_VERSION')
+        || defined('BRICKS_VERSION');
+
+    return (bool) apply_filters('revisionary_builder_schema_builder_active', $active);
+}
+
 /** Settings render their own inline messages; WordPress hooks pass an empty argument. */
 function rvy_builder_schema_admin_notice() {
     global $plugin_page;
+
+    // The admin-wide notice is only relevant when a supported page builder is active.
+    if (!rvy_get_option('permissions_compat_mode') || !rvy_builder_schema_builder_active()) {
+        return;
+    }
+
+    if (get_user_meta(get_current_user_id(), 'rvy_builder_schema_notice_dismissed', true)) {
+        return;
+    }
+
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     $page = !empty($plugin_page) ? $plugin_page : (isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : '');
     if (in_array($page, ['revisionary-settings', 'rvy-net_options', 'rvy-default_options'], true)) {
         return;
     }
     rvy_builder_schema_notice(true);
+    ?>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    jQuery(document).on('click', '.rvy-builder-schema-notice .notice-dismiss', function() {
+        jQuery.post(ajaxurl, {
+            action: 'rvy_dismiss_builder_schema_notice',
+            nonce: '<?php echo esc_js(wp_create_nonce('rvy_dismiss_builder_schema_notice')); ?>'
+        });
+    });
+    /* ]]> */
+    </script>
+    <?php
 }
 add_action('admin_notices', 'rvy_builder_schema_admin_notice');
 add_action('network_admin_notices', 'rvy_builder_schema_admin_notice');
+
+add_action('wp_ajax_rvy_dismiss_builder_schema_notice', function () {
+    check_ajax_referer('rvy_dismiss_builder_schema_notice', 'nonce');
+    update_user_meta(get_current_user_id(), 'rvy_builder_schema_notice_dismissed', 1);
+    wp_send_json_success();
+});
+
 // Apply even for administrators, whose ordinary Revisions capability filters are bypassed.
 add_filter('map_meta_cap', function ($caps, $cap, $user_id, $args) {
     return 'copy_post' === $cap && !empty($args[0]) && rvy_builder_schema_blocked($args[0])
