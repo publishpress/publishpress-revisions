@@ -27,6 +27,9 @@ class PostEditorWorkflowUI {
 
         $vars = [
             'postID' => $post->ID,
+            // Workflow status lives in post_mime_type. The content save must
+            // retain the stored WordPress status before Submit/Approve runs.
+            'revisionSaveStatus' => rvy_in_revision_workflow($post) && in_array($post->post_status, ['draft', 'pending'], true) ? $post->post_status : '',
             'saveRevision' => pp_revisions_label('update_revision'),
             'scheduledRevisionsEnabled' => $do_scheduled_revisions,
             'multiPreviewActive' => version_compare($wp_version, '5.5-beta', '>='),
