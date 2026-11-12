@@ -1473,7 +1473,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	$this->option_checkbox( 'create_revision_direct_link', $tab, $section, $hint, '');
 
 	$hint = '';
-	$this->option_checkbox( 'query_loop_revision_editor_allowance', $tab, $section, $hint, '');
+    echo '<p>' . esc_html__('Query Loop previews use your existing post permissions. The legacy capability allowance has been retired.', 'revisionary') . '</p>';
 	?>
 
 	<?php
@@ -2329,7 +2329,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		$this->option_checkbox( 'require_edit_others_drafts', $tab, $section, $hint, '', $checkbox_args );
 		
 		if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')) {
-			$hint = esc_html__('If post-specific permissions restrict or expand access to a post, apply those permissions to its revisions also.', 'revisionary');
+			$hint = esc_html__('If editing limitations or blockages apply to a post, apply the same Permissions to each of its revisions.', 'revisionary');
 			$this->option_checkbox('apply_post_exceptions', $tab, $section, $hint, '');
 		}
 

@@ -5,6 +5,8 @@ require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 
 class Revisionary_Archive_List_Table extends WP_List_Table {
 	private $post_types = [];
+    private $readable_parent_ids = null;
+    private $readable_revision_ids = [];
 	private $all_revisions_count = null;
 	private $my_revisions_count = null;
 	private $show_approved_by_col = true;
@@ -36,6 +38,39 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		parent::__construct( $args );
 
 		$this->post_types = array_keys(array_filter($revisionary->enabled_post_types_archive));
+    }
+
+    /** Scope rows, counts and facets to revisions and parents this viewer can read. */
+    private function readableParentIds() {
+        if (null !== $this->readable_parent_ids) {
+            return $this->readable_parent_ids;
+        }
+        global $wpdb;
+        $this->readable_parent_ids = [];
+        $after = 0;
+        do {
+            // Prime bounded batches; do not share authorization results across requests.
+            $ids = $wpdb->get_col($wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read fresh revision IDs; authorization results remain scoped to this request.
+                "SELECT ID FROM $wpdb->posts WHERE post_type = 'revision' AND ID > %d ORDER BY ID LIMIT 250",
+                $after
+            ));
+            if (function_exists('_prime_post_caches')) {
+                _prime_post_caches(array_map('intval', $ids), false, false);
+            }
+            foreach ($ids as $id) {
+                $id = (int) $id;
+                $after = max($after, $id);
+                $revision = get_post($id);
+                $parent = $revision ? get_post($revision->post_parent) : null;
+                if ($parent && in_array($parent->post_type, array_merge($this->post_types, ['revision']), true)
+                    && rvy_can_read_revision_and_parent($id)
+                    && rvy_can_read_revision_and_parent($parent->ID)) {
+                    $this->readable_parent_ids[$parent->ID] = (int) $parent->ID;
+                    $this->readable_revision_ids[] = $id;
+                }
+            }
+        } while (count($ids) === 250);
+        return $this->readable_parent_ids;
     }
 
 	/**
@@ -76,16 +111,16 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		if( isset( $_REQUEST['origin_post'] ) && ! empty( $_REQUEST['origin_post'] ) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['origin_post'] = (int) $_REQUEST['origin_post'];										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
-		if( isset( $_REQUEST['origin_post_author'] ) && ! empty( $_REQUEST['origin_post_author'] ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['origin_post_author']) && in_array((int) $_REQUEST['origin_post_author'], $heading_authors['origin_post_author'], true) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['origin_post_author'] = (int) $_REQUEST['origin_post_author'];						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
-		if( isset( $_REQUEST['post_author'] ) && ! empty( $_REQUEST['post_author'] ) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['post_author']) && in_array((int) $_REQUEST['post_author'], $heading_authors['post_author'], true) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['post_author'] = (int) $_REQUEST['post_author'];										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 		if( isset( $_REQUEST['origin_post_type'] ) && ! empty( $_REQUEST['origin_post_type'] ) ) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['origin_post_type'] = sanitize_text_field( wp_unslash($_REQUEST['origin_post_type']) );			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
-		if( isset( $_REQUEST['post_parent'] ) && ! empty( $_REQUEST['post_parent'] ) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['post_parent']) && rvy_can_read_revision_and_parent((int) $_REQUEST['post_parent']) ) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['post_parent'] = (int) $_REQUEST['post_parent'];										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 		if( isset( $_REQUEST['revision_date'] ) && ! empty( $_REQUEST['revision_date'] ) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -94,7 +129,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		if( isset( $_REQUEST['origin_post_date'] ) && ! empty( $_REQUEST['origin_post_date'] ) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['origin_post_date'] = (int) $_REQUEST['origin_post_date'];								//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
-		if( isset( $_REQUEST['approved_by'] ) && ! empty( $_REQUEST['approved_by'] ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['approved_by']) && in_array((int) $_REQUEST['approved_by'], $heading_authors['approved_by'], true) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['approved_by'] = (int) $_REQUEST['approved_by'];						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
@@ -160,6 +195,16 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 	 * @return string
 	 */
 	public function filters_in_heading() {
+        global $wpdb;
+        $readable_parent_csv = implode(',', $this->readableParentIds()) ?: '0';
+        $readable_revision_csv = implode(',', $this->readable_revision_ids) ?: '0';
+        $heading_authors = [];
+        $heading_authors['approved_by'] = array_map('intval', $wpdb->get_col("SELECT DISTINCT meta_value FROM $wpdb->postmeta WHERE meta_key = '_rvy_approved_by' AND post_id IN (SELECT ID FROM $wpdb->posts WHERE ID IN ($readable_revision_csv))")); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
+
+        $heading_authors['origin_post_author'] = array_map('intval', $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE ID IN ($readable_parent_csv)")); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
+
+        $heading_authors['post_author'] = array_map('intval', $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE ID IN ($readable_revision_csv)")); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
+
 		$count = 0;
 
 		$any_filters = ( isset( $_REQUEST['origin_post'] ) && ! empty( $_REQUEST['origin_post'] ) )		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -179,7 +224,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		// Post title
 		if( isset( $_REQUEST['origin_post'] ) && ! empty( $_REQUEST['origin_post'] )				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		) {
-			if ($post_title = get_post_field('post_title', (int) $_REQUEST['origin_post'])) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if (rvy_can_read_revision_and_parent((int) $_REQUEST['origin_post']) && ($post_title = get_post_field('post_title', (int) $_REQUEST['origin_post']))) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$this->heading_spacing( $count );
 				echo esc_html($post_title);
 				$count++;
@@ -197,30 +242,30 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		}
 
 		// Revision post author
-		if( isset( $_REQUEST['post_author'] ) && ! empty( $_REQUEST['post_author'] ) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['post_author']) && in_array((int) $_REQUEST['post_author'], $heading_authors['post_author'], true) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$this->heading_spacing( $count );
 			printf(
 				esc_html__( 'Revision Author: %s' ,'revisionary' ),
-				get_the_author_meta( 'display_name', (int) $_REQUEST['post_author'] )				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				esc_html(get_the_author_meta('display_name', (int) $_REQUEST['post_author']))				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			);
 			$count++;
 		}
 
 		// Revision post parent
-		if( isset( $_REQUEST['post_parent'] ) && ! empty( $_REQUEST['post_parent'] ) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['post_parent']) && rvy_can_read_revision_and_parent((int) $_REQUEST['post_parent']) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$this->heading_spacing( $count );
 			echo '"';
-			the_title( (int) $_REQUEST['post_parent'] );											//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			echo esc_html(get_post_field('post_title', (int) $_REQUEST['post_parent']));											//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			echo '"';				
 			$count++;
 		}
 
 		// Origin post author
-		if( isset( $_REQUEST['origin_post_author'] ) && ! empty( $_REQUEST['origin_post_author'] ) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['origin_post_author']) && in_array((int) $_REQUEST['origin_post_author'], $heading_authors['origin_post_author'], true) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$this->heading_spacing( $count );
 			printf(
 				esc_html__( 'Post Author: %s' ,'revisionary' ),
-				get_the_author_meta( 'display_name', (int) $_REQUEST['origin_post_author'] )		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				esc_html(get_the_author_meta('display_name', (int) $_REQUEST['origin_post_author']))		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			);
 			$count++;
 		}
@@ -236,11 +281,11 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		}
 
 		// Approved by
-		if( isset( $_REQUEST['approved_by'] ) && ! empty( $_REQUEST['approved_by'] ) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if( !empty($_REQUEST['approved_by']) && in_array((int) $_REQUEST['approved_by'], $heading_authors['approved_by'], true) ) {			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$this->heading_spacing( $count );
 			printf(
 				esc_html__( 'Approved by: %s' ,'revisionary' ),
-				get_the_author_meta( 'display_name', (int) $_REQUEST['approved_by'] )				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+				esc_html(get_the_author_meta('display_name', (int) $_REQUEST['approved_by']))				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 			);
 			$count++;
 		}
@@ -385,11 +430,16 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			) AS prev_revision_status";
 		}
 
-		$query_types = array_merge($this->post_types, ['revision']);
+		$query_types = array_values(array_intersect(array_merge($this->post_types, ['revision']), get_post_types()));
+        $type_placeholders = implode(',', array_fill(0, count($query_types), '%s'));
 
 		$query .= " FROM $wpdb->posts r"
-		. " INNER JOIN $wpdb->posts r3 ON r.post_parent = r3.ID AND r3.post_type IN ('" . implode("','", $query_types ) . "')"
+		. $wpdb->prepare(" INNER JOIN $wpdb->posts r3 ON r.post_parent = r3.ID AND r3.post_type IN ($type_placeholders)", $query_types) // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Only generated %s placeholders are interpolated; prepare binds each post type in $query_types.
 		. " WHERE r.post_type = 'revision' AND r.post_name NOT LIKE '%-autosave-v%'";
+
+        $readable_parent_csv = implode(',', $this->readableParentIds()) ?: '0';
+        $readable_revision_csv = implode(',', $this->readable_revision_ids) ?: '0';
+        $query .= " AND r.ID IN ($readable_revision_csv)";
 
 		// Only when Search input is valid
 		if( isset( $args['s'] ) ) {
@@ -832,6 +882,11 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 	 * Override WP_List_Table::column_cb()
 	 */
     public function column_cb( $item ) {
+        $parent = get_post($item->post_parent);
+        $type_obj = $parent ? get_post_type_object($parent->post_type) : null;
+        if (!$type_obj || !current_user_can($type_obj->cap->delete_post, $parent->ID)) {
+            return '';
+        }
         return sprintf(
             '<input type="checkbox" name="post[]" value="%s" aria-label="%s" />', $item->ID, esc_attr__( 'Select revision', 'revisionary' )
         );
@@ -847,6 +902,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		<div class="alignleft actions">
 		<?php
 		if ( 'top' === $which ) {
+            $readable_parent_csv = implode(',', $this->readableParentIds()) ?: '0';
+            $readable_revision_csv = implode(',', $this->readable_revision_ids) ?: '0';
+            $revision_scope = "ID IN ($readable_revision_csv)";
 			$current_option = isset( $_REQUEST['origin_post_type'] ) && ! empty( $_REQUEST['origin_post_type'] )	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			? sanitize_key( $_REQUEST['origin_post_type'] )															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
@@ -872,9 +930,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval( $_REQUEST['post_author'] )														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_type = 'revision'");	 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE $revision_scope"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
 			
-			$id_csv = implode( "','", $author_ids);
+			$id_csv = implode( "','", array_map('intval', $author_ids));
 			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')"); 	 // phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 
 			$authors = [];
@@ -922,7 +980,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 					AND r.post_status NOT IN ('trash', 'auto-draft')
 					AND r.post_name NOT LIKE '%-autosave-v%'"
 					. " AND (p.post_type IN ('$enabled_post_type_csv') OR (p.post_type = 'revision' AND p2.post_type IN ('$enabled_post_type_csv')))"	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-					. " ORDER BY r.ID DESC LIMIT 60"																									
+					. " AND r.ID IN ($readable_revision_csv) ORDER BY r.ID DESC LIMIT 60"																									 // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
 				)
 				: []; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			
@@ -958,7 +1016,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval($_REQUEST['origin_post_date'])																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_date) FROM $wpdb->posts WHERE post_type != 'revision' AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60");	 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_date) FROM $wpdb->posts WHERE ID IN ($readable_parent_csv) AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
 			
 			$post_dates = [];
 
@@ -966,7 +1024,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				$post_dates[strtotime($date_str)] = $date_str;
 			}
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE post_type != 'revision' AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE(post_modified) FROM $wpdb->posts WHERE ID IN ($readable_parent_csv) AND post_status IN ('publish', 'private') ORDER BY ID DESC LIMIT 60"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
 
 			foreach ($_dates as $date_str) {
 				$post_dates[strtotime($date_str)] = $date_str;
@@ -983,7 +1041,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 				$revision_published_clause = "meta_value";
 			}
 
-			$_dates = $wpdb->get_col("SELECT DISTINCT DATE($revision_published_clause) FROM $wpdb->postmeta WHERE meta_key = '_rvy_published_gmt' ORDER BY meta_id DESC LIMIT 60");				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$_dates = $wpdb->get_col("SELECT DISTINCT DATE($revision_published_clause) FROM $wpdb->postmeta WHERE meta_key = '_rvy_published_gmt' AND post_id IN (SELECT ID FROM $wpdb->posts WHERE $revision_scope) ORDER BY meta_id DESC LIMIT 60");				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 			foreach ($_dates as $date_str) {
 				$post_dates[strtotime($date_str)] = $date_str;
@@ -1017,9 +1075,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval( $_REQUEST['approved_by'] )														//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$_approver_ids = $wpdb->get_col("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = '_rvy_approved_by'");		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$_approver_ids = $wpdb->get_col("SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = '_rvy_approved_by' AND post_id IN (SELECT ID FROM $wpdb->posts WHERE $revision_scope)"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
 
-			$id_csv = implode( "','", $_approver_ids);
+			$id_csv = implode( "','", array_map('intval', $_approver_ids));
 			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 			$approvers = [];
@@ -1054,9 +1112,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			? intval( $_REQUEST['origin_post_author'] )																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
-			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_type != 'revision'"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE ID IN ($readable_parent_csv)"); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Scope contains only integer authorized revision or parent IDs; facet queries require current values.
 
-			$id_csv = implode( "','", $author_ids);
+			$id_csv = implode( "','", array_map('intval', $author_ids));
 			$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");   // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 			$authors = [];
@@ -1270,7 +1328,9 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			esc_html__( 'Filter', 'revisionary' )
 		);
 
-		if ( $can_edit_post && rvy_get_option('revision_archive_deletion')) {
+		$parent = get_post($item->post_parent);
+        $type_obj = $parent ? get_post_type_object($parent->post_type) : null;
+		if ($type_obj && current_user_can($type_obj->cap->delete_post, $parent->ID) && rvy_get_option('revision_archive_deletion')) {
 			$delete_link = esc_url(wp_nonce_url(
 				"admin.php?page=rvy-revisions&amp;action=delete&amp;revision={$item->ID}", 
 				'delete-revision_' . $item->ID 

@@ -17,22 +17,70 @@ To moderate or schedule changes to published posts, just install PublishPress Re
 ### Features
 * Schedule or request changes to published posts and pages using the Gutenberg (or Classic) Editor
 * Revision fields include Content, Title, Excerpt, Categories, Tags, Custom Taxonomy Terms, Page Parent or Page Template
-* Display changes using the familiar Compare Revisions interface
+* Visually compare changes to page content and block attributes
+* Pro version support submission, approval and clean comparison of changes to custom fields 
 * Front-end preview display of Pending / Scheduled Revisions with Compare, Approve, and Edit buttons.
 * Make further changes to Pending Revisions and Scheduled Revisions with Gutenberg or Classic Editor
 * New WordPress role, "Revisor" is a moderated Editor.
-* Works with site-wide WordPress Roles, or in conjunction with <a href="https://publishpress.com/presspermit/">PressPermit Pro</a> for page-specific or category-specific permissions.
+* Works with site-wide WordPress Roles, or in conjunction with <a href="https://publishpress.com/permissions/">PublishPress Permissions Pro</a> for page-specific or category-specific permissions.
 
 ### Additional Features in the Pro Version
-* Submit and clearly compare changes to your Advanced Custom Fields
-* Submit and clearly compare changes to your Pods fields
-* Clearly compare changes to fields stored by dozens of popular plugins and themes
-* Frontend revision editing and submission with Elementor, Divi, Beaver Builder
-* Visually compare changes to content and block attributes from page builders including Elementor, Divi, Beaver Builder and Spectra Legacy
-* The Events Calendar compatibility
-* WooCommerce compatibility
-* PublishPress Cart compatibility
-* WPML integration
+
+#### Page builder / front end editing integrations:
+
+* Elementor 
+* Avada Classic, Avada One
+* BeaverBuilder 
+* Breakdance 2.8, 3
+* Bricks
+* Divi 4, Divi 5
+* SeedProd
+* SiteOrigin Page Builder
+* WPBakery
+
+#### Block plugin integrations:
+
+* Essential Blocks
+* Kadence Blocks
+* Otter Blocks
+* PublishPress Blocks
+* Spectra Legacy
+* Stackable
+* Utlimate Blocks
+
+#### Major plugins we maintain compatibility with:
+
+* Advanced Custom Fields
+* Pods
+* WPML
+* The Events Calendar
+* WooCommerce
+* PublishPress Blocks
+* Breeze
+* LiteSpeed Cache
+* Nitro Pack
+* SpeedyCache
+* W3 Total Cache
+* WP Fastest Cache
+* WP Super Cache
+* WP Optimize
+* Rank Math SEO
+* Yoast SEO
+
+#### Themes with Pro integration for custom field comparison:
+
+* Astra
+* Blocksy
+* BlogHash
+* Envo One
+* Envo Royal
+* GeneratePress
+* Go
+* Inspiro
+* Kadence
+* Lightning
+* Neve
+* OceanWP
 
 ## Documentation
 
@@ -48,7 +96,7 @@ https://publishpress.com/documentation/revisionary-start
 * Clone the repository
 * Create a new branch
 * Implement and commit the code
-* Create a Pull Request targetting the "development" branch adding details about your fix
+* Create a Pull Request targeting the "development" branch adding details about your fix
 
 We will review and contact you as soon as possible.
 

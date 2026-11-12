@@ -59,7 +59,7 @@ class RvyPostEdit {
                 var rvyDeleteURL = {};
                 <?php
                 foreach ($revisions as $revision) {
-                    if (!current_user_can('read_post', $revision->ID) || wp_is_post_autosave($revision)) {
+                    if (!rvy_can_read_post($revision->ID) || wp_is_post_autosave($revision)) {
                         continue;
                     }
 
@@ -162,7 +162,7 @@ class RvyPostEdit {
                     $args['createScheduledRevisionNonce'] = wp_create_nonce('create_scheduled_revision');
 
                     $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
-                    ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
+                    ? rvy_creation_action_url($post->ID, 'revise')
                     : false;
 
                     wp_localize_script( 'rvy_object_edit', 'rvyObjEdit', $args );
@@ -352,6 +352,10 @@ class RvyPostEdit {
             return;
         }
 
+        if (!rvy_can_change_revision_author($post->ID)) {
+            return;
+        }
+
         $published_post_id = rvy_post_id($post->ID);
         $published_author = get_post_field('post_author', $published_post_id);
 
@@ -385,7 +389,7 @@ class RvyPostEdit {
             //});
 
             $(document).on('change', 'div.rvy-author-selection select', function(e) {
-                var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select'));?>'};
+                var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select_' . $post->ID));?>'};
 
                 // Keep focus on the select while saving (WCAG 2.4.3); announce the result (WCAG 4.1.3)
                 $('div.rvy-author-selection select').attr('aria-busy', 'true');

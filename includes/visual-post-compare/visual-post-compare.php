@@ -81,7 +81,7 @@ final class Visual_Post_Compare {
 			$parent_id = rvy_post_id( $revision );
 		}
 
-		return $parent_id && (
+		return $parent_id && rvy_can_view_workflow_revision($revision) && (
 			current_user_can( 'read_post', $revision->ID )
 			|| ( function_exists( 'presspermit' ) && current_user_can( 'edit_post', $revision->ID ) )
 		);

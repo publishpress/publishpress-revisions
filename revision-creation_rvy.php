@@ -132,8 +132,11 @@ class RevisionCreation {
 		if (!empty($base_post) && !empty($base_post->post_status) && ('revision' == $base_post->post_type)) {
 			$post_id = $base_post->post_parent;
 
-		} elseif (!empty($base_post) && !empty($base_post->post_mime_type) && rvy_is_revision_status($base_post->post_mime_type) && empty($args['force_revision_copy'])) {
-			$post_id = $base_post->comment_count;
+		} elseif (!empty($base_post) && rvy_in_revision_workflow($base_post) && empty($args['force_revision_copy'])) {
+			$post_id = rvy_post_id($base_post->ID);
+            if (!$post_id) {
+                return 0;
+            }
 		}
 
 		$enabled_fields = $revisionary->enabled_fields_copy;
@@ -165,6 +168,15 @@ class RevisionCreation {
 			);
 		}
 
+        // A copy created as a live post must not inherit revision identity.
+        if (in_array($data['post_status'], ['publish', 'private', 'future'], true)
+            && !empty($data['post_mime_type'])
+            && rvy_is_revision_status($data['post_mime_type'])
+        ) {
+            $data['post_mime_type'] = '';
+            $data['comment_count'] = 0;
+        }
+
 		$data['post_name'] = wp_unique_post_slug($base_post->post_name, $post_id, $post_status, $base_post->post_type, $base_post->post_parent);
 
 		do_action( 'revisionary_pre_copy_post', $post_id, $data );
@@ -179,7 +191,11 @@ class RevisionCreation {
 			do_action('revisionary_post_copy_post_insert', $post_id, $copy_id ?? 0, $data);
 		}
 
-		if (!empty($args['force_revision_copy'])) {
+        // Insert filters may have made the copy a normal live post. Never write
+        // a base-post ID into its real comment count after that transition.
+		if (!is_wp_error($copy_id) && $copy_id && !empty($args['force_revision_copy'])
+            && rvy_in_revision_workflow($copy_id)
+        ) {
 			$update_data = ['comment_count' => rvy_post_id($post_id)];
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -421,8 +437,11 @@ class RevisionCreation {
 		if (!empty($base_post) && !empty($base_post->post_status) && ('revision' == $base_post->post_type)) {
 			$main_post_id = $base_post->post_parent;
 
-		} elseif (!empty($base_post) && !empty($base_post->post_mime_type) && rvy_is_revision_status($base_post->post_mime_type)) {
-			$main_post_id = $base_post->comment_count;
+		} elseif (!empty($base_post) && rvy_in_revision_workflow($base_post)) {
+			$main_post_id = rvy_post_id($base_post->ID);
+            if (!$main_post_id) {
+                return 0;
+            }
 		}
 
 		$data['comment_count'] = $main_post_id; 	// buffer this value in posts table for query efficiency (actual comment count stored for published post will not be overwritten)
