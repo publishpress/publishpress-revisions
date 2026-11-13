@@ -185,9 +185,12 @@ function rvy_ajax_handler() {
 
 				case 'author_select':
 					if (!empty($_REQUEST['rvy_selection'])) {							// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-						check_ajax_referer('author_select', '_rvynonce');
+						check_ajax_referer('author_select_' . $post_id, '_rvynonce');
 						
-						if (current_user_can('edit_post', $post_id)) {
+						if (!rvy_can_select_revision_author($post_id, (int) $_REQUEST['rvy_selection'])) {
+                            wp_die(esc_html__('You are not allowed to change the author of this revision.', 'revisionary'), '', ['response' => 403]);
+                        } else {
+                            update_post_meta($post_id, '_rvy_author_selector', get_current_user_id());
 							update_post_meta($post_id, '_rvy_author_selection', (int) $_REQUEST['rvy_selection']);  // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 						}
 					}

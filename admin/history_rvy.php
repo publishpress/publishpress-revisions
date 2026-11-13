@@ -253,7 +253,7 @@ class RevisionaryHistory
                     }
                 }
 
-                if ((!rvy_can_read_post($revision->ID) && !current_user_can('edit_post', $revision->ID))) {
+                if (!rvy_can_read_revision_and_parent($revision->ID)) {
                     return;
                 }
 
@@ -453,7 +453,7 @@ class RevisionaryHistory
             return;
         }
 
-        if ( ! rvy_can_read_post( $post->ID ) ) {
+        if ( ! current_user_can( 'read_post', $post->ID ) ) {
             return;
         }
 
@@ -488,10 +488,10 @@ class RevisionaryHistory
             }
 
             $rvy_revisions = array_filter($rvy_revisions, function($rev) {
-                return rvy_can_read_post($rev->ID) || current_user_can('edit_post', $rev->ID);
+                return rvy_can_read_revision_and_parent($rev->ID);
             });
 
-            if (!current_user_can('edit_post', $revision_id) && !rvy_can_read_post($revision_id)) {
+            if (!rvy_can_read_revision_and_parent($revision_id)) {
                 return;
             }
 
@@ -967,6 +967,10 @@ class RevisionaryHistory
             }
         }
 
+        if ($author_diff = rvy_revision_author_diff($compare_from, $compare_to)) {
+            $return[] = $author_diff;
+        }
+
         // === Add select postmeta fields
         if ($compare_from) {
             $from_meta = get_post_meta($compare_from->ID);
@@ -1177,7 +1181,7 @@ class RevisionaryHistory
         $is_administrator = is_content_administrator_rvy();
 
         foreach ( $revisions as $k => $revision ) {
-            if (!$is_administrator && !current_user_can('edit_post', $revision->ID) && !rvy_can_read_post($revision->ID)) {
+            if (!rvy_can_read_revision_and_parent($revision->ID)) {
                 unset($revisions[$k]);
                 continue;
             }

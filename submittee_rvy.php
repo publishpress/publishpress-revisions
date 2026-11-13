@@ -74,9 +74,15 @@ class Revisionary_Submittee {
 			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options']))));
 
 			foreach ( $reviewed_options as $option_basename ) {
+                // The browser cannot nominate arbitrary WordPress options.
+                if (!array_key_exists($option_basename, array_merge(rvy_default_options(), rvy_default_options_sitewide())) && !in_array($option_basename, ['enabled_post_types', 'enabled_post_types_archive'], true)) continue;
 				if (isset($_POST[$option_basename])) {
 					if (is_array($_POST[$option_basename])) {
 						$value = array_map('sanitize_key', wp_unslash($_POST[$option_basename]));
+                        $value = array_combine(array_map('sanitize_key', array_keys($value)), array_values($value));
+                        if (in_array($option_basename, ['enabled_post_types', 'enabled_post_types_archive'], true)) {
+                            $value = array_intersect_key($value, get_post_types([], 'objects'));
+                        }
 					} else {
 						if ('revision_editor_bg_color' == $option_basename) {
 							$value = sanitize_hex_color(wp_unslash($_POST[$option_basename]));

@@ -164,7 +164,7 @@ function rvy_print_builder_upgrade_message() {
         // Translators: %1$s is the active page builder title(s); %2$s is the upgrade or activation link.
         esc_html__('For %1$s revision editing and visual compare, %2$s.', 'revisionary'),
         esc_html($builders),
-        '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer">' . $label . '</a>'
+        '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer">' . $label . '</a>'  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     );
 }
 /** Match access to the Plugins screen, including multisite menu restrictions. */

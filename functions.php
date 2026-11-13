@@ -2,6 +2,8 @@
 defined('ABSPATH') || exit;
 
 require_once(__DIR__ . '/rvy_init-functions.php');
+require_once(__DIR__ . '/admin/RevisionStatusTaxonomySecurity.php');
+\PublishPress\Revisions\RevisionStatusTaxonomySecurity::register();
 
 function revisionary() {
     return \PublishPress\Revisions::instance();
@@ -12,7 +14,7 @@ function revisionary_unrevisioned_postmeta() {
 
 	$exclude = array_merge(
 		$exclude, 
-        array_fill_keys(['_rvy_base_post_id', '_rvy_has_revisions', '_rvy_published_gmt', '_rvy_approved_by', '_rvy_updated_by', '_pp_is_autodraft', '_pp_last_parent', '_edit_lock', '_edit_last', '_wp_old_slug', '_wp_attached_file', '_menu_item_classes', '_menu_item_menu_item_parent', '_menu_item_object', '_menu_item_object_id', '_menu_item_target', '_menu_item_type', '_menu_item_url', '_menu_item_xfn', '_rs_file_key', '_scoper_custom', '_scoper_last_parent', '_wp_attachment_backup_sizes', '_wp_attachment_metadata', '_wp_trash_meta_status', '_wp_trash_meta_time', '_last_attachment_ids', '_last_category_ids', '_encloseme', '_pingme', '_pp_statuses_last_main_status', 'peepso_postnotify', '_peepso_postnotify', '_rvy_subpost_original_source_id', 'jr_listing_views', '_jr_listing_views', '_wpas_*'], true)
+        array_fill_keys(['_rvy_approval_digest', '_rvy_author_selection', '_rvy_author_selector', '_rvy_base_post_id', '_rvy_has_revisions', '_rvy_published_gmt', '_rvy_approved_by', '_rvy_updated_by', '_pp_is_autodraft', '_pp_last_parent', '_edit_lock', '_edit_last', '_wp_old_slug', '_wp_attached_file', '_menu_item_classes', '_menu_item_menu_item_parent', '_menu_item_object', '_menu_item_object_id', '_menu_item_target', '_menu_item_type', '_menu_item_url', '_menu_item_xfn', '_rs_file_key', '_scoper_custom', '_scoper_last_parent', '_wp_attachment_backup_sizes', '_wp_attachment_metadata', '_wp_trash_meta_status', '_wp_trash_meta_time', '_last_attachment_ids', '_last_category_ids', '_encloseme', '_pingme', '_pp_statuses_last_main_status', 'peepso_postnotify', '_peepso_postnotify', '_rvy_subpost_original_source_id', 'jr_listing_views', '_jr_listing_views', '_wpas_*'], true)
 	);
 	
 	return array_keys(array_filter($exclude));
@@ -138,6 +140,10 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         $from_post = get_post($from_post);
     }
 
+    if (!rvy_revision_metadata_is_safe($from_post->ID)) {
+        return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
+    }
+
     do_action('revisionary_pre_copy_postmeta', $from_post, $to_post_id, $args);
     $source_meta_keys = \get_post_custom_keys( $from_post->ID );
     if ( empty( $source_meta_keys ) ) {
@@ -206,12 +212,12 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
                 delete_metadata('post', $to_post_id, $meta_key);
 
                 foreach ( $meta_values as $meta_value ) {
-                    $meta_value = maybe_unserialize( $meta_value );
+                    // Metadata APIs have already unserialized this value once.
                     add_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             } else {
                 foreach ( $meta_values as $meta_value ) {
-                    $meta_value = maybe_unserialize( $meta_value );
+                    // Metadata APIs have already unserialized this value once.
                     update_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             }
@@ -374,7 +380,7 @@ function rvy_post_id($revision_id) {
                 if ($meta_id && $count_id && ($meta_id !== $count_id)) {
                     return 0;
                 }
-                
+
                 $published_id = $count_id ?: $meta_id;
                 $base_post = $published_id ? get_post($published_id) : null;
                 $repair_meta = false;
@@ -387,20 +393,20 @@ function rvy_post_id($revision_id) {
                     $published_id = (int) $base_post->post_parent;
                     $base_post = $published_id ? get_post($published_id) : null;
                     $repair_meta = true;
-					    }
-            
+                }
+
                 if (!$base_post || ($published_id == $_post->ID)
                     || ($base_post->post_type !== $_post->post_type)
                     || rvy_in_revision_workflow($base_post)
                 ) {
-                            return 0;
-                        }
+                    return 0;
+                }
 
                 // Repair only after the final parent has passed every check.
                 if (!$count_id) {
                     if ($repair_meta) {
                         rvy_update_post_meta($_post->ID, '_rvy_base_post_id', $published_id);
-                }
+                    }
 
                     global $wpdb;
                     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -427,6 +433,29 @@ function rvy_admin_url($partial_admin_url) {
     return rvy_nc_url( admin_url($partial_admin_url) );
 }
 
+
+/**
+ * Build a raw creation URL. Escape only when rendering an HTML attribute;
+ * localized script data and subsequent URL helpers must receive raw separators.
+ *
+ * @param int    $post_id Source post or revision.
+ * @param string $action  copy or revise.
+ * @param array  $args    Optional navigation arguments, supplied unencoded.
+ * @return string Raw URL with an operation- and source-bound nonce.
+ */
+function rvy_creation_action_url($post_id, $action, $args = []) {
+    $post_id = absint($post_id);
+    if (!$post_id || !in_array($action, ['copy', 'revise'], true)) {
+        return '';
+    }
+    $args = array_merge($args, [
+        'page' => 'rvy-revisions',
+        'post' => $post_id,
+        'action' => $action,
+        '_wpnonce' => wp_create_nonce('rvy-' . $action . '-' . $post_id),
+    ]);
+    return add_query_arg(urlencode_deep($args), rvy_admin_url('admin.php'));
+}
 
 // deprecated
 function publishpress_revisions_post_updated($post) {
@@ -974,6 +1003,15 @@ add_action('rest_api_init', function () {
             }
             if ($id && rvy_in_revision_workflow($id)) {
                 $status = isset($prepared->post_status) ? $prepared->post_status : $request->get_param('status');
+                $old = get_post($id);
+                // Core REST saves content; workflow actions perform authorized transitions.
+                // Reject every explicit transition, including compatibility status aliases.
+                if ($status && $status !== $old->post_status) {
+                    return new WP_Error('revisionary_workflow_transition', __('Use the Revisions workflow controls to change revision status.', 'revisionary'), ['status' => 403]);
+                }
+                if (isset($prepared->post_mime_type) && $prepared->post_mime_type !== $old->post_mime_type) {
+                    return new WP_Error('revisionary_workflow_transition', __('Use the Revisions workflow controls to change revision status.', 'revisionary'), ['status' => 403]);
+                }
                 $status_object = get_post_status_object($status);
                 if (('future' === $status || ($status_object && ($status_object->public || $status_object->private)))
                     && !current_user_can($type->cap->publish_posts)) {
@@ -1038,9 +1076,19 @@ function rvy_can_access_copy_source($post_id, $revise = false) {
 require_once __DIR__ . '/admin/duplicate-capabilities_rvy.php';
 
 require_once __DIR__ . '/permissions-read_rvy.php';
+
+/** Visibility policy shared by preview, history and comparison. */
+function rvy_can_view_workflow_revision($revision) {
+    $revision = get_post($revision);
+    if (!$revision || !rvy_in_revision_workflow($revision)) return true;
+    if (rvy_is_post_author($revision) || rvy_is_post_author(rvy_post_id($revision->ID)) || rvy_is_full_editor(rvy_post_id($revision->ID))) return true;
+    if (current_user_can('preview_others_revisions') || current_user_can('list_others_revisions')) return true;
+    return !rvy_get_option('revisor_hide_others_revisions');
+}
+
 /** Reading a revision may use its existing edit permission; source posts keep normal read checks. */
 function rvy_can_read_post($post_id) {
-    if (rvy_can_read_post($post_id)) { return true; }
+    if (current_user_can('read_post', $post_id)) { return true; }
     $post = get_post($post_id);
     if (!$post) { return false; }
     $workflow = rvy_in_revision_workflow($post);
@@ -1048,5 +1096,136 @@ function rvy_can_read_post($post_id) {
     return $parent_id && (int) $parent_id !== (int) $post->ID
         && (!$workflow || rvy_can_view_workflow_revision($post))
         && current_user_can('edit_post', $post_id)
+        && current_user_can('read_post', $parent_id);
+}
+
+function rvy_can_read_revision_and_parent($revision_id) {
+    $revision = get_post($revision_id);
+    if (!$revision) return false;
+    $parent_id = wp_is_post_revision($revision) ?: (rvy_in_revision_workflow($revision) ? rvy_post_id($revision->ID) : $revision->ID);
+    return $parent_id && rvy_can_view_workflow_revision($revision)
+        && rvy_can_read_post($revision->ID)
         && rvy_can_read_post($parent_id);
+}
+
+/** Hash stored publication inputs, without running metadata deserializers or render filters. */
+function rvy_revision_approval_digest($revision_id) {
+    global $wpdb;
+    $post = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->posts WHERE ID = %d", $revision_id), ARRAY_A); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
+    if (!$post) return '';
+    // Bookkeeping changes do not alter the approved publication payload.
+    foreach (['post_modified', 'post_modified_gmt', 'post_status', 'guid'] as $key) unset($post[$key]);
+    $meta = $wpdb->get_results($wpdb->prepare("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = %d AND meta_key NOT IN ('_rvy_approval_digest', '_rvy_approved_by', '_rvy_updated_by', '_edit_lock', '_edit_last') ORDER BY meta_key, meta_value", $revision_id), ARRAY_A); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
+    $terms = $wpdb->get_results($wpdb->prepare("SELECT term_taxonomy_id, term_order FROM $wpdb->term_relationships WHERE object_id = %d ORDER BY term_taxonomy_id", $revision_id), ARRAY_A); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
+    // Hash only metadata that is part of publication, plus explicit ownership controls.
+    $keys = array_values(array_unique(array_column($meta, 'meta_key')));
+    $excluded = revisionary_unrevisioned_postmeta();
+    $excluded = array_merge($excluded, ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count']);
+    foreach ([
+        'REVISIONARY_REVISE_ELEMENTOR_CSS' => ['_elementor_css', '_elementor_element_cache'],
+        'REVISIONARY_REVISE_ELEMENTOR_ASSETS' => ['_elementor_page_assets'],
+        'REVISIONARY_REVISE_ELEMENTOR_CONTROLS' => ['_elementor_controls_usage'],
+        'REVISIONARY_REVISE_ELEMENTOR_SCREENSHOT' => ['_elementor_screenshot'],
+    ] as $constant => $cache_keys) {
+        if (!defined($constant)) $excluded = array_merge($excluded, $cache_keys);
+    }
+    $keys = array_filter($keys, static function ($key) use ($excluded) {
+        foreach ($excluded as $pattern) {
+            if (preg_match('/^' . str_replace('\\*', '.*', preg_quote($pattern, '/')) . '$/D', $key)) return false;
+        }
+        return true;
+    });
+    $keys = (array) apply_filters('revisionary_create_revision_meta_keys', array_values($keys));
+    $keys = array_fill_keys(array_merge($keys, ['_rvy_author_selection', '_rvy_author_selector']), true);
+    $meta = array_values(array_filter($meta, static function ($row) use ($keys) {
+        return isset($keys[$row['meta_key']]);
+    }));
+    return hash('sha256', wp_json_encode([$post, $meta, $terms]));
+}
+
+/** Reject objects before any target changes; serialized-looking strings stay strings. */
+function rvy_revision_metadata_is_safe($post_id) {
+    global $wpdb;
+    $safe = static function ($value, $depth = 0) use (&$safe) {
+        if ($depth > 64 || is_object($value) || is_resource($value)) return false;
+        if (is_array($value)) foreach ($value as $item) if (!$safe($item, $depth + 1)) return false;
+        return true;
+    };
+    // Inspect without invoking __wakeup on existing serialized objects.
+    $values = $wpdb->get_col($wpdb->prepare("SELECT meta_value FROM $wpdb->postmeta WHERE post_id = %d", $post_id)); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
+    foreach ($values as $value) {
+        if (is_serialized($value)) {
+            $value = @unserialize(trim($value), ['allowed_classes' => false]); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Legacy metadata inspection disables class instantiation with allowed_classes false and rejects objects.
+        }
+        if (!$safe($value)) return false;
+    }
+    return true;
+}
+
+/**
+ * Authority to propose ownership changes is separate from target-user eligibility.
+ * Keep revision access checks and also honor object-specific live-post edit denials.
+ */
+function rvy_can_change_revision_author($revision_id, $selector_id = 0) {
+    $revision = get_post($revision_id);
+    if (!$revision || !rvy_in_revision_workflow($revision) || !rvy_get_option('allow_post_author_revision')) {
+        return false;
+    }
+    $parent = get_post(rvy_post_id($revision_id));
+    $type = $parent ? get_post_type_object($parent->post_type) : null;
+    $selector = get_user_by('id', $selector_id ?: get_current_user_id());
+    return $type && $selector
+        && $revision->post_type === $parent->post_type
+        && user_can($selector, 'edit_post', $revision_id)
+        && user_can($selector, 'read_post', $parent->ID)
+        && user_can($selector, 'edit_post', $parent->ID)
+        && user_can($selector, $type->cap->edit_others_posts);
+}
+
+/** The AJAX writer and application sink use the same author policy. */
+function rvy_can_select_revision_author($revision_id, $author_id, $selector_id = 0) {
+    if (!rvy_can_change_revision_author($revision_id, $selector_id)) {
+        return false;
+    }
+    $parent = get_post(rvy_post_id($revision_id));
+    $type = get_post_type_object($parent->post_type);
+    $author = get_user_by('id', $author_id);
+    return $author && user_can($author, $type->cap->edit_posts);
+}
+
+/**
+ * Compare effective proposed owners, never the revision's post_author editor.
+ * Ignore legacy or revoked proposals exactly as the application sink does.
+ */
+function rvy_revision_author_diff($compare_from, $compare_to) {
+    $compare_to = get_post($compare_to);
+    if (!$compare_to || !($parent = get_post(rvy_post_id($compare_to->ID)))) {
+        return [];
+    }
+    $effective_author = static function ($revision) use ($parent) {
+        $revision = $revision ? get_post($revision) : null;
+        if ($revision && rvy_in_revision_workflow($revision)
+            && (int) rvy_post_id($revision->ID) === (int) $parent->ID) {
+            $selection = (int) get_post_meta($revision->ID, '_rvy_author_selection', true);
+            $selector = (int) get_post_meta($revision->ID, '_rvy_author_selector', true);
+            if ($selection && $selector && rvy_can_select_revision_author($revision->ID, $selection, $selector)) {
+                return $selection;
+            }
+        }
+        return (int) $parent->post_author;
+    };
+    $from_author = $effective_author($compare_from);
+    $to_author = $effective_author($compare_to);
+    if ($from_author === $to_author) {
+        return [];
+    }
+    return [
+        'id' => 'rvy_post_author',
+        'name' => esc_html__('Post Author', 'revisionary'),
+        'diff' => wp_text_diff(
+            sprintf('%s (#%d)', get_the_author_meta('display_name', $from_author), $from_author),
+            sprintf('%s (#%d)', get_the_author_meta('display_name', $to_author), $to_author),
+            ['show_split_view' => true]
+        ),
+    ];
 }

@@ -126,7 +126,7 @@ if ( ! empty( $_REQUEST['post_type'] ) ) {												//phpcs:ignore WordPress.S
 
 if (!empty($_REQUEST['published_post'])) {												//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ($_post = get_post((int) $_REQUEST['published_post'])) {							//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$published_title = $_post->post_title;
+		if (rvy_can_read_post($_post->ID)) $published_title = $_post->post_title;
 	}
 }
 

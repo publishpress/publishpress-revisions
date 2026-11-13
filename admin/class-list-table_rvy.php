@@ -62,7 +62,11 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		if (!empty($_REQUEST['pp_revisions_deleted'])) {
-			check_admin_referer('revisions-deleted');
+			$delete_id = absint($_REQUEST['pp_revisions_deleted']);
+            check_admin_referer('revisions-deleted-' . $delete_id);
+            if (!current_user_can('delete_post', $delete_id)) {
+                wp_die(esc_html__('Sorry, you are not allowed to delete this item.', 'revisionary'), '', ['response' => 403]);
+            }
 
 			global $current_user;
 			
@@ -71,7 +75,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			if (('trash' == get_post_field('post_status', $delete_id))) {
 				$revision = get_post($delete_id);
 				
-				if (!empty($revision->comment_count)) {
+				if (!empty($revision->comment_count) && rvy_in_revision_workflow($revision)) {
 					$triggered_deletions[$delete_id] = $revision->comment_count;
 				}
 			}
@@ -85,6 +89,12 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 
 			if ($revision_id) {
+                $deletion_target = get_post($revision_id);
+                if (!$deletion_target || 'trash' !== $deletion_target->post_status
+                    || !rvy_in_revision_workflow($deletion_target)
+                    || !current_user_can('delete_post', $revision_id)) {
+                    continue;
+                }
 				wp_delete_post($revision_id, true);
 
 				$revision_count[$post_id] = $revision_count[$post_id] ? $revision_count[$post_id] - 1 : 0;
@@ -1211,7 +1221,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			}
 		}
 
-		$action_rows = function_exists( 'rvy_scheduled_revision_action_rows' ) ? rvy_scheduled_revision_action_rows() : [];
+		$action_rows = function_exists( 'rvy_scheduled_revision_action_rows' ) ? rvy_scheduled_revision_action_rows(array_keys($future_posts)) : [];
 		$permitted_parent_ids = [];
 		if ( ! is_content_administrator_rvy() && $this->published_post_ids_query ) {
 			// This is the same Permissions-filtered parent-post query used by the normal Revisionary list.
@@ -1903,9 +1913,27 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		$filter_revision_statuses = $this->scheduled_only ? ['future-revision'] : array_diff( rvy_revision_statuses(), ['future-revision'] );
 		$revision_status_csv = implode("','", array_map('sanitize_key', $filter_revision_statuses));
 
-		$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv')");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        $facet_args = [
+            'post_type' => $this->post_types, 'post_status' => ['draft', 'pending', 'draft-revision', 'pending-revision', 'future-revision'],
+            'post_mime_type' => explode("','", $revision_status_csv), 'posts_per_page' => 60,
+            'orderby' => 'modified', 'order' => 'DESC',
+        ];
+        if (rvy_get_option('revisor_hide_others_revisions') && !is_content_administrator_rvy()
+            && !current_user_can('list_others_revisions') && !current_user_can('preview_others_revisions')) {
+            $facet_args['author'] = get_current_user_id();
+        }
+        $post_ids = [];
+        $author_ids = [];
+        foreach (get_posts($facet_args) as $facet_revision) {
+            $parent_id = rvy_post_id($facet_revision->ID);
+            if ($parent_id && rvy_can_read_revision_and_parent($facet_revision->ID)) {
+                $post_ids[] = (int) $parent_id;
+                $author_ids[] = (int) $facet_revision->post_author;
+            }
+        }
+
 		
-		$id_csv = implode( "','", $author_ids);
+		$id_csv = implode( "','", array_map('intval', $author_ids));
 		$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");						 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 		$authors = [];
@@ -1975,8 +2003,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		? intval( $_REQUEST['published_post'] )																	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		: '';
 
-		$post_ids = $wpdb->get_col("SELECT comment_count FROM $wpdb->posts WHERE post_mime_type IN ('$revision_status_csv') AND post_status NOT IN ('trash', 'auto-draft', 'inherit') ORDER BY post_modified_gmt DESC LIMIT 60");  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		
+
 		$post_id_csv = implode("','", array_map('intval', $post_ids));
 
 		$posts = [];
@@ -2012,7 +2039,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		
 		$author_ids = $wpdb->get_col("SELECT DISTINCT post_author FROM $wpdb->posts WHERE ID IN ('$post_id_csv') AND post_status NOT IN ('trash', 'auto-draft', 'inherit')");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
-		$id_csv = implode( "','", $author_ids);
+		$id_csv = implode( "','", array_map('intval', $author_ids));
 		$_users = $wpdb->get_results("SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . $id_csv . "')");	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPressVIPMinimum.Variables.RestrictedVariables.user_meta__wpdb__users
 
 		$authors = [];
@@ -2286,7 +2313,7 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 
 		$post_type_object = get_post_type_object( $post->post_type );
 
-		$can_read_post = rvy_can_read_post($post->ID);
+		$can_read_post = current_user_can('read_post', $post->ID);
 		$can_edit_post    = current_user_can( 'edit_post', $post->ID );
 		$can_read_post = $can_read_post || $can_edit_post; // @todo
 
@@ -2313,9 +2340,9 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 			&& rvy_can_access_copy_source($post->ID)
 			) {
 				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
-				$url = rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=copy$redirect_arg");
-				$actions['copy_revision'] = "<a href='$url'>" . esc_html__('Duplicate', 'revisionary') . '</a>';
+				$redirect_url = !empty($_REQUEST['rvy_redirect']) ? esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';
+				$url = rvy_creation_action_url($post->ID, 'copy', ['rvy_redirect' => $redirect_url]);
+				$actions['copy_revision'] = "<a href='" . esc_url($url) . "'>" . esc_html__('Duplicate', 'revisionary') . '</a>';
 			}
 		}
 

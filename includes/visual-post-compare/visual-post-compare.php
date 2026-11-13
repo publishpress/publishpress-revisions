@@ -57,7 +57,7 @@ final class Visual_Post_Compare {
 		}
 		$current_post = $current_post_id ? get_post( $current_post_id ) : null;
 
-		if ( ! $current_post || ! self::can_access_revision( $revision ) || ! rvy_can_read_post( $current_post->ID ) ) {
+		if ( ! $current_post || ! self::can_access_revision( $revision ) || ! current_user_can( 'read_post', $current_post->ID ) ) {
 			return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
 		}
 
@@ -81,8 +81,8 @@ final class Visual_Post_Compare {
 			$parent_id = rvy_post_id( $revision );
 		}
 
-		return $parent_id && (
-			rvy_can_read_post( $revision->ID )
+		return $parent_id && rvy_can_view_workflow_revision($revision) && (
+			current_user_can( 'read_post', $revision->ID )
 			|| ( function_exists( 'presspermit' ) && current_user_can( 'edit_post', $revision->ID ) )
 		);
 	}
@@ -101,7 +101,7 @@ final class Visual_Post_Compare {
 
 		return ( wp_is_post_revision( $post ) || rvy_in_revision_workflow( $post ) )
 			? self::can_access_revision( $post )
-			: rvy_can_read_post( $post->ID );
+			: current_user_can( 'read_post', $post->ID );
 	}
 
 	/**
@@ -297,7 +297,7 @@ final class Visual_Post_Compare {
 			}
 		}
 
-		if ( ! rvy_can_read_post( $compare_ids['post'] ) ) {
+		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) ) {
 			wp_die( esc_html__( 'You are not allowed to view this comparison.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
 		}
 	}
@@ -343,7 +343,7 @@ final class Visual_Post_Compare {
 			}
 		}
 
-		if ( ! rvy_can_read_post( $compare_ids['post'] ) || ! self::can_access_revision( $compare_ids['revision'] ) ) {
+		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) || ! self::can_access_revision( $compare_ids['revision'] ) ) {
 			return;
 		}
 

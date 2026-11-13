@@ -89,8 +89,7 @@ class PluginCompat {
 			return $clause;
 		}
 
-		if (('edit' == $required_operation) && in_array($post_type, rvy_get_manageable_types(), true) && rvy_get_option('apply_post_exceptions') 
-		) {
+		if ('edit' == $required_operation) {
 			foreach(['mod', 'src_table', 'logic', 'ids'] as $var) {
 				if (!empty($args[$var])) {
 					$$var =  $args[$var];
@@ -99,7 +98,6 @@ class PluginCompat {
 				}
 			}
 
-			$revision_base_status_csv = implode("','", array_map('sanitize_key', rvy_revision_base_statuses()));
 			$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
 
 			if ('include' == $mod) {
@@ -119,7 +117,7 @@ class PluginCompat {
 					$parent_csv = implode("','", $parent_ids);
 					$clause = "(($clause) OR ($src_table.post_mime_type IN ('$revision_status_csv') AND $src_table.comment_count IN ('$parent_csv')))";
 				}
-			} elseif ('exclude' == $mod) {
+			} elseif ('exclude' == $mod && in_array($post_type, rvy_get_manageable_types(), true) && rvy_get_option('apply_post_exceptions')) {
 				$clause = "(($clause) AND ($src_table.post_mime_type NOT IN ('$revision_status_csv') OR $src_table.comment_count NOT IN ('" . implode("','", array_map('intval', $ids)) . "')))";
 			}
 		}
