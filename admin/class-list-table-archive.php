@@ -1172,7 +1172,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 		$can_edit_parent = current_user_can('edit_post', $item->post_parent);
 
 		$actions 			= [];
-		$can_read_post		= !empty($post_status_obj) && ($can_edit_parent || current_user_can( 'read_post', $item->ID ) || current_user_can( 'read_post', $item->ID ));
+		$can_read_post		= !empty($post_status_obj) && ($can_edit_parent || rvy_can_read_post( $item->ID ) || rvy_can_read_post( $item->ID ));
 		$can_edit_post		= $is_administrator || (!empty($post_status_obj && $can_edit_parent));
 		
 		// phpcs:ignore Squiz.PHP.CommentedOutCode.Found
