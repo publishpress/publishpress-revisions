@@ -1108,6 +1108,36 @@ function rvy_can_read_revision_and_parent($revision_id) {
         && rvy_can_read_post($parent_id);
 }
 
+/**
+ * Record approval of a Scheduled Revision that was created or edited by a user who can approve it.
+ *
+ * Scheduled publication requires an approval digest matching the revision's current content. Revisions scheduled
+ * directly (Schedule Revision in the editor) or edited after scheduling by an approver would otherwise have no
+ * matching digest and be returned to the Submitted queue at publication time.
+ */
+function rvy_record_scheduled_revision_approval($revision_id) {
+    $revision_id = (int) $revision_id;
+
+    if (!$revision_id || !is_user_logged_in()) {
+        return false;
+    }
+
+    $revision = get_post($revision_id);
+
+    if (!$revision || ('future-revision' !== $revision->post_mime_type) || ('revision' === $revision->post_type)) {
+        return false;
+    }
+
+    if (!current_user_can('approve_revision', $revision_id)) {
+        return false;
+    }
+
+    update_post_meta($revision_id, '_rvy_approved_by', get_current_user_id());
+    update_post_meta($revision_id, '_rvy_approval_digest', rvy_revision_approval_digest($revision_id));
+
+    return true;
+}
+
 /** Hash stored publication inputs, without running metadata deserializers or render filters. */
 function rvy_revision_approval_digest($revision_id) {
     global $wpdb;

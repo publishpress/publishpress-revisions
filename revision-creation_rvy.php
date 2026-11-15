@@ -371,6 +371,9 @@ class RevisionCreation {
 			$revision_before->post_mime_type = 'new';
 
 			do_action('revisionary_scheduled', $published_post->ID, $revision, $revision_before);
+
+			// Scheduling by a user who can approve this revision counts as approval of its current content.
+			rvy_record_scheduled_revision_approval($revision_id);
 		}
 
 		if (('pending-revision' == $revision_status) && !defined('REVISIONARY_NO_INSERT_POST_ACTION')) {

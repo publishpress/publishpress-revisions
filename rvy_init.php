@@ -86,6 +86,18 @@ add_action('publish_revision_rvy', '_revisionary_publish_scheduled_cron');
 // Action Scheduler hook
 add_action('publish_revision_rvy_action_scheduler', '_revisionary_action_scheduler_publish_scheduled');
 
+// Keep the approval digest current when an approver saves a Scheduled Revision (after its meta and terms are stored)
+add_action('wp_after_insert_post',
+	function($post_id, $post) {
+		if (!empty($post) && is_object($post) && ('future-revision' === $post->post_mime_type)
+		&& function_exists('rvy_record_scheduled_revision_approval')
+		) {
+			rvy_record_scheduled_revision_approval($post_id);
+		}
+	},
+	999, 2
+);
+
 add_action('before_delete_post', 
 	function($delete_post_id) {
 		if (rvy_in_revision_workflow($delete_post_id)) {
