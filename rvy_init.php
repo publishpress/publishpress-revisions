@@ -9,6 +9,9 @@ if ( is_admin() ) {
 
 add_action('init', 'rvy_status_registrations', 40);
 
+// Run after revision capability grants, including frontend and REST requests.
+add_filter('map_meta_cap', 'rvy_limit_scheduled_revision_edit_caps', PHP_INT_MAX, 4);
+
 add_filter(
 	'ppcart_post_types',
 	function ($post_types_args) {
