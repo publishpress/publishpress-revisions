@@ -571,7 +571,11 @@ class Revisionary
 			)
 		);
 
-		$enabled_post_types = array_intersect_key($enabled_post_types, array_fill_keys(get_post_types([], 'names'), true));
+		$enabled_post_types = array_filter((array) $enabled_post_types, static function ($post_type) {
+            // Saved types may be registered later; validate syntax, not availability.
+            return ('' !== (string) $post_type) && (strlen((string) $post_type) <= 20)
+                && (sanitize_key($post_type) === (string) $post_type);
+        }, ARRAY_FILTER_USE_KEY);
 
 		$this->enabled_post_types = array_merge($this->enabled_post_types, $enabled_post_types);
 
@@ -633,7 +637,11 @@ class Revisionary
             $enabled_post_types_archive = $this->defaultPostTypes();
 	    }
 
-        $enabled_post_types_archive = array_intersect_key((array) $enabled_post_types_archive, get_post_types([], 'objects'));
+        $enabled_post_types_archive = array_filter((array) $enabled_post_types_archive, static function ($post_type) {
+            // Saved types may be registered later; validate syntax, not availability.
+            return ('' !== (string) $post_type) && (strlen((string) $post_type) <= 20)
+                && (sanitize_key($post_type) === (string) $post_type);
+        }, ARRAY_FILTER_USE_KEY);
 
 	    $enabled_post_types_archive = array_diff_key(
 			$enabled_post_types_archive,
