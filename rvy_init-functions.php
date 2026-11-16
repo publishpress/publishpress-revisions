@@ -28,6 +28,14 @@ function _rvy_rest_prepare($response, $post, $request) {
 		return $response;
 	}
 
+	// Gutenberg's post-save notice uses REST link directly, without adding preview=true.
+	// Restrict this editor URL adjustment to authenticated edit-context responses.
+	if (is_user_logged_in() && ('edit' === $request->get_param('context'))
+	    && isset($response->data['link'])
+	) {
+		$response->data['link'] = rvy_preview_url($post);
+	}
+
 	if ($type_obj = get_post_type_object($post->post_type)) {
 		$rest_base = ! empty( $type_obj->rest_base ) ? $type_obj->rest_base : $type_obj->name;
 		$namespace = ! empty( $type_obj->rest_namespace ) ? $type_obj->rest_namespace : 'wp/v2';
