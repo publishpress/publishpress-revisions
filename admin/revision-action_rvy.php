@@ -536,7 +536,6 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 			$scheduled = $revision->post_date;
 
 			update_post_meta($revision->ID, '_rvy_approved_by', $current_user->ID);
-            update_post_meta($revision->ID, '_rvy_approval_digest', rvy_revision_approval_digest($revision->ID));
 		}
 
 		clean_post_cache($revision->ID);
@@ -829,19 +828,6 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		return $revision;
 	}
 
-    if ('future-revision' === $revision->post_mime_type) {
-        $approved_digest = get_post_meta($revision_id, '_rvy_approval_digest', true);
-        if (!$approved_digest || !hash_equals($approved_digest, rvy_revision_approval_digest($revision_id))) {
-            // Existing schedules without provenance also require fresh review.
-            rvy_clear_revision_publication_events($revision_id);
-            delete_post_meta($revision_id, '_rvy_approved_by');
-            delete_post_meta($revision_id, '_rvy_approval_digest');
-            $wpdb->update($wpdb->posts, ['post_mime_type' => 'pending-revision', 'post_status' => rvy_get_option('rvy_permissions_compat_mode') ? 'pending-revision' : 'pending'], ['ID' => $revision_id]); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Direct workflow update is followed immediately by clean_post_cache.
-            clean_post_cache($revision_id);
-            return new WP_Error('revisionary_approval_changed', __('The revision changed after approval and requires review again.', 'revisionary'));
-		}
-	}
-	
     if (!rvy_revision_metadata_is_safe($revision_id)) {
         return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
     }
