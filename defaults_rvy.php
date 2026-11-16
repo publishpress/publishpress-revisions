@@ -140,6 +140,7 @@ function rvy_default_options() {
 		'scheduled_revision_update_modified_date' => 1,
 		'pending_revision_update_modified_date' => 0,
 		'edd_key' => '',
+		'revision_editor_bg_color' => '',
 		'revision_preview_links' => 1,
 		'preview_link_type' => 'published_slug',
 		'preview_link_alternate_preview_arg' => 1,
