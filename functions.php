@@ -1153,7 +1153,7 @@ function rvy_revision_metadata_is_safe($post_id) {
         if (is_array($value) || is_object($value)) foreach ((array) $value as $item) if (!$safe($item, $depth + 1)) return false;
         return true;
     };
-    // Inspect without invoking __wakeup on existing serialized objects; only stdClass may be instantiated.
+    // Match rvy_unserialize_meta_value(): allow only stdClass data, never custom classes.
     $values = $wpdb->get_col($wpdb->prepare("SELECT meta_value FROM $wpdb->postmeta WHERE post_id = %d", $post_id)); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
     foreach ($values as $value) {
         if (is_serialized($value)) {
