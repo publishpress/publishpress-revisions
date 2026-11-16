@@ -129,6 +129,21 @@ function revisionary_copy_terms($from_post, $target_id, $args = []) {
  *
  * @return void
  */
+/**
+ * Decode raw postmeta once before copying; permit only plain stdClass data objects.
+ */
+function rvy_unserialize_meta_value($meta_value) {
+    if (is_string($meta_value) && is_serialized($meta_value)) {
+        $value = @unserialize(trim($meta_value), ['allowed_classes' => ['stdClass']]); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize, WordPress.PHP.NoSilencedErrors.Discouraged -- Raw postmeta is validated before copying; allow only stdClass data, never custom classes.
+
+        if (false !== $value || 'b:0;' === trim($meta_value)) {
+            return $value;
+        }
+    }
+
+    return $meta_value;
+}
+
 function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
     $defaults = ['empty_target_only' => false, 'apply_deletions' => false, 'skip_meta_keys' => []];
     $args = array_merge($defaults, $args);
@@ -212,12 +227,14 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
                 delete_metadata('post', $to_post_id, $meta_key);
 
                 foreach ( $meta_values as $meta_value ) {
-                    // Metadata APIs have already unserialized this value once.
+                    // get_post_custom_values() returns raw stored values, so decode before re-saving (only stdClass objects).
+                    $meta_value = rvy_unserialize_meta_value( $meta_value );
                     add_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             } else {
                 foreach ( $meta_values as $meta_value ) {
-                    // Metadata APIs have already unserialized this value once.
+                    // get_post_custom_values() returns raw stored values, so decode before re-saving (only stdClass objects).
+                    $meta_value = rvy_unserialize_meta_value( $meta_value );
                     update_metadata( 'post', $to_post_id, $meta_key, \PublishPress\Revisions\Utils::recursively_slash_strings( $meta_value ) );
                 }
             }
