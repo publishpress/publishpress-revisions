@@ -343,7 +343,7 @@ class RevisionaryFront {
 
 	/**
 	 * A Public Post Preview link verified for this revision grants read access to it,
-	 * as long as the published post it belongs to is publicly viewable.
+	 * including private and unpublished parents supported by the preview workflow.
 	 */
 	public function fltPublicPostPreviewAccess($can_read, $revision_id, $parent_id = 0) {
 		if ($can_read || empty($this->public_preview_ids[(int) $revision_id])) {
@@ -356,12 +356,11 @@ class RevisionaryFront {
 			return $can_read;
 		}
 
-		if (function_exists('is_post_publicly_viewable')) {
-			return is_post_publicly_viewable($parent_id);
-		}
-
-		$status_obj = get_post_status_object(get_post_status($parent_id));
-		return $status_obj && !empty($status_obj->public) && is_post_type_viewable(get_post_type($parent_id));
+		$parent = get_post($parent_id);
+		$status_obj = $parent ? get_post_status_object($parent->post_status) : null;
+		return $status_obj && 'trash' !== $parent->post_status
+			&& (!empty($status_obj->public) || in_array($parent->post_status, ['private', 'draft', 'pending', 'future'], true))
+			&& is_post_type_viewable($parent->post_type);
 	}
 
 	public function fltAuthor($display_name) {
