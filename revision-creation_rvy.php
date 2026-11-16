@@ -101,6 +101,10 @@ class RevisionCreation {
 		}
 
 		$copy_id = $this->insert_post($data, $post_id, $post_status, $args);
+		if (is_wp_error($copy_id)) {
+            if (empty($args['suppress_redirect']) && !isset($args['redirect_url'])) { wp_die(esc_html($copy_id->get_error_message())); }
+            return $copy_id;
+        }
 
 		$post_copy = get_post($copy_id);
 
@@ -179,6 +183,10 @@ class RevisionCreation {
 
 		$data['post_name'] = wp_unique_post_slug($base_post->post_name, $post_id, $post_status, $base_post->post_type, $base_post->post_parent);
 
+        $skip_meta_keys = is_array($enabled_fields) ? array_keys(array_filter($enabled_fields, static function ($value) { return !$value; })) : [];
+        $meta_check = revisionary_copy_postmeta($post_id, 0, ['skip_meta_keys' => $skip_meta_keys, 'validate_only' => true]);
+        if (is_wp_error($meta_check)) { return $meta_check; }
+
 		do_action( 'revisionary_pre_copy_post', $post_id, $data );
 
 		add_filter('wp_insert_post_empty_content', [$this, 'disregardEmptyContent']);
@@ -227,18 +235,11 @@ class RevisionCreation {
 		revisionary_copy_terms($post_id, $copy_id, $_args);
 
 
-		if (is_array($enabled_fields)) {
-			$skip_meta_keys = array_filter(
-				$enabled_fields, 
-				function($val) {
-					return is_null($val) || !$val;
-				}
-			);
-		} else {
-			$skip_meta_keys = [];
-		}
-
-		revisionary_copy_postmeta($post_id, $copy_id, compact('skip_meta_keys'));
+        $meta_result = revisionary_copy_postmeta($post_id, $copy_id, compact('skip_meta_keys'));
+        if (is_wp_error($meta_result)) {
+            wp_delete_post($copy_id, true);
+            return $meta_result;
+        }
 
 		if ($post_id != $copy_id) {
 			rvy_update_post_meta($copy_id, '_rvy_source_post_id', $post_id);
@@ -355,6 +356,11 @@ class RevisionCreation {
 		}
 
 		$revision_id = $this->insert_revision($data, $main_post_id, $revision_status, $args);
+		if (is_wp_error($revision_id)) {
+            if (empty($args['suppress_redirect']) && !isset($args['redirect_url'])) { wp_die(esc_html($revision_id->get_error_message())); }
+            return $revision_id;
+        }
+        if (!$revision_id) { return $revision_id; }
 
 		$revision = get_post($revision_id);
 
@@ -463,6 +469,21 @@ class RevisionCreation {
 
 		do_action( 'revisionary_pre_insert_revision', $main_post_id, $data );
 
+        // Reject unsupported source fields before creating a partial revision.
+        $meta_post = !empty($args['meta_post_id']) ? get_post($args['meta_post_id']) : null;
+        $meta_source = $meta_post && !empty($meta_post->post_type)
+            && apply_filters('revisionary_use_autodraft_meta', true, $data) ? (int) $args['meta_post_id'] : $main_post_id;
+        $meta_check = revisionary_copy_postmeta($meta_source, 0, ['validate_only' => true]);
+        if (is_wp_error($meta_check)) { return $meta_check; }
+        if ($meta_source !== $main_post_id) {
+            $meta_check = revisionary_copy_postmeta($main_post_id, 0, [
+                'validate_only' => true,
+                // Autosave fields supersede these parent fields.
+                'skip_meta_keys' => (array) get_post_custom_keys($meta_source),
+            ]);
+            if (is_wp_error($meta_check)) { return $meta_check; }
+        }
+
 		$revision_id = wp_insert_post(\wp_slash($data), true);
 
 		if (is_wp_error($revision_id)) {
@@ -516,18 +537,25 @@ class RevisionCreation {
 			}
 		}
 
-		if (!empty($args['meta_post_id']) && apply_filters('revisionary_use_autodraft_meta', true, $data)) {
-			revisionary_copy_terms($args['meta_post_id'], $revision_id);
-			revisionary_copy_postmeta($args['meta_post_id'], $revision_id);
+		if ($meta_source !== $main_post_id) {
+			revisionary_copy_terms($meta_source, $revision_id);
+			$meta_result = revisionary_copy_postmeta($meta_source, $revision_id);
 
 			// For taxonomies and meta keys not stored for the autosave, use published copies
 			revisionary_copy_terms($main_post_id, $revision_id, ['empty_target_only' => true]);
-			revisionary_copy_postmeta($main_post_id, $revision_id, ['empty_target_only' => true]);
+			if (!is_wp_error($meta_result)) {
+                $meta_result = revisionary_copy_postmeta($main_post_id, $revision_id, ['empty_target_only' => true]);
+            }
 		} else {
 			// If term selections are not posted for revision, store current published terms
 			revisionary_copy_terms($main_post_id, $revision_id);
-			revisionary_copy_postmeta($main_post_id, $revision_id);
+			$meta_result = revisionary_copy_postmeta($main_post_id, $revision_id);
 		}
+
+        if (is_wp_error($meta_result)) {
+            wp_delete_post($revision_id, true);
+            return $meta_result;
+        }
 
 		if ($main_post_id != $revision_id) {
 			rvy_update_post_meta($revision_id, '_rvy_base_post_id', $main_post_id);

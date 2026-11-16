@@ -14,7 +14,7 @@ function revisionary_unrevisioned_postmeta() {
 
 	$exclude = array_merge(
 		$exclude, 
-        array_fill_keys(['_rvy_approval_digest', '_rvy_author_selection', '_rvy_author_selector', '_rvy_base_post_id', '_rvy_has_revisions', '_rvy_published_gmt', '_rvy_approved_by', '_rvy_updated_by', '_pp_is_autodraft', '_pp_last_parent', '_edit_lock', '_edit_last', '_wp_old_slug', '_wp_attached_file', '_menu_item_classes', '_menu_item_menu_item_parent', '_menu_item_object', '_menu_item_object_id', '_menu_item_target', '_menu_item_type', '_menu_item_url', '_menu_item_xfn', '_rs_file_key', '_scoper_custom', '_scoper_last_parent', '_wp_attachment_backup_sizes', '_wp_attachment_metadata', '_wp_trash_meta_status', '_wp_trash_meta_time', '_last_attachment_ids', '_last_category_ids', '_encloseme', '_pingme', '_pp_statuses_last_main_status', 'peepso_postnotify', '_peepso_postnotify', '_rvy_subpost_original_source_id', 'jr_listing_views', '_jr_listing_views', '_wpas_*'], true)
+        array_fill_keys(['_rvy_publication_error', '_rvy_approval_digest', '_rvy_author_selection', '_rvy_author_selector', '_rvy_base_post_id', '_rvy_has_revisions', '_rvy_published_gmt', '_rvy_approved_by', '_rvy_updated_by', '_pp_is_autodraft', '_pp_last_parent', '_edit_lock', '_edit_last', '_wp_old_slug', '_wp_attached_file', '_menu_item_classes', '_menu_item_menu_item_parent', '_menu_item_object', '_menu_item_object_id', '_menu_item_target', '_menu_item_type', '_menu_item_url', '_menu_item_xfn', '_rs_file_key', '_scoper_custom', '_scoper_last_parent', '_wp_attachment_backup_sizes', '_wp_attachment_metadata', '_wp_trash_meta_status', '_wp_trash_meta_time', '_last_attachment_ids', '_last_category_ids', '_encloseme', '_pingme', '_pp_statuses_last_main_status', 'peepso_postnotify', '_peepso_postnotify', '_rvy_subpost_original_source_id', 'jr_listing_views', '_jr_listing_views', '_wpas_*'], true)
 	);
 	
 	return array_keys(array_filter($exclude));
@@ -155,15 +155,19 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         $from_post = get_post($from_post);
     }
 
-    if (!rvy_revision_metadata_is_safe($from_post->ID)) {
-        return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
+    if (!$from_post) {
+        return new WP_Error('revisionary_missing_source', __('The source post could not be found.', 'revisionary'));
     }
 
-    do_action('revisionary_pre_copy_postmeta', $from_post, $to_post_id, $args);
+    if (empty($args['validate_only'])) {
+        do_action('revisionary_pre_copy_postmeta', $from_post, $to_post_id, $args);
+    }
     $source_meta_keys = \get_post_custom_keys( $from_post->ID );
     if ( empty( $source_meta_keys ) ) {
-        do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
-        return;
+        if (empty($args['validate_only'])) {
+            do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
+        }
+        return true;
     }
 
     $meta_excludelist = revisionary_unrevisioned_postmeta();
@@ -212,6 +216,23 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         array_diff($meta_keys, $skip_meta_keys)
     );
 
+    $copy_values = [];
+    foreach ($meta_keys as $meta_key) {
+        if ($empty_target_only && in_array($meta_key, (array) $target_meta_keys, true)) {
+            continue;
+        }
+        $copy_values[$meta_key] = (array) get_post_custom_values($meta_key, $from_post->ID);
+        if (!rvy_revision_metadata_values_are_safe($copy_values[$meta_key])) {
+            if (empty($args['validate_only'])) {
+                do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
+            }
+            return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
+        }
+    }
+    if (!empty($args['validate_only'])) {
+        return true;
+    }
+    // Copy the validated snapshot, without re-reading values during writes.
     foreach ( $meta_keys as $meta_key ) {
         if ($empty_target_only && !empty($target_meta_keys) && is_array($target_meta_keys)) {
             if (in_array($meta_key, $target_meta_keys, true)) {
@@ -219,7 +240,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
             }
         }
 
-        $meta_values = \get_post_custom_values( $meta_key, $from_post->ID );
+        $meta_values = $copy_values[$meta_key] ?? [];
 
         if (!empty($meta_values)) {
             if (count($meta_values) > 1) {
@@ -241,6 +262,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
         }
     }
 
+    $delete_meta_keys = [];
     if (!$empty_target_only && !empty($target_meta_keys) && is_array($target_meta_keys)) {
         if ($delete_meta_keys = array_diff($target_meta_keys, $meta_keys, $skip_meta_keys, revisionary_unrevisioned_postmeta())) {
             $deletable_keys = apply_filters('revisionary_deletable_postmeta_keys', ['_links_to', '_links_to_target']);
@@ -261,6 +283,7 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
 
     do_action('revisionary_copy_postmeta', $from_post, $to_post_id, $args);
     do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
+    return true;
 }
 
 function rvy_revision_base_statuses($args = []) {
@@ -1168,8 +1191,7 @@ function rvy_limit_scheduled_revision_edit_caps($caps, $cap, $user_id, $args) {
 }
 
 /** Reject objects before any target changes; serialized-looking strings stay strings. */
-function rvy_revision_metadata_is_safe($post_id) {
-    global $wpdb;
+function rvy_revision_metadata_values_are_safe($values) {
     $safe = static function ($value, $depth = 0) use (&$safe) {
         if ($depth > 64 || is_resource($value)) return false;
         // Plain stdClass data objects (e.g. Beaver Builder layout nodes) have no magic methods.
@@ -1178,7 +1200,6 @@ function rvy_revision_metadata_is_safe($post_id) {
         return true;
     };
     // Match rvy_unserialize_meta_value(): allow only stdClass data, never custom classes.
-    $values = $wpdb->get_col($wpdb->prepare("SELECT meta_value FROM $wpdb->postmeta WHERE post_id = %d", $post_id)); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
     foreach ($values as $value) {
         if (is_serialized($value)) {
             $value = @unserialize(trim($value), ['allowed_classes' => ['stdClass']]); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Legacy metadata inspection allows only stdClass and rejects other objects.
@@ -1186,6 +1207,17 @@ function rvy_revision_metadata_is_safe($post_id) {
         if (!$safe($value)) return false;
     }
     return true;
+}
+
+/** Validate the same eligible values as copying, without changing either post. */
+function rvy_revision_metadata_is_safe($post_id, $target_id = 0, $args = []) {
+    return !is_wp_error(revisionary_copy_postmeta($post_id, $target_id, array_merge($args, ['validate_only' => true])));
+}
+
+function rvy_disabled_revision_meta_keys() {
+    global $revisionary;
+    return is_array($revisionary->enabled_fields)
+        ? array_keys(array_filter($revisionary->enabled_fields, static function ($value) { return !$value; })) : [];
 }
 
 /**
