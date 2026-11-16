@@ -101,7 +101,7 @@ function _revisionary_publish_scheduled_cron($revision_id) {
 
 function _revisionary_action_scheduler_publish_scheduled($revision_id = 0) {
 	if (rvy_get_option('scheduled_revisions')) {
-		revisionary_publish_scheduled(['revision_id' => (int) $revision_id]);
+		revisionary_publish_scheduled(['revision_id' => (int) $revision_id, 'throw_on_error' => true]);
 	}
 }
 
