@@ -1165,15 +1165,17 @@ function rvy_limit_scheduled_revision_edit_caps($caps, $cap, $user_id, $args) {
 function rvy_revision_metadata_is_safe($post_id) {
     global $wpdb;
     $safe = static function ($value, $depth = 0) use (&$safe) {
-        if ($depth > 64 || is_object($value) || is_resource($value)) return false;
-        if (is_array($value)) foreach ($value as $item) if (!$safe($item, $depth + 1)) return false;
+        if ($depth > 64 || is_resource($value)) return false;
+        // Plain stdClass data objects (e.g. Beaver Builder layout nodes) have no magic methods.
+        if (is_object($value) && !($value instanceof \stdClass)) return false;
+        if (is_array($value) || is_object($value)) foreach ((array) $value as $item) if (!$safe($item, $depth + 1)) return false;
         return true;
     };
-    // Inspect without invoking __wakeup on existing serialized objects.
+    // Match rvy_unserialize_meta_value(): allow only stdClass data, never custom classes.
     $values = $wpdb->get_col($wpdb->prepare("SELECT meta_value FROM $wpdb->postmeta WHERE post_id = %d", $post_id)); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
     foreach ($values as $value) {
         if (is_serialized($value)) {
-            $value = @unserialize(trim($value), ['allowed_classes' => false]); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Legacy metadata inspection disables class instantiation with allowed_classes false and rejects objects.
+            $value = @unserialize(trim($value), ['allowed_classes' => ['stdClass']]); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Legacy metadata inspection allows only stdClass and rejects other objects.
         }
         if (!$safe($value)) return false;
     }
