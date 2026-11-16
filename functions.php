@@ -1108,39 +1108,40 @@ function rvy_can_read_revision_and_parent($revision_id) {
         && rvy_can_read_post($parent_id);
 }
 
-/** Hash stored publication inputs, without running metadata deserializers or render filters. */
-function rvy_revision_approval_digest($revision_id) {
-    global $wpdb;
-    $post = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->posts WHERE ID = %d", $revision_id), ARRAY_A); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
-    if (!$post) return '';
-    // Bookkeeping changes do not alter the approved publication payload.
-    foreach (['post_modified', 'post_modified_gmt', 'post_status', 'guid'] as $key) unset($post[$key]);
-    $meta = $wpdb->get_results($wpdb->prepare("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = %d AND meta_key NOT IN ('_rvy_approval_digest', '_rvy_approved_by', '_rvy_updated_by', '_edit_lock', '_edit_last') ORDER BY meta_key, meta_value", $revision_id), ARRAY_A); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
-    $terms = $wpdb->get_results($wpdb->prepare("SELECT term_taxonomy_id, term_order FROM $wpdb->term_relationships WHERE object_id = %d ORDER BY term_taxonomy_id", $revision_id), ARRAY_A); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval validation requires current raw database values without cache or deserialization filters.
-    // Hash only metadata that is part of publication, plus explicit ownership controls.
-    $keys = array_values(array_unique(array_column($meta, 'meta_key')));
-    $excluded = revisionary_unrevisioned_postmeta();
-    $excluded = array_merge($excluded, ['wpil_links_outbound_external_count_data', 'wpil_links_outbound_internal_count_data', 'wpil_links_outbound_external_count']);
-    foreach ([
-        'REVISIONARY_REVISE_ELEMENTOR_CSS' => ['_elementor_css', '_elementor_element_cache'],
-        'REVISIONARY_REVISE_ELEMENTOR_ASSETS' => ['_elementor_page_assets'],
-        'REVISIONARY_REVISE_ELEMENTOR_CONTROLS' => ['_elementor_controls_usage'],
-        'REVISIONARY_REVISE_ELEMENTOR_SCREENSHOT' => ['_elementor_screenshot'],
-    ] as $constant => $cache_keys) {
-        if (!defined($constant)) $excluded = array_merge($excluded, $cache_keys);
+/**
+ * Scheduled revisions may only be edited by users who can edit their live parent.
+ *
+ * Use the stored workflow status, not request data, and the user being checked.
+ * Returning existing caps on success preserves all other revision restrictions.
+ */
+function rvy_limit_scheduled_revision_edit_caps($caps, $cap, $user_id, $args) {
+    if (!in_array($cap, ['edit_post', 'edit_page'], true) || empty($args[0])) {
+        return $caps;
     }
-    $keys = array_filter($keys, static function ($key) use ($excluded) {
-        foreach ($excluded as $pattern) {
-            if (preg_match('/^' . str_replace('\\*', '.*', preg_quote($pattern, '/')) . '$/D', $key)) return false;
-        }
-        return true;
-    });
-    $keys = (array) apply_filters('revisionary_create_revision_meta_keys', array_values($keys));
-    $keys = array_fill_keys(array_merge($keys, ['_rvy_author_selection', '_rvy_author_selector']), true);
-    $meta = array_values(array_filter($meta, static function ($row) use ($keys) {
-        return isset($keys[$row['meta_key']]);
-    }));
-    return hash('sha256', wp_json_encode([$post, $meta, $terms]));
+
+    $revision = get_post($args[0]);
+    if ($revision && ('revision' === $revision->post_type)) {
+        // Autosaves and core revisions inherit the scheduled revision's lock.
+        $revision = get_post($revision->post_parent);
+    }
+
+    if (!$revision || ('future-revision' !== $revision->post_mime_type)
+        || !rvy_in_revision_workflow($revision)
+    ) {
+        return $caps;
+    }
+
+    $parent_id = (int) rvy_post_id($revision->ID);
+    $parent = $parent_id ? get_post($parent_id) : null;
+    if (!$parent || ($parent_id === (int) $revision->ID)
+        || ('revision' === $parent->post_type) || rvy_in_revision_workflow($parent)
+        || ($parent->post_type !== $revision->post_type)
+        || !user_can($user_id, 'edit_post', $parent_id)
+    ) {
+        return ['do_not_allow'];
+    }
+
+    return $caps;
 }
 
 /** Reject objects before any target changes; serialized-looking strings stay strings. */
