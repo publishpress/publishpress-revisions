@@ -5,6 +5,7 @@ class RevisionaryFront {
 
     private $preview_parents = [];
     private $preview_inheritance_busy = false;
+    private $public_preview_ids = [];
 
 	function __construct() {
 		global $revisionary;
@@ -40,6 +41,10 @@ class RevisionaryFront {
 
 		if (!empty($_REQUEST['_ppp'])) {									//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_action('template_redirect', [$this, 'actRevisionPreviewRedirect'], 1);
+
+			// Public Post Preview fires this only after verifying its link nonce for an opted-in post.
+			add_action('ppp_show_public_preview', [$this, 'actPublicPostPreview']);
+			add_filter('revisionary_can_read_revision_and_parent', [$this, 'fltPublicPostPreviewAccess'], 10, 3);
 		}
 
 
@@ -326,6 +331,37 @@ class RevisionaryFront {
 				}
 			}
 		}
+	}
+
+	public function actPublicPostPreview($post_id) {
+		$post_id = (int) $post_id;
+
+		if ($post_id && rvy_in_revision_workflow($post_id)) {
+			$this->public_preview_ids[$post_id] = true;
+		}
+	}
+
+	/**
+	 * A Public Post Preview link verified for this revision grants read access to it,
+	 * as long as the published post it belongs to is publicly viewable.
+	 */
+	public function fltPublicPostPreviewAccess($can_read, $revision_id, $parent_id = 0) {
+		if ($can_read || empty($this->public_preview_ids[(int) $revision_id])) {
+			return $can_read;
+		}
+
+		$parent_id = (int) $parent_id ?: (int) rvy_post_id($revision_id);
+
+		if (!$parent_id || ($parent_id === (int) $revision_id) || rvy_in_revision_workflow($parent_id)) {
+			return $can_read;
+		}
+
+		if (function_exists('is_post_publicly_viewable')) {
+			return is_post_publicly_viewable($parent_id);
+		}
+
+		$status_obj = get_post_status_object(get_post_status($parent_id));
+		return $status_obj && !empty($status_obj->public) && is_post_type_viewable(get_post_type($parent_id));
 	}
 
 	public function fltAuthor($display_name) {

@@ -1120,9 +1120,15 @@ function rvy_can_read_revision_and_parent($revision_id) {
     $revision = get_post($revision_id);
     if (!$revision) return false;
     $parent_id = wp_is_post_revision($revision) ?: (rvy_in_revision_workflow($revision) ? rvy_post_id($revision->ID) : $revision->ID);
-    return $parent_id && rvy_can_view_workflow_revision($revision)
+    $can_read = $parent_id && rvy_can_view_workflow_revision($revision)
         && rvy_can_read_post($revision->ID)
         && rvy_can_read_post($parent_id);
+
+    /**
+     * Allows integrations that verified their own access token (e.g. a public preview link)
+     * to grant read access to a specific revision for the current request.
+     */
+    return (bool) apply_filters('revisionary_can_read_revision_and_parent', $can_read, $revision->ID, (int) $parent_id);
 }
 
 /**
