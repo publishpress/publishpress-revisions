@@ -73,15 +73,19 @@ class Revisionary_Submittee {
 		if (!empty($_POST['all_options'])) {
 			$reviewed_options = array_map('sanitize_key', explode(',', sanitize_text_field(wp_unslash($_POST['all_options']))));
 
+			$post_type_options = ['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'];
+
 			foreach ( $reviewed_options as $option_basename ) {
-                // The browser cannot nominate arbitrary WordPress options.
-                if (!array_key_exists($option_basename, array_merge(rvy_default_options(), rvy_default_options_sitewide())) && !in_array($option_basename, ['enabled_post_types', 'enabled_post_types_archive'], true)) continue;
 				if (isset($_POST[$option_basename])) {
 					if (is_array($_POST[$option_basename])) {
 						$value = array_map('sanitize_key', wp_unslash($_POST[$option_basename]));
                         $value = array_combine(array_map('sanitize_key', array_keys($value)), array_values($value));
-                        if (in_array($option_basename, ['enabled_post_types', 'enabled_post_types_archive'], true)) {
-                            $value = array_intersect_key($value, get_post_types([], 'objects'));
+                        if (in_array($option_basename, $post_type_options, true)) {
+                            // Settings are saved before most plugins register their post types on init,
+                            // so preserve valid keys independently of registration timing.
+                            $value = array_filter($value, function ($post_type) {
+                                return ('' !== $post_type) && (strlen($post_type) <= 20);
+                            }, ARRAY_FILTER_USE_KEY);
                         }
 					} else {
 						if ('revision_editor_bg_color' == $option_basename) {
