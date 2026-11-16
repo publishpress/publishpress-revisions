@@ -1853,7 +1853,7 @@ class Revisionary
             || 'GET' !== strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) ?? 'GET')) {
             return false;
         }
-        $id = isset($_GET['page_id']) && sanitize_text_field(wp_unslash($_GET['page_id'])) ?? (isset($_GET['p']) && sanitize_text_field(wp_unslash($_GET['p'])) && isset($_GET['preview_id']) ?? (sanitize_text_field(wp_unslash($_GET['preview_id'])) ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Request classification, not authorization.
+        $id = $_GET['page_id'] ?? ($_GET['p'] ?? ($_GET['preview_id'] ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Request classification, not authorization.
         if (!is_scalar($id) || !ctype_digit((string) $id) || !(int) $id) {
             return false;
         }
