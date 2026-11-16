@@ -430,7 +430,11 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			) AS prev_revision_status";
 		}
 
-		$query_types = array_values(array_intersect(array_merge($this->post_types, ['revision']), get_post_types()));
+		$query_types = array_values(array_filter(array_map('strval', array_merge($this->post_types, ['revision'])), static function ($post_type) {
+            // Registration timing does not establish SQL safety; bind every value below.
+            return ('' !== $post_type) && (strlen($post_type) <= 20)
+                && (sanitize_key($post_type) === $post_type);
+        }));
         $type_placeholders = implode(',', array_fill(0, count($query_types), '%s'));
 
 		$query .= " FROM $wpdb->posts r"
