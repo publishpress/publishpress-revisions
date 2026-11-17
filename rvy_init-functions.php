@@ -28,6 +28,14 @@ function _rvy_rest_prepare($response, $post, $request) {
 		return $response;
 	}
 
+	// Gutenberg's post-save notice uses REST link directly, without adding preview=true.
+	// Restrict this editor URL adjustment to authenticated edit-context responses.
+	if (is_user_logged_in() && ('edit' === $request->get_param('context'))
+	    && isset($response->data['link'])
+	) {
+		$response->data['link'] = rvy_preview_url($post);
+	}
+
 	if ($type_obj = get_post_type_object($post->post_type)) {
 		$rest_base = ! empty( $type_obj->rest_base ) ? $type_obj->rest_base : $type_obj->name;
 		$namespace = ! empty( $type_obj->rest_namespace ) ? $type_obj->rest_namespace : 'wp/v2';
@@ -93,7 +101,7 @@ function _revisionary_publish_scheduled_cron($revision_id) {
 
 function _revisionary_action_scheduler_publish_scheduled($revision_id = 0) {
 	if (rvy_get_option('scheduled_revisions')) {
-		revisionary_publish_scheduled(['revision_id' => (int) $revision_id]);
+		revisionary_publish_scheduled(['revision_id' => (int) $revision_id, 'throw_on_error' => true]);
 	}
 }
 
@@ -1196,6 +1204,22 @@ function rvy_check_duplicate_mail($new_msg, $sent_mail, $buffer) {
  * 		notification_class : notification class
  */
 function rvy_mail( $address, $title, $message, $args ) {
+    if (!rvy_get_option('use_notification_buffer')) {
+        return rvy_deliver_mail($address, $title, $message, $args);
+    }
+    require_once __DIR__ . '/mail-buffer_rvy.php';
+    $delivered = _rvy_mail_with_lock(static function () use ($address, $title, $message, $args) {
+        rvy_deliver_mail($address, $title, $message, $args, true);
+        return true;
+    });
+    if (false === $delivered) {
+        // Preserve direct delivery on unsupported databases or lock timeout.
+        // The fallback reads history and uses a compare-and-swap append.
+        rvy_deliver_mail($address, $title, $message, $args, false, true);
+    }
+}
+
+function rvy_deliver_mail( $address, $title, $message, $args, $locked = false, $lock_failed = false ) {
 	/*
 	 * [wp-cron action checks wp_option revisionary_mail_buffer. If wait time has elapsed, send buffered emails (up to limit per minute)]
 	 * 
@@ -1218,7 +1242,9 @@ function rvy_mail( $address, $title, $message, $args ) {
 
 	$new_msg = array_merge($send, ['time' => strtotime(current_time( 'mysql' )), 'time_gmt' => time()], $args);
 
-	if (!$buffer_status = rvy_mail_check_buffer($new_msg)) {
+    $buffer_status = $locked ? _rvy_mail_check_buffer_locked($new_msg)
+        : ($lock_failed ? (object) ['sent_mail' => (array) get_option('revisionary_sent_mail', []), 'buffer' => (array) get_option('revisionary_mail_buffer', [])] : rvy_mail_check_buffer($new_msg));
+	if (!$buffer_status) {
 		$buffer_status = (object)[];
 	}
 
@@ -1243,8 +1269,12 @@ function rvy_mail( $address, $title, $message, $args ) {
 				$buffer_status->sent_mail = [];
 			}
 
-			$buffer_status->sent_mail[]= $new_msg;
-			update_option('revisionary_sent_mail', $buffer_status->sent_mail);
+            if ($locked || $lock_failed) {
+                _rvy_mail_append_history($new_msg);
+            } else {
+			    $buffer_status->sent_mail[]= $new_msg;
+			    update_option('revisionary_sent_mail', $buffer_status->sent_mail);
+            }
 		}
 	}
 }

@@ -36,6 +36,39 @@ function _rvy_mail_with_lock($callback) {
     finally { $wpdb->get_var($wpdb->prepare('SELECT RELEASE_LOCK(%s)', $key)); } // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Connection-specific database advisory lock operation must execute immediately and cannot be cached.
 }
 
+/** Preserve concurrent history entries when advisory locking is unavailable. */
+function _rvy_mail_append_history($message) {
+    global $wpdb;
+    for ($attempt = 0; $attempt < 5; $attempt++) {
+        $stored = $wpdb->get_var($wpdb->prepare("SELECT option_value FROM $wpdb->options WHERE option_name = %s", 'revisionary_sent_mail')); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+        if (null === $stored) {
+            if (add_option('revisionary_sent_mail', [$message], '', false)) { return true; }
+            continue;
+        }
+        $history = is_serialized($stored) ? @unserialize($stored, ['allowed_classes' => false]) : []; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Object instantiation is disabled for stored data.
+        $history = is_array($history) ? $history : [];
+        $oldest = time() - max(172800, (int) apply_filters('revisionary_mail_log_duration', 86400 * 30));
+        $history = array_filter($history, static function ($entry) use ($oldest) {
+            return !isset($entry['time_gmt']) || $entry['time_gmt'] >= $oldest;
+        });
+        $history[] = $message;
+        // Conditional update provides atomic compare-and-swap when advisory locks are unavailable.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Required for this compare-and-swap write.
+        $updated = $wpdb->query($wpdb->prepare(
+            "UPDATE $wpdb->options SET option_value = %s WHERE option_name = %s AND MD5(option_value) = %s",
+            maybe_serialize($history), 'revisionary_sent_mail', md5($stored)
+        ));
+        if (1 === $updated) {
+            wp_cache_delete('revisionary_sent_mail', 'options');
+            wp_cache_delete('alloptions', 'options');
+            wp_cache_delete('notoptions', 'options');
+            return true;
+        }
+    }
+    do_action('revisionary_mail_buffer_error', 'history_update_failed');
+    return false;
+}
+
 function _rvy_mail_check_buffer_locked($new_msg = [], $args = []) {
 	global $wpdb;
 	
@@ -110,9 +143,7 @@ function _rvy_mail_check_buffer_locked($new_msg = [], $args = []) {
 	}
     if (!isset($buffer)) $buffer = [];
 
-	if (!empty($purged)) {
-		update_option('revisionary_sent_mail', $sent_mail);
-	}
+    // Persist pruning with the next atomic append, never a stale snapshot.
 
 	if (!empty($first_mail_log) && $sent_mail) {
 		$wpdb->query("UPDATE $wpdb->options SET autoload = 'no' WHERE option_name = 'revisionary_sent_mail'");			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -196,7 +227,7 @@ function _rvy_send_buffered_mail_locked() {
 			}
 
 			$buffer_status->sent_mail[]= $next_mail;
-			update_option('revisionary_sent_mail', $buffer_status->sent_mail);
+			_rvy_mail_append_history($next_mail);
 		}
 	}
 }

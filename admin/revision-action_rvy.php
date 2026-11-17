@@ -451,7 +451,11 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		}
 	}
 
-    if (!rvy_revision_metadata_is_safe($revision_id)) return false;
+    if (!rvy_revision_metadata_is_safe($revision_id, $post->ID, ['skip_meta_keys' => rvy_disabled_revision_meta_keys()])) {
+        $error = new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
+        if (!$batch_process) { wp_die(esc_html($error->get_error_message())); }
+        return $error;
+    }
 
 	$published_url = get_permalink($post->ID);
 
@@ -536,7 +540,6 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 			$scheduled = $revision->post_date;
 
 			update_post_meta($revision->ID, '_rvy_approved_by', $current_user->ID);
-            update_post_meta($revision->ID, '_rvy_approval_digest', rvy_revision_approval_digest($revision->ID));
 		}
 
 		clean_post_cache($revision->ID);
@@ -768,7 +771,9 @@ function rvy_revision_restore() {
 
 	check_admin_referer( "restore-post_{$post->ID}|$revision->ID" );
 
-    if (!rvy_revision_metadata_is_safe($revision_id)) return false;
+    if (!rvy_revision_metadata_is_safe($revision_id, $post->ID)) {
+        wp_die(esc_html__('Revision metadata contains unsupported objects.', 'revisionary'));
+    }
 
 	$published_url = get_permalink($post->ID);
 
@@ -829,58 +834,51 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		return $revision;
 	}
 
-    if ('future-revision' === $revision->post_mime_type) {
-        $approved_digest = get_post_meta($revision_id, '_rvy_approval_digest', true);
-        if (!$approved_digest || !hash_equals($approved_digest, rvy_revision_approval_digest($revision_id))) {
-            // Existing schedules without provenance also require fresh review.
-            rvy_clear_revision_publication_events($revision_id);
-            delete_post_meta($revision_id, '_rvy_approved_by');
-            delete_post_meta($revision_id, '_rvy_approval_digest');
-            $wpdb->update($wpdb->posts, ['post_mime_type' => 'pending-revision', 'post_status' => rvy_get_option('rvy_permissions_compat_mode') ? 'pending-revision' : 'pending'], ['ID' => $revision_id]); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Direct workflow update is followed immediately by clean_post_cache.
-            clean_post_cache($revision_id);
-            return new WP_Error('revisionary_approval_changed', __('The revision changed after approval and requires review again.', 'revisionary'));
-		}
-	}
-	
-    if (!rvy_revision_metadata_is_safe($revision_id)) {
-        return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
-    }
-
 	$original_revision_status = $revision->post_mime_type;
 
-	if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
-		$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
+	// Native revision ownership is stored in post_parent. Ignore legacy
+	// workflow metadata and comment_count when restoring a historical revision.
+	if ('revision' === $revision->post_type) {
+		$published_id = (int) wp_is_post_revision($revision);
+		if (!$published_id) {
+			return false;
+		}
+	} else {
+		if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
+			$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
 
-		$post_type = get_post_field('post_type', $published_id);
+			$post_type = get_post_field('post_type', $published_id);
 
-		if (!$post_type) {
-			$published_id = 0;
-		} elseif ('revision' == $post_type) {
-			if ('inherit' == get_post_field('post_status', $published_id)) {
-				$_published_id = get_post_field('post_parent', $published_id);
-				
-				if ($_published_id != $revision_id) {
-				  $published_id = $_published_id;  
+			if (!$post_type) {
+				$published_id = 0;
+			} elseif ('revision' == $post_type) {
+				if ('inherit' == get_post_field('post_status', $published_id)) {
+					$_published_id = get_post_field('post_parent', $published_id);
+					
+					if ($_published_id != $revision_id) {
+					  $published_id = $_published_id;  
+					}
+				}
+		
+				$post_type = get_post_field('post_type', $published_id);
+		
+				if (!$post_type || ('revision' == $post_type)) {
+					$published_id = 0;
 				}
 			}
-	
-			$post_type = get_post_field('post_type', $published_id);
-	
-			if (!$post_type || ('revision' == $post_type)) {
-				$published_id = 0;
+		}
+
+		if (empty($published_id)) {
+			if (!$published_id = $revision->comment_count) {
+				if (! $published_id = rvy_post_id($revision_id)) {
+					return false;
+				}
 			}
 		}
+
 	}
 
-	if (empty($published_id)) {
-		if (!$published_id = $revision->comment_count) {
-			if (! $published_id = rvy_post_id($revision_id)) {
-				return false;
-			}
-		}
-	}
-
-	if (rvy_in_revision_workflow($published_id)) {
+	if (('revision' !== $revision->post_type) && rvy_in_revision_workflow($published_id)) {
 		$published_id = rvy_post_id($published_id);
 	}
 
@@ -892,6 +890,20 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$published = get_post($published_id);
+	if (!$published || ((int) $published->ID === (int) $revision_id)) {
+		return false;
+	}
+
+	// Retain a valid existing parent without perpetuating a self-parent link.
+	$existing_parent = (int) $published->post_parent;
+	if ((int) $published->ID === $existing_parent) {
+		$existing_parent = 0;
+	}
+
+    $skip_post_meta = rvy_is_revision_status($original_revision_status) ? rvy_disabled_revision_meta_keys() : [];
+    if (!rvy_revision_metadata_is_safe($revision_id, $published_id, ['skip_meta_keys' => $skip_post_meta])) {
+        return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
+    }
 
 	if (defined('PUBLISHPRESS_MULTIPLE_AUTHORS_VERSION')) {
 		if (!$published_authors = get_multiple_authors($published_id)) {
@@ -969,6 +981,8 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$revision_content = $update['post_content'];
 
+	$enabled_fields = null;
+
 	if (rvy_is_revision_status($original_revision_status)) {
 		$enabled_fields = $revisionary->enabled_fields;
 
@@ -991,10 +1005,12 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
-	// Prevent a revision from making the published post its own parent. This
-	// must run before wp_update_post()/rvy_update_post() writes post_parent.
+	// Prevent a revision from making the published post its own parent. A past
+	// revision's post_parent is the published post ID, so keep the published
+	// post's current parent instead. This must run before
+	// wp_update_post()/rvy_update_post() writes post_parent.
 	if (isset($update['post_parent']) && ((int) $published->ID === (int) $update['post_parent'])) {
-		$update['post_parent'] = 0;
+		$update['post_parent'] = $existing_parent;
 	}
 
 	if (defined('REVISIONARY_APPLY_REVISION_WP_UPDATE')) {
@@ -1063,7 +1079,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	// Safeguard: prevent invalid hierarchy and broken Pages admin
 	if (!empty($update_fields['post_parent']) && ($post_id == $update_fields['post_parent'])) {
-		$update_fields['post_parent'] = 0;
+		$update_fields['post_parent'] = $existing_parent;
 	}
 
 	if ($author_selection = get_post_meta($revision_id, '_rvy_author_selection', true)) {
@@ -1097,18 +1113,8 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
-	if (is_array($enabled_fields)) {
-		$skip_post_meta = array_filter(
-			$enabled_fields, 
-			function($val) {
-				return is_null($val) || !$val;
-			}
-		);
-	} else {
-		$skip_post_meta = [];
-	}
-
-	revisionary_copy_postmeta($revision, $published->ID, ['skip_meta_keys' => $skip_post_meta, 'apply_empty' => !$is_imported]);
+    $meta_result = revisionary_copy_postmeta($revision, $published->ID, ['skip_meta_keys' => $skip_post_meta, 'apply_empty' => !$is_imported]);
+    if (is_wp_error($meta_result)) { return $meta_result; }
 
 	$_args = ['apply_empty' => !$is_imported, 'applying_revision' => true, 'skip_taxonomies' => []];
 
@@ -1356,7 +1362,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	if (empty($revision) || empty($revision->post_mime_type)) {
 		$revision = (object) (array) $published;
-		$revision->post_mime_type = $original_post_status;
+		$revision->post_mime_type = $original_revision_status;
 		$revision->ID = $revision_id;
 	}
 
@@ -1719,6 +1725,13 @@ function rvy_publish_scheduled_revisions($args = []) {
 
 				$_result = rvy_apply_revision($row->ID, 'future-revision');
 				if (!$_result || is_wp_error($_result)) {
+					if (is_wp_error($_result)) {
+                        update_post_meta($row->ID, '_rvy_publication_error', $_result->get_error_message());
+                        do_action('revisionary_scheduled_publication_error', $row->ID, $_result);
+                        if (!empty($args['throw_on_error'])) {
+                            throw new RuntimeException($_result->get_error_message());
+                        }
+                    }
 					// Don't trip an error because revision may have already been published by a different site request.
 					// If not, the redirect to the published URL will indicate the current status
 					continue;
@@ -1729,6 +1742,7 @@ function rvy_publish_scheduled_revisions($args = []) {
 				}
 
 				$restored_post_ids[$published_id] = true;
+				delete_metadata('post', $row->ID, '_rvy_publication_error');
 				
 				$post = get_post( $published_id );
 

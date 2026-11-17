@@ -183,7 +183,30 @@ class Revisionary
 			}
 		}
 
-		if (rvy_use_visual_compare() && (current_user_can('read') || is_content_administrator_rvy())) {
+		// Include custom post type editors, Revisors and Approvers. Object access
+		// is checked separately before comparisons or content are returned.
+		$can_load_visual_compare = current_user_can('edit_posts');
+		foreach (['edit_others_revisions', 'list_others_revisions', 'preview_others_revisions', 'manage_revision_queue', 'manage_unsubmitted_revisions', 'restore_revisions', 'view_revision_archive'] as $compare_revision_cap) {
+			if (current_user_can($compare_revision_cap)) {
+				$can_load_visual_compare = true;
+				break;
+			}
+		}
+		foreach (get_post_types([], 'objects') as $compare_post_type) {
+			if (empty($compare_post_type->cap->edit_posts)) {
+				continue;
+			}
+			$compare_edit_cap = $compare_post_type->cap->edit_posts;
+			if (current_user_can($compare_edit_cap)
+				|| current_user_can(str_replace('edit_', 'revise_', $compare_edit_cap))
+				|| current_user_can(str_replace('edit_', 'approve_', $compare_edit_cap))
+			) {
+				$can_load_visual_compare = true;
+				break;
+			}
+		}
+
+		if (rvy_use_visual_compare() && $can_load_visual_compare) {
 			require_once(dirname(__FILE__).'/visual-compare_rvy.php');
 			new RevisionaryVisualCompare();
 
@@ -571,7 +594,11 @@ class Revisionary
 			)
 		);
 
-		$enabled_post_types = array_intersect_key($enabled_post_types, array_fill_keys(get_post_types([], 'names'), true));
+		$enabled_post_types = array_filter((array) $enabled_post_types, static function ($post_type) {
+            // Saved types may be registered later; validate syntax, not availability.
+            return ('' !== (string) $post_type) && (strlen((string) $post_type) <= 20)
+                && (sanitize_key($post_type) === (string) $post_type);
+        }, ARRAY_FILTER_USE_KEY);
 
 		$this->enabled_post_types = array_merge($this->enabled_post_types, $enabled_post_types);
 
@@ -633,7 +660,11 @@ class Revisionary
             $enabled_post_types_archive = $this->defaultPostTypes();
 	    }
 
-        $enabled_post_types_archive = array_intersect_key((array) $enabled_post_types_archive, get_post_types([], 'objects'));
+        $enabled_post_types_archive = array_filter((array) $enabled_post_types_archive, static function ($post_type) {
+            // Saved types may be registered later; validate syntax, not availability.
+            return ('' !== (string) $post_type) && (strlen((string) $post_type) <= 20)
+                && (sanitize_key($post_type) === (string) $post_type);
+        }, ARRAY_FILTER_USE_KEY);
 
 	    $enabled_post_types_archive = array_diff_key(
 			$enabled_post_types_archive,
@@ -1845,8 +1876,20 @@ class Revisionary
             || 'GET' !== strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) ?? 'GET')) {
             return false;
         }
-        $id = isset($_GET['page_id']) && sanitize_text_field(wp_unslash($_GET['page_id'])) ?? (isset($_GET['p']) && sanitize_text_field(wp_unslash($_GET['p'])) && isset($_GET['preview_id']) ?? (sanitize_text_field(wp_unslash($_GET['preview_id'])) ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Request classification, not authorization.
-        if (!is_scalar($id) || !ctype_digit((string) $id) || !(int) $id) {
+        // These query values only identify a preview candidate; capability checks authorize access.
+        $id = 0;
+		if (isset($_GET['page_id'])) {																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['page_id']) ? absint(wp_unslash($_GET['page_id'])) : 0;			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif (isset($_GET['p'])) {																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['p']) ? absint(wp_unslash($_GET['p'])) : 0;						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif (isset($_GET['preview_id'])) {														// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['preview_id']) ? absint(wp_unslash($_GET['preview_id'])) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
+        if (!is_scalar($id)) {
+            return false;
+        }
+        $id = absint(wp_unslash($id));
+        if (!$id) {
             return false;
         }
         $post = get_post((int) $id);

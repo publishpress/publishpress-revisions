@@ -5,6 +5,7 @@ class RevisionaryFront {
 
     private $preview_parents = [];
     private $preview_inheritance_busy = false;
+    private $public_preview_ids = [];
 
 	function __construct() {
 		global $revisionary;
@@ -16,6 +17,7 @@ class RevisionaryFront {
 
 		add_action('parse_query', [$this, 'actSetQueriedObject'], 20);
 		add_action('pre_get_posts', [$this, 'configureNativeRevisionPreview'], 99);
+		add_action('pre_get_posts', [$this, 'configureWorkflowRevisionPreview'], 99);
 		add_action('parse_query', [$this, 'actFlagHomeRevision'], 20);
 
 		if (!defined('ET_BUILDER_VERSION') || defined('REVISIONARY_DIVI_HOME_PREVIEW_FILTER')) {
@@ -40,6 +42,10 @@ class RevisionaryFront {
 
 		if (!empty($_REQUEST['_ppp'])) {									//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_action('template_redirect', [$this, 'actRevisionPreviewRedirect'], 1);
+
+			// Public Post Preview fires this only after verifying its link nonce for an opted-in post.
+			add_action('ppp_show_public_preview', [$this, 'actPublicPostPreview']);
+			add_filter('revisionary_can_read_revision_and_parent', [$this, 'fltPublicPostPreviewAccess'], 10, 3);
 		}
 
 
@@ -48,6 +54,29 @@ class RevisionaryFront {
 		do_action('revisionary_front_init');
 	}
 
+    /** Admit an authorized singular preview without granting its edit meta cap. */
+    public function configureWorkflowRevisionPreview($query) {
+        if (is_admin() || !is_user_logged_in() || !$query->is_main_query()
+            || !$query->is_singular() || !empty($_POST) // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reject form submissions; this callback performs no form action.
+            || (defined('REST_REQUEST') && REST_REQUEST)
+            || (defined('DOING_AJAX') && DOING_AJAX)
+            || !isset($_SERVER['REQUEST_METHOD'])
+            || 'GET' !== strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])))) {
+            return;
+        }
+        $id = (int) ($query->get('page_id') ?: $query->get('p'));
+        $revision = $id ? get_post($id) : null;
+        if (!$revision || !rvy_in_revision_workflow($revision)
+            || 'future-revision' !== $revision->post_mime_type
+            || in_array($revision->post_status, ['publish', 'private', 'future', 'trash', 'inherit'], true)
+            || !rvy_can_read_revision_and_parent($id)) {
+            return;
+        }
+        // WP_Query accepts an explicitly requested status without its edit_post
+        // preview gate. This exact main query has already passed read checks.
+        $query->set('post_status', $revision->post_status);
+        $query->is_preview = true;
+    }
 	function fltHomePreviewRequest($clauses, $_wp_query = false, $args = []) {
 		global $wpdb, $wp_query;
 
@@ -326,6 +355,36 @@ class RevisionaryFront {
 				}
 			}
 		}
+	}
+
+	public function actPublicPostPreview($post_id) {
+		$post_id = (int) $post_id;
+
+		if ($post_id && rvy_in_revision_workflow($post_id)) {
+			$this->public_preview_ids[$post_id] = true;
+		}
+	}
+
+	/**
+	 * A Public Post Preview link verified for this revision grants read access to it,
+	 * including private and unpublished parents supported by the preview workflow.
+	 */
+	public function fltPublicPostPreviewAccess($can_read, $revision_id, $parent_id = 0) {
+		if ($can_read || empty($this->public_preview_ids[(int) $revision_id])) {
+			return $can_read;
+		}
+
+		$parent_id = (int) $parent_id ?: (int) rvy_post_id($revision_id);
+
+		if (!$parent_id || ($parent_id === (int) $revision_id) || rvy_in_revision_workflow($parent_id)) {
+			return $can_read;
+		}
+
+		$parent = get_post($parent_id);
+		$status_obj = $parent ? get_post_status_object($parent->post_status) : null;
+		return $status_obj && 'trash' !== $parent->post_status
+			&& (!empty($status_obj->public) || in_array($parent->post_status, ['private', 'draft', 'pending', 'future'], true))
+			&& is_post_type_viewable($parent->post_type);
 	}
 
 	public function fltAuthor($display_name) {

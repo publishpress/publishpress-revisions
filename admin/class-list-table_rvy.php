@@ -2261,6 +2261,10 @@ class Revisionary_List_Table extends WP_Posts_List_Table {
 		}
 
 		echo "</strong>\n";
+        if ('future-revision' === $post->post_mime_type && rvy_can_read_revision_and_parent($post->ID)
+            && ($publication_error = get_post_meta($post->ID, '_rvy_publication_error', true))) {
+            echo '<p class="notice-error">' . esc_html__('Publication failed:', 'revisionary') . ' ' . esc_html($publication_error) . '</p>';
+        }
 	}
 
 	public function rvy_scheduling_log_title_cell( $post ) {

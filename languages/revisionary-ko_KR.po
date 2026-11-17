@@ -10,35 +10,35 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
-"PO-Revision-Date: 2026-11-12 05:53+0000\n"
+"PO-Revision-Date: 2026-11-17 18:45+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: revisionary.php:5
+#: revisionary.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Revisions Free"
 msgstr "PublishPress Revisions Free"
 
-#: revisionary.php:7
+#: revisionary.php:4
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/revisionary/"
 msgstr "https://publishpress.com/revisionary/"
 
-#: revisionary.php:9
+#: revisionary.php:5
 #. Description of the plugin
 msgid ""
 "Maintain published content with teamwork and precision using the Revisions "
 "model to submit, approve and schedule changes."
 msgstr "Revisions 모델을 사용하여 팀워크와 정밀성을 통해 게시된 콘텐츠를 유지하고, 변경 사항을 제출, 승인 및 예약합니다."
 
-#: revisionary.php:11
+#: revisionary.php:6
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: revisionary.php:13
+#: revisionary.php:7
 #. Author URI of the plugin
 msgid "https://publishpress.com"
 msgstr "https://publishpress.com"
@@ -80,7 +80,7 @@ msgstr "예약된 수정 사항 마이그레이션이 완료되었습니다."
 #: admin/action-scheduler_rvy.php:194
 #: admin/admin_rvy.php:282
 #: admin/revision-queue_rvy.php:172
-#: rvy_init-functions.php:373
+#: rvy_init-functions.php:381
 #: visual-compare_rvy.php:176
 msgid "Scheduled Revisions"
 msgstr "예정된 수정들"
@@ -91,10 +91,10 @@ msgstr "스케줄링 로그"
 
 #: admin/action-scheduler_rvy.php:211
 #: admin/admin-posts_rvy.php:292
-#: admin/class-list-table-archive.php:632
+#: admin/class-list-table-archive.php:659
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:136
-#: rvy_init-functions.php:480
+#: rvy_init-functions.php:488
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
@@ -155,9 +155,15 @@ msgstr "미리보기 보기"
 
 #: admin/action-scheduler_rvy.php:306
 #, php-format
-msgid "Note: %1$d Revision is scheduled for future publication with legacy triggering. %2$s for better reliability."
-msgid_plural "Note: %1$d Revisions are scheduled for future publication with legacy triggering. %2$s for better reliability."
-msgstr[0] "Note: %1$d Revisions are scheduled for future publication with legacy triggering. %2$s for better reliability."
+msgid ""
+"Note: %1$d Revision is scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgid_plural ""
+"Note: %1$d Revisions are scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
+msgstr[0] ""
+"Note: %1$d Revisions are scheduled for future publication with legacy "
+"triggering. %2$s for better reliability."
 
 #: admin/action-scheduler_rvy.php:312
 msgid "Migrate it to Action Scheduler"
@@ -182,7 +188,7 @@ msgstr "스케줄 놓침"
 #: admin/action-scheduler_rvy.php:455
 #: admin/class-list-table_rvy.php:1691
 #: admin/revisions.php:72
-#: rvy_init-functions.php:374
+#: rvy_init-functions.php:382
 msgid "Scheduled"
 msgstr "예약됨"
 
@@ -237,8 +243,8 @@ msgstr "(스케줄링 로그 보기)"
 
 #: admin/action-scheduler_rvy.php:425
 #: admin/action-scheduler_rvy.php:472
-#: admin/class-list-table-archive.php:808
-#: functions.php:525
+#: admin/class-list-table-archive.php:835
+#: functions.php:567
 msgid "Scheduled Revision Publication"
 msgstr "예약된 수정 사항 게시"
 
@@ -285,7 +291,7 @@ msgid ""
 msgstr "이 게시물의 수정 사항을 만들려면 unfiltered_html 권한이 필요합니다. %s문서%s를 참조하십시오."
 
 #: admin/admin-posts_rvy.php:208
-#: rvy_init-functions.php:816
+#: rvy_init-functions.php:824
 msgid "The post already has a revision in process."
 msgstr "이 게시물은 이미 진행 중인 수정 사항이 있습니다."
 
@@ -302,21 +308,21 @@ msgid "New Revisions"
 msgstr "새 수정 사항"
 
 #: admin/admin-posts_rvy.php:352
-#: admin/class-list-table_rvy.php:2345
+#: admin/class-list-table_rvy.php:2349
 #: admin/duplicate-capabilities_rvy.php:47
-#: rvy_init-functions.php:274
+#: rvy_init-functions.php:282
 msgid "Duplicate"
 msgstr "중복"
 
 #: admin/admin-posts_rvy.php:359
 #: admin/class-list-table_rvy.php:1065
-#: admin/class-list-table_rvy.php:2334
+#: admin/class-list-table_rvy.php:2338
 #: admin/edit-revision-classic-ui_rvy.php:216
 #: admin/history_rvy.php:1469
 #: admin/post-editor-workflow-ui_rvy.php:120
 #: admin/post-editor-workflow-ui_rvy.php:234
 #: admin/RevisionEditSubmitMetabox.php:198
-#: front_rvy.php:614
+#: front_rvy.php:673
 msgid "Edit"
 msgstr "편집"
 
@@ -476,50 +482,50 @@ msgstr "선택"
 msgid "unselect"
 msgstr "선택 해제"
 
-#: admin/class-list-table-archive.php:26
+#: admin/class-list-table-archive.php:27
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:70
 msgid "This was an update to a revision which is still in the workflow process."
 msgstr "이것은 여전히 워크플로우 프로세스에 있는 수정에 대한 업데이트였습니다."
 
-#: admin/class-list-table-archive.php:28
+#: admin/class-list-table-archive.php:29
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:71
 msgid "This was an update to a revision which was published after further editing."
 msgstr "이것은 추가 편집 후에 게시된 수정에 대한 업데이트였습니다."
 
-#: admin/class-list-table-archive.php:248
+#: admin/class-list-table-archive.php:271
 #, fuzzy, php-format
 msgid "Revision Author: %s"
 msgstr "Revision Author: %s"
 
-#: admin/class-list-table-archive.php:267
+#: admin/class-list-table-archive.php:290
 #, fuzzy, php-format
 msgid "Post Author: %s"
 msgstr "Post Author: %s"
 
-#: admin/class-list-table-archive.php:277
+#: admin/class-list-table-archive.php:300
 #, fuzzy, php-format
 msgid "Revision Date: %s"
 msgstr "Revision Date: %s"
 
-#: admin/class-list-table-archive.php:287
+#: admin/class-list-table-archive.php:310
 #, fuzzy, php-format
 msgid "Approved by: %s"
 msgstr "Approved by: %s"
 
-#: admin/class-list-table-archive.php:297
+#: admin/class-list-table-archive.php:320
 #, fuzzy, php-format
 msgid "Publication Date: %s"
 msgstr "Publication Date: %s"
 
-#: admin/class-list-table-archive.php:318
+#: admin/class-list-table-archive.php:341
 #: admin/revision-queue_rvy.php:183
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\"에 대한 검색 결과"
 
-#: admin/class-list-table-archive.php:592
+#: admin/class-list-table-archive.php:619
 #: admin/class-list-table_rvy.php:1836
-#: admin/class-list-table_rvy.php:2360
+#: admin/class-list-table_rvy.php:2364
 #: admin/post-edit-block-ui_rvy.php:125
 #: admin/post-edit_rvy.php:123
 #: admin/post-edit_rvy.php:129
@@ -527,252 +533,252 @@ msgstr "\"%s\"에 대한 검색 결과"
 msgid "Delete Revision"
 msgstr "수정 삭제"
 
-#: admin/class-list-table-archive.php:631
+#: admin/class-list-table-archive.php:658
 msgid "Select all revisions"
 msgstr "모든 수정 선택"
 
-#: admin/class-list-table-archive.php:633
+#: admin/class-list-table-archive.php:660
 #: admin/class-list-table_rvy.php:804
 #: admin/duplicate-capabilities_rvy.php:47
 msgid "Post Type"
 msgstr "Post Type"
 
-#: admin/class-list-table-archive.php:634
-#: rvy_init-functions.php:481
+#: admin/class-list-table-archive.php:661
+#: rvy_init-functions.php:489
 msgid "Revised By"
 msgstr "수정자"
 
-#: admin/class-list-table-archive.php:635
-#: rvy_init-functions.php:482
+#: admin/class-list-table-archive.php:662
+#: rvy_init-functions.php:490
 msgid "Revision Date"
 msgstr "수정 날짜"
 
-#: admin/class-list-table-archive.php:636
+#: admin/class-list-table-archive.php:663
 msgid "Action"
 msgstr "작업"
 
-#: admin/class-list-table-archive.php:637
+#: admin/class-list-table-archive.php:664
 msgid "Approved By"
 msgstr "승인자"
 
-#: admin/class-list-table-archive.php:638
+#: admin/class-list-table-archive.php:665
 msgid "Published Date"
 msgstr "게시 날짜"
 
-#: admin/class-list-table-archive.php:639
+#: admin/class-list-table-archive.php:666
 msgid "Published Author"
 msgstr "게시자"
 
-#: admin/class-list-table-archive.php:668
+#: admin/class-list-table-archive.php:695
 #: admin/class-list-table_rvy.php:1022
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:461
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:464
 msgid "just now"
 msgstr "방금"
 
-#: admin/class-list-table-archive.php:673
+#: admin/class-list-table-archive.php:700
 #: admin/class-list-table_rvy.php:1027
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:466
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:469
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s 분 전"
 
-#: admin/class-list-table-archive.php:673
+#: admin/class-list-table-archive.php:700
 #: admin/class-list-table_rvy.php:1027
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:466
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:469
 #, php-format
 msgid "%s minute ago"
 msgstr "%s 분 전"
 
-#: admin/class-list-table-archive.php:680
+#: admin/class-list-table-archive.php:707
 #: admin/class-list-table_rvy.php:1034
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:473
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:476
 #, php-format
 msgid "%s hours ago"
 msgstr "%s 시간 전"
 
-#: admin/class-list-table-archive.php:680
+#: admin/class-list-table-archive.php:707
 #: admin/class-list-table_rvy.php:1034
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:473
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:476
 #, php-format
 msgid "%s hour ago"
 msgstr "%s 시간 전"
 
-#: admin/class-list-table-archive.php:810
-#: functions.php:527
+#: admin/class-list-table-archive.php:837
+#: functions.php:569
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1470
 msgid "Revision Publication"
 msgstr "수정 게시"
 
-#: admin/class-list-table-archive.php:821
-#: functions.php:538
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:391
+#: admin/class-list-table-archive.php:848
+#: functions.php:580
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:394
 #, php-format
 msgid "Autosave of %s"
 msgstr "%s의 자동 저장"
 
-#: admin/class-list-table-archive.php:826
-#: functions.php:543
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:393
+#: admin/class-list-table-archive.php:853
+#: functions.php:585
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:396
 #, php-format
 msgid "Edit of %s"
 msgstr "%s의 편집"
 
-#: admin/class-list-table-archive.php:835
-#: functions.php:552
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:398
+#: admin/class-list-table-archive.php:862
+#: functions.php:594
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:401
 msgid "Autosave of published Revision"
 msgstr "게시된 수정의 자동 저장"
 
-#: admin/class-list-table-archive.php:840
-#: functions.php:557
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:400
+#: admin/class-list-table-archive.php:867
+#: functions.php:599
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:403
 msgid "Edit of published Revision"
 msgstr "게시된 수정의 편집"
 
-#: admin/class-list-table-archive.php:845
-#: functions.php:562
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:405
+#: admin/class-list-table-archive.php:872
+#: functions.php:604
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:408
 msgid "Autosave"
 msgstr "자동 저장"
 
-#: admin/class-list-table-archive.php:847
-#: functions.php:564
-#: functions.php:628
+#: admin/class-list-table-archive.php:874
+#: functions.php:606
+#: functions.php:670
 msgid "Direct Edit"
 msgstr "직접 편집"
 
-#: admin/class-list-table-archive.php:891
+#: admin/class-list-table-archive.php:918
 #: admin/class-list-table_rvy.php:800
 msgid "Select revision"
 msgstr "수정 선택"
 
-#: admin/class-list-table-archive.php:912
+#: admin/class-list-table-archive.php:939
 msgid "Filter by original post type"
 msgstr "원본 게시 유형으로 필터링"
 
-#: admin/class-list-table-archive.php:916
+#: admin/class-list-table-archive.php:943
 #: admin/class-list-table_rvy.php:1897
 msgid "All Post Types"
 msgstr "모든 게시 유형"
 
-#: admin/class-list-table-archive.php:946
+#: admin/class-list-table-archive.php:973
 #: admin/class-list-table_rvy.php:1948
 msgid "Filter by revision author"
 msgstr "수정 작성자로 필터링"
 
-#: admin/class-list-table-archive.php:950
+#: admin/class-list-table-archive.php:977
 #: admin/class-list-table_rvy.php:1952
 msgid "All Revision Authors"
 msgstr "모든 수정 작성자"
 
-#: admin/class-list-table-archive.php:995
+#: admin/class-list-table-archive.php:1022
 #: admin/class-list-table_rvy.php:1982
 msgid "Filter by revision date"
 msgstr "수정 날짜로 필터링"
 
-#: admin/class-list-table-archive.php:999
+#: admin/class-list-table-archive.php:1026
 #: admin/class-list-table_rvy.php:1986
 msgid "All Revision Dates"
 msgstr "모든 수정 날짜"
 
-#: admin/class-list-table-archive.php:1054
+#: admin/class-list-table-archive.php:1081
 msgid "Filter by published date"
 msgstr "게시 날짜로 필터링"
 
-#: admin/class-list-table-archive.php:1058
+#: admin/class-list-table-archive.php:1085
 msgid "All Publish Dates"
 msgstr "모든 게시 날짜"
 
-#: admin/class-list-table-archive.php:1091
+#: admin/class-list-table-archive.php:1118
 msgid "Filter by approver"
 msgstr "승인자로 필터링"
 
-#: admin/class-list-table-archive.php:1095
+#: admin/class-list-table-archive.php:1122
 msgid "All Approvers"
 msgstr "모든 승인자"
 
-#: admin/class-list-table-archive.php:1128
+#: admin/class-list-table-archive.php:1155
 #: admin/class-list-table_rvy.php:2054
 msgid "Filter by published author"
 msgstr "게시 저자로 필터링"
 
-#: admin/class-list-table-archive.php:1132
+#: admin/class-list-table-archive.php:1159
 #: admin/class-list-table_rvy.php:2058
 msgid "All Authors"
 msgstr "모든 저자"
 
-#: admin/class-list-table-archive.php:1148
-#: admin/class-list-table-archive.php:1328
+#: admin/class-list-table-archive.php:1175
+#: admin/class-list-table-archive.php:1355
 #: admin/class-list-table_rvy.php:1080
 #: admin/class-list-table_rvy.php:2074
 msgid "Filter"
 msgstr "필터"
 
-#: admin/class-list-table-archive.php:1154
+#: admin/class-list-table-archive.php:1181
 #: admin/class-list-table_rvy.php:2094
 msgid "Reset Filters"
 msgstr "필터 재설정"
 
-#: admin/class-list-table-archive.php:1185
+#: admin/class-list-table-archive.php:1212
 #: admin/options.php:2434
 msgid "All"
 msgstr "모두"
 
-#: admin/class-list-table-archive.php:1199
+#: admin/class-list-table-archive.php:1226
 msgid "My Revisions"
 msgstr "내 수정 사항"
 
-#: admin/class-list-table-archive.php:1254
+#: admin/class-list-table-archive.php:1281
 #, php-format
 msgid "Visually compare changes in %s"
 msgstr "%s의 변경 사항을 시각적으로 비교"
 
-#: admin/class-list-table-archive.php:1275
+#: admin/class-list-table-archive.php:1302
 #, php-format
 msgid "Classic text diff for %s"
 msgstr "%s에 대한 클래식 텍스트 차이"
 
-#: admin/class-list-table-archive.php:1295
-#: admin/class-list-table_rvy.php:2384
+#: admin/class-list-table-archive.php:1322
+#: admin/class-list-table_rvy.php:2388
 #: admin/post-editor-workflow-ui_rvy.php:74
 #: admin/post-editor-workflow-ui_rvy.php:233
 msgid "Preview Revision"
 msgstr "수정 미리보기"
 
-#: admin/class-list-table-archive.php:1309
+#: admin/class-list-table-archive.php:1336
 msgid "Edit parent revision"
 msgstr "상위 수정 편집"
 
-#: admin/class-list-table-archive.php:1309
+#: admin/class-list-table-archive.php:1336
 msgid "Edit parent post"
 msgstr "상위 게시물 편집"
 
-#: admin/class-list-table-archive.php:1310
+#: admin/class-list-table-archive.php:1337
 msgid "Edit Parent"
 msgstr "상위 항목 편집"
 
-#: admin/class-list-table-archive.php:1327
+#: admin/class-list-table-archive.php:1354
 msgid "Filter: list revisions of this post"
 msgstr "필터: 이 게시물의 수정 사항 목록"
 
-#: admin/class-list-table-archive.php:1342
+#: admin/class-list-table-archive.php:1369
 msgid "Delete Past Revision"
 msgstr "과거 수정 사항 삭제"
 
-#: admin/class-list-table-archive.php:1343
-#: admin/class-list-table_rvy.php:2367
+#: admin/class-list-table-archive.php:1370
+#: admin/class-list-table_rvy.php:2371
 #: admin/post-edit_rvy.php:85
 #: admin/revision-ui_rvy.php:296
 #: admin/revision-ui_rvy.php:408
 #: classes/PublishPress/Revisions/Planner.php:118
 #: classes/PublishPress/Revisions/Planner.php:262
 #: classes/PublishPress/Revisions/PlannerContentBoard.php:22
-#: front_rvy.php:657
+#: front_rvy.php:716
 msgid "Delete"
 msgstr "삭제"
 
-#: admin/class-list-table-archive.php:1430
+#: admin/class-list-table-archive.php:1457
 msgid "No revisions found."
 msgstr "수정 사항이 없습니다."
 
@@ -788,8 +794,8 @@ msgid "Status"
 msgstr "상태"
 
 #: admin/class-list-table_rvy.php:824
-#: front_rvy.php:734
-#: rvy_init-functions.php:365
+#: front_rvy.php:793
+#: rvy_init-functions.php:373
 msgid "Schedule"
 msgstr "일정"
 
@@ -892,38 +898,38 @@ msgid "Apply"
 msgstr "적용"
 
 #: admin/class-list-table_rvy.php:1819
-#: front_rvy.php:686
-#: rvy_init-functions.php:292
-#: rvy_init-functions.php:348
+#: front_rvy.php:745
+#: rvy_init-functions.php:300
+#: rvy_init-functions.php:356
 msgid "Submit"
 msgstr "제출"
 
 #: admin/class-list-table_rvy.php:1824
 #: admin/history_rvy.php:1425
-#: front_rvy.php:683
-#: front_rvy.php:693
-#: front_rvy.php:721
-#: front_rvy.php:755
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
-#: includes/visual-post-compare/visual-post-compare.php:361
-#: rvy_init-functions.php:278
-#: rvy_init-functions.php:296
-#: rvy_init-functions.php:334
-#: rvy_init-functions.php:335
-#: rvy_init-functions.php:351
-#: rvy_init-functions.php:352
-#: rvy_init-functions.php:368
-#: rvy_init-functions.php:369
+#: front_rvy.php:742
+#: front_rvy.php:752
+#: front_rvy.php:780
+#: front_rvy.php:814
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
+#: includes/visual-post-compare/visual-post-compare.php:390
+#: rvy_init-functions.php:286
+#: rvy_init-functions.php:304
+#: rvy_init-functions.php:342
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:359
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:376
+#: rvy_init-functions.php:377
 msgid "Approve"
 msgstr "승인"
 
 #: admin/class-list-table_rvy.php:1825
-#: front_rvy.php:725
+#: front_rvy.php:784
 msgid "Decline"
 msgstr "거부"
 
 #: admin/class-list-table_rvy.php:1829
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:422
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
 msgid "Publish"
 msgstr "발행"
 
@@ -933,8 +939,8 @@ msgid "Unschedule"
 msgstr "스케줄 취소"
 
 #: admin/class-list-table_rvy.php:1836
-#: admin/class-list-table_rvy.php:2356
 #: admin/class-list-table_rvy.php:2360
+#: admin/class-list-table_rvy.php:2364
 #: admin/post-edit-block-ui_rvy.php:125
 #: admin/post-edit_rvy.php:129
 #: admin/RevisionEditSubmitMetabox.php:64
@@ -995,7 +1001,11 @@ msgstr "“%s”의 변경 사항 비교"
 msgid "&#8220;%s&#8221; (Edit)"
 msgstr "“%s” (편집)"
 
-#: admin/class-list-table_rvy.php:2333
+#: admin/class-list-table_rvy.php:2266
+msgid "Publication failed:"
+msgstr "게시물이 실패했습니다:"
+
+#: admin/class-list-table_rvy.php:2337
 #: admin/post-editor-workflow-ui_rvy.php:234
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3114
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135
@@ -1003,11 +1013,11 @@ msgstr "“%s” (편집)"
 msgid "Edit Revision"
 msgstr "개정 편집"
 
-#: admin/class-list-table_rvy.php:2357
+#: admin/class-list-table_rvy.php:2361
 msgid "Discard"
 msgstr "폐기"
 
-#: admin/class-list-table_rvy.php:2398
+#: admin/class-list-table_rvy.php:2402
 msgid "Compare Changes"
 msgstr "변경 사항 비교"
 
@@ -2014,7 +2024,9 @@ msgstr "이 플러그인은 새로운 사용자 역할인 \"Revisor\"를 도입�
 
 #: admin/options.php:1387
 #, php-format
-msgid "Revision by a user who does not have the %s will cause all custom html tags to be stripped out."
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
 msgstr "권한 %s가 없는 사용자가 개정할 경우 모든 사용자 정의 HTML 태그가 제거됩니다."
 
 #: admin/options.php:1393
@@ -2755,10 +2767,10 @@ msgid "Approve and Publish"
 msgstr "승인 및 게시"
 
 #: admin/post-editor-workflow-ui_rvy.php:134
-#: rvy_init-functions.php:293
-#: rvy_init-functions.php:312
-#: rvy_init-functions.php:349
-#: rvy_init-functions.php:366
+#: rvy_init-functions.php:301
+#: rvy_init-functions.php:320
+#: rvy_init-functions.php:357
+#: rvy_init-functions.php:374
 msgid "Update in progress..."
 msgstr "업데이트 진행 중..."
 
@@ -2771,13 +2783,13 @@ msgid "Decline Revision"
 msgstr "수정 거부"
 
 #: admin/post-editor-workflow-ui_rvy.php:174
-#: rvy_init-functions.php:282
-#: rvy_init-functions.php:300
-#: rvy_init-functions.php:318
-#: rvy_init-functions.php:338
-#: rvy_init-functions.php:355
-#: rvy_init-functions.php:372
-#: rvy_init-functions.php:485
+#: rvy_init-functions.php:290
+#: rvy_init-functions.php:308
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:346
+#: rvy_init-functions.php:363
+#: rvy_init-functions.php:380
+#: rvy_init-functions.php:493
 msgid "Update Revision"
 msgstr "수정 업데이트"
 
@@ -2856,94 +2868,92 @@ msgstr "퍼머링크"
 msgid "Featured image"
 msgstr "대표 이미지"
 
-#: admin/revision-action_rvy.php:573
-#: admin/revision-action_rvy.php:659
+#: admin/revision-action_rvy.php:455
+#: admin/revision-action_rvy.php:775
+#: admin/revision-action_rvy.php:905
+#: functions.php:231
+msgid "Revision metadata contains unsupported objects."
+msgstr "수정 메타데이터에는 지원되지 않는 객체가 포함되어 있습니다."
+
+#: admin/revision-action_rvy.php:576
+#: admin/revision-action_rvy.php:662
 #, php-format
 msgid "[%s] Revision Approval Notice"
 msgstr "[%s] 수정 승인 알림"
 
-#: admin/revision-action_rvy.php:574
+#: admin/revision-action_rvy.php:577
 #, php-format
 msgid "A revision to the %1$s \"%2$s\" has been approved."
 msgstr "%1$s \"%2$s\"에 대한 수정이 승인되었습니다."
 
-#: admin/revision-action_rvy.php:578
+#: admin/revision-action_rvy.php:581
 #, php-format
 msgid "The submitter was %1$s."
 msgstr "제출자는 %1$s이었습니다."
 
-#: admin/revision-action_rvy.php:582
-#: admin/revision-action_rvy.php:668
+#: admin/revision-action_rvy.php:585
+#: admin/revision-action_rvy.php:671
 #, php-format
 msgid "It will be published on %s"
 msgstr "%s에 게시됩니다"
 
-#: admin/revision-action_rvy.php:586
-#: admin/revision-action_rvy.php:672
+#: admin/revision-action_rvy.php:589
+#: admin/revision-action_rvy.php:675
 msgid "Preview it here: "
 msgstr "여기에서 미리보기: "
 
-#: admin/revision-action_rvy.php:589
-#: admin/revision-action_rvy.php:675
+#: admin/revision-action_rvy.php:592
+#: admin/revision-action_rvy.php:678
 msgid "Editor: "
 msgstr "편집자: "
 
-#: admin/revision-action_rvy.php:591
-#: admin/revision-action_rvy.php:677
-#: admin/revision-action_rvy.php:1747
-#: admin/revision-action_rvy.php:1778
-#: admin/revision-action_rvy.php:1844
+#: admin/revision-action_rvy.php:594
+#: admin/revision-action_rvy.php:680
+#: admin/revision-action_rvy.php:1761
+#: admin/revision-action_rvy.php:1792
+#: admin/revision-action_rvy.php:1858
 msgid "View it online: "
 msgstr "온라인에서 보기: "
 
-#: admin/revision-action_rvy.php:660
+#: admin/revision-action_rvy.php:663
 #, php-format
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr "%1$s \"%2$s\"에 대해 제출한 수정이 승인되었습니다."
 
-#: admin/revision-action_rvy.php:841
-msgid "The revision changed after approval and requires review again."
-msgstr "승인 후 수정이 변경되었으며, 다시 검토가 필요합니다."
-
-#: admin/revision-action_rvy.php:846
-#: functions.php:144
-msgid "Revision metadata contains unsupported objects."
-msgstr "수정 메타데이터에는 지원되지 않는 객체가 포함되어 있습니다."
-
-#: admin/revision-action_rvy.php:1080
+#: admin/revision-action_rvy.php:1096
 msgid "The revision could not be published."
 msgstr "수정이 게시될 수 없습니다."
 
-#: admin/revision-action_rvy.php:1739
-#: admin/revision-action_rvy.php:1767
+#: admin/revision-action_rvy.php:1753
+#: admin/revision-action_rvy.php:1781
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr "[%s] %s 게시 알림"
 
-#: admin/revision-action_rvy.php:1740
+#: admin/revision-action_rvy.php:1754
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
 "published."
 msgstr "%1$s \"%2$s\"에 대해 제출한 예정된 수정이 게시되었습니다."
 
-#: admin/revision-action_rvy.php:1768
+#: admin/revision-action_rvy.php:1782
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr "당신의 %1$s \"%2$s\"에 대한 예정된 수정이 게시되었습니다."
 
-#: admin/revision-action_rvy.php:1775
-#: admin/revision-action_rvy.php:1841
+#: admin/revision-action_rvy.php:1789
+#: admin/revision-action_rvy.php:1855
 #, php-format
 msgid "It was submitted by %1$s."
 msgstr "제출자는 %1$s이었습니다."
 
-#: admin/revision-action_rvy.php:1832
+#: admin/revision-action_rvy.php:1846
 #, php-format
 msgid "[%s] %s Publication"
 msgstr "[%s] %s 게시"
 
-#: admin/revision-action_rvy.php:1834
+#: admin/revision-action_rvy.php:1848
 #, php-format
 msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
 msgstr "%1$s \"%2$s\"에 대한 예정된 수정이 게시되었습니다."
@@ -3230,9 +3240,22 @@ msgstr "%1$s %2$s (%3$s)%4$s"
 msgid "no %s revisions available."
 msgstr "%s 수정이 없습니다."
 
+#: admin/StatusesRestSubmission.php:48
+msgid "You are not allowed to submit this revision."
+msgstr "이 개정을 제출할 수 없습니다."
+
+#: admin/StatusesRestSubmission.php:110
+msgid "The revision save could not be verified. Please save it before submitting."
+msgstr "개정 저장을 확인할 수 없습니다. 제출하기 전에 저장해 주세요."
+
+#: admin/StatusesRestSubmission.php:119
+#: admin/StatusesRestSubmission.php:131
+msgid "The revision was saved, but could not be submitted."
+msgstr "개정이 저장되었으나 제출할 수 없습니다."
+
 #: builder-schema_rvy.php:7
-#: revision-creation_rvy.php:285
-#: rvy_init-functions.php:789
+#: revision-creation_rvy.php:286
+#: rvy_init-functions.php:797
 msgid ""
 "Page Builder integration requires Revisions Pro to be set to standard "
 "storage schema."
@@ -3246,6 +3269,28 @@ msgstr "페이지 빌더 통합은 Revisions Pro가 %s로 설정되어 있어야
 #: builder-schema_rvy.php:12
 msgid "standard storage schema"
 msgstr "표준 저장 스키마"
+
+#: builder-schema_rvy.php:159
+#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
+#: includes/visual-post-compare/visual-post-compare-standalone.js:1553
+#. Translators: %1$s is a builder title or comma-separated list; %2$s is the last builder title.
+#, php-format,js-format
+msgid "%1$s and %2$s"
+msgstr "%1$s 및 %2$s"
+
+#: builder-schema_rvy.php:161
+msgid "activate Revisions Pro"
+msgstr "Revisions Pro 활성화"
+
+#: builder-schema_rvy.php:161
+msgid "upgrade to Revisions Pro"
+msgstr "Revisions Pro로 업그레이드"
+
+#: builder-schema_rvy.php:165
+#. Translators: %1$s is the active page builder title(s); %2$s is the upgrade or activation link.
+#, php-format
+msgid "For %1$s revision editing and visual compare, %2$s."
+msgstr "%1$s 개정 편집 및 시각적 비교를 위해 %2$s."
 
 #: classes/PublishPress/IntegrationCards.php:60
 #: classes/PublishPress/IntegrationCards.php:63
@@ -3645,153 +3690,157 @@ msgstr "이 %s에 새 개정 사항이 있습니다. 아래 버튼을 클릭하�
 msgid "Dismiss notice"
 msgstr "알림 해제"
 
-#: front_rvy.php:452
-#: front_rvy.php:488
+#: front_rvy.php:511
+#: front_rvy.php:547
 msgid "You are not allowed to view this revision."
 msgstr "이 수정을 볼 수 있는 권한이 없습니다."
 
-#: front_rvy.php:565
+#: front_rvy.php:624
 #, php-format
 msgid "%sManage%s"
 msgstr "%s관리%s"
 
-#: front_rvy.php:576
+#: front_rvy.php:635
 #, php-format
 msgid "%sCompare%s%sView Published Post%s"
 msgstr "%s비교%s%s게시된 포스트 보기%s"
 
-#: front_rvy.php:588
-#: front_rvy.php:603
+#: front_rvy.php:647
+#: front_rvy.php:662
 #, php-format
 msgid "%sView Published Post%s"
 msgstr "%s게시된 포스트 보기%s"
 
-#: front_rvy.php:699
-#: front_rvy.php:705
-#: front_rvy.php:761
-#: front_rvy.php:767
+#: front_rvy.php:758
+#: front_rvy.php:764
+#: front_rvy.php:820
+#: front_rvy.php:826
 #, php-format
 msgid "This Revision is Submitted for Approval. %s %s %s"
 msgstr "이 리비전은 승인을 위해 제출되었습니다. %s %s %s"
 
-#: front_rvy.php:701
-#: front_rvy.php:707
-#: front_rvy.php:763
-#: front_rvy.php:769
+#: front_rvy.php:760
+#: front_rvy.php:766
+#: front_rvy.php:822
+#: front_rvy.php:828
 #, php-format
 msgid "This is a %s. %s %s %s"
 msgstr "이것은 %s입니다. %s %s %s"
 
-#: front_rvy.php:710
-#: front_rvy.php:772
+#: front_rvy.php:769
+#: front_rvy.php:831
 #, fuzzy, php-format
 msgid "%s."
 msgstr "%s."
 
-#: front_rvy.php:739
-#: front_rvy.php:741
-#: front_rvy.php:794
-#: front_rvy.php:796
+#: front_rvy.php:798
+#: front_rvy.php:800
+#: front_rvy.php:853
+#: front_rvy.php:855
 #, php-format
 msgid "This is a %s (for %s). %s %s %s"
 msgstr "이것은 %s (for %s)입니다. %s %s %s"
 
-#: front_rvy.php:743
-#: front_rvy.php:798
+#: front_rvy.php:802
+#: front_rvy.php:857
 #, fuzzy, php-format
 msgid "%1$s (for %2$s)."
 msgstr "%1$s (for %2$s)."
 
-#: front_rvy.php:746
-#: front_rvy.php:748
+#: front_rvy.php:805
+#: front_rvy.php:807
 #, php-format
 msgid "Revision status: %s (for %s) %s %s %s"
 msgstr "리비전 상태: %s (for %s) %s %s %s"
 
-#: front_rvy.php:750
+#: front_rvy.php:809
 #, php-format
 msgid "Revision status: %1$s (for %2$s)"
 msgstr "리비전 상태: %1$s (for %2$s)"
 
-#: front_rvy.php:775
-#: front_rvy.php:777
+#: front_rvy.php:834
+#: front_rvy.php:836
 #, php-format
 msgid "Revision status: %s %s %s %s"
 msgstr "리비전 상태: %s %s %s %s"
 
-#: front_rvy.php:779
+#: front_rvy.php:838
 #, php-format
 msgid "Revision status: %s"
 msgstr "리비전 상태: %s"
 
-#: front_rvy.php:791
-#: rvy_init-functions.php:455
+#: front_rvy.php:850
+#: rvy_init-functions.php:463
 msgid "Publish Now"
 msgstr "지금 게시"
 
-#: front_rvy.php:815
+#: front_rvy.php:874
 #, php-format
 msgid "The revision was approved and is now live on the site. %s"
 msgstr "리비전이 승인되었으며 이제 사이트에서 활성화되었습니다. %s"
 
-#: front_rvy.php:816
+#: front_rvy.php:875
 #, php-format
 msgid "This is the Current Revision. %s"
 msgstr "이것은 현재 리비전입니다. %s"
 
-#: front_rvy.php:824
+#: front_rvy.php:883
 msgid "Revision approved and live."
 msgstr "리비전이 승인되어 활성화되었습니다."
 
-#: front_rvy.php:825
+#: front_rvy.php:884
 msgid "Current Revision."
 msgstr "현재 리비전."
 
-#: front_rvy.php:836
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:346
+#: front_rvy.php:895
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:349
 #: visual-compare_rvy.php:102
 msgid "Restore"
 msgstr "복원"
 
-#: front_rvy.php:840
-#: front_rvy.php:842
+#: front_rvy.php:899
+#: front_rvy.php:901
 #, php-format
 msgid "This is a Past Revision (from %s). %s %s"
 msgstr "이것은 과거 리비전입니다 (from %s). %s %s"
 
-#: front_rvy.php:844
+#: front_rvy.php:903
 #, php-format
 msgid "Past Revision (from %s)."
 msgstr "과거 리비전 (from %s)."
 
-#: front_rvy.php:856
+#: front_rvy.php:915
 msgid "More revision actions"
 msgstr "더 많은 리비전 작업"
 
-#: functions.php:612
+#: functions.php:161
+msgid "The source post could not be found."
+msgstr "원본 게시물을 찾을 수 없습니다."
+
+#: functions.php:654
 msgid "Scheduled Rev."
 msgstr "예약된 리비전."
 
-#: functions.php:617
-#: functions.php:622
+#: functions.php:659
+#: functions.php:664
 msgid "Submitted Rev."
 msgstr "제출된 리비전."
 
-#: functions.php:1002
+#: functions.php:1044
 msgid "A workflow revision cannot be published through a post creation request."
 msgstr "워크플로우 수정은 게시물 생성 요청을 통해 게시될 수 없습니다."
 
-#: functions.php:1010
-#: functions.php:1013
+#: functions.php:1052
+#: functions.php:1055
 msgid "Use the Revisions workflow controls to change revision status."
 msgstr "수정 작업 흐름 컨트롤을 사용하여 수정 상태를 변경하십시오."
 
-#: functions.php:1018
+#: functions.php:1060
 msgid "You are not allowed to publish this post type."
 msgstr "이 게시물 유형을 게시할 수 없습니다."
 
-#: functions.php:1224
-#: rvy_init-functions.php:483
+#: functions.php:1284
+#: rvy_init-functions.php:491
 msgid "Post Author"
 msgstr "게시물 작성자"
 
@@ -3850,108 +3899,108 @@ msgstr "PublishPress Revisions 지식 베이스 보기"
 msgid "View Knowledge Base"
 msgstr "지식 베이스 보기"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:204
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
 msgid "Modified: "
 msgstr "수정됨: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
-#: includes/visual-post-compare/visual-post-compare.php:173
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
+#: includes/visual-post-compare/visual-post-compare.php:202
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3135
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3156
 msgid "Post Date: "
 msgstr "게시 날짜: "
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:208
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:210
 #, php-format
 msgid "Author: %s"
 msgstr "작성자: %s"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:209
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:211
 #, php-format
 msgid "Status: %s"
 msgstr "상태: %s"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:210
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:212
 #, php-format
 msgid "Action: %s"
 msgstr "작업: %s"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:211
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:213
 msgid "Current"
 msgstr "현재"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:213
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
 #. translators: %s: revision approver display name.
 #, php-format
 msgid "(approved by %s)"
 msgstr "(승인됨: %s)"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:215
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
 #. translators: %s: direct editor display name.
 #, fuzzy, php-format
 msgid "(%s)"
 msgstr "(%s)"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:216
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
 msgid "Comparison legend"
 msgstr "비교 범례"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:217
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
 msgid "Added"
 msgstr "추가됨"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:218
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
 msgid "Removed"
 msgstr "제거됨"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:219
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
 msgid "Modified"
 msgstr "수정됨"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:220
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
 msgid "Loading comparison..."
 msgstr "비교 로딩 중..."
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:221
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:223
 msgid "The target post content has been replaced with the approved content."
 msgstr "대상 게시물 내용이 승인된 내용으로 교체되었습니다."
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:222
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3473
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3494
 msgid "Classic compare screen"
 msgstr "클래식 비교 화면"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:224
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:226
 msgid "Visual comparison settings"
 msgstr "시각적 비교 설정"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:312
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:313
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:315
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:316
 msgid "Past Revision"
 msgstr "이전 수정"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:347
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:350
 msgid "Restoring"
 msgstr "복원 중"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:379
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:382
 msgid "Published by Scheduled Revision"
 msgstr "예정된 수정에 의해 게시됨"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:381
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:384
 msgid "Published by Revision"
 msgstr "수정에 의해 게시됨"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:407
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:410
 msgid "Published by Direct Edit"
 msgstr "직접 편집에 의해 게시됨"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:423
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:426
 msgid "Publishing"
 msgstr "게시 중"
 
-#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:426
+#: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:429
 msgid "Approving"
 msgstr "승인 중"
 
@@ -3961,7 +4010,7 @@ msgstr "수정을 볼 수 있는 권한이 없습니다."
 
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:86
 #: includes/visual-post-compare/visual-post-compare.php:61
-#: includes/visual-post-compare/visual-post-compare.php:296
+#: includes/visual-post-compare/visual-post-compare.php:325
 msgid "You are not allowed to view the revision."
 msgstr "수정을 볼 수 있는 권한이 없습니다."
 
@@ -3969,7 +4018,7 @@ msgstr "수정을 볼 수 있는 권한이 없습니다."
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:112
 #: includes/visual-post-compare/includes/class-dedicated-rest-handler.php:179
 #: includes/visual-post-compare/visual-post-compare.php:51
-#: includes/visual-post-compare/visual-post-compare.php:277
+#: includes/visual-post-compare/visual-post-compare.php:306
 msgid "Invalid revision ID."
 msgstr "유효하지 않은 수정 ID입니다."
 
@@ -3986,12 +4035,12 @@ msgstr "수정을 승인할 수 없습니다."
 msgid "The revision has been approved and scheduled for publication."
 msgstr "수정이 승인되었으며 게시를 위해 예약되었습니다."
 
-#: includes/visual-post-compare/visual-post-compare.php:290
-#: includes/visual-post-compare/visual-post-compare.php:296
-#: includes/visual-post-compare/visual-post-compare.php:301
-#: includes/visual-post-compare/visual-post-compare.php:309
-#: includes/visual-post-compare/visual-post-compare.php:354
-#: includes/visual-post-compare/visual-post-compare.php:453
+#: includes/visual-post-compare/visual-post-compare.php:319
+#: includes/visual-post-compare/visual-post-compare.php:325
+#: includes/visual-post-compare/visual-post-compare.php:330
+#: includes/visual-post-compare/visual-post-compare.php:338
+#: includes/visual-post-compare/visual-post-compare.php:383
+#: includes/visual-post-compare/visual-post-compare.php:482
 #: visual-compare_rvy.php:13
 #: visual-compare_rvy.php:14
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3606
@@ -3999,11 +4048,11 @@ msgstr "수정이 승인되었으며 게시를 위해 예약되었습니다."
 msgid "Compare Revisions"
 msgstr "수정 사항 비교"
 
-#: includes/visual-post-compare/visual-post-compare.php:301
+#: includes/visual-post-compare/visual-post-compare.php:330
 msgid "You are not allowed to view this comparison."
 msgstr "이 비교를 볼 수 있는 권한이 없습니다."
 
-#: includes/visual-post-compare/visual-post-compare.php:454
+#: includes/visual-post-compare/visual-post-compare.php:483
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3532
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3553
 msgid "Loading comparison…"
@@ -4014,11 +4063,11 @@ msgstr "비교 로딩 중…"
 msgid "%1$s queries in %2$s seconds. %3$s MB used."
 msgstr "%1$s 쿼리, %2$s 초 소요. %3$s MB 사용됨."
 
-#: revision-creation_rvy.php:206
+#: revision-creation_rvy.php:214
 msgid "Could not insert post into the database"
 msgstr "게시물을 데이터베이스에 삽입할 수 없습니다."
 
-#: revision-creation_rvy.php:469
+#: revision-creation_rvy.php:490
 msgid "Could not insert revision into the database"
 msgstr "수정을 데이터베이스에 삽입할 수 없습니다."
 
@@ -4061,263 +4110,263 @@ msgstr "%s 편집: "
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>이 플러그인은 삭제할 수 있습니다.</strong>"
 
-#: revisionary_main.php:206
+#: revisionary_main.php:229
 msgid "Visual compare is not enabled."
 msgstr "시각적 비교가 활성화되어 있지 않습니다."
 
-#: rvy_init-functions.php:81
+#: rvy_init-functions.php:89
 msgid "Every 2 Minutes"
 msgstr "매 2분마다"
 
-#: rvy_init-functions.php:143
-#: rvy_init-functions.php:172
+#: rvy_init-functions.php:151
+#: rvy_init-functions.php:180
 msgid "You are not allowed to revise this post."
 msgstr "이 게시물을 수정할 수 없습니다."
 
-#: rvy_init-functions.php:191
+#: rvy_init-functions.php:199
 msgid "You are not allowed to change the author of this revision."
 msgstr "이 수정의 저자를 변경할 수 있는 권한이 없습니다."
 
-#: rvy_init-functions.php:272
-#: rvy_init-functions.php:284
+#: rvy_init-functions.php:280
+#: rvy_init-functions.php:292
 msgid "Working Copy"
 msgstr "작업 복사본"
 
-#: rvy_init-functions.php:273
+#: rvy_init-functions.php:281
 msgid "Create Working Copy"
 msgstr "작업 복사본 생성"
 
-#: rvy_init-functions.php:275
+#: rvy_init-functions.php:283
 msgid "Creating Working Copy..."
 msgstr "작업 복사본 생성 중..."
 
-#: rvy_init-functions.php:276
+#: rvy_init-functions.php:284
 msgid "Working Copy ready"
 msgstr "작업 복사본 준비 완료"
 
-#: rvy_init-functions.php:277
-#: rvy_init-functions.php:295
+#: rvy_init-functions.php:285
+#: rvy_init-functions.php:303
 msgid "Approve Changes"
 msgstr "변경 사항 승인"
 
-#: rvy_init-functions.php:279
-#: rvy_init-functions.php:297
+#: rvy_init-functions.php:287
+#: rvy_init-functions.php:305
 msgid "Approving Changes..."
 msgstr "변경 사항 승인 중..."
 
-#: rvy_init-functions.php:280
-#: rvy_init-functions.php:298
-#: rvy_init-functions.php:316
+#: rvy_init-functions.php:288
+#: rvy_init-functions.php:306
+#: rvy_init-functions.php:324
 msgid "Publish Changes"
 msgstr "변경 사항 게시"
 
-#: rvy_init-functions.php:281
-#: rvy_init-functions.php:299
-#: rvy_init-functions.php:317
-#: rvy_init-functions.php:337
-#: rvy_init-functions.php:354
-#: rvy_init-functions.php:371
+#: rvy_init-functions.php:289
+#: rvy_init-functions.php:307
+#: rvy_init-functions.php:325
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:362
+#: rvy_init-functions.php:379
 msgid "Save Revision"
 msgstr "수정 저장"
 
-#: rvy_init-functions.php:283
+#: rvy_init-functions.php:291
 msgid "Working Copies"
 msgstr "작업 복사본"
 
-#: rvy_init-functions.php:285
+#: rvy_init-functions.php:293
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
-msgstr[0] "작업 복사본 <span class=\\\"count\\\">(%d)</span>"
+msgstr[0] "작업 복사본 <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:290
-#: rvy_init-functions.php:302
+#: rvy_init-functions.php:298
+#: rvy_init-functions.php:310
 msgid "Change Request"
 msgstr "변경 요청"
 
-#: rvy_init-functions.php:291
+#: rvy_init-functions.php:299
 msgid "Submit Change Request"
 msgstr "변경 요청 제출"
 
-#: rvy_init-functions.php:294
+#: rvy_init-functions.php:302
 msgid "Changes Submitted"
 msgstr "변경 사항 제출됨"
 
-#: rvy_init-functions.php:301
+#: rvy_init-functions.php:309
 msgid "Change Requests"
 msgstr "변경 요청"
 
-#: rvy_init-functions.php:303
+#: rvy_init-functions.php:311
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
-msgstr[0] "변경 요청 <span class=\\\"count\\\">(%d)</span>"
+msgstr[0] "변경 요청 <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:304
+#: rvy_init-functions.php:312
 msgid "Enable Change Requests"
 msgstr "변경 요청 활성화"
 
-#: rvy_init-functions.php:309
-#: rvy_init-functions.php:320
+#: rvy_init-functions.php:317
+#: rvy_init-functions.php:328
 msgid "Scheduled Change"
 msgstr "예정된 변경"
 
-#: rvy_init-functions.php:310
-#: rvy_init-functions.php:311
-#: rvy_init-functions.php:314
-#: rvy_init-functions.php:315
+#: rvy_init-functions.php:318
+#: rvy_init-functions.php:319
+#: rvy_init-functions.php:322
+#: rvy_init-functions.php:323
 msgid "Schedule Changes"
 msgstr "변경 일정 잡기"
 
-#: rvy_init-functions.php:313
+#: rvy_init-functions.php:321
 msgid "Changes are Scheduled."
 msgstr "변경이 일정에 잡혔습니다."
 
-#: rvy_init-functions.php:319
+#: rvy_init-functions.php:327
 msgid "Scheduled Changes"
 msgstr "예정된 변경"
 
-#: rvy_init-functions.php:321
+#: rvy_init-functions.php:329
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
-msgstr[0] "예정된 <span class=\\\"count\\\">(%d)</span>"
+msgstr[0] "예정된 <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:329
+#: rvy_init-functions.php:337
 msgid "Unsubmitted Revision"
 msgstr "제출되지 않은 수정"
 
-#: rvy_init-functions.php:330
-#: rvy_init-functions.php:331
+#: rvy_init-functions.php:338
+#: rvy_init-functions.php:339
 msgid "Create Revision"
 msgstr "수정 생성"
 
-#: rvy_init-functions.php:332
+#: rvy_init-functions.php:340
 msgid "Creating Revision..."
 msgstr "수정 생성 중..."
 
-#: rvy_init-functions.php:333
+#: rvy_init-functions.php:341
 msgid "The Revision is ready to edit."
 msgstr "수정이 편집할 준비가 되었습니다."
 
-#: rvy_init-functions.php:333
+#: rvy_init-functions.php:341
 msgid "Revision ready to edit."
 msgstr "수정 편집 준비 완료."
 
-#: rvy_init-functions.php:334
-#: rvy_init-functions.php:336
-#: rvy_init-functions.php:351
-#: rvy_init-functions.php:353
-#: rvy_init-functions.php:368
-#: rvy_init-functions.php:370
+#: rvy_init-functions.php:342
+#: rvy_init-functions.php:344
+#: rvy_init-functions.php:359
+#: rvy_init-functions.php:361
+#: rvy_init-functions.php:376
+#: rvy_init-functions.php:378
 msgid "Publish Revision"
 msgstr "수정 게시"
 
-#: rvy_init-functions.php:339
+#: rvy_init-functions.php:347
 msgid "Unsubmitted Revisions"
 msgstr "제출되지 않은 수정들"
 
-#: rvy_init-functions.php:340
+#: rvy_init-functions.php:348
 msgid "Not Submitted"
 msgstr "제출되지 않음"
 
-#: rvy_init-functions.php:341
+#: rvy_init-functions.php:349
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] "제출되지 않음 <span class=\\\"count\\\">(%s)</span>"
+msgstr[0] "제출되지 않음 <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:346
+#: rvy_init-functions.php:354
 msgid "Submitted Revision"
 msgstr "제출된 수정"
 
-#: rvy_init-functions.php:347
-#: rvy_init-functions.php:488
+#: rvy_init-functions.php:355
+#: rvy_init-functions.php:496
 msgid "Submit Revision"
 msgstr "수정 제출"
 
-#: rvy_init-functions.php:350
+#: rvy_init-functions.php:358
 msgid "The Revision is Submitted"
 msgstr "수정이 제출되었습니다"
 
-#: rvy_init-functions.php:350
+#: rvy_init-functions.php:358
 msgid "Revision Submitted"
 msgstr "수정 제출됨"
 
-#: rvy_init-functions.php:356
+#: rvy_init-functions.php:364
 #: visual-compare_rvy.php:161
 msgid "Submitted Revisions"
 msgstr "제출된 수정들"
 
-#: rvy_init-functions.php:357
+#: rvy_init-functions.php:365
 msgid "Submitted"
 msgstr "제출됨"
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:366
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
-msgstr[0] "제출됨 <span class=\\\"count\\\">(%s)</span>"
+msgstr[0] "제출됨 <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:363
+#: rvy_init-functions.php:371
 msgid "Scheduled Revision"
 msgstr "예정된 수정"
 
-#: rvy_init-functions.php:364
+#: rvy_init-functions.php:372
 msgid "Schedule Revision"
 msgstr "수정 일정 잡기"
 
-#: rvy_init-functions.php:367
+#: rvy_init-functions.php:375
 msgid "The Revision is Scheduled"
 msgstr "수정이 일정에 잡혔습니다"
 
-#: rvy_init-functions.php:367
+#: rvy_init-functions.php:375
 msgid "Revision Scheduled"
 msgstr "수정 일정 잡힘"
 
-#: rvy_init-functions.php:375
+#: rvy_init-functions.php:383
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
-msgstr[0] "예정됨 <span class=\\\"count\\\">(%s)</span>"
+msgstr[0] "예정됨 <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:475
+#: rvy_init-functions.php:483
 #, php-format
 msgid "%sMy Copies & Changes%s(%s)"
 msgid_plural "%sMy Copies & Changes%s(%s)"
 msgstr[0] "%s내 복사본 & 변경 사항%s(%s)"
 
-#: rvy_init-functions.php:476
+#: rvy_init-functions.php:484
 #, php-format
 msgid "%sMy Revisions%s(%s)"
 msgid_plural "%sMy Revisions%s(%s)"
 msgstr[0] "%s내 수정사항%s(%s)"
 
-#: rvy_init-functions.php:478
+#: rvy_init-functions.php:486
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
 msgstr[0] "%s내 게시물에 대한 수정사항%s(%s)</span>"
 
-#: rvy_init-functions.php:484
+#: rvy_init-functions.php:492
 msgid "Published Post"
 msgstr "게시물 발행됨"
 
-#: rvy_init-functions.php:489
+#: rvy_init-functions.php:497
 msgid "Submit Changes"
 msgstr "변경사항 제출"
 
-#: rvy_init-functions.php:706
+#: rvy_init-functions.php:714
 msgid "Revisor"
 msgstr "수정자"
 
-#: rvy_init-functions.php:829
+#: rvy_init-functions.php:837
 msgid ""
 "The unfiltered_html capability is required to create a revision of this "
 "post."
 msgstr "이 게시물의 수정본을 만들려면 unfiltered_html 권한이 필요합니다."
 
-#: rvy_init-functions.php:1296
+#: rvy_init-functions.php:1326
 msgid "Revision Workflow"
 msgstr "수정 작업 흐름"
 
@@ -4840,12 +4889,6 @@ msgstr "수정 게시"
 msgid "<b>%1$s</b> %2$s"
 msgstr "<b>%1$s</b> %2$s"
 
-#: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1532
-#: includes/visual-post-compare/visual-post-compare-standalone.js:1553
-#, js-format
-msgid "%1$s and %2$s"
-msgstr "%1$s 및 %2$s"
-
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1533
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1554
 #, js-format
@@ -5201,8 +5244,8 @@ msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "수정 사항"
 
-#: admin/class-list-table-archive.php:1258
-#: admin/class-list-table_rvy.php:2399
+#: admin/class-list-table-archive.php:1285
+#: admin/class-list-table_rvy.php:2403
 #: admin/post-edit_rvy.php:226
 #: admin/post-edit_rvy.php:290
 #: admin/post-edit_rvy.php:304
@@ -5210,29 +5253,29 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "비교"
 
-#: admin/class-list-table-archive.php:1280
+#: admin/class-list-table-archive.php:1307
 msgctxt "revisions"
 msgid "Diff"
 msgstr "차이"
 
-#: admin/class-list-table_rvy.php:2411
+#: admin/class-list-table_rvy.php:2415
 msgctxt "revisions"
 msgid "Approve"
 msgstr "승인"
 
-#: admin/class-list-table_rvy.php:2418
+#: admin/class-list-table_rvy.php:2422
 msgctxt "revisions"
 msgid "Publish"
 msgstr "게시"
 
-#: admin/class-list-table_rvy.php:2427
+#: admin/class-list-table_rvy.php:2431
 msgctxt "revisions"
 msgid "Decline"
 msgstr "거부"
 
-#: admin/class-list-table-archive.php:1296
+#: admin/class-list-table-archive.php:1323
 #: admin/class-list-table_rvy.php:1098
-#: admin/class-list-table_rvy.php:2385
+#: admin/class-list-table_rvy.php:2389
 #: admin/history_rvy.php:1532
 #: admin/post-edit_rvy.php:191
 #: admin/revision-ui_rvy.php:276
@@ -5289,7 +5332,7 @@ msgctxt "post revision"
 msgid "%1$s by %2$s"
 msgstr "%1$s %2$s에 의해"
 
-#: rvy_init-functions.php:718
+#: rvy_init-functions.php:726
 msgctxt "User role"
 msgid "Revisor"
 msgstr "검토자"
