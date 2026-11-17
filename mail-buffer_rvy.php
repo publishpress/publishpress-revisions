@@ -45,15 +45,15 @@ function _rvy_mail_append_history($message) {
             if (add_option('revisionary_sent_mail', [$message], '', false)) { return true; }
             continue;
         }
-        $history = is_serialized($stored) ? @unserialize($stored, ['allowed_classes' => false]) : []; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Stored mail history is decoded with class instantiation disabled.
+        $history = is_serialized($stored) ? @unserialize($stored, ['allowed_classes' => false]) : []; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Object instantiation is disabled for stored data.
         $history = is_array($history) ? $history : [];
         $oldest = time() - max(172800, (int) apply_filters('revisionary_mail_log_duration', 86400 * 30));
         $history = array_filter($history, static function ($entry) use ($oldest) {
             return !isset($entry['time_gmt']) || $entry['time_gmt'] >= $oldest;
         });
         $history[] = $message;
-        // Compare-and-swap preserves concurrent writers when advisory locks are unavailable.
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Conditional update is required for atomic compare-and-swap.
+        // Conditional update provides atomic compare-and-swap when advisory locks are unavailable.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Required for this compare-and-swap write.
         $updated = $wpdb->query($wpdb->prepare(
             "UPDATE $wpdb->options SET option_value = %s WHERE option_name = %s AND MD5(option_value) = %s",
             maybe_serialize($history), 'revisionary_sent_mail', md5($stored)
