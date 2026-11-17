@@ -2,6 +2,7 @@
 title: "Differences Between Revisions Free and Pro"
 order: 30
 doc_category: revisions
+section: Getting Started
 ---
 
 # Differences Between Revisions Free and Pro

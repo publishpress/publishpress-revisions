@@ -2,6 +2,7 @@
 title: "Add Comments to Unpublished Revisions"
 order: 1
 doc_category: revisions
+section: Extending New Revisions
 ---
 
 # Add Comments to Unpublished Revisions

@@ -2,6 +2,7 @@
 title: "Submit Revisions for Unpublished Posts (Pro)"
 order: 32
 doc_category: revisions
+section: Extending New Revisions
 ---
 
 # Submit Revisions for Unpublished Posts (Pro)

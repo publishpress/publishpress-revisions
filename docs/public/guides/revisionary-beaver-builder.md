@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for Beaver Builder (Pro)"
 order: 25
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for Beaver Builder (Pro)

@@ -2,6 +2,7 @@
 title: "How to Compare Revisions"
 order: 3
 doc_category: revisions
+section: Managing Revisions
 ---
 
 # How to Compare Revisions

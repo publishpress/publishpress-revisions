@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for WooCommerce (Pro)"
 order: 33
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for WooCommerce (Pro)

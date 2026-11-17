@@ -2,6 +2,7 @@
 title: "Create Revisions Using an API"
 order: 27
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # Create Revisions Using an API

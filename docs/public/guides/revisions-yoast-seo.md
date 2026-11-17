@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for Yoast SEO (Pro)"
 order: 34
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for Yoast SEO (Pro)

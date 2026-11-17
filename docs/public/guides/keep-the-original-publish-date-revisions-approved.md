@@ -2,6 +2,7 @@
 title: "Keep the Original Publish Date for Revisions"
 order: 11
 doc_category: revisions
+section: Scheduling New Revisions
 ---
 
 # Keep the Original Publish Date for Revisions

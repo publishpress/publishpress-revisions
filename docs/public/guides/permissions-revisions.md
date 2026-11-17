@@ -2,6 +2,7 @@
 title: "Understanding Permissions in Revisions"
 order: 12
 doc_category: revisions
+section: New Revisions Permissions
 ---
 
 # Understanding Permissions in Revisions

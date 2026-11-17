@@ -2,6 +2,7 @@
 title: "How Scheduling Works in PublishPress Revisions"
 order: 9
 doc_category: revisions
+section: Scheduling New Revisions
 ---
 
 # How Scheduling Works in PublishPress Revisions

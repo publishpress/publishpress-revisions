@@ -2,6 +2,7 @@
 title: "Getting Started with PublishPress Revisions"
 order: 31
 doc_category: revisions
+section: Getting Started
 ---
 
 # Getting Started with PublishPress Revisions

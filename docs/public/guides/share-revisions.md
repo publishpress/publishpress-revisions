@@ -2,6 +2,7 @@
 title: "Share Preview of Revisions Before Going Live"
 order: 38
 doc_category: revisions
+section: Extending New Revisions
 ---
 
 # Share Preview of Revisions Before Going Live

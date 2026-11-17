@@ -2,6 +2,7 @@
 title: "How to Manage Revisions on the Frontend"
 order: 16
 doc_category: revisions
+section: Managing Revisions
 ---
 
 # How to Manage Revisions on the Frontend

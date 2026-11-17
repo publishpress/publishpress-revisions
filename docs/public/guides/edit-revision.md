@@ -2,6 +2,7 @@
 title: "How to Edit New Revisions"
 order: 7
 doc_category: revisions
+section: New Revisions
 ---
 
 # How to Edit New Revisions

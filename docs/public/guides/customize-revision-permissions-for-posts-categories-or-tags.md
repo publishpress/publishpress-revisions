@@ -2,6 +2,7 @@
 title: "Customize Revision Permissions for Posts, Categories, or Tags (Pro)"
 order: 5
 doc_category: revisions
+section: New Revisions Permissions
 ---
 
 # Customize Revision Permissions for Posts, Categories, or Tags (Pro)

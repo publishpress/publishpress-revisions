@@ -2,6 +2,7 @@
 title: "PublishPress Revisions and Multisite Networks"
 order: 17
 doc_category: revisions
+section: Extending New Revisions
 ---
 
 # PublishPress Revisions and Multisite Networks

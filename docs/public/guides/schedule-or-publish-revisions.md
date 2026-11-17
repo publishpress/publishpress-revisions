@@ -2,6 +2,7 @@
 title: "How to Moderate and Publish Revisions"
 order: 35
 doc_category: revisions
+section: New Revisions
 ---
 
 # How to Moderate and Publish Revisions
