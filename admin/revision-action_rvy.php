@@ -836,39 +836,49 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$original_revision_status = $revision->post_mime_type;
 
-	if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
-		$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
+	// Native revision ownership is stored in post_parent. Ignore legacy
+	// workflow metadata and comment_count when restoring a historical revision.
+	if ('revision' === $revision->post_type) {
+		$published_id = (int) wp_is_post_revision($revision);
+		if (!$published_id) {
+			return false;
+		}
+	} else {
+		if (!defined('REVISIONARY_APPLY_REVISION_COMMENT_COUNT')) {
+			$published_id = get_post_meta( $revision_id, '_rvy_base_post_id', true );
 
-		$post_type = get_post_field('post_type', $published_id);
+			$post_type = get_post_field('post_type', $published_id);
 
-		if (!$post_type) {
-			$published_id = 0;
-		} elseif ('revision' == $post_type) {
-			if ('inherit' == get_post_field('post_status', $published_id)) {
-				$_published_id = get_post_field('post_parent', $published_id);
-				
-				if ($_published_id != $revision_id) {
-				  $published_id = $_published_id;  
+			if (!$post_type) {
+				$published_id = 0;
+			} elseif ('revision' == $post_type) {
+				if ('inherit' == get_post_field('post_status', $published_id)) {
+					$_published_id = get_post_field('post_parent', $published_id);
+					
+					if ($_published_id != $revision_id) {
+					  $published_id = $_published_id;  
+					}
+				}
+		
+				$post_type = get_post_field('post_type', $published_id);
+		
+				if (!$post_type || ('revision' == $post_type)) {
+					$published_id = 0;
 				}
 			}
-	
-			$post_type = get_post_field('post_type', $published_id);
-	
-			if (!$post_type || ('revision' == $post_type)) {
-				$published_id = 0;
+		}
+
+		if (empty($published_id)) {
+			if (!$published_id = $revision->comment_count) {
+				if (! $published_id = rvy_post_id($revision_id)) {
+					return false;
+				}
 			}
 		}
+
 	}
 
-	if (empty($published_id)) {
-		if (!$published_id = $revision->comment_count) {
-			if (! $published_id = rvy_post_id($revision_id)) {
-				return false;
-			}
-		}
-	}
-
-	if (rvy_in_revision_workflow($published_id)) {
+	if (('revision' !== $revision->post_type) && rvy_in_revision_workflow($published_id)) {
 		$published_id = rvy_post_id($published_id);
 	}
 
@@ -880,6 +890,15 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$published = get_post($published_id);
+	if (!$published || ((int) $published->ID === (int) $revision_id)) {
+		return false;
+	}
+
+	// Retain a valid existing parent without perpetuating a self-parent link.
+	$existing_parent = (int) $published->post_parent;
+	if ((int) $published->ID === $existing_parent) {
+		$existing_parent = 0;
+	}
 
     $skip_post_meta = rvy_is_revision_status($original_revision_status) ? rvy_disabled_revision_meta_keys() : [];
     if (!rvy_revision_metadata_is_safe($revision_id, $published_id, ['skip_meta_keys' => $skip_post_meta])) {
@@ -962,6 +981,8 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$revision_content = $update['post_content'];
 
+	$enabled_fields = null;
+
 	if (rvy_is_revision_status($original_revision_status)) {
 		$enabled_fields = $revisionary->enabled_fields;
 
@@ -984,10 +1005,12 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
-	// Prevent a revision from making the published post its own parent. This
-	// must run before wp_update_post()/rvy_update_post() writes post_parent.
+	// Prevent a revision from making the published post its own parent. A past
+	// revision's post_parent is the published post ID, so keep the published
+	// post's current parent instead. This must run before
+	// wp_update_post()/rvy_update_post() writes post_parent.
 	if (isset($update['post_parent']) && ((int) $published->ID === (int) $update['post_parent'])) {
-		$update['post_parent'] = 0;
+		$update['post_parent'] = $existing_parent;
 	}
 
 	if (defined('REVISIONARY_APPLY_REVISION_WP_UPDATE')) {
@@ -1056,7 +1079,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	// Safeguard: prevent invalid hierarchy and broken Pages admin
 	if (!empty($update_fields['post_parent']) && ($post_id == $update_fields['post_parent'])) {
-		$update_fields['post_parent'] = 0;
+		$update_fields['post_parent'] = $existing_parent;
 	}
 
 	if ($author_selection = get_post_meta($revision_id, '_rvy_author_selection', true)) {
@@ -1339,7 +1362,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	if (empty($revision) || empty($revision->post_mime_type)) {
 		$revision = (object) (array) $published;
-		$revision->post_mime_type = $original_post_status;
+		$revision->post_mime_type = $original_revision_status;
 		$revision->ID = $revision_id;
 	}
 
