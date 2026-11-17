@@ -4,6 +4,8 @@ defined('ABSPATH') || exit;
 require_once(__DIR__ . '/rvy_init-functions.php');
 require_once(__DIR__ . '/admin/RevisionStatusTaxonomySecurity.php');
 \PublishPress\Revisions\RevisionStatusTaxonomySecurity::register();
+require_once(__DIR__ . '/admin/StatusesRestSubmission.php');
+\PublishPress\Revisions\StatusesRestSubmission::register();
 
 function revisionary() {
     return \PublishPress\Revisions::instance();
