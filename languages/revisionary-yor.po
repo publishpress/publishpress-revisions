@@ -1,0 +1,2998 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the same license as the PublishPress Revisions Free plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Revisions Free 3.8.0-rc4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"POT-Creation-Date: 2026-06-18T00:23:08+00:00\n"
+"PO-Revision-Date: 2026-04-20 20:54+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: yor\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: revisionary\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Plugin Name of the plugin
+#: revisionary.php:3
+msgid "PublishPress Revisions Free"
+msgstr "PublishPress Revisions Free"
+
+#. Plugin URI of the plugin
+#: revisionary.php:4
+msgid "https://publishpress.com/revisionary/"
+msgstr "https://publishpress.com/revisionary/"
+
+#. Description of the plugin
+#: revisionary.php:5
+msgid ""
+"Maintain published content with teamwork and precision using the Revisions "
+"model to submit, approve and schedule changes."
+msgstr ""
+"Ṣetọju akoonu ti a tẹjade pẹlu iṣẹ ẹgbẹ ati iṣeduro nipa lilo awoṣe "
+"Revisions lati fi, fọwọsi ati ṣeto awọn ayipada."
+
+#. Author of the plugin
+#: revisionary.php:6
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#. Author URI of the plugin
+#: revisionary.php:7
+msgid "https://publishpress.com"
+msgstr "https://publishpress.com"
+
+#: admin/admin-init_rvy.php:112 admin/admin-init_rvy.php:348
+msgid "Sorry, you are not allowed to delete this revision."
+msgstr "E ma binu, o ko gba laaye lati pa atunṣe yii."
+
+#: admin/admin-init_rvy.php:204 admin/admin-init_rvy.php:314
+msgid "Sorry, you are not allowed to approve this revision."
+msgstr "E ma binu, o ko gba laaye lati fọwọsi atunṣe yii."
+
+#: admin/admin-init_rvy.php:241
+msgid "Sorry, you are not allowed to submit this revision."
+msgstr "E ma binu, o ko gba laaye lati fi atunṣe yii silẹ."
+
+#: admin/admin-init_rvy.php:279
+msgid "Sorry, you are not allowed to decline this revision."
+msgstr "E ma binu, o ko gba laaye lati kọ atunṣe yii."
+
+#: admin/admin-posts_rvy.php:192
+msgid "The revision was restored."
+msgstr "Atunṣe naa ti pada wa si ipo rẹ."
+
+#: admin/admin-posts_rvy.php:197
+msgid "The revision was scheduled for publication."
+msgstr "Atunṣe naa ti ṣeto fun tẹjade."
+
+#: admin/admin-posts_rvy.php:202
+msgid "The revision was published."
+msgstr "Atunṣe naa ti tẹjade."
+
+#: admin/admin-posts_rvy.php:207
+#, php-format
+msgid ""
+"The unfiltered_html capability is required to create a revision of this "
+"post. See %sdocumentation%s."
+msgstr ""
+"Agbara unfiltered_html ni a nilo lati ṣẹda atunṣe ti ifiweranṣẹ yii. Wo "
+"%sdocumentation%s."
+
+#: admin/admin-posts_rvy.php:212 rvy_init-functions.php:798
+msgid "The post already has a revision in process."
+msgstr "Ifiweranṣẹ naa ti ni atunṣe kan ti n lọ lọwọ."
+
+#: admin/admin-posts_rvy.php:294 admin/class-list-table-archive.php:580
+#: admin/post-edit-block-ui_rvy.php:165 admin/post-edit_rvy.php:102
+#: rvy_init-functions.php:495
+msgid "Revision"
+msgstr "Atunṣe"
+
+#: admin/admin-posts_rvy.php:311
+msgid "Has Revision"
+msgstr "Ni Atunṣe"
+
+#: admin/admin-posts_rvy.php:322 admin/admin_rvy.php:429
+#: admin/admin_rvy.php:499 admin/options.php:159 admin/options.php:639
+msgid "New Revisions"
+msgstr "Awọn Atunṣe Tuntun"
+
+#: admin/admin-posts_rvy.php:346 admin/history_rvy.php:87
+#: admin/history_rvy.php:91 admin/history_rvy.php:97 admin/history_rvy.php:100
+#: rvy_init-functions.php:289
+msgid "Copy"
+msgstr "Daakọ"
+
+#: admin/admin_lib-mu_rvy.php:10 admin/options.php:337
+msgid "PublishPress Revisions Network Settings"
+msgstr "Iṣeto Nẹtiwọọki PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:10
+msgid "Network Settings"
+msgstr "Iṣeto Nẹtiwọọki"
+
+#: admin/admin_lib-mu_rvy.php:21 admin/options.php:339
+msgid "PublishPress Revisions Network Defaults"
+msgstr "Awọn Iṣeto Aiyipada PublishPress Revisions"
+
+#: admin/admin_lib-mu_rvy.php:21
+msgid "Network Defaults"
+msgstr "Awọn aiyipada Nẹtiwọọki"
+
+#: admin/admin_rvy.php:166
+#, php-format
+msgid ""
+"Scheduled Revisions are unavailable because WP-Cron is disabled. If you are "
+"triggering WP-Cron externally, see %sRevisions > Settings > New Revisions > "
+"Scheduling%s."
+msgstr ""
+"Awọn atunṣe ti a ṣẹda ko si nitori WP-Cron ti pa. Ti o ba n mu WP-Cron ṣiṣẹ "
+"ni ita, wo %sAwọn Atunṣe > Eto > Awọn Atunṣe Tuntun > Iṣeto%s."
+
+#: admin/admin_rvy.php:321
+msgctxt "groups per page (screen options)"
+msgid "Revisions"
+msgstr "Atunṣe"
+
+#: admin/admin_rvy.php:361
+msgid "Revisions"
+msgstr "Awọn atunṣe"
+
+#: admin/admin_rvy.php:438 admin/admin_rvy.php:439 admin/admin_rvy.php:500
+#: admin/options.php:158 admin/options.php:546
+#: admin/revision-archive_rvy.php:81 admin/revisions.php:237
+msgid "Past Revisions"
+msgstr "Awọn Atunṣe Tẹlẹ"
+
+#: admin/admin_rvy.php:456 admin/options.php:343
+msgid "PublishPress Revisions Settings"
+msgstr "Awọn Eto Atunṣe PublishPress"
+
+#: admin/admin_rvy.php:456 admin/admin_rvy.php:503 admin/options.php:153
+msgid "Settings"
+msgstr "Eto"
+
+#: admin/admin_rvy.php:465 admin/admin_rvy.php:466 admin/admin_rvy.php:506
+#: admin/options.php:2016 admin/options.php:2043 admin/options.php:2259
+#: admin/options.php:2605 includes/CoreAdmin.php:212
+msgid "Upgrade to Pro"
+msgstr "Gbigba si Pro"
+
+#: admin/admin_rvy.php:547
+msgid "Can edit draft Posts from other users."
+msgstr "Le ṣatunkọ awọn ifiweranṣẹ draft lati ọdọ awọn olumulo miiran."
+
+#: admin/admin_rvy.php:548
+msgid "Can edit Revisions from other users."
+msgstr "Le ṣatunkọ Awọn Atunṣe lati ọdọ awọn olumulo miiran."
+
+#: admin/admin_rvy.php:549
+msgid "Can see New Revisions from other users."
+msgstr "Le rii Awọn Atunṣe Tuntun lati ọdọ awọn olumulo miiran."
+
+#: admin/admin_rvy.php:550
+msgid "Can access New Revisions."
+msgstr "Le wọle si Awọn Atunṣe Tuntun."
+
+#: admin/admin_rvy.php:551
+msgid "Can manage Unsubmitted Revisions."
+msgstr "Le ṣakoso Awọn Atunṣe ti a ko fi silẹ."
+
+#: admin/admin_rvy.php:552
+msgid "Preview other user's Revisions (without needing editing access)."
+msgstr "Wo Awọn Atunṣe olumulo miiran's (lai nilo wọle si ṣiṣatunkọ)."
+
+#: admin/admin_rvy.php:553
+msgid "Restore an archived Revision as the current revision."
+msgstr "Tunṣe Atunṣe ti a fipamọ silẹ gẹgẹbi atunṣe lọwọlọwọ."
+
+#: admin/admin_rvy.php:554
+msgid "View Past Revisions."
+msgstr "Wo Awọn Atunṣe Tẹlẹ."
+
+#: admin/admin_rvy.php:584
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Ti o ba fẹ %1$s, jọwọ fi wa silẹ ni %2$s ipo. O ṣeun!"
+
+#: admin/admin_rvy.php:595
+msgid "About PublishPress Revisions"
+msgstr "Nipa Awọn Atunṣe PublishPress"
+
+#: admin/admin_rvy.php:595
+msgid "About"
+msgstr "Nipa"
+
+#: admin/admin_rvy.php:597
+msgid "PublishPress Revisions Documentation"
+msgstr "Iwe Itọsọna Awọn Atunṣe PublishPress"
+
+#: admin/admin_rvy.php:597
+msgid "Documentation"
+msgstr "Iwe Itọsọna"
+
+#: admin/admin_rvy.php:599
+msgid "Contact the PublishPress team"
+msgstr "Kan si ẹgbẹ PublishPress"
+
+#: admin/admin_rvy.php:599
+msgid "Contact"
+msgstr "Kan si"
+
+#: admin/agents_checklist_rvy.php:76
+#, php-format
+msgid "show current users (%d)"
+msgstr "fi awọn olumulo lọwọlọwọ han (%d)"
+
+#: admin/agents_checklist_rvy.php:78
+#, php-format
+msgid "show eligible users (%d)"
+msgstr "fi awọn olumulo ti o yẹ han (%d)"
+
+#: admin/agents_checklist_rvy.php:87
+msgid "filter:"
+msgstr "àlẹmọ:"
+
+#: admin/agents_checklist_rvy.php:103
+msgid "select"
+msgstr "yan"
+
+#: admin/agents_checklist_rvy.php:111
+msgid "unselect"
+msgstr "yọkúrò"
+
+#: admin/class-list-table-archive.php:22
+msgid ""
+"This was an update to a revision which is still in the workflow process."
+msgstr "Eyi jẹ imudojuiwọn si atunṣe ti o wa ninu ilana iṣẹ akanṣe."
+
+#: admin/class-list-table-archive.php:24
+msgid ""
+"This was an update to a revision which was published after further editing."
+msgstr "Eyi jẹ imudojuiwọn si atunṣe ti a tẹjade lẹhin ṣiṣatunkọ si i."
+
+#: admin/class-list-table-archive.php:202
+#, php-format
+msgid "Revision Author: %s"
+msgstr "Onkọwe Atunṣe: %s"
+
+#: admin/class-list-table-archive.php:221
+#, php-format
+msgid "Post Author: %s"
+msgstr "Onkọwe Ifiweranṣẹ: %s"
+
+#: admin/class-list-table-archive.php:231
+#, php-format
+msgid "Revision Date: %s"
+msgstr "Ọjọ Atunṣe: %s"
+
+#: admin/class-list-table-archive.php:241
+#, php-format
+msgid "Approved by: %s"
+msgstr "Ti fọwọsi nipasẹ: %s"
+
+#: admin/class-list-table-archive.php:251
+#, php-format
+msgid "Publication Date: %s"
+msgstr "Ọjọ Ifiweranṣẹ: %s"
+
+#: admin/class-list-table-archive.php:272
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Awọn esi ìwadii fun \"%s\""
+
+#: admin/class-list-table-archive.php:540 admin/class-list-table_rvy.php:1404
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Delete Revision"
+msgstr "Pa Atunṣe"
+
+#: admin/class-list-table-archive.php:581 admin/class-list-table_rvy.php:756
+msgid "Post Type"
+msgstr "post type"
+
+#: admin/class-list-table-archive.php:582 rvy_init-functions.php:496
+msgid "Revised By"
+msgstr "Ti atunṣe nipasẹ"
+
+#: admin/class-list-table-archive.php:583 rvy_init-functions.php:497
+msgid "Revision Date"
+msgstr "Ọjọ Atunṣe"
+
+#: admin/class-list-table-archive.php:584
+msgid "Action"
+msgstr "Iṣe"
+
+#: admin/class-list-table-archive.php:585
+msgid "Approved By"
+msgstr "Ti a fọwọsi nipasẹ"
+
+#: admin/class-list-table-archive.php:586
+msgid "Published Date"
+msgstr "Ọjọ atẹjade"
+
+#: admin/class-list-table-archive.php:587
+msgid "Published Author"
+msgstr "Onkọwe ti a tẹjade"
+
+#: admin/class-list-table-archive.php:616 admin/class-list-table_rvy.php:922
+msgid "just now"
+msgstr "bẹrẹ bayi"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s iṣẹju sẹyin"
+
+#: admin/class-list-table-archive.php:621 admin/class-list-table_rvy.php:927
+#, php-format
+msgid "%s minute ago"
+msgstr "%s iṣẹju sẹyin"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hours ago"
+msgstr "%s wakati sẹyin"
+
+#: admin/class-list-table-archive.php:628 admin/class-list-table_rvy.php:934
+#, php-format
+msgid "%s hour ago"
+msgstr "%s wakati sẹyin"
+
+#: admin/class-list-table-archive.php:756 functions.php:466
+msgid "Scheduled Revision Publication"
+msgstr "Atunṣe Itẹjade ti a gbero"
+
+#: admin/class-list-table-archive.php:760 functions.php:470
+msgid "Revision Publication"
+msgstr "Itẹjade Atunṣe"
+
+#: admin/class-list-table-archive.php:770 functions.php:480
+#, php-format
+msgid "Edit of %s"
+msgstr "Ṣatunkọ ti %s"
+
+#: admin/class-list-table-archive.php:777 functions.php:487
+msgid "Edit of published Revision"
+msgstr "Ṣatunkọ ti Atunṣe ti a tẹjade"
+
+#: admin/class-list-table-archive.php:780 functions.php:490 functions.php:553
+msgid "Direct Edit"
+msgstr "Ṣatunkọ taara"
+
+#: admin/class-list-table-archive.php:839 admin/class-list-table_rvy.php:1461
+msgid "All Post Types"
+msgstr "Gbogbo Awọn iru ifiweranṣẹ"
+
+#: admin/class-list-table-archive.php:872 admin/class-list-table_rvy.php:1496
+msgid "All Revision Authors"
+msgstr "Gbogbo Awọn onkọwe Atunṣe"
+
+#: admin/class-list-table-archive.php:906 admin/class-list-table_rvy.php:1531
+msgid "All Revision Dates"
+msgstr "Gbogbo Awọn ọjọ Atunṣe"
+
+#: admin/class-list-table-archive.php:964
+msgid "All Publish Dates"
+msgstr "Gbogbo Awọn ọjọ Ifọwọsi"
+
+#: admin/class-list-table-archive.php:1000
+msgid "All Approvers"
+msgstr "Gbogbo Awọn ti a fọwọsi"
+
+#: admin/class-list-table-archive.php:1036 admin/class-list-table_rvy.php:1602
+msgid "All Authors"
+msgstr "Gbogbo Awọn onkọwe"
+
+#: admin/class-list-table-archive.php:1058 admin/class-list-table_rvy.php:1638
+msgid "Reset Filters"
+msgstr "Tun awọn àlẹmọ ṣe"
+
+#: admin/class-list-table-archive.php:1089 admin/options.php:2270
+msgid "All"
+msgstr "Gbogbo"
+
+#: admin/class-list-table-archive.php:1103
+msgid "My Revisions"
+msgstr "Awọn atunṣe mi"
+
+#: admin/class-list-table-archive.php:1157
+#, php-format
+msgid "Compare Changes in %s"
+msgstr "Ṣe afiwe awọn ayipada ni %s"
+
+#: admin/class-list-table-archive.php:1161 admin/class-list-table_rvy.php:1918
+#: admin/post-edit_rvy.php:191 admin/post-edit_rvy.php:255
+#: admin/post-edit_rvy.php:269
+msgctxt "revisions"
+msgid "Compare"
+msgstr "Farakọ"
+
+#: admin/class-list-table-archive.php:1176 admin/class-list-table_rvy.php:1903
+#: admin/post-editor-workflow-ui_rvy.php:233
+msgid "Preview Revision"
+msgstr "Ṣayẹwo atunṣe"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent revision"
+msgstr "Ṣatunkọ atunṣe obi"
+
+#: admin/class-list-table-archive.php:1190
+msgid "Edit parent post"
+msgstr "Ṣatunkọ ifiweranṣẹ obi"
+
+#: admin/class-list-table-archive.php:1191
+msgid "Edit Parent"
+msgstr "Ṣatunkọ Obi"
+
+#: admin/class-list-table-archive.php:1201
+msgid "List Revisions of this Post"
+msgstr "Atokọ awọn atunṣe ti ifiweranṣẹ yii"
+
+#: admin/class-list-table-archive.php:1202
+msgid "Filter"
+msgstr "Àlẹmọ"
+
+#: admin/class-list-table-archive.php:1214
+msgid "Delete Past Revision"
+msgstr "Paarẹ atunṣe ti o ti kọja"
+
+#: admin/class-list-table-archive.php:1302
+msgid "No revisions found."
+msgstr "Ko si awọn atunṣe ti a ri."
+
+#: admin/class-list-table_rvy.php:755 admin/options.php:757
+#: admin/options.php:920 admin/post-editor-workflow-ui_rvy.php:31
+msgid "Status"
+msgstr "Ipo"
+
+#: admin/class-list-table_rvy.php:801
+msgid "View preview"
+msgstr "Wo iṣafihan"
+
+#: admin/class-list-table_rvy.php:818
+msgid "Y/m/d, g:i:s a"
+msgstr "Y/m/d, g:i:s a"
+
+#: admin/class-list-table_rvy.php:828
+msgid "Y/m/d g:i a"
+msgstr "Y/m/d g:i a"
+
+#: admin/class-list-table_rvy.php:835
+#, php-format
+msgid "Scheduled publication: %s"
+msgstr "Ìtẹ̀sí ìtẹ̀jáde: %s"
+
+#: admin/class-list-table_rvy.php:838
+#, php-format
+msgid "Requested publication: %s"
+msgstr "Ìtẹ̀sí ìtẹ̀jáde: %s"
+
+#: admin/class-list-table_rvy.php:840
+msgid "This revision is not scheduled yet. It must be approved."
+msgstr "Atunṣe yii ko ti ṣeto sibẹsibẹ. O gbọdọ jẹwọ."
+
+#: admin/class-list-table_rvy.php:890 admin/history_rvy.php:915
+msgid "No author"
+msgstr "Ko si onkọwe"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:964
+msgid "Edit published post"
+msgstr "Ṣatunkọ ifiweranṣẹ ti a tẹjade"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:977
+#, php-format
+msgid "View only revisions of %s"
+msgstr "Wo awọn atunṣe ti %s nikan"
+
+#: admin/class-list-table_rvy.php:988 admin/class-list-table_rvy.php:995
+msgid "View published post"
+msgstr "Wo ifiweranṣẹ ti a tẹjade"
+
+#: admin/class-list-table_rvy.php:1020
+msgid "Compare Past Revisions"
+msgstr "Wọ́n fiwé àwọn atunṣe tó kọja"
+
+#: admin/class-list-table_rvy.php:1021
+msgid "History"
+msgstr "Itan"
+
+#: admin/class-list-table_rvy.php:1301
+msgid "My Activity"
+msgstr "Iṣe Mi"
+
+#: admin/class-list-table_rvy.php:1310
+#, php-format
+msgid "All %s"
+msgstr "Gbogbo %s"
+
+#: admin/class-list-table_rvy.php:1400
+msgid "Unschedule"
+msgstr "Yọ kúrò nínú iṣeto"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1404 admin/class-list-table_rvy.php:1875
+#: admin/class-list-table_rvy.php:1879 admin/post-edit-block-ui_rvy.php:124
+#: admin/post-edit_rvy.php:95 admin/RevisionEditSubmitMetabox.php:62
+msgid "Discard Revision"
+msgstr "Fagilee Atunṣe"
+
+#: admin/class-list-table_rvy.php:1442
+msgid "All Revision Statuses"
+msgstr "Gbogbo Ipo Atunṣe"
+
+#: admin/class-list-table_rvy.php:1567
+msgid "All Posts"
+msgstr "Gbogbo Awọn Ifiweranṣẹ"
+
+#. translators: %s: post title
+#: admin/class-list-table_rvy.php:1852
+#: admin/post-editor-workflow-ui_rvy.php:234
+msgid "Edit Revision"
+msgstr "Ṣatunkọ Atunṣe"
+
+#: admin/class-list-table_rvy.php:1917
+msgid "Compare Changes"
+msgstr "Wọ́n fiwé awọn ayipada"
+
+#: admin/class-list-table_rvy.php:1929
+#, fuzzy
+#| msgid "Approve"
+msgctxt "revisions"
+msgid "Approve"
+msgstr "Fọwọ́sowọpọ̀"
+
+#: admin/class-list-table_rvy.php:1936
+#, fuzzy
+#| msgid "Publish Now"
+msgctxt "revisions"
+msgid "Publish"
+msgstr "Tẹjade Bayi"
+
+#: admin/class-list-table_rvy.php:1945
+msgctxt "revisions"
+msgid "Decline"
+msgstr "Kọ"
+
+#: admin/edit-revision-classic-ui_rvy.php:111
+msgid "Publish <b>on approval</b>"
+msgstr "Tẹjade <b>ni ifọwọsi</b>"
+
+#: admin/edit-revision-classic-ui_rvy.php:142
+#, php-format
+msgid "Revision updated. %sView Preview%s"
+msgstr "Atunṣe ti ni imudojuiwọn. %sWo Aworan %s"
+
+#: admin/edit-revision-classic-ui_rvy.php:144
+msgid "Revision updated."
+msgstr "Atunṣe ti ni imudojuiwọn."
+
+#: admin/history_rvy.php:87 admin/history_rvy.php:91
+msgid "Copy content to the clipboard."
+msgstr "Daakọ akoonu si pẹpẹ-ọrọ."
+
+#: admin/history_rvy.php:97 admin/history_rvy.php:100
+msgid "Copy the above content to the clipboard."
+msgstr "Daakọ akoonu loke si pẹpẹ-ọrọ."
+
+#: admin/history_rvy.php:282 admin/history_rvy.php:302
+#, php-format
+msgid "Compare %s of \"%s\""
+msgstr "Wọ́n fiwé %s ti \"%s\""
+
+#: admin/history_rvy.php:659 admin/options.php:1164
+msgid "Post Date"
+msgstr "Ọjọ Ifiweranṣẹ"
+
+#: admin/history_rvy.php:660
+msgid "Post Parent"
+msgstr "Ìkọ̀kọ́ Ọmọ"
+
+#: admin/history_rvy.php:661
+msgid "Menu Order"
+msgstr "Àtòjọ Menu"
+
+#: admin/history_rvy.php:662
+msgid "Comment Status"
+msgstr "Ipo Àfihàn"
+
+#: admin/history_rvy.php:663
+msgid "Ping Status"
+msgstr "Ipo Ping"
+
+#: admin/history_rvy.php:803
+msgid "Page Template"
+msgstr "Àpẹẹrẹ Ojúewé"
+
+#: admin/history_rvy.php:806
+msgid "Featured Image"
+msgstr "Àwòrán Àtàwọn"
+
+#: admin/history_rvy.php:810
+msgid "Beaver Builder Data"
+msgstr "Dáta Beaver Builder"
+
+#: admin/history_rvy.php:811
+msgid "Beaver Builder Settings"
+msgstr "Ìtọ́sọ́nà Beaver Builder"
+
+#: admin/history_rvy.php:1062
+msgid "Scheduled for "
+msgstr "Tí a ṣe àtòjọ fún "
+
+#: admin/history_rvy.php:1067
+msgid "Requested for "
+msgstr "Tí a béèrè fún "
+
+#: admin/history_rvy.php:1072
+msgid "Modified "
+msgstr "Tí a ṣe àtúnṣe "
+
+#: admin/history_rvy.php:1077
+#, php-format
+msgid "%s%s from now"
+msgstr "%s%s láti inú ìsìnyí"
+
+#: admin/history_rvy.php:1088
+msgid "M j, Y @ g:i a"
+msgstr "M j, Y @ g:i a"
+
+#: admin/history_rvy.php:1133
+msgid "M j, Y @ H:i"
+msgstr "M j, Y @ H:i"
+
+#: admin/history_rvy.php:1134
+msgctxt "revision date short format"
+msgid "j M @ H:i"
+msgstr "j M @ H:i"
+
+#: admin/history_rvy.php:1220 front_rvy.php:546 front_rvy.php:556
+#: front_rvy.php:575 front_rvy.php:606 rvy_init-functions.php:293
+#: rvy_init-functions.php:311 rvy_init-functions.php:350
+#: rvy_init-functions.php:367 rvy_init-functions.php:384
+msgid "Approve"
+msgstr "Fọwọ́sowọpọ̀"
+
+#: admin/history_rvy.php:1220
+msgid "Preview / Approve"
+msgstr "Àwòrán / Fọwọ́sowọpọ̀"
+
+#: admin/history_rvy.php:1222 admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+#: admin/post-editor-workflow-ui_rvy.php:233
+#: admin/RevisionEditSubmitMetabox.php:123
+msgid "Preview"
+msgstr "Àwòrán"
+
+#: admin/history_rvy.php:1316
+msgid "Preview / Restore"
+msgstr "Àwòrán / Ìmúpadà"
+
+#: admin/history_rvy.php:1323
+msgid "Manage"
+msgstr "Ṣakoso"
+
+#: admin/history_rvy.php:1324
+msgid "List"
+msgstr "Akojọ"
+
+#: admin/options.php:123
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Gbogbo awọn eto lori taabu yii ti pin kaakiri nẹtiwọọki."
+
+#: admin/options.php:153
+msgid "Setting Scope"
+msgstr "Ipele Eto"
+
+#: admin/options.php:157
+msgid "Features"
+msgstr "Awọn ẹya"
+
+#: admin/options.php:160
+msgid "Options"
+msgstr "Awọn aṣayan"
+
+#: admin/options.php:161
+msgid "Integrations"
+msgstr "Iṣakoso"
+
+#: admin/options.php:162
+msgid "Statuses"
+msgstr "Ipo"
+
+#: admin/options.php:163 admin/options.php:1197
+msgid "Notifications"
+msgstr "Awọn iwifunni"
+
+#: admin/options.php:169
+msgid "Revision Submission"
+msgstr "Ifakalẹ Atunṣe"
+
+#: admin/options.php:177
+msgid ""
+"Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
+"Change\""
+msgstr "Lo aami yiyan: \"Ẹda Iṣẹ\" > \"Beere Iyipada\" > \"Iyipada ti a ṣeto\""
+
+#: admin/options.php:178
+msgid "New Revisions access requires role capability"
+msgstr "Iwọle si Awọn Atunṣe Tuntun nilo agbara ipa"
+
+#: admin/options.php:179
+#, php-format
+msgid "Managing %s requires role capability"
+msgstr "Iṣakoso %s nilo agbara ipa"
+
+#: admin/options.php:180
+msgid "Working Copy creation requires role capability"
+msgstr "Ṣiṣẹda Ẹda Iṣẹ nilo agbara ipa"
+
+#: admin/options.php:180
+msgid "Revision creation requires role capability"
+msgstr "Ṣiṣẹda Atunṣe nilo agbara ipa"
+
+#: admin/options.php:181
+#, php-format
+msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
+msgstr ""
+"Atokọ Awọn ifiweranṣẹ / Awọn oju-iwe: Lo asọye \"Ṣatunkọ\" fun %s ọna asopọ"
+
+#: admin/options.php:182 admin/options.php:188
+#, php-format
+msgid "Enable %s"
+msgstr "Mu %s ṣiṣẹ"
+
+#: admin/options.php:183
+msgid "Limit to one active revision per post"
+msgstr "Dena si atunṣe kan ti n ṣiṣẹ fun ifiweranṣẹ kọọkan"
+
+#: admin/options.php:184
+msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
+msgstr "Tunṣe \"Ni Atunṣe\" asia ṣaaju ki o to dinku Ṣẹda Atunṣe"
+
+#: admin/options.php:185
+msgid "If post contains custom html, require unfiltered_html capability"
+msgstr "Ti ifiweranṣẹ ba ni html aṣa, nilo agbara unfiltered_html"
+
+#: admin/options.php:186
+msgid "Auto-submit revisions created by a user with publishing capability"
+msgstr "Auto-fakalẹ awọn atunṣe ti a ṣẹda nipasẹ olumulo kan pẹlu agbara ikede"
+
+#: admin/options.php:187
+msgid "Auto-submit revisions"
+msgstr "Auto-fakalẹ awọn atunṣe"
+
+#: admin/options.php:189
+msgid "Change Request submission require role capability"
+msgstr "Iyipada Ibeere ifisilẹ nilo agbara ipa"
+
+#: admin/options.php:189
+msgid "Revision submission requires role capability"
+msgstr "Ibeere atunṣe nilo agbara ipa"
+
+#: admin/options.php:190
+msgid "Editing others' Revisions requires role capability"
+msgstr "Ṣiṣatunkọ awọn atunṣe ti awọn miiran nilo agbara ipa"
+
+#: admin/options.php:191
+msgid "Listing others' Revisions requires role capability"
+msgstr "Atokọ awọn atunṣe ti awọn miiran nilo agbara ipa"
+
+#: admin/options.php:192
+msgid "Users can always administer revisions to their own editable posts"
+msgstr ""
+"Awọn olumulo le nigbagbogbo ṣe iṣakoso awọn atunṣe si awọn ifiweranṣẹ tiwọn "
+"ti a le satunkọ"
+
+#: admin/options.php:193
+msgid "Also notify on Revision Update"
+msgstr "Tun kede lori Imudojuiwọn Atunṣe"
+
+#: admin/options.php:194
+msgid "Apply API actions to mimic Post Update"
+msgstr "Lo awọn iṣe API lati ṣe afiwe Imudojuiwọn Ifiweranṣẹ"
+
+#: admin/options.php:195
+msgid "Hide html tags on Compare screen"
+msgstr "Tọju awọn aami html lori iboju Afiwe"
+
+#: admin/options.php:196
+msgid "Hide copy buttons on Compare screen"
+msgstr "Tọju awọn bọtini ẹda lori iboju Afiwe"
+
+#: admin/options.php:197
+msgid "Use WP-Cron scheduling"
+msgstr "Lo iṣeto WP-Cron"
+
+#: admin/options.php:198
+msgid "Site uses a custom trigger for WP-Cron tasks"
+msgstr "Aaye naa nlo ohun ọdẹ ti a ṣe adani fun awọn iṣẹ WP-Cron"
+
+#: admin/options.php:199
+msgid "Asynchronous Publishing"
+msgstr "Ikede Asynchronous"
+
+#: admin/options.php:200
+msgid "Editor background color"
+msgstr ""
+
+#: admin/options.php:201 admin/options.php:202
+msgid "Update Publish Date"
+msgstr "Imudojuiwọn Ọjọ Ifiweranṣẹ"
+
+#: admin/options.php:203 admin/options.php:204
+msgid "Update Modified Date"
+msgstr "Imudojuiwọn Ọjọ Ti a Yipada"
+
+#: admin/options.php:207 admin/options.php:208
+#, php-format
+msgid "Use %1$sPlanner Notifications%2$s"
+msgstr "Lo %1$sIfojusi Planner%2$s"
+
+#: admin/options.php:210
+#, php-format
+msgid "Email original Author when a %s is submitted"
+msgstr "Imeeli onkọwe atilẹba nigbati a ba fi %s ranṣẹ"
+
+#: admin/options.php:211
+#, php-format
+msgid "Email the original Author when a %s is approved"
+msgstr "Imeeli onkọwe atilẹba nigbati a ba fọwọsi %s"
+
+#: admin/options.php:212
+#, php-format
+msgid "Email the Revisor when a %s is approved"
+msgstr "Imeeli Revisor nigbati a ba fọwọsi %s"
+
+#: admin/options.php:213
+#, php-format
+msgid "Email the original Author when a %s is published"
+msgstr "Imeeli onkọwe atilẹba nigbati a ba ṣe atẹjade %s"
+
+#: admin/options.php:214
+#, php-format
+msgid "Email the Revisor when a %s is published"
+msgstr "Imeeli Revisor nigbati a ba ṣe atẹjade %s"
+
+#: admin/options.php:215
+msgid "Enable notification buffer"
+msgstr "Mu ikilọ àkópọ ṣiṣẹ"
+
+#: admin/options.php:216
+msgid "Revisors can create a new revision for any custom post type"
+msgstr "Àwọn olùṣàkóso le dá àtúnṣe tuntun sí iha àkọsílẹ kankan"
+
+#: admin/options.php:217
+msgid "Prevent Revisors from editing others' unpublished Posts"
+msgstr "Dènà àwọn olùṣàkóso láti ṣiṣàtúnṣe àwọn ìkọ̀wé tí kò tí ì tẹjáde"
+
+#: admin/options.php:218
+msgid "Add database index to posts table for Revision queries"
+msgstr "Fikun-un àkóso ibi ipamọ sí tabili ìkọ̀wé fún ìbéèrè Àtúnṣe"
+
+#: admin/options.php:219
+msgid "Display Hints"
+msgstr "Fi Àfihàn hàn"
+
+#: admin/options.php:220
+msgid "Delete settings and Revisions if plugin is deleted"
+msgstr "Pa àwọn àtọsọna àti Àtúnṣe run ti àpẹẹrẹ ba ti pa"
+
+#: admin/options.php:221
+msgid "Show Preview Links"
+msgstr "Fi Àtẹle Àfihàn hàn"
+
+#: admin/options.php:222
+msgid "Preview Link Type"
+msgstr "Iru Àtẹle Àfihàn"
+
+#: admin/options.php:223
+msgid "Modify preview link for better theme compatibility"
+msgstr "Ṣe àtúnṣe àtẹle àfihàn fún ibaramu àkópọ tó dára"
+
+#: admin/options.php:224
+msgid "Theme Compat: For front page revision preview, set home flag"
+msgstr "Ibaramu Àkópọ: Fun àfihàn àtúnṣe oju-ìwé iwájú, ṣètò asia ile"
+
+#: admin/options.php:225
+msgid "Approve Button on Compare screen"
+msgstr "Bọtini Ìmúra lori iboju Ìfaramọ"
+
+#: admin/options.php:226
+msgid "Copy revision comments to published post"
+msgstr "Da awọn ìmọ̀ràn àtúnṣe kọ́ sí ìkọ̀wé tí a tẹjáde"
+
+#: admin/options.php:227
+msgid "Compare Past Revisions ordering:"
+msgstr "Ṣe afiwe Àtúnṣe Tẹ́lẹ̀ ni aṣẹ:"
+
+#: admin/options.php:228
+#, php-format
+msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
+msgstr "Ìtẹ̀wọ̀gbà %s fún \"Ìṣe Mi\" tàbí \"Àtúnṣe si Ìkọ̀wé Mi\" àwòrán"
+
+#: admin/options.php:229
+msgid "Store custom fields of submitted and scheduled revisions for archive"
+msgstr "Fipamọ́ ilẹ̀ àkọsílẹ ti a fi ránṣẹ́ àti àtúnṣe ti a ṣètò fún àkópọ"
+
+#: admin/options.php:230
+msgid "Keep an archive of revision edits, even after the revision is published"
+msgstr "Pa àkópọ ìtọ́kasí awọn àtúnṣe, paapaa lẹ́yìn tí àtúnṣe ti tẹjáde"
+
+#: admin/options.php:231
+msgid "Show Current Revision top bar after revision publication"
+msgstr "Fi bar àtúnṣe lọwọlọwọ hàn lẹ́yìn ìtẹjade àtúnṣe"
+
+#: admin/options.php:232
+msgid "On Revision publication, delete Editorial Comments"
+msgstr "Nígbà ìtẹjade àtúnṣe, pa Àwọn Àlàyé Àkọsílẹ run"
+
+#: admin/options.php:233
+msgid "Enable deletion queue"
+msgstr "Mu àtòjọ ìparí ṣiṣẹ"
+
+#: admin/options.php:234
+msgid "Allow Past Revisions to be deleted"
+msgstr "Gba kí Àtúnṣe Tẹ́lẹ̀ jẹ́ kó parí"
+
+#: admin/options.php:235
+msgid "Restoring a Revision requires role capability"
+msgstr "Iboju atunṣe nilo agbara ipa"
+
+#: admin/options.php:236
+msgid "Compatibility Mode"
+msgstr "Ipo ibamu"
+
+#: admin/options.php:237
+msgid "Planner Notifications Access-Limited"
+msgstr "Iṣẹ amojuto Akiyesi pẹlu Iye-iyẹwo"
+
+#: admin/options.php:238
+msgid "Maximum Revisions per post"
+msgstr "Iwọn to pọ julọ ti atunṣe fun ifiweranṣẹ"
+
+#: admin/options.php:239
+msgid "Apply Post Permissions to Revisions"
+msgstr "Lo Awọn igbanilaaye Ifiweranṣẹ si Awọn atunṣe"
+
+#: admin/options.php:240
+msgid "Enable legacy email notifications"
+msgstr "Mu awọn iwifunni imeeli atijọ ṣiṣẹ"
+
+#: admin/options.php:241
+msgid "Use extended captions for Approve button in Post Editor"
+msgstr "Lo awọn akọle ti a gbooro fun bọtini Ifọwọsi ninu Olutayo Ifiweranṣẹ"
+
+#: admin/options.php:242
+msgid "Allow the Author field to be modified by Revision"
+msgstr "Gba aaye Onkọwe laaye lati yipada nipasẹ Atunṣe"
+
+#: admin/options.php:243
+msgid "Create Revision button in editor opens new tab"
+msgstr "Ṣẹda bọtini Atunṣe ninu olutayo n ṣii taabu tuntun"
+
+#: admin/options.php:244
+msgid ""
+"Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
+"previewing in Revision editor"
+msgstr ""
+"Ibeere Loop Block: Ṣatunṣe awọn agbara Revisor ati Olùkó lati gba wiwo ninu "
+"olutayo Atunṣe"
+
+#: admin/options.php:245
+msgid "Disable Rank Math SEO panel for Revision edit"
+msgstr "Dena panẹli Rank Math SEO fun ṣiṣatunkọ Atunṣe"
+
+#: admin/options.php:246
+msgid "Allow custom fields (post meta) to be revisioned"
+msgstr "Gba awọn aaye aṣa (meta ifiweranṣẹ) laaye lati jẹ atunṣe"
+
+#: admin/options.php:247
+msgid "Permission for Submit Revision also enables Revision creation"
+msgstr "Igbanilaaye fun Fi Atunṣe silẹ tun mu ṣiṣẹda Atunṣe ṣiṣẹ"
+
+#: admin/options.php:248
+msgid "Enable classic metaboxes in editor"
+msgstr ""
+
+#: admin/options.php:253
+#, php-format
+msgid "Email designated Publishers when a %s is submitted"
+msgstr "Imeeli awọn Onkọwe ti a yan nigbati a ba fi %s silẹ"
+
+#: admin/options.php:254
+#, php-format
+msgid "Email designated Publishers when a %s is published"
+msgstr "Imeeli awọn Onkọwe ti a yan nigbati a ba tẹ %s jade"
+
+#: admin/options.php:255
+#, php-format
+msgid "Email designated Publishers when a %s is approved"
+msgstr "Imeeli awọn Onkọwe ti a yan nigbati a ba fọwọsi %s"
+
+#: admin/options.php:257
+#, php-format
+msgid "Email Editors and Administrators when a %s is submitted"
+msgstr "Imeeli awọn Olutayo ati awọn Alakoso nigbati a ba fi %s silẹ"
+
+#: admin/options.php:258
+#, php-format
+msgid "Email Editors and Administrators when a %s is published"
+msgstr "Imeeli awọn Olutayo ati awọn Alakoso nigbati a ba tẹ %s jade"
+
+#: admin/options.php:259
+#, php-format
+msgid "Email Editors and Administrators when a %s is approved"
+msgstr "Imeeli awọn Olutayo ati awọn Alakoso nigbati a ba fọwọsi %s"
+
+#: admin/options.php:341
+msgid "PublishPress Revisions Site Settings"
+msgstr "Iṣeto Aaye Atunṣe PublishPress"
+
+#: admin/options.php:371
+msgid ""
+"These are the default settings for options which can be adjusted per-site."
+msgstr ""
+"Eyi ni awọn eto aiyipada fun awọn aṣayan ti a le ṣe atunṣe fun ọkọọkan aaye."
+
+#: admin/options.php:409
+#, php-format
+msgid ""
+"Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
+"settings. %s"
+msgstr ""
+"Lo taabu yii lati ṣe awọn ayipada ni gbogbo NETWORK si awọn eto PublishPress "
+"Revisions. %s"
+
+#: admin/options.php:412
+#, php-format
+msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
+msgstr "O tun le ṣalaye %1$s awọn aiyipada fun awọn eto aaye pataki %2$s."
+
+#: admin/options.php:415
+msgid ""
+"Here you can change the default value for settings which are controlled "
+"separately on each site."
+msgstr ""
+"Nibi o le yipada iye aiyipada fun awọn eto ti a ṣakoso ni iyasọtọ lori "
+"ọkọọkan aaye."
+
+#: admin/options.php:425 admin/options.php:427
+#, php-format
+msgid "Note that %1$s network-wide settings%2$s may also be available."
+msgstr "Ṣe akiyesi pe %1$s awọn eto ni gbogbo nẹtiwọọki %2$s le tun wa."
+
+#: admin/options.php:505
+msgid "License"
+msgstr "Iwe-aṣẹ"
+
+#: admin/options.php:550
+msgid "Past Revisions are earlier versions of a post."
+msgstr "Awọn Atunṣe ti o kọja jẹ awọn ẹya iṣaaju ti ifiweranṣẹ kan."
+
+#: admin/options.php:607
+msgid "This post type does not support Past Revisions."
+msgstr "Iru ifiweranṣẹ yii ko ni atilẹyin awọn Atunṣe ti o kọja."
+
+#: admin/options.php:643
+msgid "New Revisions are changes which are not yet published."
+msgstr "Awọn Atunṣe Tuntun jẹ awọn ayipada ti ko ti gbejade."
+
+#: admin/options.php:742
+#, fuzzy
+#| msgid "Revisions"
+msgid "Revision Fields"
+msgstr "Awọn atunṣe"
+
+#: admin/options.php:746
+#, fuzzy
+#| msgid "Allow the Author field to be modified by Revision"
+msgid "Specify fields which can be modified by New Revisions."
+msgstr "Gba aaye Onkọwe laaye lati yipada nipasẹ Atunṣe"
+
+#: admin/options.php:754 admin/options.php:917
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Kan si"
+
+#: admin/options.php:755 admin/options.php:918
+msgid "Title"
+msgstr ""
+
+#: admin/options.php:756 admin/options.php:919
+#, fuzzy
+#| msgid "Post Date"
+msgid "Date"
+msgstr "Ọjọ Ifiweranṣẹ"
+
+#: admin/options.php:758 admin/options.php:921
+#, fuzzy
+#| msgid "Edit Parent"
+msgid "Parent"
+msgstr "Ṣatunkọ Obi"
+
+#: admin/options.php:759 admin/options.php:922
+msgid "Slug"
+msgstr ""
+
+#: admin/options.php:760 admin/options.php:923
+msgid "Excerpt"
+msgstr ""
+
+#: admin/options.php:761 admin/options.php:924
+#: admin/post-edit-block-ui_rvy.php:212 admin/post-edit_rvy.php:344
+msgid "Author"
+msgstr "Onkọwe"
+
+#: admin/options.php:762
+msgid "Thumbnail"
+msgstr ""
+
+#: admin/options.php:763 admin/options.php:926
+#, fuzzy
+#| msgid "Page Template"
+msgid "Template"
+msgstr "Àpẹẹrẹ Ojúewé"
+
+#: admin/options.php:764 admin/options.php:927
+msgid "Categories"
+msgstr ""
+
+#: admin/options.php:765 admin/options.php:928
+msgid "Tags"
+msgstr ""
+
+#: admin/options.php:766 admin/options.php:929
+#: admin/restrict-editor-features.php:162
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/options.php:810
+#, fuzzy
+#| msgid "All Posts"
+msgid "Copy Posts"
+msgstr "Gbogbo Awọn Ifiweranṣẹ"
+
+#: admin/options.php:814
+#, fuzzy
+#| msgid "The post already has a revision in process."
+msgid "Copy post directly without using the revision process."
+msgstr "Ifiweranṣẹ naa ti ni atunṣe kan ti n lọ lọwọ."
+
+#: admin/options.php:905
+#, fuzzy
+#| msgid "Fields"
+msgid "Copy Fields"
+msgstr "Fields"
+
+#: admin/options.php:909
+msgid "Specify fields to include when Posts are copied."
+msgstr ""
+
+#: admin/options.php:925
+msgid "Thumnbnail"
+msgstr ""
+
+#: admin/options.php:971
+msgid ""
+"Note: Third party code may cause some post types to be incompatible with "
+"PublishPress Revisions."
+msgstr ""
+"Akíyèsí: Koodu ẹgbẹ kẹta le fa diẹ ninu awọn iru ifiweranṣẹ lati jẹ "
+"alailẹgbẹ pẹlu PublishPress Revisions."
+
+#: admin/options.php:981
+#, php-format
+msgid ""
+"For Revisions integration on the Content Calendar, Overview and Content "
+"Board, please update %sPublishPress Planner Pro%s."
+msgstr ""
+"Fun iṣọpọ Atunṣe lori Kalendaru Akoonu, Akopọ ati Igbimọ Akoonu, jọwọ ṣe "
+"imudojuiwọn %sPublishPress Planner Pro%s."
+
+#: admin/options.php:1002
+msgid "Ready to enhance your revision workflow?"
+msgstr "Ṣe o setan lati mu ilọsiwaju iṣẹ ṣiṣe atunṣe rẹ pọ si?"
+
+#: admin/options.php:1005
+msgid ""
+"Get PublishPress Statuses Pro and optimize your revision process with custom "
+"revision statuses."
+msgstr ""
+"Gba PublishPress Statuses Pro ki o mu ilana atunṣe rẹ ṣiṣẹ pẹlu awọn ipo "
+"atunṣe aṣa."
+
+#: admin/options.php:1011
+msgid "Define your own statuses before or after Revision Submitted"
+msgstr "Ṣe apejuwe awọn ipo tirẹ ṣaaju tabi lẹhin Atunṣe ti a fi silẹ"
+
+#: admin/options.php:1014
+msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgstr "Awọn ipo ti a ti ṣeto tẹlẹ: Ti a dawọ, Nilo Iṣẹ, Ti kọ"
+
+#: admin/options.php:1017
+msgid "Statuses can be specific to a post type"
+msgstr "Awọn ipo le jẹ pataki si iru ifiweranṣẹ kan"
+
+#: admin/options.php:1020
+msgid "Control access to statuses per-role"
+msgstr "Ṣakoso wiwọle si awọn ipo ni ibamu si ipa"
+
+#: admin/options.php:1023
+msgid "Status workflow can be nested with sub-statuses"
+msgstr "Ilana iṣẹ ipo le jẹ ti a fi sinu pẹlu awọn ipo abẹ"
+
+#: admin/options.php:1032
+msgid "Get PublishPress Statuses Pro"
+msgstr "Gba PublishPress Statuses Pro"
+
+#: admin/options.php:1037 admin/options.php:1055 admin/options.php:2021
+#: admin/options.php:2039 admin/options.php:2601 admin/options.php:2615
+#: admin/options.php:2625 admin/options.php:2635
+msgid "Learn More"
+msgstr "Kọ ẹkọ diẹ sii"
+
+#: admin/options.php:1050
+msgid "Pro Plugin"
+msgstr "Pro Plugin"
+
+#: admin/options.php:1051
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "Fi Statuses Pro sinu lati ṣii awọn ipo atunyẹwo adani."
+
+#: admin/options.php:1052
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr "Ṣeto fun iru ifiweranṣẹ eyikeyi ati ipa lati ba iṣẹ ṣiṣatunkọ rẹ mu."
+
+#: admin/options.php:1059
+msgid "Get Statuses Pro"
+msgstr "Gba Statuses Pro"
+
+#: admin/options.php:1086
+msgid "Maximum revisions per post:"
+msgstr "Iye to pọ julọ ti awọn atunyẹwo fun ifiweranṣẹ:"
+
+#: admin/options.php:1088
+msgid "(unlimited)"
+msgstr "(aimuṣẹ)"
+
+#: admin/options.php:1096
+#, php-format
+msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
+msgstr "Ṣe akiyesi pe a tun le pa ifiṣura mọ nipasẹ %1$sPost Type%2$s."
+
+#: admin/options.php:1133 admin/options.php:1304 admin/options.php:1552
+#: admin/options.php:1578 admin/options.php:1604 admin/options.php:1632
+#: admin/options.php:2145
+#, php-format
+msgid "%s capability"
+msgstr "%s agbara"
+
+#: admin/options.php:1138 admin/options.php:1309 admin/options.php:1557
+#: admin/options.php:1583 admin/options.php:1609 admin/options.php:1637
+#: admin/options.php:2150
+msgid "Assign capability to roles"
+msgstr "Yan agbara fun awọn ipa"
+
+#: admin/options.php:1145
+#, php-format
+msgid "Prevent non-Administrators from restoring a revision without the %s."
+msgstr "Dena awọn ti kii ṣe Alakoso lati tun pada si atunyẹwo laisi %s."
+
+#: admin/options.php:1151
+msgid ""
+"Prevent non-Administrators from restoring a revision without the "
+"restore_revisions capability"
+msgstr ""
+"Dena awọn ti kii ṣe Alakoso lati tun pada si atunyẹwo laisi agbara "
+"restore_revisions"
+
+#: admin/options.php:1164
+msgid "Modification Date"
+msgstr "Ọjọ Ayipada"
+
+#: admin/options.php:1192
+msgid "Revision Creation"
+msgstr "Ṣiṣẹda Atunyẹwo"
+
+#: admin/options.php:1193
+msgid "Submission"
+msgstr "Ifisilẹ"
+
+#: admin/options.php:1194
+msgid "Scheduling"
+msgstr "Iṣeto"
+
+#: admin/options.php:1195
+msgid "Publication"
+msgstr "Iwe atẹjade"
+
+#: admin/options.php:1196
+msgid "Management"
+msgstr "Isakoso"
+
+#: admin/options.php:1254
+msgid "Create Revision capabilities"
+msgstr "Ṣẹda awọn agbara Atunyẹwo"
+
+#: admin/options.php:1259 admin/options.php:1284 admin/options.php:1437
+msgid "Assign capabilities to roles"
+msgstr "Yan awọn agbara fun awọn ipa"
+
+#: admin/options.php:1266 admin/options.php:1444
+#, php-format
+msgid "If the user can't edit the published post, require %s."
+msgstr "Ti olumulo ko ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade, nilo %s."
+
+#: admin/options.php:1272
+msgid ""
+"If the user can't edit the published post, require Create Revision "
+"capabilities (copy_posts, copy_others_pages, etc.)"
+msgstr ""
+"Ti olumulo ko ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade, beere awọn agbara Ṣẹda "
+"Atunṣe (copy_posts, copy_others_pages, ati bẹbẹ lọ)"
+
+#: admin/options.php:1280
+#, php-format
+msgid "To expand the Pages list, assign %s."
+msgstr "Lati fa akojọ Awọn Oju-iwe pọ, yan %s."
+
+#: admin/options.php:1283
+msgid "Listing capabilities"
+msgstr "Awọn agbara atokọ"
+
+#: admin/options.php:1290
+msgid ""
+"To expand the Pages list, assign Listing capabilities (list_others_pages, "
+"list_published_posts, etc.)"
+msgstr ""
+"Lati fa akojọ Awọn Oju-iwe pọ, yan Awọn agbara atokọ (list_others_pages, "
+"list_published_posts, ati bẹbẹ lọ)"
+
+#: admin/options.php:1296
+msgid "This plugin introduces a new user role, \"Revisor.\""
+msgstr "Ẹya yii n mu ipa olumulo tuntun wa, \"Revisor.\""
+
+#: admin/options.php:1316
+#, php-format
+msgid ""
+"Revision by a user who does not have the %s will cause all custom html tags "
+"to be stripped out."
+msgstr ""
+"Atunṣe nipasẹ olumulo ti ko ni %s yoo fa ki gbogbo awọn aami html aṣa rọrun "
+"jade."
+
+#: admin/options.php:1322
+msgid ""
+"Revision by a user who does not have the unfiltered_html capability will "
+"cause all custom html tags to be stripped out."
+msgstr ""
+"Atunṣe nipasẹ olumulo ti ko ni agbara unfiltered_html yoo fa ki gbogbo awọn "
+"aami html aṣa rọrun jade."
+
+#: admin/options.php:1339
+msgid "Broadest compat including Elementor, Divi, Beaver Builder"
+msgstr "Ibamu julo pẹlu Elementor, Divi, Beaver Builder"
+
+#: admin/options.php:1340
+msgid "Standard storage schema for broadest 3rd party compat"
+msgstr "Iwe afọwọkọ ibi ipamọ boṣewa fun ibamu 3rd party julo"
+
+#: admin/options.php:1345
+msgid "Enhanced Revision access control with PublishPress plugins"
+msgstr ""
+"Iṣakoso iraye si Atunṣe ti a ti ni ilọsiwaju pẹlu awọn afikun PublishPress"
+
+#: admin/options.php:1356
+msgid ""
+"In enhanced mode, a Revision's status is stored by standard WordPress "
+"schema. Some plugins are incompatible."
+msgstr ""
+"Ni ipo ti a ti ni ilọsiwaju, ipo Atunṣe kan ni a tọju nipasẹ iwe afọwọkọ "
+"WordPress boṣewa. Diẹ ninu awọn afikun ko ni ibamu."
+
+#: admin/options.php:1363
+msgid ""
+"Prevent Revision creation if the post already has another Revision in "
+"progress."
+msgstr "Dena ṣẹda Atunṣe ti ifiweranṣẹ naa ti ni Atunṣe miiran ti n lọ."
+
+#: admin/options.php:1367
+msgid ""
+"Work around cache plugin conflicts by requerying for revisions before "
+"suppressing the New Revision link."
+msgstr ""
+"Jẹ ki o ṣiṣẹ ni ayika awọn ariyanjiyan afikun kaṣe nipa tun beere fun awọn "
+"atunṣe ṣaaju ki o to pa ọna asopọ Atunṣe Tuntun."
+
+#: admin/options.php:1397
+#, php-format
+msgid ""
+"If the user does not have a regular Edit link, recaption the %s link as "
+"\"Edit.\""
+msgstr ""
+"Ti olumulo ko ba ni ọna asopọ Ẹditi deede, yi %s ọna asopọ pada si \"Ẹditi.\""
+
+#: admin/options.php:1400
+msgid ""
+"Default labels are \"Not Submitted for Approval\", \"Submitted for "
+"Approval\", \"Scheduled Revision\""
+msgstr ""
+"Awọn aami aiyipada ni \"Ko ti fi silẹ fun Ijẹrisi\", \"Ti fi silẹ fun "
+"Ijẹrisi\", \"Atunṣe ti a ti ṣeto\""
+
+#: admin/options.php:1418
+#, php-format
+msgid ""
+"Enable published content to be copied, edited, submitted for approval and "
+"managed on the %sNew Revisions%s screen."
+msgstr ""
+"Mu ki akoonu ti a tẹjade le jẹ ẹda, ṣiṣatunkọ, fi silẹ fun ijẹrisi ati "
+"ṣakoso lori iboju %sAtunṣe Tuntun%s."
+
+#: admin/options.php:1432
+msgid "Submit Revision capabilities"
+msgstr "Fi Iṣẹ Atunṣe silẹ"
+
+#: admin/options.php:1450
+msgid ""
+"If the user can't edit the published post, require Submit Revision "
+"capabilities (revise_posts, revise_others_pages, etc.)"
+msgstr ""
+"Ti olumulo ko ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade, beere awọn agbara Fi "
+"Atunṣe silẹ (revise_posts, revise_others_pages, ati bẹbẹ lọ)"
+
+#: admin/options.php:1455 admin/options.php:1489
+#, php-format
+msgid "When a %s is published, update post publish date to current time."
+msgstr ""
+"Nigbati a ba tẹjade %s, ṣe imudojuiwọn ọjọ atẹjade ifiweranṣẹ si akoko "
+"lọwọlọwọ."
+
+#: admin/options.php:1458 admin/options.php:1492
+#, php-format
+msgid "When a %s is published, update post modified date to current time."
+msgstr ""
+"Nigbati a ba tẹjade %s, ṣe imudojuiwọn ọjọ ti a ṣe atunṣe ifiweranṣẹ si "
+"akoko lọwọlọwọ."
+
+#: admin/options.php:1461
+msgid ""
+"When a new revision is created by any user who is allowed to submit "
+"revisions, automatically submit it."
+msgstr ""
+"Nigbati a ba ṣẹda atunṣe tuntun nipasẹ eyikeyi olumulo ti o ni ẹtọ lati fi "
+"awọn atunṣe silẹ, fi silẹ laifọwọyi."
+
+#: admin/options.php:1464
+msgid "Auto-submit revisions if the user can directly edit the main post."
+msgstr ""
+"Fi awọn atunṣe silẹ laifọwọyi ti olumulo ba le ṣe atunṣe ifiweranṣẹ akọkọ "
+"taara."
+
+#: admin/options.php:1467
+msgid ""
+"This allows immediate approval within the Compare screen. If disabled, a "
+"Preview link is provided instead."
+msgstr ""
+"Eyi gba aṣẹ lẹsẹkẹsẹ laarin iboju Afiwe. Ti a ko ba mu ṣiṣẹ, ọna asopọ "
+"Ifihan ni a pese dipo."
+
+#: admin/options.php:1483
+msgid ""
+"If a currently published post or page is edited and a future date set, the "
+"change will not be applied until the selected date."
+msgstr ""
+"Ti a ba ṣe atunṣe ifiweranṣẹ tabi oju-iwe ti a tẹjade lọwọlọwọ ati pe ọjọ "
+"iwaju ti ṣeto, iyipada ko ni lo titi di ọjọ ti a ti yan."
+
+#: admin/options.php:1495
+msgid ""
+"Publish scheduled revisions using the WP-Cron mechanism. On some sites, "
+"publication will fail if this setting is disabled."
+msgstr ""
+"Ṣe atẹjade awọn atunṣe ti a ṣeto akoko nipa lilo ẹrọ WP-Cron. Ni diẹ ninu "
+"awọn aaye, atẹjade yoo kuna ti a ko ba mu iṣeto yii ṣiṣẹ."
+
+#: admin/options.php:1499
+msgid ""
+"Publish scheduled revisions asynchronously, via a secondary http request "
+"from the server.  This is usually best since it eliminates delay, but some "
+"servers may not support it."
+msgstr ""
+"Ṣe atẹjade awọn atunṣe ti a ṣeto akoko ni aiyipada, nipasẹ ibeere http keji "
+"lati ọdọ olupin. Eyi jẹ ti o dara julọ nigbagbogbo nitori o yọkuro idaduro, "
+"ṣugbọn diẹ ninu awọn olupin le ma ṣe atilẹyin rẹ."
+
+#: admin/options.php:1504
+msgid ""
+"The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
+"using a custom trigger."
+msgstr ""
+"Ipa WP-Cron ti wa ni pa, ṣugbọn awọn iṣẹ ti a ṣeto akoko ṣi n ṣiṣẹ pẹlu ipa "
+"aṣa kan."
+
+#: admin/options.php:1518
+msgid ""
+"Caption the button as either \"Approve and Publish\" or \"Approve and "
+"Schedule.\""
+msgstr "Pe bọtini naa bi \"Fọwọsi ati Ṣe atẹjade\" tabi \"Fọwọsi ati Ṣeto.\""
+
+#: admin/options.php:1529
+msgid "This may improve compatibility with some plugins."
+msgstr "Eyi le mu ibamu pọ si pẹlu diẹ ninu awọn afikun."
+
+#: admin/options.php:1564
+#, php-format
+msgid "Control New Revisions access with the %s."
+msgstr "Ṣakoso iraye si Awọn Atunṣe Tuntun pẹlu %s."
+
+#: admin/options.php:1570
+msgid "Control New Revisions access with the manage_revision_queue capability."
+msgstr "Ṣakoso iraye si Awọn Atunṣe Tuntun pẹlu agbara manage_revision_queue."
+
+#: admin/options.php:1590
+#, php-format
+msgid "Users will need the %s to edit others' Unsubmitted Revisions."
+msgstr ""
+"Awọn olumulo yoo nilo %s lati ṣe atunṣe Awọn Atunṣe ti a ko fi silẹ ti awọn "
+"miiran."
+
+#: admin/options.php:1596
+msgid ""
+"Users will need the manage_unsubmitted_revisions capability to edit others' "
+"Unsubmitted Revisions."
+msgstr ""
+"Awọn olumulo yoo nilo agbara manage_unsubmitted_revisions lati ṣe atunṣe "
+"Awọn Atunṣe ti a ko fi silẹ ti awọn miiran."
+
+#: admin/options.php:1616 admin/options.php:1644
+#, php-format
+msgid "If the user can't edit the published post, require the %s."
+msgstr "Ti olumulo ko ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade, beere %s."
+
+#: admin/options.php:1622
+msgid ""
+"If the user can't edit the published post, require the edit_others_revisions "
+"capability."
+msgstr ""
+"Ti olumulo ko ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade, beere agbara "
+"edit_others_revisions."
+
+#: admin/options.php:1650
+msgid ""
+"If the user can't edit the published post, require the list_others_revisions "
+"capability."
+msgstr ""
+"Ti olumulo ko ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade, beere agbara "
+"list_others_revisions."
+
+#: admin/options.php:1655
+msgid ""
+"Bypass the above restrictions for others' revisions to logged in user's own "
+"posts."
+msgstr ""
+"Gba awọn ihamọ loke fun awọn atunṣe ti awọn miiran si awọn ifiweranṣẹ tirẹ "
+"ti olumulo ti o wọle."
+
+#: admin/options.php:1666
+msgid "Regenerate \"post has revision\" flags"
+msgstr "Tun ṣe agbekalẹ \"ifiranṣẹ ni atunṣe\" awọn asia"
+
+#: admin/options.php:1669
+msgid ""
+"Apply this maintenance operation if Has Revision labels on Posts / Pages "
+"screens mismatch the New Revisions listing."
+msgstr ""
+"Lo iṣẹ itọju yii ti awọn afi Has Revision lori awọn iboju Ifiweranṣẹ / Awọn "
+"Oju-iwe ko baamu pẹlu atokọ Awọn Atunṣe Tuntun."
+
+#: admin/options.php:1693
+#, php-format
+msgid "For enhanced notifications, install %sPublishPress Planner%s."
+msgstr ""
+"Fun awọn iwifunni ti a ti ni ilọsiwaju, fi sori ẹrọ %sPublishPress Planner%s."
+
+#: admin/options.php:1706
+#, php-format
+msgid "For enhanced notifications, update %sPublishPress Planner%s."
+msgstr ""
+"Fun awọn iwifunni ti a ti mu ilọsiwaju, ṣe imudojuiwọn %sPublishPress "
+"Planner%s."
+
+#: admin/options.php:1728
+#, php-format
+msgid ""
+"Send revision action notifications using the customizable %1$sPublishPress "
+"Planner Notifications system%2$s."
+msgstr ""
+"Ran awọn iwifunni iṣatunṣe lọwọlọwọ nipa lilo %1$sPublishPress Planner "
+"Notifications system%2$s ti a le ṣe adani."
+
+#: admin/options.php:1729
+#, php-format
+msgid ""
+"Upgrade to Revisions Pro to send revision action notifications using the "
+"customizable %1$sPublishPress Planner Notifications system%2$s."
+msgstr ""
+"Gbadun si Revisions Pro lati ran awọn iwifunni iṣatunṣe lọwọlọwọ nipa lilo "
+"%1$sPublishPress Planner Notifications system%2$s ti a le ṣe adani."
+
+#: admin/options.php:1741
+msgid ""
+"Users matching Planner > Notifications configuration get revision "
+"notifications only if they can edit the published post."
+msgstr ""
+"Awọn olumulo ti o baamu eto Planner > Notifications gba awọn iwifunni "
+"iṣatunṣe nikan ti wọn ba le ṣe atunṣe ifiweranṣẹ ti a tẹjade."
+
+#: admin/options.php:1783 admin/options.php:1805
+msgid "Never"
+msgstr "Ko si"
+
+#: admin/options.php:1783 admin/options.php:1805
+msgid "By default"
+msgstr "Nipa aiyipada"
+
+#: admin/options.php:1783 admin/options.php:1805
+msgid "Always"
+msgstr "Nigbagbogbo"
+
+#: admin/options.php:1794 admin/options.php:1841
+msgid "select recipients"
+msgstr "yan awọn olugba"
+
+#: admin/options.php:1855
+msgid ""
+"To avoid notification failures, buffer emails for delayed sending once "
+"minute, hour or day limits are exceeded"
+msgstr ""
+"Lati yago fun ikuna iwifunni, pa awọn imeeli fun gbigbe pẹ ti o ba ti kọja "
+"awọn aala iṣẹju kan, wakati kan tabi ọjọ kan"
+
+#: admin/options.php:1876
+msgid "Notification Buffer"
+msgstr "Ibufe Iwifunni"
+
+#: admin/options.php:1904
+msgid "Notification Log"
+msgstr "Iwe Itan Iwifunni"
+
+#: admin/options.php:1933
+msgid "Purge Notification Buffer"
+msgstr "Pa Ibufe Iwifunni"
+
+#: admin/options.php:1939
+msgid "Truncate Notification Log"
+msgstr "Dinku Iwe Itan Iwifunni"
+
+#: admin/options.php:1945
+#, php-format
+msgid "Sent in last minute: %d / %d"
+msgstr "Ti a ran ni iṣẹju to kẹhin: %d / %d"
+
+#: admin/options.php:1946
+#, php-format
+msgid "Sent in last hour: %d / %d"
+msgstr "Ti a ran ni wakati to kẹhin: %d / %d"
+
+#: admin/options.php:1947
+#, php-format
+msgid "Sent in last day: %d / %d"
+msgstr "Ti a ran ni ọjọ to kẹhin: %d / %d"
+
+#: admin/options.php:1954
+#, php-format
+msgid "Seconds until next buffer processing time: %d"
+msgstr "Awọn aaya titi de akoko ṣiṣe ibufe ti nbọ: %d"
+
+#: admin/options.php:1965
+msgid "Show Notification Log / Buffer"
+msgstr "Fihan Iwe Itan Iwifunni / Ibufe"
+
+#: admin/options.php:1967
+msgid "Show with message content"
+msgstr "Fihan pẹlu akoonu ifiranṣẹ"
+
+#: admin/options.php:1989
+msgid "Ready to enhance your revision notifications?"
+msgstr "Ṣe o setan lati mu ilọsiwaju awọn iwifunni iṣatunṣe rẹ?"
+
+#: admin/options.php:1992
+msgid ""
+"Upgrade to Revisions Pro for integration with our PublishPress Planner "
+"Notifications framework."
+msgstr ""
+"Gba imudojuiwọn si Revisions Pro fun isopọ pẹlu ilana PublishPress Planner "
+"Notifications wa."
+
+#: admin/options.php:1998
+msgid "Customize notification message and subject"
+msgstr "Ṣe adani ifiranṣẹ ikilọ ati akọle"
+
+#: admin/options.php:2001
+msgid "Notify for a specific post type, category or term"
+msgstr "Bẹwẹ fun iru ifiweranṣẹ kan, ẹka tabi ọrọ"
+
+#: admin/options.php:2004
+msgid "Target specific roles, users, or user groups"
+msgstr "Fojusi awọn ipa pato, awọn olumulo, tabi awọn ẹgbẹ olumulo"
+
+#: admin/options.php:2007
+msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
+msgstr "Pẹlu PublishPress Planner Pro, firanṣẹ awọn ikilọ si ikanni Slack"
+
+#: admin/options.php:2034 admin/options.php:2595
+msgid "Pro Feature"
+msgstr "Ẹya Pro"
+
+#: admin/options.php:2035
+msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
+msgstr "Gba imudojuiwọn si Revisions Pro lati ṣii isopọ Planner Notifications."
+
+#: admin/options.php:2036
+msgid ""
+"Customize notification content and recipients for each notification type."
+msgstr "Ṣe adani akoonu ikilọ ati awọn olugba fun ọkọọkan iru ikilọ."
+
+#: admin/options.php:2060
+msgid "Some themes may block revision preview."
+msgstr "Diẹ ninu awọn akọle le pa aiyipada atunṣe."
+
+#: admin/options.php:2077
+msgid "Published Post Slug"
+msgstr "Pẹlu Post Slug"
+
+#: admin/options.php:2078
+msgid "Revision Slug"
+msgstr "Atunṣe Slug"
+
+#: admin/options.php:2079
+msgid "Revision ID only"
+msgstr "Atunṣe ID nikan"
+
+#: admin/options.php:2094
+msgid ""
+"Some themes or plugins may require Revision Slug or Revision ID link type "
+"for proper template loading and field display."
+msgstr ""
+"Diẹ ninu awọn akọle tabi awọn afikun le nilo Atunṣe Slug tabi Atunṣe ID iru "
+"ọna asopọ fun ikojọpọ awoṣe to tọ ati ifihan aaye."
+
+#: admin/options.php:2103
+#, php-format
+msgid "The revision preview argument is configured by constant definition: %s"
+msgstr "Iṣeduro aiyipada atunṣe ti wa ni iṣeto nipasẹ itumọ iduro: %s"
+
+#: admin/options.php:2110
+msgid ""
+"Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
+"Experiment to see which works best with your theme."
+msgstr ""
+"Ṣatunṣe awọn ọna asopọ aiyipada lati lo \"rv_preview\" aiyipada dipo "
+"\"preview\". Ṣe idanwo lati rii eyi ti o dara julọ pẹlu akọle rẹ."
+
+#: admin/options.php:2114
+msgid ""
+"Some themes may require this setting for correct revision preview display."
+msgstr ""
+"Diẹ ninu awọn akọle le nilo iṣeto yii fun ifihan aiyipada atunṣe to tọ."
+
+#: admin/options.php:2133
+msgid ""
+"This should usually be enabled, except to work around conflicts with other "
+"another plugin's postmeta data."
+msgstr ""
+"Eyi yẹ ki o jẹ igbagbogbo mu ṣiṣẹ, ayafi lati ṣiṣẹ ni ayika awọn ariyanjiyan "
+"pẹlu data postmeta ti afikun miiran."
+
+#: admin/options.php:2157
+#, php-format
+msgid ""
+"If the user can't publish, require the %s to edit others' unpublished Posts."
+msgstr ""
+"Ti olumulo ko ba le gbejade, beere %s lati ṣatunkọ awọn Ifiweranṣẹ ti ko "
+"gbejade ti awọn miiran."
+
+#: admin/options.php:2163
+msgid ""
+"If the user can't publish, require the edit_others_drafts capability to edit "
+"others' unpublished Posts."
+msgstr ""
+"Ti olumulo ko ba le gbejade, beere agbara edit_others_drafts lati ṣatunkọ "
+"awọn Ifiweranṣẹ ti ko gbejade ti awọn miiran."
+
+#: admin/options.php:2169
+msgid ""
+"If post-specific permissions restrict or expand access to a post, apply "
+"those permissions to its revisions also."
+msgstr ""
+"Ti awọn igbanilaaye pato post ba ni ihamọ tabi fa iraye si si ifiweranṣẹ, lo "
+"awọn igbanilaaye wọnyẹn si awọn atunṣe rẹ paapaa."
+
+#: admin/options.php:2181
+msgid "Rank Math SEO may prevent Revision update on some sites."
+msgstr "Rank Math SEO le dena imudojuiwọn Atunse lori diẹ ninu awọn aaye."
+
+#: admin/options.php:2188 includes/CoreAdmin.php:205
+msgid "WPML Translation Management"
+msgstr "WPML Itumọ Isakoso"
+
+#: admin/options.php:2193
+msgid "Sync \"Needs Update\" flags"
+msgstr "Sopọ \"N nilo imudojuiwọn\" awọn asia"
+
+#: admin/options.php:2197
+msgid ""
+"Set \"Needs Update\" for any post with translations which was updated "
+"(possibly by revision approval) more recently than its translations."
+msgstr ""
+"Ṣeto \"N nilo imudojuiwọn\" fun eyikeyi ifiweranṣẹ pẹlu awọn itumọ ti a ti "
+"imudojuiwọn (o ṣee ṣe nipasẹ ifọwọsi atunse) laipẹ ju awọn itumọ rẹ lọ."
+
+#: admin/options.php:2215
+msgid "Show descriptive captions for PublishPress Revisions settings."
+msgstr "Fihan awọn akọle apejuwe fun awọn eto Atunse PublishPress."
+
+#: admin/options.php:2233
+msgid ""
+"Plugin settings, New Revisions contents and related data will be deleted, "
+"but only after the last copy of Revisions / Revisions Pro is deleted."
+msgstr ""
+"Awọn eto afikun, Awọn akoonu Atunse Tuntun ati data ti o ni ibatan yoo parẹ, "
+"ṣugbọn nikan lẹhin ti ẹda ikẹhin ti Atunse / Atunse Pro ti parẹ."
+
+#: admin/options.php:2254
+msgid "Unlock Pro Integrations"
+msgstr "Ṣii Awọn Isopọ Pro"
+
+#: admin/options.php:2255
+msgid ""
+"Upgrade to the Pro version for optimal compatibility and prompt, "
+"professional support."
+msgstr ""
+"Gbigba si ẹya Pro fun ibamu ti o dara julọ ati atilẹyin ọjọgbọn, ni iyara."
+
+#: admin/options.php:2273 admin/options.php:2526
+msgid "Admin"
+msgstr "admin"
+
+#: admin/options.php:2276 admin/options.php:2524
+msgid "Builder"
+msgstr "Builder"
+
+#: admin/options.php:2279 admin/options.php:2528
+msgid "Cache"
+msgstr "Cache"
+
+#: admin/options.php:2282
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#: admin/options.php:2285 admin/options.php:2534
+msgid "Fields"
+msgstr "Fields"
+
+#: admin/options.php:2289
+msgid "Multilingual"
+msgstr "Multilingual"
+
+#: admin/options.php:2293 admin/options.php:2530
+msgid "SEO"
+msgstr "SEO"
+
+#: admin/options.php:2296 admin/options.php:2540
+msgid "Workflow"
+msgstr "Workflow"
+
+#: admin/options.php:2378
+msgid ""
+"Specify which PublishPress Revisions Settings to control network-wide. "
+"Unselected settings are controlled separately on each site."
+msgstr ""
+"Ṣe alaye eyi ti awọn Eto Atunse PublishPress lati ṣakoso ni gbogbo "
+"nẹtiwọọki. Awọn eto ti a ko yan ni a ṣakoso ni ẹka kọọkan lori aaye kọọkan."
+
+#: admin/options.php:2388
+#, fuzzy, php-format
+msgctxt "opentag option_tabname closetag (explanatory note)"
+msgid "%1$s%2$s%3$s (%4$s)"
+msgstr "%1$s%2$s%3$s (%4$s)"
+
+#: admin/options.php:2424
+#, php-format
+msgid "network-wide control of \"%s\""
+msgstr "ìṣakoso nẹtiwọọki ti \"%s\""
+
+#: admin/options.php:2451
+msgid "Save Changes"
+msgstr "Fipamọ Awọn Ayipada"
+
+#: admin/options.php:2452
+msgid "Revert to Defaults"
+msgstr "Pada si Awọn aiyipada"
+
+#: admin/options.php:2454
+msgid ""
+"All settings in this form (including those on unselected tabs) will be reset "
+"to DEFAULTS.  Are you sure?"
+msgstr ""
+"Gbogbo eto ni fọọmu yii (pẹlu awọn ti o wa lori awọn taabu ti a ko yan) yoo "
+"tunto si DEFAULTS. Ṣe o da ọ loju?"
+
+#: admin/options.php:2532
+msgid "Commerce"
+msgstr "Commerce"
+
+#: admin/options.php:2536
+msgid "Multilang"
+msgstr "Multilang"
+
+#: admin/options.php:2538
+msgid "Community"
+msgstr "Community"
+
+#: admin/options.php:2550
+msgid "Pro"
+msgstr "Pro"
+
+#: admin/options.php:2555
+msgid "Supported"
+msgstr "Supported"
+
+#: admin/options.php:2558 admin/options.php:2612
+msgid "Active Plugin"
+msgstr "Active Plugin"
+
+#: admin/options.php:2570
+msgid "Supported by PublishPress Revisions"
+msgstr "Ti a ṣe atilẹyin nipasẹ PublishPress Revisions"
+
+#: admin/options.php:2572
+msgid "Supported by Revisions Pro"
+msgstr "Ti a ṣe atilẹyin nipasẹ Revisions Pro"
+
+#: admin/options.php:2585
+msgid "Integration Active"
+msgstr "Isopọ ti n ṣiṣẹ"
+
+#: admin/options.php:2587
+msgid "Upgrade to Pro to enable this integration"
+msgstr "Gbadun si Pro lati mu isopọ yii ṣiṣẹ"
+
+#: admin/options.php:2596
+#, php-format
+msgid "Unlock %s integration to enhance your revisions solution."
+msgstr "Tu %s isopọ silẹ lati mu ojutu atunṣe rẹ pọ si."
+
+#: admin/options.php:2612
+msgid "Active Plugin Integration"
+msgstr "Isopọ Plugin ti n ṣiṣẹ"
+
+#: admin/options.php:2622
+msgid "Supported Plugin Integration"
+msgstr "Isopọ Plugin ti a ṣe atilẹyin"
+
+#: admin/options.php:2632
+msgid "Supported Plugin"
+msgstr "Plugin ti a ṣe atilẹyin"
+
+#: admin/post-edit-block-ui_rvy.php:164
+msgid "Now"
+msgstr "Bayi"
+
+#: admin/post-editor-workflow-ui_rvy.php:34
+msgid "(on approval)"
+msgstr "(lori ifọwọsi)"
+
+#: admin/post-editor-workflow-ui_rvy.php:38
+msgid "Save changes to continue."
+msgstr "Fipamọ awọn ayipada lati tẹsiwaju."
+
+#: admin/post-editor-workflow-ui_rvy.php:39
+msgid "Please save changes to the revision before submitting it."
+msgstr "Jọwọ fipamọ awọn ayipada si atunṣe ṣaaju ki o to fi silẹ."
+
+#: admin/post-editor-workflow-ui_rvy.php:77
+#: admin/post-editor-workflow-ui_rvy.php:118
+msgid "Preview this Revision"
+msgstr "Ṣe afihan Iwọn yii"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Publish"
+msgstr "Wo / Ṣafihan"
+
+#: admin/post-editor-workflow-ui_rvy.php:79
+msgid "View / Approve"
+msgstr "Wo / Fọwọsi"
+
+#: admin/post-editor-workflow-ui_rvy.php:82
+msgid "View / Moderate saved revision"
+msgstr "Wo / Ṣakoso atunṣe ti a fipamọ"
+
+#: admin/post-editor-workflow-ui_rvy.php:85
+msgid "View / Submit saved revision"
+msgstr "Wo / Fi atunṣe ti a fipamọ silẹ"
+
+#: admin/post-editor-workflow-ui_rvy.php:94
+msgid "View unsaved changes"
+msgstr "Wo awọn ayipada ti a ko fipamọ"
+
+#: admin/post-editor-workflow-ui_rvy.php:98
+#, php-format
+msgid "%s%s Revision Edit"
+msgid_plural "%s%s Revision Edits"
+msgstr[0] "%s%s Atunṣe Ṣatunkọ"
+
+#: admin/post-editor-workflow-ui_rvy.php:109
+msgid "Revision Submission Error"
+msgstr "Aṣiṣe Ifisilẹ Atunṣe"
+
+#: admin/post-editor-workflow-ui_rvy.php:123
+#: admin/post-editor-workflow-ui_rvy.php:234 front_rvy.php:485
+msgid "Edit"
+msgstr "Ṣatunkọ"
+
+#: admin/post-editor-workflow-ui_rvy.php:132
+msgid "Approve and Publish"
+msgstr "Fọwọsi ati Ṣafihan"
+
+#: admin/post-editor-workflow-ui_rvy.php:137 rvy_init-functions.php:308
+#: rvy_init-functions.php:327 rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+msgid "Update in progress..."
+msgstr "Nṣiṣẹ imudojuiwọn..."
+
+#: admin/post-editor-workflow-ui_rvy.php:141
+msgid "Approve and Schedule"
+msgstr "Fọwọsi ati Ṣeto"
+
+#: admin/post-editor-workflow-ui_rvy.php:174 rvy_init-functions.php:297
+#: rvy_init-functions.php:315 rvy_init-functions.php:333
+#: rvy_init-functions.php:353 rvy_init-functions.php:370
+#: rvy_init-functions.php:387 rvy_init-functions.php:500
+msgid "Update Revision"
+msgstr "Imudojuiwọn Atunṣe"
+
+#: admin/post-editor-workflow-ui_rvy.php:240
+#, php-format
+msgid "Update post before creating %s."
+msgstr "Imudojuiwọn ifiweranṣẹ ṣaaju ki o to ṣẹda %s."
+
+#: admin/post-editor-workflow-ui_rvy.php:247
+msgid "Error Creating Revision"
+msgstr "Aṣiṣe Ni Ṣiṣẹda Atunṣe"
+
+#: admin/post-editor-workflow-ui_rvy.php:263
+#, php-format
+msgid "For custom field changes, edit a scheduled %s."
+msgstr "Fun awọn ayipada aaye aṣa, ṣatunkọ %s ti a ti ṣeto tẹlẹ."
+
+#: admin/post-edit_rvy.php:28 admin/post-edit_rvy.php:142
+msgid "Current Time"
+msgstr "Akoko lọwọlọwọ"
+
+#: admin/post-edit_rvy.php:60 front_rvy.php:521
+msgid "Delete"
+msgstr "Pa"
+
+#: admin/post-edit_rvy.php:169
+msgid "View revision in progress"
+msgstr "Wo atunṣe ti nlọ lọwọ"
+
+#: admin/post-edit_rvy.php:192
+msgid "Compare this revision to published copy, or to other revisions"
+msgstr "Ṣe afiwe atunṣe yii si ẹda ti a tẹjade, tabi si awọn atunṣe miiran"
+
+#: admin/post-edit_rvy.php:227
+msgid "View / moderate saved revision"
+msgstr "Wo / ṣakoso atunṣe ti a fipamọ"
+
+#: admin/post-edit_rvy.php:230
+msgid "View saved revision"
+msgstr "Wo atunṣe ti a fipamọ"
+
+#: admin/restrict-editor-features.php:113
+msgid "Status & visibility"
+msgstr ""
+
+#: admin/restrict-editor-features.php:120
+msgid "Permalink"
+msgstr ""
+
+#: admin/restrict-editor-features.php:149
+#, fuzzy
+#| msgid "Featured Image"
+msgid "Featured image"
+msgstr "Àwòrán Àtàwọn"
+
+#: admin/revision-action_rvy.php:532 admin/revision-action_rvy.php:618
+#, php-format
+msgid "[%s] Revision Approval Notice"
+msgstr "[%s] Ifiranṣẹ Ijẹrisi Atunṣe"
+
+#: admin/revision-action_rvy.php:533
+#, php-format
+msgid "A revision to the %1$s \"%2$s\" has been approved."
+msgstr "Atunṣe si %1$s \"%2$s\" ti gba laaye."
+
+#: admin/revision-action_rvy.php:537
+#, php-format
+msgid "The submitter was %1$s."
+msgstr "Olupese ni %1$s."
+
+#: admin/revision-action_rvy.php:541 admin/revision-action_rvy.php:627
+#, php-format
+msgid "It will be published on %s"
+msgstr "A o tẹjade rẹ ni %s"
+
+#: admin/revision-action_rvy.php:545 admin/revision-action_rvy.php:631
+msgid "Preview it here: "
+msgstr "Ṣawari rẹ nibi: "
+
+#: admin/revision-action_rvy.php:548 admin/revision-action_rvy.php:634
+msgid "Editor: "
+msgstr "Oluṣakoso: "
+
+#: admin/revision-action_rvy.php:550 admin/revision-action_rvy.php:636
+#: admin/revision-action_rvy.php:1680 admin/revision-action_rvy.php:1711
+#: admin/revision-action_rvy.php:1777
+msgid "View it online: "
+msgstr "Wo o lori ayelujara: "
+
+#: admin/revision-action_rvy.php:619
+#, php-format
+msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
+msgstr "Atunṣe ti o fi silẹ fun %1$s \"%2$s\" ti gba laaye."
+
+#: admin/revision-action_rvy.php:1672 admin/revision-action_rvy.php:1700
+#, php-format
+msgid "[%s] %s Publication Notice"
+msgstr "[%s] %s Ifiranṣẹ Itẹjade"
+
+#: admin/revision-action_rvy.php:1673
+#, php-format
+msgid ""
+"The scheduled revision you submitted for the %1$s \"%2$s\" has been "
+"published."
+msgstr "Atunṣe ti a ṣe eto ti o fi silẹ fun %1$s \"%2$s\" ti tẹjade."
+
+#: admin/revision-action_rvy.php:1701
+#, php-format
+msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
+msgstr "Atunṣe ti a ṣe eto si %1$s \"%2$s\" rẹ ti tẹjade."
+
+#: admin/revision-archive_rvy.php:11
+msgid "Revision for:"
+msgstr "Atunṣe fun:"
+
+#: admin/revision-archive_rvy.php:90
+msgid "Search Revisions"
+msgstr "Wa Awọn Atunṣe"
+
+#: admin/revision-queue_rvy.php:9 admin/revision-queue_rvy.php:21
+msgid "You are not allowed to manage revisions."
+msgstr "Iwọ ko ni aṣẹ lati ṣakoso awọn atunṣe."
+
+#: admin/revision-queue_rvy.php:13
+#, php-format
+msgid "%s and %s are both disabled. See Revisions > Settings."
+msgstr "%s ati %s mejeeji ti wa ni pipade. Wo Awọn Atunṣe > Eto."
+
+#: admin/revision-queue_rvy.php:82
+#, php-format
+msgid "%s revision submitted."
+msgid_plural "%s revisions submitted."
+msgstr[0] "%s atunṣe ti fi silẹ."
+
+#: admin/revision-queue_rvy.php:83
+#, php-format
+msgid "%s revision declined."
+msgid_plural "%s revisions declined."
+msgstr[0] "%s atunṣe ti kọ."
+
+#: admin/revision-queue_rvy.php:84
+#, php-format
+msgid "%s revision approved."
+msgid_plural "%s revisions approved."
+msgstr[0] "%s atunṣe ti gba laaye."
+
+#: admin/revision-queue_rvy.php:85
+#, php-format
+msgid "%s revision unscheduled."
+msgid_plural "%s revisions unscheduled."
+msgstr[0] "%s atunṣe ti a ko ṣe eto."
+
+#: admin/revision-queue_rvy.php:86
+#, php-format
+msgid "%s revision published."
+msgid_plural "%s revisions published."
+msgstr[0] "%s atunṣe ti a tẹjade."
+
+#: admin/revision-queue_rvy.php:133
+#, php-format
+msgctxt "Revisions of Post \"Post Title\""
+msgid "of %s \"%s\""
+msgstr "ti %s \"%s\""
+
+#: admin/revision-queue_rvy.php:136
+#, php-format
+msgctxt "Posts / Pages / etc."
+msgid "of %s"
+msgstr "ti %s"
+
+#: admin/revision-queue_rvy.php:139
+#, php-format
+msgctxt "Revisions of \"Post Title\""
+msgid "of \"%s\""
+msgstr "ti \"%s\""
+
+#: admin/revision-queue_rvy.php:144
+#, php-format
+msgctxt "Author Name"
+msgid "by %s "
+msgstr "nipasẹ %s "
+
+#: admin/revision-queue_rvy.php:150
+#, php-format
+msgctxt "revision date"
+msgid "on %s"
+msgstr "ni %s"
+
+#: admin/revision-queue_rvy.php:156
+#, php-format
+msgid " (Post Author: %s)"
+msgstr " (Onkọwe Ifiweranṣẹ: %s)"
+
+#: admin/revision-queue_rvy.php:165
+#, php-format
+msgid "New Revisions %s"
+msgstr "Awọn Atunṣe Tuntun %s"
+
+#: admin/revision-ui_rvy.php:45
+msgid "Publishers will be notified (but cannot be selected here)."
+msgstr "A yoo jẹ ki awọn onkọwe mọ (sugbon ko le yan nibi)."
+
+#: admin/revision-ui_rvy.php:47
+msgid "No email notifications will be sent."
+msgstr "Ko si awọn iwifunni imeeli ti a yoo fi ranṣẹ."
+
+#. translators: revision date format, see http://php.net/date
+#: admin/revision-ui_rvy.php:78
+msgctxt "revision date format"
+msgid "j F, Y @ g:i a"
+msgstr "j F, Y @ g:i a"
+
+#: admin/revision-ui_rvy.php:97
+#, php-format
+msgid "%1$s (Current)"
+msgstr "%1$s ( lọwọlọwọ)"
+
+#: admin/revision-ui_rvy.php:101
+#, php-format
+msgid "%1$s (Autosave)"
+msgstr "%1$s (Fipamọ laifọwọyi)"
+
+#: admin/revision-ui_rvy.php:107
+msgctxt "revision schedule date format"
+msgid "j F, Y, g:i a"
+msgstr "j F, Y, g:i a"
+
+#: admin/revision-ui_rvy.php:112
+#, php-format
+msgid "%1$s <span>(Publish date: %2$s)</span>"
+msgstr "%1$s <span>(Ọjọ ifiweranṣẹ: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:114
+#, php-format
+msgid "%1$s <span>(Requested publication: %2$s)</span>"
+msgstr "%1$s <span>(Ibeere ifiweranṣẹ: %2$s)</span>"
+
+#: admin/revision-ui_rvy.php:287
+msgid "The revision will be deleted. Are you sure?"
+msgstr "Atunṣe yii yoo parẹ. Ṣe o dajudaju?"
+
+#: admin/revision-ui_rvy.php:380
+msgid "Modified Date"
+msgstr "Ọjọ ti a yipada"
+
+#: admin/RevisionEditSubmitMetabox.php:124
+msgid "Preview revision in progress"
+msgstr "Atunṣe iworan n lọ lọwọ"
+
+#. translators: Publish box date formt, see http://php.net/date
+#: admin/RevisionEditSubmitMetabox.php:180
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: admin/RevisionEditSubmitMetabox.php:191
+#, php-format
+msgid "Publish %son approval%s"
+msgstr "Ṣe atẹjade %son ifọwọsi%s"
+
+#: admin/revisions.php:20
+msgid ""
+"<strong>Note:</strong> For visual display of revisions, add the following "
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+msgstr ""
+"<strong>Akiyesi:</strong> Fun ifihan oju ti awọn atunṣe, fi koodu atẹle si "
+"foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
+"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+
+#: admin/revisions.php:61
+msgid "Revision of this post is not allowed."
+msgstr "Atunṣe ti ifiweranṣẹ yii ko gba laaye."
+
+#: admin/revisions.php:64
+msgid "No revision specified."
+msgstr "Ko si atunṣe ti a ṣalaye."
+
+#: admin/revisions.php:72
+msgid "Past"
+msgstr "Awọn to koja"
+
+#: admin/revisions.php:135
+#, php-format
+msgid "Revisions of %s"
+msgstr "Awọn atunṣe ti %s"
+
+#: admin/revisions.php:165
+msgid "The requested revision does not exist."
+msgstr "Atunṣe ti a beere ko si."
+
+#: admin/revisions.php:253
+#, fuzzy, php-format
+msgid "%1$s %2$s (%3$s)%4$s"
+msgstr "%1$s %2$s (%3$s)%4$s"
+
+#: admin/revisions.php:274
+#, php-format
+msgid "no %s revisions available."
+msgstr "ko si %s atunṣe ti o wa."
+
+#: classes/PublishPress/Revisionary.php:107 includes/CoreAdmin.php:201
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+#: classes/PublishPress/Revisionary.php:108
+msgid "Compatibility with ACF custom fields."
+msgstr "Ibarapọ pẹlu ACF custom fields."
+
+#: classes/PublishPress/Revisionary.php:112
+#: classes/PublishPress/Revisionary.php:200
+msgid "Store custom fields with revisions"
+msgstr "Fipamọ custom fields pẹlu atunṣe"
+
+#: classes/PublishPress/Revisionary.php:113
+#: classes/PublishPress/Revisionary.php:201
+msgid "Display custom field changes"
+msgstr "Ṣafihan awọn ayipada custom field"
+
+#: classes/PublishPress/Revisionary.php:114
+#: classes/PublishPress/Revisionary.php:202
+msgid "Update custom fields on revision publication"
+msgstr "Imudojuiwọn custom fields lori itẹjade atunṣe"
+
+#: classes/PublishPress/Revisionary.php:122
+msgid "ACF Extended"
+msgstr "ACF Extended"
+
+#: classes/PublishPress/Revisionary.php:123
+msgid "Support ACFE data model."
+msgstr "Support ACFE data model."
+
+#: classes/PublishPress/Revisionary.php:127
+msgid "Support ACFE single_meta data type"
+msgstr "Support ACFE single_meta data type"
+
+#: classes/PublishPress/Revisionary.php:128
+msgid "Correct field display on Compare screen"
+msgstr "Tọkasi ifihan aaye ni iboju Afiwe"
+
+#: classes/PublishPress/Revisionary.php:136 includes/CoreAdmin.php:200
+msgid "Beaver Builder"
+msgstr "Beaver Builder"
+
+#: classes/PublishPress/Revisionary.php:137
+msgid "Integration with Beaver Builder's front end editor."
+msgstr "Ibarapọ pẹlu olutọju oju-iwe Beaver Builder's."
+
+#: classes/PublishPress/Revisionary.php:141
+#: classes/PublishPress/Revisionary.php:156
+#: classes/PublishPress/Revisionary.php:171
+msgid "Front end Revision submission"
+msgstr "Ifisilẹ Atunṣe iwaju"
+
+#: classes/PublishPress/Revisionary.php:142
+#: classes/PublishPress/Revisionary.php:157
+#: classes/PublishPress/Revisionary.php:172
+msgid "Front end Revision editing"
+msgstr "Ṣatunkọ Atunṣe iwaju"
+
+#: classes/PublishPress/Revisionary.php:143
+#: classes/PublishPress/Revisionary.php:158
+#: classes/PublishPress/Revisionary.php:173
+msgid "Revision preview and redirects"
+msgstr "Awoṣe atunṣe ati awọn itọsọna"
+
+#: classes/PublishPress/Revisionary.php:151
+msgid "Divi"
+msgstr "Divi"
+
+#: classes/PublishPress/Revisionary.php:152
+msgid "Integration with Divi Builder and Divi Theme."
+msgstr "Ibarapọ pẹlu Divi Builder ati Divi Theme."
+
+#: classes/PublishPress/Revisionary.php:166 includes/CoreAdmin.php:198
+msgid "Elementor"
+msgstr "Elementor"
+
+#: classes/PublishPress/Revisionary.php:167
+msgid "Integration with Elementor's front end editor."
+msgstr "Isopọpọ pẹlu olootu iwaju Elementor."
+
+#: classes/PublishPress/Revisionary.php:181
+msgid "Nitro Pack"
+msgstr "Nitro Pack"
+
+#: classes/PublishPress/Revisionary.php:182
+msgid "Compatibility with Nitro Pack cache."
+msgstr "Ibarapọ pẹlu iranti Nitro Pack."
+
+#: classes/PublishPress/Revisionary.php:186
+msgid "Clear cache on revision creation"
+msgstr "Mọ iranti nigbati a ba ṣẹda atunṣe"
+
+#: classes/PublishPress/Revisionary.php:187
+msgid "Trigger update on revision approval"
+msgstr "Ṣiṣe imudojuiwọn nigbati a ba fọwọsi atunṣe"
+
+#: classes/PublishPress/Revisionary.php:195 includes/CoreAdmin.php:202
+msgid "Pods"
+msgstr "Pods"
+
+#: classes/PublishPress/Revisionary.php:196
+msgid "Compatibility with Pods custom fields."
+msgstr "Ibarapọ pẹlu awọn aaye aṣa Pods."
+
+#: classes/PublishPress/Revisionary.php:210
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/PublishPress/Revisionary.php:211
+msgid "Compatibility with Polylang translation."
+msgstr "Ibarapọ pẹlu itumọ Polylang."
+
+#: classes/PublishPress/Revisionary.php:215
+msgid "Revisions carry over Polylang data"
+msgstr "Awọn atunṣe gbe data Polylang"
+
+#: classes/PublishPress/Revisionary.php:216
+msgid "Translation retained on Revision approval"
+msgstr "Itumọ ti wa ni ipamọ lori fọwọsi atunṣe"
+
+#: classes/PublishPress/Revisionary.php:224
+msgid "PublishPress Planner"
+msgstr "PublishPress Planner"
+
+#: classes/PublishPress/Revisionary.php:225
+msgid "PublishPress Planner Integration."
+msgstr "Iṣọpọ PublishPress Planner."
+
+#: classes/PublishPress/Revisionary.php:229
+msgid "Planner Notifications for revision actions"
+msgstr "Awọn iwifunni Planner fun awọn iṣe atunṣe"
+
+#: classes/PublishPress/Revisionary.php:230
+msgid "Revision schedule shown in Calendar"
+msgstr "Ẹka atunṣe ti a fihan ni Kalẹnda"
+
+#: classes/PublishPress/Revisionary.php:238 includes/CoreAdmin.php:203
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/PublishPress/Revisionary.php:239
+msgid "Revision submission and approval for products."
+msgstr "Ifisilẹ ati fọwọsi atunṣe fun awọn ọja."
+
+#: classes/PublishPress/Revisionary.php:243
+msgid "Product revisions"
+msgstr "Awọn atunṣe ọja"
+
+#: classes/PublishPress/Revisionary.php:244
+msgid "Compatible with Product Variations"
+msgstr "Ibarapọ pẹlu Awọn iyatọ Ọja"
+
+#: classes/PublishPress/Revisionary.php:245
+msgid "Priority on ongoing compatibility"
+msgstr "Iṣaaju lori ibaraẹnisọrọ ti nlọ lọwọ"
+
+#: classes/PublishPress/Revisionary.php:253 includes/CoreAdmin.php:204
+msgid "WPML"
+msgstr "WPML"
+
+#: classes/PublishPress/Revisionary.php:254
+msgid "Multilingual revisioning with WPML."
+msgstr "Atunṣe pupọ pẹlu WPML."
+
+#: classes/PublishPress/Revisionary.php:258
+msgid "Language-specific revisions"
+msgstr "Atunṣe ti o ni pato si ede"
+
+#: classes/PublishPress/Revisionary.php:259
+msgid "Translation Management integration"
+msgstr "Isopọ iṣakoso itumọ"
+
+#: classes/PublishPress/Revisionary.php:267
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: classes/PublishPress/Revisionary.php:268
+msgid "."
+msgstr "."
+
+#: classes/PublishPress/Revisionary.php:272
+msgid "Prevent indexing of revisions"
+msgstr "Dena indexing ti atunṣe"
+
+#: classes/PublishPress/Revisionary.php:273
+msgid "Compatibility for Yoast SEO + Elementor"
+msgstr "Ibaṣepọ fun Yoast SEO + Elementor"
+
+#: classes/PublishPress/Revisionary.php:274
+msgid "Compare revisions to Yoast SEO fields"
+msgstr "Fi atunṣe ṣe afiwe si awọn aaye Yoast SEO"
+
+#: classes/PublishPress/Revisions/PlannerContentBoard.php:59
+msgid "Revision Status"
+msgstr "Ipo atunṣe"
+
+#: front_rvy.php:436
+#, php-format
+msgid "%sManage%s"
+msgstr "%sṢakoso%s"
+
+#: front_rvy.php:447
+#, php-format
+msgid "%sCompare%s%sView Published Post%s"
+msgstr "%sFi ṣe afiwe%s%sWo Ifiweranṣẹ Ti a tẹjade%s"
+
+#: front_rvy.php:459 front_rvy.php:474
+#, php-format
+msgid "%sView Published Post%s"
+msgstr "%sWo Ifiweranṣẹ Ti a tẹjade%s"
+
+#: front_rvy.php:549 rvy_init-functions.php:307 rvy_init-functions.php:363
+msgid "Submit"
+msgstr "Fọwọsi"
+
+#: front_rvy.php:561 front_rvy.php:563 front_rvy.php:611 front_rvy.php:613
+#, php-format
+msgid "This is a %s. %s %s %s"
+msgstr "Eyi jẹ %s. %s %s %s"
+
+#: front_rvy.php:579
+msgid "Decline"
+msgstr "Kọ"
+
+#: front_rvy.php:592 front_rvy.php:594
+#, php-format
+msgid "This is a %s (requested publish date: %s). %s %s %s"
+msgstr "Eyi jẹ %s (ọjọ ifiweranṣẹ ti a beere: %s). %s %s %s"
+
+#: front_rvy.php:598 front_rvy.php:600
+#, php-format
+msgid "Revision status: %s (requested publish date: %s) %s %s %s"
+msgstr "Ipo atunṣe: %s (ọjọ ifiweranṣẹ ti a beere: %s) %s %s %s"
+
+#: front_rvy.php:617 front_rvy.php:619
+#, php-format
+msgid "Revision status: %s %s %s %s"
+msgstr "Ipo atunṣe: %s %s %s %s"
+
+#: front_rvy.php:632 rvy_init-functions.php:470
+msgid "Publish Now"
+msgstr "Tẹjade Bayi"
+
+#: front_rvy.php:635 front_rvy.php:637
+#, php-format
+msgid "This is a %s (for publication on %s). %s %s %s"
+msgstr "Eyi jẹ %s (fun atẹjade lori %s). %s %s %s"
+
+#: front_rvy.php:655
+#, php-format
+msgid "The revision was approved and is now live on the site. %s"
+msgstr "Ayẹwo ti fọwọsi ati pe o ti wa laaye lori aaye naa. %s"
+
+#: front_rvy.php:656
+#, php-format
+msgid "This is the Current Revision. %s"
+msgstr "Eyi ni Ayẹwo lọwọlọwọ. %s"
+
+#: front_rvy.php:673
+msgid "Restore"
+msgstr "Tunṣe"
+
+#: front_rvy.php:677 front_rvy.php:679
+#, php-format
+msgid "This is a Past Revision (from %s). %s %s"
+msgstr "Eyi jẹ Ayẹwo ti o kọja (lati %s). %s %s"
+
+#: functions.php:537
+msgid "Scheduled Rev."
+msgstr "Ayẹwo ti a ṣe eto."
+
+#: functions.php:542 functions.php:547
+msgid "Submitted Rev."
+msgstr "Ayẹwo ti a fi silẹ."
+
+#: includes/CoreAdmin.php:13
+#, php-format
+msgid ""
+"You're using PublishPress Revisions Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr ""
+"O nlo PublishPress Revisions Free. Ẹya Pro ni awọn ẹya diẹ sii ati atilẹyin. "
+"%sGba si Pro%s"
+
+#: includes/CoreAdmin.php:190
+msgid "Upgrade to Revisions Pro"
+msgstr "Gba si Revisions Pro"
+
+#: includes/CoreAdmin.php:195
+msgid ""
+"Upgrade to PublishPress Revisions Pro for integration with key features of "
+"these plugins:"
+msgstr ""
+"Gba si PublishPress Revisions Pro fun iṣọpọ pẹlu awọn ẹya pataki ti awọn "
+"afikun wọnyi:"
+
+#: includes/CoreAdmin.php:199
+msgid "Divi Builder"
+msgstr "Divi Builder"
+
+#: includes/CoreAdmin.php:206
+msgid "PublishPress Planner: Custom Notifications"
+msgstr "PublishPress Planner: Awọn Ifitonileti Aṣ customized"
+
+#: includes/CoreAdmin.php:208
+msgid "Plugin integration details"
+msgstr "Awọn alaye iṣọpọ afikun"
+
+#: includes/CoreAdmin.php:219
+msgid "Need Revisions Support?"
+msgstr "Nilo Atilẹyin Ayẹwo?"
+
+#: includes/CoreAdmin.php:224
+msgid "If you need help or have a new feature request, let us know."
+msgstr "Ti o ba nilo iranlọwọ tabi ni ibeere ẹya tuntun, jẹ ki a mọ."
+
+#: includes/CoreAdmin.php:226
+msgid "Request Support"
+msgstr "Beere Atilẹyin"
+
+#: includes/CoreAdmin.php:235
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Iwe aṣẹ alaye tun wa lori oju opo wẹẹbu afikun."
+
+#: includes/CoreAdmin.php:237
+msgid "View Knowledge Base"
+msgstr "Wo Ibi ìmọ"
+
+#: lib/debug.php:117
+#, php-format
+msgid "%1$s queries in %2$s seconds. %3$s MB used."
+msgstr "%1$s awọn ibeere ni %2$s awọn aaya. %3$s MB ti lo."
+
+#: revision-creation_rvy.php:179
+#, fuzzy
+#| msgid "Could not insert revision into the database"
+msgid "Could not insert post into the database"
+msgstr "Ko le fi ayẹwo kan sinu ibi ipamọ data"
+
+#: revision-creation_rvy.php:401
+msgid "Could not insert revision into the database"
+msgstr "Ko le fi ayẹwo kan sinu ibi ipamọ data"
+
+#: revision-workflow_rvy.php:170
+#, php-format
+msgid "[%s] %s Updated"
+msgstr "[%s] %s Ti ṣe imudojuiwọn"
+
+#: revision-workflow_rvy.php:172
+#, php-format
+msgid "%1$s updated a %2$s of the %3$s \"%4$s\"."
+msgstr "%1$s ti ṣe imudojuiwọn a %2$s ti %3$s \"%4$s\"."
+
+#: revision-workflow_rvy.php:174
+#, fuzzy, php-format
+msgid "[%s] %s"
+msgstr "[%s] %s"
+
+#: revision-workflow_rvy.php:176
+#, php-format
+msgid ""
+"%1$s submitted changes to the %2$s \"%3$s\". You can review the changes for "
+"possible publication:"
+msgstr ""
+"%1$s fi awọn ayipada silẹ si %2$s \"%3$s\". O le ṣe ayẹwo awọn ayipada fun "
+"itẹwọgba:"
+
+#: revision-workflow_rvy.php:184
+msgid "Preview and Approval: "
+msgstr "Iṣafihan ati Igbasilẹ: "
+
+#: revision-workflow_rvy.php:187
+msgid "New Revisions: "
+msgstr "Awọn Atunṣe Tuntun: "
+
+#: revision-workflow_rvy.php:189
+#, php-format
+msgid "Edit %s: "
+msgstr "Ṣatunkọ %s: "
+
+#: revisionary.php:120
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>A le pa plugin yii.</strong>"
+
+#: rvy_init-functions.php:81
+msgid "Every 2 Minutes"
+msgstr "Gbogbo Awọn iṣẹju 2"
+
+#: rvy_init-functions.php:287 rvy_init-functions.php:299
+msgid "Working Copy"
+msgstr "Ẹda Iṣẹ"
+
+#: rvy_init-functions.php:288
+msgid "Create Working Copy"
+msgstr "Ṣẹda Ẹda Iṣẹ"
+
+#: rvy_init-functions.php:290
+msgid "Creating Working Copy..."
+msgstr "N ṣe Ẹda Iṣẹ..."
+
+#: rvy_init-functions.php:291
+msgid "Working Copy ready"
+msgstr "Ẹda Iṣẹ ti ṣetan"
+
+#: rvy_init-functions.php:292 rvy_init-functions.php:310
+msgid "Approve Changes"
+msgstr "Gba awọn ayipada"
+
+#: rvy_init-functions.php:294 rvy_init-functions.php:312
+msgid "Approving Changes..."
+msgstr "N gba awọn ayipada..."
+
+#: rvy_init-functions.php:295 rvy_init-functions.php:313
+#: rvy_init-functions.php:331
+msgid "Publish Changes"
+msgstr "Tẹjade Awọn ayipada"
+
+#: rvy_init-functions.php:296 rvy_init-functions.php:314
+#: rvy_init-functions.php:332 rvy_init-functions.php:352
+#: rvy_init-functions.php:369 rvy_init-functions.php:386
+msgid "Save Revision"
+msgstr "Fipamọ Atunṣe"
+
+#: rvy_init-functions.php:298
+msgid "Working Copies"
+msgstr "Awọn Ẹda Iṣẹ"
+
+#: rvy_init-functions.php:300
+#, php-format
+msgid "Working Copies <span class=\"count\">(%d)</span>"
+msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
+msgstr[0] "Awọn Ẹda Iṣẹ <span class=\"count\">(%d)</span>"
+
+#: rvy_init-functions.php:305 rvy_init-functions.php:317
+msgid "Change Request"
+msgstr "Beere Ayipada"
+
+#: rvy_init-functions.php:306
+msgid "Submit Change Request"
+msgstr "Fi ìbéèrè ayipada ranṣẹ"
+
+#: rvy_init-functions.php:309
+msgid "Changes Submitted"
+msgstr "Àyípadà ti fi ranṣẹ"
+
+#: rvy_init-functions.php:316
+msgid "Change Requests"
+msgstr "Ìbéèrè ayipada"
+
+#: rvy_init-functions.php:318
+#, php-format
+msgid "Change Requests <span class=\"count\">(%d)</span>"
+msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
+msgstr[0] "Ìbéèrè ayipada <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:319
+msgid "Enable Change Requests"
+msgstr "Mú ìbéèrè ayipada ṣiṣẹ"
+
+#: rvy_init-functions.php:324 rvy_init-functions.php:335
+msgid "Scheduled Change"
+msgstr "Ayipada ti a ṣeto"
+
+#: rvy_init-functions.php:325 rvy_init-functions.php:326
+#: rvy_init-functions.php:329 rvy_init-functions.php:330
+msgid "Schedule Changes"
+msgstr "Ṣeto àyípadà"
+
+#: rvy_init-functions.php:328
+msgid "Changes are Scheduled."
+msgstr "Àyípadà ti wa ni ṣeto."
+
+#: rvy_init-functions.php:334
+msgid "Scheduled Changes"
+msgstr "Àyípadà ti a ṣeto"
+
+#: rvy_init-functions.php:336
+#, php-format
+msgid "Scheduled <span class=\"count\">(%d)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
+msgstr[0] "Ti ṣeto <span class=\\\"count\\\">(%d)</span>"
+
+#: rvy_init-functions.php:344
+msgid "Unsubmitted Revision"
+msgstr "Àtúnṣe ti a ko fi ranṣẹ"
+
+#: rvy_init-functions.php:345 rvy_init-functions.php:346
+msgid "Create Revision"
+msgstr "Ṣẹda àtúnṣe"
+
+#: rvy_init-functions.php:347
+msgid "Creating Revision..."
+msgstr "N ṣe àtúnṣe..."
+
+#: rvy_init-functions.php:348
+msgid "The Revision is ready to edit."
+msgstr "Àtúnṣe ti ṣetan lati tọka."
+
+#: rvy_init-functions.php:348
+msgid "Revision ready to edit."
+msgstr "Àtúnṣe ti ṣetan lati tọka."
+
+#: rvy_init-functions.php:349 rvy_init-functions.php:366
+#: rvy_init-functions.php:383
+msgid "Approve Revision"
+msgstr "Fọwọsi àtúnṣe"
+
+#: rvy_init-functions.php:351 rvy_init-functions.php:368
+#: rvy_init-functions.php:385
+msgid "Publish Revision"
+msgstr "Sọdọ àtúnṣe"
+
+#: rvy_init-functions.php:354
+msgid "Unsubmitted Revisions"
+msgstr "Àtúnṣe ti a ko fi ranṣẹ"
+
+#: rvy_init-functions.php:355
+msgid "Not Submitted"
+msgstr "Kò fi ranṣẹ"
+
+#: rvy_init-functions.php:356
+#, php-format
+msgid "Not Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Kò fi ranṣẹ <span class=\\\"count\\\">(%s)</span>"
+
+#: rvy_init-functions.php:361
+msgid "Submitted Revision"
+msgstr "Ìtúnṣe tí a fi ránṣẹ́"
+
+#: rvy_init-functions.php:362 rvy_init-functions.php:503
+msgid "Submit Revision"
+msgstr "Fi Ìtúnṣe ránṣẹ́"
+
+#: rvy_init-functions.php:365
+msgid "The Revision is Submitted"
+msgstr "Ìtúnṣe ti a fi ránṣẹ́"
+
+#: rvy_init-functions.php:365
+msgid "Revision Submitted"
+msgstr "Ìtúnṣe ti a fi ránṣẹ́"
+
+#: rvy_init-functions.php:371
+msgid "Submitted Revisions"
+msgstr "Ìtúnṣe tí a fi ránṣẹ́"
+
+#: rvy_init-functions.php:372
+msgid "Submitted"
+msgstr "Ti a fi ránṣẹ́"
+
+#: rvy_init-functions.php:373
+#, php-format
+msgid "Submitted <span class=\"count\">(%s)</span>"
+msgid_plural "Submitted <span class=\"count\">(%s)</span>"
+msgstr[0] "Ti a fi ránṣẹ́ <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:378
+msgid "Scheduled Revision"
+msgstr "Ìtúnṣe tí a ti ṣe àtẹ̀jáde"
+
+#: rvy_init-functions.php:379
+msgid "Schedule Revision"
+msgstr "Ṣe Ìtúnṣe"
+
+#: rvy_init-functions.php:380
+msgid "Schedule"
+msgstr "Ṣeto"
+
+#: rvy_init-functions.php:382
+msgid "The Revision is Scheduled"
+msgstr "Ìtúnṣe ti a ti ṣe àtẹ̀jáde"
+
+#: rvy_init-functions.php:382
+msgid "Revision Scheduled"
+msgstr "Ìtúnṣe tí a ti ṣe àtẹ̀jáde"
+
+#: rvy_init-functions.php:388
+msgid "Scheduled Revisions"
+msgstr "Ìtúnṣe tí a ti ṣe àtẹ̀jáde"
+
+#: rvy_init-functions.php:389
+msgid "Scheduled"
+msgstr "Ti a ti ṣe àtẹ̀jáde"
+
+#: rvy_init-functions.php:390
+#, php-format
+msgid "Scheduled <span class=\"count\">(%s)</span>"
+msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
+msgstr[0] "Ti a ti ṣe àtẹ̀jáde <span class=\"count\">(%s)</span>"
+
+#: rvy_init-functions.php:490
+#, php-format
+msgid "%sMy Copies & Changes%s(%s)"
+msgid_plural "%sMy Copies & Changes%s(%s)"
+msgstr[0] "%sÀwọn ẹda mi & Àtúnṣe%s(%s)"
+
+#: rvy_init-functions.php:491
+#, php-format
+msgid "%sMy Revisions%s(%s)"
+msgid_plural "%sMy Revisions%s(%s)"
+msgstr[0] "%sÀwọn Ìtúnṣe mi%s(%s)"
+
+#: rvy_init-functions.php:493
+#, php-format
+msgid "%sRevisions to My Posts%s(%s)</span>"
+msgid_plural "%sRevisions to My Posts%s(%s)"
+msgstr[0] "%sÀwọn Ìtúnṣe sí àwọn ìkọ̀wé mi%s(%s)</span>"
+
+#: rvy_init-functions.php:498
+msgid "Post Author"
+msgstr "Onkọwe Ìkọ̀wé"
+
+#: rvy_init-functions.php:499
+msgid "Published Post"
+msgstr "Ìkọ̀wé tí a tẹjade"
+
+#: rvy_init-functions.php:504
+msgid "Submit Changes"
+msgstr "Fi Ayipada silẹ"
+
+#: rvy_init-functions.php:708
+msgid "Revisor"
+msgstr "Atunwo"
+
+#: rvy_init-functions.php:720
+msgctxt "User role"
+msgid "Revisor"
+msgstr "Atunwo"
+
+#: rvy_init-functions.php:811
+msgid ""
+"The unfiltered_html capability is required to create a revision of this post."
+msgstr "Iṣẹ-ṣiṣe unfiltered_html jẹ dandan lati ṣẹda atunṣe ti ifiweranṣẹ yii."
+
+#: rvy_init-functions.php:1263
+msgid "Revision Workflow"
+msgstr "Ilana Atunṣe"
