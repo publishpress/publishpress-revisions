@@ -72,16 +72,30 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
             if (function_exists('_prime_post_caches')) {
                 _prime_post_caches(array_map('intval', $ids), false, false);
             }
-            foreach ($ids as $id) {
-                $id = (int) $id;
-                $after = max($after, $id);
-                $revision = get_post($id);
-                $parent = $revision ? get_post($revision->post_parent) : null;
-                if ($parent && in_array($parent->post_type, array_merge($this->post_types, ['revision']), true)
-                    && rvy_can_read_revision_and_parent($id)
-                    && rvy_can_read_revision_and_parent($parent->ID)) {
-                    $this->readable_parent_ids[$parent->ID] = (int) $parent->ID;
-                    $this->readable_revision_ids[] = $id;
+            // Keep only this batch's object-cache working set. Permission checks
+            // may load parent objects and revision metadata as well as posts.
+            $cache_ids = array_fill_keys(array_map('intval', $ids), true);
+            try {
+                foreach ($ids as $id) {
+                    $id = (int) $id;
+                    $after = max($after, $id);
+                    $revision = get_post($id);
+                    $parent = $revision ? get_post($revision->post_parent) : null;
+                    if ($parent) {
+                        $cache_ids[(int) $parent->ID] = true;
+                    }
+                    if ($parent && in_array($parent->post_type, array_merge($this->post_types, ['revision']), true)
+                        && rvy_can_read_revision_and_parent($id)
+                        && rvy_can_read_revision_and_parent($parent->ID)) {
+                        $this->readable_parent_ids[$parent->ID] = (int) $parent->ID;
+                        $this->readable_revision_ids[] = $id;
+                    }
+                }
+            } finally {
+                unset($revision, $parent);
+                foreach (array_keys($cache_ids) as $cache_id) {
+                    wp_cache_delete($cache_id, 'posts');
+                    wp_cache_delete($cache_id, 'post_meta');
                 }
             }
         } while (count($ids) === 250);
