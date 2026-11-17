@@ -183,7 +183,30 @@ class Revisionary
 			}
 		}
 
-		if (rvy_use_visual_compare() && (current_user_can('read') || is_content_administrator_rvy())) {
+		// Include custom post type editors, Revisors and Approvers. Object access
+		// is checked separately before comparisons or content are returned.
+		$can_load_visual_compare = current_user_can('edit_posts');
+		foreach (['edit_others_revisions', 'list_others_revisions', 'preview_others_revisions', 'manage_revision_queue', 'manage_unsubmitted_revisions', 'restore_revisions', 'view_revision_archive'] as $compare_revision_cap) {
+			if (current_user_can($compare_revision_cap)) {
+				$can_load_visual_compare = true;
+				break;
+			}
+		}
+		foreach (get_post_types([], 'objects') as $compare_post_type) {
+			if (empty($compare_post_type->cap->edit_posts)) {
+				continue;
+			}
+			$compare_edit_cap = $compare_post_type->cap->edit_posts;
+			if (current_user_can($compare_edit_cap)
+				|| current_user_can(str_replace('edit_', 'revise_', $compare_edit_cap))
+				|| current_user_can(str_replace('edit_', 'approve_', $compare_edit_cap))
+			) {
+				$can_load_visual_compare = true;
+				break;
+			}
+		}
+
+		if (rvy_use_visual_compare() && $can_load_visual_compare) {
 			require_once(dirname(__FILE__).'/visual-compare_rvy.php');
 			new RevisionaryVisualCompare();
 
