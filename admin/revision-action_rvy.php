@@ -962,6 +962,8 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	$revision_content = $update['post_content'];
 
+	$enabled_fields = null;
+
 	if (rvy_is_revision_status($original_revision_status)) {
 		$enabled_fields = $revisionary->enabled_fields;
 
@@ -984,10 +986,12 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		}
 	}
 
-	// Prevent a revision from making the published post its own parent. This
-	// must run before wp_update_post()/rvy_update_post() writes post_parent.
+	// Prevent a revision from making the published post its own parent. A past
+	// revision's post_parent is the published post ID, so keep the published
+	// post's current parent instead. This must run before
+	// wp_update_post()/rvy_update_post() writes post_parent.
 	if (isset($update['post_parent']) && ((int) $published->ID === (int) $update['post_parent'])) {
-		$update['post_parent'] = 0;
+		$update['post_parent'] = (int) $published->post_parent;
 	}
 
 	if (defined('REVISIONARY_APPLY_REVISION_WP_UPDATE')) {
@@ -1056,7 +1060,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	// Safeguard: prevent invalid hierarchy and broken Pages admin
 	if (!empty($update_fields['post_parent']) && ($post_id == $update_fields['post_parent'])) {
-		$update_fields['post_parent'] = 0;
+		$update_fields['post_parent'] = (int) $published->post_parent;
 	}
 
 	if ($author_selection = get_post_meta($revision_id, '_rvy_author_selection', true)) {
@@ -1339,7 +1343,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 
 	if (empty($revision) || empty($revision->post_mime_type)) {
 		$revision = (object) (array) $published;
-		$revision->post_mime_type = $original_post_status;
+		$revision->post_mime_type = $original_revision_status;
 		$revision->ID = $revision_id;
 	}
 
