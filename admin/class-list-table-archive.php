@@ -59,14 +59,14 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
             "SELECT r.ID FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON p.ID = r.post_parent
              LEFT JOIN $wpdb->posts p2 ON p.post_type = 'revision' AND p2.ID = p.post_parent
              WHERE r.post_type = 'revision' AND r.post_name NOT LIKE %s
-             AND (p.post_type IN ($placeholders) OR (p.post_type = 'revision' AND p2.post_type IN ($placeholders)))",
+             AND (p.post_type IN ($placeholders) OR (p.post_type = 'revision' AND p2.post_type IN ($placeholders)))",	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             array_merge(['%-autosave-v%'], $types, $types)
         );
         $after = 0;
         do {
             // Prime bounded batches; do not share authorization results across requests.
-            $ids = $wpdb->get_col($wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read fresh revision IDs; authorization results remain scoped to this request.
-                "$candidates AND r.ID > %d ORDER BY r.ID LIMIT 250",
+            $ids = $wpdb->get_col($wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                "$candidates AND r.ID > %d ORDER BY r.ID LIMIT 250",		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 $after
             ));
             if (function_exists('_prime_post_caches')) {
@@ -259,7 +259,7 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			) {
 				$obj = get_post_type_object( sanitize_key( $_REQUEST['origin_post_type'] ) );		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$this->heading_spacing( $count );
-				if ((!empty($obj) && !empty($obj->labels) && !empty($obj->labels->name))) echo esc_html($obj->labels->name); else echo esc_html(ucwords(str_replace('_', ' ', sanitize_key($_REQUEST['origin_post_type']))));
+				if ((!empty($obj) && !empty($obj->labels) && !empty($obj->labels->name))) echo esc_html($obj->labels->name); else echo esc_html(ucwords(str_replace('_', ' ', sanitize_key($_REQUEST['origin_post_type']))));  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$count++;
 			}
 		}

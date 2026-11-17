@@ -1877,7 +1877,14 @@ class Revisionary
             return false;
         }
         // These query values only identify a preview candidate; capability checks authorize access.
-        $id = $_GET['page_id'] ?? ($_GET['p'] ?? ($_GET['preview_id'] ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview context.
+        $id = 0;
+		if (isset($_GET['page_id'])) {																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['page_id']) ? absint(wp_unslash($_GET['page_id'])) : 0;			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif (isset($_GET['p'])) {																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['p']) ? absint(wp_unslash($_GET['p'])) : 0;						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif (isset($_GET['preview_id'])) {														// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['preview_id']) ? absint(wp_unslash($_GET['preview_id'])) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
         if (!is_scalar($id)) {
             return false;
         }
