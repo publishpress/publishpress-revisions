@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 11140)
-Total output lines: 955
-
 <?php
 defined('ABSPATH') || exit;
 
@@ -60,7 +57,7 @@ class RevisionaryFront {
     /** Admit an authorized singular preview without granting its edit meta cap. */
     public function configureWorkflowRevisionPreview($query) {
         if (is_admin() || !is_user_logged_in() || !$query->is_main_query()
-            || !$query->is_singular() || !empty($_POST) // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reject non-GET form submissions; no form action is processed here.
+            || !$query->is_singular() || !empty($_POST) // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reject form submissions; this callback performs no form action.
             || (defined('REST_REQUEST') && REST_REQUEST)
             || (defined('DOING_AJAX') && DOING_AJAX)
             || !isset($_SERVER['REQUEST_METHOD'])
@@ -499,7 +496,108 @@ class RevisionaryFront {
 
 		if ($wp_query->is_404 && !empty($revision_id) && (in_array(get_post_field('post_status', $revision_id), ['future', 'publish'], true) || defined('REVISIONARY_FORCE_PUBLICATION_REDIRECT'))) {
 			// Work around timing issue when scheduled revision publication is underway
-			if ($published_id = get…1140 tokens truncated…_id);
+			if ($published_id = get_post_meta($revision_id, '_rvy_base_post_id', true)) {
+				if ($post = get_post($published_id)) {										// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited)
+					if ($type_obj = get_post_type_object($post->post_type)) {
+						$redirect = ($type_obj && empty($type_obj->public)) ? rvy_admin_url("post.php?action=edit&post=$post->ID") : add_query_arg('mark_current_revision', 1, get_permalink($post->ID)); // published URL
+						wp_safe_redirect($redirect);
+						exit;	
+					}
+				}
+			}
+		}
+
+        if ((rvy_in_revision_workflow($revision_id) || wp_is_post_revision($revision_id)) && !rvy_can_read_revision_and_parent($revision_id)) {
+            wp_die(esc_html__('You are not allowed to view this revision.', 'revisionary'), '', ['response' => 403]);
+        }
+
+		do_action('revisionary_front', $revision_id);
+
+		global $wpdb;
+
+		if (empty($_REQUEST['mark_current_revision']) && empty($_REQUEST['rvy_approval'])) {				//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			
+			if (!$post = $wpdb->get_row(								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.WP.GlobalVariablesOverride.Prohibited
+				$wpdb->prepare(
+					"SELECT * FROM $wpdb->posts WHERE ID = %d",
+					$revision_id
+				))
+			) {
+				if (!$post = wp_get_post_revision($revision_id)) {		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+					return;
+				}
+			}
+		}
+	
+		if (empty($post) || !empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval'])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			global $post;													//phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.VariableRedeclaration
+		}
+
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ((!empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval']) || rvy_in_revision_workflow($post) || ('revision' == $post->post_type)) && !isset($_REQUEST['fl_builder'])) {
+			add_filter('redirect_canonical', array($this, 'flt_revision_preview_url'), 10, 2);
+
+			if (!empty($_REQUEST['mark_current_revision']) || !empty($_REQUEST['rvy_approval'])) {										//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$published_post_id = (!empty($post)) ? $post->ID : 0;
+				$revision_id = $published_post_id;
+			} else {
+				$published_post_id = rvy_post_id($revision_id);
+
+				if (!rvy_can_read_revision_and_parent($revision_id)) {
+                    wp_die(esc_html__('You are not allowed to view this revision.', 'revisionary'), '', ['response' => 403]);
+				}
+
+				do_action('revisionary_preview_load', $revision_id, $published_post_id);
+
+                // Preview is read-only: missing metadata inherits through fltGetPostMeta().
+
+                // Multiple Authors terms inherit through the read-only term filter too.
+
+			}
+
+			if (empty($post)) {
+				return;
+			}
+
+			$html = self::previewBarHtml($post, $published_post_id);
+			if ($html) {
+				// Keep workflow preview controls outside integrated builder canvases.
+				// Preview authorization above still runs for the builder shell.
+				$suppress_preview_bar = apply_filters('revisionary_suppress_preview_bar', false, $revision_id);
+				if (!$suppress_preview_bar && function_exists('bricks_is_builder_main') && bricks_is_builder_main()) {
+					$suppress_preview_bar = true;
+				}
+				if (!$suppress_preview_bar) {
+					add_action('wp_enqueue_scripts', [$this, 'rvyEnqueueStyle'], 50);
+
+					add_action('wp_enqueue_scripts', [$this, 'rvyEnqueuePreviewJS']);
+
+					if (defined('REVISIONARY_LEGACY_PREVIEW_OUTPUT')) {
+						new RvyScheduledHtml( $html, 'wp_head', 99 );  // this should be inserted at the top of <body> instead, but currently no way to do it
+					} else {
+						new RvyScheduledHtml( $html, 'wp_print_scripts', 99 );
+					}
+				}
+			}
+		}
+	}
+
+	/** Standard preview markup, without preview initialization or metadata writes. */
+	public static function previewBarHtml($post, $published_post_id, $editor_shell = false) {
+		$revision_id = $post->ID;
+		if (!rvy_can_read_revision_and_parent($revision_id)) { return ''; }
+				$datef = get_option('date_format') . ' ' . get_option('time_format');
+			$date = agp_date_i18n( $datef, strtotime( $post->post_date ) );
+
+			$color = '#ccc';
+			$class = '';
+			$message = '';
+			$compact_caption = '';
+
+			// This topbar is presently only for those with restore / approve / publish rights
+			$type_obj = get_post_type_object( $post->post_type );
+
+			$can_publish = current_user_can('edit_post', $published_post_id);
 
 			$redirect_arg = ( ! empty($_REQUEST['rvy_redirect']) ) ? "&rvy_redirect=" . esc_url_raw(wp_unslash($_REQUEST['rvy_redirect'])) : '';  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
