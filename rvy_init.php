@@ -65,7 +65,7 @@ if (!defined('RVY_PREVIEW_ARG')) {
 if (('preview' != RVY_PREVIEW_ARG) && !empty($_REQUEST['preview']) && !empty($_REQUEST['nc'])) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 	$url = (isset($_SERVER['REQUEST_URI'])) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '';
 	$arr = wp_parse_url(site_url());
-	$url = $arr['scheme'] . '://' . $arr['host'] . $url;
+	$url = $arr['scheme'] . '://' . $arr['host'] . (!empty($arr['port']) ? ':' . absint($arr['port']) : '') . $url;
 
 	$url = str_replace('preview=', RVY_PREVIEW_ARG . '=', $url);
 	wp_safe_redirect($url);
