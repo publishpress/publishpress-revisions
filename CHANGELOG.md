@@ -1,5 +1,14 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.3.4] - 17 Nov 2026
+
+- Fixed : Scheduled Revisions are moved back to Submitted instead of being published #2663
+- Fixed : Some plugin settings changes are not saved #2665, #2672
+- Fixed : Revision creation strips may strip custom fields #2667 
+- Fixed : Public Post Preview links fail for logged-out visitors #2669
+- Fixed : View Revision link fails after Update Revision #2678
+- Fixed : Beaver Builder revisions lose their layout #2674 
+
 [4.3.3] - 11 Nov 2026
 
 - Fixed : Published post with a revision post_mime_type is treated as a revision, and its real revisions disappear from the queue #2642
