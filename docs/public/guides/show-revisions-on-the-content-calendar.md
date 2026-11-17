@@ -2,6 +2,7 @@
 title: "Show Revisions in PublishPress Planner"
 order: 39
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # Show Revisions in PublishPress Planner

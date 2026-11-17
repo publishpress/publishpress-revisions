@@ -2,6 +2,7 @@
 title: "Does My Plugin Support PublishPress Revisions?"
 order: 40
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # Does My Plugin Support PublishPress Revisions?

@@ -2,6 +2,7 @@
 title: "Block Users from Editing Other User’s Revisions"
 order: 14
 doc_category: revisions
+section: Managing Revisions
 ---
 
 # Block Users from Editing Other User’s Revisions

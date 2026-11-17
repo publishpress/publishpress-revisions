@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for Divi (Pro)"
 order: 6
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for Divi (Pro)

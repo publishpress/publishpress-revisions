@@ -2,6 +2,7 @@
 title: "How to Use Scheduled Revisions"
 order: 36
 doc_category: revisions
+section: Scheduling New Revisions
 ---
 
 # How to Use Scheduled Revisions

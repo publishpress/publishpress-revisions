@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for PODS (Pro)"
 order: 20
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for PODS (Pro)

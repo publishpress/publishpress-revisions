@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for WPML (Pro)"
 order: 26
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for WPML (Pro)

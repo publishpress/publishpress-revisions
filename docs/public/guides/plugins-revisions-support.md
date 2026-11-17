@@ -2,6 +2,7 @@
 title: "A List of Some Plugins Supported by PublishPress Revisions"
 order: 13
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # A List of Some Plugins Supported by PublishPress Revisions

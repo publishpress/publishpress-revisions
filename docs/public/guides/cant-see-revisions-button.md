@@ -2,6 +2,7 @@
 title: "Can’t See the Revisions Button or Links"
 order: 2
 doc_category: revisions
+section: Troubleshooting Revisions
 ---
 
 # Can’t See the Revisions Button or Links

@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for Custom Post Type UI (Pro)"
 order: 28
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for Custom Post Type UI (Pro)

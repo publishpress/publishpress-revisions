@@ -2,6 +2,7 @@
 title: "Email Notifications for Revisions (Pro)"
 order: 8
 doc_category: revisions
+section: New Revision Notifications
 ---
 
 # Email Notifications for Revisions (Pro)

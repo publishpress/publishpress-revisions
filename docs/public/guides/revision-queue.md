@@ -2,6 +2,7 @@
 title: "Getting Started with New Revisions"
 order: 23
 doc_category: revisions
+section: New Revisions
 ---
 
 # Getting Started with New Revisions

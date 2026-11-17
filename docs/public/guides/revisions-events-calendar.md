@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for The Events Calendar (Pro)"
 order: 29
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for The Events Calendar (Pro)

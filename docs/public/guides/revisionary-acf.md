@@ -2,6 +2,7 @@
 title: "PublishPress Revisions Support for Advanced Custom Fields (Pro)"
 order: 24
 doc_category: revisions
+section: New Revisions Integrations
 ---
 
 # PublishPress Revisions Support for Advanced Custom Fields (Pro)

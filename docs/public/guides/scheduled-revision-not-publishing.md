@@ -2,6 +2,7 @@
 title: "Scheduled Revisions are Not Publishing"
 order: 37
 doc_category: revisions
+section: Troubleshooting Revisions
 ---
 
 # Scheduled Revisions are Not Publishing

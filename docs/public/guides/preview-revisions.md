@@ -2,6 +2,7 @@
 title: "How to Preview Past Revisions"
 order: 15
 doc_category: revisions
+section: Past Revisions
 ---
 
 # How to Preview Past Revisions

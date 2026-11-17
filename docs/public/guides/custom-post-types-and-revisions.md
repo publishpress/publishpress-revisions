@@ -2,6 +2,7 @@
 title: "Custom Post Types and Revisions"
 order: 4
 doc_category: revisions
+section: Troubleshooting Revisions
 ---
 
 # Custom Post Types and Revisions

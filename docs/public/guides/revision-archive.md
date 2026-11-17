@@ -2,6 +2,7 @@
 title: "Getting Started with Past Revisions"
 order: 21
 doc_category: revisions
+section: Past Revisions
 ---
 
 # Getting Started with Past Revisions

@@ -2,6 +2,7 @@
 title: "How to Copy Revisions Content"
 order: 10
 doc_category: revisions
+section: Past Revisions
 ---
 
 # How to Copy Revisions Content

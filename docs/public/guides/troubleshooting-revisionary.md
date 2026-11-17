@@ -2,6 +2,7 @@
 title: "Troubleshooting the PublishPress Revisions Plugin"
 order: 41
 doc_category: revisions
+section: Troubleshooting Revisions
 ---
 
 # Troubleshooting the PublishPress Revisions Plugin

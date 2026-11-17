@@ -2,6 +2,7 @@
 title: "How to Customize Permissions for Revisions"
 order: 22
 doc_category: revisions
+section: New Revisions Permissions
 ---
 
 # How to Customize Permissions for Revisions

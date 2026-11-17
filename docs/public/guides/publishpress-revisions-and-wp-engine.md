@@ -2,6 +2,7 @@
 title: "PublishPress Revisions and WP Engine"
 order: 18
 doc_category: revisions
+section: Troubleshooting Revisions
 ---
 
 # PublishPress Revisions and WP Engine
