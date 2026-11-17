@@ -1,7 +1,7 @@
 <?php
 namespace PublishPress\Revisions;
 
-defined('ABSPATH') || exit;
+\defined('ABSPATH') || exit;
 
 /** Save Statuses' block-editor submissions before performing the workflow action. */
 final class StatusesRestSubmission

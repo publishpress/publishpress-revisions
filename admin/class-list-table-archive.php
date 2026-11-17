@@ -55,19 +55,18 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
         $placeholders = implode(',', array_fill(0, count($types), '%s'));
         // Filter unrelated post types and autosaves before object loading or
         // authorization. Keep exact revision checks for delegated permissions.
-        $candidates = $wpdb->prepare(
-            "SELECT r.ID FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON p.ID = r.post_parent
+        // Placeholder tokens derive from the validated post type count; values remain prepared.
+        $candidate_sql = "SELECT r.ID FROM $wpdb->posts r INNER JOIN $wpdb->posts p ON p.ID = r.post_parent
              LEFT JOIN $wpdb->posts p2 ON p.post_type = 'revision' AND p2.ID = p.post_parent
              WHERE r.post_type = 'revision' AND r.post_name NOT LIKE %s
-             AND (p.post_type IN ($placeholders) OR (p.post_type = 'revision' AND p2.post_type IN ($placeholders)))",
-            array_merge(['%-autosave-v%'], $types, $types)
-        );
+             AND (p.post_type IN ($placeholders) OR (p.post_type = 'revision' AND p2.post_type IN ($placeholders)))"; // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Only validated placeholder tokens are interpolated.
         $after = 0;
         do {
             // Prime bounded batches; do not share authorization results across requests.
-            $ids = $wpdb->get_col($wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read fresh revision IDs; authorization results remain scoped to this request.
-                "$candidates AND r.ID > %d ORDER BY r.ID LIMIT 250",
-                $after
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read fresh IDs; authorization remains request-scoped.
+            $ids = $wpdb->get_col($wpdb->prepare(
+                $candidate_sql . ' AND r.ID > %d ORDER BY r.ID LIMIT 250',
+                array_merge(['%-autosave-v%'], $types, $types, [$after])
             ));
             if (function_exists('_prime_post_caches')) {
                 _prime_post_caches(array_map('intval', $ids), false, false);
@@ -254,12 +253,13 @@ class Revisionary_Archive_List_Table extends WP_List_Table {
 			}
 		} else {
 			// Post type
-			if( isset( $_REQUEST['origin_post_type'] ) && ! empty( $_REQUEST['origin_post_type'] )	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				&& in_array( $_REQUEST['origin_post_type'], $this->post_types, true )						//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			) {
-				$obj = get_post_type_object( sanitize_key( $_REQUEST['origin_post_type'] ) );		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            // Read-only archive heading context; no state-changing operation is performed.
+            $origin_post_type = isset($_REQUEST['origin_post_type']) && is_string($_REQUEST['origin_post_type'])
+                ? sanitize_key(wp_unslash($_REQUEST['origin_post_type'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only filter.
+            if ($origin_post_type && in_array($origin_post_type, $this->post_types, true)) {
+                $obj = get_post_type_object($origin_post_type);
 				$this->heading_spacing( $count );
-				if ((!empty($obj) && !empty($obj->labels) && !empty($obj->labels->name))) echo esc_html($obj->labels->name); else echo esc_html(ucwords(str_replace('_', ' ', sanitize_key($_REQUEST['origin_post_type']))));
+				if ((!empty($obj) && !empty($obj->labels) && !empty($obj->labels->name))) echo esc_html($obj->labels->name); else echo esc_html(ucwords(str_replace('_', ' ', $origin_post_type)));
 				$count++;
 			}
 		}

@@ -1876,8 +1876,13 @@ class Revisionary
             || 'GET' !== strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) ?? 'GET')) {
             return false;
         }
-        $id = $_GET['page_id'] ?? ($_GET['p'] ?? ($_GET['preview_id'] ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Request classification, not authorization.
-        if (!is_scalar($id) || !ctype_digit((string) $id) || !(int) $id) {
+        // These query values only identify a preview candidate; capability checks authorize access.
+        $id = $_GET['page_id'] ?? ($_GET['p'] ?? ($_GET['preview_id'] ?? 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview context.
+        if (!is_scalar($id)) {
+            return false;
+        }
+        $id = absint(wp_unslash($id));
+        if (!$id) {
             return false;
         }
         $post = get_post((int) $id);

@@ -57,10 +57,11 @@ class RevisionaryFront {
     /** Admit an authorized singular preview without granting its edit meta cap. */
     public function configureWorkflowRevisionPreview($query) {
         if (is_admin() || !is_user_logged_in() || !$query->is_main_query()
-            || !$query->is_singular() || !empty($_POST)
+            || !$query->is_singular() || !empty($_POST) // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reject form submissions; this callback performs no form action.
             || (defined('REST_REQUEST') && REST_REQUEST)
             || (defined('DOING_AJAX') && DOING_AJAX)
-            || 'GET' !== ($_SERVER['REQUEST_METHOD'] ?? '')) {
+            || !isset($_SERVER['REQUEST_METHOD'])
+            || 'GET' !== strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])))) {
             return;
         }
         $id = (int) ($query->get('page_id') ?: $query->get('p'));
