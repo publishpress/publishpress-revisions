@@ -67,7 +67,21 @@ if (('preview' != RVY_PREVIEW_ARG) && !empty($_REQUEST['preview']) && !empty($_R
 	$arr = wp_parse_url(site_url());
 	$url = $arr['scheme'] . '://' . $arr['host'] . (!empty($arr['port']) ? ':' . absint($arr['port']) : '') . $url;
 
-	$url = str_replace('preview=', RVY_PREVIEW_ARG . '=', $url);
+	// Rename only the query key; leave paths, values and fragments intact.
+	$query_start = strpos($url, '?');
+	if (false !== $query_start) {
+		$fragment_start = strpos($url, '#', $query_start);
+		$query_end = (false === $fragment_start) ? strlen($url) : $fragment_start;
+		$query = substr($url, $query_start + 1, $query_end - $query_start - 1);
+		$query = preg_replace_callback(
+			'/(^|&)preview(?==|&|$)/',
+			static function ($matches) {
+				return $matches[1] . RVY_PREVIEW_ARG;
+			},
+			$query
+		);
+		$url = substr($url, 0, $query_start + 1) . $query . substr($url, $query_end);
+	}
 	wp_safe_redirect($url);
 	exit;
 }
