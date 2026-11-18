@@ -1784,7 +1784,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !defined('PUBLISHPRESS_VERSION')) :
 			if (!$customize_defaults):?>
-			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
+			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 15px">
 			<?php
 			$plugin_slug = 'publishpress';
 			$info_url = self_admin_url("plugin-install.php?tab=plugin-information&plugin=$plugin_slug&TB_iframe=true&width=640&height=678");
@@ -1796,11 +1796,10 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 			?>
 			</div>
-			<br />
 			<?php endif;?>
 		<?php elseif (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) :
 			?>
-			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
+			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 15px">
 			<?php
 			printf(
 				esc_html__('For enhanced notifications, update %sPublishPress Planner%s.', 'revisionary'),
@@ -1809,7 +1808,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 			?>
 			</div>
-			<br />
 		<?php endif;
 
 		if ((defined('PUBLISHPRESS_VERSION') && version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') || !defined('PUBLISHPRESS_VERSION')
