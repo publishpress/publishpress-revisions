@@ -104,6 +104,101 @@ class RvyOptionUI {
         return $choices;
     }
 
+    /**
+     * Settings that require a particular workflow, integration or editor.
+     * Keep this independent of rendering so API clients can validate without
+     * running settings screen hooks that perform maintenance or emit markup.
+     */
+    public function nativeSettingAvailability(): array
+    {
+        global $wp_version;
+
+        $pending = (bool) rvy_get_option('pending_revisions');
+        $scheduled = (bool) rvy_get_option('scheduled_revisions');
+        $preview = (bool) rvy_get_option('revision_preview_links');
+        $pro = defined('PUBLISHPRESS_REVISIONS_PRO_VERSION');
+        $planner = defined('PUBLISHPRESS_VERSION');
+        $modernPlanner = $planner && version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=');
+        $plannerNotifications = (bool) rvy_get_option('use_publishpress_notifications');
+        $legacyControls = $modernPlanner || !$pro || !$planner || !$plannerNotifications;
+        $legacyEmail = $legacyControls && rvy_get_option('legacy_notifications');
+        $wp7 = version_compare($wp_version, '7.0', '>=');
+        $available = [
+            'async_scheduled_publish' => $scheduled && rvy_get_option('legacy_scheduled_publication') && !function_exists('relevanssi_query'),
+            'revision_limit_compat_mode' => (bool) rvy_get_option('revision_limit_per_post'),
+            'rev_publication_delete_ed_comments' => $planner,
+            'use_publishpress_notifications' => $pro && $modernPlanner,
+            'planner_notifications_access_limited' => $pro && $legacyControls && $plannerNotifications
+                && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES'),
+            'legacy_notifications' => $legacyControls,
+            'revision_update_notifications' => $legacyEmail && $pending
+                && (rvy_get_option('pending_rev_notify_admin') || rvy_get_option('pending_rev_notify_author')),
+            'use_notification_buffer' => (bool) $legacyEmail,
+            'visual_compare' => $wp7 && !rvy_visual_compare_disabled(),
+            'visual_compare_javascript' => $wp7,
+            'rvy_compare_other_internal_fields' => $wp7 && rvy_use_visual_compare(),
+            'preview_link_type' => $preview,
+            'preview_link_alternate_preview_arg' => $preview && !(defined('RVY_PREVIEW_ARG_LOCKED') && defined('RVY_PREVIEW_ARG')),
+            'home_preview_set_home_flag' => $preview,
+            'apply_post_exceptions' => defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>='),
+            'revision_edit_disable_rank_math' => class_exists('RankMath'),
+            'enable_classic_metaboxes' => $wp7,
+            'archive_postmeta_on_edit' => $pro,
+            'revision_restore_require_cap' => $pro,
+            'past_revisions_order_by' => $pro,
+            'pending_revision_unpublished' => $pro && $pending,
+            'publish_by_revision' => $pro && $pending && rvy_get_option('pending_revision_unpublished'),
+            'unfiltered_preview_links' => $pro && $preview,
+        ];
+        $available += array_fill_keys([
+            'revise_posts_capability', 'revision_editor_bg_color', 'pending_revision_update_post_date',
+            'pending_revision_update_modified_date', 'auto_submit_revisions_any_user',
+            'auto_submit_revisions', 'compare_revisions_direct_approval',
+        ], $pending);
+        $available += array_fill_keys([
+            'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'scheduled_publish_cron',
+        ], $scheduled);
+        $available += array_fill_keys([
+            'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions',
+            'revisor_hide_others_revisions', 'admin_revisions_to_own_posts', 'view_filters_include_unsubmitted_revisions',
+            'admin_menu_pending_count_icon', 'front_end_indicator',
+        ], $pending || $scheduled);
+        $available['deletion_queue'] = $pro && ($pending || $scheduled);
+        $available += array_fill_keys([
+            'pending_rev_notify_admin', 'pending_rev_notify_author', 'pending_rev_notify_revisor',
+            'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor',
+        ], $legacyEmail && $pending);
+        $available += array_fill_keys([
+            'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor',
+        ], $legacyEmail && $scheduled);
+
+        return $available;
+    }
+
+    public function nativeSettingChoices(): array
+    {
+        $notification = [
+            0 => __('Never', 'revisionary'),
+            1 => __('By default', 'revisionary'),
+            'always' => __('Always', 'revisionary'),
+        ];
+        return [
+            'pending_rev_notify_admin' => $notification,
+            'pending_rev_notify_author' => $notification,
+            'preview_link_type' => [
+                '' => __('Published Post Slug', 'revisionary'),
+                'revision_slug' => __('Revision Slug', 'revisionary'),
+                'id_only' => __('Revision ID only', 'revisionary'),
+            ],
+            'past_revisions_order_by' => ['' => __('Post Date', 'revisionary'), 'modified' => __('Modification Date', 'revisionary')],
+            'revision_limit_per_post' => [
+                0 => __('Allow any number of Revisions per post.', 'revisionary'),
+                1 => __('Prevent Revision creation if another was already created.', 'revisionary'),
+                'submitted' => __('Prevent Revision creation if another was already submitted.', 'revisionary'),
+            ],
+        ];
+    }
+
     public function getNativeSettingsDefinition() {
 $pending_revision_singular = pp_revisions_status_label('pending-revision', 'name');
 $pending_revision_plural = rvy_get_option('revision_statuses_noun_labels') ? pp_revisions_status_label('pending-revision', 'plural') : esc_html__('Revision Submission', 'revisionary');
@@ -213,7 +308,7 @@ $this->form_options = apply_filters('revisionary_option_sections', [
 	'post_types' =>			 ['enabled_post_types', 'enabled_fields', 'enabled_post_types_archive', 'enabled_post_types_copy', 'enabled_fields_copy'],
 	'statuses' => 			 [true],
 	'archive' =>			 ['num_revisions', 'archive_postmeta', 'archive_postmeta_on_edit', 'extended_archive', 'revision_archive_deletion', 'revision_restore_require_cap', 'past_revisions_order_by'],
-	'working_copy' =>		 ['duplicate_posts_capability', 'copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'create_revision_reuse_unsubmitted', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_capability', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_menu_pending_count_icon', 'front_end_indicator', 'admin_revisions_to_own_posts', 'view_filters_include_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
+	'working_copy' =>		 ['duplicate_posts_capability', 'copy_posts_capability', 'revisor_role_add_custom_rolecaps', 'revision_limit_per_post', 'create_revision_reuse_unsubmitted', 'revision_limit_compat_mode', 'submit_permission_enables_creation', 'allow_post_author_revision', 'create_revision_direct_link', 'query_loop_revision_editor_allowance', 'revision_unfiltered_html_check', 'auto_submit_revisions', 'auto_submit_revisions_any_user', 'revision_editor_bg_color', 'caption_copy_as_edit', 'permissions_compat_mode', 'pending_revisions', 'revise_posts_capability', 'pending_revision_update_post_date', 'pending_revision_update_modified_date', 'scheduled_revisions', 'scheduled_publish_cron', 'async_scheduled_publish', 'wp_cron_usage_detected', 'scheduled_revision_update_post_date', 'scheduled_revision_update_modified_date', 'approve_capability', 'approve_button_verbose', 'trigger_post_update_actions', 'copy_revision_comments_to_post', 'rev_publication_delete_ed_comments', 'revision_statuses_noun_labels', 'revision_queue_capability', 'manage_unsubmitted_capability', 'revisor_lock_others_revisions', 'revisor_hide_others_revisions', 'admin_menu_pending_count_icon', 'front_end_indicator', 'admin_revisions_to_own_posts', 'view_filters_include_unsubmitted_revisions', 'deletion_queue', 'compare_revisions_direct_approval', 'use_publishpress_notifications', 'planner_notifications_access_limited', 'legacy_notifications', 'pending_rev_notify_admin', 'pending_rev_notify_author', 'revision_update_notifications', 'rev_approval_notify_admin', 'rev_approval_notify_author', 'rev_approval_notify_revisor', 'publish_scheduled_notify_admin', 'publish_scheduled_notify_author', 'publish_scheduled_notify_revisor', 'use_notification_buffer'],
 	'notifications' =>		 [true],
 	'integrations' =>		 [true],
 	'revisions'		=>		 ['visual_compare', 'visual_compare_javascript', 'rvy_compare_other_internal_fields', 'revision_preview_links', 'preview_link_type', 'preview_link_alternate_preview_arg', 'home_preview_set_home_flag', 'require_edit_others_drafts', 'apply_post_exceptions', 'enable_postmeta_revision', 'diff_display_strip_tags', 'compare_revisions_hide_copy_buttons', 'revision_edit_disable_rank_math', 'add_revisions_index', 'enable_classic_metaboxes', 'display_hints', 'delete_settings_on_uninstall'],
@@ -1217,7 +1312,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	
 			echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 			echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='vertical-align: baseline'>";
-			$captions = ['' => esc_html__('Post Date', 'revisionary'), 'modified' => esc_html__('Modification Date', 'revisionary')];
+			$captions = $this->nativeSettingChoices()['past_revisions_order_by'];
 			foreach ( $captions as $key => $value) {
 				$selected = ( $current_setting == $key ) ? 'selected' : '';
 				echo "\n\t<option value='" . esc_attr($key) . "' " . esc_attr($selected) . ">" . esc_html($captions[$key]) . "</option>";
@@ -1240,9 +1335,9 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
 
 	<?php
-	$pending_revisions_available = rvy_get_option( 'pending_revisions' );
-
-	$scheduled_revisions_available =  rvy_get_option( 'scheduled_revisions' );
+	$native_availability = $this->nativeSettingAvailability();
+	$pending_revisions_available = $native_availability['pending_revision_update_post_date'];
+	$scheduled_revisions_available = $native_availability['scheduled_revision_update_post_date'];
 
 	$_sections = [
 		'revision-creation' => esc_html__('Revision Creation', 'revisionary'),
@@ -1447,11 +1542,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 		echo " <select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off' style='max-width:inherit'>";
-		$captions = [
-			0 => esc_html__('Allow any number of Revisions per post.', 'revisionary'),
-			1 => esc_html__('Prevent Revision creation if another was already created.', 'revisionary'),
-			'submitted' => esc_html__('Prevent Revision creation if another was already submitted.', 'revisionary'),
-		];
+		$captions = $this->nativeSettingChoices()['revision_limit_per_post'];
 
 		foreach ( $captions as $key => $value) {
 			$selected = ( $current_setting == $key ) ? 'selected' : '';
@@ -1545,6 +1636,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 			$this->option_checkbox( 'revise_posts_capability', $tab, $section, $hint, '', $checkbox_args );
 
+			if (in_array('revision_editor_bg_color', $this->form_options[$tab][$section], true)) {
 			$option = 'revision_editor_bg_color';
 			$this->all_options []= $option;
 			$color = rvy_get_option($option);
@@ -1600,6 +1692,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			</style>
 
 			<?php
+			}
 			$hint = sprintf(esc_html__( 'When a %s is published, update post publish date to current time.', 'revisionary' ), pp_revisions_status_label('pending-revision', 'name'));
 			$this->option_checkbox( 'pending_revision_update_post_date', $tab, $section, $hint, '' );
 
@@ -1700,7 +1793,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		$hint = esc_html__('Caption the button as either "Approve and Publish" or "Approve and Schedule."', 'revisionary');
 		$this->option_checkbox( 'approve_button_verbose', $tab, $section, $hint, '' );
 
-		if (defined('PUBLISHPRESS_VERSION')) {
+		if ($native_availability['rev_publication_delete_ed_comments']) {
 			$this->option_checkbox( 'rev_publication_delete_ed_comments', $tab, $section, '', '' );
 		}
 
@@ -1848,7 +1941,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
                 $this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
             }
 
-			if ($pp_notifications && defined('PRESSPERMIT_VERSION') && defined('RVY_CONTENT_ROLES') && defined('PUBLISHPRESS_REVISIONS_PRO_VERSION')) {
+			if ($native_availability['planner_notifications_access_limited']) {
 				echo '<br />';
 				$hint = esc_html__('Users matching Planner > Notifications configuration get revision notifications only if they can edit the published post.', 'revisionary');
 				$this->option_checkbox( 'planner_notifications_access_limited', $tab, $section, $hint, '', ['no_escape' => true] );
@@ -1893,7 +1986,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 				echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 				echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
-				$captions = array( 0 => esc_html__('Never', 'revisionary'), 1 => esc_html__('By default', 'revisionary'), 'always' => esc_html__('Always', 'revisionary') );
+				$captions = $this->nativeSettingChoices()[$id];
 				foreach ( $captions as $key => $value) {
 					$selected = ( $current_setting == $key ) ? 'selected' : '';
 					echo "\n\t<option value='" . esc_attr($key) . "' " . esc_attr($selected) . ">" . esc_html($captions[$key]) . "</option>";
@@ -1916,7 +2009,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 					echo '<label class="screen-reader-text" for="' . esc_attr($id) . '">' . esc_html($this->option_captions[$id]) . '</label>';
 					echo "<select name='" . esc_attr($id) . "' id='" . esc_attr($id) . "' autocomplete='off'>";
-				$captions = array( 0 => esc_html__('Never', 'revisionary'), 1 => esc_html__('By default', 'revisionary'), 'always' => esc_html__('Always', 'revisionary') );
+				$captions = $this->nativeSettingChoices()[$id];
 				foreach ( $captions as $key => $value) {
 					$selected = ( $current_setting == $key ) ? 'selected' : '';
 					echo "\n\t<option value='" . esc_attr($key) . "' " . esc_attr($selected) . ">" . esc_html($captions[$key]) . "</option>";
@@ -2245,11 +2338,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			<select name="<?php echo esc_attr($id);?>" id="<?php echo esc_attr($id);?>" autocomplete="off">
 
 			<?php
-			$captions = [
-				'' => esc_html__('Published Post Slug', 'revisionary'), 
-				'revision_slug' => esc_html__('Revision Slug', 'revisionary'), 
-				'id_only' => esc_html__('Revision ID only', 'revisionary') 
-			];
+			$captions = $this->nativeSettingChoices()['preview_link_type'];
 
 			foreach ( $captions as $key => $value) {
 				$selected = ( $current_setting == $key ) ? 'selected' : '';
