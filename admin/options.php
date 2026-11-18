@@ -1473,7 +1473,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	$this->option_checkbox( 'create_revision_direct_link', $tab, $section, $hint, '');
 
 	$hint = '';
-    echo '<p>' . esc_html__('Query Loop previews use your existing post permissions. The legacy capability allowance has been retired.', 'revisionary') . '</p>';
 	?>
 
 	<?php
