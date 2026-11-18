@@ -2219,6 +2219,9 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			<?php
 		}
 
+		?>
+		<br />
+		<?php
 		$hint = esc_html__('Some themes may block revision preview.', 'revisionary');
 		$this->option_checkbox( 'revision_preview_links', $tab, $section, $hint, '' );
 
