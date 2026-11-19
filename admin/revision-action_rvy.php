@@ -451,7 +451,7 @@ function rvy_revision_approve($revision_id = 0, $args = []) {
 		}
 	}
 
-    if (!rvy_revision_metadata_is_safe($revision_id, $post->ID, ['skip_meta_keys' => rvy_disabled_revision_meta_keys()])) {
+    if (!rvy_revision_metadata_is_safe($revision_id, $post->ID, ['skip_meta_keys' => revisionary_disabled_meta_keys()])) {
         $error = new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
         if (!$batch_process) { wp_die(esc_html($error->get_error_message())); }
         return $error;
@@ -912,7 +912,7 @@ function rvy_apply_revision( $revision_id, $actual_revision_status = '' ) {
 		$existing_parent = 0;
 	}
 
-    $skip_post_meta = rvy_is_revision_status($original_revision_status) ? rvy_disabled_revision_meta_keys() : [];
+    $skip_post_meta = rvy_is_revision_status($original_revision_status) ? revisionary_disabled_meta_keys() : [];
     if (!rvy_revision_metadata_is_safe($revision_id, $published_id, ['skip_meta_keys' => $skip_post_meta])) {
         return new WP_Error('revisionary_unsafe_metadata', __('Revision metadata contains unsupported objects.', 'revisionary'));
     }
