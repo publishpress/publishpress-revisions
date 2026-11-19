@@ -41,7 +41,7 @@ class Revisions
             $post = get_post($input['post_id']);
             $taxonomies = [];
             foreach (get_object_taxonomies($post->post_type, 'objects') as $taxonomy) {
-                if ((!$taxonomy->public && !$taxonomy->show_ui) || str_starts_with($taxonomy->name, 'pp_notify_')) {
+                if (!$taxonomy->show_ui || str_starts_with($taxonomy->name, 'pp_notify_')) {
                     continue;
                 }
                 $field = in_array($taxonomy->name, ['category', 'post_tag'], true) ? $taxonomy->name : 'taxonomies';
@@ -203,20 +203,34 @@ class Revisions
         $map = ['title' => 'post_title', 'content' => 'post_content', 'excerpt' => 'post_excerpt', 'slug' => 'post_name', 'parent' => 'post_parent', 'author' => 'post_author', 'date' => 'post_date'];
         $data = [];
         $enabled = $GLOBALS['revisionary']->enabled_fields;
+        $source = rvy_in_revision_workflow($post) ? self::source($post) : $post;
+        if (!$source) {
+            return Registry::denied();
+        }
+        $supports = ['title' => 'title', 'content' => 'editor', 'excerpt' => 'excerpt',
+            'author' => 'author', 'thumbnail_id' => 'thumbnail'];
         foreach ($changes as $key => $value) {
             if ($key === 'terms') {
                 continue;
+            }
+            if (isset($supports[$key]) && !post_type_supports($source->post_type, $supports[$key])) {
+                return Registry::denied();
             }
             if (in_array($key, ['thumbnail_id', 'template'], true)) {
                 $meta = $key === 'thumbnail_id' ? '_thumbnail_id' : '_wp_page_template';
                 if (($enabled !== true && empty($enabled[$meta]))) {
                     return Registry::denied();
                 }
-                if ($key === 'thumbnail_id' && $value && (get_post_type($value) !== 'attachment' || !wp_attachment_is_image($value) || !current_user_can('read_post', $value))) {
+                if ($key === 'thumbnail_id' && (!current_theme_supports('post-thumbnails', $source->post_type)
+                    || ($value && (get_post_type($value) !== 'attachment' || !wp_attachment_is_image($value)
+                        || !wp_get_attachment_image($value, 'thumbnail') || !current_user_can('read_post', $value))))) {
                     return Registry::denied();
                 }
-                if ($key === 'template' && !in_array($value, ['', 'default'], true) && !array_key_exists($value, wp_get_theme()->get_page_templates($post, $post->post_type))) {
-                    return Registry::error();
+                if ($key === 'template') {
+                    $templates = wp_get_theme()->get_page_templates($source, $source->post_type);
+                    if (!$templates || (!in_array($value, ['', 'default'], true) && !isset($templates[$value]))) {
+                        return Registry::error();
+                    }
                 }
                 continue;
             }
@@ -235,7 +249,13 @@ class Revisions
                     return Registry::error();
                 }
                 $data['post_date_gmt'] = $date->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d H:i:s');
-                $value = $date->setTimezone(wp_timezone())->format('Y-m-d H:i:s');
+                $local = $date->setTimezone(wp_timezone());
+                $value = $local->format('Y-m-d H:i:s');
+                if (!wp_checkdate((int) $local->format('n'), (int) $local->format('j'), (int) $local->format('Y'), $value)
+                    || !preg_match('/^[1-9][0-9]{3}-/', $value)
+                    || !preg_match('/^[1-9][0-9]{3}-/', $data['post_date_gmt'])) {
+                    return Registry::error();
+                }
             } elseif ($key === 'author') {
                 $type = get_post_type_object($post->post_type);
                 if (!rvy_get_option('allow_post_author_revision') || !get_userdata($value) || !is_user_member_of_blog($value) || !user_can($value, $type->cap->edit_posts) || ($value !== get_current_user_id() && !current_user_can($type->cap->edit_others_posts))) {
@@ -265,7 +285,7 @@ class Revisions
             if (is_wp_error($valid)) {
                 return $valid;
             }
-            if (!$object || (!$object->public && !$object->show_ui) || strpos($taxonomy, 'pp_notify_') === 0 || !in_array($post->post_type, $object->object_type, true) || !current_user_can($object->cap->assign_terms) || ($enabled !== true && empty($enabled[in_array($taxonomy, ['category', 'post_tag'], true) ? $taxonomy : 'taxonomies']))) {
+            if (!$object || !$object->show_ui || strpos($taxonomy, 'pp_notify_') === 0 || !in_array($post->post_type, $object->object_type, true) || !current_user_can($object->cap->assign_terms) || ($enabled !== true && empty($enabled[in_array($taxonomy, ['category', 'post_tag'], true) ? $taxonomy : 'taxonomies']))) {
                 return Registry::denied();
             }
             foreach ($ids as $id) {
@@ -289,7 +309,7 @@ class Revisions
     private static function canReviseStatus($post): bool
     {
         $status = $post ? get_post_status_object($post->post_status) : null;
-        return $status && ($status->public || $status->private || (Registry::pro() && rvy_get_option('pending_revision_unpublished')));
+        return $status && !$status->internal && ($status->public || $status->private || (Registry::pro() && rvy_get_option('pending_revision_unpublished')));
     }
     public static function create(array $input)
     {
@@ -336,7 +356,7 @@ class Revisions
     public static function duplicate(array $input)
     {
         $source = get_post($input['post_id']);
-        if (!$source || rvy_in_revision_workflow($source) || empty($GLOBALS['revisionary']->enabled_post_types_copy[$source->post_type]) || !current_user_can('read_post', $source->ID) || !current_user_can('duplicate_post', $source->ID)) {
+        if (!$source || in_array($source->post_status, ['trash', 'auto-draft', 'inherit'], true) || rvy_in_revision_workflow($source) || empty($GLOBALS['revisionary']->enabled_post_types_copy[$source->post_type]) || !current_user_can('read_post', $source->ID) || !current_user_can('duplicate_post', $source->ID)) {
             return Registry::denied();
         }
         $fresh = Registry::stale($input, self::snapshot($source));
@@ -348,6 +368,10 @@ class Revisions
         }
         require_once RVY_ABSPATH . '/revision-creation_rvy.php';
         $creator = new \PublishPress\Revisions\RevisionCreation();
+        $fresh = Registry::stale($input, self::snapshot(get_post($source->ID)));
+        if (is_wp_error($fresh)) {
+            return $fresh;
+        }
         $id = $creator->copyPost($source->ID, 'draft', ['suppress_redirect' => true]);
         if (!is_int($id) || !get_post($id) || get_post_status($id) !== 'draft') {
             return Registry::unconfirmed();
@@ -368,7 +392,7 @@ class Revisions
     public static function update(array $input)
     {
         $post = get_post($input['id']);
-        if (!self::permitted($post) || $post->post_type === 'revision' || !current_user_can('edit_post', $post->ID)) {
+        if (!self::permitted($post) || $post->post_type === 'revision' || $post->post_status === 'trash' || !current_user_can('edit_post', $post->ID)) {
             return Registry::denied();
         }
         $fresh = Registry::stale($input, self::snapshot($post));

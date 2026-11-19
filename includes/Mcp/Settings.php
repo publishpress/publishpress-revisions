@@ -18,7 +18,9 @@ class Settings
     {
         do_action('publishpress_revisions_mcp_before_settings');
         require_once RVY_ABSPATH . '/admin/options.php';
-        $definition = \RvyOptionUI::instance()->getNativeSettingsDefinition();
+        $ui = \RvyOptionUI::instance();
+        $definition = $ui->getNativeSettingsDefinition();
+        $availability = $ui->nativeSettingAvailability();
         $defaults = apply_filters('default_options_rvy', rvy_default_options());
         $keys = [];
         foreach ($definition['sections']['features'] as $section => $names) {
@@ -38,13 +40,14 @@ class Settings
             }
         }
         $fields['auto_submit_revisions_any_user'] = ['type' => 'boolean'];
-        foreach (['pending_rev_notify_admin', 'pending_rev_notify_author'] as $key) {
-            $fields[$key] = ['type' => 'string', 'enum' => ['0', '1', 'always']];
+        foreach ($ui->nativeSettingChoices() as $key => $choices) {
+            $fields[$key] = [
+                'type' => 'string',
+                'enum' => array_map('strval', array_keys($choices)),
+                'choice_labels' => (object) $choices,
+            ];
         }
-        $fields['preview_link_type'] = ['type' => 'string', 'enum' => ['', 'revision_slug', 'id_only']];
-        $fields['past_revisions_order_by'] = ['type' => 'string', 'enum' => ['', 'modified']];
         $fields['num_revisions'] = ['type' => ['integer', 'null'], 'minimum' => -1, 'maximum' => 100000];
-        $fields['revision_limit_per_post'] = ['type' => 'string', 'enum' => ['0', '1', 'submitted']];
         $fields['revision_editor_bg_color'] = ['type' => 'string', 'pattern' => '^(|#[a-fA-F0-9]{6})$'];
         $types = get_post_types(['public' => true, 'show_ui' => true], 'objects', 'or');
         foreach (['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'] as $key) {
@@ -52,7 +55,7 @@ class Settings
                 'enabled_post_types_archive' => $GLOBALS['revisionary']->getHiddenPostTypesArchive(), 'enabled_post_types_copy' => $GLOBALS['revisionary']->getHiddenPostTypesCopy(), default => $GLOBALS['revisionary']->getHiddenPostTypes()
             };
             $availableTypes = $key === 'enabled_post_types_archive' ? $types : array_merge($types, $GLOBALS['revisionary']->getAvailablePrivatePostTypes());
-            $fields[$key] = Registry::object(array_fill_keys(array_keys(array_diff_key($availableTypes, $hidden)), ['type' => 'boolean']));
+            $fields[$key] = Registry::object(array_fill_keys(array_keys(array_diff_key($availableTypes, $hidden, $key === 'enabled_post_types_archive' ? [] : ['nav_menu' => true])), ['type' => 'boolean']));
         }
         foreach (['enabled_fields' => false, 'enabled_fields_copy' => true] as $key => $copy) {
             $properties = [];
@@ -61,27 +64,20 @@ class Settings
             }
             $fields[$key] = Registry::object($properties);
         }
-        if (!Registry::pro()) {
-            foreach (['deletion_queue', 'archive_postmeta_on_edit', 'revision_restore_require_cap', 'pending_revision_unpublished', 'publish_by_revision', 'unfiltered_preview_links', 'use_publishpress_notifications'] as $key) {
+        $fields = array_intersect_key($fields, $keys);
+        foreach ($availability as $key => $available) {
+            if (!$available) {
                 unset($fields[$key]);
             }
         }
-        if (!defined('PUBLISHPRESS_VERSION') || version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '<')) {
-            unset($fields['use_publishpress_notifications']);
-        }
-        if (function_exists('relevanssi_query') && isset($fields['async_scheduled_publish'])) {
-            $fields['async_scheduled_publish']['enum'] = [false];
-            $fields['async_scheduled_publish']['description'] = __('Native asynchronous publication is unavailable while Relevanssi is active.', 'revisionary');
-        }
-        if (rvy_visual_compare_disabled() && isset($fields['visual_compare'])) {
-            $fields['visual_compare']['enum'] = [false];
-            $fields['visual_compare']['description'] = __('Visual comparison is disabled by the native compatibility configuration.', 'revisionary');
-        }
+        // Extensions can omit controls, but native validation remains authoritative.
+        $filtered = apply_filters('publishpress_revisions_mcp_setting_fields', $fields);
+        $fields = array_intersect_key($fields, $filtered);
         foreach ($fields as $key => &$field) {
             $field['title'] = wp_strip_all_tags($definition['captions'][$key] ?? $key);
         }
         unset($field);
-        return apply_filters('publishpress_revisions_mcp_setting_fields', $fields);
+        return $fields;
     }
     private static function native(string $key)
     {
@@ -124,7 +120,7 @@ class Settings
         $state = [];
         global $rvy_options_sitewide;
         foreach ($fields as $key => $field) {
-            $network = defined('RVY_NETWORK') && RVY_NETWORK && !empty($rvy_options_sitewide[$key]);
+            $network = defined('RVY_NETWORK') && RVY_NETWORK && isset($rvy_options_sitewide[$key]);
             $state[$key] = ['effective' => self::native($key), 'stored' => $network ? get_site_option('rvy_' . $key, null) : get_option('rvy_' . $key, null), 'network' => $network];
         }
         return $state;
@@ -150,7 +146,7 @@ class Settings
             $field['network_controlled'] = $state[$key]['network'];
         }
         unset($field);
-        return ['settings' => (object) $values, 'stored' => (object) $stored, 'schema' => Registry::object($fields), 'expected_hash' => Registry::hash($state), 'pro_active' => Registry::pro(), 'dry_run' => false];
+        return ['settings' => (object) $values, 'stored' => (object) $stored, 'schema' => Registry::object($fields), 'expected_hash' => Registry::hash([$state, $fields]), 'pro_active' => Registry::pro(), 'dry_run' => false];
     }
     public static function update(array $input)
     {
@@ -167,7 +163,7 @@ class Settings
         $values = [];
         $fields = $before['schema']['properties'];
         foreach ($patch as $key => $value) {
-            if (!empty($fields[$key]['network_controlled']) && !current_user_can('manage_network_options')) {
+            if (!empty($fields[$key]['network_controlled']) && (!is_super_admin() || !current_user_can('manage_network_options'))) {
                 return Registry::denied();
             }
             if ($value && $key === 'use_publishpress_notifications' && (!Registry::pro() || !defined('PUBLISHPRESS_VERSION') || version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '<'))) {
@@ -204,7 +200,7 @@ class Settings
         // Enabling a custom type can add its edit/read capabilities to the native Revisor role.
         $roleCaps = $patch['revisor_role_add_custom_rolecaps'] ?? (bool) rvy_get_option('revisor_role_add_custom_rolecaps');
         if ($roleCaps && (isset($patch['enabled_post_types']) || isset($patch['revisor_role_add_custom_rolecaps']))) {
-            $enabledTypes = (array) $before['settings']->enabled_post_types;
+            $enabledTypes = (array) ($before['settings']->enabled_post_types ?? $GLOBALS['revisionary']->enabled_post_types);
             foreach ($patch['enabled_post_types'] ?? [] as $name => $enabled) {
                 $enabledTypes[$name] = $enabled;
             }
