@@ -140,7 +140,9 @@ function rvy_admin_init() {
 						continue;
 					}
 
-					if ( !is_content_administrator_rvy() && !current_user_can( 'edit_post', $revision->post_parent) ) {  // @todo: review Administrator cap check
+					$parent = get_post($revision->post_parent);
+					$type_obj = $parent ? get_post_type_object($parent->post_type) : null;
+					if (!$type_obj || !current_user_can($type_obj->cap->delete_post, $parent->ID)) {
 						wp_die( esc_html__('Sorry, you are not allowed to delete this revision.', 'revisionary') );
 					} 
 	
@@ -436,10 +438,12 @@ function rvy_admin_init() {
 				rvy_run_or_defer_wp_loaded('rvy_revision_delete');
 				
 			} elseif ( ! empty($_GET['action']) && ('copy' == $_GET['action']) ) {
+                check_admin_referer('rvy-copy-' . absint($_REQUEST['post'] ?? 0));
 				require_once( dirname(__FILE__).'/revision-action_rvy.php');	
 				rvy_run_or_defer_wp_loaded('rvy_post_copy');
 
 			} elseif ( ! empty($_GET['action']) && ('revise' == $_GET['action']) ) {
+                check_admin_referer('rvy-revise-' . absint($_REQUEST['post'] ?? 0));
 				if (!empty($_REQUEST['post'])) {
 					$post_id = intval($_REQUEST['post']);
 					$arr = rvy_post_revision_blocked($post_id);

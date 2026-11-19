@@ -12,12 +12,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: WP-CLI 2.13.0-alpha\n"
+"Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 || n % 10 == 6 || n % 10 == 9);\n"
 "X-Domain: revisionary\n"
 "|| n % 10 == 6 || n % 10 == 9);\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
 "|| n % 10 == 6 || n % 10 == 9);: \n"
-"|| n % 10 == 6 || n % 10 == 9);\n"
-"Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 "
 "|| n % 10 == 6 || n % 10 == 9);\n"
 
 #. Plugin Name of the plugin
@@ -136,8 +135,8 @@ msgid ""
 "Scheduling%s."
 msgstr ""
 "Hindi magagamit ang mga Nakaiskedyul na Rebisyon dahil naka-disable ang WP-"
-"Cron. Kung pinapagana mo ang WP-Cron mula sa labas, tingnan ang %sRebisyon > "
-"Mga Setting > Mga Bagong Rebisyon > Pagsasaayos%s."
+"Cron. Kung pinapagana mo ang WP-Cron mula sa labas, tingnan ang %sRebisyon >"
+" Mga Setting > Mga Bagong Rebisyon > Pagsasaayos%s."
 
 #: admin/admin_rvy.php:321
 msgctxt "groups per page (screen options)"
@@ -258,7 +257,8 @@ msgstr "huwag pumili"
 #: admin/class-list-table-archive.php:22
 msgid ""
 "This was an update to a revision which is still in the workflow process."
-msgstr "Ito ay isang pag-update sa isang rebisyon na nasa proseso ng workflow."
+msgstr ""
+"Ito ay isang pag-update sa isang rebisyon na nasa proseso ng workflow."
 
 #: admin/class-list-table-archive.php:24
 msgid ""
@@ -778,8 +778,8 @@ msgstr ""
 #: admin/options.php:185
 msgid "If post contains custom html, require unfiltered_html capability"
 msgstr ""
-"Kung ang post ay naglalaman ng custom html, kailangan ang unfiltered_html na "
-"kakayahan"
+"Kung ang post ay naglalaman ng custom html, kailangan ang unfiltered_html na"
+" kakayahan"
 
 #: admin/options.php:186
 msgid "Auto-submit revisions created by a user with publishing capability"
@@ -817,8 +817,8 @@ msgstr ""
 #: admin/options.php:192
 msgid "Users can always administer revisions to their own editable posts"
 msgstr ""
-"Ang mga gumagamit ay laging makakapag-administer ng mga rebisyon sa kanilang "
-"sariling ma-edit na mga post"
+"Ang mga gumagamit ay laging makakapag-administer ng mga rebisyon sa kanilang"
+" sariling ma-edit na mga post"
 
 #: admin/options.php:193
 msgid "Also notify on Revision Update"
@@ -918,7 +918,8 @@ msgstr "I-display ang Mga Pahiwatig"
 
 #: admin/options.php:220
 msgid "Delete settings and Revisions if plugin is deleted"
-msgstr "Tanggalin ang mga setting at mga Rebisyon kung ang plugin ay tinanggal"
+msgstr ""
+"Tanggalin ang mga setting at mga Rebisyon kung ang plugin ay tinanggal"
 
 #: admin/options.php:221
 msgid "Show Preview Links"
@@ -964,7 +965,8 @@ msgstr ""
 "para sa archive"
 
 #: admin/options.php:230
-msgid "Keep an archive of revision edits, even after the revision is published"
+msgid ""
+"Keep an archive of revision edits, even after the revision is published"
 msgstr ""
 "Panatilihin ang isang archive ng mga edit ng rebisyon, kahit na nailathala "
 "na ang rebisyon"
@@ -972,7 +974,8 @@ msgstr ""
 #: admin/options.php:231
 msgid "Show Current Revision top bar after revision publication"
 msgstr ""
-"Ipakita ang Current Revision na top bar pagkatapos ng publikasyon ng rebisyon"
+"Ipakita ang Current Revision na top bar pagkatapos ng publikasyon ng "
+"rebisyon"
 
 #: admin/options.php:232
 msgid "On Revision publication, delete Editorial Comments"
@@ -1073,7 +1076,8 @@ msgstr ""
 #: admin/options.php:257
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
-msgstr "Mag-email sa mga Editor at Administrator kapag ang isang %s ay isumite"
+msgstr ""
+"Mag-email sa mga Editor at Administrator kapag ang isang %s ay isumite"
 
 #: admin/options.php:258
 #, php-format
@@ -1262,8 +1266,8 @@ msgstr "Handa na bang pahusayin ang iyong workflow ng rebisyon?"
 
 #: admin/options.php:1005
 msgid ""
-"Get PublishPress Statuses Pro and optimize your revision process with custom "
-"revision statuses."
+"Get PublishPress Statuses Pro and optimize your revision process with custom"
+" revision statuses."
 msgstr ""
 "Kumuha ng PublishPress Statuses Pro at i-optimize ang iyong proseso ng "
 "rebisyon gamit ang mga custom na estado ng rebisyon."
@@ -1313,8 +1317,8 @@ msgstr ""
 #: admin/options.php:1052
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
-"I-configure para sa anumang post type at role upang tumugma sa iyong editing "
-"workflow."
+"I-configure para sa anumang post type at role upang tumugma sa iyong editing"
+" workflow."
 
 #: admin/options.php:1059
 msgid "Get Statuses Pro"
@@ -1424,13 +1428,12 @@ msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
 msgstr ""
-"Upang palawakin ang listahan ng Pages, italaga ang Mga kakayahan sa paglista "
-"(list_others_pages, list_published_posts, atbp.)"
+"Upang palawakin ang listahan ng Pages, italaga ang Mga kakayahan sa paglista"
+" (list_others_pages, list_published_posts, atbp.)"
 
 #: admin/options.php:1296
 msgid "This plugin introduces a new user role, \"Revisor.\""
-msgstr ""
-"Nagpapakilala ang plugin na ito ng bagong tungkulin ng user, \"Revisor.\""
+msgstr "Nagpapakilala ang plugin na ito ng bagong tungkulin ng user, \"Revisor.\""
 
 #: admin/options.php:1316
 #, php-format
@@ -1438,8 +1441,8 @@ msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
 "to be stripped out."
 msgstr ""
-"Ang Revision ng isang user na walang %s ay magdudulot ng pagtanggal ng lahat "
-"ng custom na html tags."
+"Ang Revision ng isang user na walang %s ay magdudulot ng pagtanggal ng lahat"
+" ng custom na html tags."
 
 #: admin/options.php:1322
 msgid ""
@@ -1604,8 +1607,8 @@ msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
 msgstr ""
-"Lagyan ng caption ang button bilang \"Aprubahan at I-publish\" o \"Aprubahan "
-"at I-schedule.\""
+"Lagyan ng caption ang button bilang \"Aprubahan at I-publish\" o \"Aprubahan"
+" at I-schedule.\""
 
 #: admin/options.php:1529
 msgid "This may improve compatibility with some plugins."
@@ -1617,7 +1620,8 @@ msgid "Control New Revisions access with the %s."
 msgstr "Kontrolin ang pag-access sa Mga Bagong Bersyon gamit ang %s."
 
 #: admin/options.php:1570
-msgid "Control New Revisions access with the manage_revision_queue capability."
+msgid ""
+"Control New Revisions access with the manage_revision_queue capability."
 msgstr ""
 "Kontrolin ang pag-access sa Mga Bagong Bersyon gamit ang kakayahang "
 "manage_revision_queue."
@@ -1626,8 +1630,8 @@ msgstr ""
 #, php-format
 msgid "Users will need the %s to edit others' Unsubmitted Revisions."
 msgstr ""
-"Kakailanganin ng mga gumagamit ang %s upang i-edit ang Unsubmitted Revisions "
-"ng iba."
+"Kakailanganin ng mga gumagamit ang %s upang i-edit ang Unsubmitted Revisions"
+" ng iba."
 
 #: admin/options.php:1596
 msgid ""
@@ -1641,20 +1645,21 @@ msgstr ""
 #, php-format
 msgid "If the user can't edit the published post, require the %s."
 msgstr ""
-"Kung ang gumagamit ay hindi makapag-edit ng nailathalang post, hingin ang %s."
+"Kung ang gumagamit ay hindi makapag-edit ng nailathalang post, hingin ang "
+"%s."
 
 #: admin/options.php:1622
 msgid ""
-"If the user can't edit the published post, require the edit_others_revisions "
-"capability."
+"If the user can't edit the published post, require the edit_others_revisions"
+" capability."
 msgstr ""
 "Kung ang gumagamit ay hindi makapag-edit ng nailathalang post, hingin ang "
 "kakayahang edit_others_revisions."
 
 #: admin/options.php:1650
 msgid ""
-"If the user can't edit the published post, require the list_others_revisions "
-"capability."
+"If the user can't edit the published post, require the list_others_revisions"
+" capability."
 msgstr ""
 "Kung ang gumagamit ay hindi makapag-edit ng nailathalang post, hingin ang "
 "kakayahang list_others_revisions."
@@ -1690,7 +1695,8 @@ msgstr ""
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr ""
-"Para sa pinahusay na mga notification, i-update ang %sPublishPress Planner%s."
+"Para sa pinahusay na mga notification, i-update ang %sPublishPress "
+"Planner%s."
 
 #: admin/options.php:1728
 #, php-format
@@ -1698,8 +1704,8 @@ msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
 "Planner Notifications system%2$s."
 msgstr ""
-"Magpadala ng mga notification ng aksyon sa rebisyon gamit ang nako-customize "
-"na %1$sPublishPress Planner Notifications system%2$s."
+"Magpadala ng mga notification ng aksyon sa rebisyon gamit ang nako-customize"
+" na %1$sPublishPress Planner Notifications system%2$s."
 
 #: admin/options.php:1729
 #, php-format
@@ -1833,8 +1839,8 @@ msgstr ""
 msgid ""
 "Customize notification content and recipients for each notification type."
 msgstr ""
-"I-customize ang nilalaman ng notification at mga tumanggap para sa bawat uri "
-"ng notification."
+"I-customize ang nilalaman ng notification at mga tumanggap para sa bawat uri"
+" ng notification."
 
 #: admin/options.php:2060
 msgid "Some themes may block revision preview."
@@ -1874,15 +1880,15 @@ msgid ""
 "Experiment to see which works best with your theme."
 msgstr ""
 "I-adjust ang mga preview link upang gamitin ang \"rv_preview\" argument sa "
-"halip na \"preview\". Subukan upang makita kung aling gumagana ng mas mabuti "
-"sa iyong tema."
+"halip na \"preview\". Subukan upang makita kung aling gumagana ng mas mabuti"
+" sa iyong tema."
 
 #: admin/options.php:2114
 msgid ""
 "Some themes may require this setting for correct revision preview display."
 msgstr ""
-"Ang ilang mga tema ay maaaring mangailangan ng setting na ito para sa tamang "
-"pagpapakita ng revision preview."
+"Ang ilang mga tema ay maaaring mangailangan ng setting na ito para sa tamang"
+" pagpapakita ng revision preview."
 
 #: admin/options.php:2133
 msgid ""
@@ -1897,13 +1903,13 @@ msgstr ""
 msgid ""
 "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
-"Kung ang gumagamit ay hindi makapag-publish, kailanganin ang %s upang i-edit "
-"ang mga di-nakapublish na Posts ng iba."
+"Kung ang gumagamit ay hindi makapag-publish, kailanganin ang %s upang i-edit"
+" ang mga di-nakapublish na Posts ng iba."
 
 #: admin/options.php:2163
 msgid ""
-"If the user can't publish, require the edit_others_drafts capability to edit "
-"others' unpublished Posts."
+"If the user can't publish, require the edit_others_drafts capability to edit"
+" others' unpublished Posts."
 msgstr ""
 "Kung ang gumagamit ay hindi makapag-publish, kailanganin ang "
 "edit_others_drafts capability upang i-edit ang mga di-nakapublish na Posts "
@@ -1915,8 +1921,8 @@ msgid ""
 "those permissions to its revisions also."
 msgstr ""
 "Kung ang mga pahintulot na tiyak sa post ay naglilimita o nagpapalawak ng "
-"access sa isang post, ilapat ang mga pahintulot na iyon sa mga revision nito "
-"rin."
+"access sa isang post, ilapat ang mga pahintulot na iyon sa mga revision nito"
+" rin."
 
 #: admin/options.php:2181
 msgid "Rank Math SEO may prevent Revision update on some sites."
@@ -1938,8 +1944,8 @@ msgid ""
 "(possibly by revision approval) more recently than its translations."
 msgstr ""
 "Itakda ang \"Kailangan ng Update\" para sa anumang post na may mga "
-"pagsasalin na na-update (posibleng sa pamamagitan ng pag-apruba ng rebisyon) "
-"na mas kamakailan kaysa sa mga pagsasalin nito."
+"pagsasalin na na-update (posibleng sa pamamagitan ng pag-apruba ng rebisyon)"
+" na mas kamakailan kaysa sa mga pagsasalin nito."
 
 #: admin/options.php:2215
 msgid "Show descriptive captions for PublishPress Revisions settings."
@@ -2006,8 +2012,8 @@ msgid ""
 "Unselected settings are controlled separately on each site."
 msgstr ""
 "Tukuyin kung aling mga Setting ng PublishPress Revisions ang kontrolin sa "
-"buong network. Ang mga hindi napiling setting ay kinokontrol nang hiwalay sa "
-"bawat site."
+"buong network. Ang mga hindi napiling setting ay kinokontrol nang hiwalay sa"
+" bawat site."
 
 #: admin/options.php:2388
 #, fuzzy, php-format
@@ -2030,8 +2036,8 @@ msgstr "Ibalik sa Mga Default"
 
 #: admin/options.php:2454
 msgid ""
-"All settings in this form (including those on unselected tabs) will be reset "
-"to DEFAULTS.  Are you sure?"
+"All settings in this form (including those on unselected tabs) will be reset"
+" to DEFAULTS.  Are you sure?"
 msgstr ""
 "Ang lahat ng mga setting sa form na ito (kasama ang mga nasa hindi napiling "
 "mga tab) ay ire-reset sa DEFAULTS. Sigurado ka ba?"
@@ -2185,7 +2191,8 @@ msgstr "Error sa Paglikha ng Rebisa"
 #: admin/post-editor-workflow-ui_rvy.php:263
 #, php-format
 msgid "For custom field changes, edit a scheduled %s."
-msgstr "Para sa mga pagbabago sa custom field, i-edit ang naka-iskedyul na %s."
+msgstr ""
+"Para sa mga pagbabago sa custom field, i-edit ang naka-iskedyul na %s."
 
 #: admin/post-edit_rvy.php:28 admin/post-edit_rvy.php:142
 msgid "Current Time"
@@ -2275,8 +2282,8 @@ msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
 "published."
 msgstr ""
-"Ang nakatakdang rebisyon na isinumite mo para sa %1$s \"%2$s\" ay nailathala "
-"na."
+"Ang nakatakdang rebisyon na isinumite mo para sa %1$s \"%2$s\" ay nailathala"
+" na."
 
 #: admin/revision-action_rvy.php:1701
 #, php-format
@@ -2441,12 +2448,13 @@ msgstr "I-publish %son approval%s"
 #: admin/revisions.php:20
 msgid ""
 "<strong>Note:</strong> For visual display of revisions, add the following "
-"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
-"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+"code to foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if ( strpos( "
+"$_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
 msgstr ""
 "<strong>Tandaan:</strong> Para sa visual na pagpapakita ng mga rebisyon, "
-"idagdag ang sumusunod na code sa foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if "
-"( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) return;"
+"idagdag ang sumusunod na code sa foliopress-wysiwyg.php:<br />&nbsp;&nbsp;if"
+" ( strpos( $_SERVER['REQUEST_URI'], 'admin.php?page=rvy-revisions' ) ) "
+"return;"
 
 #: admin/revisions.php:61
 msgid "Revision of this post is not allowed."
@@ -3038,7 +3046,7 @@ msgid "Submitted"
 msgstr "Isinumit"
 
 #: rvy_init-functions.php:373
-#, php-format
+#, php-format, fuzzy
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "%sIsinumit <span class=\\\"count\\\">(%s)</span>"
@@ -3073,7 +3081,7 @@ msgid "Scheduled"
 msgstr "Naka-schedule"
 
 #: rvy_init-functions.php:390
-#, php-format
+#, php-format, fuzzy
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
 msgstr[0] "%sNaka-schedule <span class=\\\"count\\\">(%s)</span>"
@@ -3123,7 +3131,8 @@ msgstr "Revisor"
 
 #: rvy_init-functions.php:811
 msgid ""
-"The unfiltered_html capability is required to create a revision of this post."
+"The unfiltered_html capability is required to create a revision of this "
+"post."
 msgstr ""
 "Kinakailangan ang unfiltered_html na kakayahan upang lumikha ng isang "
 "rebisyon ng post na ito."

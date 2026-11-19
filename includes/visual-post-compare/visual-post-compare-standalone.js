@@ -1368,6 +1368,27 @@
 		if (correction) tooltip.style.left = (parseFloat(tooltip.style.left) + correction) + 'px';
 	}
 
+
+	// Tooltip attributes originate in editable content. Only inert formatting is allowed.
+	function sanitizeTooltipHTML(value) {
+		const template = document.createElement('template');
+		template.innerHTML = String(value || '');
+		const allowed = new Set(['BR', 'SPAN', 'STRONG', 'B', 'EM', 'I', 'INS', 'DEL', 'UL', 'LI', 'DIV']);
+		const clean = (parent) => {
+			Array.from(parent.childNodes).forEach((node) => {
+				if (node.nodeType === 3) return;
+				if (node.nodeType !== 1) { node.remove(); return; }
+				if (!allowed.has(node.tagName)) { node.replaceWith(document.createTextNode(node.textContent || '')); return; }
+				const classes = Array.from(node.classList).filter((name) => /^(visual-post-compare-tooltip-details|revision-diff-(added|removed))$/.test(name));
+				Array.from(node.attributes).forEach((attribute) => node.removeAttribute(attribute.name));
+				if (classes.length) node.className = classes.join(' ');
+				clean(node);
+			});
+		};
+		clean(template.content);
+		return template.innerHTML;
+	}
+
 	function showDiffTooltip(target, caption) {
 		cancelHideDiffTooltip();
 		const tooltip = ensureTooltipElement();
@@ -1377,7 +1398,7 @@
 		}
 		const text = tooltip.querySelector('.tooltip-text > span');
 		if (text) {
-			text.innerHTML = caption;
+			text.innerHTML = sanitizeTooltipHTML(caption);
 			text.style.whiteSpace = 'pre-line';
 		}
 		tooltipTarget = target;
@@ -2427,7 +2448,7 @@
 			),
 			historicalComparison && tooltip ? el('div', {
 				className: 'visual-post-compare-revision__classic-info-text',
-				dangerouslySetInnerHTML: { __html: tooltip },
+				dangerouslySetInnerHTML: { __html: sanitizeTooltipHTML(tooltip) },
 			}) : null,
 			changedAttributeEntries.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
 				el('h2', null, __('Changed attributes', 'revisionary')),
@@ -2442,7 +2463,7 @@
 			) : (!historicalComparison && tooltip
 				? el('div', {
 					className: 'visual-post-compare-revision__classic-info-text',
-					dangerouslySetInnerHTML: { __html: tooltip },
+					dangerouslySetInnerHTML: { __html: sanitizeTooltipHTML(tooltip) },
 				})
 				: (hasChanges
 					? el('p', { className: 'visual-post-compare-revision__block-empty' }, __('Changes detected.', 'revisionary'))
@@ -2574,7 +2595,7 @@
 		const html = root.dataset.visualPostCompareTooltip || '';
 		if (!html) return '';
 		const template = document.createElement('template');
-		template.innerHTML = html;
+		template.innerHTML = sanitizeTooltipHTML(html);
 		const details = template.content.querySelector('.visual-post-compare-tooltip-details');
 		if (details) {
 			const retained = details.innerHTML.split(/<br\s*\/?\s*>/i).filter((item) => !(
@@ -2633,7 +2654,7 @@
 		return el('div', { className: 'visual-post-compare-revision__block-details' },
 			el('div', { className: 'visual-post-compare-revision__block-identity' }, el('strong', null, info.title)),
 			info.tooltip
-				? el('div', { className: 'visual-post-compare-revision__classic-info-text', dangerouslySetInnerHTML: { __html: info.tooltip } })
+				? el('div', { className: 'visual-post-compare-revision__classic-info-text', dangerouslySetInnerHTML: { __html: sanitizeTooltipHTML(info.tooltip) } })
 				: null,
 			attributes.length ? el('div', { className: 'visual-post-compare-revision__changed-attributes' },
 				el('h2', null, info.attributeCaption || __('Changed attributes', 'revisionary')),

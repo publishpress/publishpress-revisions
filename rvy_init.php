@@ -9,6 +9,9 @@ if ( is_admin() ) {
 
 add_action('init', 'rvy_status_registrations', 40);
 
+// Run after revision capability grants, including frontend and REST requests.
+add_filter('map_meta_cap', 'rvy_limit_scheduled_revision_edit_caps', PHP_INT_MAX, 4);
+
 add_filter(
 	'ppcart_post_types',
 	function ($post_types_args) {
@@ -62,9 +65,23 @@ if (!defined('RVY_PREVIEW_ARG')) {
 if (('preview' != RVY_PREVIEW_ARG) && !empty($_REQUEST['preview']) && !empty($_REQUEST['nc'])) {	// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 	$url = (isset($_SERVER['REQUEST_URI'])) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '';
 	$arr = wp_parse_url(site_url());
-	$url = $arr['scheme'] . '://' . $arr['host'] . $url;
+	$url = $arr['scheme'] . '://' . $arr['host'] . (!empty($arr['port']) ? ':' . absint($arr['port']) : '') . $url;
 
-	$url = str_replace('preview=', RVY_PREVIEW_ARG . '=', $url);
+	// Rename only the query key; leave paths, values and fragments intact.
+	$query_start = strpos($url, '?');
+	if (false !== $query_start) {
+		$fragment_start = strpos($url, '#', $query_start);
+		$query_end = (false === $fragment_start) ? strlen($url) : $fragment_start;
+		$query = substr($url, $query_start + 1, $query_end - $query_start - 1);
+		$query = preg_replace_callback(
+			'/(^|&)preview(?==|&|$)/',
+			static function ($matches) {
+				return $matches[1] . RVY_PREVIEW_ARG;
+			},
+			$query
+		);
+		$url = substr($url, 0, $query_start + 1) . $query . substr($url, $query_end);
+	}
 	wp_safe_redirect($url);
 	exit;
 }
@@ -219,7 +236,7 @@ if (defined('WPSEO_VERSION')) {
 
 			// Only post indexables require a post ID. Archives, the home page and
 			// system pages legitimately have no object_id (including Yoast Local archives).
-			if (is_object($indexable) && isset($indexable->object_type) && ('post' === $indexable->object_type)) {
+			if (is_object($indexable) && isset($indexable->object_type) && in_array($indexable->object_type, ['post', 'term', 'user'], true)) {
 				if (empty($indexable->object_id)) {
 				    return false;
 				}

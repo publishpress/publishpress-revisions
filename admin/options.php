@@ -1549,13 +1549,13 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			echo "\n\t<option value='" . esc_attr($key) . "' " . esc_attr($selected) . ">" . esc_html($captions[$key]) . "</option>";
 		}
 		echo '</select>&nbsp;';
-
-		$this->option_checkbox( 'create_revision_reuse_unsubmitted', $tab, $section, '', '' );
 	}
 
 	if (!empty($this->form_options[$tab]['working_copy']) && in_array('permissions_compat_mode', $this->form_options[$tab]['working_copy'], true)) {
 		echo '<br><br>';
 	}
+
+    $this->option_checkbox( 'create_revision_reuse_unsubmitted', $tab, $section, '', '' );
 
 	$hide = empty(rvy_get_option('revision_limit_per_post'));
 	$hint = esc_html__('Work around cache plugin conflicts by requerying for revisions before suppressing the New Revision link.', 'revisionary');
@@ -1573,7 +1573,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	$this->option_checkbox( 'create_revision_direct_link', $tab, $section, $hint, '');
 
 	$hint = '';
-	$this->option_checkbox( 'query_loop_revision_editor_allowance', $tab, $section, $hint, '');
 	?>
 
 	<?php
@@ -1887,7 +1886,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !defined('PUBLISHPRESS_VERSION')) :
 			if (!$customize_defaults):?>
-			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
+			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 15px">
 			<?php
 			$plugin_slug = 'publishpress';
 			$info_url = self_admin_url("plugin-install.php?tab=plugin-information&plugin=$plugin_slug&TB_iframe=true&width=640&height=678");
@@ -1899,11 +1898,10 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 			?>
 			</div>
-			<br />
 			<?php endif;?>
 		<?php elseif (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) :
 			?>
-			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 20px">
+			<div id="rvy-planner-notice" class="activating rvy-plugin-notice" style="margin-bottom: 15px">
 			<?php
 			printf(
 				esc_html__('For enhanced notifications, update %sPublishPress Planner%s.', 'revisionary'),
@@ -1912,7 +1910,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 			?>
 			</div>
-			<br />
 		<?php endif;
 
 		if ((defined('PUBLISHPRESS_VERSION') && version_compare(PUBLISHPRESS_VERSION, '4.6-beta', '>=')) || !defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') || !defined('PUBLISHPRESS_VERSION')
@@ -2322,6 +2319,9 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 			<?php
 		}
 
+		?>
+		<br />
+		<?php
 		$hint = esc_html__('Some themes may block revision preview.', 'revisionary');
 		$this->option_checkbox( 'revision_preview_links', $tab, $section, $hint, '' );
 
@@ -2427,7 +2427,7 @@ if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_option
 		$this->option_checkbox( 'require_edit_others_drafts', $tab, $section, $hint, '', $checkbox_args );
 		
 		if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')) {
-			$hint = esc_html__('If post-specific permissions restrict or expand access to a post, apply those permissions to its revisions also.', 'revisionary');
+			$hint = esc_html__('If editing limitations or blockages apply to a post, apply the same Permissions to each of its revisions.', 'revisionary');
 			$this->option_checkbox('apply_post_exceptions', $tab, $section, $hint, '');
 		}
 

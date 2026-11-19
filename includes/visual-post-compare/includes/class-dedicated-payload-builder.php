@@ -75,7 +75,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 
 		foreach ( $listed as $post_item ) {
 			$post = $post_item instanceof \WP_Post ? $post_item : get_post( absint( $post_item ) );
-			if ( ! $post || isset( $seen[ $post->ID ] ) || ! current_user_can( 'read_post', $post->ID ) ) {
+			if ( ! $post || isset( $seen[ $post->ID ] ) || ! Visual_Post_Compare::can_access_comparison_post( $post, $revision ) ) {
 				continue;
 			}
 			$post_parent = wp_is_post_revision( $post ) ?: ( rvy_in_revision_workflow( $post ) ? rvy_post_id( $post ) : 0 );
@@ -107,13 +107,15 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 		$historical_mode = $is_past_comparison && ! $compare_to_current;
 		$slider_data = $historical_mode
 			? array_map( array( __CLASS__, 'slider_post_data' ), $slider_posts )
-			: array_map( array( __CLASS__, 'post_data' ), $slider_posts );
-		$current_data = self::post_data( $current_post );
+			: array_map( static function ( $post ) use ( $revision ) {
+				return self::post_data( $post, true, $revision );
+			}, $slider_posts );
+		$current_data = self::post_data( $current_post, true, $revision );
 
 		$payload = array(
 			'presentation' => self::presentation_options( $comparison_key, $comparison_posts ),
 			'current'      => $current_data,
-			'revision'     => $select_current ? $current_data : self::post_data( $revision ),
+			'revision'     => $select_current ? $current_data : self::post_data( $revision, true, $revision ),
 			'posts'        => $slider_data,
 			'selectedId'   => $select_current ? (int) $current_post->ID : (int) $revision->ID,
 			'isPastComparison' => $is_past_comparison,
@@ -123,7 +125,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'authorizationRevisionId' => (int) $revision->ID,
 		);
 		if ( $is_past_comparison && ! $compare_to_current && $previous_revision ) {
-			$payload['comparisonBase'] = self::post_data( $comparison_base );
+			$payload['comparisonBase'] = self::post_data( $comparison_base, true, $revision );
 		}
 
 		return apply_filters( 'visual_post_compare_comparison_payload', $payload, $current_post, $slider_posts );
@@ -147,7 +149,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			)
 		);
 
-		if ( ! $revision_id || ! current_user_can( 'read_post', (int) $revision_id ) ) {
+		if ( ! $revision_id || ! Visual_Post_Compare::can_access_revision( (int) $revision_id ) ) {
 			return null;
 		}
 
@@ -175,7 +177,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			)
 		);
 
-		if ( ! $previous_id || ! current_user_can( 'read_post', (int) $previous_id ) ) {
+		if ( ! $previous_id || ! Visual_Post_Compare::can_access_revision( (int) $previous_id ) ) {
 			return null;
 		}
 
@@ -292,9 +294,10 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 	 *
 	 * @param WP_Post $post            Post object.
 	 * @param bool    $include_content Whether to process and include comparison content.
+	 * @param int|WP_Post|null $workflow_revision Workflow comparison context.
 	 * @return array
 	 */
-	public static function post_data( \WP_Post $post, $include_content = true ) {
+	public static function post_data( \WP_Post $post, $include_content = true, $workflow_revision = null ) {
 		$revision_parent_id = wp_is_post_revision($post);
 
 		$author   = get_userdata( $post->post_author );
@@ -338,7 +341,7 @@ final class Visual_Post_Compare_Dedicated_Payload_Builder {
 			'approver' => 0,
 		);
 
-		if ( $include_content ) {
+		if ( $include_content && Visual_Post_Compare::can_access_comparison_post( $post, $workflow_revision ) ) {
 			$_post['content'] = self::comparison_content( $post );
 		}
 

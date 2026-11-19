@@ -143,7 +143,7 @@ class RVY_PostBlockEditUI {
             $args['createRevisionNonce'] = wp_create_nonce('create_revision');
             $args['submitRevisionNonce'] = wp_create_nonce('submit_revision');
             $args['createScheduledRevisionNonce'] = wp_create_nonce('create_scheduled_revision');
-            $args['authorSelectNonce'] = wp_create_nonce('author_select');
+            $args['authorSelectNonce'] = wp_create_nonce('author_select_' . $post->ID);
         }
 
         $wp_timezone = wp_timezone();
@@ -158,7 +158,7 @@ class RVY_PostBlockEditUI {
         $args['isStatusesPro'] = rvy_status_revisions_active($post->post_type);
 
         $args['newRevisionDirectLink'] = (rvy_get_option('create_revision_direct_link')) 
-        ? rvy_admin_url("admin.php?page=rvy-revisions&post={$post->ID}&action=revise")
+        ? rvy_creation_action_url($post->ID, 'revise')
         : false;
 
         $args['nowCaption'] = esc_html__('Now', 'revisionary');
@@ -181,6 +181,10 @@ class RVY_PostBlockEditUI {
         }
 
         if (!rvy_get_option('allow_post_author_revision')) {
+            return;
+        }
+
+        if (!rvy_can_change_revision_author($post->ID)) {
             return;
         }
 
@@ -219,7 +223,7 @@ class RVY_PostBlockEditUI {
             });
 
             $(document).on('change', 'div.rvy-author-selection select', function(e) {
-                var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select'));?>'};
+                var data = {'rvy_ajax_field': 'author_select', 'rvy_ajax_value': <?php echo esc_attr($post->ID);?>, 'rvy_selection': $('div.rvy-author-selection select').val(), '_rvynonce': '<?php echo esc_attr(wp_create_nonce('author_select_' . $post->ID));?>'};
 
                 // Keep focus on the select while saving (WCAG 2.4.3); announce the result (WCAG 4.1.3)
                 $('div.rvy-author-selection select').attr('aria-busy', 'true');

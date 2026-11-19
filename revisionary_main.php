@@ -183,7 +183,30 @@ class Revisionary
 			}
 		}
 
-		if (rvy_use_visual_compare() && (current_user_can('read') || is_content_administrator_rvy())) {
+		// Include custom post type editors, Revisors and Approvers. Object access
+		// is checked separately before comparisons or content are returned.
+		$can_load_visual_compare = current_user_can('edit_posts');
+		foreach (['edit_others_revisions', 'list_others_revisions', 'preview_others_revisions', 'manage_revision_queue', 'manage_unsubmitted_revisions', 'restore_revisions', 'view_revision_archive'] as $compare_revision_cap) {
+			if (current_user_can($compare_revision_cap)) {
+				$can_load_visual_compare = true;
+				break;
+			}
+		}
+		foreach (get_post_types([], 'objects') as $compare_post_type) {
+			if (empty($compare_post_type->cap->edit_posts)) {
+				continue;
+			}
+			$compare_edit_cap = $compare_post_type->cap->edit_posts;
+			if (current_user_can($compare_edit_cap)
+				|| current_user_can(str_replace('edit_', 'revise_', $compare_edit_cap))
+				|| current_user_can(str_replace('edit_', 'approve_', $compare_edit_cap))
+			) {
+				$can_load_visual_compare = true;
+				break;
+			}
+		}
+
+		if (rvy_use_visual_compare() && $can_load_visual_compare) {
 			require_once(dirname(__FILE__).'/visual-compare_rvy.php');
 			new RevisionaryVisualCompare();
 
@@ -255,54 +278,9 @@ class Revisionary
 				}, 20
 			);
 
-			add_filter( 
-				'wp_rest_server_class',
-				function ($server_class) {
-					global $current_user, $wpdb;
-			
-					if (empty($_POST)) {	// phpcs:ignore WordPress.Security.NonceVerification.Missing
-						$rest_bases = [];
+			// REST collection requests must retain the user's actual capabilities.
+			// URI shape cannot establish a revision editor or Query Loop context.
 
-						foreach (get_post_types(['public' => true], 'object') as $queried_type_obj) {
-							if ($queried_type_obj && !empty($queried_type_obj->rest_base)) {
-								$rest_bases []= $queried_type_obj->rest_base;
-							}
-						}
-
-						if (defined('PP_REVISIONS_QUERY_LOOP_REST_QUERIES')) {
-							$custom_bases = explode(',', strtolower(str_replace(' ', '', constant('PP_REVISIONS_QUERY_LOOP_REST_QUERIES'))));
-							$rest_bases = array_merge($rest_bases, array_map('sanitize_key', $custom_bases));
-						}
-
-						foreach($rest_bases as $rest_base) {
-							if (0 === strpos(wp_unslash($_SERVER['REQUEST_URI']), "/wp-json/wp/v2/{$rest_base}?")) {					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-								if (rvy_get_option('query_loop_revision_editor_allowance') && current_user_can('read')) {
-									$can_edit_any = false;
-									
-									// We have no context info to limit this provision to Query Loop instances called from within Edit Revision, and also don't know the post type for an Edit Revision instance,
-									// so just limit to users who have at least a basic editing capability for at least one post type. 
-									foreach(array_keys($this->enabled_post_types) as $_post_type) {
-										if ($_type_obj = get_post_type_object($_post_type)) {
-											if (!empty($current_user->allcaps[$_type_obj->cap->edit_posts]) || (is_multisite() && is_super_admin())) {
-												$can_edit_any = true;
-												break;
-											}
-										}
-									}
-
-									if (!empty($can_edit_any)) {
-										$current_user->allcaps[$queried_type_obj->cap->edit_published_posts] = true;
-										break;
-									}
-								}
-							}
-						}
-					}
-			
-					return $server_class;
-				}, 5
-			);
-			
 			if (defined('PRESSPERMIT_VERSION') && version_compare(PRESSPERMIT_VERSION, '4.4.3-beta2', '>=')) {
 				add_filter(
 					'presspermit_exception_clause', 
@@ -519,7 +497,7 @@ class Revisionary
 						$admin_bar->add_menu([
 								'id'    => 'rvy-create-revision',
 								'title' => pp_revisions_status_label('draft-revision', 'submit_short'), // Your menu title
-								'href'  => rvy_admin_url("admin.php?page=rvy-revisions&amp;post={$post->ID}&amp;action=revise&amp;front=1"), // URL
+								'href'  => rvy_creation_action_url($post->ID, 'revise', ['front' => 1]), // URL
 								'meta'  => [
 									'target' => '_blank',
 								]
@@ -573,7 +551,7 @@ class Revisionary
         $args['src_table'] = $src_table;
 
 		$revision_status_csv = implode("','", array_map('sanitize_key', rvy_revision_statuses()));
-		$clauses['where'] .= " AND $src_table.post_mime_type NOT IN ('$revision_status_csv')";
+		$clauses['where'] .= " AND ($src_table.post_mime_type NOT IN ('$revision_status_csv') OR $src_table.post_status IN ('publish', 'private', 'future'))";
 
 		return $clauses;
 	}
@@ -617,7 +595,11 @@ class Revisionary
 			)
 		);
 
-		$enabled_post_types = array_intersect_key($enabled_post_types, array_fill_keys(get_post_types([], 'names'), true));
+		$enabled_post_types = array_filter((array) $enabled_post_types, static function ($post_type) {
+            // Saved types may be registered later; validate syntax, not availability.
+            return ('' !== (string) $post_type) && (strlen((string) $post_type) <= 20)
+                && (sanitize_key($post_type) === (string) $post_type);
+        }, ARRAY_FILTER_USE_KEY);
 
 		$this->enabled_post_types = array_merge($this->enabled_post_types, $enabled_post_types);
 
@@ -678,6 +660,12 @@ class Revisionary
 	    if (false === $enabled_post_types_archive) {
             $enabled_post_types_archive = $this->defaultPostTypes();
 	    }
+
+        $enabled_post_types_archive = array_filter((array) $enabled_post_types_archive, static function ($post_type) {
+            // Saved types may be registered later; validate syntax, not availability.
+            return ('' !== (string) $post_type) && (strlen((string) $post_type) <= 20)
+                && (sanitize_key($post_type) === (string) $post_type);
+        }, ARRAY_FILTER_USE_KEY);
 
 	    $enabled_post_types_archive = array_diff_key(
 			$enabled_post_types_archive,
@@ -1252,12 +1240,17 @@ class Revisionary
 			$this->skip_revisor_post_caps_workaround = true;
 
 			if (function_exists('presspermit') && !rvy_get_option('submit_permission_enables_creation')) {
-				$pp_exceptions = presspermit()->getUser()->except;
+				$pp_user = presspermit()->getUser();
+				$pp_exceptions = $pp_user->except;
 				
 				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
-				presspermit()->getUser()->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
+				$pp_user->except['revise_post'] = ['post' => ['' => ['include' => [], 'exclude' => [], 'additional' => ['page' => []]]]];
 
-				$can_copy = current_user_can('edit_post', $post_id);
+				try {
+					$can_copy = current_user_can('edit_post', $post_id);
+				} finally {
+					$pp_user->except = $pp_exceptions;
+				}
 			} else {
 				$can_copy = rvy_is_full_editor($post_id);
 			}
@@ -1291,9 +1284,6 @@ class Revisionary
 
 			$this->skip_revisor_post_caps_workaround = false;
 
-			if (!empty($pp_user)) {
-				presspermit()->getUser()->except = $pp_exceptions;
-			}
 
 			if (!empty($caps)) {
 				$can_copy = $can_copy && !array_diff($caps, array_keys(array_filter($current_user->allcaps)), ['copy_post']);
@@ -1516,16 +1506,17 @@ class Revisionary
 		if ($post && (('future-revision' == $post->post_mime_type) 
 		|| (in_array($cap, ['read_post', 'read_page'], true) && empty($current_user->allcaps['preview_others_revisions'])))
 		) {
-			if (in_array($cap, ['read_post', 'read_page'], true)) {
-				return $caps;
-			}
+            // Reads continue to the visibility policy below.
+            if (in_array($cap, ['read_post', 'read_page'], true) && !rvy_can_view_workflow_revision($post)) {
+                return ['do_not_allow'];
+            }
  
 			// allow Revisor to view a preview of their scheduled revision
 			
-			if (is_admin() 
+			if (!in_array($cap, ['read_post', 'read_page'], true) && (is_admin() 
 			|| (defined('REST_REQUEST') && REST_REQUEST) 
 			|| empty($_REQUEST['preview']) || !empty($_POST) 						//phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-			|| did_action('template_redirect')
+			|| did_action('template_redirect'))
 			) {
 				if ($type_obj = get_post_type_object( $post->post_type )) {
 					if (isset($type_obj->cap->edit_published_posts)) {
@@ -1564,7 +1555,7 @@ class Revisionary
 						}
 					}
 
-					if (rvy_is_post_author($check_post) || rvy_is_post_author(rvy_post_id($check_post->ID)) || rvy_is_full_editor($post)) {
+					if (rvy_is_post_author($check_post) || rvy_is_post_author(rvy_post_id($check_post->ID)) || rvy_is_full_editor(rvy_post_id($post->ID)) || current_user_can('preview_others_revisions') || current_user_can('list_others_revisions')) {
 						$caps []= 'read';
 
 					} elseif (rvy_get_option('revisor_hide_others_revisions')) {
@@ -1744,6 +1735,20 @@ class Revisionary
 
 	function fltRemoveInvalidPostDataKeys($data, $postarr) {
 		unset($data['filter']);
+
+        // Copy/import/API updates can retain revision MIME data without base metadata.
+        // Enforce the live-post invariant after status regulation and editor filters.
+        if (in_array($data['post_status'], ['publish', 'private', 'future'], true)
+            && !empty($data['post_mime_type'])
+            && rvy_is_revision_status($data['post_mime_type'])
+        ) {
+            $data['post_mime_type'] = '';
+            if (empty($postarr['ID'])) {
+                // A new normal post has no comments; a copied base ID is not a count.
+                $data['comment_count'] = 0;
+            }
+        }
+
 		return $data;
 	}
 
@@ -1860,19 +1865,52 @@ class Revisionary
 		return $count;
 	}
 
+	private function isWorkflowPreviewRequest() {
+        // Gutenberg's preview and post-save links omit RVY_PREVIEW_ARG.
+        // Classify the request only; Permissions and the preview loader still
+        // authorize access to both the revision and its parent. Do not call
+        // current_user_can() here: Permissions invokes this during cap queries.
+        if (is_admin() || !is_user_logged_in()
+            || (defined('REST_REQUEST') && REST_REQUEST)
+            || (defined('DOING_AJAX') && DOING_AJAX)
+			|| !isset($_SERVER['REQUEST_METHOD'])
+            || 'GET' !== strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) ?? 'GET')) {
+            return false;
+        }
+        // These query values only identify a preview candidate; capability checks authorize access.
+        $id = 0;
+		if (isset($_GET['page_id'])) {																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['page_id']) ? absint(wp_unslash($_GET['page_id'])) : 0;			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif (isset($_GET['p'])) {																// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['p']) ? absint(wp_unslash($_GET['p'])) : 0;						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif (isset($_GET['preview_id'])) {														// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$id = is_scalar($_GET['preview_id']) ? absint(wp_unslash($_GET['preview_id'])) : 0;		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
+        if (!is_scalar($id)) {
+            return false;
+        }
+        $id = absint(wp_unslash($id));
+        if (!$id) {
+            return false;
+        }
+        $post = get_post((int) $id);
+        return $post && rvy_in_revision_workflow($post)
+            && !in_array($post->post_status, ['publish', 'private', 'future', 'trash', 'inherit'], true);
+    }
+
 	function fltIsPreview($is_preview) {
         if (defined('RVY_PREVIEW_ARG') && RVY_PREVIEW_ARG && !empty($_REQUEST[RVY_PREVIEW_ARG])) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $is_preview = true;
         }
 
-        return $is_preview;
+        return $is_preview || $this->isWorkflowPreviewRequest();
     }
 
 	/*
 	 * PublishPress Permissions: Make query filtering allow for revision previews
 	 */  
 	function fltQueryPostStatuses($statuses, $args) {
-        if (((defined('RVY_PREVIEW_ARG') && RVY_PREVIEW_ARG && !empty($_REQUEST[RVY_PREVIEW_ARG])))	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (((defined('RVY_PREVIEW_ARG') && RVY_PREVIEW_ARG && !empty($_REQUEST[RVY_PREVIEW_ARG])) || $this->isWorkflowPreviewRequest()) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         && !empty($args['required_operation']) 
 		&& ('edit' == $args['required_operation']) 
 		&& function_exists('rvy_revision_base_statuses')

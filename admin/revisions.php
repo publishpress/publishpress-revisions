@@ -116,7 +116,7 @@ default :
 		// actual status of compared objects overrides any revision_Status arg passed in
 		$revision_status = $revision->post_mime_type;
 
-		if (!current_user_can( 'approve_revision', $revision->ID )) {
+		if (!rvy_can_read_revision_and_parent($revision->ID) || !current_user_can( 'approve_revision', $revision->ID )) {
 			wp_die();
 		}
 	}

@@ -57,11 +57,80 @@ final class Visual_Post_Compare {
 		}
 		$current_post = $current_post_id ? get_post( $current_post_id ) : null;
 
-		if ( ! $current_post || ! current_user_can( 'read_post', $revision->ID ) || ! current_user_can( 'read_post', $current_post->ID ) ) {
+		if ( ! $current_post || ! self::can_access_revision( $revision ) || ! self::can_access_comparison_post( $current_post, $revision ) ) {
 			return new \WP_Error( 'vpc_forbidden', esc_html__( 'You are not allowed to view the revision.', 'revisionary' ), array( 'status' => 403 ) );
 		}
 
 		return array( 'revision' => $revision, 'current_post' => $current_post );
+	}
+
+	/**
+	 * Requires parent read and edit or revision permission for core revision viewing.
+	 *
+	 * @param int|WP_Post $revision Revision object or ID.
+	 * @return bool
+	 */
+	public static function can_access_revision( $revision ) {
+		$revision = $revision instanceof \WP_Post ? $revision : get_post( absint( $revision ) );
+		if ( ! $revision ) {
+			return false;
+		}
+
+		$parent_id = wp_is_post_revision( $revision );
+		if ( ! $parent_id && rvy_in_revision_workflow( $revision ) ) {
+			$parent_id = rvy_post_id( $revision );
+		}
+
+		if ( wp_is_post_revision( $revision ) ) {
+			// Viewing history follows the page-specific revision permission. Applying
+			// a historical revision still requires parent edit access below.
+			$can_edit = $parent_id && current_user_can( 'edit_post', $parent_id );
+			$can_revise = $parent_id && current_user_can( 'copy_post', $parent_id );
+			$can_read = $parent_id && self::can_access_comparison_post( $parent_id );
+			$allowed = $can_read && ( $can_edit || $can_revise );
+
+			return $allowed;
+		}
+
+		return $parent_id && self::can_access_comparison_post( $parent_id, $revision ) && rvy_can_view_workflow_revision($revision) && (
+			current_user_can( 'read_post', $revision->ID )
+			|| ( function_exists( 'presspermit' ) && current_user_can( 'edit_post', $revision->ID ) )
+		);
+	}
+
+	/**
+	 * Checks comparison access; an editable workflow revision can unlock only its parent.
+	 *
+	 * @param int|WP_Post $post Post object or ID.
+	 * @param int|WP_Post|null $workflow_revision Workflow comparison context.
+	 * @return bool
+	 */
+	public static function can_access_comparison_post( $post, $workflow_revision = null ) {
+		$post = $post instanceof \WP_Post ? $post : get_post( absint( $post ) );
+		if ( ! $post ) {
+			return false;
+		}
+
+		if ( wp_is_post_revision( $post ) || rvy_in_revision_workflow( $post ) ) {
+			// A workflow context never relaxes historical revision permissions.
+			return self::can_access_revision( $post );
+		}
+
+		if ( ! current_user_can( 'read_post', $post->ID ) ) {
+			return false;
+		}
+
+		$workflow_revision = $workflow_revision instanceof \WP_Post
+			? $workflow_revision : ( $workflow_revision ? get_post( absint( $workflow_revision ) ) : null );
+		if ( $workflow_revision && ! wp_is_post_revision( $workflow_revision )
+			&& rvy_in_revision_workflow( $workflow_revision )
+			&& (int) rvy_post_id( $workflow_revision ) === (int) $post->ID
+			&& rvy_can_view_workflow_revision( $workflow_revision )
+			&& current_user_can( 'edit_post', $workflow_revision->ID ) ) {
+			return true;
+		}
+
+		return ! post_password_required( $post );
 	}
 
 	/**
@@ -257,7 +326,7 @@ final class Visual_Post_Compare {
 			}
 		}
 
-		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) ) {
+		if ( ! self::can_access_comparison_post( $compare_ids['post'], $compare_ids['revision'] ) ) {
 			wp_die( esc_html__( 'You are not allowed to view this comparison.', 'revisionary' ), esc_html__( 'Compare Revisions', 'revisionary' ), array( 'response' => 403 ) );
 		}
 	}
@@ -303,7 +372,7 @@ final class Visual_Post_Compare {
 			}
 		}
 
-		if ( ! current_user_can( 'read_post', $compare_ids['post'] ) || ! current_user_can( 'read_post', $compare_ids['revision'] ) ) {
+		if ( ! self::can_access_comparison_post( $compare_ids['post'], $compare_ids['revision'] ) || ! self::can_access_revision( $compare_ids['revision'] ) ) {
 			return;
 		}
 
