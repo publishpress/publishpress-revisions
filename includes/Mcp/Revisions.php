@@ -4,7 +4,7 @@
 
 namespace PublishPress\Revisions\Mcp;
 
-defined('ABSPATH') || exit;
+\defined('ABSPATH') || exit;
 class Revisions
 {
     public static function register(): void
@@ -133,7 +133,7 @@ class Revisions
             }
         }
         $size = $input['per_page'] ?? 20;
-        $args = ['is_revisions_query' => true, 'post_type' => $archive ? 'revision' : array_keys($GLOBALS['revisionary']->enabled_post_types), 'post_status' => $archive ? 'inherit' : array_merge(['draft', 'pending'], rvy_revision_statuses()), 'posts_per_page' => 1001, 'offset' => 0, 's' => $input['search'] ?? '', 'required_operation' => 'edit', 'orderby' => 'modified', 'order' => 'DESC'];
+        $args = ['is_revisions_query' => true, 'post_type' => $archive ? 'revision' : array_keys($GLOBALS['revisionary']->enabled_post_types), 'post_status' => $archive ? 'inherit' : array_merge(['draft', 'pending'], rvy_revision_statuses()), 'posts_per_page' => 100, 'offset' => 0, 's' => $input['search'] ?? '', 'required_operation' => 'edit', 'orderby' => 'modified', 'order' => 'DESC'];
         if (!$archive) {
             $args['post_mime_type'] = isset($input['status']) && $input['status'] !== 'trash' ? $input['status'] : rvy_revision_statuses();
             if (($input['status'] ?? '') === 'trash') {
@@ -154,23 +154,31 @@ class Revisions
             }
         }
         $items = [];
-        add_filter('posts_where', 'rvy_revision_mime_where');
-        try {
-            $query = new \WP_Query($args);
-        } finally {
-            remove_filter('posts_where', 'rvy_revision_mime_where');
-        }
-        if (count($query->posts) > 1000) {
-            return Registry::error(__('Narrow the filters or use native administration for more than 1,000 matching revisions.', 'revisionary'), 413);
-        }
-        foreach ($query->posts as $post) {
-            if (!self::permitted($post) || (isset($input['post_id']) && self::source($post)->ID !== $input['post_id'])) {
-                continue;
+        $query_offset = 0;
+        do {
+            $args['offset'] = $query_offset;
+            add_filter('posts_where', 'rvy_revision_mime_where');
+            try {
+                $query = new \WP_Query($args);
+            } finally {
+                remove_filter('posts_where', 'rvy_revision_mime_where');
             }
-            $items[] = ['id' => $post->ID, 'post_id' => self::source($post)->ID, 'title' => $post->post_title, 'status' => $archive ? 'archive' : $post->post_mime_type];
-        }
-        $offset = (($input['page'] ?? 1) - 1) * $size;
-        return ['items' => array_slice($items, $offset, $size), 'has_more' => count($items) > $offset + $size];
+
+            $query_offset += count($query->posts);
+            if ($query_offset > 1000) {
+                return Registry::error(__('Narrow the filters or use native administration for more than 1,000 matching revisions.', 'revisionary'), 413);
+            }
+
+            foreach ($query->posts as $post) {
+                if (!self::permitted($post) || (isset($input['post_id']) && self::source($post)->ID !== $input['post_id'])) {
+                    continue;
+                }
+                $items[] = ['id' => $post->ID, 'post_id' => self::source($post)->ID, 'title' => $post->post_title, 'status' => $archive ? 'archive' : $post->post_mime_type];
+            }
+        } while (count($query->posts) === 100);
+
+        $item_offset = (($input['page'] ?? 1) - 1) * $size;
+        return ['items' => array_slice($items, $item_offset, $size), 'has_more' => count($items) > $item_offset + $size];
     }
     public static function read(array $input)
     {
