@@ -1150,7 +1150,11 @@ function rvy_set_revision_author($revision_id, $author_id) {
 }
 
 /** Convert native disabled field switches into the metadata key list expected by copying. */
-function revisionary_disabled_meta_keys($fields) {
+function revisionary_disabled_meta_keys($fields = null) {
+    if (null === $fields) {
+        global $revisionary;
+        $fields = $revisionary->enabled_fields ?? null;
+    }
     if (!is_array($fields)) { return []; }
     $keys = array_keys(array_filter($fields, static fn($enabled) => !$enabled));
     return array_values(array_unique(array_map(static fn($key) => match ($key) {
@@ -1255,12 +1259,6 @@ function rvy_revision_metadata_values_are_safe($values) {
 /** Validate the same eligible values as copying, without changing either post. */
 function rvy_revision_metadata_is_safe($post_id, $target_id = 0, $args = []) {
     return !is_wp_error(revisionary_copy_postmeta($post_id, $target_id, array_merge($args, ['validate_only' => true])));
-}
-
-function rvy_disabled_revision_meta_keys() {
-    global $revisionary;
-    return is_array($revisionary->enabled_fields)
-        ? array_keys(array_filter($revisionary->enabled_fields, static function ($value) { return !$value; })) : [];
 }
 
 /**
