@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-11-12T05:51:11+00:00\n"
-"PO-Revision-Date: 2026-11-17 18:44+0000\n"
+"PO-Revision-Date: 2026-11-19 17:59+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -37,6 +37,7 @@ msgstr ""
 "προγραμματίσετε αλλαγές."
 
 #: revisionary.php:6
+#: includes/Mcp/bootstrap.php:16
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
@@ -84,7 +85,7 @@ msgstr "Η μετανάστευση Προγραμματισμένης Αναθ�
 #: admin/action-scheduler_rvy.php:194
 #: admin/admin_rvy.php:282
 #: admin/revision-queue_rvy.php:172
-#: rvy_init-functions.php:381
+#: rvy_init-functions.php:382
 #: visual-compare_rvy.php:176
 msgid "Scheduled Revisions"
 msgstr "Προγραμματισμένες Αναθεωρήσεις"
@@ -95,10 +96,10 @@ msgstr "Ημερολόγιο Προγραμματισμού"
 
 #: admin/action-scheduler_rvy.php:211
 #: admin/admin-posts_rvy.php:292
-#: admin/class-list-table-archive.php:659
+#: admin/class-list-table-archive.php:477
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:136
-#: rvy_init-functions.php:488
+#: rvy_init-functions.php:489
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
@@ -109,7 +110,7 @@ msgid "Revision"
 msgstr "Αναθεώρηση"
 
 #: admin/action-scheduler_rvy.php:212
-#: admin/class-list-table_rvy.php:2226
+#: admin/class-list-table_rvy.php:2223
 #: admin/history_rvy.php:1427
 #: admin/post-editor-workflow-ui_rvy.php:74
 #: admin/post-editor-workflow-ui_rvy.php:115
@@ -125,8 +126,8 @@ msgid "Hook"
 msgstr "Hook"
 
 #: admin/action-scheduler_rvy.php:214
-#: admin/class-list-table_rvy.php:828
-#: admin/options.php:1242
+#: admin/class-list-table_rvy.php:825
+#: admin/options.php:1346
 msgid "Publication"
 msgstr "Δημοσίευση"
 
@@ -153,7 +154,7 @@ msgid "Search revision or hook ID"
 msgstr "Αναζητήστε αναθεώρηση ή ID hook"
 
 #: admin/action-scheduler_rvy.php:278
-#: admin/class-list-table_rvy.php:861
+#: admin/class-list-table_rvy.php:858
 msgid "View preview"
 msgstr "Δείτε την προεπισκόπηση"
 
@@ -195,9 +196,9 @@ msgstr "Χάθηκε το πρόγραμμα"
 #: admin/action-scheduler_rvy.php:398
 #: admin/action-scheduler_rvy.php:450
 #: admin/action-scheduler_rvy.php:455
-#: admin/class-list-table_rvy.php:1691
+#: admin/class-list-table_rvy.php:1688
 #: admin/revisions.php:72
-#: rvy_init-functions.php:382
+#: rvy_init-functions.php:383
 msgid "Scheduled"
 msgstr "Προγραμματισμένο"
 
@@ -254,8 +255,8 @@ msgstr "(δείτε το ημερολόγιο προγραμματισμού)"
 
 #: admin/action-scheduler_rvy.php:425
 #: admin/action-scheduler_rvy.php:472
-#: admin/class-list-table-archive.php:835
-#: functions.php:567
+#: admin/class-list-table-archive.php:653
+#: functions.php:580
 msgid "Scheduled Revision Publication"
 msgstr "Δημοσίευση Προγραμματισμένης Αναθεώρησης"
 
@@ -304,7 +305,7 @@ msgstr ""
 "αυτού του άρθρου. Δείτε τη %sτεκμηρίωση%s."
 
 #: admin/admin-posts_rvy.php:208
-#: rvy_init-functions.php:824
+#: rvy_init-functions.php:813
 msgid "The post already has a revision in process."
 msgstr "Το άρθρο έχει ήδη μια αναθεώρηση σε διαδικασία."
 
@@ -315,21 +316,21 @@ msgstr "Έχει Αναθεώρηση"
 #: admin/admin-posts_rvy.php:329
 #: admin/admin_rvy.php:468
 #: admin/admin_rvy.php:538
-#: admin/options.php:185
-#: admin/options.php:679
+#: admin/options.php:424
+#: admin/options.php:811
 msgid "New Revisions"
 msgstr "Νέες Αναθεωρήσεις"
 
 #: admin/admin-posts_rvy.php:352
-#: admin/class-list-table_rvy.php:2349
+#: admin/class-list-table_rvy.php:2346
 #: admin/duplicate-capabilities_rvy.php:47
-#: rvy_init-functions.php:282
+#: rvy_init-functions.php:283
 msgid "Duplicate"
 msgstr "Διπλότυπο"
 
 #: admin/admin-posts_rvy.php:359
-#: admin/class-list-table_rvy.php:1065
-#: admin/class-list-table_rvy.php:2338
+#: admin/class-list-table_rvy.php:1062
+#: admin/class-list-table_rvy.php:2335
 #: admin/edit-revision-classic-ui_rvy.php:216
 #: admin/history_rvy.php:1469
 #: admin/post-editor-workflow-ui_rvy.php:120
@@ -340,7 +341,7 @@ msgid "Edit"
 msgstr "Επεξεργασία"
 
 #: admin/admin_lib-mu_rvy.php:12
-#: admin/options.php:371
+#: admin/options.php:503
 msgid "PublishPress Revisions Network Settings"
 msgstr "Ρυθμίσεις Δικτύου PublishPress Revisions"
 
@@ -349,7 +350,7 @@ msgid "Network Settings"
 msgstr "Ρυθμίσεις Δικτύου"
 
 #: admin/admin_lib-mu_rvy.php:23
-#: admin/options.php:373
+#: admin/options.php:505
 msgid "PublishPress Revisions Network Defaults"
 msgstr "Προεπιλογές Δικτύου PublishPress Revisions"
 
@@ -368,8 +369,8 @@ msgstr "Αναθεωρήσεις"
 #: admin/admin_rvy.php:477
 #: admin/admin_rvy.php:478
 #: admin/admin_rvy.php:539
-#: admin/options.php:184
-#: admin/options.php:580
+#: admin/options.php:423
+#: admin/options.php:712
 #: admin/revision-archive_rvy.php:99
 #: admin/revisions.php:236
 #: visual-compare_rvy.php:144
@@ -377,23 +378,23 @@ msgid "Past Revisions"
 msgstr "Προηγούμενες Αναθεωρήσεις"
 
 #: admin/admin_rvy.php:495
-#: admin/options.php:377
+#: admin/options.php:509
 msgid "PublishPress Revisions Settings"
 msgstr "Ρυθμίσεις PublishPress Revisions"
 
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:542
-#: admin/options.php:179
+#: admin/options.php:418
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
 #: admin/admin_rvy.php:504
 #: admin/admin_rvy.php:505
 #: admin/admin_rvy.php:545
-#: admin/options.php:2134
-#: admin/options.php:2162
-#: admin/options.php:2423
-#: admin/options.php:2820
+#: admin/options.php:2233
+#: admin/options.php:2261
+#: admin/options.php:2521
+#: admin/options.php:2918
 #: includes/CoreAdmin.php:214
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
 #: includes/visual-post-compare/visual-post-compare-standalone.js:2701
@@ -513,40 +514,40 @@ msgstr ""
 "Αυτή ήταν μια ενημέρωση σε μια αναθεώρηση που δημοσιεύτηκε μετά από "
 "περαιτέρω επεξεργασία."
 
-#: admin/class-list-table-archive.php:271
+#: admin/class-list-table-archive.php:230
 #, fuzzy, php-format
 msgid "Revision Author: %s"
 msgstr "Revision Author: %s"
 
-#: admin/class-list-table-archive.php:290
+#: admin/class-list-table-archive.php:249
 #, fuzzy, php-format
 msgid "Post Author: %s"
 msgstr "Post Author: %s"
 
-#: admin/class-list-table-archive.php:300
+#: admin/class-list-table-archive.php:259
 #, fuzzy, php-format
 msgid "Revision Date: %s"
 msgstr "Revision Date: %s"
 
-#: admin/class-list-table-archive.php:310
+#: admin/class-list-table-archive.php:269
 #, fuzzy, php-format
 msgid "Approved by: %s"
 msgstr "Approved by: %s"
 
-#: admin/class-list-table-archive.php:320
+#: admin/class-list-table-archive.php:279
 #, fuzzy, php-format
 msgid "Publication Date: %s"
 msgstr "Publication Date: %s"
 
-#: admin/class-list-table-archive.php:341
+#: admin/class-list-table-archive.php:300
 #: admin/revision-queue_rvy.php:183
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Αποτελέσματα αναζήτησης για \"%s\""
 
-#: admin/class-list-table-archive.php:619
-#: admin/class-list-table_rvy.php:1836
-#: admin/class-list-table_rvy.php:2364
+#: admin/class-list-table-archive.php:437
+#: admin/class-list-table_rvy.php:1833
+#: admin/class-list-table_rvy.php:2361
 #: admin/post-edit-block-ui_rvy.php:125
 #: admin/post-edit_rvy.php:123
 #: admin/post-edit_rvy.php:129
@@ -554,241 +555,255 @@ msgstr "Αποτελέσματα αναζήτησης για \"%s\""
 msgid "Delete Revision"
 msgstr "Διαγραφή Αναθεώρησης"
 
-#: admin/class-list-table-archive.php:658
+#: admin/class-list-table-archive.php:476
 msgid "Select all revisions"
 msgstr "Επιλογή όλων των αναθεωρήσεων"
 
-#: admin/class-list-table-archive.php:660
-#: admin/class-list-table_rvy.php:804
+#: admin/class-list-table-archive.php:478
+#: admin/class-list-table_rvy.php:801
 #: admin/duplicate-capabilities_rvy.php:47
 msgid "Post Type"
 msgstr "Post Type"
 
-#: admin/class-list-table-archive.php:661
-#: rvy_init-functions.php:489, fuzzy
+#: admin/class-list-table-archive.php:479
+#: rvy_init-functions.php:490, fuzzy
 msgid "Revised By"
 msgstr "Revised By"
 
-#: admin/class-list-table-archive.php:662
-#: rvy_init-functions.php:490, fuzzy
+#: admin/class-list-table-archive.php:480
+#: rvy_init-functions.php:491, fuzzy
 msgid "Revision Date"
 msgstr "Revision Date"
 
-#: admin/class-list-table-archive.php:663
+#: admin/class-list-table-archive.php:481
 msgid "Action"
 msgstr "Δράση"
 
-#: admin/class-list-table-archive.php:664, fuzzy
+#: admin/class-list-table-archive.php:482, fuzzy
 msgid "Approved By"
 msgstr "Approved By"
 
-#: admin/class-list-table-archive.php:665, fuzzy
+#: admin/class-list-table-archive.php:483, fuzzy
 msgid "Published Date"
 msgstr "Published Date"
 
-#: admin/class-list-table-archive.php:666, fuzzy
+#: admin/class-list-table-archive.php:484, fuzzy
 msgid "Published Author"
 msgstr "Published Author"
 
-#: admin/class-list-table-archive.php:695
-#: admin/class-list-table_rvy.php:1022
+#: admin/class-list-table-archive.php:513
+#: admin/class-list-table_rvy.php:1019
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:464
 msgid "just now"
 msgstr "μόλις τώρα"
 
-#: admin/class-list-table-archive.php:700
-#: admin/class-list-table_rvy.php:1027
+#: admin/class-list-table-archive.php:518
+#: admin/class-list-table_rvy.php:1024
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:469
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s λεπτά πριν"
 
-#: admin/class-list-table-archive.php:700
-#: admin/class-list-table_rvy.php:1027
+#: admin/class-list-table-archive.php:518
+#: admin/class-list-table_rvy.php:1024
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:469
 #, php-format
 msgid "%s minute ago"
 msgstr "%s λεπτό πριν"
 
-#: admin/class-list-table-archive.php:707
-#: admin/class-list-table_rvy.php:1034
+#: admin/class-list-table-archive.php:525
+#: admin/class-list-table_rvy.php:1031
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:476
 #, php-format
 msgid "%s hours ago"
 msgstr "%s ώρες πριν"
 
-#: admin/class-list-table-archive.php:707
-#: admin/class-list-table_rvy.php:1034
+#: admin/class-list-table-archive.php:525
+#: admin/class-list-table_rvy.php:1031
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:476
 #, php-format
 msgid "%s hour ago"
 msgstr "%s ώρα πριν"
 
-#: admin/class-list-table-archive.php:837
-#: functions.php:569
+#: admin/class-list-table-archive.php:655
+#: functions.php:582
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1470
 msgid "Revision Publication"
 msgstr "Δημοσίευση Αναθεώρησης"
 
-#: admin/class-list-table-archive.php:848
-#: functions.php:580
+#: admin/class-list-table-archive.php:666
+#: functions.php:593
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:394
 #, php-format
 msgid "Autosave of %s"
 msgstr "Αυτόματη αποθήκευση του %s"
 
-#: admin/class-list-table-archive.php:853
-#: functions.php:585
+#: admin/class-list-table-archive.php:671
+#: functions.php:598
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:396
 #, php-format
 msgid "Edit of %s"
 msgstr "Επεξεργασία του %s"
 
-#: admin/class-list-table-archive.php:862
-#: functions.php:594
+#: admin/class-list-table-archive.php:680
+#: functions.php:607
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:401
 msgid "Autosave of published Revision"
 msgstr "Αυτόματη αποθήκευση δημοσιευμένης Αναθεώρησης"
 
-#: admin/class-list-table-archive.php:867
-#: functions.php:599
+#: admin/class-list-table-archive.php:685
+#: functions.php:612
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:403
 msgid "Edit of published Revision"
 msgstr "Επεξεργασία δημοσιευμένης Αναθεώρησης"
 
-#: admin/class-list-table-archive.php:872
-#: functions.php:604
+#: admin/class-list-table-archive.php:690
+#: functions.php:617
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:408
 msgid "Autosave"
 msgstr "Αυτόματη αποθήκευση"
 
-#: admin/class-list-table-archive.php:874
-#: functions.php:606
-#: functions.php:670
+#: admin/class-list-table-archive.php:692
+#: functions.php:619
+#: functions.php:683
 msgid "Direct Edit"
 msgstr "Άμεση Επεξεργασία"
 
-#: admin/class-list-table-archive.php:918
-#: admin/class-list-table_rvy.php:800
+#: admin/class-list-table-archive.php:736
+#: admin/class-list-table_rvy.php:797
 msgid "Select revision"
 msgstr "Επιλογή αναθεώρησης"
 
-#: admin/class-list-table-archive.php:939
+#: admin/class-list-table-archive.php:757
 msgid "Filter by original post type"
 msgstr "Φιλτράρισμα κατά τύπο αρχικού post"
 
-#: admin/class-list-table-archive.php:943
-#: admin/class-list-table_rvy.php:1897
+#: admin/class-list-table-archive.php:761
+#: admin/class-list-table_rvy.php:1894
 msgid "All Post Types"
 msgstr "Όλοι οι Τύποι Post"
 
-#: admin/class-list-table-archive.php:973
-#: admin/class-list-table_rvy.php:1948
+#: admin/class-list-table-archive.php:792
+#: admin/class-list-table_rvy.php:1945
 msgid "Filter by revision author"
 msgstr "Φιλτράρισμα κατά συγγραφέα αναθεώρησης"
 
-#: admin/class-list-table-archive.php:977
-#: admin/class-list-table_rvy.php:1952
+#: admin/class-list-table-archive.php:796
+#: admin/class-list-table_rvy.php:1949
 msgid "All Revision Authors"
 msgstr "Όλοι οι Συγγραφείς Αναθεώρησης"
 
-#: admin/class-list-table-archive.php:1022
-#: admin/class-list-table_rvy.php:1982
+#: admin/class-list-table-archive.php:842
+#: admin/class-list-table_rvy.php:1979
 msgid "Filter by revision date"
 msgstr "Φιλτράρισμα κατά ημερομηνία αναθεώρησης"
 
-#: admin/class-list-table-archive.php:1026
-#: admin/class-list-table_rvy.php:1986
+#: admin/class-list-table-archive.php:846
+#: admin/class-list-table_rvy.php:1983
 msgid "All Revision Dates"
 msgstr "Όλες οι Ημερομηνίες Αναθεώρησης"
 
-#: admin/class-list-table-archive.php:1081
+#: admin/class-list-table-archive.php:903
 msgid "Filter by published date"
 msgstr "Φιλτράρισμα κατά ημερομηνία δημοσίευσης"
 
-#: admin/class-list-table-archive.php:1085
+#: admin/class-list-table-archive.php:907
 msgid "All Publish Dates"
 msgstr "Όλες οι ημερομηνίες δημοσίευσης"
 
-#: admin/class-list-table-archive.php:1118
+#: admin/class-list-table-archive.php:941
 msgid "Filter by approver"
 msgstr "Φιλτράρισμα κατά έγκριση"
 
-#: admin/class-list-table-archive.php:1122
+#: admin/class-list-table-archive.php:945
 msgid "All Approvers"
 msgstr "Όλοι οι εγκριτές"
 
-#: admin/class-list-table-archive.php:1155
-#: admin/class-list-table_rvy.php:2054
+#: admin/class-list-table-archive.php:979
+#: admin/class-list-table_rvy.php:2051
 msgid "Filter by published author"
 msgstr "Φιλτράρισμα κατά συγγραφέα που έχει δημοσιευτεί"
 
-#: admin/class-list-table-archive.php:1159
-#: admin/class-list-table_rvy.php:2058
+#: admin/class-list-table-archive.php:983
+#: admin/class-list-table_rvy.php:2055
 msgid "All Authors"
 msgstr "Όλοι οι συγγραφείς"
 
-#: admin/class-list-table-archive.php:1175
-#: admin/class-list-table-archive.php:1355
-#: admin/class-list-table_rvy.php:1080
-#: admin/class-list-table_rvy.php:2074
+#: admin/class-list-table-archive.php:1000
+#: admin/class-list-table-archive.php:1178
+#: admin/class-list-table_rvy.php:1077
+#: admin/class-list-table_rvy.php:2071
 msgid "Filter"
 msgstr "Φιλτράρισμα"
 
-#: admin/class-list-table-archive.php:1181
-#: admin/class-list-table_rvy.php:2094
+#: admin/class-list-table-archive.php:1006
+#: admin/class-list-table_rvy.php:2091
 msgid "Reset Filters"
 msgstr "Επαναφορά φίλτρων"
 
-#: admin/class-list-table-archive.php:1212
-#: admin/options.php:2434
+#: admin/class-list-table-archive.php:1032
+#: admin/options.php:2532
 msgid "All"
 msgstr "Όλα"
 
-#: admin/class-list-table-archive.php:1226
+#: admin/class-list-table-archive.php:1034
 msgid "My Revisions"
 msgstr "Οι αναθεωρήσεις μου"
 
-#: admin/class-list-table-archive.php:1281
+#: admin/class-list-table-archive.php:1054
+msgid "Previous page"
+msgstr "Προηγούμενη σελίδα"
+
+#: admin/class-list-table-archive.php:1057
+#. translators: %d: current archive page number.
+#, php-format
+msgid "Page %d"
+msgstr "Σελίδα %d"
+
+#: admin/class-list-table-archive.php:1059
+msgid "Next page"
+msgstr "Επόμενη σελίδα"
+
+#: admin/class-list-table-archive.php:1104
 #, php-format
 msgid "Visually compare changes in %s"
 msgstr "Οπτική σύγκριση αλλαγών στο %s"
 
-#: admin/class-list-table-archive.php:1302
+#: admin/class-list-table-archive.php:1125
 #, php-format
 msgid "Classic text diff for %s"
 msgstr "Κλασική διαφορά κειμένου για το %s"
 
-#: admin/class-list-table-archive.php:1322
-#: admin/class-list-table_rvy.php:2388
+#: admin/class-list-table-archive.php:1145
+#: admin/class-list-table_rvy.php:2385
 #: admin/post-editor-workflow-ui_rvy.php:74
 #: admin/post-editor-workflow-ui_rvy.php:233
 msgid "Preview Revision"
 msgstr "Προεπισκόπηση αναθεώρησης"
 
-#: admin/class-list-table-archive.php:1336
+#: admin/class-list-table-archive.php:1159
 msgid "Edit parent revision"
 msgstr "Επεξεργασία γονικής αναθεώρησης"
 
-#: admin/class-list-table-archive.php:1336
+#: admin/class-list-table-archive.php:1159
 msgid "Edit parent post"
 msgstr "Επεξεργασία γονικής ανάρτησης"
 
-#: admin/class-list-table-archive.php:1337
+#: admin/class-list-table-archive.php:1160
 msgid "Edit Parent"
 msgstr "Επεξεργασία Γονέα"
 
-#: admin/class-list-table-archive.php:1354
+#: admin/class-list-table-archive.php:1177
 msgid "Filter: list revisions of this post"
 msgstr "Φιλτράρισμα: λίστα αναθεωρήσεων αυτής της ανάρτησης"
 
-#: admin/class-list-table-archive.php:1369
+#: admin/class-list-table-archive.php:1192
 msgid "Delete Past Revision"
 msgstr "Διαγραφή παλιάς αναθεώρησης"
 
-#: admin/class-list-table-archive.php:1370
-#: admin/class-list-table_rvy.php:2371
+#: admin/class-list-table-archive.php:1193
+#: admin/class-list-table_rvy.php:2368
 #: admin/post-edit_rvy.php:85
 #: admin/revision-ui_rvy.php:296
 #: admin/revision-ui_rvy.php:408
@@ -799,7 +814,15 @@ msgstr "Διαγραφή παλιάς αναθεώρησης"
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: admin/class-list-table-archive.php:1457
+#: admin/class-list-table-archive.php:1281
+msgid ""
+"No accessible revisions on this page. Continue to the next page or adjust "
+"the filters."
+msgstr ""
+"Δεν υπάρχουν προσβάσιμες αναθεωρήσεις σε αυτή τη σελίδα. Συνεχίστε στην "
+"επόμενη σελίδα ή ρυθμίστε τα φίλτρα."
+
+#: admin/class-list-table-archive.php:1283
 msgid "No revisions found."
 msgstr "Δεν βρέθηκαν αναθεωρήσεις."
 
@@ -807,125 +830,124 @@ msgstr "Δεν βρέθηκαν αναθεωρήσεις."
 msgid "Sorry, you are not allowed to delete this item."
 msgstr "Λυπάμαι, δεν έχετε άδεια να διαγράψετε αυτό το στοιχείο."
 
-#: admin/class-list-table_rvy.php:803
-#: admin/options.php:797
-#: admin/options.php:960
+#: admin/class-list-table_rvy.php:800
+#: admin/options.php:91
 #: admin/post-editor-workflow-ui_rvy.php:36
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: admin/class-list-table_rvy.php:824
+#: admin/class-list-table_rvy.php:821
 #: front_rvy.php:793
-#: rvy_init-functions.php:373
+#: rvy_init-functions.php:374
 msgid "Schedule"
 msgstr "Προγραμματισμός"
 
-#: admin/class-list-table_rvy.php:889
-#: admin/class-list-table_rvy.php:912
+#: admin/class-list-table_rvy.php:886
+#: admin/class-list-table_rvy.php:909
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "Προγραμματισμένη δημοσίευση: %s"
 
-#: admin/class-list-table_rvy.php:905
+#: admin/class-list-table_rvy.php:902
 #: admin/history_rvy.php:1340
 #, php-format
 msgid "%s ago"
 msgstr "%s πριν"
 
-#: admin/class-list-table_rvy.php:915
+#: admin/class-list-table_rvy.php:912
 #, php-format
 msgid "Requested publication: %s"
 msgstr "Αιτηθείσα δημοσίευση: %s"
 
-#: admin/class-list-table_rvy.php:917
+#: admin/class-list-table_rvy.php:914
 msgid "This revision is not scheduled yet."
 msgstr "Αυτή η αναθεώρηση δεν έχει προγραμματιστεί ακόμα."
 
-#: admin/class-list-table_rvy.php:928
+#: admin/class-list-table_rvy.php:925
 msgid "Missed schedule"
 msgstr "Χάθηκε ο προγραμματισμός"
 
-#: admin/class-list-table_rvy.php:946
+#: admin/class-list-table_rvy.php:943
 #. translators: %s: human-readable time difference, e.g. "3 days"
 #, php-format
 msgid "in %s"
 msgstr "σε %s"
 
-#: admin/class-list-table_rvy.php:990
+#: admin/class-list-table_rvy.php:987
 #: admin/history_rvy.php:1120
 msgid "No author"
 msgstr "Δεν υπάρχει συγγραφέας"
 
-#: admin/class-list-table_rvy.php:1064
+#: admin/class-list-table_rvy.php:1061
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "Επεξεργασία δημοσιευμένης ανάρτησης"
 
-#: admin/class-list-table_rvy.php:1079
+#: admin/class-list-table_rvy.php:1076
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "Προβολή μόνο των αναθεωρήσεων του %s"
 
-#: admin/class-list-table_rvy.php:1090
+#: admin/class-list-table_rvy.php:1087
 msgid "View published post"
 msgstr "Προβολή δημοσιευμένης ανάρτησης"
 
-#: admin/class-list-table_rvy.php:1091
+#: admin/class-list-table_rvy.php:1088
 msgid "View"
 msgstr "Προβολή"
 
-#: admin/class-list-table_rvy.php:1097
+#: admin/class-list-table_rvy.php:1094
 msgid "Preview published post"
 msgstr "Προεπισκόπηση δημοσιευμένης ανάρτησης"
 
-#: admin/class-list-table_rvy.php:1122
+#: admin/class-list-table_rvy.php:1119
 msgid "History: compare past revisions"
 msgstr "Ιστορικό: σύγκριση παλαιών αναθεωρήσεων"
 
-#: admin/class-list-table_rvy.php:1123
+#: admin/class-list-table_rvy.php:1120
 msgid "History"
 msgstr "Ιστορικό"
 
-#: admin/class-list-table_rvy.php:1151
+#: admin/class-list-table_rvy.php:1148
 msgid "Show more details"
 msgstr "Εμφάνιση περισσότερων λεπτομερειών"
 
-#: admin/class-list-table_rvy.php:1452
+#: admin/class-list-table_rvy.php:1449
 msgid "There are no scheduled revisions at this time."
 msgstr "Δεν υπάρχουν προγραμματισμένες αναθεωρήσεις αυτή τη στιγμή."
 
-#: admin/class-list-table_rvy.php:1671
+#: admin/class-list-table_rvy.php:1668
 msgid "My Activity"
 msgstr "Η δραστηριότητά μου"
 
-#: admin/class-list-table_rvy.php:1680
+#: admin/class-list-table_rvy.php:1677
 #, php-format
 msgid "All %s"
 msgstr "Όλα τα %s"
 
-#: admin/class-list-table_rvy.php:1740
+#: admin/class-list-table_rvy.php:1737
 #. translators: Hidden accessibility text.
 msgid "Select bulk action"
 msgstr "Επιλογή μαζικής ενέργειας"
 
-#: admin/class-list-table_rvy.php:1743
+#: admin/class-list-table_rvy.php:1740
 msgid "Bulk actions"
 msgstr "Μαζικές ενέργειες"
 
-#: admin/class-list-table_rvy.php:1764
+#: admin/class-list-table_rvy.php:1761
 #: admin/revision-ui_rvy.php:410
 msgid "Apply"
 msgstr "Εφαρμογή"
 
-#: admin/class-list-table_rvy.php:1819
+#: admin/class-list-table_rvy.php:1816
 #: front_rvy.php:745
-#: rvy_init-functions.php:300
-#: rvy_init-functions.php:356
+#: rvy_init-functions.php:301
+#: rvy_init-functions.php:357
 msgid "Submit"
 msgstr "Υποβολή"
 
-#: admin/class-list-table_rvy.php:1824
+#: admin/class-list-table_rvy.php:1821
 #: admin/history_rvy.php:1425
 #: front_rvy.php:742
 #: front_rvy.php:752
@@ -933,35 +955,35 @@ msgstr "Υποβολή"
 #: front_rvy.php:814
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
 #: includes/visual-post-compare/visual-post-compare.php:390
-#: rvy_init-functions.php:286
-#: rvy_init-functions.php:304
-#: rvy_init-functions.php:342
+#: rvy_init-functions.php:287
+#: rvy_init-functions.php:305
 #: rvy_init-functions.php:343
-#: rvy_init-functions.php:359
+#: rvy_init-functions.php:344
 #: rvy_init-functions.php:360
-#: rvy_init-functions.php:376
+#: rvy_init-functions.php:361
 #: rvy_init-functions.php:377
+#: rvy_init-functions.php:378
 msgid "Approve"
 msgstr "Έγκριση"
 
-#: admin/class-list-table_rvy.php:1825
+#: admin/class-list-table_rvy.php:1822
 #: front_rvy.php:784
 msgid "Decline"
 msgstr "Απόρριψη"
 
-#: admin/class-list-table_rvy.php:1829
+#: admin/class-list-table_rvy.php:1826
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425
 msgid "Publish"
 msgstr "Δημοσίευση"
 
-#: admin/class-list-table_rvy.php:1832
+#: admin/class-list-table_rvy.php:1829
 #: admin/revision-ui_rvy.php:286
 msgid "Unschedule"
 msgstr "Αφαίρεση προγραμματισμού"
 
-#: admin/class-list-table_rvy.php:1836
-#: admin/class-list-table_rvy.php:2360
-#: admin/class-list-table_rvy.php:2364
+#: admin/class-list-table_rvy.php:1833
+#: admin/class-list-table_rvy.php:2357
+#: admin/class-list-table_rvy.php:2361
 #: admin/post-edit-block-ui_rvy.php:125
 #: admin/post-edit_rvy.php:129
 #: admin/RevisionEditSubmitMetabox.php:64
@@ -969,64 +991,64 @@ msgstr "Αφαίρεση προγραμματισμού"
 msgid "Discard Revision"
 msgstr "Απόρριψη Αναθεώρησης"
 
-#: admin/class-list-table_rvy.php:1857
+#: admin/class-list-table_rvy.php:1854
 msgid "Filter by category"
 msgstr "Φίλτρο κατά κατηγορία"
 
-#: admin/class-list-table_rvy.php:1874
+#: admin/class-list-table_rvy.php:1871
 msgid "Filter by revision status"
 msgstr "Φίλτρο κατά κατάσταση αναθεώρησης"
 
-#: admin/class-list-table_rvy.php:1876
+#: admin/class-list-table_rvy.php:1873
 msgid "All Revision Statuses"
 msgstr "Όλες οι Καταστάσεις Αναθεώρησης"
 
-#: admin/class-list-table_rvy.php:1895
+#: admin/class-list-table_rvy.php:1892
 #: admin/duplicate-capabilities_rvy.php:44
 #: admin/duplicate-capabilities_rvy.php:45
 msgid "Filter by post type"
 msgstr "Φίλτρο κατά τύπο ανάρτησης"
 
-#: admin/class-list-table_rvy.php:2018
+#: admin/class-list-table_rvy.php:2015
 msgid "Filter by published post"
 msgstr "Φίλτρο κατά δημοσιευμένη ανάρτηση"
 
-#: admin/class-list-table_rvy.php:2022
+#: admin/class-list-table_rvy.php:2019
 msgid "All Posts"
 msgstr "Όλες οι Αναρτήσεις"
 
-#: admin/class-list-table_rvy.php:2149
+#: admin/class-list-table_rvy.php:2146
 msgid "Select All"
 msgstr "Επιλογή Όλων"
 
-#: admin/class-list-table_rvy.php:2214
+#: admin/class-list-table_rvy.php:2211
 msgid "(clear filter)"
 msgstr "(καθαρισμός φίλτρου)"
 
-#: admin/class-list-table_rvy.php:2218
+#: admin/class-list-table_rvy.php:2215
 msgid "Sort ascending."
 msgstr "Ταξινόμηση αύξουσα."
 
-#: admin/class-list-table_rvy.php:2218
+#: admin/class-list-table_rvy.php:2215
 msgid "Sort descending."
 msgstr "Ταξινόμηση φθίνουσα."
 
-#: admin/class-list-table_rvy.php:2247
+#: admin/class-list-table_rvy.php:2244
 #, php-format
 msgid "Compare changes for &#8220;%s&#8221;"
 msgstr "Σύγκριση αλλαγών για &#8220;%s&#8221;"
 
-#: admin/class-list-table_rvy.php:2255
+#: admin/class-list-table_rvy.php:2252
 #. translators: %s: post title
 #, php-format
 msgid "&#8220;%s&#8221; (Edit)"
 msgstr "&#8220;%s&#8221; (Επεξεργασία)"
 
-#: admin/class-list-table_rvy.php:2266
+#: admin/class-list-table_rvy.php:2263
 msgid "Publication failed:"
 msgstr "Η δημοσίευση απέτυχε:"
 
-#: admin/class-list-table_rvy.php:2337
+#: admin/class-list-table_rvy.php:2334
 #: admin/post-editor-workflow-ui_rvy.php:234
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3114
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135
@@ -1034,16 +1056,16 @@ msgstr "Η δημοσίευση απέτυχε:"
 msgid "Edit Revision"
 msgstr "Επεξεργασία Αναθεώρησης"
 
-#: admin/class-list-table_rvy.php:2361
+#: admin/class-list-table_rvy.php:2358
 msgid "Discard"
 msgstr "Απόρριψη"
 
-#: admin/class-list-table_rvy.php:2402
+#: admin/class-list-table_rvy.php:2399
 msgid "Compare Changes"
 msgstr "Σύγκριση Αλλαγών"
 
 #: admin/duplicate-capabilities_rvy.php:20
-#: admin/options.php:850
+#: admin/options.php:968
 msgid "Duplicate Posts"
 msgstr "Διπλές Αναρτήσεις"
 
@@ -1154,15 +1176,13 @@ msgid "Return to editor"
 msgstr "Επιστροφή στον επεξεργαστή"
 
 #: admin/history_rvy.php:575
-#: admin/options.php:795
-#: admin/options.php:958
+#: admin/options.php:90
 #: admin/restrict-editor-features.php:102
 msgid "Title"
 msgstr "Τίτλος"
 
 #: admin/history_rvy.php:576
-#: admin/options.php:794
-#: admin/options.php:957
+#: admin/options.php:90
 #: admin/restrict-editor-features.php:108
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3400
@@ -1170,8 +1190,7 @@ msgid "Content"
 msgstr "Περιεχόμενο"
 
 #: admin/history_rvy.php:577
-#: admin/options.php:800
-#: admin/options.php:963
+#: admin/options.php:93
 #: admin/restrict-editor-features.php:161
 msgid "Excerpt"
 msgstr "Απόσπασμα"
@@ -1182,7 +1201,7 @@ msgid "(no title)"
 msgstr "(χωρίς τίτλο)"
 
 #: admin/history_rvy.php:841
-#: admin/options.php:1211
+#: admin/options.php:193
 msgid "Post Date"
 msgstr "Ημερομηνία Δημοσίευσης"
 
@@ -1274,40 +1293,98 @@ msgstr "Λίστα"
 msgid "PublishPress Capabilities"
 msgstr "Δυνατότητες PublishPress"
 
-#: admin/options.php:149
-msgid "All settings on this tab are assigned network-wide."
-msgstr "Όλες οι ρυθμίσεις σε αυτήν την καρτέλα αποδίδονται σε επίπεδο δικτύου."
+#: admin/options.php:91
+#: admin/restrict-editor-features.php:114
+msgid "Date"
+msgstr "Ημερομηνία"
 
-#: admin/options.php:179
-msgid "Setting Scope"
-msgstr "Εύρος Ρυθμίσεων"
+#: admin/options.php:92
+#: admin/restrict-editor-features.php:143
+msgid "Parent"
+msgstr "Γονέας"
+
+#: admin/options.php:92, fuzzy
+msgid "Slug"
+msgstr "Slug"
+
+#: admin/options.php:93
+#: admin/post-edit-block-ui_rvy.php:216
+#: admin/post-edit_rvy.php:383
+#: admin/restrict-editor-features.php:149
+#: admin/revision-ui_rvy.php:388
+msgid "Author"
+msgstr "Συγγραφέας"
+
+#: admin/options.php:94
+msgid "Thumbnail"
+msgstr "Μικρογραφία"
+
+#: admin/options.php:94
+#: admin/restrict-editor-features.php:122
+msgid "Template"
+msgstr "Πρότυπο"
+
+#: admin/options.php:95
+#: admin/restrict-editor-features.php:129
+msgid "Categories"
+msgstr "Κατηγορίες"
+
+#: admin/options.php:95
+#: admin/restrict-editor-features.php:136
+msgid "Tags"
+msgstr "Ετικέτες"
+
+#: admin/options.php:96
+#: admin/restrict-editor-features.php:168
+msgid "Taxonomies"
+msgstr "Taxonomies"
+
+#: admin/options.php:181
+msgid "Never"
+msgstr "Ποτέ"
+
+#: admin/options.php:182
+msgid "By default"
+msgstr "Κατά προεπιλογή"
 
 #: admin/options.php:183
-msgid "Features"
-msgstr "Χαρακτηριστικά"
-
-#: admin/options.php:186
-msgid "Options"
-msgstr "Επιλογές"
-
-#: admin/options.php:187
-msgid "Integrations"
-msgstr "Ενοποιήσεις"
-
-#: admin/options.php:188
-msgid "Statuses"
-msgstr "Καταστάσεις"
+msgid "Always"
+msgstr "Πάντα"
 
 #: admin/options.php:189
-#: admin/options.php:1244
-msgid "Notifications"
-msgstr "Ειδοποιήσεις"
+msgid "Published Post Slug"
+msgstr "Slug Δημοσιευμένης Ανάρτησης"
+
+#: admin/options.php:190
+msgid "Revision Slug"
+msgstr "Slug Αναθεώρησης"
+
+#: admin/options.php:191
+msgid "Revision ID only"
+msgstr "Μόνο ID Αναθεώρησης"
+
+#: admin/options.php:193
+msgid "Modification Date"
+msgstr "Ημερομηνία Τροποποίησης"
 
 #: admin/options.php:195
+msgid "Allow any number of Revisions per post."
+msgstr "Επιτρέψτε οποιονδήποτε αριθμό αναθεωρήσεων ανά ανάρτηση."
+
+#: admin/options.php:196
+msgid "Prevent Revision creation if another was already created."
+msgstr "Αποτρέψτε τη δημιουργία αναθεώρησης εάν έχει ήδη δημιουργηθεί άλλη."
+
+#: admin/options.php:197
+msgid "Prevent Revision creation if another was already submitted."
+msgstr "Αποτρέψτε τη δημιουργία αναθεώρησης εάν έχει ήδη υποβληθεί άλλη."
+
+#: admin/options.php:204
+#: admin/options.php:434
 msgid "Revision Submission"
 msgstr "Υποβολή Αναθεώρησης"
 
-#: admin/options.php:203
+#: admin/options.php:212
 msgid ""
 "Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
 "Change\""
@@ -1315,253 +1392,253 @@ msgstr ""
 "Χρησιμοποιήστε εναλλακτική επισήμανση: \"Εργαζόμενη Αντίγραφο\" > \"Αίτημα "
 "Αλλαγής\" > \"Προγραμματισμένη Αλλαγή\""
 
-#: admin/options.php:204
+#: admin/options.php:213
 msgid "New Revisions access requires role capability"
 msgstr "Η πρόσβαση σε νέες αναθεωρήσεις απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:205
+#: admin/options.php:214
 #, php-format
 msgid "Managing %s requires role capability"
 msgstr "Η διαχείριση %s απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:206
+#: admin/options.php:215
 msgid "Post Duplication requires role capability"
 msgstr "Η αντιγραφή ανάρτησης απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:207
+#: admin/options.php:216
 msgid "Working Copy creation requires role capability"
 msgstr "Η δημιουργία εργασιακού αντιγράφου απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:207
+#: admin/options.php:216
 msgid "Revision creation requires role capability"
 msgstr "Η δημιουργία αναθεώρησης απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:208
+#: admin/options.php:217
 #, php-format
 msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
 msgstr ""
 "Λίστα Αναρτήσεων / Σελίδων: Χρησιμοποιήστε την ετικέτα \"Επεξεργασία\" για "
 "το σύνδεσμο %s"
 
-#: admin/options.php:209
-#: admin/options.php:216
+#: admin/options.php:218
+#: admin/options.php:225
 #, php-format
 msgid "Enable %s"
 msgstr "Ενεργοποίηση %s"
 
-#: admin/options.php:210
+#: admin/options.php:219
 msgid "Revision Limit"
 msgstr "Όριο Αναθεώρησης"
 
-#: admin/options.php:211
+#: admin/options.php:220
 msgid "Create Revision redirects to user's existing Unsubmitted Revision"
 msgstr ""
 "Η δημιουργία αναθεώρησης ανακατευθύνει στην υπάρχουσα μη υποβληθείσα "
 "αναθεώρηση του χρήστη"
 
-#: admin/options.php:212
+#: admin/options.php:221
 msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
 msgstr ""
 "Ανανεώστε την ένδειξη \"Έχει Αναθεώρηση\" πριν καταστείλετε τη Δημιουργία "
 "Αναθεώρησης"
 
-#: admin/options.php:213
+#: admin/options.php:222
 msgid "If post contains custom html, require unfiltered_html capability"
 msgstr ""
 "Εάν η ανάρτηση περιέχει προσαρμοσμένο html, απαιτείτε ικανότητα "
 "unfiltered_html"
 
-#: admin/options.php:214
+#: admin/options.php:223
 msgid "Auto-submit revisions created by a user with publishing capability"
 msgstr ""
 "Αυτόματη υποβολή αναθεωρήσεων που δημιουργούνται από χρήστη με ικανότητα "
 "δημοσίευσης"
 
-#: admin/options.php:215
+#: admin/options.php:224
 msgid "Auto-submit revisions"
 msgstr "Αυτόματη υποβολή αναθεωρήσεων"
 
-#: admin/options.php:217
+#: admin/options.php:226
 msgid "Change Request submission require role capability"
 msgstr "Η υποβολή αιτήματος αλλαγής απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:217
+#: admin/options.php:226
 msgid "Revision submission requires role capability"
 msgstr "Η υποβολή αναθεώρησης απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:218
+#: admin/options.php:227
 msgid "Editing others' Revisions requires role capability"
 msgstr "Η επεξεργασία των αναθεωρήσεων άλλων απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:219
+#: admin/options.php:228
 msgid "Listing others' Revisions requires role capability"
 msgstr "Η λίστα αναθεωρήσεων άλλων απαιτεί ικανότητα ρόλου"
 
-#: admin/options.php:220
+#: admin/options.php:229
 msgid "Enable javascript in visual compare"
 msgstr "Ενεργοποιήστε την javascript στην οπτική σύγκριση"
 
-#: admin/options.php:221
+#: admin/options.php:230
 msgid "Use visual compare for Revisions"
 msgstr "Χρησιμοποιήστε την οπτική σύγκριση για τις Αναθεωρήσεις"
 
-#: admin/options.php:222
+#: admin/options.php:231
 msgid "Include unidentified internal fields on Compare screen"
 msgstr "Συμπεριλάβετε μη αναγνωρισμένα εσωτερικά πεδία στην οθόνη Σύγκρισης"
 
-#: admin/options.php:223
+#: admin/options.php:232
 msgid "Show Submitted Revisions count in Admin menu"
 msgstr "Εμφάνιση αριθμού Υποβληθεισών Αναθεωρήσεων στο μενού Διαχείρισης"
 
-#: admin/options.php:224
+#: admin/options.php:233
 msgid "Show indicator on front end if page has Revisions"
 msgstr "Εμφάνιση ένδειξης στην front end αν η σελίδα έχει Αναθεωρήσεις"
 
-#: admin/options.php:225
+#: admin/options.php:234
 msgid "Users can always administer revisions to their own editable posts"
 msgstr ""
 "Οι χρήστες μπορούν πάντα να διαχειρίζονται αναθεωρήσεις στις δικές τους "
 "επεξεργάσιμες αναρτήσεις"
 
-#: admin/options.php:226
+#: admin/options.php:235
 msgid "Also notify on Revision Update"
 msgstr "Επίσης, ειδοποιήστε για την Ενημέρωση Αναθεώρησης"
 
-#: admin/options.php:227
+#: admin/options.php:236
 msgid "Apply API actions to mimic Post Update"
 msgstr "Εφαρμόστε ενέργειες API για να μιμηθείτε την Ενημέρωση Ανάρτησης"
 
-#: admin/options.php:228
+#: admin/options.php:237
 msgid "Hide html tags on Compare screen"
 msgstr "Αποκρύψτε τις ετικέτες html στην οθόνη Σύγκρισης"
 
-#: admin/options.php:229
+#: admin/options.php:238
 msgid "Hide copy buttons on Compare screen"
 msgstr "Αποκρύψτε τα κουμπιά αντιγραφής στην οθόνη Σύγκρισης"
 
-#: admin/options.php:230
+#: admin/options.php:239
 msgid "Legacy: Schedule Revisions with WP-Cron"
 msgstr "Κληρονομικό: Προγραμματίστε Αναθεωρήσεις με WP-Cron"
 
-#: admin/options.php:231
+#: admin/options.php:240
 msgid "Site uses a custom trigger for WP-Cron tasks"
 msgstr "Ο ιστότοπος χρησιμοποιεί ένα προσαρμοσμένο trigger για εργασίες WP-Cron"
 
-#: admin/options.php:232
+#: admin/options.php:241
 msgid "Asynchronous Publishing"
 msgstr "Ασύγχρονη Δημοσίευση"
 
-#: admin/options.php:233
+#: admin/options.php:242
 msgid "Editor background color"
 msgstr "Χρώμα φόντου επεξεργαστή"
 
-#: admin/options.php:234
-#: admin/options.php:235
+#: admin/options.php:243
+#: admin/options.php:244
 msgid "Update Publish Date"
 msgstr "Ενημέρωση Ημερομηνίας Δημοσίευσης"
 
-#: admin/options.php:236
-#: admin/options.php:237
+#: admin/options.php:245
+#: admin/options.php:246
 msgid "Update Modified Date"
 msgstr "Ενημέρωση Ημερομηνίας Τροποποίησης"
 
-#: admin/options.php:240
-#: admin/options.php:241
+#: admin/options.php:249
+#: admin/options.php:250
 #, php-format
 msgid "Use %1$sPlanner Notifications%2$s"
 msgstr "Χρησιμοποιήστε %1$sΕιδοποιήσεις Προγραμματιστή%2$s"
 
-#: admin/options.php:243
+#: admin/options.php:252
 #, php-format
 msgid "Email original Author when a %s is submitted"
 msgstr "Email στον αρχικό συγγραφέα όταν υποβάλλεται ένα %s"
 
-#: admin/options.php:244
+#: admin/options.php:253
 #, php-format
 msgid "Email the original Author when a %s is approved"
 msgstr "Email στον αρχικό συγγραφέα όταν εγκρίνεται ένα %s"
 
-#: admin/options.php:245
+#: admin/options.php:254
 #, php-format
 msgid "Email the Revisor when a %s is approved"
 msgstr "Email στον αναθεωρητή όταν εγκρίνεται ένα %s"
 
-#: admin/options.php:246
+#: admin/options.php:255
 #, php-format
 msgid "Email the original Author when a %s is published"
 msgstr "Email στον αρχικό συγγραφέα όταν δημοσιεύεται ένα %s"
 
-#: admin/options.php:247
+#: admin/options.php:256
 #, php-format
 msgid "Email the Revisor when a %s is published"
 msgstr "Email στον αναθεωρητή όταν δημοσιεύεται ένα %s"
 
-#: admin/options.php:248
+#: admin/options.php:257
 msgid "Enable notification buffer"
 msgstr "Ενεργοποίηση buffer ειδοποιήσεων"
 
-#: admin/options.php:249
+#: admin/options.php:258
 msgid "Revisors can create a new revision for any custom post type"
 msgstr ""
 "Οι αναθεωρητές μπορούν να δημιουργήσουν μια νέα αναθεώρηση για οποιοδήποτε "
 "προσαρμοσμένο τύπο ανάρτησης"
 
-#: admin/options.php:250
+#: admin/options.php:259
 msgid "Prevent Revisors from editing others' unpublished Posts"
 msgstr "Αποτροπή αναθεωρητών από την επεξεργασία μη δημοσιευμένων αναρτήσεων άλλων"
 
-#: admin/options.php:251
+#: admin/options.php:260
 msgid "Add database index to posts table for Revision queries"
 msgstr ""
 "Προσθήκη ευρετηρίου βάσης δεδομένων στον πίνακα αναρτήσεων για ερωτήματα "
 "αναθεώρησης"
 
-#: admin/options.php:252
+#: admin/options.php:261
 msgid "Display Hints"
 msgstr "Εμφάνιση Υποδείξεων"
 
-#: admin/options.php:253
+#: admin/options.php:262
 msgid "Delete settings and Revisions if plugin is deleted"
 msgstr "Διαγραφή ρυθμίσεων και αναθεωρήσεων αν διαγραφεί το πρόσθετο"
 
-#: admin/options.php:254
+#: admin/options.php:263
 msgid "Show Preview Links"
 msgstr "Εμφάνιση Συνδέσμων Προεπισκόπησης"
 
-#: admin/options.php:255
+#: admin/options.php:264
 msgid "Preview Link Type"
 msgstr "Τύπος Συνδέσμου Προεπισκόπησης"
 
-#: admin/options.php:256
+#: admin/options.php:265
 msgid "Modify preview link for better theme compatibility"
 msgstr "Τροποποίηση του συνδέσμου προεπισκόπησης για καλύτερη συμβατότητα θέματος"
 
-#: admin/options.php:257
+#: admin/options.php:266
 msgid "Theme Compat: For front page revision preview, set home flag"
 msgstr ""
 "Συμβατότητα Θέματος: Για την προεπισκόπηση αναθεώρησης της κύριας σελίδας, "
 "ορίστε την ετικέτα αρχικής σελίδας"
 
-#: admin/options.php:258
+#: admin/options.php:267
 msgid "Approve Button on Compare screen"
 msgstr "Κουμπί Έγκρισης στην οθόνη Σύγκρισης"
 
-#: admin/options.php:259
+#: admin/options.php:268
 msgid "Copy revision comments to published post"
 msgstr "Αντιγραφή σχολίων αναθεώρησης στην δημοσιευμένη ανάρτηση"
 
-#: admin/options.php:260
+#: admin/options.php:269
 msgid "Compare Past Revisions ordering:"
 msgstr "Σύγκριση παλαιών αναθεωρήσεων με σειρά:"
 
-#: admin/options.php:261
+#: admin/options.php:270
 #, php-format
 msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
 msgstr ""
 "Λίστα %s για την προβολή \"Η Δραστηριότητά Μου\" ή \"Αναθεωρήσεις στις "
 "Αναρτήσεις Μου\""
 
-#: admin/options.php:262
+#: admin/options.php:271
 msgid ""
 "Archive a copy of custom fields when a submitted or scheduled revision is "
 "published"
@@ -1569,71 +1646,71 @@ msgstr ""
 "Αρχειοθέτηση αντιγράφου προσαρμοσμένων πεδίων όταν μια υποβληθείσα ή "
 "προγραμματισμένη αναθεώρηση δημοσιεύεται"
 
-#: admin/options.php:263
+#: admin/options.php:272
 msgid "Archive a copy of custom fields with each Past Revision"
 msgstr "Αρχειοθέτηση αντιγράφου προσαρμοσμένων πεδίων με κάθε παλαιά αναθεώρηση"
 
-#: admin/options.php:264
+#: admin/options.php:273
 msgid "Keep an archive of revision edits, even after the revision is published"
 msgstr ""
 "Διατήρηση αρχείου επεξεργασιών αναθεώρησης, ακόμη και μετά τη δημοσίευση "
 "της αναθεώρησης"
 
-#: admin/options.php:265
+#: admin/options.php:274
 msgid "On Revision publication, delete Editorial Comments"
 msgstr "Κατά τη δημοσίευση αναθεώρησης, διαγράψτε τα Σχόλια Επεξεργασίας"
 
-#: admin/options.php:266
+#: admin/options.php:275
 msgid "Enable deletion queue"
 msgstr "Ενεργοποίηση ουράς διαγραφής"
 
-#: admin/options.php:267
+#: admin/options.php:276
 msgid "Allow Past Revisions to be deleted"
 msgstr "Επιτρέψτε τις παλαιές αναθεωρήσεις να διαγραφούν"
 
-#: admin/options.php:268
+#: admin/options.php:277
 msgid "Restoring a Revision requires role capability"
 msgstr "Η αποκατάσταση μιας αναθεώρησης απαιτεί ικανότητες ρόλου"
 
-#: admin/options.php:269
+#: admin/options.php:278
 msgid "Compatibility Mode"
 msgstr "Λειτουργία Συμβατότητας"
 
-#: admin/options.php:270
+#: admin/options.php:279
 msgid "Planner Notifications Access-Limited"
 msgstr "Προγραμματιστικές Ειδοποιήσεις Περιορισμένης Πρόσβασης"
 
-#: admin/options.php:271
+#: admin/options.php:280
 msgid "Maximum Revisions per post"
 msgstr "Μέγιστες Αναθεωρήσεις ανά ανάρτηση"
 
-#: admin/options.php:272
+#: admin/options.php:281
 msgid "Apply Post Permissions to Revisions"
 msgstr "Εφαρμογή δικαιωμάτων αναρτήσεων σε αναθεωρήσεις"
 
-#: admin/options.php:273
+#: admin/options.php:282
 msgid "Enable legacy email notifications"
 msgstr "Ενεργοποίηση κλασικών ειδοποιήσεων μέσω email"
 
-#: admin/options.php:274
+#: admin/options.php:283
 msgid "Revision Approval requires role capability"
 msgstr "Η έγκριση αναθεώρησης απαιτεί ικανότητες ρόλου"
 
-#: admin/options.php:275
+#: admin/options.php:284
 msgid "Use extended captions for Approve button in Post Editor"
 msgstr ""
 "Χρησιμοποιήστε εκτενείς λεζάντες για το κουμπί Έγκρισης στον Επεξεργαστή "
 "Αναρτήσεων"
 
-#: admin/options.php:276
+#: admin/options.php:285
 msgid "Allow the Author field to be modified by Revision"
 msgstr "Επιτρέψτε την τροποποίηση του πεδίου Συγγραφέα από την αναθεώρηση"
 
-#: admin/options.php:277
+#: admin/options.php:286
 msgid "Create Revision button in editor opens new tab"
 msgstr "Το κουμπί Δημιουργίας Αναθεώρησης στον επεξεργαστή ανοίγει νέα καρτέλα"
 
-#: admin/options.php:278
+#: admin/options.php:287
 msgid ""
 "Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
 "previewing in Revision editor"
@@ -1641,63 +1718,92 @@ msgstr ""
 "Μπλοκ Ερώτησης Βρόχου: Ρυθμίστε τις ικανότητες αναθεωρητή και συνεισφέροντα "
 "για να επιτρέψετε την προεπισκόπηση στον επεξεργαστή αναθεώρησης"
 
-#: admin/options.php:279
+#: admin/options.php:288
 msgid "Disable Rank Math SEO panel for Revision edit"
 msgstr "Απενεργοποίηση του πίνακα Rank Math SEO για την επεξεργασία αναθεώρησης"
 
-#: admin/options.php:280
+#: admin/options.php:289
 msgid "Allow custom fields (post meta) to be revisioned"
 msgstr "Επιτρέψτε τα προσαρμοσμένα πεδία (μεταδεδομένα ανάρτησης) να αναθεωρούνται"
 
-#: admin/options.php:281
+#: admin/options.php:290
 msgid "Permission for Submit Revision also enables Revision creation"
 msgstr "Η άδεια για Υποβολή Αναθεώρησης ενεργοποιεί επίσης τη δημιουργία Αναθεώρησης"
 
-#: admin/options.php:282
+#: admin/options.php:291
 msgid "Enable classic metaboxes in editor"
 msgstr "Ενεργοποίηση κλασικών μεταβλητών στον επεξεργαστή"
 
-#: admin/options.php:287
+#: admin/options.php:296
 #, php-format
 msgid "Email designated Publishers when a %s is submitted"
 msgstr "Αποστολή email σε καθορισμένους Εκδότες όταν υποβάλλεται ένα %s"
 
-#: admin/options.php:288
+#: admin/options.php:297
 #, php-format
 msgid "Email designated Publishers when a %s is published"
 msgstr "Αποστολή email σε καθορισμένους Εκδότες όταν δημοσιεύεται ένα %s"
 
-#: admin/options.php:289
+#: admin/options.php:298
 #, php-format
 msgid "Email designated Publishers when a %s is approved"
 msgstr "Αποστολή email σε καθορισμένους Εκδότες όταν εγκρίνεται ένα %s"
 
-#: admin/options.php:291
+#: admin/options.php:300
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
 msgstr "Αποστολή email σε Συντάκτες και Διαχειριστές όταν υποβάλλεται ένα %s"
 
-#: admin/options.php:292
+#: admin/options.php:301
 #, php-format
 msgid "Email Editors and Administrators when a %s is published"
 msgstr "Αποστολή email σε Συντάκτες και Διαχειριστές όταν δημοσιεύεται ένα %s"
 
-#: admin/options.php:293
+#: admin/options.php:302
 #, php-format
 msgid "Email Editors and Administrators when a %s is approved"
 msgstr "Αποστολή email σε Συντάκτες και Διαχειριστές όταν εγκρίνεται ένα %s"
 
-#: admin/options.php:375
+#: admin/options.php:388
+msgid "All settings on this tab are assigned network-wide."
+msgstr "Όλες οι ρυθμίσεις σε αυτήν την καρτέλα αποδίδονται σε επίπεδο δικτύου."
+
+#: admin/options.php:418
+msgid "Setting Scope"
+msgstr "Εύρος Ρυθμίσεων"
+
+#: admin/options.php:422
+msgid "Features"
+msgstr "Χαρακτηριστικά"
+
+#: admin/options.php:425
+msgid "Options"
+msgstr "Επιλογές"
+
+#: admin/options.php:426
+msgid "Integrations"
+msgstr "Ενοποιήσεις"
+
+#: admin/options.php:427
+msgid "Statuses"
+msgstr "Καταστάσεις"
+
+#: admin/options.php:428
+#: admin/options.php:1348
+msgid "Notifications"
+msgstr "Ειδοποιήσεις"
+
+#: admin/options.php:507
 msgid "PublishPress Revisions Site Settings"
 msgstr "Ρυθμίσεις Ιστοσελίδας PublishPress Revisions"
 
-#: admin/options.php:405
+#: admin/options.php:537
 msgid "These are the default settings for options which can be adjusted per-site."
 msgstr ""
 "Αυτές είναι οι προεπιλεγμένες ρυθμίσεις για επιλογές που μπορούν να "
 "προσαρμοστούν ανά ιστότοπο."
 
-#: admin/options.php:443
+#: admin/options.php:575
 #, php-format
 msgid ""
 "Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
@@ -1706,14 +1812,14 @@ msgstr ""
 "Χρησιμοποιήστε αυτή την καρτέλα για να κάνετε αλλαγές σε επίπεδο ΔΙΚΤΥΟΥ "
 "στις ρυθμίσεις του PublishPress Revisions. %s"
 
-#: admin/options.php:446
+#: admin/options.php:578
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
 msgstr ""
 "Μπορείτε επίσης να καθορίσετε %1$sπροεπιλεγμένες τιμές για ρυθμίσεις "
 "συγκεκριμένων ιστότοπων%2$s."
 
-#: admin/options.php:449
+#: admin/options.php:581
 msgid ""
 "Here you can change the default value for settings which are controlled "
 "separately on each site."
@@ -1721,174 +1827,116 @@ msgstr ""
 "Εδώ μπορείτε να αλλάξετε την προεπιλεγμένη τιμή για ρυθμίσεις που "
 "ελέγχονται ξεχωριστά σε κάθε ιστότοπο."
 
-#: admin/options.php:459
-#: admin/options.php:461
+#: admin/options.php:591
+#: admin/options.php:593
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
 msgstr ""
 "Σημειώστε ότι %1$s οι ρυθμίσεις σε επίπεδο δικτύου%2$s μπορεί επίσης να "
 "είναι διαθέσιμες."
 
-#: admin/options.php:538
+#: admin/options.php:670
 msgid "License settings"
 msgstr "Ρυθμίσεις Άδειας"
 
-#: admin/options.php:539
+#: admin/options.php:671
 msgid "License"
 msgstr "Άδεια"
 
-#: admin/options.php:584
+#: admin/options.php:716
 msgid "Past Revisions are earlier versions of a post."
 msgstr "Οι Παλιές Αναθεωρήσεις είναι προηγούμενες εκδόσεις μιας ανάρτησης."
 
-#: admin/options.php:634
+#: admin/options.php:766
 msgid "Past revisions post type fallback"
 msgstr "Εναλλακτική λύση τύπου ανάρτησης παλαιών αναθεωρήσεων"
 
-#: admin/options.php:641
+#: admin/options.php:773
 msgid "This post type does not support Past Revisions."
 msgstr "Αυτός ο τύπος ανάρτησης δεν υποστηρίζει Παλιές Αναθεωρήσεις."
 
-#: admin/options.php:662
+#: admin/options.php:794
 msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
 msgstr ""
 "PRO: Απαιτείται το Revisions Pro για αυτόν τον τύπο ανάρτησης (ανοίγει σε "
 "νέα καρτέλα)"
 
-#: admin/options.php:663, fuzzy
+#: admin/options.php:795, fuzzy
 msgid "PRO"
 msgstr "PRO"
 
-#: admin/options.php:683
+#: admin/options.php:815
 msgid "New Revisions are changes which are not yet published."
 msgstr "Οι Νέες Αναθεωρήσεις είναι αλλαγές που δεν έχουν δημοσιευθεί ακόμη."
 
-#: admin/options.php:732
+#: admin/options.php:864
 msgid "Navigation menu revision setting"
 msgstr "Ρύθμιση αναθεώρησης μενού πλοήγησης"
 
-#: admin/options.php:736
+#: admin/options.php:868
 msgid "Hidden post type revision setting"
 msgstr "Ρύθμιση αναθεώρησης κρυφού τύπου ανάρτησης"
 
-#: admin/options.php:742
+#: admin/options.php:874
 msgid "New revisions post type fallback"
 msgstr "Εναλλακτική λύση τύπου ανάρτησης νέων αναθεωρήσεων"
 
-#: admin/options.php:762
+#: admin/options.php:894
 #, php-format
 msgid "%s capabilities"
 msgstr "%s δυνατότητες"
 
-#: admin/options.php:782
+#: admin/options.php:914
 msgid "Revision Fields"
 msgstr "Πεδιάδες Αναθεώρησης"
 
-#: admin/options.php:786
+#: admin/options.php:918
 msgid "Specify fields which can be modified by New Revisions."
 msgstr "Καθορίστε πεδία που μπορούν να τροποποιηθούν από Νέες Αναθεωρήσεις."
 
-#: admin/options.php:796
-#: admin/options.php:959
-#: admin/restrict-editor-features.php:114
-msgid "Date"
-msgstr "Ημερομηνία"
-
-#: admin/options.php:798
-#: admin/options.php:961
-#: admin/restrict-editor-features.php:143
-msgid "Parent"
-msgstr "Γονέας"
-
-#: admin/options.php:799
-#: admin/options.php:962, fuzzy
-msgid "Slug"
-msgstr "Slug"
-
-#: admin/options.php:801
-#: admin/options.php:964
-#: admin/post-edit-block-ui_rvy.php:216
-#: admin/post-edit_rvy.php:383
-#: admin/restrict-editor-features.php:149
-#: admin/revision-ui_rvy.php:388
-msgid "Author"
-msgstr "Συγγραφέας"
-
-#: admin/options.php:802
-msgid "Thumbnail"
-msgstr "Μικρογραφία"
-
-#: admin/options.php:803
-#: admin/options.php:966
-#: admin/restrict-editor-features.php:122
-msgid "Template"
-msgstr "Πρότυπο"
-
-#: admin/options.php:804
-#: admin/options.php:967
-#: admin/restrict-editor-features.php:129
-msgid "Categories"
-msgstr "Κατηγορίες"
-
-#: admin/options.php:805
-#: admin/options.php:968
-#: admin/restrict-editor-features.php:136
-msgid "Tags"
-msgstr "Ετικέτες"
-
-#: admin/options.php:806
-#: admin/options.php:969
-#: admin/restrict-editor-features.php:168
-msgid "Taxonomies"
-msgstr "Taxonomies"
-
-#: admin/options.php:818
+#: admin/options.php:936
 msgid "Hidden revision field setting"
 msgstr "Ρύθμιση κρυφού πεδίου αναθεώρησης"
 
-#: admin/options.php:824
+#: admin/options.php:942
 msgid "Revision field fallback"
 msgstr "Εναλλακτική λύση πεδίου αναθεώρησης"
 
-#: admin/options.php:854
+#: admin/options.php:972
 msgid "Copy post directly without using the revision process."
 msgstr ""
 "Αντιγράψτε την ανάρτηση απευθείας χωρίς να χρησιμοποιήσετε τη διαδικασία "
 "αναθεώρησης."
 
-#: admin/options.php:903
+#: admin/options.php:1021
 msgid "Navigation menu copy setting"
 msgstr "Ρύθμιση αντιγραφής μενού πλοήγησης"
 
-#: admin/options.php:906
+#: admin/options.php:1024
 msgid "Hidden copied post type setting"
 msgstr "Ρύθμιση κρυφού τύπου ανάρτησης αντιγραφής"
 
-#: admin/options.php:912
+#: admin/options.php:1030
 msgid "Copied post type fallback"
 msgstr "Εναλλακτική λύση τύπου ανάρτησης αντιγραφής"
 
-#: admin/options.php:945
+#: admin/options.php:1063
 msgid "Duplicate Fields"
 msgstr "Διπλότυπα Πεδία"
 
-#: admin/options.php:949
+#: admin/options.php:1067
 msgid "Specify fields to include when Posts are duplicated."
 msgstr "Καθορίστε πεδία που θα περιληφθούν όταν οι αναρτήσεις διπλασιάζονται."
 
-#: admin/options.php:965
-msgid "Thumnbnail"
-msgstr "Μικρογραφία"
-
-#: admin/options.php:981
+#: admin/options.php:1085
 msgid "Hidden copied field setting"
 msgstr "Ρύθμιση κρυφού πεδίου αντιγραφής"
 
-#: admin/options.php:987
+#: admin/options.php:1091
 msgid "Copied field fallback"
 msgstr "Εναλλακτική λύση πεδίου αντιγραφής"
 
-#: admin/options.php:1011
+#: admin/options.php:1115
 msgid ""
 "Note: Third party code may cause some post types to be incompatible with "
 "PublishPress Revisions."
@@ -1896,7 +1944,7 @@ msgstr ""
 "Σημείωση: Κώδικας τρίτων μπορεί να προκαλέσει ορισμένους τύπους αναρτήσεων "
 "να είναι ασύμβατοι με το PublishPress Revisions."
 
-#: admin/options.php:1021
+#: admin/options.php:1125
 #, php-format
 msgid ""
 "For Revisions integration on the Content Calendar, Overview and Content "
@@ -1906,11 +1954,11 @@ msgstr ""
 "και το Πίνακα Περιεχομένου, παρακαλώ ενημερώστε το %sPublishPress Planner "
 "Pro%s."
 
-#: admin/options.php:1042
+#: admin/options.php:1146
 msgid "Ready to enhance your revision workflow?"
 msgstr "Έτοιμοι να βελτιώσετε τη ροή εργασίας των αναθεωρήσεών σας;"
 
-#: admin/options.php:1045
+#: admin/options.php:1149
 msgid ""
 "Get PublishPress Statuses Pro and optimize your revision process with "
 "custom revision statuses."
@@ -1918,110 +1966,110 @@ msgstr ""
 "Αποκτήστε το PublishPress Statuses Pro και βελτιστοποιήστε τη διαδικασία "
 "αναθεώρησης με προσαρμοσμένες καταστάσεις αναθεώρησης."
 
-#: admin/options.php:1051
+#: admin/options.php:1155
 msgid "Define your own statuses before or after Revision Submitted"
 msgstr "Ορίστε τις δικές σας καταστάσεις πριν ή μετά την Υποβολή Αναθεώρησης"
 
-#: admin/options.php:1054
+#: admin/options.php:1158
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
 msgstr "Νέες προεπιλεγμένες καταστάσεις: Εκκρεμούν, Χρειάζεται Εργασία, Απορρίφθηκε"
 
-#: admin/options.php:1057
+#: admin/options.php:1161
 msgid "Statuses can be specific to a post type"
 msgstr "Οι καταστάσεις μπορούν να είναι συγκεκριμένες για έναν τύπο ανάρτησης"
 
-#: admin/options.php:1060
+#: admin/options.php:1164
 msgid "Control access to statuses per-role"
 msgstr "Ελέγξτε την πρόσβαση στις καταστάσεις ανά ρόλο"
 
-#: admin/options.php:1063
+#: admin/options.php:1167
 msgid "Status workflow can be nested with sub-statuses"
 msgstr "Η ροή εργασίας των καταστάσεων μπορεί να είναι φωλιασμένη με υποκαταστάσεις"
 
-#: admin/options.php:1070
-#: admin/options.php:1073
+#: admin/options.php:1174
+#: admin/options.php:1177
 msgid "Get PublishPress Statuses Pro"
 msgstr "Αποκτήστε το PublishPress Statuses Pro"
 
-#: admin/options.php:1076
-#: admin/options.php:1096
+#: admin/options.php:1180
+#: admin/options.php:1200
 msgid "Learn more about revision statuses"
 msgstr "Μάθετε περισσότερα για τις καταστάσεις αναθεώρησης"
 
-#: admin/options.php:1079
-#: admin/options.php:1097
-#: admin/options.php:2140
-#: admin/options.php:2158
-#: admin/options.php:2786
-#: admin/options.php:2799
-#: admin/options.php:2816
-#: admin/options.php:2830
-#: admin/options.php:2840
-#: admin/options.php:2850
+#: admin/options.php:1183
+#: admin/options.php:1201
+#: admin/options.php:2239
+#: admin/options.php:2257
+#: admin/options.php:2884
+#: admin/options.php:2897
+#: admin/options.php:2914
+#: admin/options.php:2928
+#: admin/options.php:2938
+#: admin/options.php:2948
 msgid "Learn More"
 msgstr "Μάθετε Περισσότερα"
 
-#: admin/options.php:1088
+#: admin/options.php:1192
 msgid "Revision statuses settings preview"
 msgstr "Προεπισκόπηση ρυθμίσεων καταστάσεων αναθεώρησης"
 
-#: admin/options.php:1092, fuzzy
+#: admin/options.php:1196, fuzzy
 msgid "Pro Plugin"
 msgstr "Pro Plugin"
 
-#: admin/options.php:1093
+#: admin/options.php:1197
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr ""
 "Εγκαταστήστε το Statuses Pro για να ξεκλειδώσετε προσαρμοσμένες καταστάσεις "
 "αναθεώρησης."
 
-#: admin/options.php:1094
+#: admin/options.php:1198
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
 "Ρυθμίστε για οποιονδήποτε τύπο ανάρτησης και ρόλο για να ταιριάζει με τη "
 "ροή εργασίας σας στην επεξεργασία."
 
-#: admin/options.php:1100
-#: admin/options.php:1101
+#: admin/options.php:1204
+#: admin/options.php:1205
 msgid "Get Statuses Pro"
 msgstr "Αποκτήστε το Statuses Pro"
 
-#: admin/options.php:1128
+#: admin/options.php:1232
 msgid "Maximum revisions per post:"
 msgstr "Μέγιστες αναθεωρήσεις ανά ανάρτηση:"
 
-#: admin/options.php:1130
+#: admin/options.php:1234
 msgid "(unlimited)"
 msgstr "(χωρίς περιορισμούς)"
 
-#: admin/options.php:1138
+#: admin/options.php:1242
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
 msgstr ""
 "Σημειώστε ότι η αρχειοθέτηση μπορεί επίσης να απενεργοποιηθεί από το "
 "%1$sPost Type%2$s."
 
-#: admin/options.php:1179
-#: admin/options.php:1375
-#: admin/options.php:2308
+#: admin/options.php:1283
+#: admin/options.php:1479
+#: admin/options.php:2406
 #, php-format
 msgid "%s capability"
 msgstr "%s δυνατότητα"
 
-#: admin/options.php:1184
-#: admin/options.php:1380
-#: admin/options.php:2313
+#: admin/options.php:1288
+#: admin/options.php:1484
+#: admin/options.php:2411
 msgid "Assign capability to roles"
 msgstr "Αναθέστε δυνατότητες σε ρόλους"
 
-#: admin/options.php:1191
+#: admin/options.php:1295
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
 msgstr ""
 "Αποτρέψτε τους μη Διαχειριστές από το να επαναφέρουν μια αναθεώρηση χωρίς "
 "το %s."
 
-#: admin/options.php:1197
+#: admin/options.php:1301
 msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
@@ -2029,80 +2077,76 @@ msgstr ""
 "Αποτρέψτε τους μη Διαχειριστές από το να επαναφέρουν μια αναθεώρηση χωρίς "
 "τη δυνατότητα restore_revisions"
 
-#: admin/options.php:1211
-msgid "Modification Date"
-msgstr "Ημερομηνία Τροποποίησης"
-
-#: admin/options.php:1239
+#: admin/options.php:1343
 msgid "Revision Creation"
 msgstr "Δημιουργία Αναθεώρησης"
 
-#: admin/options.php:1240
+#: admin/options.php:1344
 msgid "Submission"
 msgstr "Υποβολή"
 
-#: admin/options.php:1241
+#: admin/options.php:1345
 msgid "Scheduling"
 msgstr "Προγραμματισμός"
 
-#: admin/options.php:1243
+#: admin/options.php:1347
 msgid "Management"
 msgstr "Διαχείριση"
 
-#: admin/options.php:1306
+#: admin/options.php:1410
 msgid "Duplicate Post capabilities"
 msgstr "Δυνατότητες Διπλασιασμού Ανάρτησης"
 
-#: admin/options.php:1310
+#: admin/options.php:1414
 #, php-format
 msgid "If the user can't edit the published post, require %s"
 msgstr ""
 "Αν ο χρήστης δεν μπορεί να επεξεργαστεί την δημοσιευμένη ανάρτηση, "
 "απαιτήστε %s"
 
-#: admin/options.php:1313
+#: admin/options.php:1417
 #, php-format
 msgid "If enabled, Post Duplication access can be controlled per-role using %s"
 msgstr ""
 "Αν είναι ενεργοποιημένο, η πρόσβαση στον Διπλασιασμό Αναρτήσεων μπορεί να "
 "ελεγχθεί ανά ρόλο χρησιμοποιώντας %s"
 
-#: admin/options.php:1323
+#: admin/options.php:1427
 msgid "Create Revision capabilities"
 msgstr "Δημιουργία Δυνατοτήτων Αναθεώρησης"
 
-#: admin/options.php:1328
-#: admin/options.php:1354
-#: admin/options.php:1520
-#: admin/options.php:1673
+#: admin/options.php:1432
+#: admin/options.php:1458
+#: admin/options.php:1619
+#: admin/options.php:1774
 msgid "Assign capabilities to roles"
 msgstr "Αναθέστε δυνατότητες σε ρόλους"
 
-#: admin/options.php:1335
-#: admin/options.php:1527
+#: admin/options.php:1439
+#: admin/options.php:1626
 #, php-format
 msgid "If the user can't edit the published post, require %s."
 msgstr ""
 "Αν ο χρήστης δεν μπορεί να επεξεργαστεί την δημοσιευμένη ανάρτηση, "
 "απαιτήστε %s."
 
-#: admin/options.php:1341
+#: admin/options.php:1445
 #, php-format
 msgid "If enabled, Revision Creation access can be controlled per-role using %s"
 msgstr ""
 "Αν είναι ενεργοποιημένο, η πρόσβαση στη Δημιουργία Αναθεώρησης μπορεί να "
 "ελεγχθεί ανά ρόλο χρησιμοποιώντας %s"
 
-#: admin/options.php:1350
+#: admin/options.php:1454
 #, php-format
 msgid "To expand the Pages list, assign %s."
 msgstr "Για να επεκτείνετε τη λίστα Σελίδων, αναθέστε %s."
 
-#: admin/options.php:1353
+#: admin/options.php:1457
 msgid "Listing capabilities"
 msgstr "Δυνατότητες Καταχώρισης"
 
-#: admin/options.php:1360
+#: admin/options.php:1464
 msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
@@ -2110,11 +2154,11 @@ msgstr ""
 "Για να επεκτείνετε τη λίστα Σελίδων, αναθέστε Δυνατότητες Καταχώρισης "
 "(list_others_pages, list_published_posts, κ.λπ.)"
 
-#: admin/options.php:1367
+#: admin/options.php:1471
 msgid "This plugin introduces a new user role, \"Revisor.\""
 msgstr "Αυτό το πρόσθετο εισάγει έναν νέο ρόλο χρήστη, \"Επαναθεωρητής.\""
 
-#: admin/options.php:1387
+#: admin/options.php:1491
 #, php-format
 msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
@@ -2123,7 +2167,7 @@ msgstr ""
 "Η αναθεώρηση από έναν χρήστη που δεν έχει το %s θα προκαλέσει την αφαίρεση "
 "όλων των προσαρμοσμένων HTML ετικετών."
 
-#: admin/options.php:1393
+#: admin/options.php:1497
 msgid ""
 "Revision by a user who does not have the unfiltered_html capability will "
 "cause all custom html tags to be stripped out."
@@ -2131,15 +2175,15 @@ msgstr ""
 "Η αναθεώρηση από έναν χρήστη που δεν έχει την ικανότητα unfiltered_html θα "
 "προκαλέσει την αφαίρεση όλων των προσαρμοσμένων html ετικετών."
 
-#: admin/options.php:1409
+#: admin/options.php:1513
 msgid "Standard storage schema for broadest 3rd party compat"
 msgstr "Πρότυπο σχήμα αποθήκευσης για τη μεγαλύτερη συμβατότητα με τρίτους"
 
-#: admin/options.php:1410
+#: admin/options.php:1514
 msgid "Enhanced Revision access control with PublishPress plugins"
 msgstr "Ενισχυμένος έλεγχος πρόσβασης αναθεώρησης με τα πρόσθετα PublishPress"
 
-#: admin/options.php:1426
+#: admin/options.php:1530
 msgid ""
 "In enhanced mode, a Revision's status is stored by standard WordPress "
 "schema. Some plugins are incompatible."
@@ -2147,19 +2191,7 @@ msgstr ""
 "Σε ενισχυμένη λειτουργία, η κατάσταση μιας αναθεώρησης αποθηκεύεται σύμφωνα "
 "με το πρότυπο σχήμα WordPress. Ορισμένα πρόσθετα είναι ασύμβατα."
 
-#: admin/options.php:1442
-msgid "Allow any number of Revisions per post."
-msgstr "Επιτρέψτε οποιονδήποτε αριθμό αναθεωρήσεων ανά ανάρτηση."
-
-#: admin/options.php:1443
-msgid "Prevent Revision creation if another was already created."
-msgstr "Αποτρέψτε τη δημιουργία αναθεώρησης εάν έχει ήδη δημιουργηθεί άλλη."
-
-#: admin/options.php:1444
-msgid "Prevent Revision creation if another was already submitted."
-msgstr "Αποτρέψτε τη δημιουργία αναθεώρησης εάν έχει ήδη υποβληθεί άλλη."
-
-#: admin/options.php:1461
+#: admin/options.php:1561
 msgid ""
 "Work around cache plugin conflicts by requerying for revisions before "
 "suppressing the New Revision link."
@@ -2167,15 +2199,7 @@ msgstr ""
 "Εργαστείτε γύρω από τις συγκρούσεις των πρόσθετων cache ζητώντας ξανά τις "
 "αναθεωρήσεις πριν καταστείλετε τον σύνδεσμο Νέα Αναθεώρηση."
 
-#: admin/options.php:1476
-msgid ""
-"Query Loop previews use your existing post permissions. The legacy "
-"capability allowance has been retired."
-msgstr ""
-"Οι προεπισκοπήσεις του Query Loop χρησιμοποιούν τα υπάρχοντα δικαιώματα σας "
-"για δημοσιεύσεις. Η δυνατότητα κληρονομιάς έχει καταργηθεί."
-
-#: admin/options.php:1480
+#: admin/options.php:1579
 #, php-format
 msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
@@ -2184,7 +2208,7 @@ msgstr ""
 "Εάν ο χρήστης δεν έχει κανονικό σύνδεσμο Επεξεργασία, αλλάξτε τον τίτλο του "
 "συνδέσμου %s σε \"Επεξεργασία\"."
 
-#: admin/options.php:1483
+#: admin/options.php:1582
 msgid ""
 "Default labels are \"Not Submitted for Approval\", \"Submitted for "
 "Approval\", \"Scheduled Revision\""
@@ -2192,7 +2216,7 @@ msgstr ""
 "Οι προεπιλεγμένες ετικέτες είναι \"Μη Υποβληθεί για Έγκριση\", \"Υποβληθεί "
 "για Έγκριση\", \"Προγραμματισμένη Αναθεώρηση\""
 
-#: admin/options.php:1501
+#: admin/options.php:1600
 #, php-format
 msgid ""
 "Enable published content to be copied, edited, submitted for approval and "
@@ -2202,44 +2226,44 @@ msgstr ""
 "επεξεργάζεται, να υποβάλλεται για έγκριση και να διαχειρίζεται στην οθόνη "
 "%sΝέες Αναθεωρήσεις%s."
 
-#: admin/options.php:1515
+#: admin/options.php:1614
 msgid "Submit Revision capabilities"
 msgstr "Δυνατότητες υποβολής αναθεώρησης"
 
-#: admin/options.php:1533
+#: admin/options.php:1632
 #, php-format
 msgid "If enabled, Revision Submission access can be controlled per-role using %s"
 msgstr ""
 "Εάν είναι ενεργοποιημένο, η πρόσβαση στην υποβολή αναθεώρησης μπορεί να "
 "ελεγχθεί ανά ρόλο χρησιμοποιώντας %s"
 
-#: admin/options.php:1544
+#: admin/options.php:1644
 msgid "Revision editor background color"
 msgstr "Χρώμα φόντου επεξεργαστή αναθεώρησης"
 
-#: admin/options.php:1555
+#: admin/options.php:1655
 msgid "Select a custom background color to show that a Revision is being edited."
 msgstr ""
 "Επιλέξτε ένα προσαρμοσμένο χρώμα φόντου για να δείξετε ότι μια αναθεώρηση "
 "επεξεργάζεται."
 
-#: admin/options.php:1594
-#: admin/options.php:1628
+#: admin/options.php:1695
+#: admin/options.php:1729
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr ""
 "Όταν δημοσιεύεται ένα %s, ενημερώστε την ημερομηνία δημοσίευσης ανάρτησης "
 "στην τρέχουσα ώρα."
 
-#: admin/options.php:1597
-#: admin/options.php:1631
+#: admin/options.php:1698
+#: admin/options.php:1732
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr ""
 "Όταν δημοσιεύεται ένα %s, ενημερώστε την ημερομηνία τροποποίησης ανάρτησης "
 "στην τρέχουσα ώρα."
 
-#: admin/options.php:1600
+#: admin/options.php:1701
 msgid ""
 "When a new revision is created by any user who is allowed to submit "
 "revisions, automatically submit it."
@@ -2247,13 +2271,13 @@ msgstr ""
 "Όταν δημιουργείται μια νέα αναθεώρηση από οποιονδήποτε χρήστη που "
 "επιτρέπεται να υποβάλει αναθεώσεις, υποβάλετέ την αυτόματα."
 
-#: admin/options.php:1603
+#: admin/options.php:1704
 msgid "Auto-submit revisions if the user can directly edit the main post."
 msgstr ""
 "Αυτόματη υποβολή αναθεωρήσεων εάν ο χρήστης μπορεί να επεξεργαστεί άμεσα "
 "την κύρια ανάρτηση."
 
-#: admin/options.php:1606
+#: admin/options.php:1707
 msgid ""
 "This allows immediate approval within the Compare screen. If disabled, a "
 "Preview link is provided instead."
@@ -2261,7 +2285,7 @@ msgstr ""
 "Αυτό επιτρέπει άμεση έγκριση στην οθόνη Σύγκριση. Εάν είναι "
 "απενεργοποιημένο, παρέχεται αντί αυτού ένας σύνδεσμος Προεπισκόπηση."
 
-#: admin/options.php:1622
+#: admin/options.php:1723
 msgid ""
 "If a currently published post or page is edited and a future date set, the "
 "change will not be applied until the selected date."
@@ -2270,13 +2294,13 @@ msgstr ""
 "μελλοντική ημερομηνία, η αλλαγή δεν θα εφαρμοστεί μέχρι την επιλεγμένη "
 "ημερομηνία."
 
-#: admin/options.php:1634
+#: admin/options.php:1735
 msgid "Leave this setting disabled to use Action Scheduler (recommended)."
 msgstr ""
 "Αφήστε αυτή τη ρύθμιση απενεργοποιημένη για να χρησιμοποιήσετε το Action "
 "Scheduler (συνιστάται)."
 
-#: admin/options.php:1639
+#: admin/options.php:1740
 msgid ""
 "Support publication of existing scheduled revisions asynchronously, via a "
 "secondary http request from the server.  This is usually best since it "
@@ -2287,7 +2311,7 @@ msgstr ""
 "συνήθως καλύτερο, καθώς εξαλείφει την καθυστέρηση, αλλά ορισμένοι "
 "διακομιστές ενδέχεται να μην το υποστηρίζουν."
 
-#: admin/options.php:1644
+#: admin/options.php:1745
 msgid ""
 "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
 "using a custom trigger."
@@ -2295,7 +2319,7 @@ msgstr ""
 "Ο πυροδότης WP-Cron είναι απενεργοποιημένος, αλλά οι προγραμματισμένες "
 "εργασίες εκτελούνται ακόμα χρησιμοποιώντας έναν προσαρμοσμένο πυροδότη."
 
-#: admin/options.php:1662
+#: admin/options.php:1763
 msgid ""
 "Currently, users who can edit the published post can also approve Revisions "
 "to it."
@@ -2303,23 +2327,23 @@ msgstr ""
 "Αυτή τη στιγμή, οι χρήστες που μπορούν να επεξεργαστούν την δημοσιευμένη "
 "ανάρτηση μπορούν επίσης να εγκρίνουν αναθεωρήσεις σε αυτήν."
 
-#: admin/options.php:1668
+#: admin/options.php:1769
 msgid "Approve Revision capabilities"
 msgstr "Δυνατότητες έγκρισης αναθεώρησης"
 
-#: admin/options.php:1677
+#: admin/options.php:1778
 #, php-format
 msgid "Control access with %s."
 msgstr "Ελέγξτε την πρόσβαση με το %s."
 
-#: admin/options.php:1685
+#: admin/options.php:1786
 #, php-format
 msgid "If enabled, Revision Approval access can be controlled per-role using %s"
 msgstr ""
 "Εάν είναι ενεργοποιημένο, η πρόσβαση έγκρισης αναθεώρησης μπορεί να "
 "ελεγχθεί ανά ρόλο χρησιμοποιώντας %s"
 
-#: admin/options.php:1691
+#: admin/options.php:1792
 msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
@@ -2327,11 +2351,11 @@ msgstr ""
 "Ονομάστε το κουμπί είτε \"Εγκρίνω και Δημοσιεύω\" είτε \"Εγκρίνω και "
 "Προγραμματίζω.\""
 
-#: admin/options.php:1700
+#: admin/options.php:1801
 msgid "This may improve compatibility with some plugins."
 msgstr "Αυτό μπορεί να βελτιώσει τη συμβατότητα με ορισμένα πρόσθετα."
 
-#: admin/options.php:1722
+#: admin/options.php:1823
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid "If enabled, New Revisions screen access can be configured per-role using %s."
@@ -2339,7 +2363,7 @@ msgstr ""
 "Εάν είναι ενεργοποιημένο, η πρόσβαση στην οθόνη Νέες Αναθεωρήσεις μπορεί να "
 "ρυθμιστεί ανά ρόλο χρησιμοποιώντας %s."
 
-#: admin/options.php:1729
+#: admin/options.php:1830
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid ""
@@ -2349,7 +2373,7 @@ msgstr ""
 "Εάν είναι ενεργοποιημένο, η πρόσβαση στις Μη Υποβληθείσες Αναθεωρήσεις "
 "μπορεί να ρυθμιστεί ανά ρόλο χρησιμοποιώντας %s."
 
-#: admin/options.php:1736
+#: admin/options.php:1837
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid ""
@@ -2359,7 +2383,7 @@ msgstr ""
 "Εάν ένας χρήστης δεν μπορεί να επεξεργαστεί την δημοσιευμένη ανάρτηση, "
 "ελέγξτε την πρόσβασή του στις αναθεωρήσεις άλλων χρησιμοποιώντας %s."
 
-#: admin/options.php:1743
+#: admin/options.php:1844
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid ""
@@ -2370,7 +2394,7 @@ msgstr ""
 "ελέγξτε την ικανότητά του να καταγράψει τις αναθεωρήσεις άλλων "
 "χρησιμοποιώντας %s."
 
-#: admin/options.php:1748
+#: admin/options.php:1849
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
@@ -2378,7 +2402,7 @@ msgstr ""
 "Παρακάμψτε τους παραπάνω περιορισμούς για τις αναθεωρήσεις άλλων στις "
 "αναρτήσεις του συνδεδεμένου χρήστη."
 
-#: admin/options.php:1759
+#: admin/options.php:1860
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -2386,11 +2410,11 @@ msgstr ""
 "Εάν έχουν δημιουργηθεί αναθεωρήσεις για μια επεξεργάσιμη σελίδα, "
 "συμπεριλάβετε ένα πλωτό κουμπί Αναθεώρησης στα frontend views."
 
-#: admin/options.php:1767
+#: admin/options.php:1868
 msgid "Regenerate \"post has revision\" flags"
 msgstr "Αναγεννήστε τις ετικέτες \"η ανάρτηση έχει αναθεώρηση\""
 
-#: admin/options.php:1770
+#: admin/options.php:1871
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -2399,17 +2423,17 @@ msgstr ""
 "στις οθόνες Αναρτήσεων / Σελίδων δεν ταιριάζουν με την καταχώριση Νέες "
 "Αναθεωρήσεις."
 
-#: admin/options.php:1794
+#: admin/options.php:1895
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "Για ενισχυμένες ειδοποιήσεις, εγκαταστήστε το %sPublishPress Planner%s."
 
-#: admin/options.php:1807
+#: admin/options.php:1907
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "Για ενισχυμένες ειδοποιήσεις, ενημερώστε το %sPublishPress Planner%s."
 
-#: admin/options.php:1829
+#: admin/options.php:1928
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -2418,7 +2442,7 @@ msgstr ""
 "Αποστολή ειδοποιήσεων ενεργειών αναθεώρησης χρησιμοποιώντας το προσαρμόσιμο "
 "%1$sPublishPress Planner Notifications σύστημα%2$s."
 
-#: admin/options.php:1830
+#: admin/options.php:1929
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -2428,7 +2452,7 @@ msgstr ""
 "αναθεώρησης χρησιμοποιώντας το προσαρμόσιμο %1$sPublishPress Planner "
 "Notifications σύστημα%2$s."
 
-#: admin/options.php:1844
+#: admin/options.php:1943
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -2437,31 +2461,16 @@ msgstr ""
 "λαμβάνουν ειδοποιήσεις αναθεώρησης μόνο αν μπορούν να επεξεργαστούν την "
 "δημοσιευμένη ανάρτηση."
 
-#: admin/options.php:1854
+#: admin/options.php:1953
 msgid "Legacy Email Notifications:"
 msgstr "Κληρονομημένες Ειδοποιήσεις Email:"
 
-#: admin/options.php:1887
-#: admin/options.php:1910
-msgid "Never"
-msgstr "Ποτέ"
-
-#: admin/options.php:1887
-#: admin/options.php:1910
-msgid "By default"
-msgstr "Κατά προεπιλογή"
-
-#: admin/options.php:1887
-#: admin/options.php:1910
-msgid "Always"
-msgstr "Πάντα"
-
-#: admin/options.php:1898
-#: admin/options.php:1946
+#: admin/options.php:1997
+#: admin/options.php:2045
 msgid "select recipients"
 msgstr "επιλέξτε παραλήπτες"
 
-#: admin/options.php:1960
+#: admin/options.php:2059
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -2469,55 +2478,55 @@ msgstr ""
 "Για να αποφευχθούν αποτυχίες ειδοποίησης, αποθηκεύστε τα email για "
 "καθυστερημένη αποστολή μόλις ξεπεραστούν τα όρια ενός λεπτού, ώρας ή ημέρας"
 
-#: admin/options.php:1983
+#: admin/options.php:2082
 msgid "Notification Buffer"
 msgstr "Buffer Ειδοποιήσεων"
 
-#: admin/options.php:2011
+#: admin/options.php:2110
 msgid "Notification Log"
 msgstr "Αρχείο Ειδοποιήσεων"
 
-#: admin/options.php:2045
+#: admin/options.php:2144
 msgid "Purge Notification Buffer"
 msgstr "Καθαρισμός Buffer Ειδοποιήσεων"
 
-#: admin/options.php:2056
+#: admin/options.php:2155
 msgid "Truncate Notification Log"
 msgstr "Συμπίεση Αρχείου Ειδοποιήσεων"
 
-#: admin/options.php:2062
+#: admin/options.php:2161
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "Απεστάλησαν το τελευταίο λεπτό: %d / %d"
 
-#: admin/options.php:2063
+#: admin/options.php:2162
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "Απεστάλησαν την τελευταία ώρα: %d / %d"
 
-#: admin/options.php:2064
+#: admin/options.php:2163
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "Απεστάλησαν την τελευταία ημέρα: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2170
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "Δευτερόλεπτα μέχρι την επόμενη επεξεργασία buffer: %d"
 
-#: admin/options.php:2082
+#: admin/options.php:2181
 msgid "Show Notification Log / Buffer"
 msgstr "Εμφάνιση Αρχείου Ειδοποιήσεων / Buffer"
 
-#: admin/options.php:2084
+#: admin/options.php:2183
 msgid "Show with message content"
 msgstr "Εμφάνιση με περιεχόμενο μηνύματος"
 
-#: admin/options.php:2106
+#: admin/options.php:2205
 msgid "Ready to enhance your revision notifications?"
 msgstr "Έτοιμοι να ενισχύσετε τις ειδοποιήσεις αναθεώρησής σας;"
 
-#: admin/options.php:2109
+#: admin/options.php:2208
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -2525,59 +2534,59 @@ msgstr ""
 "Αναβάθμιση σε Revisions Pro για ενσωμάτωση με το πλαίσιο PublishPress "
 "Planner Notifications μας."
 
-#: admin/options.php:2115
+#: admin/options.php:2214
 msgid "Customize notification message and subject"
 msgstr "Προσαρμόστε το μήνυμα ειδοποίησης και το θέμα"
 
-#: admin/options.php:2118
+#: admin/options.php:2217
 msgid "Notify for a specific post type, category or term"
 msgstr "Ειδοποιήστε για έναν συγκεκριμένο τύπο ανάρτησης, κατηγορία ή όρο"
 
-#: admin/options.php:2121
+#: admin/options.php:2220
 msgid "Target specific roles, users, or user groups"
 msgstr "Στοχεύστε συγκεκριμένους ρόλους, χρήστες ή ομάδες χρηστών"
 
-#: admin/options.php:2124
+#: admin/options.php:2223
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "Με το PublishPress Planner Pro, στείλτε ειδοποιήσεις σε ένα κανάλι Slack"
 
-#: admin/options.php:2131
-#: admin/options.php:2161
+#: admin/options.php:2230
+#: admin/options.php:2260
 #: includes/CoreAdmin.php:192
 msgid "Upgrade to Revisions Pro"
 msgstr "Αναβάθμιση σε Revisions Pro"
 
-#: admin/options.php:2137
+#: admin/options.php:2236
 msgid "Learn more about advanced revision notifications"
 msgstr "Μάθετε περισσότερα για τις προηγμένες ειδοποιήσεις αναθεώρησης"
 
-#: admin/options.php:2149
+#: admin/options.php:2248
 msgid "Revision notifications settings preview"
 msgstr "Προεπισκόπηση ρυθμίσεων ειδοποιήσεων αναθεώρησης"
 
-#: admin/options.php:2153
-#: admin/options.php:2794
-#: admin/options.php:2810
+#: admin/options.php:2252
+#: admin/options.php:2892
+#: admin/options.php:2908
 msgid "Pro Feature"
 msgstr "Επαγγελματική δυνατότητα"
 
-#: admin/options.php:2154
+#: admin/options.php:2253
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr ""
 "Αναβάθμιση σε Revisions Pro για να ξεκλειδώσετε την ενσωμάτωσή με τις "
 "ειδοποιήσεις Planner."
 
-#: admin/options.php:2155
+#: admin/options.php:2254
 msgid "Customize notification content and recipients for each notification type."
 msgstr ""
 "Προσαρμόστε το περιεχόμενο και τους παραλήπτες της ειδοποίησης για κάθε "
 "τύπο ειδοποίησης."
 
-#: admin/options.php:2157
+#: admin/options.php:2256
 msgid "Learn more about custom email notifications"
 msgstr "Μάθετε περισσότερα για τις προσαρμοσμένες ειδοποιήσεις email"
 
-#: admin/options.php:2180
+#: admin/options.php:2279
 msgid ""
 "Disable this setting if visual comparison shows your changes incorrectly. "
 "Some page-builders and themes don't support the new style of WordPress "
@@ -2587,17 +2596,17 @@ msgstr ""
 "σας λανθασμένα. Ορισμένοι κατασκευαστές σελίδων και θέματα δεν υποστηρίζουν "
 "το νέο στυλ αναθεωρήσεων του WordPress."
 
-#: admin/options.php:2185
+#: admin/options.php:2284
 msgid "This feature is incompatible with page builder plugins."
 msgstr "Αυτή η δυνατότητα είναι ασύμβατη με πρόσθετα κατασκευής σελίδων."
 
-#: admin/options.php:2193
+#: admin/options.php:2292
 #. translators: %s: page builder plugin name.
 #, php-format
 msgid "Upgrade to Pro for visual comparison with %s."
 msgstr "Αναβάθμιση σε Pro για οπτική σύγκριση με %s."
 
-#: admin/options.php:2204
+#: admin/options.php:2303
 msgid ""
 "This supports the page's normal javascript behavior inside the compare "
 "window."
@@ -2605,7 +2614,7 @@ msgstr ""
 "Αυτό υποστηρίζει τη φυσιολογική συμπεριφορά javascript της σελίδας μέσα στο "
 "παράθυρο σύγκρισης."
 
-#: admin/options.php:2207
+#: admin/options.php:2306
 msgid ""
 "If enabled, Editors and Administrators can see unidentified internal fields "
 "keys in comparisons. An attempt is still made to suppress sensitive and "
@@ -2615,23 +2624,11 @@ msgstr ""
 "μη αναγνωρισμένα κλειδιά εσωτερικών πεδίων στις συγκρίσεις. Καταβάλλεται "
 "ακόμα προσπάθεια να κατασταλούν ευαίσθητα και παροδικά πεδία."
 
-#: admin/options.php:2223
+#: admin/options.php:2325
 msgid "Some themes may block revision preview."
 msgstr "Ορισμένα θέματα μπορεί να μπλοκάρουν την προεπισκόπηση αναθεώρησης."
 
-#: admin/options.php:2240
-msgid "Published Post Slug"
-msgstr "Slug Δημοσιευμένης Ανάρτησης"
-
-#: admin/options.php:2241
-msgid "Revision Slug"
-msgstr "Slug Αναθεώρησης"
-
-#: admin/options.php:2242
-msgid "Revision ID only"
-msgstr "Μόνο ID Αναθεώρησης"
-
-#: admin/options.php:2257
+#: admin/options.php:2355
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -2639,14 +2636,14 @@ msgstr ""
 "Ορισμένα θέματα ή πρόσθετα μπορεί να απαιτούν τον τύπο σύνδεσης Αναθεώρησης "
 "Slug ή ID Αναθεώρησης για σωστή φόρτωση προτύπου και εμφάνιση πεδίων."
 
-#: admin/options.php:2266
+#: admin/options.php:2364
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr ""
 "Η παράμετρος προεπισκόπησης αναθεώρησης ρυθμίζεται με τον ορισμό σταθερής: "
 "%s"
 
-#: admin/options.php:2273
+#: admin/options.php:2371
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -2655,13 +2652,13 @@ msgstr ""
 "παράμετρο \"rv_preview\" αντί για \"preview\". Πειραματιστείτε για να δείτε "
 "ποιο λειτουργεί καλύτερα με το θέμα σας."
 
-#: admin/options.php:2277
+#: admin/options.php:2375
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr ""
 "Ορισμένα θέματα μπορεί να απαιτούν αυτή τη ρύθμιση για σωστή εμφάνιση "
 "προεπισκόπησης αναθεώρησης."
 
-#: admin/options.php:2296
+#: admin/options.php:2394
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -2669,14 +2666,14 @@ msgstr ""
 "Αυτό συνήθως θα πρέπει να είναι ενεργοποιημένο, εκτός αν χρειαστεί να "
 "παρακαμφθούν συγκρούσεις με τα μεταδεδομένα άλλου πρόσθετου."
 
-#: admin/options.php:2320
+#: admin/options.php:2418
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "Εάν ο χρήστης δεν μπορεί να δημοσιεύσει, απαιτήστε το %s για να "
 "επεξεργαστεί άλλες αδημοσίευτες δημοσιεύσεις."
 
-#: admin/options.php:2326
+#: admin/options.php:2424
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -2684,7 +2681,7 @@ msgstr ""
 "Εάν ο χρήστης δεν μπορεί να δημοσιεύσει, απαιτήστε την ικανότητα "
 "edit_others_drafts για να επεξεργαστεί άλλες αδημοσίευτες δημοσιεύσεις."
 
-#: admin/options.php:2332
+#: admin/options.php:2430
 msgid ""
 "If editing limitations or blockages apply to a post, apply the same "
 "Permissions to each of its revisions."
@@ -2692,22 +2689,22 @@ msgstr ""
 "Εάν ισχύουν περιορισμοί ή αποκλεισμοί για μια ανάρτηση, εφαρμόστε τις ίδιες "
 "Άδειες σε κάθε μία από τις αναθεωρήσεις της."
 
-#: admin/options.php:2344
+#: admin/options.php:2442
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr ""
 "Το Rank Math SEO μπορεί να αποτρέψει την ενημέρωση αναθεώρησης σε ορισμένες "
 "τοποθεσίες."
 
-#: admin/options.php:2351
+#: admin/options.php:2449
 #: includes/CoreAdmin.php:207
 msgid "WPML Translation Management"
 msgstr "Διαχείριση Μετάφρασης WPML"
 
-#: admin/options.php:2356
+#: admin/options.php:2454
 msgid "Sync \"Needs Update\" flags"
 msgstr "Συγχρονίστε τις σημαίες \"Χρειάζεται Ενημέρωση\""
 
-#: admin/options.php:2360
+#: admin/options.php:2458
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -2716,11 +2713,11 @@ msgstr ""
 "που ενημερώθηκε (πιθανώς από έγκριση αναθεώρησης) πιο πρόσφατα από τις "
 "μεταφράσεις της."
 
-#: admin/options.php:2378
+#: admin/options.php:2476
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "Εμφάνιση περιγραφικών λεζαντών για τις ρυθμίσεις PublishPress Revisions."
 
-#: admin/options.php:2396
+#: admin/options.php:2494
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -2729,11 +2726,11 @@ msgstr ""
 "δεδομένα θα διαγραφούν, αλλά μόνο αφού διαγραφεί η τελευταία αντιγραφή των "
 "Αναθεωρήσεων / Revisions Pro."
 
-#: admin/options.php:2418
+#: admin/options.php:2516
 msgid "Unlock Pro Integrations"
 msgstr "Ξεκλειδώστε τις Επαγγελματικές Ενσωματώσεις"
 
-#: admin/options.php:2419
+#: admin/options.php:2517
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -2741,54 +2738,54 @@ msgstr ""
 "Αναβαθμίστε στην επαγγελματική έκδοση για βέλτιστη συμβατότητα και άμεση, "
 "επαγγελματική υποστήριξη."
 
-#: admin/options.php:2432
+#: admin/options.php:2530
 msgid "Filter integrations by category"
 msgstr "Φιλτράρετε τις ενσωματώσεις κατά κατηγορία"
 
-#: admin/options.php:2437
-#: admin/options.php:2718
+#: admin/options.php:2535
+#: admin/options.php:2816
 msgid "Builder"
 msgstr "Κατασκευαστής"
 
-#: admin/options.php:2440
-#: admin/options.php:2719
+#: admin/options.php:2538
+#: admin/options.php:2817
 msgid "Blocks"
 msgstr "Μπλοκ"
 
-#: admin/options.php:2443
-#: admin/options.php:2720, fuzzy
+#: admin/options.php:2541
+#: admin/options.php:2818, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2446
+#: admin/options.php:2544
 msgid "E-Commerce"
 msgstr "Ηλεκτρονικό εμπόριο"
 
-#: admin/options.php:2449
-#: admin/options.php:2722
+#: admin/options.php:2547
+#: admin/options.php:2820
 msgid "Fields"
 msgstr "Πεδία"
 
-#: admin/options.php:2452
-#: admin/options.php:2727
+#: admin/options.php:2550
+#: admin/options.php:2825
 msgid "Themes"
 msgstr "Θέματα"
 
-#: admin/options.php:2456
+#: admin/options.php:2554
 msgid "Multilingual"
 msgstr "Πολυγλωσσικό"
 
-#: admin/options.php:2460
-#: admin/options.php:2725, fuzzy
+#: admin/options.php:2558
+#: admin/options.php:2823, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2463
-#: admin/options.php:2728
+#: admin/options.php:2561
+#: admin/options.php:2826
 msgid "Workflow"
 msgstr "Ροή εργασίας"
 
-#: admin/options.php:2565
+#: admin/options.php:2663
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2796,20 +2793,20 @@ msgstr ""
 "Καθορίστε ποιες ρυθμίσεις PublishPress Revisions θα ελέγχονται σε επίπεδο "
 "δικτύου. Οι μη επιλεγμένες ρυθμίσεις ελέγχονται ξεχωριστά σε κάθε τοποθεσία."
 
-#: admin/options.php:2611
+#: admin/options.php:2709
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "Διαχείριση σε επίπεδο δικτύου του \"%s\""
 
-#: admin/options.php:2638
+#: admin/options.php:2736
 msgid "Save Changes"
 msgstr "Αποθήκευση Αλλαγών"
 
-#: admin/options.php:2639
+#: admin/options.php:2737
 msgid "Revert to Defaults"
 msgstr "Επαναφορά στις Προεπιλογές"
 
-#: admin/options.php:2641
+#: admin/options.php:2739
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2817,52 +2814,52 @@ msgstr ""
 "Όλες οι ρυθμίσεις σε αυτή τη φόρμα (συμπεριλαμβανομένων εκείνων σε μη "
 "επιλεγμένες καρτέλες) θα επαναρυθμιστούν στις ΠΡΟΕΠΙΛΟΓΕΣ. Είστε σίγουροι;"
 
-#: admin/options.php:2721
+#: admin/options.php:2819
 msgid "Commerce"
 msgstr "Εμπόριο"
 
-#: admin/options.php:2723
+#: admin/options.php:2821
 msgid "Form"
 msgstr "Φόρμα"
 
-#: admin/options.php:2724
+#: admin/options.php:2822
 msgid "Multilang"
 msgstr "Πολυγλωσσικό"
 
-#: admin/options.php:2726
+#: admin/options.php:2824
 msgid "Slider"
 msgstr "Διαφάνεια"
 
-#: admin/options.php:2743, fuzzy
+#: admin/options.php:2841, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2747
+#: admin/options.php:2845
 msgid "Active"
 msgstr "Ενεργό"
 
-#: admin/options.php:2759
+#: admin/options.php:2857
 msgid "Supported by PublishPress Revisions"
 msgstr "Υποστηρίζεται από τις PublishPress Revisions"
 
-#: admin/options.php:2761
+#: admin/options.php:2859
 msgid "Supported by Revisions Pro"
 msgstr "Υποστηρίζεται από τις Revisions Pro"
 
-#: admin/options.php:2774
+#: admin/options.php:2872
 msgid "Integration Config Issue"
 msgstr "Πρόβλημα Ρύθμισης Ενοποίησης"
 
-#: admin/options.php:2774
+#: admin/options.php:2872
 msgid "Integration Active"
 msgstr "Ενοποίηση Ενεργή"
 
-#: admin/options.php:2782
-#: admin/options.php:2837
+#: admin/options.php:2880
+#: admin/options.php:2935
 msgid "Supported plugin integration"
 msgstr "Ενοποίηση υποστηριζόμενου πρόσθετου"
 
-#: admin/options.php:2795
+#: admin/options.php:2893
 msgid ""
 "Unlock PublishPress Statuses Pro integration to enhance your revisions "
 "solution."
@@ -2870,28 +2867,28 @@ msgstr ""
 "Ξεκλειδώστε την ενοποίηση PublishPress Statuses Pro για να βελτιώσετε τη "
 "λύση αναθεώρησής σας."
 
-#: admin/options.php:2803
+#: admin/options.php:2901
 msgid "Upgrade to Statuses Pro"
 msgstr "Αναβάθμιση σε Statuses Pro"
 
-#: admin/options.php:2811
+#: admin/options.php:2909
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "Ξεκλειδώστε την ενοποίηση %s για να βελτιώσετε τη λύση αναθεώρησής σας."
 
-#: admin/options.php:2827
+#: admin/options.php:2925
 msgid "Active Plugin"
 msgstr "Ενεργό Πρόσθετο"
 
-#: admin/options.php:2827
+#: admin/options.php:2925
 msgid "Active Plugin Integration"
 msgstr "Ενοποίηση Ενεργού Προσθέτου"
 
-#: admin/options.php:2847
+#: admin/options.php:2945
 msgid "Supported Plugin"
 msgstr "Υποστηριζόμενο Πρόσθετο"
 
-#: admin/options.php:2898
+#: admin/options.php:2996
 msgid "Color setting"
 msgstr "Ρύθμιση Χρώματος"
 
@@ -2969,10 +2966,10 @@ msgid "Approve and Publish"
 msgstr "Έγκριση και Δημοσίευση"
 
 #: admin/post-editor-workflow-ui_rvy.php:134
-#: rvy_init-functions.php:301
-#: rvy_init-functions.php:320
-#: rvy_init-functions.php:357
-#: rvy_init-functions.php:374
+#: rvy_init-functions.php:302
+#: rvy_init-functions.php:321
+#: rvy_init-functions.php:358
+#: rvy_init-functions.php:375
 msgid "Update in progress..."
 msgstr "Ενημέρωση σε εξέλιξη..."
 
@@ -2985,13 +2982,13 @@ msgid "Decline Revision"
 msgstr "Απόρριψη Αναθεώρησης"
 
 #: admin/post-editor-workflow-ui_rvy.php:174
-#: rvy_init-functions.php:290
-#: rvy_init-functions.php:308
-#: rvy_init-functions.php:326
-#: rvy_init-functions.php:346
-#: rvy_init-functions.php:363
-#: rvy_init-functions.php:380
-#: rvy_init-functions.php:493
+#: rvy_init-functions.php:291
+#: rvy_init-functions.php:309
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:347
+#: rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+#: rvy_init-functions.php:494
 msgid "Update Revision"
 msgstr "Ενημέρωση Αναθεώρησης"
 
@@ -3076,8 +3073,8 @@ msgstr "Επιλεγμένη εικόνα"
 
 #: admin/revision-action_rvy.php:455
 #: admin/revision-action_rvy.php:775
-#: admin/revision-action_rvy.php:905
-#: functions.php:231
+#: admin/revision-action_rvy.php:917
+#: functions.php:239
 msgid "Revision metadata contains unsupported objects."
 msgstr "Τα μεταδεδομένα της αναθεώρησης περιέχουν μη υποστηριζόμενα αντικείμενα."
 
@@ -3115,9 +3112,9 @@ msgstr "Συντάκτης: "
 
 #: admin/revision-action_rvy.php:594
 #: admin/revision-action_rvy.php:680
-#: admin/revision-action_rvy.php:1761
-#: admin/revision-action_rvy.php:1792
-#: admin/revision-action_rvy.php:1858
+#: admin/revision-action_rvy.php:1779
+#: admin/revision-action_rvy.php:1810
+#: admin/revision-action_rvy.php:1876
 msgid "View it online: "
 msgstr "Δείτε το online: "
 
@@ -3126,17 +3123,17 @@ msgstr "Δείτε το online: "
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr "Η αναθεώρηση που υποβάλατε για το %1$s \"%2$s\" έχει εγκριθεί."
 
-#: admin/revision-action_rvy.php:1096
+#: admin/revision-action_rvy.php:1108
 msgid "The revision could not be published."
 msgstr "Η αναθεώρηση δεν μπόρεσε να δημοσιευθεί."
 
-#: admin/revision-action_rvy.php:1753
-#: admin/revision-action_rvy.php:1781
+#: admin/revision-action_rvy.php:1771
+#: admin/revision-action_rvy.php:1799
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr "[%s] Ειδοποίηση Δημοσίευσης %s"
 
-#: admin/revision-action_rvy.php:1754
+#: admin/revision-action_rvy.php:1772
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
@@ -3145,23 +3142,23 @@ msgstr ""
 "Η προγραμματισμένη αναθεώρηση που υποβάλατε για το %1$s \"%2$s\" έχει "
 "δημοσιευθεί."
 
-#: admin/revision-action_rvy.php:1782
+#: admin/revision-action_rvy.php:1800
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr "Μια προγραμματισμένη αναθεώρηση για το %1$s \"%2$s\" έχει δημοσιευθεί."
 
-#: admin/revision-action_rvy.php:1789
-#: admin/revision-action_rvy.php:1855
+#: admin/revision-action_rvy.php:1807
+#: admin/revision-action_rvy.php:1873
 #, php-format
 msgid "It was submitted by %1$s."
 msgstr "Υποβλήθηκε από τον %1$s."
 
-#: admin/revision-action_rvy.php:1846
+#: admin/revision-action_rvy.php:1864
 #, php-format
 msgid "[%s] %s Publication"
 msgstr "[%s] Δημοσίευση %s"
 
-#: admin/revision-action_rvy.php:1848
+#: admin/revision-action_rvy.php:1866
 #, php-format
 msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
 msgstr "Μια προγραμματισμένη αναθεώρηση για το %1$s \"%2$s\" έχει δημοσιευθεί."
@@ -3486,8 +3483,8 @@ msgid "The revision was saved, but could not be submitted."
 msgstr "Η αναθεώρηση αποθηκεύτηκε, αλλά δεν μπόρεσε να υποβληθεί."
 
 #: builder-schema_rvy.php:7
-#: revision-creation_rvy.php:286
-#: rvy_init-functions.php:797
+#: revision-creation_rvy.php:292
+#: rvy_init-functions.php:786
 msgid ""
 "Page Builder integration requires Revisions Pro to be set to standard "
 "storage schema."
@@ -4010,7 +4007,7 @@ msgid "Revision status: %s"
 msgstr "Κατάσταση αναθεώρησης: %s"
 
 #: front_rvy.php:850
-#: rvy_init-functions.php:463
+#: rvy_init-functions.php:464
 msgid "Publish Now"
 msgstr "Δημοσίευση Τώρα"
 
@@ -4053,38 +4050,38 @@ msgstr "Παρελθούσα Αναθεώρηση (από %s)."
 msgid "More revision actions"
 msgstr "Περισσότερες ενέργειες αναθεώρησης"
 
-#: functions.php:161
+#: functions.php:169
 msgid "The source post could not be found."
 msgstr "Η πηγή ανάρτησης δεν βρέθηκε."
 
-#: functions.php:654
+#: functions.php:667
 msgid "Scheduled Rev."
 msgstr "Προγραμματισμένη Αναθ."
 
-#: functions.php:659
-#: functions.php:664
+#: functions.php:672
+#: functions.php:677
 msgid "Submitted Rev."
 msgstr "Υποβληθείσα Αναθ."
 
-#: functions.php:1044
+#: functions.php:1057
 msgid "A workflow revision cannot be published through a post creation request."
 msgstr ""
 "Μια αναθεώρηση ροής εργασίας δεν μπορεί να δημοσιευθεί μέσω ενός αιτήματος "
 "δημιουργίας ανάρτησης."
 
-#: functions.php:1052
-#: functions.php:1055
+#: functions.php:1065
+#: functions.php:1068
 msgid "Use the Revisions workflow controls to change revision status."
 msgstr ""
 "Χρησιμοποιήστε τους ελέγχους ροής εργασίας Αναθεωρήσεων για να αλλάξετε την "
 "κατάσταση της αναθεώρησης."
 
-#: functions.php:1060
+#: functions.php:1073
 msgid "You are not allowed to publish this post type."
 msgstr "Δεν έχετε άδεια να δημοσιεύσετε αυτόν τον τύπο ανάρτησης."
 
-#: functions.php:1284
-#: rvy_init-functions.php:491
+#: functions.php:1323
+#: rvy_init-functions.php:492
 msgid "Post Author"
 msgstr "Συγγραφέας Δημοσιεύματος"
 
@@ -4144,6 +4141,306 @@ msgstr "Δείτε τη βάση γνώσεων του PublishPress Revisions"
 #: includes/CoreAdmin.php:239
 msgid "View Knowledge Base"
 msgstr "Δείτε τη Βάση Γνώσεων"
+
+#: includes/Mcp/bootstrap.php:16
+msgid "Actions provided by PublishPress plugins."
+msgstr "Ενέργειες που παρέχονται από τα πρόσθετα του PublishPress."
+
+#: includes/Mcp/Registry.php:47
+msgid "Use the exact fields, types and choices returned by discovery."
+msgstr ""
+"Χρησιμοποιήστε τα ακριβή πεδία, τύπους και επιλογές που επιστρέφονται από "
+"την ανακάλυψη."
+
+#: includes/Mcp/Registry.php:52
+msgid "You do not have permission to use this Revisions operation."
+msgstr "Δεν έχετε άδεια να χρησιμοποιήσετε αυτή την ενέργεια αναθεωρήσεων."
+
+#: includes/Mcp/Registry.php:75
+#, php-format
+msgid "Invalid JSON type at %s."
+msgstr "Μη έγκυρος τύπος JSON στο %s."
+
+#: includes/Mcp/Registry.php:144
+msgid ""
+"Revisions could not complete this operation. Inspect the current state "
+"before retrying; some changes may have been saved."
+msgstr ""
+"Οι αναθεωρήσεις δεν μπόρεσαν να ολοκληρώσουν αυτή την ενέργεια. Ελέγξτε την "
+"τρέχουσα κατάσταση πριν δοκιμάσετε ξανά; κάποιες αλλαγές μπορεί να έχουν "
+"αποθηκευτεί."
+
+#: includes/Mcp/Registry.php:164
+msgid "This object changed. Read it again before saving."
+msgstr "Αυτό το αντικείμενο έχει αλλάξει. Διαβάστε το ξανά πριν αποθηκεύσετε."
+
+#: includes/Mcp/Registry.php:169
+msgid ""
+"The operation could not be fully confirmed. Read the object before "
+"retrying; some changes may have been saved."
+msgstr ""
+"Η ενέργεια δεν μπόρεσε να επιβεβαιωθεί πλήρως. Διαβάστε το αντικείμενο πριν "
+"δοκιμάσετε ξανά; κάποιες αλλαγές μπορεί να έχουν αποθηκευτεί."
+
+#: includes/Mcp/Revisions.php:15
+msgid "Discover Revisions features and choices"
+msgstr "Ανακαλύψτε δυνατότητες και επιλογές αναθεώρησης"
+
+#: includes/Mcp/Revisions.php:15
+msgid ""
+"Discover separate native revision, archive and duplication post types and "
+"fields, revision statuses and active Pro/integration state. Supply post_id "
+"for source permissions, available templates and taxonomy assignment "
+"choices. Revisions are separate from the published source post. Native "
+"capabilities and source read access are enforced."
+msgstr ""
+"Ανακαλύψτε ξεχωριστούς εγγενείς τύπους αναθεώρησης, αρχείου και αντιγραφής "
+"και πεδία, καταστάσεις αναθεώρησης και ενεργή κατάσταση Pro/ενσωμάτωσης. "
+"Παρέχετε post_id για άδειες πηγής, διαθέσιμα πρότυπα και επιλογές ανάθεσης "
+"κατηγοριών. Οι αναθεωρήσεις είναι ξεχωριστές από την δημοσιευμένη πηγή "
+"ανάρτησης. Επιβάλλονται οι εγγενείς δυνατότητες και η πρόσβαση ανάγνωσης "
+"στην πηγή."
+
+#: includes/Mcp/Revisions.php:16
+msgid "Find revisions and past revisions"
+msgstr "Βρείτε αναθεωρήσεις και παλιές αναθεωρήσεις"
+
+#: includes/Mcp/Revisions.php:16
+msgid ""
+"Browse a bounded native revision queue or WordPress archive. Filter by "
+"source post, status, author or title. Every returned revision and source "
+"requires native read access. Other users’ restricted revisions are excluded."
+msgstr ""
+"Περιηγηθείτε σε μια περιορισμένη ουρά εγγενών αναθεωρήσεων ή στο αρχείο του "
+"WordPress. Φιλτράρετε κατά πηγή ανάρτησης, κατάσταση, συγγραφέα ή τίτλο. "
+"Κάθε επιστρεφόμενη αναθεώρηση και πηγή απαιτεί εγγενή πρόσβαση ανάγνωσης. "
+"Οι περιορισμένες αναθεωρήσεις άλλων χρηστών αποκλείονται."
+
+#: includes/Mcp/Revisions.php:17
+msgid "Read a revision source post"
+msgstr "Διαβάστε μια ανάρτηση πηγής αναθεώρησης"
+
+#: includes/Mcp/Revisions.php:17
+msgid ""
+"Read one supported revision, archive or duplication source and its revision "
+"token before creating a new copy. Requires source read access and native "
+"copy_post or edit_post. Does not expose passwords, authentication metadata "
+"or signed preview links."
+msgstr ""
+"Διαβάστε μία υποστηριζόμενη αναθεώρηση, πηγή αρχείου ή αντιγραφής και το "
+"token της αναθεώρησής της πριν δημιουργήσετε ένα νέο αντίγραφο. Απαιτεί "
+"πρόσβαση ανάγνωσης στην πηγή και εγγενή copy_post ή edit_post. Δεν εκθέτει "
+"κωδικούς πρόσβασης, μεταδεδομένα αυθεντικοποίησης ή υπογεγραμμένους "
+"συνδέσμους προεπισκόπησης."
+
+#: includes/Mcp/Revisions.php:18
+msgid "Read a revision"
+msgstr "Διαβάστε μια αναθεώρηση"
+
+#: includes/Mcp/Revisions.php:18
+msgid ""
+"Read revision content, its native scheduling dates and terms, plus "
+"revisions for both the copy and source. Authentication metadata, passwords "
+"and signed preview links are excluded."
+msgstr ""
+"Διαβάστε το περιεχόμενο της αναθεώρησης, τις ημερομηνίες και τους όρους "
+"προγραμματισμού της, καθώς και τις αναθεωρήσεις τόσο για την αντιγραφή όσο "
+"και για την πηγή. Τα μεταδεδομένα αυθεντικοποίησης, οι κωδικοί πρόσβασης "
+"και οι υπογεγραμμένοι σύνδεσμοι προεπισκόπησης αποκλείονται."
+
+#: includes/Mcp/Revisions.php:20
+msgid "Create a new revision"
+msgstr "Δημιουργήστε μια νέα αναθεώρηση"
+
+#: includes/Mcp/Revisions.php:20
+msgid ""
+"Create a native unsubmitted revision of one supported readable source using "
+"copy_post permission and the source expected_hash. Native metadata/taxonomy "
+"cloning, revision limits, builder gates and hooks apply. Omit changes to "
+"copy content unchanged. dry_run never creates a copy."
+msgstr ""
+"Δημιουργήστε μια εγγενή αναθεώρηση που δεν έχει υποβληθεί από μία "
+"υποστηριζόμενη αναγνώσιμη πηγή χρησιμοποιώντας άδεια copy_post και το "
+"expected_hash της πηγής. Ισχύουν οι εγγενείς δυνατότητες/κλωνοποίηση "
+"κατηγορίας, όρια αναθεώρησης, πύλες κατασκευαστών και hooks. Αφήστε τις "
+"αλλαγές να παραμείνουν ανέπαφες."
+
+#: includes/Mcp/Revisions.php:21
+msgid "Duplicate a source post"
+msgstr "Αντιγράψτε μια πηγή ανάρτησης"
+
+#: includes/Mcp/Revisions.php:21
+msgid ""
+"Create a native draft duplicate of an enabled readable source post. "
+"Requires duplicate_post permission, the source expected_hash and native "
+"duplication settings. Copies the native configured fields, taxonomy and "
+"metadata through RevisionCreation. dry_run creates nothing."
+msgstr ""
+"Δημιουργήστε ένα εγγενές προσχέδιο αντιγράφου από μια ενεργοποιημένη "
+"αναγνώσιμη πηγή ανάρτησης. Απαιτεί άδεια duplicate_post, το expected_hash "
+"της πηγής και ρυθμίσεις εγγενών αντιγράφων. Αντιγράφει τα εγγενώς "
+"διαμορφωμένα πεδία, κατηγορία και μεταδεδομένα μέσω της Δημιουργίας "
+"Αναθεώρησης. Το dry_run δεν δημιουργεί τίποτα."
+
+#: includes/Mcp/Revisions.php:22
+msgid "Update revision content"
+msgstr "Ενημερώστε το περιεχόμενο της αναθεώρησης"
+
+#: includes/Mcp/Revisions.php:22
+msgid ""
+"Patch only supplied editable revision fields using expected_hash. Native "
+"allowed fields, locks, term/author permissions and sanitizers apply. The "
+"published source is unchanged. Submitted or scheduled copies require their "
+"native edit permission; all edits to scheduled revisions require approval "
+"permission. dry_run validates without saving."
+msgstr ""
+"Εφαρμόστε μόνο τα παρεχόμενα επεξεργάσιμα πεδία αναθεώρησης χρησιμοποιώντας "
+"το expected_hash. Ισχύουν τα εγγενώς επιτρεπόμενα πεδία, κλειδώματα, άδειες "
+"όρων/συγγραφέα και καθαριστές. Η δημοσιευμένη πηγή δεν αλλάζει. Οι "
+"υποβληθείσες ή προγραμματισμένες αντιγραφές απαιτούν την εγγενή άδεια "
+"επεξεργασίας τους; όλες οι επεξεργασίες σε προγραμματισμένες αναθεωρήσεις "
+"απαιτούν άδεια έγκρισης. Το dry_run επαληθεύει χωρίς αποθήκευση."
+
+#: includes/Mcp/Revisions.php:24
+msgid "Submit, approve or manage revisions"
+msgstr "Υποβάλετε, εγκρίνετε ή διαχειριστείτε αναθεωρήσεις"
+
+#: includes/Mcp/Revisions.php:24
+msgid ""
+"Apply one native action to up to 50 explicit revision IDs: submit, decline, "
+"approve, publish a scheduled revision now, unschedule, trash, restore "
+"archive or delete an archived revision. Publishing/restoring requires "
+"parent_hash and native source edit and approval permissions. All targets "
+"are validated before writes; partial failures report confirmed IDs. "
+"Approval honors the saved date, scheduling future changes. dry_run never "
+"publishes or sends notifications."
+msgstr ""
+"Εφαρμόστε μία εγγενή ενέργεια σε έως και 50 ρητές αναγνωρίσεις αναθεώρησης: "
+"υποβολή, απόρριψη, έγκριση, δημοσίευση προγραμματισμένης αναθεώρησης τώρα, "
+"αποπρογραμματισμός, διαγραφή, αποκατάσταση αρχείου ή διαγραφή μιας "
+"αρχειοθετημένης αναθεώρησης. Η δημοσίευση/αποκατάσταση απαιτεί parent_hash "
+"και εγγενείς άδειες επεξεργασίας και έγκρισης πηγής. Όλοι οι στόχοι "
+"επικυρώνονται πριν από τις εγγραφές; οι μερικές αποτυχίες αναφέρουν "
+"επιβεβαιωμένα IDs. Η έγκριση τιμά την αποθηκευμένη ημερομηνία, "
+"προγραμματίζοντας μελλοντικές αλλαγές. Το dry_run ποτέ δεν δημοσιεύει ή "
+"στέλνει ειδοποιήσεις."
+
+#: includes/Mcp/Revisions.php:25
+msgid "Compare revision content"
+msgstr "Συγκρίνετε το περιεχόμενο της αναθεώρησης"
+
+#: includes/Mcp/Revisions.php:25
+msgid ""
+"Compare standard fields and taxonomy assignments with the readable source, "
+"or supply compare_to to compare two authorized revisions of the same "
+"source. Missing historical fields are omitted, not treated as cleared. "
+"Returns plain source/revision values, not executable previews or signed "
+"URLs. Pro metadata providers are discovered separately; credentials are "
+"never exported."
+msgstr ""
+"Συγκρίνετε τα standard πεδία και τις αναθέσεις κατηγοριών με την αναγνώσιμη "
+"πηγή, ή παρέχετε compare_to για να συγκρίνετε δύο εξουσιοδοτημένες "
+"αναθεωρήσεις της ίδιας πηγής. Οι ελλείπουσες ιστορικές πεδία παραλείπονται, "
+"δεν θεωρούνται ως διαγραμμένες. Επιστρέφει απλές πηγές/τιμές αναθεώρησης, "
+"όχι εκτελέσιμες προεπισκοπήσεις ή υπογεγραμμένες διευθύνσεις URL. Οι "
+"παροχείς μεταδεδομένων Pro ανακαλύπτονται ξεχωριστά; τα στοιχεία "
+"ταυτοποίησης δεν εξάγονται ποτέ."
+
+#: includes/Mcp/Revisions.php:54
+msgid "Default template"
+msgstr "Προκαθορισμένο πρότυπο"
+
+#: includes/Mcp/Revisions.php:132
+#: includes/Mcp/Revisions.php:326
+msgid "Revision workflows are disabled."
+msgstr "Οι ροές εργασίας αναθεώρησης είναι απενεργοποιημένες."
+
+#: includes/Mcp/Revisions.php:169
+msgid ""
+"Narrow the filters or use native administration for more than 1,000 "
+"matching revisions."
+msgstr ""
+"Στενέψτε τα φίλτρα ή χρησιμοποιήστε εγγενή διαχείριση για περισσότερες από "
+"1.000 αντίστοιχες αναθεωρήσεις."
+
+#: includes/Mcp/Revisions.php:358
+msgid ""
+"The revision was created but its edits were not confirmed. Read this "
+"revision before retrying."
+msgstr ""
+"Η αναθεώρηση δημιουργήθηκε αλλά οι επεξεργάσεις της δεν επιβεβαιώθηκαν. "
+"Διαβάστε αυτή την αναθεώρηση πριν δοκιμάσετε ξανά."
+
+#: includes/Mcp/Revisions.php:395
+msgid ""
+"Some revision assignments could not be confirmed. Inspect the revision "
+"before retrying."
+msgstr ""
+"Ορισμένες αναθέσεις αναθεώρησης δεν μπόρεσαν να επιβεβαιωθούν. Ελέγξτε την "
+"αναθεώρηση πριν δοκιμάσετε ξανά."
+
+#: includes/Mcp/Revisions.php:412
+msgid "This revision is locked by another editor."
+msgstr "Αυτή η αναθεώρηση είναι κλειδωμένη από άλλο συντάκτη."
+
+#: includes/Mcp/Revisions.php:490
+msgid "Read the source and supply its parent_hash before applying content."
+msgstr ""
+"Διαβάστε την πηγή και παρέχετε το parent_hash της πριν εφαρμόσετε "
+"περιεχόμενο."
+
+#: includes/Mcp/Revisions.php:493
+msgid ""
+"The source changed. Read the revision and source again before applying "
+"content."
+msgstr ""
+"Η πηγή έχει αλλάξει. Διαβάστε ξανά την αναθεώρηση και την πηγή πριν "
+"εφαρμόσετε περιεχόμενο."
+
+#: includes/Mcp/Revisions.php:639
+msgid "Both revisions must belong to the same source."
+msgstr "Και οι δύο αναθεωρήσεις πρέπει να ανήκουν στην ίδια πηγή."
+
+#: includes/Mcp/Settings.php:14
+msgid "Read Revisions settings"
+msgstr "Διαβάστε τις ρυθμίσεις αναθεώρησης"
+
+#: includes/Mcp/Settings.php:14
+msgid ""
+"Read native setting identifiers, exact JSON types, defaults, choices, "
+"storage and revision. Network-controlled settings require actual network "
+"permission to change. Credentials and database maintenance are excluded."
+msgstr ""
+"Διαβάστε τα εγγενή αναγνωριστικά ρυθμίσεων, τους ακριβείς τύπους JSON, τις "
+"προεπιλογές, τις επιλογές, την αποθήκευση και την αναθεώρηση. Οι ρυθμίσεις "
+"που ελέγχονται από το δίκτυο απαιτούν πραγματική άδεια δικτύου για να "
+"αλλάξουν. Τα στοιχεία ταυτοποίησης και η συντήρηση βάσης δεδομένων "
+"αποκλείονται."
+
+#: includes/Mcp/Settings.php:15
+msgid "Update Revisions settings"
+msgstr "Ενημέρωση ρυθμίσεων αναθεωρήσεων"
+
+#: includes/Mcp/Settings.php:15
+msgid ""
+"Patch discovered settings only, using expected_hash. JSON booleans are not "
+"strings. Native sanitizers, network scope and edition/dependency gates "
+"apply. Omitted values remain. dry_run validates without saving or "
+"converting revision storage."
+msgstr ""
+"Ενημέρωση μόνο των ρυθμίσεων που ανακαλύφθηκαν, χρησιμοποιώντας το "
+"expected_hash. Οι boolean τιμές JSON δεν είναι συμβολοσειρές. Ιθαγενείς "
+"καθαριστές, το πεδίο δικτύου και οι πύλες έκδοσης/εξάρτησης ισχύουν. Οι "
+"παραλειπόμενες τιμές παραμένουν. Το dry_run επικυρώνει χωρίς να αποθηκεύει "
+"ή να μετατρέπει την αποθήκευση αναθεώρησης."
+
+#: includes/Mcp/Settings.php:155
+msgid "Settings changed. Read them again."
+msgstr "Οι ρυθμίσεις άλλαξαν. Διαβάστε τις ξανά."
+
+#: includes/Mcp/Settings.php:226
+msgid "Settings changed during validation."
+msgstr "Οι ρυθμίσεις άλλαξαν κατά την επικύρωση."
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
 msgid "Modified: "
@@ -4315,7 +4612,7 @@ msgstr "%1$s ερωτήματα σε %2$s δευτερόλεπτα. %3$s MB χρ
 msgid "Could not insert post into the database"
 msgstr "Δεν ήταν δυνατή η εισαγωγή ανάρτησης στη βάση δεδομένων"
 
-#: revision-creation_rvy.php:490
+#: revision-creation_rvy.php:496
 msgid "Could not insert revision into the database"
 msgstr "Δεν ήταν δυνατή η εισαγωγή αναθεώρησης στη βάση δεδομένων"
 
@@ -4373,253 +4670,253 @@ msgstr "Κάθε 2 Λεπτά"
 msgid "You are not allowed to revise this post."
 msgstr "Δεν επιτρέπεται να αναθεωρήσετε αυτήν την ανάρτηση."
 
-#: rvy_init-functions.php:199
+#: rvy_init-functions.php:200
 msgid "You are not allowed to change the author of this revision."
 msgstr "Δεν έχετε άδεια να αλλάξετε τον συγγραφέα αυτής της αναθεώρησης."
 
-#: rvy_init-functions.php:280
-#: rvy_init-functions.php:292
+#: rvy_init-functions.php:281
+#: rvy_init-functions.php:293
 msgid "Working Copy"
 msgstr "Εργασιακή Αντίγραφο"
 
-#: rvy_init-functions.php:281
+#: rvy_init-functions.php:282
 msgid "Create Working Copy"
 msgstr "Δημιουργία Εργασιακού Αντιγράφου"
 
-#: rvy_init-functions.php:283
+#: rvy_init-functions.php:284
 msgid "Creating Working Copy..."
 msgstr "Δημιουργία Εργασιακού Αντιγράφου..."
 
-#: rvy_init-functions.php:284
+#: rvy_init-functions.php:285
 msgid "Working Copy ready"
 msgstr "Εργασιακό Αντίγραφο έτοιμο"
 
-#: rvy_init-functions.php:285
-#: rvy_init-functions.php:303
+#: rvy_init-functions.php:286
+#: rvy_init-functions.php:304
 msgid "Approve Changes"
 msgstr "Έγκριση Αλλαγών"
 
-#: rvy_init-functions.php:287
-#: rvy_init-functions.php:305
-msgid "Approving Changes..."
-msgstr "Έγκριση Αλλαγών..."
-
 #: rvy_init-functions.php:288
 #: rvy_init-functions.php:306
-#: rvy_init-functions.php:324
-msgid "Publish Changes"
-msgstr "Δημοσίευση Αλλαγών"
+msgid "Approving Changes..."
+msgstr "Έγκριση Αλλαγών..."
 
 #: rvy_init-functions.php:289
 #: rvy_init-functions.php:307
 #: rvy_init-functions.php:325
-#: rvy_init-functions.php:345
-#: rvy_init-functions.php:362
-#: rvy_init-functions.php:379
+msgid "Publish Changes"
+msgstr "Δημοσίευση Αλλαγών"
+
+#: rvy_init-functions.php:290
+#: rvy_init-functions.php:308
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:346
+#: rvy_init-functions.php:363
+#: rvy_init-functions.php:380
 msgid "Save Revision"
 msgstr "Αποθήκευση Αναθεώρησης"
 
-#: rvy_init-functions.php:291
+#: rvy_init-functions.php:292
 msgid "Working Copies"
 msgstr "Εργασιακά Αντίγραφα"
 
-#: rvy_init-functions.php:293
+#: rvy_init-functions.php:294
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
 msgstr[0] "Εργασιακά Αντίγραφα <span class=\"count\">(%d)</span>"
 msgstr[1] "Εργασιακά Αντίγραφα <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:298
-#: rvy_init-functions.php:310
+#: rvy_init-functions.php:299
+#: rvy_init-functions.php:311
 msgid "Change Request"
 msgstr "Αίτημα Αλλαγής"
 
-#: rvy_init-functions.php:299
+#: rvy_init-functions.php:300
 msgid "Submit Change Request"
 msgstr "Υποβολή Αίτησης Αλλαγής"
 
-#: rvy_init-functions.php:302
+#: rvy_init-functions.php:303
 msgid "Changes Submitted"
 msgstr "Αλλαγές Υποβλήθηκαν"
 
-#: rvy_init-functions.php:309
+#: rvy_init-functions.php:310
 msgid "Change Requests"
 msgstr "Αιτήματα Αλλαγών"
 
-#: rvy_init-functions.php:311
+#: rvy_init-functions.php:312
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
 msgstr[0] "Αιτήματα Αλλαγών <span class=\"count\">(%d)</span>"
 msgstr[1] "Αιτήματα Αλλαγών <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:312
+#: rvy_init-functions.php:313
 msgid "Enable Change Requests"
 msgstr "Ενεργοποίηση Αιτημάτων Αλλαγής"
 
-#: rvy_init-functions.php:317
-#: rvy_init-functions.php:328
+#: rvy_init-functions.php:318
+#: rvy_init-functions.php:329
 msgid "Scheduled Change"
 msgstr "Προγραμματισμένη Αλλαγή"
 
-#: rvy_init-functions.php:318
 #: rvy_init-functions.php:319
-#: rvy_init-functions.php:322
+#: rvy_init-functions.php:320
 #: rvy_init-functions.php:323
+#: rvy_init-functions.php:324
 msgid "Schedule Changes"
 msgstr "Προγραμματισμός Αλλαγών"
 
-#: rvy_init-functions.php:321
+#: rvy_init-functions.php:322
 msgid "Changes are Scheduled."
 msgstr "Οι αλλαγές είναι προγραμματισμένες."
 
-#: rvy_init-functions.php:327
+#: rvy_init-functions.php:328
 msgid "Scheduled Changes"
 msgstr "Προγραμματισμένες Αλλαγές"
 
-#: rvy_init-functions.php:329
+#: rvy_init-functions.php:330
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
 msgstr[0] "Προγραμματισμένες <span class=\"count\">(%d)</span>"
 msgstr[1] "Προγραμματισμένες <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:337
+#: rvy_init-functions.php:338
 msgid "Unsubmitted Revision"
 msgstr "Μη Υποβληθείσα Αναθεώρηση"
 
-#: rvy_init-functions.php:338
 #: rvy_init-functions.php:339
+#: rvy_init-functions.php:340
 msgid "Create Revision"
 msgstr "Δημιουργία Αναθεώρησης"
 
-#: rvy_init-functions.php:340
+#: rvy_init-functions.php:341
 msgid "Creating Revision..."
 msgstr "Δημιουργία Αναθεώρησης..."
 
-#: rvy_init-functions.php:341
+#: rvy_init-functions.php:342
 msgid "The Revision is ready to edit."
 msgstr "Η Αναθεώρηση είναι έτοιμη προς επεξεργασία."
 
-#: rvy_init-functions.php:341
+#: rvy_init-functions.php:342
 msgid "Revision ready to edit."
 msgstr "Αναθεώρηση έτοιμη προς επεξεργασία."
 
-#: rvy_init-functions.php:342
-#: rvy_init-functions.php:344
-#: rvy_init-functions.php:359
-#: rvy_init-functions.php:361
-#: rvy_init-functions.php:376
-#: rvy_init-functions.php:378
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:362
+#: rvy_init-functions.php:377
+#: rvy_init-functions.php:379
 msgid "Publish Revision"
 msgstr "Δημοσίευση Αναθεώρησης"
 
-#: rvy_init-functions.php:347
+#: rvy_init-functions.php:348
 msgid "Unsubmitted Revisions"
 msgstr "Μη Υποβληθείσες Αναθεωρήσεις"
 
-#: rvy_init-functions.php:348
+#: rvy_init-functions.php:349
 msgid "Not Submitted"
 msgstr "Μη Υποβληθεί"
 
-#: rvy_init-functions.php:349
+#: rvy_init-functions.php:350
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "Μη Υποβληθεί <span class=\"count\">(%s)</span>"
 msgstr[1] "Μη Υποβληθεί <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:354
+#: rvy_init-functions.php:355
 msgid "Submitted Revision"
 msgstr "Υποβληθείσα Αναθεώρηση"
 
-#: rvy_init-functions.php:355
-#: rvy_init-functions.php:496
+#: rvy_init-functions.php:356
+#: rvy_init-functions.php:497
 msgid "Submit Revision"
 msgstr "Υποβολή Αναθεώρησης"
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:359
 msgid "The Revision is Submitted"
 msgstr "Η Αναθεώρηση έχει υποβληθεί"
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:359
 msgid "Revision Submitted"
 msgstr "Αναθεώρηση Υποβλήθηκε"
 
-#: rvy_init-functions.php:364
+#: rvy_init-functions.php:365
 #: visual-compare_rvy.php:161
 msgid "Submitted Revisions"
 msgstr "Υποβληθείσες Αναθεωρήσεις"
 
-#: rvy_init-functions.php:365
+#: rvy_init-functions.php:366
 msgid "Submitted"
 msgstr "Υποβλήθηκε"
 
-#: rvy_init-functions.php:366
+#: rvy_init-functions.php:367
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "Υποβλήθηκε <span class=\"count\">(%s)</span>"
 msgstr[1] "Υποβλήθηκε <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:371
+#: rvy_init-functions.php:372
 msgid "Scheduled Revision"
 msgstr "Προγραμματισμένη Αναθεώρηση"
 
-#: rvy_init-functions.php:372
+#: rvy_init-functions.php:373
 msgid "Schedule Revision"
 msgstr "Προγραμματισμός Αναθεώρησης"
 
-#: rvy_init-functions.php:375
+#: rvy_init-functions.php:376
 msgid "The Revision is Scheduled"
 msgstr "Η Αναθεώρηση έχει προγραμματιστεί"
 
-#: rvy_init-functions.php:375
+#: rvy_init-functions.php:376
 msgid "Revision Scheduled"
 msgstr "Αναθεώρηση Προγραμματισμένη"
 
-#: rvy_init-functions.php:383
+#: rvy_init-functions.php:384
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
 msgstr[0] "Προγραμματισμένο <span class=\"count\">(%s)</span>"
 msgstr[1] "Προγραμματισμένο <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:483
+#: rvy_init-functions.php:484
 #, php-format
 msgid "%sMy Copies & Changes%s(%s)"
 msgid_plural "%sMy Copies & Changes%s(%s)"
 msgstr[0] "%sΟι Αντίγραφές & Αλλαγές μου%s(%s)"
 msgstr[1] "%sΟι Αντίγραφές & Αλλαγές μου%s(%s)"
 
-#: rvy_init-functions.php:484
+#: rvy_init-functions.php:485
 #, php-format
 msgid "%sMy Revisions%s(%s)"
 msgid_plural "%sMy Revisions%s(%s)"
 msgstr[0] "%sΟι Αναθεωρήσεις μου%s(%s)"
 msgstr[1] "%sΟι Αναθεωρήσεις μου%s(%s)"
 
-#: rvy_init-functions.php:486
+#: rvy_init-functions.php:487
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
 msgstr[0] "%sΑναθεωρήσεις στα Δημοσιεύματά μου%s(%s)</span>"
 msgstr[1] "%sΑναθεωρήσεις στα Δημοσιεύματά μου%s(%s)"
 
-#: rvy_init-functions.php:492
+#: rvy_init-functions.php:493
 msgid "Published Post"
 msgstr "Δημοσιευμένο Δημοσίευμα"
 
-#: rvy_init-functions.php:497
+#: rvy_init-functions.php:498
 msgid "Submit Changes"
 msgstr "Υποβολή Αλλαγών"
 
-#: rvy_init-functions.php:714
+#: rvy_init-functions.php:703
 msgid "Revisor"
 msgstr "Αναθεωρητής"
 
-#: rvy_init-functions.php:837
+#: rvy_init-functions.php:826
 msgid ""
 "The unfiltered_html capability is required to create a revision of this "
 "post."
@@ -4627,7 +4924,7 @@ msgstr ""
 "Η δυνατότητα unfiltered_html απαιτείται για τη δημιουργία μιας αναθεώρησης "
 "αυτού του δημοσιεύματος."
 
-#: rvy_init-functions.php:1326
+#: rvy_init-functions.php:1315
 msgid "Revision Workflow"
 msgstr "Ροή Εργασίας Αναθεώρησης"
 
@@ -5520,8 +5817,8 @@ msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "Αναθεωρήσεις"
 
-#: admin/class-list-table-archive.php:1285
-#: admin/class-list-table_rvy.php:2403
+#: admin/class-list-table-archive.php:1108
+#: admin/class-list-table_rvy.php:2400
 #: admin/post-edit_rvy.php:226
 #: admin/post-edit_rvy.php:290
 #: admin/post-edit_rvy.php:304
@@ -5529,29 +5826,29 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "Σύγκριση"
 
-#: admin/class-list-table-archive.php:1307
+#: admin/class-list-table-archive.php:1130
 msgctxt "revisions"
 msgid "Diff"
 msgstr "Διαφορά"
 
-#: admin/class-list-table_rvy.php:2415
+#: admin/class-list-table_rvy.php:2412
 msgctxt "revisions"
 msgid "Approve"
 msgstr "Έγκριση"
 
-#: admin/class-list-table_rvy.php:2422
+#: admin/class-list-table_rvy.php:2419
 msgctxt "revisions"
 msgid "Publish"
 msgstr "Δημοσίευση"
 
-#: admin/class-list-table_rvy.php:2431
+#: admin/class-list-table_rvy.php:2428
 msgctxt "revisions"
 msgid "Decline"
 msgstr "Απόρριψη"
 
-#: admin/class-list-table-archive.php:1323
-#: admin/class-list-table_rvy.php:1098
-#: admin/class-list-table_rvy.php:2389
+#: admin/class-list-table-archive.php:1146
+#: admin/class-list-table_rvy.php:1095
+#: admin/class-list-table_rvy.php:2386
 #: admin/history_rvy.php:1532
 #: admin/post-edit_rvy.php:191
 #: admin/revision-ui_rvy.php:276
@@ -5565,7 +5862,7 @@ msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2575
+#: admin/options.php:2673
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
@@ -5608,7 +5905,7 @@ msgctxt "post revision"
 msgid "%1$s by %2$s"
 msgstr "%1$s από %2$s"
 
-#: rvy_init-functions.php:726
+#: rvy_init-functions.php:715
 msgctxt "User role"
 msgid "Revisor"
 msgstr "Επιμελητής"
