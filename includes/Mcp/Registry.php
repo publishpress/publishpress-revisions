@@ -8,7 +8,7 @@
 
 namespace PublishPress\Revisions\Mcp;
 
-defined('ABSPATH') || exit;
+\defined('ABSPATH') || exit;
 class Registry
 {
     public static function object(array $properties = [], array $required = []): array
