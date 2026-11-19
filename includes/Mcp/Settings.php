@@ -4,7 +4,7 @@
 
 namespace PublishPress\Revisions\Mcp;
 
-defined('ABSPATH') || exit;
+\defined('ABSPATH') || exit;
 class Settings
 {
     public static function register(): void
