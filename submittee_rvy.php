@@ -103,7 +103,7 @@ class Revisionary_Submittee {
 			$post_type_options = ['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'];
 
 			foreach ( $reviewed_options as $option_basename ) {
-				$value = $this->sanitizeSettingValue($option_basename, isset($_POST[$option_basename]) ? wp_unslash($_POST[$option_basename]) : '');
+				$value = $this->sanitizeSettingValue($option_basename, isset($_POST[$option_basename]) ? wp_unslash($_POST[$option_basename]) : ''); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The setting-specific sanitizer validates scalar and array values.
 
 				rvy_update_option( $default_prefix . $option_basename, $value, $sitewide );
 			}
