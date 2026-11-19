@@ -1149,7 +1149,7 @@ function rvy_set_revision_author($revision_id, $author_id) {
     return (int) get_post_meta($revision_id, '_rvy_author_selection', true) === (int) $author_id;
 }
 
-/** Convert native disabled field switches into the metadata key list expected by copying. */
+/** Convert disabled native field switches into metadata keys; default to revision fields. */
 function revisionary_disabled_meta_keys($fields = null) {
     if (null === $fields) {
         global $revisionary;
