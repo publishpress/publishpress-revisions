@@ -1,5 +1,8 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.3.5] - 19 Nov 2026
+- Added: Private MCP actions for native revision workflows, settings and permissions.
+
 [4.3.4] - 17 Nov 2026
 
 - Fixed : Scheduled Revisions are moved back to Submitted instead of being published #2663

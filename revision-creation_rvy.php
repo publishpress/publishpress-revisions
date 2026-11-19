@@ -234,12 +234,18 @@ class RevisionCreation {
 		// If term selections are not posted for revision, store current published terms
 		revisionary_copy_terms($post_id, $copy_id, $_args);
 
+		if (is_array($enabled_fields)) {
+			$skip_meta_keys = revisionary_disabled_meta_keys($enabled_fields);
+		} else {
+			$skip_meta_keys = [];
+		}
 
-        $meta_result = revisionary_copy_postmeta($post_id, $copy_id, compact('skip_meta_keys'));
-        if (is_wp_error($meta_result)) {
-            wp_delete_post($copy_id, true);
-            return $meta_result;
-        }
+		$meta_result = revisionary_copy_postmeta($post_id, $copy_id, compact('skip_meta_keys'));
+
+    if (is_wp_error($meta_result)) {
+        wp_delete_post($copy_id, true);
+        return $meta_result;
+    }
 
 		if ($post_id != $copy_id) {
 			rvy_update_post_meta($copy_id, '_rvy_source_post_id', $post_id);
