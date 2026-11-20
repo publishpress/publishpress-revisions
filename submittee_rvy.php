@@ -63,6 +63,33 @@ class Revisionary_Submittee {
 		}
 	}
 	
+    /** Sanitize one unslashed native setting independently of form transport. */
+    public function sanitizeSettingValue($name, $value) {
+      $post_type_options = ['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'];
+      
+      if (is_array($value)) {
+					$value = array_map('sanitize_key', wp_unslash($value));
+          $value = array_combine(array_map('sanitize_key', array_keys($value)), array_values($value));
+          if (in_array($name, $post_type_options, true)) {
+             // Settings are saved before most plugins register their post types on init,
+             // so preserve valid keys independently of registration timing.
+             $value = array_filter($value, function ($post_type) {
+                return ('' !== $post_type) && (strlen($post_type) <= 20);
+             }, ARRAY_FILTER_USE_KEY);
+          }
+			 } else {
+						if ('revision_editor_bg_color' == $name) {
+							$value = sanitize_hex_color(wp_unslash($value));
+						} elseif (is_numeric($value)) {
+							$value = intval($value);
+						} else {
+							$value = sanitize_key($value);
+						}
+       }
+
+       return $value;
+    }
+
 	function update_options( $sitewide = false, $customize_defaults = false ) {
 		global $wpdb, $rvy_options_sitewide;
 		
@@ -76,29 +103,7 @@ class Revisionary_Submittee {
 			$post_type_options = ['enabled_post_types', 'enabled_post_types_archive', 'enabled_post_types_copy'];
 
 			foreach ( $reviewed_options as $option_basename ) {
-				if (isset($_POST[$option_basename])) {
-					if (is_array($_POST[$option_basename])) {
-						$value = array_map('sanitize_key', wp_unslash($_POST[$option_basename]));
-                        $value = array_combine(array_map('sanitize_key', array_keys($value)), array_values($value));
-                        if (in_array($option_basename, $post_type_options, true)) {
-                            // Settings are saved before most plugins register their post types on init,
-                            // so preserve valid keys independently of registration timing.
-                            $value = array_filter($value, function ($post_type) {
-                                return ('' !== $post_type) && (strlen($post_type) <= 20);
-                            }, ARRAY_FILTER_USE_KEY);
-                        }
-					} else {
-						if ('revision_editor_bg_color' == $option_basename) {
-							$value = sanitize_hex_color(wp_unslash($_POST[$option_basename]));
-						} elseif (is_numeric($_POST[$option_basename])) {
-							$value = intval($_POST[$option_basename]);
-						} else {
-							$value = sanitize_key($_POST[$option_basename]);
-						}
-					}
-				} else {
-					$value = '';
-				}
+				$value = $this->sanitizeSettingValue($option_basename, isset($_POST[$option_basename]) ? wp_unslash($_POST[$option_basename]) : ''); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The setting-specific sanitizer validates scalar and array values.
 
 				rvy_update_option( $default_prefix . $option_basename, $value, $sitewide );
 			}

@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-10-29T04:26:37+00:00\n"
-"PO-Revision-Date: 2026-11-17 18:45+0000\n"
+"PO-Revision-Date: 2026-11-19 18:06+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: revisionary\n"
 "Language: th\n"
@@ -36,6 +36,7 @@ msgstr ""
 "่อส่ง, อนุมัติและกำหนดการเปลี่ยนแปลง."
 
 #: revisionary.php:6
+#: includes/Mcp/bootstrap.php:16
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
@@ -82,7 +83,7 @@ msgstr "การย้ายการแก้ไขที่กำหนดเ
 #: admin/action-scheduler_rvy.php:194
 #: admin/admin_rvy.php:282
 #: admin/revision-queue_rvy.php:172
-#: rvy_init-functions.php:381
+#: rvy_init-functions.php:382
 #: visual-compare_rvy.php:176
 msgid "Scheduled Revisions"
 msgstr "การแก้ไขที่กำหนดเวลาแล้ว"
@@ -93,10 +94,10 @@ msgstr "บันทึกการกำหนดเวลา"
 
 #: admin/action-scheduler_rvy.php:211
 #: admin/admin-posts_rvy.php:292
-#: admin/class-list-table-archive.php:659
+#: admin/class-list-table-archive.php:477
 #: admin/post-edit-block-ui_rvy.php:165
 #: admin/post-edit_rvy.php:136
-#: rvy_init-functions.php:488
+#: rvy_init-functions.php:489
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3204
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3205
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3457
@@ -107,7 +108,7 @@ msgid "Revision"
 msgstr "การแก้ไข"
 
 #: admin/action-scheduler_rvy.php:212
-#: admin/class-list-table_rvy.php:2226
+#: admin/class-list-table_rvy.php:2223
 #: admin/history_rvy.php:1427
 #: admin/post-editor-workflow-ui_rvy.php:74
 #: admin/post-editor-workflow-ui_rvy.php:115
@@ -123,8 +124,8 @@ msgid "Hook"
 msgstr "Hook"
 
 #: admin/action-scheduler_rvy.php:214
-#: admin/class-list-table_rvy.php:828
-#: admin/options.php:1242
+#: admin/class-list-table_rvy.php:825
+#: admin/options.php:1346
 msgid "Publication"
 msgstr "การเผยแพร่"
 
@@ -151,7 +152,7 @@ msgid "Search revision or hook ID"
 msgstr "ค้นหาการแก้ไขหรือ ID ของ Hook"
 
 #: admin/action-scheduler_rvy.php:278
-#: admin/class-list-table_rvy.php:861
+#: admin/class-list-table_rvy.php:858
 msgid "View preview"
 msgstr "ดูตัวอย่าง"
 
@@ -161,6 +162,7 @@ msgid ""
 "Note: %1$d Revision is scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
 msgid_plural ""
+msgstr[0] ""
 "Note: %1$d Revisions are scheduled for future publication with legacy "
 "triggering. %2$s for better reliability."
 msgstr[0] ""
@@ -188,9 +190,9 @@ msgstr "พลาดการกำหนดเวลา"
 #: admin/action-scheduler_rvy.php:398
 #: admin/action-scheduler_rvy.php:450
 #: admin/action-scheduler_rvy.php:455
-#: admin/class-list-table_rvy.php:1691
+#: admin/class-list-table_rvy.php:1688
 #: admin/revisions.php:72
-#: rvy_init-functions.php:382
+#: rvy_init-functions.php:383
 msgid "Scheduled"
 msgstr "กำหนดเวลา"
 
@@ -247,8 +249,8 @@ msgstr "(ดูบันทึกการกำหนดเวลา)"
 
 #: admin/action-scheduler_rvy.php:425
 #: admin/action-scheduler_rvy.php:472
-#: admin/class-list-table-archive.php:835
-#: functions.php:567
+#: admin/class-list-table-archive.php:653
+#: functions.php:580
 msgid "Scheduled Revision Publication"
 msgstr "การเผยแพร่การแก้ไขที่กำหนดเวลา"
 
@@ -295,7 +297,7 @@ msgid ""
 msgstr "ความสามารถ unfiltered_html จำเป็นต้องสร้างการแก้ไขของโพสต์นี้ ดู %sเอกสาร%s."
 
 #: admin/admin-posts_rvy.php:208
-#: rvy_init-functions.php:824
+#: rvy_init-functions.php:813
 msgid "The post already has a revision in process."
 msgstr "โพสต์นี้มีการแก้ไขที่กำลังดำเนินการอยู่แล้ว."
 
@@ -306,21 +308,21 @@ msgstr "มีการแก้ไข"
 #: admin/admin-posts_rvy.php:329
 #: admin/admin_rvy.php:468
 #: admin/admin_rvy.php:538
-#: admin/options.php:185
-#: admin/options.php:679
+#: admin/options.php:424
+#: admin/options.php:811
 msgid "New Revisions"
 msgstr "การแก้ไขใหม่"
 
 #: admin/admin-posts_rvy.php:352
-#: admin/class-list-table_rvy.php:2349
+#: admin/class-list-table_rvy.php:2346
 #: admin/duplicate-capabilities_rvy.php:47
-#: rvy_init-functions.php:282
+#: rvy_init-functions.php:283
 msgid "Duplicate"
 msgstr "ซ้ำ"
 
 #: admin/admin-posts_rvy.php:359
-#: admin/class-list-table_rvy.php:1065
-#: admin/class-list-table_rvy.php:2338
+#: admin/class-list-table_rvy.php:1062
+#: admin/class-list-table_rvy.php:2335
 #: admin/edit-revision-classic-ui_rvy.php:216
 #: admin/history_rvy.php:1469
 #: admin/post-editor-workflow-ui_rvy.php:120
@@ -331,7 +333,7 @@ msgid "Edit"
 msgstr "แก้ไข"
 
 #: admin/admin_lib-mu_rvy.php:12
-#: admin/options.php:371
+#: admin/options.php:503
 msgid "PublishPress Revisions Network Settings"
 msgstr "การตั้งค่าเครือข่าย PublishPress Revisions"
 
@@ -340,7 +342,7 @@ msgid "Network Settings"
 msgstr "การตั้งค่าเครือข่าย"
 
 #: admin/admin_lib-mu_rvy.php:23
-#: admin/options.php:373
+#: admin/options.php:505
 msgid "PublishPress Revisions Network Defaults"
 msgstr "ค่าเริ่มต้นเครือข่าย PublishPress Revisions"
 
@@ -359,8 +361,8 @@ msgstr "การแก้ไข"
 #: admin/admin_rvy.php:477
 #: admin/admin_rvy.php:478
 #: admin/admin_rvy.php:539
-#: admin/options.php:184
-#: admin/options.php:580
+#: admin/options.php:423
+#: admin/options.php:712
 #: admin/revision-archive_rvy.php:99
 #: admin/revisions.php:236
 #: visual-compare_rvy.php:144
@@ -368,23 +370,23 @@ msgid "Past Revisions"
 msgstr "การแก้ไขที่ผ่านมา"
 
 #: admin/admin_rvy.php:495
-#: admin/options.php:377
+#: admin/options.php:509
 msgid "PublishPress Revisions Settings"
 msgstr "การตั้งค่า PublishPress Revisions"
 
 #: admin/admin_rvy.php:495
 #: admin/admin_rvy.php:542
-#: admin/options.php:179
+#: admin/options.php:418
 msgid "Settings"
 msgstr "การตั้งค่า"
 
 #: admin/admin_rvy.php:504
 #: admin/admin_rvy.php:505
 #: admin/admin_rvy.php:545
-#: admin/options.php:2134
-#: admin/options.php:2162
-#: admin/options.php:2423
-#: admin/options.php:2820
+#: admin/options.php:2233
+#: admin/options.php:2261
+#: admin/options.php:2521
+#: admin/options.php:2918
 #: includes/CoreAdmin.php:214
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:2680
 #: includes/visual-post-compare/visual-post-compare-standalone.js:2701
@@ -496,40 +498,40 @@ msgstr "นี่คือการอัปเดตสำหรับการ
 msgid "This was an update to a revision which was published after further editing."
 msgstr "นี่คือการอัปเดตสำหรับการแก้ไขที่เผยแพร่หลังจากการแก้ไขเพิ่มเติม"
 
-#: admin/class-list-table-archive.php:271
+#: admin/class-list-table-archive.php:230
 #, fuzzy, php-format
 msgid "Revision Author: %s"
 msgstr "Revision Author: %s"
 
-#: admin/class-list-table-archive.php:290
+#: admin/class-list-table-archive.php:249
 #, fuzzy, php-format
 msgid "Post Author: %s"
 msgstr "Post Author: %s"
 
-#: admin/class-list-table-archive.php:300
+#: admin/class-list-table-archive.php:259
 #, fuzzy, php-format
 msgid "Revision Date: %s"
 msgstr "Revision Date: %s"
 
-#: admin/class-list-table-archive.php:310
+#: admin/class-list-table-archive.php:269
 #, fuzzy, php-format
 msgid "Approved by: %s"
 msgstr "Approved by: %s"
 
-#: admin/class-list-table-archive.php:320
+#: admin/class-list-table-archive.php:279
 #, fuzzy, php-format
 msgid "Publication Date: %s"
 msgstr "Publication Date: %s"
 
-#: admin/class-list-table-archive.php:341
+#: admin/class-list-table-archive.php:300
 #: admin/revision-queue_rvy.php:183
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "ผลการค้นหาสำหรับ \"%s\""
 
-#: admin/class-list-table-archive.php:619
-#: admin/class-list-table_rvy.php:1836
-#: admin/class-list-table_rvy.php:2364
+#: admin/class-list-table-archive.php:437
+#: admin/class-list-table_rvy.php:1833
+#: admin/class-list-table_rvy.php:2361
 #: admin/post-edit-block-ui_rvy.php:125
 #: admin/post-edit_rvy.php:123
 #: admin/post-edit_rvy.php:129
@@ -537,241 +539,255 @@ msgstr "ผลการค้นหาสำหรับ \"%s\""
 msgid "Delete Revision"
 msgstr "ลบการแก้ไข"
 
-#: admin/class-list-table-archive.php:658
+#: admin/class-list-table-archive.php:476
 msgid "Select all revisions"
 msgstr "เลือกการแก้ไขทั้งหมด"
 
-#: admin/class-list-table-archive.php:660
-#: admin/class-list-table_rvy.php:804
+#: admin/class-list-table-archive.php:478
+#: admin/class-list-table_rvy.php:801
 #: admin/duplicate-capabilities_rvy.php:47
 msgid "Post Type"
 msgstr "post type"
 
-#: admin/class-list-table-archive.php:661
-#: rvy_init-functions.php:489, fuzzy
+#: admin/class-list-table-archive.php:479
+#: rvy_init-functions.php:490, fuzzy
 msgid "Revised By"
 msgstr "Revised By"
 
-#: admin/class-list-table-archive.php:662
-#: rvy_init-functions.php:490, fuzzy
+#: admin/class-list-table-archive.php:480
+#: rvy_init-functions.php:491, fuzzy
 msgid "Revision Date"
 msgstr "Revision Date"
 
-#: admin/class-list-table-archive.php:663, fuzzy
+#: admin/class-list-table-archive.php:481, fuzzy
 msgid "Action"
 msgstr "Action"
 
-#: admin/class-list-table-archive.php:664, fuzzy
+#: admin/class-list-table-archive.php:482, fuzzy
 msgid "Approved By"
 msgstr "Approved By"
 
-#: admin/class-list-table-archive.php:665, fuzzy
+#: admin/class-list-table-archive.php:483, fuzzy
 msgid "Published Date"
 msgstr "Published Date"
 
-#: admin/class-list-table-archive.php:666, fuzzy
+#: admin/class-list-table-archive.php:484, fuzzy
 msgid "Published Author"
 msgstr "Published Author"
 
-#: admin/class-list-table-archive.php:695
-#: admin/class-list-table_rvy.php:1022
+#: admin/class-list-table-archive.php:513
+#: admin/class-list-table_rvy.php:1019
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:464
 msgid "just now"
 msgstr "เพิ่งตอนนี้"
 
-#: admin/class-list-table-archive.php:700
-#: admin/class-list-table_rvy.php:1027
+#: admin/class-list-table-archive.php:518
+#: admin/class-list-table_rvy.php:1024
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:469
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s นาทีที่แล้ว"
 
-#: admin/class-list-table-archive.php:700
-#: admin/class-list-table_rvy.php:1027
+#: admin/class-list-table-archive.php:518
+#: admin/class-list-table_rvy.php:1024
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:469
 #, php-format
 msgid "%s minute ago"
 msgstr "%s นาทีที่แล้ว"
 
-#: admin/class-list-table-archive.php:707
-#: admin/class-list-table_rvy.php:1034
+#: admin/class-list-table-archive.php:525
+#: admin/class-list-table_rvy.php:1031
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:476
 #, php-format
 msgid "%s hours ago"
 msgstr "%s ชั่วโมงที่แล้ว"
 
-#: admin/class-list-table-archive.php:707
-#: admin/class-list-table_rvy.php:1034
+#: admin/class-list-table-archive.php:525
+#: admin/class-list-table_rvy.php:1031
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:476
 #, php-format
 msgid "%s hour ago"
 msgstr "%s ชั่วโมงที่แล้ว"
 
-#: admin/class-list-table-archive.php:837
-#: functions.php:569
+#: admin/class-list-table-archive.php:655
+#: functions.php:582
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:1449
 #: includes/visual-post-compare/visual-post-compare-standalone.js:1470, fuzzy
 msgid "Revision Publication"
 msgstr "Revision Publication"
 
-#: admin/class-list-table-archive.php:848
-#: functions.php:580
+#: admin/class-list-table-archive.php:666
+#: functions.php:593
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:394
 #, php-format
 msgid "Autosave of %s"
 msgstr "การบันทึกอัตโนมัติของ %s"
 
-#: admin/class-list-table-archive.php:853
-#: functions.php:585
+#: admin/class-list-table-archive.php:671
+#: functions.php:598
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:396
 #, php-format
 msgid "Edit of %s"
 msgstr "การแก้ไขของ %s"
 
-#: admin/class-list-table-archive.php:862
-#: functions.php:594
+#: admin/class-list-table-archive.php:680
+#: functions.php:607
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:401
 msgid "Autosave of published Revision"
 msgstr "การบันทึกอัตโนมัติของการแก้ไขที่เผยแพร่"
 
-#: admin/class-list-table-archive.php:867
-#: functions.php:599
+#: admin/class-list-table-archive.php:685
+#: functions.php:612
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:403
 msgid "Edit of published Revision"
 msgstr "การแก้ไขของการแก้ไขที่เผยแพร่"
 
-#: admin/class-list-table-archive.php:872
-#: functions.php:604
+#: admin/class-list-table-archive.php:690
+#: functions.php:617
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:408
 msgid "Autosave"
 msgstr "บันทึกอัตโนมัติ"
 
-#: admin/class-list-table-archive.php:874
-#: functions.php:606
-#: functions.php:670
+#: admin/class-list-table-archive.php:692
+#: functions.php:619
+#: functions.php:683
 msgid "Direct Edit"
 msgstr "การแก้ไขโดยตรง"
 
-#: admin/class-list-table-archive.php:918
-#: admin/class-list-table_rvy.php:800
+#: admin/class-list-table-archive.php:736
+#: admin/class-list-table_rvy.php:797
 msgid "Select revision"
 msgstr "เลือกการแก้ไข"
 
-#: admin/class-list-table-archive.php:939
+#: admin/class-list-table-archive.php:757
 msgid "Filter by original post type"
 msgstr "กรองตามประเภทโพสต์ต้นฉบับ"
 
-#: admin/class-list-table-archive.php:943
-#: admin/class-list-table_rvy.php:1897
+#: admin/class-list-table-archive.php:761
+#: admin/class-list-table_rvy.php:1894
 msgid "All Post Types"
 msgstr "ทุกประเภทโพสต์"
 
-#: admin/class-list-table-archive.php:973
-#: admin/class-list-table_rvy.php:1948
+#: admin/class-list-table-archive.php:792
+#: admin/class-list-table_rvy.php:1945
 msgid "Filter by revision author"
 msgstr "กรองตามผู้เขียนการแก้ไข"
 
-#: admin/class-list-table-archive.php:977
-#: admin/class-list-table_rvy.php:1952
+#: admin/class-list-table-archive.php:796
+#: admin/class-list-table_rvy.php:1949
 msgid "All Revision Authors"
 msgstr "ผู้เขียนการแก้ไขทั้งหมด"
 
-#: admin/class-list-table-archive.php:1022
-#: admin/class-list-table_rvy.php:1982
+#: admin/class-list-table-archive.php:842
+#: admin/class-list-table_rvy.php:1979
 msgid "Filter by revision date"
 msgstr "กรองตามวันที่การแก้ไข"
 
-#: admin/class-list-table-archive.php:1026
-#: admin/class-list-table_rvy.php:1986
+#: admin/class-list-table-archive.php:846
+#: admin/class-list-table_rvy.php:1983
 msgid "All Revision Dates"
 msgstr "วันที่การแก้ไขทั้งหมด"
 
-#: admin/class-list-table-archive.php:1081
+#: admin/class-list-table-archive.php:903
 msgid "Filter by published date"
 msgstr "กรองตามวันที่เผยแพร่"
 
-#: admin/class-list-table-archive.php:1085
+#: admin/class-list-table-archive.php:907
 msgid "All Publish Dates"
 msgstr "วันที่เผยแพร่ทั้งหมด"
 
-#: admin/class-list-table-archive.php:1118
+#: admin/class-list-table-archive.php:941
 msgid "Filter by approver"
 msgstr "กรองโดยผู้อนุมัติ"
 
-#: admin/class-list-table-archive.php:1122
+#: admin/class-list-table-archive.php:945
 msgid "All Approvers"
 msgstr "ผู้อนุมัติทั้งหมด"
 
-#: admin/class-list-table-archive.php:1155
-#: admin/class-list-table_rvy.php:2054
+#: admin/class-list-table-archive.php:979
+#: admin/class-list-table_rvy.php:2051
 msgid "Filter by published author"
 msgstr "กรองโดยผู้เขียนที่เผยแพร่"
 
-#: admin/class-list-table-archive.php:1159
-#: admin/class-list-table_rvy.php:2058
+#: admin/class-list-table-archive.php:983
+#: admin/class-list-table_rvy.php:2055
 msgid "All Authors"
 msgstr "ผู้เขียนทั้งหมด"
 
-#: admin/class-list-table-archive.php:1175
-#: admin/class-list-table-archive.php:1355
-#: admin/class-list-table_rvy.php:1080
-#: admin/class-list-table_rvy.php:2074
+#: admin/class-list-table-archive.php:1000
+#: admin/class-list-table-archive.php:1178
+#: admin/class-list-table_rvy.php:1077
+#: admin/class-list-table_rvy.php:2071
 msgid "Filter"
 msgstr "กรอง"
 
-#: admin/class-list-table-archive.php:1181
-#: admin/class-list-table_rvy.php:2094
+#: admin/class-list-table-archive.php:1006
+#: admin/class-list-table_rvy.php:2091
 msgid "Reset Filters"
 msgstr "รีเซ็ตการกรอง"
 
-#: admin/class-list-table-archive.php:1212
-#: admin/options.php:2434
+#: admin/class-list-table-archive.php:1032
+#: admin/options.php:2532
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: admin/class-list-table-archive.php:1226
+#: admin/class-list-table-archive.php:1034
 msgid "My Revisions"
 msgstr "การแก้ไขของฉัน"
 
-#: admin/class-list-table-archive.php:1281
+#: admin/class-list-table-archive.php:1054
+msgid "Previous page"
+msgstr "หน้าก่อนหน้า"
+
+#: admin/class-list-table-archive.php:1057
+#. translators: %d: current archive page number.
+#, php-format
+msgid "Page %d"
+msgstr "หน้า %d"
+
+#: admin/class-list-table-archive.php:1059
+msgid "Next page"
+msgstr "หน้าถัดไป"
+
+#: admin/class-list-table-archive.php:1104
 #, php-format
 msgid "Visually compare changes in %s"
 msgstr "เปรียบเทียบการเปลี่ยนแปลงใน %s"
 
-#: admin/class-list-table-archive.php:1302
+#: admin/class-list-table-archive.php:1125
 #, php-format
 msgid "Classic text diff for %s"
 msgstr "ความแตกต่างของข้อความแบบคลาสสิกสำหรับ %s"
 
-#: admin/class-list-table-archive.php:1322
-#: admin/class-list-table_rvy.php:2388
+#: admin/class-list-table-archive.php:1145
+#: admin/class-list-table_rvy.php:2385
 #: admin/post-editor-workflow-ui_rvy.php:74
 #: admin/post-editor-workflow-ui_rvy.php:233
 msgid "Preview Revision"
 msgstr "ดูตัวอย่างการแก้ไข"
 
-#: admin/class-list-table-archive.php:1336
+#: admin/class-list-table-archive.php:1159
 msgid "Edit parent revision"
 msgstr "แก้ไขการแก้ไขหลัก"
 
-#: admin/class-list-table-archive.php:1336
+#: admin/class-list-table-archive.php:1159
 msgid "Edit parent post"
 msgstr "แก้ไขโพสต์หลัก"
 
-#: admin/class-list-table-archive.php:1337
+#: admin/class-list-table-archive.php:1160
 msgid "Edit Parent"
 msgstr "แก้ไขหลัก"
 
-#: admin/class-list-table-archive.php:1354
+#: admin/class-list-table-archive.php:1177
 msgid "Filter: list revisions of this post"
 msgstr "กรอง: แสดงรายการการแก้ไขของโพสต์นี้"
 
-#: admin/class-list-table-archive.php:1369
+#: admin/class-list-table-archive.php:1192
 msgid "Delete Past Revision"
 msgstr "ลบการแก้ไขที่ผ่านมา"
 
-#: admin/class-list-table-archive.php:1370
-#: admin/class-list-table_rvy.php:2371
+#: admin/class-list-table-archive.php:1193
+#: admin/class-list-table_rvy.php:2368
 #: admin/post-edit_rvy.php:85
 #: admin/revision-ui_rvy.php:296
 #: admin/revision-ui_rvy.php:408
@@ -782,7 +798,15 @@ msgstr "ลบการแก้ไขที่ผ่านมา"
 msgid "Delete"
 msgstr "ลบ"
 
-#: admin/class-list-table-archive.php:1457
+#: admin/class-list-table-archive.php:1281
+msgid ""
+"No accessible revisions on this page. Continue to the next page or adjust "
+"the filters."
+msgstr ""
+"ไม่มีการแก้ไขที่เข้าถึงได้ในหน้านี้ "
+"โปรดไปยังหน้าถัดไปหรือปรับเปลี่ยนตัวกรอง."
+
+#: admin/class-list-table-archive.php:1283
 msgid "No revisions found."
 msgstr "ไม่พบการแก้ไขใด ๆ"
 
@@ -790,125 +814,124 @@ msgstr "ไม่พบการแก้ไขใด ๆ"
 msgid "Sorry, you are not allowed to delete this item."
 msgstr "ขอโทษครับ/ค่ะ คุณไม่ได้รับอนุญาตให้ลบรายการนี้。"
 
-#: admin/class-list-table_rvy.php:803
-#: admin/options.php:797
-#: admin/options.php:960
+#: admin/class-list-table_rvy.php:800
+#: admin/options.php:91
 #: admin/post-editor-workflow-ui_rvy.php:36
 msgid "Status"
 msgstr "สถานะ"
 
-#: admin/class-list-table_rvy.php:824
+#: admin/class-list-table_rvy.php:821
 #: front_rvy.php:793
-#: rvy_init-functions.php:373
+#: rvy_init-functions.php:374
 msgid "Schedule"
 msgstr "กำหนดการ"
 
-#: admin/class-list-table_rvy.php:889
-#: admin/class-list-table_rvy.php:912
+#: admin/class-list-table_rvy.php:886
+#: admin/class-list-table_rvy.php:909
 #, php-format
 msgid "Scheduled publication: %s"
 msgstr "การเผยแพร่ที่กำหนดเวลา: %s"
 
-#: admin/class-list-table_rvy.php:905
+#: admin/class-list-table_rvy.php:902
 #: admin/history_rvy.php:1340
 #, php-format
 msgid "%s ago"
 msgstr "%s ที่ผ่านมา"
 
-#: admin/class-list-table_rvy.php:915
+#: admin/class-list-table_rvy.php:912
 #, php-format
 msgid "Requested publication: %s"
 msgstr "การเผยแพร่ที่ขอ: %s"
 
-#: admin/class-list-table_rvy.php:917
+#: admin/class-list-table_rvy.php:914
 msgid "This revision is not scheduled yet."
 msgstr "การแก้ไขนี้ยังไม่ได้กำหนดเวลา"
 
-#: admin/class-list-table_rvy.php:928
+#: admin/class-list-table_rvy.php:925
 msgid "Missed schedule"
 msgstr "พลาดกำหนดการ"
 
-#: admin/class-list-table_rvy.php:946
+#: admin/class-list-table_rvy.php:943
 #. translators: %s: human-readable time difference, e.g. "3 days"
 #, php-format
 msgid "in %s"
 msgstr "ใน %s"
 
-#: admin/class-list-table_rvy.php:990
+#: admin/class-list-table_rvy.php:987
 #: admin/history_rvy.php:1120
 msgid "No author"
 msgstr "ไม่มีผู้เขียน"
 
-#: admin/class-list-table_rvy.php:1064
+#: admin/class-list-table_rvy.php:1061
 #. translators: %s: post title
 msgid "Edit published post"
 msgstr "แก้ไขโพสต์ที่เผยแพร่"
 
-#: admin/class-list-table_rvy.php:1079
+#: admin/class-list-table_rvy.php:1076
 #. translators: %s: post title
 #, php-format
 msgid "View only revisions of %s"
 msgstr "ดูเฉพาะการแก้ไขของ %s"
 
-#: admin/class-list-table_rvy.php:1090
+#: admin/class-list-table_rvy.php:1087
 msgid "View published post"
 msgstr "ดูโพสต์ที่เผยแพร่"
 
-#: admin/class-list-table_rvy.php:1091
+#: admin/class-list-table_rvy.php:1088
 msgid "View"
 msgstr "ดู"
 
-#: admin/class-list-table_rvy.php:1097
+#: admin/class-list-table_rvy.php:1094
 msgid "Preview published post"
 msgstr "ดูตัวอย่างโพสต์ที่เผยแพร่"
 
-#: admin/class-list-table_rvy.php:1122
+#: admin/class-list-table_rvy.php:1119
 msgid "History: compare past revisions"
 msgstr "ประวัติ: เปรียบเทียบการแก้ไขที่ผ่านมา"
 
-#: admin/class-list-table_rvy.php:1123
+#: admin/class-list-table_rvy.php:1120
 msgid "History"
 msgstr "ประวัติ"
 
-#: admin/class-list-table_rvy.php:1151
+#: admin/class-list-table_rvy.php:1148
 msgid "Show more details"
 msgstr "แสดงรายละเอียดเพิ่มเติม"
 
-#: admin/class-list-table_rvy.php:1452
+#: admin/class-list-table_rvy.php:1449
 msgid "There are no scheduled revisions at this time."
 msgstr "ขณะนี้ไม่มีการแก้ไขที่กำหนดเวลา"
 
-#: admin/class-list-table_rvy.php:1671
+#: admin/class-list-table_rvy.php:1668
 msgid "My Activity"
 msgstr "กิจกรรมของฉัน"
 
-#: admin/class-list-table_rvy.php:1680
+#: admin/class-list-table_rvy.php:1677
 #, php-format
 msgid "All %s"
 msgstr "ทั้งหมด %s"
 
-#: admin/class-list-table_rvy.php:1740
+#: admin/class-list-table_rvy.php:1737
 #. translators: Hidden accessibility text.
 msgid "Select bulk action"
 msgstr "เลือกการกระทำแบบกลุ่ม"
 
-#: admin/class-list-table_rvy.php:1743, fuzzy
+#: admin/class-list-table_rvy.php:1740, fuzzy
 msgid "Bulk actions"
 msgstr "Bulk actions"
 
-#: admin/class-list-table_rvy.php:1764
+#: admin/class-list-table_rvy.php:1761
 #: admin/revision-ui_rvy.php:410, fuzzy
 msgid "Apply"
 msgstr "Apply"
 
-#: admin/class-list-table_rvy.php:1819
+#: admin/class-list-table_rvy.php:1816
 #: front_rvy.php:745
-#: rvy_init-functions.php:300
-#: rvy_init-functions.php:356, fuzzy
+#: rvy_init-functions.php:301
+#: rvy_init-functions.php:357, fuzzy
 msgid "Submit"
 msgstr "Submit"
 
-#: admin/class-list-table_rvy.php:1824
+#: admin/class-list-table_rvy.php:1821
 #: admin/history_rvy.php:1425
 #: front_rvy.php:742
 #: front_rvy.php:752
@@ -916,35 +939,35 @@ msgstr "Submit"
 #: front_rvy.php:814
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:428
 #: includes/visual-post-compare/visual-post-compare.php:390
-#: rvy_init-functions.php:286
-#: rvy_init-functions.php:304
-#: rvy_init-functions.php:342
+#: rvy_init-functions.php:287
+#: rvy_init-functions.php:305
 #: rvy_init-functions.php:343
-#: rvy_init-functions.php:359
+#: rvy_init-functions.php:344
 #: rvy_init-functions.php:360
-#: rvy_init-functions.php:376
-#: rvy_init-functions.php:377, fuzzy
+#: rvy_init-functions.php:361
+#: rvy_init-functions.php:377
+#: rvy_init-functions.php:378, fuzzy
 msgid "Approve"
 msgstr "Approve"
 
-#: admin/class-list-table_rvy.php:1825
+#: admin/class-list-table_rvy.php:1822
 #: front_rvy.php:784, fuzzy
 msgid "Decline"
 msgstr "Decline"
 
-#: admin/class-list-table_rvy.php:1829
+#: admin/class-list-table_rvy.php:1826
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:425, fuzzy
 msgid "Publish"
 msgstr "Publish"
 
-#: admin/class-list-table_rvy.php:1832
+#: admin/class-list-table_rvy.php:1829
 #: admin/revision-ui_rvy.php:286, fuzzy
 msgid "Unschedule"
 msgstr "Unschedule"
 
-#: admin/class-list-table_rvy.php:1836
-#: admin/class-list-table_rvy.php:2360
-#: admin/class-list-table_rvy.php:2364
+#: admin/class-list-table_rvy.php:1833
+#: admin/class-list-table_rvy.php:2357
+#: admin/class-list-table_rvy.php:2361
 #: admin/post-edit-block-ui_rvy.php:125
 #: admin/post-edit_rvy.php:129
 #: admin/RevisionEditSubmitMetabox.php:64, fuzzy
@@ -952,64 +975,64 @@ msgstr "Unschedule"
 msgid "Discard Revision"
 msgstr "Discard Revision"
 
-#: admin/class-list-table_rvy.php:1857, fuzzy
+#: admin/class-list-table_rvy.php:1854, fuzzy
 msgid "Filter by category"
 msgstr "Filter by category"
 
-#: admin/class-list-table_rvy.php:1874, fuzzy
+#: admin/class-list-table_rvy.php:1871, fuzzy
 msgid "Filter by revision status"
 msgstr "Filter by revision status"
 
-#: admin/class-list-table_rvy.php:1876, fuzzy
+#: admin/class-list-table_rvy.php:1873, fuzzy
 msgid "All Revision Statuses"
 msgstr "All Revision Statuses"
 
-#: admin/class-list-table_rvy.php:1895
+#: admin/class-list-table_rvy.php:1892
 #: admin/duplicate-capabilities_rvy.php:44
 #: admin/duplicate-capabilities_rvy.php:45, fuzzy
 msgid "Filter by post type"
 msgstr "Filter by post type"
 
-#: admin/class-list-table_rvy.php:2018, fuzzy
+#: admin/class-list-table_rvy.php:2015, fuzzy
 msgid "Filter by published post"
 msgstr "Filter by published post"
 
-#: admin/class-list-table_rvy.php:2022, fuzzy
+#: admin/class-list-table_rvy.php:2019, fuzzy
 msgid "All Posts"
 msgstr "All Posts"
 
-#: admin/class-list-table_rvy.php:2149, fuzzy
+#: admin/class-list-table_rvy.php:2146, fuzzy
 msgid "Select All"
 msgstr "Select All"
 
-#: admin/class-list-table_rvy.php:2214, fuzzy
+#: admin/class-list-table_rvy.php:2211, fuzzy
 msgid "(clear filter)"
 msgstr "(clear filter)"
 
-#: admin/class-list-table_rvy.php:2218, fuzzy
+#: admin/class-list-table_rvy.php:2215, fuzzy
 msgid "Sort ascending."
 msgstr "Sort ascending."
 
-#: admin/class-list-table_rvy.php:2218, fuzzy
+#: admin/class-list-table_rvy.php:2215, fuzzy
 msgid "Sort descending."
 msgstr "Sort descending."
 
-#: admin/class-list-table_rvy.php:2247
+#: admin/class-list-table_rvy.php:2244
 #, fuzzy, php-format
 msgid "Compare changes for &#8220;%s&#8221;"
 msgstr "Compare changes for &#8220;%s&#8221;"
 
-#: admin/class-list-table_rvy.php:2255
+#: admin/class-list-table_rvy.php:2252
 #. translators: %s: post title
 #, fuzzy, php-format
 msgid "&#8220;%s&#8221; (Edit)"
 msgstr "&#8220;%s&#8221; (Edit)"
 
-#: admin/class-list-table_rvy.php:2266
+#: admin/class-list-table_rvy.php:2263
 msgid "Publication failed:"
 msgstr "ไม่สามารถเผยแพร่ได้:"
 
-#: admin/class-list-table_rvy.php:2337
+#: admin/class-list-table_rvy.php:2334
 #: admin/post-editor-workflow-ui_rvy.php:234
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3114
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3135, fuzzy
@@ -1017,16 +1040,16 @@ msgstr "ไม่สามารถเผยแพร่ได้:"
 msgid "Edit Revision"
 msgstr "Edit Revision"
 
-#: admin/class-list-table_rvy.php:2361, fuzzy
+#: admin/class-list-table_rvy.php:2358, fuzzy
 msgid "Discard"
 msgstr "Discard"
 
-#: admin/class-list-table_rvy.php:2402, fuzzy
+#: admin/class-list-table_rvy.php:2399, fuzzy
 msgid "Compare Changes"
 msgstr "Compare Changes"
 
 #: admin/duplicate-capabilities_rvy.php:20
-#: admin/options.php:850
+#: admin/options.php:968
 msgid "Duplicate Posts"
 msgstr "โพสต์ซ้ำ"
 
@@ -1137,15 +1160,13 @@ msgid "Return to editor"
 msgstr "Return to editor"
 
 #: admin/history_rvy.php:575
-#: admin/options.php:795
-#: admin/options.php:958
+#: admin/options.php:90
 #: admin/restrict-editor-features.php:102
 msgid "Title"
 msgstr "หัวข้อ"
 
 #: admin/history_rvy.php:576
-#: admin/options.php:794
-#: admin/options.php:957
+#: admin/options.php:90
 #: admin/restrict-editor-features.php:108
 #: includes/visual-post-compare/visual-post-compare-standalone.dev.js:3379
 #: includes/visual-post-compare/visual-post-compare-standalone.js:3400
@@ -1153,8 +1174,7 @@ msgid "Content"
 msgstr "เนื้อหา"
 
 #: admin/history_rvy.php:577
-#: admin/options.php:800
-#: admin/options.php:963
+#: admin/options.php:93
 #: admin/restrict-editor-features.php:161
 msgid "Excerpt"
 msgstr "บทคัดย่อ"
@@ -1165,7 +1185,7 @@ msgid "(no title)"
 msgstr "(ไม่มีหัวข้อ)"
 
 #: admin/history_rvy.php:841
-#: admin/options.php:1211
+#: admin/options.php:193
 msgid "Post Date"
 msgstr "วันที่โพสต์"
 
@@ -1257,40 +1277,98 @@ msgstr "รายการ"
 msgid "PublishPress Capabilities"
 msgstr "ความสามารถของ PublishPress"
 
-#: admin/options.php:149
-msgid "All settings on this tab are assigned network-wide."
-msgstr "การตั้งค่าทั้งหมดในแท็บนี้ถูกกำหนดให้ใช้ทั่วทั้งเครือข่าย"
+#: admin/options.php:91
+#: admin/restrict-editor-features.php:114
+msgid "Date"
+msgstr "วันที่"
 
-#: admin/options.php:179
-msgid "Setting Scope"
-msgstr "ขอบเขตการตั้งค่า"
+#: admin/options.php:92
+#: admin/restrict-editor-features.php:143
+msgid "Parent"
+msgstr "ผู้ปกครอง"
+
+#: admin/options.php:92, fuzzy
+msgid "Slug"
+msgstr "Slug"
+
+#: admin/options.php:93
+#: admin/post-edit-block-ui_rvy.php:216
+#: admin/post-edit_rvy.php:383
+#: admin/restrict-editor-features.php:149
+#: admin/revision-ui_rvy.php:388
+msgid "Author"
+msgstr "ผู้เขียน"
+
+#: admin/options.php:94
+msgid "Thumbnail"
+msgstr "ภาพขนาดย่อ"
+
+#: admin/options.php:94
+#: admin/restrict-editor-features.php:122
+msgid "Template"
+msgstr "แม่แบบ"
+
+#: admin/options.php:95
+#: admin/restrict-editor-features.php:129
+msgid "Categories"
+msgstr "หมวดหมู่"
+
+#: admin/options.php:95
+#: admin/restrict-editor-features.php:136
+msgid "Tags"
+msgstr "แท็ก"
+
+#: admin/options.php:96
+#: admin/restrict-editor-features.php:168
+msgid "Taxonomies"
+msgstr "taxonomies"
+
+#: admin/options.php:181
+msgid "Never"
+msgstr "ไม่เคย"
+
+#: admin/options.php:182
+msgid "By default"
+msgstr "ตามค่าเริ่มต้น"
 
 #: admin/options.php:183
-msgid "Features"
-msgstr "ฟีเจอร์"
-
-#: admin/options.php:186
-msgid "Options"
-msgstr "ตัวเลือก"
-
-#: admin/options.php:187
-msgid "Integrations"
-msgstr "การรวม"
-
-#: admin/options.php:188
-msgid "Statuses"
-msgstr "สถานะ"
+msgid "Always"
+msgstr "เสมอ"
 
 #: admin/options.php:189
-#: admin/options.php:1244
-msgid "Notifications"
-msgstr "การแจ้งเตือน"
+msgid "Published Post Slug"
+msgstr "สลักโพสต์ที่เผยแพร่"
+
+#: admin/options.php:190
+msgid "Revision Slug"
+msgstr "สลักการแก้ไข"
+
+#: admin/options.php:191
+msgid "Revision ID only"
+msgstr "Revision ID เท่านั้น"
+
+#: admin/options.php:193
+msgid "Modification Date"
+msgstr "วันที่แก้ไข"
 
 #: admin/options.php:195
+msgid "Allow any number of Revisions per post."
+msgstr "อนุญาตให้มีการแก้ไขจำนวนเท่าใดก็ได้ต่อโพสต์."
+
+#: admin/options.php:196
+msgid "Prevent Revision creation if another was already created."
+msgstr "ป้องกันไม่ให้สร้างการแก้ไขหากมีการสร้างอีกอันหนึ่งแล้ว."
+
+#: admin/options.php:197
+msgid "Prevent Revision creation if another was already submitted."
+msgstr "ป้องกันไม่ให้สร้างการแก้ไขหากมีการส่งอีกอันหนึ่งแล้ว."
+
+#: admin/options.php:204
+#: admin/options.php:434
 msgid "Revision Submission"
 msgstr "การส่งการแก้ไข"
 
-#: admin/options.php:203
+#: admin/options.php:212
 msgid ""
 "Use alternate labeling: \"Working Copy\" > \"Change Request\" > \"Scheduled "
 "Change\""
@@ -1298,299 +1376,299 @@ msgstr ""
 "ใช้การติดป้ายแทนที่: \"สำเนาที่ทำงาน\" > \"คำขอเปลี่ยนแปลง\" > "
 "\"การเปลี่ยนแปลงที่กำหนดการ\""
 
-#: admin/options.php:204
+#: admin/options.php:213
 msgid "New Revisions access requires role capability"
 msgstr "การเข้าถึงการแก้ไขใหม่ต้องใช้ความสามารถของบทบาท"
 
-#: admin/options.php:205
+#: admin/options.php:214
 #, php-format
 msgid "Managing %s requires role capability"
 msgstr "การจัดการ %s ต้องใช้ความสามารถของบทบาท"
 
-#: admin/options.php:206
+#: admin/options.php:215
 msgid "Post Duplication requires role capability"
 msgstr "การทำซ้ำโพสต์ต้องการความสามารถของบทบาท"
 
-#: admin/options.php:207
+#: admin/options.php:216
 msgid "Working Copy creation requires role capability"
 msgstr "การสร้างสำเนาที่ทำงานต้องใช้ความสามารถของบทบาท"
 
-#: admin/options.php:207
+#: admin/options.php:216
 msgid "Revision creation requires role capability"
 msgstr "การสร้างการแก้ไขต้องใช้ความสามารถของบทบาท"
 
-#: admin/options.php:208
+#: admin/options.php:217
 #, php-format
 msgid "Posts / Pages list: Use \"Edit\" caption for %s link"
 msgstr "รายการโพสต์ / หน้า: ใช้คำบรรยาย \"แก้ไข\" สำหรับลิงก์ %s"
 
-#: admin/options.php:209
-#: admin/options.php:216
+#: admin/options.php:218
+#: admin/options.php:225
 #, php-format
 msgid "Enable %s"
 msgstr "เปิดใช้งาน %s"
 
-#: admin/options.php:210
+#: admin/options.php:219
 msgid "Revision Limit"
 msgstr "จำกัดการแก้ไข"
 
-#: admin/options.php:211
+#: admin/options.php:220
 msgid "Create Revision redirects to user's existing Unsubmitted Revision"
 msgstr "การสร้างการแก้ไขจะเปลี่ยนเส้นทางไปยังการแก้ไขที่ยังไม่ได้ส่งของผู้ใช้"
 
-#: admin/options.php:212
+#: admin/options.php:221
 msgid "Refresh \"Has Revision\" flag before suppressing Create Revision"
 msgstr "รีเฟรชธง \"มีการแก้ไข\" ก่อนที่จะหยุดการสร้างการแก้ไข"
 
-#: admin/options.php:213
+#: admin/options.php:222
 msgid "If post contains custom html, require unfiltered_html capability"
 msgstr "หากโพสต์มี html ที่กำหนดเอง ให้ต้องการความสามารถ unfiltered_html"
 
-#: admin/options.php:214
+#: admin/options.php:223
 msgid "Auto-submit revisions created by a user with publishing capability"
 msgstr "ส่งการแก้ไขโดยอัตโนมัติที่สร้างโดยผู้ใช้ที่มีความสามารถในการเผยแพร่"
 
-#: admin/options.php:215
+#: admin/options.php:224
 msgid "Auto-submit revisions"
 msgstr "ส่งการแก้ไขโดยอัตโนมัติ"
 
-#: admin/options.php:217
+#: admin/options.php:226
 msgid "Change Request submission require role capability"
 msgstr "การส่งคำขอเปลี่ยนแปลงต้องการความสามารถของบทบาท"
 
-#: admin/options.php:217
+#: admin/options.php:226
 msgid "Revision submission requires role capability"
 msgstr "การส่งการแก้ไขต้องการความสามารถของบทบาท"
 
-#: admin/options.php:218
+#: admin/options.php:227
 msgid "Editing others' Revisions requires role capability"
 msgstr "การแก้ไขการแก้ไขของผู้อื่นต้องการความสามารถของบทบาท"
 
-#: admin/options.php:219
+#: admin/options.php:228
 msgid "Listing others' Revisions requires role capability"
 msgstr "การแสดงรายการการแก้ไขของผู้อื่นต้องการความสามารถของบทบาท"
 
-#: admin/options.php:220
+#: admin/options.php:229
 msgid "Enable javascript in visual compare"
 msgstr "เปิดใช้งาน javascript ในการเปรียบเทียบภาพ"
 
-#: admin/options.php:221
+#: admin/options.php:230
 msgid "Use visual compare for Revisions"
 msgstr "ใช้การเปรียบเทียบภาพสำหรับการแก้ไข"
 
-#: admin/options.php:222
+#: admin/options.php:231
 msgid "Include unidentified internal fields on Compare screen"
 msgstr "รวมฟิลด์ภายในที่ไม่ระบุในหน้าจอเปรียบเทียบ"
 
-#: admin/options.php:223
+#: admin/options.php:232
 msgid "Show Submitted Revisions count in Admin menu"
 msgstr "แสดงจำนวนการแก้ไขที่ส่งในเมนูผู้ดูแลระบบ"
 
-#: admin/options.php:224
+#: admin/options.php:233
 msgid "Show indicator on front end if page has Revisions"
 msgstr "แสดงตัวบ่งชี้ที่ด้านหน้า หากหน้ามีการแก้ไข"
 
-#: admin/options.php:225
+#: admin/options.php:234
 msgid "Users can always administer revisions to their own editable posts"
 msgstr "ผู้ใช้สามารถจัดการการแก้ไขในโพสต์ที่แก้ไขได้ของตนเองเสมอ"
 
-#: admin/options.php:226
+#: admin/options.php:235
 msgid "Also notify on Revision Update"
 msgstr "แจ้งเตือนเมื่อมีการอัปเดตการแก้ไข"
 
-#: admin/options.php:227
+#: admin/options.php:236
 msgid "Apply API actions to mimic Post Update"
 msgstr "ใช้ API actions เพื่อเลียนแบบการอัปเดตโพสต์"
 
-#: admin/options.php:228
+#: admin/options.php:237
 msgid "Hide html tags on Compare screen"
 msgstr "ซ่อนแท็ก html ในหน้าจอเปรียบเทียบ"
 
-#: admin/options.php:229
+#: admin/options.php:238
 msgid "Hide copy buttons on Compare screen"
 msgstr "ซ่อนปุ่มคัดลอกในหน้าจอเปรียบเทียบ"
 
-#: admin/options.php:230
+#: admin/options.php:239
 msgid "Legacy: Schedule Revisions with WP-Cron"
 msgstr "Legacy: กำหนดการแก้ไขด้วย WP-Cron"
 
-#: admin/options.php:231
+#: admin/options.php:240
 msgid "Site uses a custom trigger for WP-Cron tasks"
 msgstr "ไซต์ใช้ทริกเกอร์ที่กำหนดเองสำหรับงาน WP-Cron"
 
-#: admin/options.php:232
+#: admin/options.php:241
 msgid "Asynchronous Publishing"
 msgstr "การเผยแพร่แบบไม่ซิงโครนัส"
 
-#: admin/options.php:233
+#: admin/options.php:242
 msgid "Editor background color"
 msgstr "สีพื้นหลังของบรรณาธิการ"
 
-#: admin/options.php:234
-#: admin/options.php:235
+#: admin/options.php:243
+#: admin/options.php:244
 msgid "Update Publish Date"
 msgstr "อัปเดตวันที่เผยแพร่"
 
-#: admin/options.php:236
-#: admin/options.php:237
+#: admin/options.php:245
+#: admin/options.php:246
 msgid "Update Modified Date"
 msgstr "อัปเดตวันที่แก้ไข"
 
-#: admin/options.php:240
-#: admin/options.php:241
+#: admin/options.php:249
+#: admin/options.php:250
 #, php-format
 msgid "Use %1$sPlanner Notifications%2$s"
 msgstr "ใช้ %1$sPlanner Notifications%2$s"
 
-#: admin/options.php:243
+#: admin/options.php:252
 #, php-format
 msgid "Email original Author when a %s is submitted"
 msgstr "ส่งอีเมลถึงผู้เขียนต้นฉบับเมื่อมีการส่ง %s"
 
-#: admin/options.php:244
+#: admin/options.php:253
 #, php-format
 msgid "Email the original Author when a %s is approved"
 msgstr "ส่งอีเมลถึงผู้เขียนต้นฉบับเมื่อมีการอนุมัติ %s"
 
-#: admin/options.php:245
+#: admin/options.php:254
 #, php-format
 msgid "Email the Revisor when a %s is approved"
 msgstr "ส่งอีเมลถึงผู้ตรวจสอบเมื่อมีการอนุมัติ %s"
 
-#: admin/options.php:246
+#: admin/options.php:255
 #, php-format
 msgid "Email the original Author when a %s is published"
 msgstr "ส่งอีเมลถึงผู้เขียนต้นฉบับเมื่อมีการเผยแพร่ %s"
 
-#: admin/options.php:247
+#: admin/options.php:256
 #, php-format
 msgid "Email the Revisor when a %s is published"
 msgstr "ส่งอีเมลถึงผู้ตรวจสอบเมื่อมีการเผยแพร่ %s"
 
-#: admin/options.php:248
+#: admin/options.php:257
 msgid "Enable notification buffer"
 msgstr "เปิดใช้งานบัฟเฟอร์การแจ้งเตือน"
 
-#: admin/options.php:249
+#: admin/options.php:258
 msgid "Revisors can create a new revision for any custom post type"
 msgstr "ผู้ตรวจสอบสามารถสร้างการแก้ไขใหม่สำหรับประเภทโพสต์ที่กำหนดเองใดๆ"
 
-#: admin/options.php:250
+#: admin/options.php:259
 msgid "Prevent Revisors from editing others' unpublished Posts"
 msgstr "ป้องกันไม่ให้ผู้ตรวจสอบแก้ไขโพสต์ที่ยังไม่ได้เผยแพร่ของผู้อื่น"
 
-#: admin/options.php:251
+#: admin/options.php:260
 msgid "Add database index to posts table for Revision queries"
 msgstr "เพิ่มดัชนีฐานข้อมูลในตารางโพสต์สำหรับการสอบถามการแก้ไข"
 
-#: admin/options.php:252
+#: admin/options.php:261
 msgid "Display Hints"
 msgstr "แสดงคำแนะนำ"
 
-#: admin/options.php:253
+#: admin/options.php:262
 msgid "Delete settings and Revisions if plugin is deleted"
 msgstr "ลบการตั้งค่าและการแก้ไขหากปลั๊กอินถูกลบ"
 
-#: admin/options.php:254
+#: admin/options.php:263
 msgid "Show Preview Links"
 msgstr "แสดงลิงก์ตัวอย่าง"
 
-#: admin/options.php:255
+#: admin/options.php:264
 msgid "Preview Link Type"
 msgstr "ประเภทลิงก์ตัวอย่าง"
 
-#: admin/options.php:256
+#: admin/options.php:265
 msgid "Modify preview link for better theme compatibility"
 msgstr "ปรับแต่งลิงก์ตัวอย่างเพื่อความเข้ากันได้กับธีมที่ดีขึ้น"
 
-#: admin/options.php:257
+#: admin/options.php:266
 msgid "Theme Compat: For front page revision preview, set home flag"
 msgstr "Theme Compat: สำหรับการแสดงตัวอย่างการแก้ไขหน้าแรก ให้ตั้งธงบ้าน"
 
-#: admin/options.php:258
+#: admin/options.php:267
 msgid "Approve Button on Compare screen"
 msgstr "ปุ่มอนุมัติบนหน้าจอเปรียบเทียบ"
 
-#: admin/options.php:259
+#: admin/options.php:268
 msgid "Copy revision comments to published post"
 msgstr "คัดลอกความคิดเห็นการแก้ไขไปยังโพสต์ที่เผยแพร่"
 
-#: admin/options.php:260
+#: admin/options.php:269
 msgid "Compare Past Revisions ordering:"
 msgstr "การจัดลำดับการแก้ไขก่อนหน้า:"
 
-#: admin/options.php:261
+#: admin/options.php:270
 #, php-format
 msgid "List %s for \"My Activity\" or \"Revisions to My Posts\" view"
 msgstr "รายการ %s สำหรับมุมมอง \"กิจกรรมของฉัน\" หรือ \"การแก้ไขโพสต์ของฉัน\""
 
-#: admin/options.php:262
+#: admin/options.php:271
 msgid ""
 "Archive a copy of custom fields when a submitted or scheduled revision is "
 "published"
 msgstr "เก็บสำเนาฟิลด์ที่กำหนดเองเมื่อการแก้ไขที่ส่งหรือกำหนดเวลาได้รับการเผยแพร่"
 
-#: admin/options.php:263
+#: admin/options.php:272
 msgid "Archive a copy of custom fields with each Past Revision"
 msgstr "เก็บสำเนาฟิลด์ที่กำหนดเองกับการแก้ไขที่ผ่านมาแต่ละรายการ"
 
-#: admin/options.php:264
+#: admin/options.php:273
 msgid "Keep an archive of revision edits, even after the revision is published"
 msgstr "เก็บบันทึกการแก้ไขการแก้ไข แม้หลังจากการแก้ไขนั้นได้รับการเผยแพร่"
 
-#: admin/options.php:265
+#: admin/options.php:274
 msgid "On Revision publication, delete Editorial Comments"
 msgstr "เมื่อเผยแพร่การแก้ไข ให้ลบความคิดเห็นบรรณาธิการ"
 
-#: admin/options.php:266
+#: admin/options.php:275
 msgid "Enable deletion queue"
 msgstr "เปิดใช้งานคิวการลบ"
 
-#: admin/options.php:267
+#: admin/options.php:276
 msgid "Allow Past Revisions to be deleted"
 msgstr "อนุญาตให้ลบการแก้ไขที่ผ่านมา"
 
-#: admin/options.php:268
+#: admin/options.php:277
 msgid "Restoring a Revision requires role capability"
 msgstr "การกู้คืนการแก้ไขต้องการสิทธิ์บทบาท"
 
-#: admin/options.php:269
+#: admin/options.php:278
 msgid "Compatibility Mode"
 msgstr "โหมดความเข้ากันได้"
 
-#: admin/options.php:270
+#: admin/options.php:279
 msgid "Planner Notifications Access-Limited"
 msgstr "การแจ้งเตือนของผู้วางแผนถูกจำกัดการเข้าถึง"
 
-#: admin/options.php:271
+#: admin/options.php:280
 msgid "Maximum Revisions per post"
 msgstr "จำนวนการแก้ไขสูงสุดต่อโพสต์"
 
-#: admin/options.php:272
+#: admin/options.php:281
 msgid "Apply Post Permissions to Revisions"
 msgstr "ใช้สิทธิ์โพสต์กับการแก้ไข"
 
-#: admin/options.php:273
+#: admin/options.php:282
 msgid "Enable legacy email notifications"
 msgstr "เปิดใช้งานการแจ้งเตือนทางอีเมลแบบเก่า"
 
-#: admin/options.php:274
+#: admin/options.php:283
 msgid "Revision Approval requires role capability"
 msgstr "การอนุมัติการแก้ไขต้องการสิทธิ์บทบาท"
 
-#: admin/options.php:275
+#: admin/options.php:284
 msgid "Use extended captions for Approve button in Post Editor"
 msgstr "ใช้คำบรรยายที่ขยายสำหรับปุ่มอนุมัติในตัวแก้ไขโพสต์"
 
-#: admin/options.php:276
+#: admin/options.php:285
 msgid "Allow the Author field to be modified by Revision"
 msgstr "อนุญาตให้ฟิลด์ผู้เขียนถูกปรับแต่งโดยการแก้ไข"
 
-#: admin/options.php:277
+#: admin/options.php:286
 msgid "Create Revision button in editor opens new tab"
 msgstr "ปุ่มสร้างการแก้ไขในตัวแก้ไขเปิดแท็บใหม่"
 
-#: admin/options.php:278
+#: admin/options.php:287
 msgid ""
 "Query Loop Block: Adjust Revisor and Contributor capabilities to allow "
 "previewing in Revision editor"
@@ -1598,61 +1676,90 @@ msgstr ""
 "Query Loop Block: ปรับความสามารถของ Revisor และ Contributor "
 "เพื่ออนุญาตการแสดงตัวอย่างในตัวแก้ไขการแก้ไข"
 
-#: admin/options.php:279
+#: admin/options.php:288
 msgid "Disable Rank Math SEO panel for Revision edit"
 msgstr "ปิดใช้งานแผง Rank Math SEO สำหรับการแก้ไขการแก้ไข"
 
-#: admin/options.php:280
+#: admin/options.php:289
 msgid "Allow custom fields (post meta) to be revisioned"
 msgstr "อนุญาตให้ฟิลด์ที่กำหนดเอง (โพสต์เมตา) ถูกแก้ไข"
 
-#: admin/options.php:281
+#: admin/options.php:290
 msgid "Permission for Submit Revision also enables Revision creation"
 msgstr "สิทธิ์ในการส่งการแก้ไขยังเปิดใช้งานการสร้างการแก้ไข"
 
-#: admin/options.php:282
+#: admin/options.php:291
 msgid "Enable classic metaboxes in editor"
 msgstr "เปิดใช้งานกล่องเมตาแบบคลาสสิกในตัวแก้ไข"
 
-#: admin/options.php:287
+#: admin/options.php:296
 #, php-format
 msgid "Email designated Publishers when a %s is submitted"
 msgstr "ส่งอีเมลไปยังผู้เผยแพร่ที่กำหนดเมื่อ %s ถูกส่ง"
 
-#: admin/options.php:288
+#: admin/options.php:297
 #, php-format
 msgid "Email designated Publishers when a %s is published"
 msgstr "ส่งอีเมลไปยังผู้เผยแพร่ที่กำหนดเมื่อ %s ถูกเผยแพร่"
 
-#: admin/options.php:289
+#: admin/options.php:298
 #, php-format
 msgid "Email designated Publishers when a %s is approved"
 msgstr "ส่งอีเมลไปยังผู้เผยแพร่ที่กำหนดเมื่อ %s ได้รับการอนุมัติ"
 
-#: admin/options.php:291
+#: admin/options.php:300
 #, php-format
 msgid "Email Editors and Administrators when a %s is submitted"
 msgstr "ส่งอีเมลไปยังบรรณาธิการและผู้ดูแลระบบเมื่อ %s ถูกส่ง"
 
-#: admin/options.php:292
+#: admin/options.php:301
 #, php-format
 msgid "Email Editors and Administrators when a %s is published"
 msgstr "ส่งอีเมลไปยังบรรณาธิการและผู้ดูแลระบบเมื่อ %s ถูกเผยแพร่"
 
-#: admin/options.php:293
+#: admin/options.php:302
 #, php-format
 msgid "Email Editors and Administrators when a %s is approved"
 msgstr "ส่งอีเมลไปยังบรรณาธิการและผู้ดูแลระบบเมื่อ %s ได้รับการอนุมัติ"
 
-#: admin/options.php:375
+#: admin/options.php:388
+msgid "All settings on this tab are assigned network-wide."
+msgstr "การตั้งค่าทั้งหมดในแท็บนี้ถูกกำหนดให้ใช้ทั่วทั้งเครือข่าย"
+
+#: admin/options.php:418
+msgid "Setting Scope"
+msgstr "ขอบเขตการตั้งค่า"
+
+#: admin/options.php:422
+msgid "Features"
+msgstr "ฟีเจอร์"
+
+#: admin/options.php:425
+msgid "Options"
+msgstr "ตัวเลือก"
+
+#: admin/options.php:426
+msgid "Integrations"
+msgstr "การรวม"
+
+#: admin/options.php:427
+msgid "Statuses"
+msgstr "สถานะ"
+
+#: admin/options.php:428
+#: admin/options.php:1348
+msgid "Notifications"
+msgstr "การแจ้งเตือน"
+
+#: admin/options.php:507
 msgid "PublishPress Revisions Site Settings"
 msgstr "การตั้งค่าไซต์ของ PublishPress Revisions"
 
-#: admin/options.php:405
+#: admin/options.php:537
 msgid "These are the default settings for options which can be adjusted per-site."
 msgstr "นี่คือการตั้งค่าเริ่มต้นสำหรับตัวเลือกที่สามารถปรับแต่งได้ต่อไซต์"
 
-#: admin/options.php:443
+#: admin/options.php:575
 #, php-format
 msgid ""
 "Use this tab to make NETWORK-WIDE changes to PublishPress Revisions "
@@ -1661,12 +1768,12 @@ msgstr ""
 "ใช้แท็บนี้เพื่อทำการเปลี่ยนแปลงทั่วทั้งเครือข่ายในการตั้งค่า PublishPress "
 "Revisions %s"
 
-#: admin/options.php:446
+#: admin/options.php:578
 #, php-format
 msgid "You can also specify %1$sdefaults for site-specific settings%2$s."
 msgstr "คุณยังสามารถระบุ %1$sค่าพื้นฐานสำหรับการตั้งค่าเฉพาะไซต์%2$s."
 
-#: admin/options.php:449
+#: admin/options.php:581
 msgid ""
 "Here you can change the default value for settings which are controlled "
 "separately on each site."
@@ -1674,168 +1781,110 @@ msgstr ""
 "ที่นี่คุณสามารถเปลี่ยนค่าพื้นฐานสำหรับการตั้งค่าที่ควบคุมแยกต่างหากในแต่ละไซ"
 "ต์"
 
-#: admin/options.php:459
-#: admin/options.php:461
+#: admin/options.php:591
+#: admin/options.php:593
 #, php-format
 msgid "Note that %1$s network-wide settings%2$s may also be available."
 msgstr "โปรดทราบว่า %1$sการตั้งค่าเครือข่ายทั้งหมด%2$s อาจมีให้บริการด้วย"
 
-#: admin/options.php:538
+#: admin/options.php:670
 msgid "License settings"
 msgstr "การตั้งค่าลิขสิทธิ์"
 
-#: admin/options.php:539
+#: admin/options.php:671
 msgid "License"
 msgstr "ใบอนุญาต"
 
-#: admin/options.php:584
+#: admin/options.php:716
 msgid "Past Revisions are earlier versions of a post."
 msgstr "การปรับปรุงในอดีตคือเวอร์ชันก่อนหน้าของโพสต์"
 
-#: admin/options.php:634
+#: admin/options.php:766
 msgid "Past revisions post type fallback"
 msgstr "ประเภทโพสต์การปรับปรุงในอดีต"
 
-#: admin/options.php:641
+#: admin/options.php:773
 msgid "This post type does not support Past Revisions."
 msgstr "ประเภทโพสต์นี้ไม่รองรับการปรับปรุงในอดีต"
 
-#: admin/options.php:662
+#: admin/options.php:794
 msgid "PRO: Revisions Pro is required for this post type (opens in a new tab)"
 msgstr "PRO: Revisions Pro จำเป็นสำหรับประเภทโพสต์นี้ (เปิดในแท็บใหม่)"
 
-#: admin/options.php:663, fuzzy
+#: admin/options.php:795, fuzzy
 msgid "PRO"
 msgstr "PRO"
 
-#: admin/options.php:683
+#: admin/options.php:815
 msgid "New Revisions are changes which are not yet published."
 msgstr "การปรับปรุงใหม่คือการเปลี่ยนแปลงที่ยังไม่ได้เผยแพร่"
 
-#: admin/options.php:732
+#: admin/options.php:864
 msgid "Navigation menu revision setting"
 msgstr "การตั้งค่าการปรับปรุงเมนูการนำทาง"
 
-#: admin/options.php:736
+#: admin/options.php:868
 msgid "Hidden post type revision setting"
 msgstr "การตั้งค่าการปรับปรุงประเภทโพสต์ที่ซ่อนอยู่"
 
-#: admin/options.php:742
+#: admin/options.php:874
 msgid "New revisions post type fallback"
 msgstr "ประเภทโพสต์การปรับปรุงใหม่"
 
-#: admin/options.php:762
+#: admin/options.php:894
 #, php-format
 msgid "%s capabilities"
 msgstr "%s ความสามารถ"
 
-#: admin/options.php:782
+#: admin/options.php:914
 msgid "Revision Fields"
 msgstr "ฟิลด์การปรับปรุง"
 
-#: admin/options.php:786
+#: admin/options.php:918
 msgid "Specify fields which can be modified by New Revisions."
 msgstr "ระบุฟิลด์ที่สามารถปรับเปลี่ยนได้โดยการปรับปรุงใหม่"
 
-#: admin/options.php:796
-#: admin/options.php:959
-#: admin/restrict-editor-features.php:114
-msgid "Date"
-msgstr "วันที่"
-
-#: admin/options.php:798
-#: admin/options.php:961
-#: admin/restrict-editor-features.php:143
-msgid "Parent"
-msgstr "ผู้ปกครอง"
-
-#: admin/options.php:799
-#: admin/options.php:962, fuzzy
-msgid "Slug"
-msgstr "Slug"
-
-#: admin/options.php:801
-#: admin/options.php:964
-#: admin/post-edit-block-ui_rvy.php:216
-#: admin/post-edit_rvy.php:383
-#: admin/restrict-editor-features.php:149
-#: admin/revision-ui_rvy.php:388
-msgid "Author"
-msgstr "ผู้เขียน"
-
-#: admin/options.php:802
-msgid "Thumbnail"
-msgstr "ภาพขนาดย่อ"
-
-#: admin/options.php:803
-#: admin/options.php:966
-#: admin/restrict-editor-features.php:122
-msgid "Template"
-msgstr "แม่แบบ"
-
-#: admin/options.php:804
-#: admin/options.php:967
-#: admin/restrict-editor-features.php:129
-msgid "Categories"
-msgstr "หมวดหมู่"
-
-#: admin/options.php:805
-#: admin/options.php:968
-#: admin/restrict-editor-features.php:136
-msgid "Tags"
-msgstr "แท็ก"
-
-#: admin/options.php:806
-#: admin/options.php:969
-#: admin/restrict-editor-features.php:168
-msgid "Taxonomies"
-msgstr "taxonomies"
-
-#: admin/options.php:818
+#: admin/options.php:936
 msgid "Hidden revision field setting"
 msgstr "การตั้งค่าฟิลด์การปรับปรุงที่ซ่อนอยู่"
 
-#: admin/options.php:824
+#: admin/options.php:942
 msgid "Revision field fallback"
 msgstr "การสำรองฟิลด์การปรับปรุง"
 
-#: admin/options.php:854
+#: admin/options.php:972
 msgid "Copy post directly without using the revision process."
 msgstr "คัดลอกโพสต์โดยตรงโดยไม่ใช้กระบวนการปรับปรุง"
 
-#: admin/options.php:903
+#: admin/options.php:1021
 msgid "Navigation menu copy setting"
 msgstr "การตั้งค่าการคัดลอกเมนูการนำทาง"
 
-#: admin/options.php:906
+#: admin/options.php:1024
 msgid "Hidden copied post type setting"
 msgstr "การตั้งค่าประเภทโพสต์ที่คัดลอกซ่อนอยู่"
 
-#: admin/options.php:912
+#: admin/options.php:1030
 msgid "Copied post type fallback"
 msgstr "ประเภทโพสต์ที่คัดลอก"
 
-#: admin/options.php:945
+#: admin/options.php:1063
 msgid "Duplicate Fields"
 msgstr "ฟิลด์ซ้ำ"
 
-#: admin/options.php:949
+#: admin/options.php:1067
 msgid "Specify fields to include when Posts are duplicated."
 msgstr "ระบุฟิลด์ที่จะรวมเมื่อโพสต์ถูกทำซ้ำ"
 
-#: admin/options.php:965
-msgid "Thumnbnail"
-msgstr "ภาพขนาดย่อ"
-
-#: admin/options.php:981
+#: admin/options.php:1085
 msgid "Hidden copied field setting"
 msgstr "การตั้งค่าฟิลด์ที่คัดลอกซ่อนอยู่"
 
-#: admin/options.php:987
+#: admin/options.php:1091
 msgid "Copied field fallback"
 msgstr "การสำรองฟิลด์ที่คัดลอก"
 
-#: admin/options.php:1011
+#: admin/options.php:1115
 msgid ""
 "Note: Third party code may cause some post types to be incompatible with "
 "PublishPress Revisions."
@@ -1843,7 +1892,7 @@ msgstr ""
 "หมายเหตุ: โค้ดของบุคคลที่สามอาจทำให้ประเภทโพสต์บางประเภทไม่เข้ากันกับ "
 "PublishPress Revisions"
 
-#: admin/options.php:1021
+#: admin/options.php:1125
 #, php-format
 msgid ""
 "For Revisions integration on the Content Calendar, Overview and Content "
@@ -1852,11 +1901,11 @@ msgstr ""
 "สำหรับการรวม Revisions บนปฏิทินเนื้อหา, ภาพรวมและกระดานเนื้อหา, โปรดอัปเดต "
 "%sPublishPress Planner Pro%s"
 
-#: admin/options.php:1042
+#: admin/options.php:1146
 msgid "Ready to enhance your revision workflow?"
 msgstr "พร้อมที่จะปรับปรุงกระบวนการปรับปรุงของคุณหรือยัง?"
 
-#: admin/options.php:1045
+#: admin/options.php:1149
 msgid ""
 "Get PublishPress Statuses Pro and optimize your revision process with "
 "custom revision statuses."
@@ -1864,102 +1913,102 @@ msgstr ""
 "รับ PublishPress Statuses Pro "
 "และเพิ่มประสิทธิภาพกระบวนการปรับปรุงของคุณด้วยสถานะการปรับปรุงที่กำหนดเอง"
 
-#: admin/options.php:1051
+#: admin/options.php:1155
 msgid "Define your own statuses before or after Revision Submitted"
 msgstr "กำหนดสถานะของคุณเองก่อนหรือหลังการส่งการปรับปรุง"
 
-#: admin/options.php:1054
+#: admin/options.php:1158
 msgid "New predefined statuses: Deferred, Needs Work, Rejected"
 msgstr "สถานะที่กำหนดไว้ใหม่: รอดำเนินการ, ต้องการการทำงาน, ถูกปฏิเสธ"
 
-#: admin/options.php:1057
+#: admin/options.php:1161
 msgid "Statuses can be specific to a post type"
 msgstr "สถานะสามารถเฉพาะสำหรับประเภทโพสต์"
 
-#: admin/options.php:1060
+#: admin/options.php:1164
 msgid "Control access to statuses per-role"
 msgstr "ควบคุมการเข้าถึงสถานะต่อบทบาท"
 
-#: admin/options.php:1063
+#: admin/options.php:1167
 msgid "Status workflow can be nested with sub-statuses"
 msgstr "สถานะการทำงานสามารถซ้อนกันได้ด้วยสถานะย่อย"
 
-#: admin/options.php:1070
-#: admin/options.php:1073
+#: admin/options.php:1174
+#: admin/options.php:1177
 msgid "Get PublishPress Statuses Pro"
 msgstr "รับ PublishPress Statuses Pro"
 
-#: admin/options.php:1076
-#: admin/options.php:1096
+#: admin/options.php:1180
+#: admin/options.php:1200
 msgid "Learn more about revision statuses"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับสถานะการแก้ไข"
 
-#: admin/options.php:1079
-#: admin/options.php:1097
-#: admin/options.php:2140
-#: admin/options.php:2158
-#: admin/options.php:2786
-#: admin/options.php:2799
-#: admin/options.php:2816
-#: admin/options.php:2830
-#: admin/options.php:2840
-#: admin/options.php:2850
+#: admin/options.php:1183
+#: admin/options.php:1201
+#: admin/options.php:2239
+#: admin/options.php:2257
+#: admin/options.php:2884
+#: admin/options.php:2897
+#: admin/options.php:2914
+#: admin/options.php:2928
+#: admin/options.php:2938
+#: admin/options.php:2948
 msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
 
-#: admin/options.php:1088
+#: admin/options.php:1192
 msgid "Revision statuses settings preview"
 msgstr "ตัวอย่างการตั้งค่าสถานะการแก้ไข"
 
-#: admin/options.php:1092
+#: admin/options.php:1196
 msgid "Pro Plugin"
 msgstr "ปลั๊กอิน Pro"
 
-#: admin/options.php:1093
+#: admin/options.php:1197
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr "ติดตั้ง Statuses Pro เพื่อปลดล็อกสถานะการแก้ไขที่กำหนดเอง."
 
-#: admin/options.php:1094
+#: admin/options.php:1198
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr "กำหนดค่าตามประเภทโพสต์และบทบาทใด ๆ เพื่อให้ตรงกับกระบวนการแก้ไขของคุณ."
 
-#: admin/options.php:1100
-#: admin/options.php:1101
+#: admin/options.php:1204
+#: admin/options.php:1205
 msgid "Get Statuses Pro"
 msgstr "รับ Statuses Pro"
 
-#: admin/options.php:1128
+#: admin/options.php:1232
 msgid "Maximum revisions per post:"
 msgstr "จำนวนการแก้ไขสูงสุดต่อโพสต์:"
 
-#: admin/options.php:1130
+#: admin/options.php:1234
 msgid "(unlimited)"
 msgstr "(ไม่มีที่สิ้นสุด)"
 
-#: admin/options.php:1138
+#: admin/options.php:1242
 #, php-format
 msgid "Note that archiving can also be disabled by %1$sPost Type%2$s."
 msgstr "โปรดทราบว่าการเก็บถาวรสามารถปิดการใช้งานได้โดย %1$sPost Type%2$s."
 
-#: admin/options.php:1179
-#: admin/options.php:1375
-#: admin/options.php:2308
+#: admin/options.php:1283
+#: admin/options.php:1479
+#: admin/options.php:2406
 #, php-format
 msgid "%s capability"
 msgstr "%s ความสามารถ"
 
-#: admin/options.php:1184
-#: admin/options.php:1380
-#: admin/options.php:2313
+#: admin/options.php:1288
+#: admin/options.php:1484
+#: admin/options.php:2411
 msgid "Assign capability to roles"
 msgstr "กำหนดความสามารถให้กับบทบาท"
 
-#: admin/options.php:1191
+#: admin/options.php:1295
 #, php-format
 msgid "Prevent non-Administrators from restoring a revision without the %s."
 msgstr "ป้องกันไม่ให้ผู้ใช้ที่ไม่ใช่ผู้ดูแลระบบกู้คืนการแก้ไขโดยไม่ใช้ %s."
 
-#: admin/options.php:1197
+#: admin/options.php:1301
 msgid ""
 "Prevent non-Administrators from restoring a revision without the "
 "restore_revisions capability"
@@ -1967,72 +2016,68 @@ msgstr ""
 "ป้องกันไม่ให้ผู้ใช้ที่ไม่ใช่ผู้ดูแลระบบกู้คืนการแก้ไขโดยไม่ใช้ความสามารถในกา"
 "รกู้คืนการแก้ไข"
 
-#: admin/options.php:1211
-msgid "Modification Date"
-msgstr "วันที่แก้ไข"
-
-#: admin/options.php:1239
+#: admin/options.php:1343
 msgid "Revision Creation"
 msgstr "การสร้างการแก้ไข"
 
-#: admin/options.php:1240
+#: admin/options.php:1344
 msgid "Submission"
 msgstr "การส่ง"
 
-#: admin/options.php:1241
+#: admin/options.php:1345
 msgid "Scheduling"
 msgstr "การจัดตารางเวลา"
 
-#: admin/options.php:1243
+#: admin/options.php:1347
 msgid "Management"
 msgstr "การจัดการ"
 
-#: admin/options.php:1306
+#: admin/options.php:1410
 msgid "Duplicate Post capabilities"
 msgstr "ความสามารถในการทำซ้ำโพสต์"
 
-#: admin/options.php:1310
+#: admin/options.php:1414
 #, php-format
 msgid "If the user can't edit the published post, require %s"
 msgstr "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ ต้องการ %s"
 
-#: admin/options.php:1313
+#: admin/options.php:1417
 #, php-format
 msgid "If enabled, Post Duplication access can be controlled per-role using %s"
 msgstr "หากเปิดใช้งาน การเข้าถึงการทำซ้ำโพสต์สามารถควบคุมได้ตามบทบาทโดยใช้ %s"
 
-#: admin/options.php:1323
+#: admin/options.php:1427
 msgid "Create Revision capabilities"
 msgstr "สร้างความสามารถในการแก้ไข"
 
-#: admin/options.php:1328
-#: admin/options.php:1354
-#: admin/options.php:1520
-#: admin/options.php:1673
+#: admin/options.php:1432
+#: admin/options.php:1458
+#: admin/options.php:1619
+#: admin/options.php:1774
 msgid "Assign capabilities to roles"
 msgstr "กำหนดความสามารถให้กับบทบาท"
 
-#: admin/options.php:1335
-#: admin/options.php:1527
+#: admin/options.php:1439
+#: admin/options.php:1626
 #, php-format
 msgid "If the user can't edit the published post, require %s."
 msgstr "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ ให้กำหนด %s."
 
-#: admin/options.php:1341
+#: admin/options.php:1445
 #, php-format
 msgid "If enabled, Revision Creation access can be controlled per-role using %s"
 msgstr "หากเปิดใช้งาน การเข้าถึงการสร้างการแก้ไขสามารถควบคุมได้ตามบทบาทโดยใช้ %s"
 
-#: admin/options.php:1350
+#: admin/options.php:1454
 #, php-format
 msgid "To expand the Pages list, assign %s."
 msgstr "เพื่อขยายรายชื่อหน้า กำหนด %s."
 
-#: admin/options.php:1353
+#: admin/options.php:1457
 msgid "Listing capabilities"
 msgstr "ความสามารถในการแสดงรายการ"
 
-#: admin/options.php:1360
+#: admin/options.php:1464
 msgid ""
 "To expand the Pages list, assign Listing capabilities (list_others_pages, "
 "list_published_posts, etc.)"
@@ -2040,18 +2085,18 @@ msgstr ""
 "เพื่อขยายรายชื่อหน้า กำหนดความสามารถในการแสดงรายการ (list_others_pages, "
 "list_published_posts, เป็นต้น)"
 
-#: admin/options.php:1367
+#: admin/options.php:1471
 msgid "This plugin introduces a new user role, \"Revisor.\""
 msgstr "ปลั๊กอินนี้แนะนำบทบาทผู้ใช้ใหม่ \"Revisor.\""
 
-#: admin/options.php:1387
+#: admin/options.php:1491
 #, php-format
 msgid ""
 "Revision by a user who does not have the %s will cause all custom html tags "
 "to be stripped out."
 msgstr "การแก้ไขโดยผู้ใช้ที่ไม่มี %s จะทำให้แท็ก HTML แบบกำหนดเองทั้งหมดถูกลบออก."
 
-#: admin/options.php:1393
+#: admin/options.php:1497
 msgid ""
 "Revision by a user who does not have the unfiltered_html capability will "
 "cause all custom html tags to be stripped out."
@@ -2059,15 +2104,15 @@ msgstr ""
 "การแก้ไขโดยผู้ใช้ที่ไม่มีความสามารถ unfiltered_html จะทำให้แท็ก HTML "
 "แบบกำหนดเองทั้งหมดถูกลบออก."
 
-#: admin/options.php:1409
+#: admin/options.php:1513
 msgid "Standard storage schema for broadest 3rd party compat"
 msgstr "สถาปัตยกรรมการจัดเก็บมาตรฐานสำหรับความเข้ากันได้กับบุคคลที่สามที่กว้างที่สุด"
 
-#: admin/options.php:1410
+#: admin/options.php:1514
 msgid "Enhanced Revision access control with PublishPress plugins"
 msgstr "การควบคุมการเข้าถึงการแก้ไขที่ได้รับการปรับปรุงด้วยปลั๊กอิน PublishPress"
 
-#: admin/options.php:1426
+#: admin/options.php:1530
 msgid ""
 "In enhanced mode, a Revision's status is stored by standard WordPress "
 "schema. Some plugins are incompatible."
@@ -2075,19 +2120,7 @@ msgstr ""
 "ในโหมดที่ปรับปรุง สถานะของการแก้ไขจะถูกจัดเก็บโดยสถาปัตยกรรมมาตรฐานของ "
 "WordPress บางปลั๊กอินไม่เข้ากัน."
 
-#: admin/options.php:1442
-msgid "Allow any number of Revisions per post."
-msgstr "อนุญาตให้มีการแก้ไขจำนวนเท่าใดก็ได้ต่อโพสต์."
-
-#: admin/options.php:1443
-msgid "Prevent Revision creation if another was already created."
-msgstr "ป้องกันไม่ให้สร้างการแก้ไขหากมีการสร้างอีกอันหนึ่งแล้ว."
-
-#: admin/options.php:1444
-msgid "Prevent Revision creation if another was already submitted."
-msgstr "ป้องกันไม่ให้สร้างการแก้ไขหากมีการส่งอีกอันหนึ่งแล้ว."
-
-#: admin/options.php:1461
+#: admin/options.php:1561
 msgid ""
 "Work around cache plugin conflicts by requerying for revisions before "
 "suppressing the New Revision link."
@@ -2095,22 +2128,14 @@ msgstr ""
 "ทำงานรอบข้อขัดแย้งของปลั๊กอินแคชโดยการสอบถามสำหรับการแก้ไขอีกครั้งก่อนที่จะซ"
 "่อนลิงค์การแก้ไขใหม่."
 
-#: admin/options.php:1476
-msgid ""
-"Query Loop previews use your existing post permissions. The legacy "
-"capability allowance has been retired."
-msgstr ""
-"การแสดงตัวอย่าง Query Loop ใช้สิทธิ์โพสต์ที่มีอยู่ของคุณ "
-"ความสามารถเก่าได้ถูกยกเลิกแล้ว。"
-
-#: admin/options.php:1480
+#: admin/options.php:1579
 #, php-format
 msgid ""
 "If the user does not have a regular Edit link, recaption the %s link as "
 "\"Edit.\""
 msgstr "หากผู้ใช้ไม่มีลิงก์แก้ไขปกติ ให้เปลี่ยนชื่อ %s ลิงก์เป็น \"แก้ไข\"."
 
-#: admin/options.php:1483
+#: admin/options.php:1582
 msgid ""
 "Default labels are \"Not Submitted for Approval\", \"Submitted for "
 "Approval\", \"Scheduled Revision\""
@@ -2118,7 +2143,7 @@ msgstr ""
 "ป้ายกำกับเริ่มต้นคือ \"ยังไม่ได้ส่งเพื่ออนุมัติ\", \"ส่งเพื่ออนุมัติ\", "
 "\"การแก้ไขตามกำหนด\""
 
-#: admin/options.php:1501
+#: admin/options.php:1600
 #, php-format
 msgid ""
 "Enable published content to be copied, edited, submitted for approval and "
@@ -2127,36 +2152,36 @@ msgstr ""
 "เปิดใช้งานเนื้อหาที่เผยแพร่ให้สามารถคัดลอก แก้ไข ส่งเพื่ออนุมัติ "
 "และจัดการบนหน้าจอ %sการแก้ไขใหม่%s."
 
-#: admin/options.php:1515
+#: admin/options.php:1614
 msgid "Submit Revision capabilities"
 msgstr "ความสามารถในการส่งการแก้ไข"
 
-#: admin/options.php:1533
+#: admin/options.php:1632
 #, php-format
 msgid "If enabled, Revision Submission access can be controlled per-role using %s"
 msgstr "หากเปิดใช้งาน การเข้าถึงการส่งการแก้ไขสามารถควบคุมได้ตามบทบาทโดยใช้ %s"
 
-#: admin/options.php:1544
+#: admin/options.php:1644
 msgid "Revision editor background color"
 msgstr "สีพื้นหลังของตัวแก้ไขการแก้ไข"
 
-#: admin/options.php:1555
+#: admin/options.php:1655
 msgid "Select a custom background color to show that a Revision is being edited."
 msgstr "เลือกสีพื้นหลังที่กำหนดเองเพื่อแสดงว่ากำลังแก้ไขการแก้ไขอยู่."
 
-#: admin/options.php:1594
-#: admin/options.php:1628
+#: admin/options.php:1695
+#: admin/options.php:1729
 #, php-format
 msgid "When a %s is published, update post publish date to current time."
 msgstr "เมื่อ %s ถูกเผยแพร่ ให้ปรับปรุงวันที่เผยแพร่โพสต์เป็นเวลาปัจจุบัน."
 
-#: admin/options.php:1597
-#: admin/options.php:1631
+#: admin/options.php:1698
+#: admin/options.php:1732
 #, php-format
 msgid "When a %s is published, update post modified date to current time."
 msgstr "เมื่อ %s ถูกเผยแพร่ ให้ปรับปรุงวันที่แก้ไขโพสต์เป็นเวลาปัจจุบัน."
 
-#: admin/options.php:1600
+#: admin/options.php:1701
 msgid ""
 "When a new revision is created by any user who is allowed to submit "
 "revisions, automatically submit it."
@@ -2164,11 +2189,11 @@ msgstr ""
 "เมื่อมีการสร้างการแก้ไขใหม่โดยผู้ใช้ใด ๆ ที่ได้รับอนุญาตให้ส่งการแก้ไข "
 "ให้ส่งโดยอัตโนมัติ."
 
-#: admin/options.php:1603
+#: admin/options.php:1704
 msgid "Auto-submit revisions if the user can directly edit the main post."
 msgstr "ส่งการแก้ไขโดยอัตโนมัติหากผู้ใช้สามารถแก้ไขโพสต์หลักโดยตรงได้."
 
-#: admin/options.php:1606
+#: admin/options.php:1707
 msgid ""
 "This allows immediate approval within the Compare screen. If disabled, a "
 "Preview link is provided instead."
@@ -2176,7 +2201,7 @@ msgstr ""
 "สิ่งนี้ช่วยให้การอนุมัติทันทีภายในหน้าจอเปรียบเทียบ หากปิดใช้งาน "
 "จะมีลิงก์ตัวอย่างแทน."
 
-#: admin/options.php:1622
+#: admin/options.php:1723
 msgid ""
 "If a currently published post or page is edited and a future date set, the "
 "change will not be applied until the selected date."
@@ -2184,11 +2209,11 @@ msgstr ""
 "หากโพสต์หรือหน้าที่เผยแพร่ในปัจจุบันถูกแก้ไขและตั้งค่าวันที่ในอนาคต "
 "การเปลี่ยนแปลงจะไม่ถูกนำไปใช้จนกว่าจะถึงวันที่ที่เลือก."
 
-#: admin/options.php:1634
+#: admin/options.php:1735
 msgid "Leave this setting disabled to use Action Scheduler (recommended)."
 msgstr "ปล่อยให้การตั้งค่านี้ปิดใช้งานเพื่อใช้ Action Scheduler (แนะนำ)."
 
-#: admin/options.php:1639
+#: admin/options.php:1740
 msgid ""
 "Support publication of existing scheduled revisions asynchronously, via a "
 "secondary http request from the server.  This is usually best since it "
@@ -2198,7 +2223,7 @@ msgstr ""
 "รองจากเซิร์ฟเวอร์ โดยปกติแล้วจะดีที่สุดเนื่องจากไม่มีความล่าช้า "
 "แต่บางเซิร์ฟเวอร์อาจไม่รองรับ."
 
-#: admin/options.php:1644
+#: admin/options.php:1745
 msgid ""
 "The WP-Cron trigger is disabled, but scheduled tasks are still excecuted "
 "using a custom trigger."
@@ -2206,43 +2231,43 @@ msgstr ""
 "ทริกเกอร์ WP-Cron ถูกปิดใช้งาน "
 "แต่การทำงานที่กำหนดไว้ยังคงถูกดำเนินการโดยใช้ทริกเกอร์ที่กำหนดเอง."
 
-#: admin/options.php:1662
+#: admin/options.php:1763
 msgid ""
 "Currently, users who can edit the published post can also approve Revisions "
 "to it."
 msgstr "ปัจจุบัน ผู้ใช้ที่สามารถแก้ไขโพสต์ที่เผยแพร่ก็สามารถอนุมัติการแก้ไขได้ด้วย."
 
-#: admin/options.php:1668
+#: admin/options.php:1769
 msgid "Approve Revision capabilities"
 msgstr "ความสามารถในการอนุมัติการแก้ไข"
 
-#: admin/options.php:1677
+#: admin/options.php:1778
 #, php-format
 msgid "Control access with %s."
 msgstr "ควบคุมการเข้าถึงด้วย %s."
 
-#: admin/options.php:1685
+#: admin/options.php:1786
 #, php-format
 msgid "If enabled, Revision Approval access can be controlled per-role using %s"
 msgstr "หากเปิดใช้งาน การเข้าถึงการอนุมัติการแก้ไขสามารถควบคุมได้ตามบทบาทโดยใช้ %s"
 
-#: admin/options.php:1691
+#: admin/options.php:1792
 msgid ""
 "Caption the button as either \"Approve and Publish\" or \"Approve and "
 "Schedule.\""
 msgstr "เปลี่ยนชื่อปุ่มเป็น \"อนุมัติและเผยแพร่\" หรือ \"อนุมัติและกำหนดเวลา.\""
 
-#: admin/options.php:1700
+#: admin/options.php:1801
 msgid "This may improve compatibility with some plugins."
 msgstr "สิ่งนี้อาจช่วยปรับปรุงความเข้ากันได้กับปลั๊กอินบางตัว."
 
-#: admin/options.php:1722
+#: admin/options.php:1823
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid "If enabled, New Revisions screen access can be configured per-role using %s."
 msgstr "หากเปิดใช้งาน การเข้าถึงหน้าจอการแก้ไขใหม่สามารถกำหนดได้ตามบทบาทโดยใช้ %s."
 
-#: admin/options.php:1729
+#: admin/options.php:1830
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid ""
@@ -2252,7 +2277,7 @@ msgstr ""
 "หากเปิดใช้งาน การเข้าถึงการแก้ไขที่ยังไม่ได้ส่งสามารถกำหนดได้ตามบทบาทโดยใช้ "
 "%s."
 
-#: admin/options.php:1736
+#: admin/options.php:1837
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid ""
@@ -2262,7 +2287,7 @@ msgstr ""
 "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ "
 "ควบคุมการเข้าถึงการแก้ไขของผู้อื่นโดยใช้ %s."
 
-#: admin/options.php:1743
+#: admin/options.php:1844
 #. translators: %s: PublishPress Capabilities plugin name or link.
 #, php-format
 msgid ""
@@ -2272,13 +2297,13 @@ msgstr ""
 "หากผู้ใช้ไม่สามารถแก้ไขโพสต์ที่เผยแพร่ได้ "
 "ควบคุมความสามารถในการแสดงรายการการแก้ไขของผู้อื่นโดยใช้ %s."
 
-#: admin/options.php:1748
+#: admin/options.php:1849
 msgid ""
 "Bypass the above restrictions for others' revisions to logged in user's own "
 "posts."
 msgstr "ข้ามข้อจำกัดด้านบนสำหรับการแก้ไขของผู้อื่นไปยังโพสต์ของผู้ใช้ที่เข้าสู่ระบบ."
 
-#: admin/options.php:1759
+#: admin/options.php:1860
 msgid ""
 "If revisions were created for an editable page, include a floating "
 "Revisions button in front end views."
@@ -2286,11 +2311,11 @@ msgstr ""
 "หากมีการสร้างการแก้ไขสำหรับหน้าที่แก้ไขได้ "
 "ให้รวมปุ่มการแก้ไขที่ลอยอยู่ในมุมมองด้านหน้า."
 
-#: admin/options.php:1767
+#: admin/options.php:1868
 msgid "Regenerate \"post has revision\" flags"
 msgstr "สร้างใหม่ \"โพสต์มีการแก้ไข\" แท็ก"
 
-#: admin/options.php:1770
+#: admin/options.php:1871
 msgid ""
 "Apply this maintenance operation if Has Revision labels on Posts / Pages "
 "screens mismatch the New Revisions listing."
@@ -2298,17 +2323,17 @@ msgstr ""
 "ใช้การดำเนินการบำรุงรักษานี้หากป้ายกำกับ Has Revision บนหน้าจอโพสต์ / "
 "หน้าไม่ตรงกับรายการการแก้ไขใหม่."
 
-#: admin/options.php:1794
+#: admin/options.php:1895
 #, php-format
 msgid "For enhanced notifications, install %sPublishPress Planner%s."
 msgstr "สำหรับการแจ้งเตือนที่ดีขึ้น ติดตั้ง %sPublishPress Planner%s."
 
-#: admin/options.php:1807
+#: admin/options.php:1907
 #, php-format
 msgid "For enhanced notifications, update %sPublishPress Planner%s."
 msgstr "สำหรับการแจ้งเตือนที่ดีขึ้น อัปเดต %sPublishPress Planner%s."
 
-#: admin/options.php:1829
+#: admin/options.php:1928
 #, php-format
 msgid ""
 "Send revision action notifications using the customizable %1$sPublishPress "
@@ -2317,7 +2342,7 @@ msgstr ""
 "ส่งการแจ้งเตือนการกระทำการแก้ไขโดยใช้ระบบ %1$sPublishPress Planner "
 "Notifications%2$s ที่ปรับแต่งได้."
 
-#: admin/options.php:1830
+#: admin/options.php:1929
 #, php-format
 msgid ""
 "Upgrade to Revisions Pro to send revision action notifications using the "
@@ -2326,7 +2351,7 @@ msgstr ""
 "อัปเกรดเป็น Revisions Pro เพื่อส่งการแจ้งเตือนการกระทำการแก้ไขโดยใช้ระบบ "
 "%1$sPublishPress Planner Notifications%2$s ที่ปรับแต่งได้."
 
-#: admin/options.php:1844
+#: admin/options.php:1943
 msgid ""
 "Users matching Planner > Notifications configuration get revision "
 "notifications only if they can edit the published post."
@@ -2334,31 +2359,16 @@ msgstr ""
 "ผู้ใช้ที่ตรงตามการกำหนดค่า Planner > Notifications "
 "จะได้รับการแจ้งเตือนการแก้ไขเฉพาะเมื่อพวกเขาสามารถแก้ไขโพสต์ที่เผยแพร่ได้."
 
-#: admin/options.php:1854
+#: admin/options.php:1953
 msgid "Legacy Email Notifications:"
 msgstr "การแจ้งเตือนทางอีเมลแบบเก่า:"
 
-#: admin/options.php:1887
-#: admin/options.php:1910
-msgid "Never"
-msgstr "ไม่เคย"
-
-#: admin/options.php:1887
-#: admin/options.php:1910
-msgid "By default"
-msgstr "ตามค่าเริ่มต้น"
-
-#: admin/options.php:1887
-#: admin/options.php:1910
-msgid "Always"
-msgstr "เสมอ"
-
-#: admin/options.php:1898
-#: admin/options.php:1946
+#: admin/options.php:1997
+#: admin/options.php:2045
 msgid "select recipients"
 msgstr "เลือกผู้รับ"
 
-#: admin/options.php:1960
+#: admin/options.php:2059
 msgid ""
 "To avoid notification failures, buffer emails for delayed sending once "
 "minute, hour or day limits are exceeded"
@@ -2367,55 +2377,55 @@ msgstr ""
 "ให้บัฟเฟอร์อีเมลสำหรับการส่งที่ล่าช้าเมื่อเกินขีดจำกัดหนึ่งนาที "
 "หนึ่งชั่วโมง หรือหนึ่งวัน"
 
-#: admin/options.php:1983
+#: admin/options.php:2082
 msgid "Notification Buffer"
 msgstr "บัฟเฟอร์การแจ้งเตือน"
 
-#: admin/options.php:2011
+#: admin/options.php:2110
 msgid "Notification Log"
 msgstr "บันทึกการแจ้งเตือน"
 
-#: admin/options.php:2045
+#: admin/options.php:2144
 msgid "Purge Notification Buffer"
 msgstr "ล้างบัฟเฟอร์การแจ้งเตือน"
 
-#: admin/options.php:2056
+#: admin/options.php:2155
 msgid "Truncate Notification Log"
 msgstr "ตัดบันทึกการแจ้งเตือน"
 
-#: admin/options.php:2062
+#: admin/options.php:2161
 #, php-format
 msgid "Sent in last minute: %d / %d"
 msgstr "ส่งในนาทีที่แล้ว: %d / %d"
 
-#: admin/options.php:2063
+#: admin/options.php:2162
 #, php-format
 msgid "Sent in last hour: %d / %d"
 msgstr "ส่งในชั่วโมงที่แล้ว: %d / %d"
 
-#: admin/options.php:2064
+#: admin/options.php:2163
 #, php-format
 msgid "Sent in last day: %d / %d"
 msgstr "ส่งในวันที่แล้ว: %d / %d"
 
-#: admin/options.php:2071
+#: admin/options.php:2170
 #, php-format
 msgid "Seconds until next buffer processing time: %d"
 msgstr "วินาทีจนกว่าระยะเวลาการประมวลผลบัฟเฟอร์ถัดไป: %d"
 
-#: admin/options.php:2082
+#: admin/options.php:2181
 msgid "Show Notification Log / Buffer"
 msgstr "แสดงบันทึกการแจ้งเตือน / บัฟเฟอร์"
 
-#: admin/options.php:2084
+#: admin/options.php:2183
 msgid "Show with message content"
 msgstr "แสดงพร้อมเนื้อหาข้อความ"
 
-#: admin/options.php:2106
+#: admin/options.php:2205
 msgid "Ready to enhance your revision notifications?"
 msgstr "พร้อมที่จะปรับปรุงการแจ้งเตือนการแก้ไขของคุณหรือยัง?"
 
-#: admin/options.php:2109
+#: admin/options.php:2208
 msgid ""
 "Upgrade to Revisions Pro for integration with our PublishPress Planner "
 "Notifications framework."
@@ -2423,55 +2433,55 @@ msgstr ""
 "อัปเกรดเป็น Revisions Pro เพื่อเชื่อมต่อกับกรอบการแจ้งเตือน PublishPress "
 "Planner ของเรา"
 
-#: admin/options.php:2115
+#: admin/options.php:2214
 msgid "Customize notification message and subject"
 msgstr "ปรับแต่งข้อความและหัวข้อการแจ้งเตือน"
 
-#: admin/options.php:2118
+#: admin/options.php:2217
 msgid "Notify for a specific post type, category or term"
 msgstr "แจ้งเตือนสำหรับประเภทโพสต์ หมวดหมู่ หรือคำเฉพาะ"
 
-#: admin/options.php:2121
+#: admin/options.php:2220
 msgid "Target specific roles, users, or user groups"
 msgstr "กำหนดเป้าหมายบทบาท ผู้ใช้ หรือกลุ่มผู้ใช้เฉพาะ"
 
-#: admin/options.php:2124
+#: admin/options.php:2223
 msgid "With PublishPress Planner Pro, send notifications to a Slack channel"
 msgstr "ด้วย PublishPress Planner Pro ส่งการแจ้งเตือนไปยังช่อง Slack"
 
-#: admin/options.php:2131
-#: admin/options.php:2161
+#: admin/options.php:2230
+#: admin/options.php:2260
 #: includes/CoreAdmin.php:192
 msgid "Upgrade to Revisions Pro"
 msgstr "อัปเกรดเป็น Revisions Pro"
 
-#: admin/options.php:2137
+#: admin/options.php:2236
 msgid "Learn more about advanced revision notifications"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับการแจ้งเตือนการแก้ไขขั้นสูง"
 
-#: admin/options.php:2149
+#: admin/options.php:2248
 msgid "Revision notifications settings preview"
 msgstr "ตัวอย่างการตั้งค่าการแจ้งเตือนการแก้ไข"
 
-#: admin/options.php:2153
-#: admin/options.php:2794
-#: admin/options.php:2810
+#: admin/options.php:2252
+#: admin/options.php:2892
+#: admin/options.php:2908
 msgid "Pro Feature"
 msgstr "ฟีเจอร์ Pro"
 
-#: admin/options.php:2154
+#: admin/options.php:2253
 msgid "Upgrade to Revisions Pro to unlock Planner Notifications integration."
 msgstr "อัปเกรดเป็น Revisions Pro เพื่อปลดล็อกการเชื่อมต่อการแจ้งเตือน Planner"
 
-#: admin/options.php:2155
+#: admin/options.php:2254
 msgid "Customize notification content and recipients for each notification type."
 msgstr "ปรับแต่งเนื้อหาและผู้รับการแจ้งเตือนแต่ละประเภท"
 
-#: admin/options.php:2157
+#: admin/options.php:2256
 msgid "Learn more about custom email notifications"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับการแจ้งเตือนทางอีเมลที่กำหนดเอง"
 
-#: admin/options.php:2180
+#: admin/options.php:2279
 msgid ""
 "Disable this setting if visual comparison shows your changes incorrectly. "
 "Some page-builders and themes don't support the new style of WordPress "
@@ -2480,23 +2490,23 @@ msgstr ""
 "ปิดการตั้งค่านี้หากการเปรียบเทียบทางภาพแสดงการเปลี่ยนแปลงของคุณไม่ถูกต้อง "
 "บางเครื่องมือสร้างหน้าและธีมไม่รองรับรูปแบบใหม่ของการแก้ไขใน WordPress"
 
-#: admin/options.php:2185
+#: admin/options.php:2284
 msgid "This feature is incompatible with page builder plugins."
 msgstr "ฟีเจอร์นี้ไม่เข้ากันกับปลั๊กอินเครื่องมือสร้างหน้า"
 
-#: admin/options.php:2193
+#: admin/options.php:2292
 #. translators: %s: page builder plugin name.
 #, php-format
 msgid "Upgrade to Pro for visual comparison with %s."
 msgstr "อัปเกรดเป็น Pro เพื่อการเปรียบเทียบทางภาพกับ %s"
 
-#: admin/options.php:2204
+#: admin/options.php:2303
 msgid ""
 "This supports the page's normal javascript behavior inside the compare "
 "window."
 msgstr "นี่สนับสนุนการทำงานปกติของ JavaScript ของหน้าในหน้าต่างการเปรียบเทียบ"
 
-#: admin/options.php:2207
+#: admin/options.php:2306
 msgid ""
 "If enabled, Editors and Administrators can see unidentified internal fields "
 "keys in comparisons. An attempt is still made to suppress sensitive and "
@@ -2506,23 +2516,11 @@ msgstr ""
 "ผู้แก้ไขและผู้ดูแลระบบสามารถเห็นคีย์ฟิลด์ภายในที่ไม่ระบุในเปรียบเทียบ "
 "การพยายามยังคงทำเพื่อปิดบังฟิลด์ที่ละเอียดอ่อนและชั่วคราว"
 
-#: admin/options.php:2223
+#: admin/options.php:2325
 msgid "Some themes may block revision preview."
 msgstr "บางธีมอาจบล็อกการแสดงตัวอย่างการแก้ไข"
 
-#: admin/options.php:2240
-msgid "Published Post Slug"
-msgstr "สลักโพสต์ที่เผยแพร่"
-
-#: admin/options.php:2241
-msgid "Revision Slug"
-msgstr "สลักการแก้ไข"
-
-#: admin/options.php:2242
-msgid "Revision ID only"
-msgstr "Revision ID เท่านั้น"
-
-#: admin/options.php:2257
+#: admin/options.php:2355
 msgid ""
 "Some themes or plugins may require Revision Slug or Revision ID link type "
 "for proper template loading and field display."
@@ -2530,12 +2528,12 @@ msgstr ""
 "บางธีมหรือปลั๊กอินอาจต้องการประเภทลิงก์ Revision Slug หรือ Revision ID "
 "เพื่อการโหลดเทมเพลตและแสดงฟิลด์อย่างถูกต้อง"
 
-#: admin/options.php:2266
+#: admin/options.php:2364
 #, php-format
 msgid "The revision preview argument is configured by constant definition: %s"
 msgstr "อาร์กิวเมนต์การแสดงตัวอย่างการแก้ไขถูกกำหนดโดยการนิยามค่าคงที่: %s"
 
-#: admin/options.php:2273
+#: admin/options.php:2371
 msgid ""
 "Adjust preview links to use \"rv_preview\" argument instead of \"preview\". "
 "Experiment to see which works best with your theme."
@@ -2543,11 +2541,11 @@ msgstr ""
 "ปรับลิงก์การแสดงตัวอย่างให้ใช้ \"rv_preview\" แทนที่จะใช้ \"preview\" "
 "ทดลองเพื่อดูว่าอันไหนทำงานได้ดีที่สุดกับธีมของคุณ"
 
-#: admin/options.php:2277
+#: admin/options.php:2375
 msgid "Some themes may require this setting for correct revision preview display."
 msgstr "บางธีมอาจต้องการการตั้งค่านี้สำหรับการแสดงตัวอย่างการแก้ไขที่ถูกต้อง"
 
-#: admin/options.php:2296
+#: admin/options.php:2394
 msgid ""
 "This should usually be enabled, except to work around conflicts with other "
 "another plugin's postmeta data."
@@ -2555,14 +2553,14 @@ msgstr ""
 "โดยปกติควรเปิดใช้งาน ยกเว้นเพื่อหลีกเลี่ยงความขัดแย้งกับข้อมูล postmeta "
 "ของปลั๊กอินอื่น"
 
-#: admin/options.php:2320
+#: admin/options.php:2418
 #, php-format
 msgid "If the user can't publish, require the %s to edit others' unpublished Posts."
 msgstr ""
 "หากผู้ใช้ไม่สามารถเผยแพร่ได้ ให้กำหนดให้ %s "
 "แก้ไขโพสต์ที่ยังไม่ได้เผยแพร่ของผู้อื่น"
 
-#: admin/options.php:2326
+#: admin/options.php:2424
 msgid ""
 "If the user can't publish, require the edit_others_drafts capability to "
 "edit others' unpublished Posts."
@@ -2570,7 +2568,7 @@ msgstr ""
 "หากผู้ใช้ไม่สามารถเผยแพร่ได้ ให้กำหนดให้ความสามารถ edit_others_drafts "
 "แก้ไขโพสต์ที่ยังไม่ได้เผยแพร่ของผู้อื่น"
 
-#: admin/options.php:2332
+#: admin/options.php:2430
 msgid ""
 "If editing limitations or blockages apply to a post, apply the same "
 "Permissions to each of its revisions."
@@ -2578,20 +2576,20 @@ msgstr ""
 "หากมีการแก้ไขข้อจำกัดหรือการบล็อกที่ใช้กับโพสต์ "
 "ให้ใช้สิทธิเดียวกันกับแต่ละรุ่นของมัน."
 
-#: admin/options.php:2344
+#: admin/options.php:2442
 msgid "Rank Math SEO may prevent Revision update on some sites."
 msgstr "Rank Math SEO อาจป้องกันการอัปเดตการแก้ไขในบางไซต์"
 
-#: admin/options.php:2351
+#: admin/options.php:2449
 #: includes/CoreAdmin.php:207, fuzzy
 msgid "WPML Translation Management"
 msgstr "WPML Translation Management"
 
-#: admin/options.php:2356
+#: admin/options.php:2454
 msgid "Sync \"Needs Update\" flags"
 msgstr "ซิงค์ธง \"ต้องการอัปเดต\""
 
-#: admin/options.php:2360
+#: admin/options.php:2458
 msgid ""
 "Set \"Needs Update\" for any post with translations which was updated "
 "(possibly by revision approval) more recently than its translations."
@@ -2599,11 +2597,11 @@ msgstr ""
 "ตั้งค่า \"ต้องการอัปเดต\" สำหรับโพสต์ใดๆ ที่มีการแปลซึ่งได้รับการอัปเดต "
 "(อาจโดยการอนุมัติการแก้ไข) เมื่อเร็วๆ นี้กว่าการแปลของมัน"
 
-#: admin/options.php:2378
+#: admin/options.php:2476
 msgid "Show descriptive captions for PublishPress Revisions settings."
 msgstr "แสดงคำบรรยายที่มีรายละเอียดสำหรับการตั้งค่า PublishPress Revisions"
 
-#: admin/options.php:2396
+#: admin/options.php:2494
 msgid ""
 "Plugin settings, New Revisions contents and related data will be deleted, "
 "but only after the last copy of Revisions / Revisions Pro is deleted."
@@ -2611,11 +2609,11 @@ msgstr ""
 "การตั้งค่าโปรแกรมเสริม เนื้อหา Revisions ใหม่ และข้อมูลที่เกี่ยวข้องจะถูกลบ "
 "แต่จะถูกลบหลังจากสำเนาสุดท้ายของ Revisions / Revisions Pro ถูกลบ"
 
-#: admin/options.php:2418
+#: admin/options.php:2516
 msgid "Unlock Pro Integrations"
 msgstr "ปลดล็อกการรวมโปร"
 
-#: admin/options.php:2419
+#: admin/options.php:2517
 msgid ""
 "Upgrade to the Pro version for optimal compatibility and prompt, "
 "professional support."
@@ -2623,54 +2621,54 @@ msgstr ""
 "อัปเกรดเป็นเวอร์ชัน Pro "
 "เพื่อความเข้ากันได้ที่ดีที่สุดและการสนับสนุนที่รวดเร็วและเป็นมืออาชีพ"
 
-#: admin/options.php:2432
+#: admin/options.php:2530
 msgid "Filter integrations by category"
 msgstr "กรองการรวมตามหมวดหมู่"
 
-#: admin/options.php:2437
-#: admin/options.php:2718, fuzzy
+#: admin/options.php:2535
+#: admin/options.php:2816, fuzzy
 msgid "Builder"
 msgstr "Builder"
 
-#: admin/options.php:2440
-#: admin/options.php:2719, fuzzy
+#: admin/options.php:2538
+#: admin/options.php:2817, fuzzy
 msgid "Blocks"
 msgstr "Blocks"
 
-#: admin/options.php:2443
-#: admin/options.php:2720, fuzzy
+#: admin/options.php:2541
+#: admin/options.php:2818, fuzzy
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/options.php:2446, fuzzy
+#: admin/options.php:2544, fuzzy
 msgid "E-Commerce"
 msgstr "E-Commerce"
 
-#: admin/options.php:2449
-#: admin/options.php:2722, fuzzy
+#: admin/options.php:2547
+#: admin/options.php:2820, fuzzy
 msgid "Fields"
 msgstr "Fields"
 
-#: admin/options.php:2452
-#: admin/options.php:2727, fuzzy
+#: admin/options.php:2550
+#: admin/options.php:2825, fuzzy
 msgid "Themes"
 msgstr "Themes"
 
-#: admin/options.php:2456, fuzzy
+#: admin/options.php:2554, fuzzy
 msgid "Multilingual"
 msgstr "Multilingual"
 
-#: admin/options.php:2460
-#: admin/options.php:2725, fuzzy
+#: admin/options.php:2558
+#: admin/options.php:2823, fuzzy
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/options.php:2463
-#: admin/options.php:2728, fuzzy
+#: admin/options.php:2561
+#: admin/options.php:2826, fuzzy
 msgid "Workflow"
 msgstr "Workflow"
 
-#: admin/options.php:2565
+#: admin/options.php:2663
 msgid ""
 "Specify which PublishPress Revisions Settings to control network-wide. "
 "Unselected settings are controlled separately on each site."
@@ -2678,20 +2676,20 @@ msgstr ""
 "ระบุการตั้งค่า PublishPress Revisions ที่จะควบคุมทั่วทั้งเครือข่าย "
 "การตั้งค่าที่ไม่ได้เลือกจะถูกควบคุมแยกต่างหากในแต่ละไซต์"
 
-#: admin/options.php:2611
+#: admin/options.php:2709
 #, php-format
 msgid "network-wide control of \"%s\""
 msgstr "การควบคุมทั่วทั้งเครือข่ายของ \"%s\""
 
-#: admin/options.php:2638
+#: admin/options.php:2736
 msgid "Save Changes"
 msgstr "บันทึกการเปลี่ยนแปลง"
 
-#: admin/options.php:2639
+#: admin/options.php:2737
 msgid "Revert to Defaults"
 msgstr "คืนค่าเป็นค่าเริ่มต้น"
 
-#: admin/options.php:2641
+#: admin/options.php:2739
 msgid ""
 "All settings in this form (including those on unselected tabs) will be "
 "reset to DEFAULTS.  Are you sure?"
@@ -2699,79 +2697,79 @@ msgstr ""
 "การตั้งค่าทั้งหมดในแบบฟอร์มนี้ (รวมถึงที่อยู่ในแท็บที่ไม่ได้เลือก) "
 "จะถูกรีเซ็ตเป็นค่าเริ่มต้น คุณแน่ใจหรือไม่?"
 
-#: admin/options.php:2721, fuzzy
+#: admin/options.php:2819, fuzzy
 msgid "Commerce"
 msgstr "Commerce"
 
-#: admin/options.php:2723, fuzzy
+#: admin/options.php:2821, fuzzy
 msgid "Form"
 msgstr "Form"
 
-#: admin/options.php:2724, fuzzy
+#: admin/options.php:2822, fuzzy
 msgid "Multilang"
 msgstr "Multilang"
 
-#: admin/options.php:2726, fuzzy
+#: admin/options.php:2824, fuzzy
 msgid "Slider"
 msgstr "Slider"
 
-#: admin/options.php:2743, fuzzy
+#: admin/options.php:2841, fuzzy
 msgid "Pro"
 msgstr "Pro"
 
-#: admin/options.php:2747, fuzzy
+#: admin/options.php:2845, fuzzy
 msgid "Active"
 msgstr "Active"
 
-#: admin/options.php:2759
+#: admin/options.php:2857
 msgid "Supported by PublishPress Revisions"
 msgstr "สนับสนุนโดย PublishPress Revisions"
 
-#: admin/options.php:2761
+#: admin/options.php:2859
 msgid "Supported by Revisions Pro"
 msgstr "สนับสนุนโดย Revisions Pro"
 
-#: admin/options.php:2774
+#: admin/options.php:2872
 msgid "Integration Config Issue"
 msgstr "ปัญหาการกำหนดค่าการรวม"
 
-#: admin/options.php:2774
+#: admin/options.php:2872
 msgid "Integration Active"
 msgstr "การรวมที่ใช้งานอยู่"
 
-#: admin/options.php:2782
-#: admin/options.php:2837
+#: admin/options.php:2880
+#: admin/options.php:2935
 msgid "Supported plugin integration"
 msgstr "การรวมโปรแกรมเสริมที่สนับสนุน"
 
-#: admin/options.php:2795
+#: admin/options.php:2893
 msgid ""
 "Unlock PublishPress Statuses Pro integration to enhance your revisions "
 "solution."
 msgstr "ปลดล็อกการรวมสถานะ PublishPress Pro เพื่อปรับปรุงโซลูชันการแก้ไขของคุณ"
 
-#: admin/options.php:2803
+#: admin/options.php:2901
 msgid "Upgrade to Statuses Pro"
 msgstr "อัปเกรดเป็นสถานะ Pro"
 
-#: admin/options.php:2811
+#: admin/options.php:2909
 #, php-format
 msgid "Unlock %s integration to enhance your revisions solution."
 msgstr "ปลดล็อกการรวม %s เพื่อปรับปรุงโซลูชันการแก้ไขของคุณ"
 
-#: admin/options.php:2827
+#: admin/options.php:2925
 msgid "Active Plugin"
 msgstr "ปลั๊กอินที่ใช้งานอยู่"
 
-#: admin/options.php:2827
+#: admin/options.php:2925
 msgid "Active Plugin Integration"
 msgstr "การรวมปลั๊กอินที่ใช้งานอยู่"
 
-#: admin/options.php:2847
+#: admin/options.php:2945
 msgid "Supported Plugin"
 msgstr "ปลั๊กอินที่รองรับ"
 
-#: admin/options.php:2898
+#: admin/options.php:2996
 msgid "Color setting"
 msgstr "การตั้งค่าสี"
 
@@ -2848,10 +2846,10 @@ msgid "Approve and Publish"
 msgstr "อนุมัติและเผยแพร่"
 
 #: admin/post-editor-workflow-ui_rvy.php:134
-#: rvy_init-functions.php:301
-#: rvy_init-functions.php:320
-#: rvy_init-functions.php:357
-#: rvy_init-functions.php:374
+#: rvy_init-functions.php:302
+#: rvy_init-functions.php:321
+#: rvy_init-functions.php:358
+#: rvy_init-functions.php:375
 msgid "Update in progress..."
 msgstr "กำลังอัปเดต..."
 
@@ -2864,13 +2862,13 @@ msgid "Decline Revision"
 msgstr "ปฏิเสธการแก้ไข"
 
 #: admin/post-editor-workflow-ui_rvy.php:174
-#: rvy_init-functions.php:290
-#: rvy_init-functions.php:308
-#: rvy_init-functions.php:326
-#: rvy_init-functions.php:346
-#: rvy_init-functions.php:363
-#: rvy_init-functions.php:380
-#: rvy_init-functions.php:493
+#: rvy_init-functions.php:291
+#: rvy_init-functions.php:309
+#: rvy_init-functions.php:327
+#: rvy_init-functions.php:347
+#: rvy_init-functions.php:364
+#: rvy_init-functions.php:381
+#: rvy_init-functions.php:494
 msgid "Update Revision"
 msgstr "อัปเดตการแก้ไข"
 
@@ -2953,8 +2951,8 @@ msgstr "ภาพที่โดดเด่น"
 
 #: admin/revision-action_rvy.php:455
 #: admin/revision-action_rvy.php:775
-#: admin/revision-action_rvy.php:905
-#: functions.php:231
+#: admin/revision-action_rvy.php:917
+#: functions.php:239
 msgid "Revision metadata contains unsupported objects."
 msgstr "ข้อมูลเมตาของการแก้ไขมีวัตถุที่ไม่รองรับ。"
 
@@ -2992,9 +2990,9 @@ msgstr "ผู้แก้ไข: "
 
 #: admin/revision-action_rvy.php:594
 #: admin/revision-action_rvy.php:680
-#: admin/revision-action_rvy.php:1761
-#: admin/revision-action_rvy.php:1792
-#: admin/revision-action_rvy.php:1858
+#: admin/revision-action_rvy.php:1779
+#: admin/revision-action_rvy.php:1810
+#: admin/revision-action_rvy.php:1876
 msgid "View it online: "
 msgstr "ดูออนไลน์ที่: "
 
@@ -3003,40 +3001,40 @@ msgstr "ดูออนไลน์ที่: "
 msgid "The revision you submitted for the %1$s \"%2$s\" has been approved."
 msgstr "การแก้ไขที่คุณส่งสำหรับ %1$s \"%2$s\" ได้รับการอนุมัติแล้ว."
 
-#: admin/revision-action_rvy.php:1096
+#: admin/revision-action_rvy.php:1108
 msgid "The revision could not be published."
 msgstr "ไม่สามารถเผยแพร่การแก้ไขได้."
 
-#: admin/revision-action_rvy.php:1753
-#: admin/revision-action_rvy.php:1781
+#: admin/revision-action_rvy.php:1771
+#: admin/revision-action_rvy.php:1799
 #, php-format
 msgid "[%s] %s Publication Notice"
 msgstr "[%s] %s การแจ้งเตือนการเผยแพร่"
 
-#: admin/revision-action_rvy.php:1754
+#: admin/revision-action_rvy.php:1772
 #, php-format
 msgid ""
 "The scheduled revision you submitted for the %1$s \"%2$s\" has been "
 "published."
 msgstr "การแก้ไขที่กำหนดไว้ล่วงหน้าที่คุณส่งสำหรับ %1$s \"%2$s\" ได้ถูกเผยแพร่แล้ว."
 
-#: admin/revision-action_rvy.php:1782
+#: admin/revision-action_rvy.php:1800
 #, php-format
 msgid "A scheduled revision to your %1$s \"%2$s\" has been published."
 msgstr "การแก้ไขที่กำหนดไว้ล่วงหน้าสำหรับ %1$s \"%2$s\" ของคุณได้ถูกเผยแพร่แล้ว."
 
-#: admin/revision-action_rvy.php:1789
-#: admin/revision-action_rvy.php:1855
+#: admin/revision-action_rvy.php:1807
+#: admin/revision-action_rvy.php:1873
 #, php-format
 msgid "It was submitted by %1$s."
 msgstr "ส่งโดย %1$s."
 
-#: admin/revision-action_rvy.php:1846
+#: admin/revision-action_rvy.php:1864
 #, php-format
 msgid "[%s] %s Publication"
 msgstr "[%s] %s การเผยแพร่"
 
-#: admin/revision-action_rvy.php:1848
+#: admin/revision-action_rvy.php:1866
 #, php-format
 msgid "A scheduled revision to the %1$s \"%2$s\" has been published."
 msgstr "การแก้ไขที่กำหนดไว้ล่วงหน้าสำหรับ %1$s \"%2$s\" ได้ถูกเผยแพร่แล้ว."
@@ -3344,8 +3342,8 @@ msgid "The revision was saved, but could not be submitted."
 msgstr "การแก้ไขถูกบันทึกแล้ว แต่ไม่สามารถส่งได้."
 
 #: builder-schema_rvy.php:7
-#: revision-creation_rvy.php:286
-#: rvy_init-functions.php:797
+#: revision-creation_rvy.php:292
+#: rvy_init-functions.php:786
 msgid ""
 "Page Builder integration requires Revisions Pro to be set to standard "
 "storage schema."
@@ -3863,7 +3861,7 @@ msgid "Revision status: %s"
 msgstr "สถานะการแก้ไข: %s"
 
 #: front_rvy.php:850
-#: rvy_init-functions.php:463
+#: rvy_init-functions.php:464
 msgid "Publish Now"
 msgstr "เผยแพร่ตอนนี้"
 
@@ -3906,34 +3904,34 @@ msgstr "การแก้ไขที่ผ่านมา (จาก %s)."
 msgid "More revision actions"
 msgstr "การดำเนินการแก้ไขเพิ่มเติม"
 
-#: functions.php:161
+#: functions.php:169
 msgid "The source post could not be found."
 msgstr "ไม่สามารถค้นหาบทความต้นฉบับได้."
 
-#: functions.php:654
+#: functions.php:667
 msgid "Scheduled Rev."
 msgstr "การแก้ไขที่กำหนดไว้"
 
-#: functions.php:659
-#: functions.php:664
+#: functions.php:672
+#: functions.php:677
 msgid "Submitted Rev."
 msgstr "การแก้ไขที่ส่งแล้ว"
 
-#: functions.php:1044
+#: functions.php:1057
 msgid "A workflow revision cannot be published through a post creation request."
 msgstr "การแก้ไขเวิร์กโฟลว์ไม่สามารถเผยแพร่ผ่านคำขอการสร้างโพสต์ได้."
 
-#: functions.php:1052
-#: functions.php:1055
+#: functions.php:1065
+#: functions.php:1068
 msgid "Use the Revisions workflow controls to change revision status."
 msgstr "ใช้การควบคุมการทำงานของการแก้ไขเพื่อเปลี่ยนสถานะการแก้ไข。"
 
-#: functions.php:1060
+#: functions.php:1073
 msgid "You are not allowed to publish this post type."
 msgstr "คุณไม่ได้รับอนุญาตให้เผยแพร่ประเภทโพสต์นี้."
 
-#: functions.php:1284
-#: rvy_init-functions.php:491
+#: functions.php:1323
+#: rvy_init-functions.php:492
 msgid "Post Author"
 msgstr "ผู้เขียนโพสต์"
 
@@ -3993,6 +3991,290 @@ msgstr "ดูฐานความรู้ของ PublishPress Revisions"
 #: includes/CoreAdmin.php:239
 msgid "View Knowledge Base"
 msgstr "ดูฐานความรู้"
+
+#: includes/Mcp/bootstrap.php:16
+msgid "Actions provided by PublishPress plugins."
+msgstr "การดำเนินการที่จัดเตรียมโดยปลั๊กอิน PublishPress."
+
+#: includes/Mcp/Registry.php:47
+msgid "Use the exact fields, types and choices returned by discovery."
+msgstr "ใช้ฟิลด์ ประเภท และตัวเลือกที่ถูกต้องตามที่พบโดยการค้นหา."
+
+#: includes/Mcp/Registry.php:52
+msgid "You do not have permission to use this Revisions operation."
+msgstr "คุณไม่มีสิทธิ์ในการใช้การดำเนินการแก้ไขนี้."
+
+#: includes/Mcp/Registry.php:75
+#, php-format
+msgid "Invalid JSON type at %s."
+msgstr "ประเภท JSON ไม่ถูกต้องที่ %s."
+
+#: includes/Mcp/Registry.php:144
+msgid ""
+"Revisions could not complete this operation. Inspect the current state "
+"before retrying; some changes may have been saved."
+msgstr ""
+"ไม่สามารถดำเนินการนี้ได้จนเสร็จสมบูรณ์ "
+"กรุณาตรวจสอบสถานะปัจจุบันก่อนลองใหม่; การเปลี่ยนแปลงบางอย่างอาจถูกบันทึกไว้."
+
+#: includes/Mcp/Registry.php:164
+msgid "This object changed. Read it again before saving."
+msgstr "วัตถุนี้มีการเปลี่ยนแปลง กรุณาอ่านอีกครั้งก่อนบันทึก."
+
+#: includes/Mcp/Registry.php:169
+msgid ""
+"The operation could not be fully confirmed. Read the object before "
+"retrying; some changes may have been saved."
+msgstr ""
+"ไม่สามารถยืนยันการดำเนินการนี้ได้อย่างเต็มที่ กรุณาอ่านวัตถุก่อนลองใหม่; "
+"การเปลี่ยนแปลงบางอย่างอาจถูกบันทึกไว้."
+
+#: includes/Mcp/Revisions.php:15
+msgid "Discover Revisions features and choices"
+msgstr "ค้นพบฟีเจอร์และตัวเลือกการแก้ไข"
+
+#: includes/Mcp/Revisions.php:15
+msgid ""
+"Discover separate native revision, archive and duplication post types and "
+"fields, revision statuses and active Pro/integration state. Supply post_id "
+"for source permissions, available templates and taxonomy assignment "
+"choices. Revisions are separate from the published source post. Native "
+"capabilities and source read access are enforced."
+msgstr ""
+"ค้นพบประเภทโพสต์และฟิลด์การแก้ไขพื้นฐาน การจัดเก็บ และสถานะการแก้ไข "
+"การใช้งาน Pro/integration ที่แยกต่างหาก ให้ post_id "
+"สำหรับสิทธิ์ในการเข้าถึงแหล่งที่มา เทมเพลตที่มีให้ และตัวเลือกการกำหนด "
+"taxonomy การแก้ไขจะแยกจากโพสต์ต้นฉบับที่เผยแพร่ "
+"ฟังก์ชันการทำงานพื้นฐานและการเข้าถึงการอ่านแหล่งที่มาถูกบังคับใช้."
+
+#: includes/Mcp/Revisions.php:16
+msgid "Find revisions and past revisions"
+msgstr "ค้นหาและการแก้ไขที่ผ่านมา"
+
+#: includes/Mcp/Revisions.php:16
+msgid ""
+"Browse a bounded native revision queue or WordPress archive. Filter by "
+"source post, status, author or title. Every returned revision and source "
+"requires native read access. Other users’ restricted revisions are excluded."
+msgstr ""
+"เรียกดูคิวการแก้ไขพื้นฐานที่ถูกจำกัดหรือคลัง WordPress กรองตามโพสต์ต้นฉบับ "
+"สถานะ ผู้เขียน หรือชื่อ "
+"ทุกการแก้ไขและแหล่งที่มาที่ส่งกลับต้องมีการเข้าถึงการอ่านพื้นฐาน "
+"การแก้ไขที่ถูกจำกัดของผู้ใช้อื่นจะถูกยกเว้น."
+
+#: includes/Mcp/Revisions.php:17
+msgid "Read a revision source post"
+msgstr "อ่านโพสต์แหล่งการแก้ไข"
+
+#: includes/Mcp/Revisions.php:17
+msgid ""
+"Read one supported revision, archive or duplication source and its revision "
+"token before creating a new copy. Requires source read access and native "
+"copy_post or edit_post. Does not expose passwords, authentication metadata "
+"or signed preview links."
+msgstr ""
+"อ่านการแก้ไขที่รองรับหนึ่งรายการ โพสต์ที่เก็บถาวร "
+"หรือโพสต์ที่ซ้ำกันและโทเค็นการแก้ไขก่อนที่จะสร้างสำเนาใหม่ "
+"ต้องการการเข้าถึงการอ่านแหล่งที่มา และ copy_post หรือ edit_post พื้นฐาน "
+"ไม่เปิดเผยรหัสผ่าน เมตาดาต้าการตรวจสอบ หรือลิงก์พรีวิวที่ลงนาม."
+
+#: includes/Mcp/Revisions.php:18
+msgid "Read a revision"
+msgstr "อ่านการแก้ไข"
+
+#: includes/Mcp/Revisions.php:18
+msgid ""
+"Read revision content, its native scheduling dates and terms, plus "
+"revisions for both the copy and source. Authentication metadata, passwords "
+"and signed preview links are excluded."
+msgstr ""
+"อ่านเนื้อหาการแก้ไข วันที่และเงื่อนไขการกำหนดเวลาพื้นฐาน "
+"รวมถึงการแก้ไขทั้งสำหรับสำเนาและแหล่งที่มา เมตาดาต้าการตรวจสอบ รหัสผ่าน "
+"และลิงก์พรีวิวที่ลงนามจะถูกยกเว้น."
+
+#: includes/Mcp/Revisions.php:20
+msgid "Create a new revision"
+msgstr "สร้างการแก้ไขใหม่"
+
+#: includes/Mcp/Revisions.php:20
+msgid ""
+"Create a native unsubmitted revision of one supported readable source using "
+"copy_post permission and the source expected_hash. Native metadata/taxonomy "
+"cloning, revision limits, builder gates and hooks apply. Omit changes to "
+"copy content unchanged. dry_run never creates a copy."
+msgstr ""
+"สร้างการแก้ไขพื้นฐานที่ยังไม่ได้ส่งของแหล่งที่อ่านได้หนึ่งรายการโดยใช้สิทธิ์"
+" copy_post และ expected_hash ของแหล่งที่มา การโคลนเมตาดาต้าพื้นฐาน/taxonomy "
+"ข้อจำกัดการแก้ไข ประตูของผู้สร้าง และ hooks ใช้ "
+"การเปลี่ยนแปลงเนื้อหาสำเนาให้คงที่ไม่ได้เปลี่ยนแปลง dry_run จะไม่สร้างสำเนา."
+
+#: includes/Mcp/Revisions.php:21
+msgid "Duplicate a source post"
+msgstr "ทำซ้ำโพสต์แหล่งที่มา"
+
+#: includes/Mcp/Revisions.php:21
+msgid ""
+"Create a native draft duplicate of an enabled readable source post. "
+"Requires duplicate_post permission, the source expected_hash and native "
+"duplication settings. Copies the native configured fields, taxonomy and "
+"metadata through RevisionCreation. dry_run creates nothing."
+msgstr ""
+"สร้างสำเนาร่างพื้นฐานของโพสต์แหล่งที่อ่านได้ที่เปิดใช้งาน ต้องการสิทธิ์ "
+"duplicate_post, expected_hash ของแหล่งที่มา และการตั้งค่าการทำซ้ำพื้นฐาน "
+"คัดลอกฟิลด์ที่กำหนดไว้พื้นฐาน taxonomy และเมตาดาต้าผ่าน RevisionCreation "
+"dry_run จะไม่สร้างอะไรเลย."
+
+#: includes/Mcp/Revisions.php:22
+msgid "Update revision content"
+msgstr "ปรับปรุงเนื้อหาการแก้ไข"
+
+#: includes/Mcp/Revisions.php:22
+msgid ""
+"Patch only supplied editable revision fields using expected_hash. Native "
+"allowed fields, locks, term/author permissions and sanitizers apply. The "
+"published source is unchanged. Submitted or scheduled copies require their "
+"native edit permission; all edits to scheduled revisions require approval "
+"permission. dry_run validates without saving."
+msgstr ""
+"Patch ฟิลด์การแก้ไขที่สามารถแก้ไขได้ที่จัดเตรียมโดยใช้ expected_hash "
+"ฟิลด์ที่อนุญาตพื้นฐาน ล็อค สิทธิ์เงื่อนไข/ผู้เขียน และตัวทำความสะอาดใช้ "
+"โพสต์ต้นฉบับไม่เปลี่ยนแปลง "
+"สำเนาที่ส่งหรือตารางเวลาต้องการสิทธิ์การแก้ไขพื้นฐาน; "
+"การแก้ไขทั้งหมดสำหรับการแก้ไขที่กำหนดเวลาต้องการสิทธิ์การอนุมัติ dry_run "
+"จะตรวจสอบโดยไม่บันทึก."
+
+#: includes/Mcp/Revisions.php:24
+msgid "Submit, approve or manage revisions"
+msgstr "ส่ง อนุมัติ หรือจัดการการแก้ไข"
+
+#: includes/Mcp/Revisions.php:24
+msgid ""
+"Apply one native action to up to 50 explicit revision IDs: submit, decline, "
+"approve, publish a scheduled revision now, unschedule, trash, restore "
+"archive or delete an archived revision. Publishing/restoring requires "
+"parent_hash and native source edit and approval permissions. All targets "
+"are validated before writes; partial failures report confirmed IDs. "
+"Approval honors the saved date, scheduling future changes. dry_run never "
+"publishes or sends notifications."
+msgstr ""
+"ใช้การกระทำพื้นฐานหนึ่งรายการกับรหัสการแก้ไขที่ชัดเจนได้ถึง 50 รายการ: ส่ง "
+"ปฏิเสธ อนุมัติ เผยแพร่การแก้ไขที่กำหนดเวลาขณะนี้ ยกเลิกการกำหนดเวลา ทิ้ง "
+"คืนค่าเก็บถาวร หรือ ลบการแก้ไขที่เก็บถาวร การเผยแพร่/การคืนค่าต้องการ "
+"parent_hash และสิทธิ์การแก้ไขและการอนุมัติของแหล่งที่มา "
+"ทุกเป้าหมายจะถูกตรวจสอบก่อนเขียน; ความล้มเหลวบางส่วนจะแจ้งรหัสที่ยืนยัน "
+"การอนุมัติจะเคารพวันที่ที่บันทึกไว้ การกำหนดเวลาในอนาคต การเปลี่ยนแปลง "
+"dry_run จะไม่เผยแพร่หรือส่งการแจ้งเตือน."
+
+#: includes/Mcp/Revisions.php:25
+msgid "Compare revision content"
+msgstr "เปรียบเทียบเนื้อหาการแก้ไข"
+
+#: includes/Mcp/Revisions.php:25
+msgid ""
+"Compare standard fields and taxonomy assignments with the readable source, "
+"or supply compare_to to compare two authorized revisions of the same "
+"source. Missing historical fields are omitted, not treated as cleared. "
+"Returns plain source/revision values, not executable previews or signed "
+"URLs. Pro metadata providers are discovered separately; credentials are "
+"never exported."
+msgstr ""
+"เปรียบเทียบฟิลด์มาตรฐานและการกำหนด taxonomy กับแหล่งที่อ่านได้ "
+"หรือจัดเตรียม compare_to "
+"เพื่อเปรียบเทียบการแก้ไขที่ได้รับอนุญาตสองรายการของแหล่งที่เดียวกัน "
+"ฟิลด์ประวัติที่หายไปจะถูกละเว้น ไม่ถือว่าเป็นการเคลียร์ "
+"คืนค่าฟิลด์แหล่ง/การแก้ไขที่เป็นข้อความ ไม่ใช่พรีวิวที่สามารถใช้งานได้หรือ "
+"URL ที่ลงนาม ผู้ให้บริการเมตาดาต้า Pro จะถูกค้นพบแยกต่างหาก; "
+"ข้อมูลรับรองจะไม่ถูกส่งออก."
+
+#: includes/Mcp/Revisions.php:54
+msgid "Default template"
+msgstr "เทมเพลตเริ่มต้น"
+
+#: includes/Mcp/Revisions.php:132
+#: includes/Mcp/Revisions.php:326
+msgid "Revision workflows are disabled."
+msgstr "การทำงานของการแก้ไขถูกปิดใช้งาน."
+
+#: includes/Mcp/Revisions.php:169
+msgid ""
+"Narrow the filters or use native administration for more than 1,000 "
+"matching revisions."
+msgstr ""
+"จำกัดตัวกรองหรือใช้การจัดการพื้นฐานสำหรับการแก้ไขที่ตรงกันมากกว่า 1,000 "
+"รายการ."
+
+#: includes/Mcp/Revisions.php:358
+msgid ""
+"The revision was created but its edits were not confirmed. Read this "
+"revision before retrying."
+msgstr ""
+"การแก้ไขถูกสร้างขึ้นแต่การแก้ไขนั้นไม่ได้รับการยืนยัน "
+"กรุณาอ่านการแก้ไขนี้ก่อนลองใหม่."
+
+#: includes/Mcp/Revisions.php:395
+msgid ""
+"Some revision assignments could not be confirmed. Inspect the revision "
+"before retrying."
+msgstr ""
+"การมอบหมายการแก้ไขบางรายการไม่สามารถยืนยันได้ "
+"กรุณาตรวจสอบการแก้ไขก่อนลองใหม่."
+
+#: includes/Mcp/Revisions.php:412
+msgid "This revision is locked by another editor."
+msgstr "การแก้ไขนี้ถูกล็อคโดยบรรณาธิการคนอื่น."
+
+#: includes/Mcp/Revisions.php:490
+msgid "Read the source and supply its parent_hash before applying content."
+msgstr "อ่านแหล่งที่มาและจัดเตรียม parent_hash ก่อนที่จะใช้เนื้อหา."
+
+#: includes/Mcp/Revisions.php:493
+msgid ""
+"The source changed. Read the revision and source again before applying "
+"content."
+msgstr "แหล่งที่มาเปลี่ยนแปลง กรุณาอ่านการแก้ไขและแหล่งที่มาอีกครั้งก่อนใช้เนื้อหา."
+
+#: includes/Mcp/Revisions.php:639
+msgid "Both revisions must belong to the same source."
+msgstr "การแก้ไขทั้งสองต้องเป็นของแหล่งที่เดียวกัน."
+
+#: includes/Mcp/Settings.php:14
+msgid "Read Revisions settings"
+msgstr "อ่านการตั้งค่าการแก้ไข"
+
+#: includes/Mcp/Settings.php:14
+msgid ""
+"Read native setting identifiers, exact JSON types, defaults, choices, "
+"storage and revision. Network-controlled settings require actual network "
+"permission to change. Credentials and database maintenance are excluded."
+msgstr ""
+"อ่านตัวระบุการตั้งค่าพื้นฐาน ประเภท JSON ที่แน่นอน ค่าเริ่มต้น ตัวเลือก "
+"การจัดเก็บ และการแก้ไข "
+"การตั้งค่าที่ควบคุมโดยเครือข่ายต้องการสิทธิ์เครือข่ายจริงในการเปลี่ยนแปลง "
+"ข้อมูลรับรองและการบำรุงรักษาฐานข้อมูลจะถูกยกเว้น."
+
+#: includes/Mcp/Settings.php:15
+msgid "Update Revisions settings"
+msgstr "อัปเดตการตั้งค่าการแก้ไข"
+
+#: includes/Mcp/Settings.php:15
+msgid ""
+"Patch discovered settings only, using expected_hash. JSON booleans are not "
+"strings. Native sanitizers, network scope and edition/dependency gates "
+"apply. Omitted values remain. dry_run validates without saving or "
+"converting revision storage."
+msgstr ""
+"ค้นพบการตั้งค่าของแพตช์เท่านั้น โดยใช้ expected_hash. JSON booleans "
+"ไม่ใช่สตริง. ตัวกรองเนทีฟ, ขอบเขตเครือข่าย และเกตการแก้ไข/การพึ่งพาใช้ได้. "
+"ค่าที่ถูกละเว้นยังคงอยู่. dry_run "
+"ตรวจสอบโดยไม่บันทึกหรือแปลงการจัดเก็บการแก้ไข."
+
+#: includes/Mcp/Settings.php:155
+msgid "Settings changed. Read them again."
+msgstr "การตั้งค่าเปลี่ยนแปลง อ่านอีกครั้ง."
+
+#: includes/Mcp/Settings.php:226
+msgid "Settings changed during validation."
+msgstr "การตั้งค่าเปลี่ยนแปลงระหว่างการตรวจสอบความถูกต้อง."
 
 #: includes/visual-post-compare/includes/class-dedicated-payload-builder.php:206
 msgid "Modified: "
@@ -4162,7 +4444,7 @@ msgstr "%1$s คำถามใน %2$s วินาที. %3$s MB ใช้ไ
 msgid "Could not insert post into the database"
 msgstr "ไม่สามารถแทรกโพสต์ลงในฐานข้อมูล"
 
-#: revision-creation_rvy.php:490
+#: revision-creation_rvy.php:496
 msgid "Could not insert revision into the database"
 msgstr "ไม่สามารถแทรกการแก้ไขลงในฐานข้อมูล"
 
@@ -4220,250 +4502,250 @@ msgstr "ทุก ๆ 2 นาที"
 msgid "You are not allowed to revise this post."
 msgstr "คุณไม่ได้รับอนุญาตให้แก้ไขโพสต์นี้."
 
-#: rvy_init-functions.php:199
+#: rvy_init-functions.php:200
 msgid "You are not allowed to change the author of this revision."
 msgstr "คุณไม่ได้รับอนุญาตให้เปลี่ยนผู้เขียนของการแก้ไขนี้。"
 
-#: rvy_init-functions.php:280
-#: rvy_init-functions.php:292
+#: rvy_init-functions.php:281
+#: rvy_init-functions.php:293
 msgid "Working Copy"
 msgstr "สำเนาที่ทำงาน"
 
-#: rvy_init-functions.php:281
+#: rvy_init-functions.php:282
 msgid "Create Working Copy"
 msgstr "สร้างสำเนาที่ทำงาน"
 
-#: rvy_init-functions.php:283
+#: rvy_init-functions.php:284
 msgid "Creating Working Copy..."
 msgstr "กำลังสร้างสำเนาที่ทำงาน..."
 
-#: rvy_init-functions.php:284
+#: rvy_init-functions.php:285
 msgid "Working Copy ready"
 msgstr "สำเนาที่ทำงานพร้อมแล้ว"
 
-#: rvy_init-functions.php:285
-#: rvy_init-functions.php:303
+#: rvy_init-functions.php:286
+#: rvy_init-functions.php:304
 msgid "Approve Changes"
 msgstr "อนุมัติการเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:287
-#: rvy_init-functions.php:305
-msgid "Approving Changes..."
-msgstr "กำลังอนุมัติการเปลี่ยนแปลง..."
-
 #: rvy_init-functions.php:288
 #: rvy_init-functions.php:306
-#: rvy_init-functions.php:324
-msgid "Publish Changes"
-msgstr "เผยแพร่การเปลี่ยนแปลง"
+msgid "Approving Changes..."
+msgstr "กำลังอนุมัติการเปลี่ยนแปลง..."
 
 #: rvy_init-functions.php:289
 #: rvy_init-functions.php:307
 #: rvy_init-functions.php:325
-#: rvy_init-functions.php:345
-#: rvy_init-functions.php:362
-#: rvy_init-functions.php:379
+msgid "Publish Changes"
+msgstr "เผยแพร่การเปลี่ยนแปลง"
+
+#: rvy_init-functions.php:290
+#: rvy_init-functions.php:308
+#: rvy_init-functions.php:326
+#: rvy_init-functions.php:346
+#: rvy_init-functions.php:363
+#: rvy_init-functions.php:380
 msgid "Save Revision"
 msgstr "บันทึกการแก้ไข"
 
-#: rvy_init-functions.php:291
+#: rvy_init-functions.php:292
 msgid "Working Copies"
 msgstr "สำเนาที่ทำงาน"
 
-#: rvy_init-functions.php:293
+#: rvy_init-functions.php:294
 #, php-format
 msgid "Working Copies <span class=\"count\">(%d)</span>"
 msgid_plural "Working Copies <span class=\"count\">(%d)</span>"
 msgstr[0] "สำเนาที่ทำงาน <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:298
-#: rvy_init-functions.php:310
+#: rvy_init-functions.php:299
+#: rvy_init-functions.php:311
 msgid "Change Request"
 msgstr "คำขอเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:299
+#: rvy_init-functions.php:300
 msgid "Submit Change Request"
 msgstr "ส่งคำขอเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:302
+#: rvy_init-functions.php:303
 msgid "Changes Submitted"
 msgstr "การเปลี่ยนแปลงถูกส่งแล้ว"
 
-#: rvy_init-functions.php:309
+#: rvy_init-functions.php:310
 msgid "Change Requests"
 msgstr "คำขอเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:311
+#: rvy_init-functions.php:312
 #, php-format
 msgid "Change Requests <span class=\"count\">(%d)</span>"
 msgid_plural "Change Requests <span class=\"count\">(%d)</span>"
 msgstr[0] "คำขอเปลี่ยนแปลง <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:312
+#: rvy_init-functions.php:313
 msgid "Enable Change Requests"
 msgstr "เปิดใช้งานคำขอเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:317
-#: rvy_init-functions.php:328
+#: rvy_init-functions.php:318
+#: rvy_init-functions.php:329
 msgid "Scheduled Change"
 msgstr "การเปลี่ยนแปลงที่กำหนดเวลา"
 
-#: rvy_init-functions.php:318
 #: rvy_init-functions.php:319
-#: rvy_init-functions.php:322
+#: rvy_init-functions.php:320
 #: rvy_init-functions.php:323
+#: rvy_init-functions.php:324
 msgid "Schedule Changes"
 msgstr "กำหนดเวลาเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:321
+#: rvy_init-functions.php:322
 msgid "Changes are Scheduled."
 msgstr "กำหนดการเปลี่ยนแปลงเรียบร้อยแล้ว."
 
-#: rvy_init-functions.php:327
+#: rvy_init-functions.php:328
 msgid "Scheduled Changes"
 msgstr "การเปลี่ยนแปลงที่กำหนดเวลา"
 
-#: rvy_init-functions.php:329
+#: rvy_init-functions.php:330
 #, php-format
 msgid "Scheduled <span class=\"count\">(%d)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%d)</span>"
 msgstr[0] "กำหนดเวลา <span class=\"count\">(%d)</span>"
 
-#: rvy_init-functions.php:337
+#: rvy_init-functions.php:338
 msgid "Unsubmitted Revision"
 msgstr "การแก้ไขที่ยังไม่ได้ส่ง"
 
-#: rvy_init-functions.php:338
 #: rvy_init-functions.php:339
+#: rvy_init-functions.php:340
 msgid "Create Revision"
 msgstr "สร้างการแก้ไข"
 
-#: rvy_init-functions.php:340
+#: rvy_init-functions.php:341
 msgid "Creating Revision..."
 msgstr "กำลังสร้างการแก้ไข..."
 
-#: rvy_init-functions.php:341
+#: rvy_init-functions.php:342
 msgid "The Revision is ready to edit."
 msgstr "การแก้ไขพร้อมให้แก้ไขแล้ว."
 
-#: rvy_init-functions.php:341
+#: rvy_init-functions.php:342
 msgid "Revision ready to edit."
 msgstr "การแก้ไขพร้อมให้แก้ไข."
 
-#: rvy_init-functions.php:342
-#: rvy_init-functions.php:344
-#: rvy_init-functions.php:359
-#: rvy_init-functions.php:361
-#: rvy_init-functions.php:376
-#: rvy_init-functions.php:378
+#: rvy_init-functions.php:343
+#: rvy_init-functions.php:345
+#: rvy_init-functions.php:360
+#: rvy_init-functions.php:362
+#: rvy_init-functions.php:377
+#: rvy_init-functions.php:379
 msgid "Publish Revision"
 msgstr "เผยแพร่การแก้ไข"
 
-#: rvy_init-functions.php:347
+#: rvy_init-functions.php:348
 msgid "Unsubmitted Revisions"
 msgstr "การแก้ไขที่ยังไม่ได้ส่ง"
 
-#: rvy_init-functions.php:348
+#: rvy_init-functions.php:349
 msgid "Not Submitted"
 msgstr "ยังไม่ได้ส่ง"
 
-#: rvy_init-functions.php:349
+#: rvy_init-functions.php:350
 #, php-format
 msgid "Not Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Not Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "ยังไม่ได้ส่ง <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:354
+#: rvy_init-functions.php:355
 msgid "Submitted Revision"
 msgstr "การแก้ไขที่ส่งแล้ว"
 
-#: rvy_init-functions.php:355
-#: rvy_init-functions.php:496
+#: rvy_init-functions.php:356
+#: rvy_init-functions.php:497
 msgid "Submit Revision"
 msgstr "ส่งการแก้ไข"
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:359
 msgid "The Revision is Submitted"
 msgstr "การแก้ไขถูกส่งแล้ว"
 
-#: rvy_init-functions.php:358
+#: rvy_init-functions.php:359
 msgid "Revision Submitted"
 msgstr "การแก้ไขถูกส่ง"
 
-#: rvy_init-functions.php:364
+#: rvy_init-functions.php:365
 #: visual-compare_rvy.php:161
 msgid "Submitted Revisions"
 msgstr "การแก้ไขที่ส่งแล้ว"
 
-#: rvy_init-functions.php:365
+#: rvy_init-functions.php:366
 msgid "Submitted"
 msgstr "ถูกส่งแล้ว"
 
-#: rvy_init-functions.php:366
+#: rvy_init-functions.php:367
 #, php-format
 msgid "Submitted <span class=\"count\">(%s)</span>"
 msgid_plural "Submitted <span class=\"count\">(%s)</span>"
 msgstr[0] "ถูกส่งแล้ว <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:371
+#: rvy_init-functions.php:372
 msgid "Scheduled Revision"
 msgstr "การแก้ไขที่กำหนดเวลา"
 
-#: rvy_init-functions.php:372
+#: rvy_init-functions.php:373
 msgid "Schedule Revision"
 msgstr "กำหนดการแก้ไข"
 
-#: rvy_init-functions.php:375
+#: rvy_init-functions.php:376
 msgid "The Revision is Scheduled"
 msgstr "การแก้ไขถูกกำหนดเวลา"
 
-#: rvy_init-functions.php:375
+#: rvy_init-functions.php:376
 msgid "Revision Scheduled"
 msgstr "การแก้ไขถูกกำหนดเวลา"
 
-#: rvy_init-functions.php:383
+#: rvy_init-functions.php:384
 #, php-format
 msgid "Scheduled <span class=\"count\">(%s)</span>"
 msgid_plural "Scheduled <span class=\"count\">(%s)</span>"
 msgstr[0] "กำหนดเวลา <span class=\"count\">(%s)</span>"
 
-#: rvy_init-functions.php:483
+#: rvy_init-functions.php:484
 #, php-format
 msgid "%sMy Copies & Changes%s(%s)"
 msgid_plural "%sMy Copies & Changes%s(%s)"
 msgstr[0] "%sสำเนาและการเปลี่ยนแปลงของฉัน%s(%s)"
 
-#: rvy_init-functions.php:484
+#: rvy_init-functions.php:485
 #, php-format
 msgid "%sMy Revisions%s(%s)"
 msgid_plural "%sMy Revisions%s(%s)"
 msgstr[0] "%sการแก้ไขของฉัน%s(%s)"
 
-#: rvy_init-functions.php:486
+#: rvy_init-functions.php:487
 #, php-format
 msgid "%sRevisions to My Posts%s(%s)</span>"
 msgid_plural "%sRevisions to My Posts%s(%s)"
 msgstr[0] "%sการแก้ไขโพสต์ของฉัน%s(%s)</span>"
 
-#: rvy_init-functions.php:492
+#: rvy_init-functions.php:493
 msgid "Published Post"
 msgstr "โพสต์ที่เผยแพร่"
 
-#: rvy_init-functions.php:497
+#: rvy_init-functions.php:498
 msgid "Submit Changes"
 msgstr "ส่งการเปลี่ยนแปลง"
 
-#: rvy_init-functions.php:714
+#: rvy_init-functions.php:703
 msgid "Revisor"
 msgstr "ผู้ตรวจสอบ"
 
-#: rvy_init-functions.php:837
+#: rvy_init-functions.php:826
 msgid ""
 "The unfiltered_html capability is required to create a revision of this "
 "post."
 msgstr "ความสามารถ unfiltered_html จำเป็นต้องใช้ในการสร้างการแก้ไขของโพสต์นี้."
 
-#: rvy_init-functions.php:1326
+#: rvy_init-functions.php:1315
 msgid "Revision Workflow"
 msgstr "กระบวนการทำงานการแก้ไข"
 
@@ -5343,8 +5625,8 @@ msgctxt "groups per page (screen options)"
 msgid "Revisions"
 msgstr "การแก้ไข"
 
-#: admin/class-list-table-archive.php:1285
-#: admin/class-list-table_rvy.php:2403
+#: admin/class-list-table-archive.php:1108
+#: admin/class-list-table_rvy.php:2400
 #: admin/post-edit_rvy.php:226
 #: admin/post-edit_rvy.php:290
 #: admin/post-edit_rvy.php:304
@@ -5352,29 +5634,29 @@ msgctxt "revisions"
 msgid "Compare"
 msgstr "เปรียบเทียบ"
 
-#: admin/class-list-table-archive.php:1307
+#: admin/class-list-table-archive.php:1130
 msgctxt "revisions"
 msgid "Diff"
 msgstr "ความแตกต่าง"
 
-#: admin/class-list-table_rvy.php:2415
+#: admin/class-list-table_rvy.php:2412
 msgctxt "revisions"
 msgid "Approve"
 msgstr "อนุมัติ"
 
-#: admin/class-list-table_rvy.php:2422
+#: admin/class-list-table_rvy.php:2419
 msgctxt "revisions"
 msgid "Publish"
 msgstr "เผยแพร่"
 
-#: admin/class-list-table_rvy.php:2431
+#: admin/class-list-table_rvy.php:2428
 msgctxt "revisions"
 msgid "Decline"
 msgstr "ปฏิเสธ"
 
-#: admin/class-list-table-archive.php:1323
-#: admin/class-list-table_rvy.php:1098
-#: admin/class-list-table_rvy.php:2389
+#: admin/class-list-table-archive.php:1146
+#: admin/class-list-table_rvy.php:1095
+#: admin/class-list-table_rvy.php:2386
 #: admin/history_rvy.php:1532
 #: admin/post-edit_rvy.php:191
 #: admin/revision-ui_rvy.php:276
@@ -5388,7 +5670,7 @@ msgctxt "revision date short format"
 msgid "j M @ H:i"
 msgstr "j M @ H:i"
 
-#: admin/options.php:2575
+#: admin/options.php:2673
 #, fuzzy, php-format
 msgctxt "opentag option_tabname closetag (explanatory note)"
 msgid "%1$s%2$s%3$s (%4$s)"
@@ -5431,7 +5713,7 @@ msgctxt "post revision"
 msgid "%1$s by %2$s"
 msgstr "%1$s โดย %2$s"
 
-#: rvy_init-functions.php:726
+#: rvy_init-functions.php:715
 msgctxt "User role"
 msgid "Revisor"
 msgstr "ผู้ตรวจสอบ"
