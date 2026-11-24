@@ -132,15 +132,15 @@ class RVY_PostBlockEditUI {
         } elseif (current_user_can('edit_post', $post->ID)) {
             $status_obj = get_post_status_object($post->post_status);
 
-		    if (empty($status_obj->public) && empty($status_obj->private) && !rvy_get_option('pending_revision_unpublished')) {
+		    if (!$is_new_post && empty($status_obj->public) && empty($status_obj->private) && !rvy_get_option('pending_revision_unpublished')) {
                 return;
             }
 
-            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_post-block-edit{$suffix}.js", array('jquery', 'jquery-form'), PUBLISHPRESS_REVISIONS_VERSION, true );
+            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_post-block-edit{$suffix}.js", array('jquery', 'jquery-form', 'wp-editor'), PUBLISHPRESS_REVISIONS_VERSION, true );
 
             $args = \PublishPress\Revisions\PostEditorWorkflowUI::postLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions'));
 
-            $args['createRevisionNonce'] = wp_create_nonce('create_revision');
+            if ($is_new_post) {\n                $args['waitForInitialSave'] = true;\n                $args['allowUnpublished'] = (bool) rvy_get_option('pending_revision_unpublished');\n                $args['eligibleSavedStatuses'] = array_values(array_merge(get_post_stati(['public' => true]), get_post_stati(['private' => true])));\n            }\n\n            $args['createRevisionNonce'] = wp_create_nonce('create_revision');
             $args['submitRevisionNonce'] = wp_create_nonce('submit_revision');
             $args['createScheduledRevisionNonce'] = wp_create_nonce('create_scheduled_revision');
             $args['authorSelectNonce'] = wp_create_nonce('author_select_' . $post->ID);

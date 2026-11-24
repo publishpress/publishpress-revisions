@@ -38,7 +38,43 @@ jQuery(document).ready( function($) {
 		return !!document.querySelector('.editor-revisions-header');
 	};
 
+	var initialSaveCompleted = !rvyObjEdit.waitForInitialSave;
+	var manualSaveInProgress = false;
+
+	if (!initialSaveCompleted) {
+		var unsubscribeInitialSave = wp.data.subscribe(function() {
+			var editor = wp.data.select('core/editor');
+
+			if (editor.isSavingPost()) {
+				manualSaveInProgress = !editor.isAutosavingPost();
+				return;
+			}
+
+			if (!manualSaveInProgress) {
+				return;
+			}
+
+			manualSaveInProgress = false;
+
+			if (editor.didPostSaveRequestSucceed()
+				&& editor.getCurrentPostId() === Number(rvyObjEdit.postID)
+				&& editor.getCurrentPostAttribute('status') !== 'auto-draft') {
+				initialSaveCompleted = true;
+				unsubscribeInitialSave();
+			}
+		}, 'core/editor');
+	}
+
 	var RvySubmissionUI = function() {
+		if (!initialSaveCompleted) {
+			return;
+		}
+
+		if (rvyObjEdit.waitForInitialSave && !rvyObjEdit.allowUnpublished
+			&& !rvyObjEdit.eligibleSavedStatuses.includes(wp.data.select('core/editor').getCurrentPostAttribute('status'))) {
+			return;
+		}
+
 		if (RvyIsNativeRevisionComparison()) {
 			$('div.rvy-creation-ui').remove();
 			return;
@@ -48,7 +84,7 @@ jQuery(document).ready( function($) {
 			var style = (rvyObjEdit.actionCaption == '') ? ' style="display:none"' : '';
 
 			if (rvyObjEdit.newRevisionDirectLink) {
-				var html = '<div class="rvy-creation-ui"><a tabindex="-1" href="' + rvyObjEdit.newRevisionDirectLink + '" class="revision-approve revision-create" target="_blank" title="'
+				var html = '<div id="rvy-creation-ui" class="rvy-creation-ui"><a tabindex="-1" href="' + rvyObjEdit.newRevisionDirectLink + '" class="revision-approve revision-create" target="_blank" title="'
 				+ rvyObjEdit.actionTitle + '"' + style + '><button type="button" class="components-button revision-approve revision-create is-primary ppr-purple-button"' + style + '>'
 				+ rvyObjEdit.actionCaption + '</button></a>';
 			} else {
