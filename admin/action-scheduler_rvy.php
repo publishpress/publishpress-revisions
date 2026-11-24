@@ -303,24 +303,27 @@ function rvy_render_scheduling_log() {
 	$legacy_count = count( rvy_legacy_scheduled_revision_ids() );
 	if ( $legacy_count ) {
 		$url = admin_url( 'admin.php?page=revisionary-settings&ppr_tab=scheduling' );
-		$message = _n(
-			'Note: %1$d Revision is scheduled for future publication with legacy triggering. %2$s for better reliability.',
-			'Note: %1$d Revisions are scheduled for future publication with legacy triggering. %2$s for better reliability.',
-			$legacy_count,
-			'revisionary'
-		);
-		$link_text = _n(
-			'Migrate it to Action Scheduler',
-			'Migrate those to Action Scheduler',
-			$legacy_count,
-			'revisionary'
-		);
+
 		echo '<div class="notice notice-info"><p>';
-		printf(
-			wp_kses( $message, [ 'a' => [ 'href' => true ] ] ),
-			(int) $legacy_count,
-			'<a href="' . esc_url( $url ) . '">' . esc_html( $link_text ) . '</a>'
-		);
+		
+		echo esc_html(_n(
+			'Note: %1$d Revision is scheduled for future publication with legacy triggering.',
+			'Note: %1$d Revisions are scheduled for future publication with legacy triggering.',
+			$legacy_count,
+			'revisionary'
+		));
+
+		echo ' <a href="' . esc_url( $url ) . '">';
+		
+		echo esc_html(_n(
+			'Migrate it to Action Scheduler for better reliability',
+			'Migrate those to Action Scheduler for better reliability',
+			$legacy_count,
+			'revisionary'
+		));
+		
+		echo esc_html( $link_text ) . '</a>';
+
 		echo '</p></div>';
 	}
 	$table = rvy_get_scheduling_log_table();
