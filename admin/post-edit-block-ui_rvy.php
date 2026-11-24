@@ -118,7 +118,7 @@ class RVY_PostBlockEditUI {
 
         if (('revision' == $post->post_type) || rvy_in_revision_workflow($post)) {
             wp_enqueue_script('rvy_editor_save', RVY_URLPATH . '/admin/revision-editor-save.js', ['wp-data', 'wp-api-fetch', 'wp-editor'], PUBLISHPRESS_REVISIONS_VERSION, true);
-            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_revision-block-edit{$suffix}.js", array('jquery', 'jquery-form', 'rvy_editor_save'), PUBLISHPRESS_REVISIONS_VERSION, true );
+            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_revision-block-edit{$suffix}.js", array('jquery', 'jquery-form', 'rvy_editor_save', 'wp-a11y'), PUBLISHPRESS_REVISIONS_VERSION, true );
 
             $args = \PublishPress\Revisions\PostEditorWorkflowUI::revisionLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions'));
 
