@@ -140,7 +140,13 @@ class RVY_PostBlockEditUI {
 
             $args = \PublishPress\Revisions\PostEditorWorkflowUI::postLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions'));
 
-            if ($is_new_post) {\n                $args['waitForInitialSave'] = true;\n                $args['allowUnpublished'] = (bool) rvy_get_option('pending_revision_unpublished');\n                $args['eligibleSavedStatuses'] = array_values(array_merge(get_post_stati(['public' => true]), get_post_stati(['private' => true])));\n            }\n\n            $args['createRevisionNonce'] = wp_create_nonce('create_revision');
+            if ($is_new_post) {
+                $args['waitForInitialSave'] = true;
+                $args['allowUnpublished'] = (bool) rvy_get_option('pending_revision_unpublished');
+                $args['eligibleSavedStatuses'] = array_values(array_merge(get_post_stati(['public' => true]), get_post_stati(['private' => true])));
+            }
+
+            $args['createRevisionNonce'] = wp_create_nonce('create_revision');
             $args['submitRevisionNonce'] = wp_create_nonce('submit_revision');
             $args['createScheduledRevisionNonce'] = wp_create_nonce('create_scheduled_revision');
             $args['authorSelectNonce'] = wp_create_nonce('author_select_' . $post->ID);
