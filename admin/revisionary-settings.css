@@ -33,7 +33,7 @@ body.revisionary-settings #side-info-column {
 }
 
 #ppr-tab-statuses .pp-promo-upgrade-notice,
-#ppr-tab-notifications .pp-promo-upgrade-notice
+#ppr-tab-working_copy .notifications .pp-promo-upgrade-notice
 {
   width: 475px;
 }
@@ -112,9 +112,9 @@ body.revisionary-settings #side-info-column {
   font-weight: 600;
 }
 #ppr-tab-statuses .pp-cta-section p,
-#ppr-tab-notifications .pp-cta-section p,
+#ppr-tab-working_copy .notifications .pp-cta-section p,
 #ppr-tab-statuses .pp-cta-section ul,
-#ppr-tab-notifications .pp-cta-section ul
+#ppr-tab-working_copy .notifications .pp-cta-section ul
 {
   margin: 0 0 20px 0;
   color: #6b7280;
@@ -198,7 +198,7 @@ body.revisionary-settings #side-info-column {
 }
 
 #ppr-tab-statuses .pp-pro-badge-banner,
-#ppr-tab-notifications .pp-pro-badge-banner
+#ppr-tab-working_copy .notifications .pp-pro-badge-banner
 {
   background: #FEB123;
   color: #000000 !important;
@@ -279,38 +279,38 @@ body.revisionary-settings #side-info-column {
   border-left: 4px solid #68589b;
 }
 #ppr-tab-statuses .pp-integration-card,
-#ppr-tab-notifications .pp-integration-card
+#ppr-tab-working_copy .notifications .pp-integration-card
 {
   border-left: initial;
   padding: 0;
 }
 #ppr-tab-statuses .pp-upgrade-overlay,
-#ppr-tab-notifications .pp-upgrade-overlay
+#ppr-tab-working_copy .notifications .pp-upgrade-overlay
 {
   vertical-align: top;
   padding-top: 50px;
 }
 #ppr-tab-statuses .pp-upgrade-overlay p,
-#ppr-tab-notifications .pp-upgrade-overlay p
+#ppr-tab-working_copy .notifications .pp-upgrade-overlay p
 {
   margin-top: 5px;
   margin-bottom: 10px !important;
   max-width: 550px;
 }
 #ppr-tab-statuses .pp-upgrade-overlay h4, 
-#ppr-tab-notifications .pp-upgrade-overlay h4 
+#ppr-tab-working_copy .notifications .pp-upgrade-overlay h4 
 {
   font-size: 18px;
 }
 #ppr-tab-statuses .pp-upgrade-overlay p,
 #ppr-tab-statuses .pp-upgrade-overlay a,
-#ppr-tab-notifications .pp-upgrade-overlay p,
-#ppr-tab-notifications .pp-upgrade-overlay a
+#ppr-tab-working_copy .notifications .pp-upgrade-overlay p,
+#ppr-tab-working_copy .notifications .pp-upgrade-overlay a
 {
   font-size: 16px;
 }
 #ppr-tab-statuses .pp-upgrade-overlay a,
-#ppr-tab-notifications .pp-upgrade-overlay a 
+#ppr-tab-working_copy .notifications .pp-upgrade-overlay a 
 {
   margin-top: 5px;
   margin-bottom: 10px;
@@ -1017,4 +1017,8 @@ input:disabled + .pp-slider {
 }
 .notice.inline.rvy-builder-schema-warning p {
   margin: 0;
+}
+
+#publishpress-revisions-settings-tabs .rvy-notifications-promo-wrapped {
+    display: none;
 }

@@ -302,7 +302,7 @@ function rvy_render_scheduling_log() {
 	if ( ! is_content_administrator_rvy() ) wp_die( esc_html__( 'Permission denied.', 'revisionary' ) );
 	$legacy_count = count( rvy_legacy_scheduled_revision_ids() );
 	if ( $legacy_count ) {
-		$url = admin_url( 'admin.php?page=revisionary-settings&ppr_tab=working_copy&ppr_subtab=revision-scheduling' );
+		$url = admin_url( 'admin.php?page=revisionary-settings&ppr_tab=scheduling' );
 		$message = _n(
 			'Note: %1$d Revision is scheduled for future publication with legacy triggering. %2$s for better reliability.',
 			'Note: %1$d Revisions are scheduled for future publication with legacy triggering. %2$s for better reliability.',
