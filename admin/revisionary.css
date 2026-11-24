@@ -723,9 +723,25 @@ color: #2271B1;
 color: #655997 !important;
 }
 
-div.components-panel div.revision-submitting {
-margin: 6px 0 6px 0;
+.rvy-transition-progress {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+padding-block: 6px;
 text-align: center;
+font-weight: 400;
+}
+
+.rvy-transition-progress .revision-submitting {
+min-inline-size: 0;
+overflow-wrap: anywhere;
+}
+
+.rvy-transition-progress .spinner {
+flex: 0 0 auto;
+float: none;
+margin: 0;
 }
 
 div.components-panel div.revision-creating {
@@ -735,16 +751,12 @@ font-weight: bold;
 text-align: center;
 }
 
-div.components-panel div.revision-approving {
-text-align: center;
-}
-
 #major-publishing-actions div.revision-creating {
   display: inline-block;
   padding-top: 15px;
 }
 
-div.components-panel span.ppr-submission-spinner, div.components-panel div.revision-submitting span.spinner, div.revision-creating span.spinner {
+div.components-panel span.ppr-submission-spinner, div.revision-creating span.spinner {
 float: none;
 height: 25px !important;
 margin-top: 0;

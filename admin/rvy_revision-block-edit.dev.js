@@ -353,11 +353,11 @@ jQuery(document).ready(function ($) {
                     buttonUI += approveButtonHTML
     
                         + '<div class="revision-submitting" style="display: none;">'
-                        + '<span class="revision-approve revision-submitting">'
-                        + rvyObjEdit[rvyObjEdit.currentStatus + 'InProcessCaption'] + '</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
+                        + '<span class="rvy-transition-progress"><span class="revision-submitting">'
+                        + rvyObjEdit[rvyObjEdit.currentStatus + 'InProcessCaption'] + '</span><span class="spinner is-active" aria-hidden="true"></span></span></div>'
                         + '<div class="revision-approving" style="display: none;">'
-                        + '<span class="revision-approve revision-submitting">'
-                        + rvyObjEdit.approvingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
+                        + '<span class="rvy-transition-progress"><span class="revision-submitting">'
+                        + rvyObjEdit.approvingCaption + '</span><span class="spinner is-active" aria-hidden="true"></span></span></div>'
                         + rvyPreviewLink
                         + '</div>';
 
@@ -407,8 +407,13 @@ jQuery(document).ready(function ($) {
         if (isDecline) { if (url) window.location.href = url; return false; }
         rvyTransitionBusy = true;
         $('button.revision-approve, button.revision-schedule').prop('disabled', true);
-        $('div.revision-approving').show();
-        rvySpeak(rvyObjEdit.approvingCaption);
+        if (isSubmission) {
+            $('div.revision-submitting').show();
+            rvySpeak(rvyObjEdit[rvyObjEdit.currentStatus + 'InProcessCaption']);
+        } else {
+            $('div.revision-approving').show();
+            rvySpeak(rvyObjEdit.approvingCaption);
+        }
         window.RevisionaryEditorSave.block().then(function () {
             if (isSubmission) return rvySubmitCopy();
             if (!url) throw new Error(rvyObjEdit.saveError);
