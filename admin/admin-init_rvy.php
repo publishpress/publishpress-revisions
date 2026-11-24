@@ -30,10 +30,8 @@ function _rvy_post_edit_ui() {
 
             add_action('admin_head', '_rvy_load_actual_classic_editor_ui', 0);
 		}
-		if ('post-new.php' === $pagenow) {
-            add_action('enqueue_block_editor_assets', '_rvy_load_actual_block_editor_ui', 0);
-        }
-\t} elseif ('edit.php' == $pagenow) {
+		add_action('enqueue_block_editor_assets', '_rvy_load_actual_block_editor_ui', 0);
+	} elseif ('edit.php' == $pagenow) {
 		require_once( dirname(__FILE__).'/admin-posts_rvy.php' );
 		new RevisionaryAdminPosts();
 	}
