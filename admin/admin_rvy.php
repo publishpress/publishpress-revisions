@@ -245,7 +245,7 @@ class RevisionaryAdmin
 			in_array($pagenow, ['post.php', 'post-new.php', 'revision.php'], true)
 			|| (!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options', 'revisionary-q', 'revisionary-deletion', 'revisionary-archive'], true))  //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		) {
-			wp_enqueue_style('revisionary', RVY_URLPATH . '/admin/revisionary.css', [], PUBLISHPRESS_REVISIONS_VERSION);
+			wp_enqueue_style('revisionary', RVY_URLPATH . '/admin/revisionary.css', [], (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') ? PUBLISHPRESS_REVISIONS_PRO_VERSION : PUBLISHPRESS_REVISIONS_VERSION));
 			wp_enqueue_style('revisionary-tooltip', RVY_URLPATH . '/common/css/_tooltip.css', [], PUBLISHPRESS_REVISIONS_VERSION);
 
 			// Escape dismisses an open tooltip (WCAG 1.4.13)
@@ -260,8 +260,8 @@ class RevisionaryAdmin
 		}
 		
 		if ((!empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options'], true))) {		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			wp_enqueue_script('revisionary-settings', RVY_URLPATH . '/admin/settings.js', [], PUBLISHPRESS_REVISIONS_VERSION);
-			wp_enqueue_style('revisionary-settings', RVY_URLPATH . '/admin/revisionary-settings.css', [], PUBLISHPRESS_REVISIONS_VERSION);
+			wp_enqueue_script('revisionary-settings', RVY_URLPATH . '/admin/settings.js', ['jquery'], defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') ? PUBLISHPRESS_REVISIONS_PRO_VERSION : PUBLISHPRESS_REVISIONS_VERSION);
+			wp_enqueue_style('revisionary-settings', RVY_URLPATH . '/admin/revisionary-settings.css', [], defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') ? PUBLISHPRESS_REVISIONS_PRO_VERSION : PUBLISHPRESS_REVISIONS_VERSION);
 		}
 		
 		if (defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && ('admin.php' == $pagenow) && !empty($_REQUEST['page']) && in_array($_REQUEST['page'], ['revisionary-settings', 'rvy-net_options', 'rvy-default_options'], true) ) {	//phpcs:ignore WordPress.Security.NonceVerification.Recommended
