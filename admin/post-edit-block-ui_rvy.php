@@ -210,7 +210,6 @@ class RVY_PostBlockEditUI {
             )
         );
 
-        $select_html = str_replace(["\n", "\r"], '', $select_html);
         ?>
 		<script type="text/javascript">
         /* <![CDATA[ */
@@ -222,7 +221,7 @@ class RVY_PostBlockEditUI {
                         + '<label for="rvy_post_author">' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
                         + '</div>'
                         + "<div class='rvy-author-selection'>"
-                        + "<?php echo $select_html;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
+                        + <?php echo wp_json_encode($select_html, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
                         + '</div>'
                     );
                 }
