@@ -1,6 +1,15 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[4.3.6] - 24 Nov 2026
+
+- Changed : After Update Revision button click, show update status indicator on button
+- Changed : Formatting for submit / approve status progress message in revision editor
+- Changed : Show block editor revision controls after first save
+- Changed : Add a settings tab for Scheduled Revisions
+- Security : Harden Edit User screen against XSS attack
+
 [4.3.5] - 19 Nov 2026
+
 - Added: Private MCP actions for native revision workflows, settings and permissions.
 
 [4.3.4] - 17 Nov 2026

@@ -93,15 +93,15 @@ class RVY_PostBlockEditUI {
     }
 
 	public static function act_object_guten_scripts() {
-        global $current_user, $revisionary, $pagenow, $post, $wp_version;
+        global $current_user, $revisionary, $post;
 
-        if ('post-new.php' == $pagenow) {
-            return;
-        }
-        
         if (empty($post)) {
             return;
         }
+
+        // The Add New screen already has an auto-draft ID when assets are enqueued.
+        // Pass its configuration now and let the editor wait for the first save.
+        $is_new_post = 'auto-draft' === $post->post_status;
 
 		if (!$type_obj = get_post_type_object($post->post_type)) {
             return;
@@ -136,7 +136,7 @@ class RVY_PostBlockEditUI {
                 return;
             }
 
-            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_post-block-edit{$suffix}.js", array('jquery', 'jquery-form', 'wp-editor'), PUBLISHPRESS_REVISIONS_VERSION, true );
+            wp_enqueue_script( 'rvy_object_edit', RVY_URLPATH . "/admin/rvy_post-block-edit{$suffix}.js", array('jquery', 'jquery-form', 'wp-editor', 'wp-data', 'wp-a11y'), PUBLISHPRESS_REVISIONS_VERSION, true );
 
             $args = \PublishPress\Revisions\PostEditorWorkflowUI::postLinkParams(compact('post', 'do_pending_revisions', 'do_scheduled_revisions'));
 
@@ -210,7 +210,6 @@ class RVY_PostBlockEditUI {
             )
         );
 
-        $select_html = str_replace(["\n", "\r"], '', $select_html);
         ?>
 		<script type="text/javascript">
         /* <![CDATA[ */
@@ -222,7 +221,7 @@ class RVY_PostBlockEditUI {
                         + '<label for="rvy_post_author">' + '<?php esc_html_e("Author", 'revisionary');?>&nbsp;</label>'
                         + '</div>'
                         + "<div class='rvy-author-selection'>"
-                        + "<?php echo $select_html;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
+                        + <?php echo wp_json_encode($select_html, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
                         + '</div>'
                     );
                 }
