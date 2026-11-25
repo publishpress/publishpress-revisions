@@ -353,11 +353,11 @@ jQuery(document).ready(function ($) {
                     buttonUI += approveButtonHTML
     
                         + '<div class="revision-submitting" style="display: none;">'
-                        + '<span class="revision-approve revision-submitting">'
-                        + rvyObjEdit[rvyObjEdit.currentStatus + 'InProcessCaption'] + '</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
+                        + '<span class="rvy-transition-progress"><span class="revision-submitting">'
+                        + rvyObjEdit[rvyObjEdit.currentStatus + 'InProcessCaption'] + '</span><span class="spinner is-active" aria-hidden="true"></span></span></div>'
                         + '<div class="revision-approving" style="display: none;">'
-                        + '<span class="revision-approve revision-submitting">'
-                        + rvyObjEdit.approvingCaption + '</span><span class="spinner ppr-submission-spinner" style=""></span></div>'
+                        + '<span class="rvy-transition-progress"><span class="revision-submitting">'
+                        + rvyObjEdit.approvingCaption + '</span><span class="spinner is-active" aria-hidden="true"></span></span></div>'
                         + rvyPreviewLink
                         + '</div>';
 
@@ -407,8 +407,13 @@ jQuery(document).ready(function ($) {
         if (isDecline) { if (url) window.location.href = url; return false; }
         rvyTransitionBusy = true;
         $('button.revision-approve, button.revision-schedule').prop('disabled', true);
-        $('div.revision-approving').show();
-        rvySpeak(rvyObjEdit.approvingCaption);
+        if (isSubmission) {
+            $('div.revision-submitting').show();
+            rvySpeak(rvyObjEdit[rvyObjEdit.currentStatus + 'InProcessCaption']);
+        } else {
+            $('div.revision-approving').show();
+            rvySpeak(rvyObjEdit.approvingCaption);
+        }
         window.RevisionaryEditorSave.block().then(function () {
             if (isSubmission) return rvySubmitCopy();
             if (!url) throw new Error(rvyObjEdit.saveError);
@@ -495,43 +500,57 @@ jQuery(document).ready(function ($) {
     }
     var RvyRecaptionSaveDraftInterval = setInterval(RvyRecaptionDefaultButtons, 100);
 
+    // Mirror the native save control so WordPress owns the Saving, Autosaving,
+    // and Saved states, including their icons and button styling.
+    var rvyNativeSaveButton = 'button.editor-post-save-draft, button.editor-post-saved-state, button.editor-post-saved-stated';
+
     function RvyRecaptionSaveButton(btnCaption) {
-        jQuery(document).ready(function ($) {
-            btnSelector = 'button.editor-post-save-draft';
+        var nativeButton = $(rvyNativeSaveButton).not('.revisionary-save-button button').first();
+        var wrapper = $('span.revisionary-save-button');
 
-            var node = $(btnSelector);
-          
-            if (wp.data.select('core/editor').isSavingPost()) {
-                return;
-            }
+        if (!nativeButton.length) {
+            wrapper.remove();
+            return;
+        }
 
-            if (!btnCaption) {
-                btnCaption = rvyObjEdit.saveRevision;
-            }
+        if (!wrapper.length) {
+            wrapper = $('<span class="revisionary-save-button"><button type="button"></button></span>')
+                .insertAfter(nativeButton);
+        } else if (wrapper.prev()[0] !== nativeButton[0]) {
+            wrapper.insertAfter(nativeButton);
+        }
 
-            if (btnCaption != $('span.revisionary-save-button button').html() || !$('span.revisionary-save-button button:visible').length || $('button.editor-post-save-draft:visible').length
-            ) {
-                var hideClass = 'presspermit-save-hidden';
+        var button = wrapper.children('button');
+        var isProgress = !nativeButton.hasClass('editor-post-save-draft');
+        var buttonClasses = (nativeButton.attr('class') || '').split(/\s+/).filter(function (name) {
+            return name !== 'editor-post-save-draft' && name !== 'presspermit-save-hidden';
+        }).join(' ');
 
-                if (!$('.revisionary-save-button').length
-                ) {
-                    // Clone the stock button
-                    node.after('<span class="revisionary-save-button">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-save-draft').removeAttr('disabled').removeAttr('aria-disabled').removeAttr('style').css('white-space', 'nowrap').css('position', 'relative').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+        if (!isProgress) {
+            buttonClasses = buttonClasses.replace(/\bis-tertiary\b/, '') + ' is-primary ppr-purple-button';
+        }
 
-                    // Hide the stock button
-                    node.addClass(hideClass).hide().css('z-index', -999);
+        var caption = btnCaption || rvyObjEdit.saveRevision;
+        var markup = isProgress ? nativeButton.html() : caption;
 
-                    $('span.revisionary-save-button button').removeClass('editor-post-save-draft').removeClass(hideClass).removeClass('is-tertiary').addClass('is-primary').addClass('ppr-purple-button').html(btnCaption);
+        if (button.html() !== markup) {
+            button.html(markup);
+        }
 
-                    node.addClass(hideClass).attr('aria-disabled', true);
-                }
-            }
+        button.attr({
+            'class': buttonClasses,
+            'aria-disabled': isProgress || nativeButton.prop('disabled') || nativeButton.attr('aria-disabled') === 'true',
+            'aria-label': isProgress ? (nativeButton.attr('aria-label') || nativeButton.text().trim()) : $('<div>').html(caption).text()
         });
+
+        nativeButton.addClass('presspermit-save-hidden').hide();
     }
 
-    $(document).on('click', 'span.revisionary-save-button button', function() {
-        if (!wp.data.select('core/editor').isSavingPost() && !$('span.revisionary-save-button button').attr('aria-disabled')) {
-            $(this).parent().prev('button.editor-post-save-draft').trigger('click');
+    $(document).on('click', 'span.revisionary-save-button button', function () {
+        var nativeButton = $(this).parent().prev('button.editor-post-save-draft');
+
+        if ($(this).attr('aria-disabled') !== 'true' && !wp.data.select('core/editor').isSavingPost()) {
+            nativeButton.trigger('click');
         }
     });
 });

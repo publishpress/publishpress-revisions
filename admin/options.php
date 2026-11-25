@@ -422,6 +422,7 @@ $this->section_captions = array(
 		'post_types'			=> esc_html__('Features', 'revisionary'),
 		'archive'				=> esc_html__('Past Revisions', 'revisionary'),
 		'working_copy'			=> esc_html__('New Revisions', 'revisionary'),
+		'scheduling'			=> esc_html__('Scheduling', 'revisionary'),
 		'revisions'				=> esc_html__('Options', 'revisionary'),
 		'integrations'			=> esc_html__('Integrations', 'revisionary'),
 		'statuses'				=> esc_html__('Statuses', 'revisionary'),
@@ -494,7 +495,7 @@ if ( $customize_defaults )
 ?>
 
 <input type='hidden' name='ppr_tab' value='<?php !empty($_REQUEST['ppr_tab']) ? esc_attr(sanitize_key(str_replace('#', '', wp_unslash($_REQUEST['ppr_tab'])))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
-<input type='hidden' name='ppr_subtab' value='<?php !empty($_REQUEST['ppr_subtab']) ? esc_attr(sanitize_key(wp_unslash($_REQUEST['ppr_subtab']))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
+<input type='hidden' name='ppr_subtab' value='<?php echo !empty($_REQUEST['ppr_subtab']) ? esc_attr(sanitize_key(wp_unslash($_REQUEST['ppr_subtab']))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
 
 <table role="presentation"><tr>
 <td>
@@ -610,6 +611,12 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 }
 ?>
 
+<?php
+$show_notifications_promo = !empty($this->section_captions['features']['notifications'])
+	&& !empty($this->form_options[$tab]['notifications'])
+	&& !empty($this->section_captions['features']['working_copy'])
+	&& !empty($this->form_options[$tab]['working_copy']);
+?>
 <ul id="publishpress-revisions-settings-tabs" class="nav-tab-wrapper">
 	<?php
 	if (!empty($_REQUEST['ppr_tab'])) {															//phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -623,11 +630,23 @@ if (empty(array_filter($revisionary->enabled_post_types))) {
 		$setActiveTab = 'post_types';
 	}
 
-	foreach($this->section_captions['features'] as $section_name => $label) {
-		if (!empty($this->form_options[$tab][$section_name])) {
+	$requested_subtab = isset($_REQUEST['ppr_subtab']) ? sanitize_key(wp_unslash($_REQUEST['ppr_subtab'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	if (('working_copy' === $setActiveTab) && ('revision-scheduling' === $requested_subtab)) {
+		$setActiveTab = 'scheduling';
+	}
+	if ('notifications' === $setActiveTab) {
+		$setActiveTab = 'working_copy';
+		$requested_subtab = 'notifications';
+	}
+
+	foreach ($this->section_captions['features'] as $section_name => $label) {
+		$option_section = ('scheduling' === $section_name) ? 'working_copy' : $section_name;
+		if (('notifications' === $section_name) ? $show_notifications_promo : !empty($this->form_options[$tab][$option_section])) {
+			$promo_link = ('notifications' === $section_name);
+			$panel = $promo_link ? 'working_copy' : $section_name;
 		?>
-		<li class="nav-tab<?php echo (empty($setActiveTab) || ($setActiveTab == $section_name)) ? ' nav-tab-active' : '' ?>">
-			<a href="#ppr-tab-<?php echo esc_attr($section_name) ?>"<?php if ($setActiveTab == $section_name) echo ' aria-current="true"';?>>
+		<li class="nav-tab<?php if ($promo_link) echo ' rvy-notifications-promo-tab'; ?><?php echo (empty($setActiveTab) || ($setActiveTab == $section_name)) ? ' nav-tab-active' : '' ?>">
+			<a href="#ppr-tab-<?php echo esc_attr($panel) ?>"<?php if ($promo_link) echo ' data-rvy-subtab="notifications"'; ?><?php if ($setActiveTab == $section_name) echo ' aria-current="true"';?>>
 				<?php echo esc_html($label) ?>
 			</a>
 
@@ -1342,7 +1361,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 	$_sections = [
 		'revision-creation' => esc_html__('Revision Creation', 'revisionary'),
 		'revision-submission' => esc_html__('Submission', 'revisionary'),
-		'revision-scheduling' => esc_html__('Scheduling', 'revisionary'),
 		'revision-publication' => esc_html__('Publication', 'revisionary'),
 		'revision-queue' => esc_html__('Management', 'revisionary'),
 		'notifications' => esc_html__('Notifications', 'revisionary'),
@@ -1352,11 +1370,7 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 		unset($_sections['revision-queue']);
 	}
 
-	if (empty($_REQUEST['ppr_subtab'])) {							// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$subtab = 'revision-creation';
-	} else {
-		$subtab = sanitize_key($_REQUEST['ppr_subtab']);			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	}
+	$subtab = isset($_sections[$requested_subtab]) ? $requested_subtab : 'revision-creation';
 	?>
 
 	<ul class="rvy-option-section-tabs">
@@ -1716,41 +1730,6 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 
 		</div>
 
-		<div class="revision-scheduling" <?php if ('revision-scheduling' != $subtab) echo 'style="display:none"';?>>
-		<?php
-		$this->setSubsection('revision-scheduling');
-
-		$hint = esc_html__( 'If a currently published post or page is edited and a future date set, the change will not be applied until the selected date.', 'revisionary' );
-		$this->option_checkbox( 'scheduled_revisions', $tab, $section, $hint, '' );
-
-		if ( 	// To avoid confusion, don't display any revision settings if pending revisions / scheduled revisions are unavailable
-		$scheduled_revisions_available ) :
-
-			$hint = sprintf(esc_html__( 'When a %s is published, update post publish date to current time.', 'revisionary' ), pp_revisions_status_label('future-revision', 'name'));
-			$this->option_checkbox( 'scheduled_revision_update_post_date', $tab, $section, $hint, '' );
-
-			$hint = sprintf(esc_html__( 'When a %s is published, update post modified date to current time.', 'revisionary' ), pp_revisions_status_label('future-revision', 'name'));
-			$this->option_checkbox( 'scheduled_revision_update_modified_date', $tab, $section, $hint, '' );
-
-			$hint = esc_html__( 'Leave this setting disabled to use Action Scheduler (recommended).', 'revisionary' );
-			$this->option_checkbox( 'scheduled_publish_cron', $tab, $section, $hint, '' );
-			rvy_scheduled_revision_migration_ui();
-
-			if (rvy_get_option('legacy_scheduled_publication')) {
-				$hint = esc_html__( 'Support publication of existing scheduled revisions asynchronously, via a secondary http request from the server.  This is usually best since it eliminates delay, but some servers may not support it.', 'revisionary' );
-				$this->option_checkbox( 'async_scheduled_publish', $tab, $section, $hint, '' );
-			}
-
-			if (defined('DISABLE_WP_CRON') && DISABLE_WP_CRON) {
-				$hint = esc_html__( 'The WP-Cron trigger is disabled, but scheduled tasks are still excecuted using a custom trigger.', 'revisionary' );
-				$this->option_checkbox( 'wp_cron_usage_detected', $tab, $section, $hint, '' );
-			}
-		endif; // scheduled revisions enabled
-
-		$this->closeSubsection();
-		?>
-		</div>
-
 		<div class="revision-publication" <?php if ('revision-publication' != $subtab) echo 'style="display:none"';?>>
 
 		<?php
@@ -1935,8 +1914,73 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 			);
 
 			if (defined('PUBLISHPRESS_VERSION')) {
-                $this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $hint, '', $chk_args);
+                $this->option_checkbox( 'use_publishpress_notifications', $tab, $section, $show_notifications_promo ? '' : $hint, '', $chk_args);
             }
+
+			if ($show_notifications_promo) :?>
+	<!-- CTA Section -->
+	<div class="pp-cta-section">
+		<p>
+			<?php esc_html_e('Upgrade to Revisions Pro for integration with our PublishPress Planner Notifications framework.', 'revisionary'); ?>
+		</p>
+
+		<div class="pp-revisions-pro-features">
+			<ul>
+				<li>
+					&nbsp;<?php esc_html_e('Customize notification message and subject', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php esc_html_e('Notify for a specific post type, category or term', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php esc_html_e('Target specific roles, users, or user groups', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php esc_html_e('With PublishPress Planner Pro, send notifications to a Slack channel', 'revisionary');?>
+				</li>
+			</ul>
+		</div>
+
+		<div class="pp-cta-buttons">
+			<a href="https://publishpress.com/revisions/" 
+				aria-label="<?php echo esc_attr__( 'Upgrade to Revisions Pro', 'revisionary' ); ?>"
+				class="button-primary button-large pp-upgrade-btn" 
+				target="_blank">
+				<?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
+			</a>
+			<a href="https://publishpress.com/knowledge-base/advanced-revisions-notifications/" 
+				aria-label="<?php echo esc_attr__( 'Learn more about advanced revision notifications', 'revisionary' ); ?>"
+				target="_blank"
+				class="pp-learn-more-link">
+				<?php esc_html_e('Learn More', 'revisionary'); ?>
+			</a>
+		</div>
+	</div>
+
+	<?php if (!empty($_REQUEST['rvy_promo_img'])):						// phpcs:ignore WordPress.Security.NonceVerification.Recommended?>
+	<br>
+	<div class="pp-integration-card">
+	<div style="border: 1px solid #ccc; border-radius: 8px">
+	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-notifications.png');?>" alt="<?php esc_attr_e('Revision notifications settings preview', 'revisionary'); ?>" style="width: 100%" />
+	</div>
+
+	<div class="pp-upgrade-overlay">
+		<p><?php esc_html_e('Upgrade to Revisions Pro to unlock Planner Notifications integration.', 'revisionary');?></p>
+		<p><?php esc_html_e('Customize notification content and recipients for each notification type.', 'revisionary');?></p>
+		<div class="pp-upgrade-buttons">
+			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/customize-email-notifications/'); ?>" target="_blank" class="pp-upgrade-btn-secondary" aria-label="<?php echo esc_attr__( 'Learn more about custom email notifications', 'revisionary' ); ?>">
+				<?php esc_html_e('Learn More', 'revisionary'); ?>
+			</a>
+
+			<a href="https://publishpress.com/links/revisions-banner/" target="_blank" class="pp-upgrade-btn-primary" aria-label="<?php echo esc_attr__( 'Upgrade to Revisions Pro', 'revisionary' ); ?>">
+			<?php esc_html_e('Upgrade to Pro', 'revisionary');?>
+			</a>
+		</div>
+	</div>
+	</div>
+	<?php endif;?>
+
+			<?php endif;
 
 			if ($native_availability['planner_notifications_access_limited']) {
 				echo '<br />';
@@ -2194,79 +2238,44 @@ if ( ! empty( $this->form_options[$tab][$section] ) ) :?>
 <?php endif; // any options accessable in this section
 
 
-$section = 'notifications';				// --- NOTIFICATIONS SECTION ---
+// Scheduling uses the existing New Revisions option group for saving and setting scope.
+$section = 'working_copy';
+if (!empty($this->form_options[$tab][$section])) :?>
+	<table class="form-table rs-form-table" role="presentation" id="ppr-tab-scheduling"<?php echo ('scheduling' != $setActiveTab) ? ' style="display:none;"' : ''; ?>><tr><td><div class="rvy-opt-wrap">
+		<?php
+		$this->setSubsection('revision-scheduling');
 
-if (!defined('PUBLISHPRESS_REVISIONS_PRO_VERSION') && !empty( $this->form_options[$tab][$section] ) ) :?>
-	<table class="form-table rs-form-table" role="presentation" id="<?php echo esc_attr("ppr-tab-$section");?>"<?php echo ($setActiveTab != $section) ? ' style="display:none;"' : '' ?>><tr><td><div class="rvy-opt-wrap">
-	
-	<!-- CTA Section -->
-	<div class="pp-cta-section">
-		<h4>
-			<?php esc_html_e('Ready to enhance your revision notifications?', 'revisionary'); ?>
-		</h4>
-		<p>
-			<?php esc_html_e('Upgrade to Revisions Pro for integration with our PublishPress Planner Notifications framework.', 'revisionary'); ?>
-		</p>
+		$hint = esc_html__( 'If a currently published post or page is edited and a future date set, the change will not be applied until the selected date.', 'revisionary' );
+		$this->option_checkbox( 'scheduled_revisions', $tab, $section, $hint, '' );
 
-		<div class="pp-revisions-pro-features">
-			<ul>
-				<li>
-					&nbsp;<?php esc_html_e('Customize notification message and subject', 'revisionary');?>
-				</li>
-				<li>
-					&nbsp;<?php esc_html_e('Notify for a specific post type, category or term', 'revisionary');?>
-				</li>
-				<li>
-					&nbsp;<?php esc_html_e('Target specific roles, users, or user groups', 'revisionary');?>
-				</li>
-				<li>
-					&nbsp;<?php esc_html_e('With PublishPress Planner Pro, send notifications to a Slack channel', 'revisionary');?>
-				</li>
-			</ul>
-		</div>
+		if ( 	// To avoid confusion, don't display any revision settings if pending revisions / scheduled revisions are unavailable
+		$scheduled_revisions_available ) :
 
-		<div class="pp-cta-buttons">
-			<a href="https://publishpress.com/revisions/" 
-				aria-label="<?php echo esc_attr__( 'Upgrade to Revisions Pro', 'revisionary' ); ?>"
-				class="button-primary button-large pp-upgrade-btn" 
-				target="_blank">
-				<?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
-			</a>
-			<a href="https://publishpress.com/knowledge-base/advanced-revisions-notifications/" 
-				aria-label="<?php echo esc_attr__( 'Learn more about advanced revision notifications', 'revisionary' ); ?>"
-				target="_blank"
-				class="pp-learn-more-link">
-				<?php esc_html_e('Learn More', 'revisionary'); ?>
-			</a>
-		</div>
-	</div>
+			$hint = sprintf(esc_html__( 'When a %s is published, update post publish date to current time.', 'revisionary' ), pp_revisions_status_label('future-revision', 'name'));
+			$this->option_checkbox( 'scheduled_revision_update_post_date', $tab, $section, $hint, '' );
 
-	<?php if (!empty($_REQUEST['rvy_promo_img'])):						// phpcs:ignore WordPress.Security.NonceVerification.Recommended?>
-	<br>
-	<div class="pp-integration-card">
-	<div style="border: 1px solid #ccc; border-radius: 8px">
-	<img src="<?php echo esc_url(plugins_url('', REVISIONARY_FILE) . '/admin/revision-notifications.png');?>" alt="<?php esc_attr_e('Revision notifications settings preview', 'revisionary'); ?>" style="width: 100%" />
-	</div>
+			$hint = sprintf(esc_html__( 'When a %s is published, update post modified date to current time.', 'revisionary' ), pp_revisions_status_label('future-revision', 'name'));
+			$this->option_checkbox( 'scheduled_revision_update_modified_date', $tab, $section, $hint, '' );
 
-	<div class="pp-upgrade-overlay">
-		<h4><?php esc_html_e('Pro Feature', 'revisionary'); ?></h4>
-		<p><?php esc_html_e('Upgrade to Revisions Pro to unlock Planner Notifications integration.', 'revisionary');?></p>
-		<p><?php esc_html_e('Customize notification content and recipients for each notification type.', 'revisionary');?></p>
-		<div class="pp-upgrade-buttons">
-			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/customize-email-notifications/'); ?>" target="_blank" class="pp-upgrade-btn-secondary" aria-label="<?php echo esc_attr__( 'Learn more about custom email notifications', 'revisionary' ); ?>">
-				<?php esc_html_e('Learn More', 'revisionary'); ?>
-			</a>
+			$hint = esc_html__( 'Leave this setting disabled to use Action Scheduler (recommended).', 'revisionary' );
+			$this->option_checkbox( 'scheduled_publish_cron', $tab, $section, $hint, '' );
+			rvy_scheduled_revision_migration_ui();
 
-			<a href="https://publishpress.com/links/revisions-banner/" target="_blank" class="pp-upgrade-btn-primary" aria-label="<?php echo esc_attr__( 'Upgrade to Revisions Pro', 'revisionary' ); ?>">
-			<?php esc_html_e('Upgrade to Pro', 'revisionary');?>
-			</a>
-		</div>
-	</div>
-	</div>
-	<?php endif;?>
+			if (rvy_get_option('legacy_scheduled_publication')) {
+				$hint = esc_html__( 'Support publication of existing scheduled revisions asynchronously, via a secondary http request from the server.  This is usually best since it eliminates delay, but some servers may not support it.', 'revisionary' );
+				$this->option_checkbox( 'async_scheduled_publish', $tab, $section, $hint, '' );
+			}
 
+			if (defined('DISABLE_WP_CRON') && DISABLE_WP_CRON) {
+				$hint = esc_html__( 'The WP-Cron trigger is disabled, but scheduled tasks are still excecuted using a custom trigger.', 'revisionary' );
+				$this->option_checkbox( 'wp_cron_usage_detected', $tab, $section, $hint, '' );
+			}
+		endif; // scheduled revisions enabled
+
+		$this->closeSubsection();
+		?>
 	</div></td></tr></table>
-<?php endif; // any options accessable in this section
+<?php endif;
 
 
 	$section = 'revisions';			// --- REVISIONS SECTION ---

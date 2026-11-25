@@ -232,6 +232,18 @@ function revisionary_copy_postmeta($from_post, $to_post_id, $args = []) {
             continue;
         }
         $copy_values[$meta_key] = (array) get_post_custom_values($meta_key, $from_post->ID);
+        if ('_elementor_page_settings' === $meta_key) {
+            foreach ($copy_values[$meta_key] as $index => $raw_value) {
+                // Elementor expects an array. Unwrap a legacy serialized array stored as a string.
+                $value = rvy_unserialize_meta_value($raw_value);
+                if (is_string($value)) {
+                    $settings = rvy_unserialize_meta_value($value);
+                    if (is_array($settings)) {
+                        $copy_values[$meta_key][$index] = $settings;
+                    }
+                }
+            }
+        }
         if (!rvy_revision_metadata_values_are_safe($copy_values[$meta_key])) {
             if (empty($args['validate_only'])) {
                 do_action('revisionary_post_copy_postmeta', $from_post, $to_post_id, $args);
